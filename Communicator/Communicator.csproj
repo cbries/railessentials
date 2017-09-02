@@ -49,7 +49,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiteGuard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteGuard.1.1.0\lib\net35\LiteGuard.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>3rdPartyLibs\LiteGuard.dll</HintPath>
+    </Reference>
+    <Reference Include="PrimS.Telnet.NetStandard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>3rdPartyLibs\PrimS.Telnet.NetStandard.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,6 +74,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="3rdPartyLibs\LiteGuard.dll" />
+    <Content Include="3rdPartyLibs\PrimS.Telnet.NetStandard.dll" />
     <Content Include="License.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -79,10 +86,6 @@
     <ProjectReference Include="..\RailwayEssentialCore\RailwayEssentialCore.csproj">
       <Project>{b80cfecd-db0b-4533-aa42-784b2ebe85ff}</Project>
       <Name>RailwayEssentialCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ThirdParty\Telnet-master\PrimS.Telnet.NetStandard\PrimS.Telnet.NetStandard.csproj">
-      <Project>{09c8914d-4e27-4f10-bc62-31a68484a661}</Project>
-      <Name>PrimS.Telnet.NetStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

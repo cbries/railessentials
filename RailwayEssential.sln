@@ -53,8 +53,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailwayEssentialMdi", "Rail
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", "{7F9ADB59-538F-405D-98CA-249CD66007D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimS.Telnet.NetStandard", "ThirdParty\Telnet-master\PrimS.Telnet.NetStandard\PrimS.Telnet.NetStandard.csproj", "{09C8914D-4E27-4F10-BC62-31A68484A661}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F3DB6F3-484B-493B-90FB-0B617D1508D9}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
@@ -236,18 +234,6 @@ Global
 		{88DCD3BE-BC41-4342-9AFD-FC71A65B9470}.Release|x64.Build.0 = Release|Any CPU
 		{88DCD3BE-BC41-4342-9AFD-FC71A65B9470}.Release|x86.ActiveCfg = Release|Any CPU
 		{88DCD3BE-BC41-4342-9AFD-FC71A65B9470}.Release|x86.Build.0 = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|x64.Build.0 = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Debug|x86.Build.0 = Debug|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|x64.ActiveCfg = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|x64.Build.0 = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|x86.ActiveCfg = Release|Any CPU
-		{09C8914D-4E27-4F10-BC62-31A68484A661}.Release|x86.Build.0 = Release|Any CPU
 		{B1C59CB8-A598-4AD3-9109-99C675684DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1C59CB8-A598-4AD3-9109-99C675684DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1C59CB8-A598-4AD3-9109-99C675684DE0}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -266,7 +252,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C15A7336-4B35-4BD3-9C31-7F7C8DD65E6B} = {5050BCD2-2DB5-4B46-9798-E034F293C22E}
-		{09C8914D-4E27-4F10-BC62-31A68484A661} = {7F9ADB59-538F-405D-98CA-249CD66007D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C52D5BED-2900-496F-8227-13B3F8335997}

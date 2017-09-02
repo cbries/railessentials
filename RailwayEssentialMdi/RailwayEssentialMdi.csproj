@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{88DCD3BE-BC41-4342-9AFD-FC71A65B9470}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>RailwayEssentialMdi</RootNamespace>
+    <AssemblyName>RailwayEssential</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Main.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="XamlAnimatedGif, Version=1.1.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlAnimatedGif.1.1.10\lib\net45\XamlAnimatedGif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.3.4.17280.14430\lib\net40\Xceed.Wpf.Themes.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Metro, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Metro.3.4.17280.14430\lib\net40\Xceed.Wpf.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Office2007, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Office2007.3.4.17280.14430\lib\net40\Xceed.Wpf.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Themes.Windows10, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Themes.Windows10.3.4.17280.14430\lib\net40\Xceed.Wpf.Themes.Windows10.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit.Themes.Metro, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Metro.3.4.17280.14430\lib\net40\Xceed.Wpf.Toolkit.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit.Themes.Office2007, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Office2007.3.4.17280.14430\lib\net40\Xceed.Wpf.Toolkit.Themes.Office2007.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit.Themes.Windows10, Version=3.4.17280.14430, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xceed.Wpf.Toolkit.Themes.Windows10.3.4.17280.14430\lib\net40\Xceed.Wpf.Toolkit.Themes.Windows10.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="About\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Analyze\Analyze.cs" />
+    <Compile Include="Analyze\AnalyzeHelper.cs" />
+    <Compile Include="Analyze\AnalyzeResult.cs" />
+    <Compile Include="Analyze\Coord.cs" />
+    <Compile Include="Analyze\Map.cs" />
+    <Compile Include="Analyze\MapItem.cs" />
+    <Compile Include="Analyze\Route.cs" />
+    <Compile Include="Analyze\RouteGroup.cs" />
+    <Compile Include="Analyze\WayPoint.cs" />
+    <Compile Include="Analyze\Waypoints.cs" />
+    <Compile Include="Autoplay\Autoplay.Check.cs" />
+    <Compile Include="Autoplay\Autoplay.cs" />
+    <Compile Include="Autoplay\Autoplay.Helper.cs" />
+    <Compile Include="Autoplay\Autoplay.Worker.cs" />
+    <Compile Include="Autoplay\AutoplayRouteThread.cs" />
+    <Compile Include="Autoplay\Ui\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bases\ViewModelBase.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="DataObjects\ProjectFile.cs" />
+    <Compile Include="DataObjects\ProjectTrack.cs" />
+    <Compile Include="DataObjects\ProjectTrackView.cs" />
+    <Compile Include="Entities\LogEntity.cs" />
+    <Compile Include="Entities\LocomotiveEntity.cs" />
+    <Compile Include="Entities\TrackEntity.cs" />
+    <Compile Include="Entities\TrackEntity.Edit.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Interfaces\IContent.cs" />
+    <Compile Include="Interfaces\ILocomotiveView.cs" />
+    <Compile Include="Interfaces\IMainView.cs" />
+    <Compile Include="Items\BlockRouteItem.cs" />
+    <Compile Include="Registry\Registry.cs" />
+    <Compile Include="Styles\PanesStyleSelector.cs" />
+    <Compile Include="ViewModels\BaseWindow.cs" />
+    <Compile Include="ViewModels\LocomotivesWindow.cs" />
+    <Compile Include="ViewModels\LogWindow.cs" />
+    <Compile Include="ViewModels\PropertiesWindow.cs" />
+    <Compile Include="ViewModels\TrackWindow.cs" />
+    <Compile Include="Views\LocomotivesView.xaml.cs">
+      <DependentUpon>LocomotivesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogView.xaml.cs">
+      <DependentUpon>LogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\RailwayEssentialModel.cs" />
+    <Compile Include="Views\PropertiesView.xaml.cs">
+      <DependentUpon>PropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrackView.xaml.cs">
+      <DependentUpon>TrackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XamlMagic\AutoGreyableImage.cs" />
+    <Page Include="About\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Autoplay\Ui\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LocomotivesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\PropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrackView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Main.xcf" />
+    <None Include="Resources\Theme\RailwayEssential.json" />
+    <None Include="Resources\Theme\RailwayEssential\tpl128x32.psd" />
+    <None Include="Resources\Theme\RailwayEssential\tpl32x32.psd" />
+    <None Include="Resources\Theme\RailwayEssential\tpl64x32.psd" />
+    <None Include="Resources\Theme\RailwayEssential\trackicon.svg.tpl" />
+    <None Include="Testprojekte\8Turn\8Turn.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\8Turn\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\8Turn\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\8Turn\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\FourStations\FourStations.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\FourStations\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\FourStations\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\FourStations\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Connectors\Connectors.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Connectors\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Connectors\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Connectors\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Crossing\Crossing.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Crossing\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Crossing\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Crossing\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\SingleCircle\SingleCircle.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\SingleCircle\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\SingleCircle\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\SingleCircle\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Schattenbahnhof1\Schattenbahnhof1.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Schattenbahnhof1\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Schattenbahnhof1\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Schattenbahnhof1\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\cef.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\cef_100_percent.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\cef_200_percent.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\cef_extensions.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\devtools_resources.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\icudtl.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\am.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ar.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\bg.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\bn.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ca.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\cs.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\da.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\de.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\el.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\en-GB.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\en-US.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\es-419.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\es.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\et.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\fa.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\fi.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\fil.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\fr.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\gu.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\he.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\hi.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\hr.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\hu.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\id.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\it.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ja.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\kn.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ko.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\lt.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\lv.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ml.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\mr.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ms.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\nb.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\nl.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\pl.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\pt-BR.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\pt-PT.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ro.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ru.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\sk.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\sl.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\sr.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\sv.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\sw.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\ta.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\te.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\th.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\tr.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\uk.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\vi.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\zh-CN.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\locales\zh-TW.pak">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\natives_blob.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="ThirdParty\CefLib\snapshot_blob.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Communicator\Communicator.csproj">
+      <Project>{8c4a1922-3bab-4f3e-b5a4-3fb906f97bc2}</Project>
+      <Name>Communicator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dispatcher\Dispatcher.csproj">
+      <Project>{2c9cdad8-8cac-463a-8b6d-b08290fb65fe}</Project>
+      <Name>Dispatcher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ecos2Core\Ecos2Core.csproj">
+      <Project>{5e022579-45a1-4e6f-94db-1c88e089030d}</Project>
+      <Name>Ecos2Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RailwayEssentialCore\RailwayEssentialCore.csproj">
+      <Project>{b80cfecd-db0b-4533-aa42-784b2ebe85ff}</Project>
+      <Name>RailwayEssentialCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RailwayEssentialWeb\RailwayEssentialWeb.csproj">
+      <Project>{61271bce-3976-43d9-b0fe-82970cbb1f0b}</Project>
+      <Name>RailwayEssentialWeb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Theme\Theme.csproj">
+      <Project>{f4cad622-048a-4bc3-9b60-06bdfe0d6ee6}</Project>
+      <Name>Theme</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrackInformationCore\TrackInformationCore.csproj">
+      <Project>{b839732a-5c4a-4501-8b5e-990d12627c56}</Project>
+      <Name>TrackInformationCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrackInformation\TrackInformation.csproj">
+      <Project>{6925e932-7ad6-4afa-a6ba-cbbf35014264}</Project>
+      <Name>TrackInformation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrackPlanParser\TrackPlanParser.csproj">
+      <Project>{f7751558-8d8b-4ae2-a1ee-22d80889d73d}</Project>
+      <Name>TrackPlanParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrackWeaver\TrackWeaver.csproj">
+      <Project>{bc3eaefc-cd4d-4a9e-870e-918685c49c3d}</Project>
+      <Name>TrackWeaver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Main.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\offline.png" />
+    <Resource Include="Resources\online.png" />
+    <Resource Include="Resources\route.png" />
+    <Resource Include="Resources\s88.png" />
+    <Resource Include="Resources\switch.png" />
+    <Resource Include="Resources\train.png" />
+    <Resource Include="Resources\unknown.png" />
+    <Resource Include="Resources\cat_status.png" />
+    <Resource Include="Resources\cat_s88.png" />
+    <Resource Include="Resources\cat_route.png" />
+    <Resource Include="Resources\cat_switch.png" />
+    <Resource Include="Resources\cat_locomotive.png" />
+    <Resource Include="Resources\esu0.png" />
+    <Resource Include="Resources\zoomnot.png" />
+    <Resource Include="Resources\zoomminus.png" />
+    <Resource Include="Resources\zoomplus.png" />
+    <Resource Include="Resources\minus.png" />
+    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\dryrun.png" />
+    <Resource Include="Resources\cat_blockroutes.png" />
+    <Resource Include="Resources\autoplay.png" />
+    <Resource Include="Resources\save.png" />
+    <Resource Include="Resources\saveas.png" />
+    <Resource Include="Resources\close.png" />
+    <Resource Include="Resources\about.png" />
+    <Resource Include="Resources\tags.png" />
+    <Resource Include="Resources\autoplayon.gif" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\straight-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\straight-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\straight.png" />
+    <Resource Include="Resources\trace.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\buffer-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\buffer-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\buffer.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dcurve-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dcurve-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dcurve.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dir-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dir-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dir.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dirall-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dirall-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\dirall.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\decoupler.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-right-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-right-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-right.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-left-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-left-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\connector-curve-left.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\curve-sensor-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\sensor-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-1-active.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-1-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-1-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-0-active.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-0-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-0-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\button-4-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-4-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-4-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright-t-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright-t-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright-t.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutright.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft-t-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft-t-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft-t.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\turnoutleft.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tl-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tl-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tl.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tr-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tr-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway-tr.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\threeway.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-10-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-11-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-off-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-off-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-off.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-on-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-on-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\accessory-12-on.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\crossing-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\crossing-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\crossing.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoredistant-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoredistant-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoredistant-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signaldistant-2-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signaldistant-2-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signaldistant-2-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoreshunting-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoreshunting-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoreshunting-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalshunting-2-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalshunting-2-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalshunting-2-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-2-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-2-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-2-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\semaphoremain-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-2-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-2-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-2-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-r.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tl-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tl-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tl.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tr-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tr-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\twoway-tr.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-occ.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-route.png" />
+    <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r.png" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-10-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-11-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-12-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-4-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\accessory-4-on.svg" />
+    <Resource Include="Resources\Theme\RailwayEssential\block-s.png" />
+    <Content Include="Resources\Theme\RailwayEssential\block-s.svg" />
+    <Resource Include="Resources\Theme\RailwayEssential\block.png" />
+    <Content Include="Resources\Theme\RailwayEssential\block.svg" />
+    <Resource Include="Resources\Theme\RailwayEssential\blockstate.png" />
+    <Content Include="Resources\Theme\RailwayEssential\blockstate.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\buffer-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\buffer-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\buffer.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-0-active.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-0-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-0-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-1-active.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-1-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-1-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\button-4-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-left-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-left-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-left.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-right-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-right-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-curve-right.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\connector.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\crossing-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\crossing-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\crossing.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve-sensor-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\curve.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dcurve-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dcurve-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dcurve.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\decoupler.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dir-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dir-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dir.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dirall-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dirall-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\dirall.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoredistant-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoredistant-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoredistant-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-2-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-2-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-2-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoremain-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoreshunting-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoreshunting-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\semaphoreshunting-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-off-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-off-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-off.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-on-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-on-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\sensor-on.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signaldistant-2-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signaldistant-2-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signaldistant-2-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-2-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-2-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-2-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalmain-r.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalshunting-2-r-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalshunting-2-r-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\signalshunting-2-r.svg" />
+    <Resource Include="Resources\Theme\RailwayEssential\stage.png" />
+    <Content Include="Resources\Theme\RailwayEssential\stage.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\straight-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\straight-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\straight.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tl-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tl-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tl.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tr-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tr-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway-tr.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\threeway.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft-t-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft-t-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft-t.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutleft.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright-t-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright-t-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright-t.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\turnoutright.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tl-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tl-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tl.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tr-occ.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tr-route.svg" />
+    <Content Include="Resources\Theme\RailwayEssential\twoway-tr.svg" />
+    <Content Include="ThirdParty\CefLib\CefSharp.BrowserSubprocess.Core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.BrowserSubprocess.Core.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.BrowserSubprocess.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.BrowserSubprocess.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="ThirdParty\CefLib\CefSharp.Core.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="ThirdParty\CefLib\CefSharp.Core.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="ThirdParty\CefLib\CefSharp.Core.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="ThirdParty\CefLib\CefSharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.Wpf.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\CefSharp.Wpf.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="ThirdParty\CefLib\CefSharp.Wpf.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ThirdParty\CefLib\CefSharp.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="ThirdParty\CefLib\chrome_elf.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\d3dcompiler_47.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\libcef.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\libEGL.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\libGLESv2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ThirdParty\CefLib\widevinecdmadapter.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(TargetDir)\Themes"
+xcopy /S /C /Y /J /R "$(ProjectDir)\Resources\Theme" "$(TargetDir)\Themes"
+xcopy /S /C /Y /J /R "$(TargetDir)ThirdParty\CefLib\*" "$(TargetDir)"
+
+md "$(TargetDir)\Trackplans\Webeditor"
+xcopy /S /C /Y /J /R "$(ProjectDir)\..\RailwayEssentialWeb\Resources\Webeditor" "$(TargetDir)\Trackplans\Webeditor"
+	</PostBuildEvent>
+  </PropertyGroup>
+</Project>

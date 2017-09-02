@@ -1,0 +1,10 @@
+
+[A] := hohe Priorität
+[B] := ...
+[C] := niedrige Priorität
+
+##############################
+
+[A] die Zugfahrt einer Loc sperren
+
+[C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

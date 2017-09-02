@@ -1,0 +1,450 @@
+﻿{
+  "name": "FourStations",
+  "version": 1.0,
+  "targetHost": "192.168.178.61",
+  "targetPort": 15471,
+  "designerColumns": 40,
+  "designerRows": 40,
+  "track": {
+    "name": "FourStations",
+    "path": "TrackPlan.json",
+    "weave": "TrackWeaving.json"
+  },
+  "trackViews": [
+    {
+      "name": "S#1",
+      "startX": 0,
+      "startY": 0,
+      "show": true
+    }
+  ],
+  "objects": [
+    "TrackObjects.json"
+  ],
+  "blockRoutes": [
+    [
+      {
+        "themeId": 150,
+        "x": 5,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 9,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 5,
+        "y": 4,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 9,
+        "y": 4,
+        "orientation": 0
+      },
+      {
+        "themeId": 51,
+        "x": 10,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 51,
+        "x": 16,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 5,
+        "orientation": 1
+      },
+      {
+        "themeId": 11,
+        "x": 16,
+        "y": 6,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 15,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 14,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 13,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 12,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 11,
+        "x": 10,
+        "y": 6,
+        "orientation": 2
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 5,
+        "orientation": 1
+      },
+      {
+        "themeId": 51,
+        "x": 10,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 51,
+        "x": 16,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 17,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 18,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 9,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 5,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 51,
+        "x": 10,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 5,
+        "orientation": 1
+      },
+      {
+        "themeId": 11,
+        "x": 10,
+        "y": 6,
+        "orientation": 2
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 12,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 13,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 14,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 15,
+        "y": 6,
+        "orientation": 0
+      },
+      {
+        "themeId": 11,
+        "x": 16,
+        "y": 6,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 5,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 16,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 51,
+        "x": 16,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 11,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 50,
+        "x": 10,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 3,
+        "orientation": 1
+      },
+      {
+        "themeId": 51,
+        "x": 10,
+        "y": 4,
+        "orientation": 1
+      },
+      {
+        "themeId": 10,
+        "x": 9,
+        "y": 4,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 5,
+        "y": 4,
+        "orientation": 0
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 18,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 10,
+        "x": 17,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 51,
+        "x": 16,
+        "y": 2,
+        "orientation": 0
+      },
+      {
+        "themeId": 150,
+        "x": 12,
+        "y": 2,
+        "orientation": 0
+      }
+    ]
+  ]
+}

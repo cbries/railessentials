@@ -1,0 +1,131 @@
+<REPLY queryObjects(11, addr, protocol, type, addrext, mode, symbol, name1, name2, name3)>
+20001 name1["s12"] name2[""] name3[""] addrext[8g,8r] addr[8] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+20002 name1["s13"] name2[""] name3[""] addrext[9g,9r] addr[9] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+20003 name1["s14"] name2[""] name3[""] addrext[1g,1r] addr[1] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+20004 name1["s15"] name2[""] name3[""] addrext[2g,2r] addr[2] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+20005 name1["s16"] name2[""] name3[""] addrext[3g,3r] addr[3] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20006 name1["s24"] name2[""] name3[""] addrext[4g,4r] addr[4] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20007 name1["s25"] name2[""] name3[""] addrext[5g,5r] addr[5] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20008 name1["s26"] name2[""] name3[""] addrext[6g,6r] addr[6] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20009 name1["s21"] name2[""] name3[""] addrext[10g,10r] addr[10] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+20010 name1["s22"] name2[""] name3[""] addrext[11g,11r] addr[11] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20011 name1["s23"] name2[""] name3[""] addrext[12g,12r] addr[12] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[0]
+20000 name1["s11"] name2[""] name3[""] addrext[7g,7r] addr[7] protocol[DCC] type[ACCESSORY] mode[SWITCH] symbol[1]
+30000 name1["S1"] name2["Fahrweg"] name3[""] type[ROUTE]
+30001 name1["S2"] name2["Fahrweg"] name3[""] type[ROUTE]
+30002 name1["S3"] name2["Fahrweg"] name3[""] type[ROUTE]
+30004 name1["S4"] name2["Fahrweg"] name3[""] type[ROUTE]
+30005 name1["S5"] name2["Fahrweg"] name3[""] type[ROUTE]
+30006 name1["S6"] name2["Fahrweg"] name3[""] type[ROUTE]
+30007 name1["S7"] name2["Fahrweg"] name3[""] type[ROUTE]
+30008 name1["S8"] name2["Fahrweg"] name3[""] type[ROUTE]
+<END 0 (OK)>
+
+<REPLY queryObjects(10, addr, name, protocol)>
+1002 name["kleine Schwarze"] addr[2] protocol[MM14]
+1005 name["Dampf #2"] addr[20] protocol[MM14]
+1007 name["Kompressorlok"] addr[78] protocol[MM14]
+1004 name["Schwarz Diesel"] addr[2] protocol[MM14]
+1006 name["DIESEL rot"] addr[21] protocol[MM14]
+1008 name["BR10"] addr[10] protocol[MM14]
+1000 name["Ae3/6II SBB "] addr[1000] protocol[DCC28]
+1009 name["DAMPF2"] addr[20] protocol[MM14]
+1001 name["Kompressor"] addr[78] protocol[MM14]
+1003 name["kleine Schwarze "] addr[2] protocol[MM14]
+<END 0 (OK)>
+
+<REPLY queryObjects(26, ports)>
+100 ports[16]
+101 ports[16]
+102 ports[16]
+103 ports[16]
+104 ports[16]
+<END 0 (OK)>
+
+Send message: request(1, view)
+Send message: request(26, view)
+Message: <REPLY request(1, view)>
+<END 0 (OK)>
+
+Send message: request(5, view)
+Send message: request(100, view)
+Send message: request(10, view)
+Send message: request(11, view, viewswitch)
+Message: <REPLY request(26, view)>
+<END 0 (OK)>
+<REPLY request(5, view)>
+<END 0 (OK)>
+<REPLY request(100, view)>
+<END 0 (OK)>
+<REPLY request(10, view)>
+<END 0 (OK)>
+<REPLY request(11, view, viewswitch)>
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0ac]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xa1ac]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xa1d6]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0d6]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0ff]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0e0]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0ff]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd00f]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0ff]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd01f]
+<END 0 (OK)>
+
+<EVENT 100>
+100 state[0xd0ff]
+<END 0 (OK)>
+
+<EVENT 11>
+11 switch[DCC10r]
+<END 0 (OK)>
+
+<EVENT 11>
+11 switch[DCC11r]
+<END 0 (OK)>
+
+<EVENT 11>
+11 switch[DCC6g]
+<END 0 (OK)>
+
+<EVENT 11>
+11 switch[DCC4r]
+<END 0 (OK)>
+
+
+
+// 
+<REPLY set(11, switch[DCC6g])>
+<END 0 (OK)>
+
+Teilnehmer als View registrieren. Nur 100 (s88) / 200 (ECoSDetector)

@@ -1,0 +1,170 @@
+﻿{
+  "name": "SingleCircle",
+  "version": 1.0,
+  "targetHost": "192.168.178.61",
+  "targetPort": 15471,
+  "designerColumns": 40,
+  "designerRows": 40,
+  "track": {
+    "name": "SingleCircle",
+    "path": "TrackPlan.json",
+    "weave": "TrackWeaving.json"
+  },
+  "trackViews": [
+    {
+      "name": "S#1",
+      "startX": 0,
+      "startY": 0,
+      "show": true
+    }
+  ],
+  "objects": [
+    "TrackObjects.json"
+  ],
+  "blockRoutes": [
+    [
+      {
+        "themeId": 150,
+        "x": 4,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 200,
+        "x": 3,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 11,
+        "x": 2,
+        "y": 2,
+        "orientation": 3,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 2,
+        "y": 3,
+        "orientation": 1,
+        "hasTurn": false
+      },
+      {
+        "themeId": 11,
+        "x": 2,
+        "y": 4,
+        "orientation": 2,
+        "hasTurn": false
+      },
+      {
+        "themeId": 14,
+        "x": 3,
+        "y": 4,
+        "orientation": 2,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 4,
+        "y": 4,
+        "orientation": 2,
+        "hasTurn": false
+      },
+      {
+        "themeId": 200,
+        "x": 5,
+        "y": 4,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 6,
+        "y": 4,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 150,
+        "x": 7,
+        "y": 4,
+        "orientation": 0,
+        "hasTurn": false
+      }
+    ],
+    [
+      {
+        "themeId": 150,
+        "x": 7,
+        "y": 4,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 200,
+        "x": 11,
+        "y": 4,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 11,
+        "x": 12,
+        "y": 4,
+        "orientation": 1,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 12,
+        "y": 3,
+        "orientation": 1,
+        "hasTurn": false
+      },
+      {
+        "themeId": 11,
+        "x": 12,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 14,
+        "x": 11,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 10,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 200,
+        "x": 9,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 10,
+        "x": 8,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      },
+      {
+        "themeId": 150,
+        "x": 4,
+        "y": 2,
+        "orientation": 0,
+        "hasTurn": false
+      }
+    ]
+  ]
+}

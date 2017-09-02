@@ -1,0 +1,707 @@
+﻿[
+  {
+    "category": "Track",
+    "objects": [
+      {
+        "id": 10,
+        "name": "Straight",
+        "active": {
+          "default": "straight",
+          "occ": "straight-occ",
+          "route": "straight-route"
+        },
+        "off": {
+          "default": "straight",
+          "occ": "straight-occ",
+          "route": "straight-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 11,
+        "name": "Curve",
+        "active": {
+          "default": "curve",
+          "occ": "curve-occ",
+          "route": "curve-route"
+        },
+        "off": {
+          "default": "curve",
+          "occ": "curve-occ",
+          "route": "curve-route"
+        },
+        "clickable": false,
+        "routes": [ "AD", "AB", "BC", "CD" ]
+      },
+      {
+        "id": 12,
+        "name": "DoubleCurve",
+        "active": {
+          "default": "dcurve",
+          "occ": "dcurve",
+          "route": "dcurve"
+        },
+        "off": {
+          "default": "dcurve",
+          "occ": "dcurve",
+          "route": "dcurve"
+        },
+        "clickable": false,
+        "routes": [ "AD,DA,BC,CB", "AB,BA,CD,DC", "AD,DA,BC,CB", "AB,BA,CD,DC" ]
+      },
+      {
+        "id": 13,
+        "name": "Buffer",
+        "active": {
+          "default": "buffer",
+          "occ": "buffer-occ",
+          "route": "buffer-route"
+        },
+        "off": {
+          "default": "buffer",
+          "occ": "buffer-occ",
+          "route": "buffer-route"
+        },
+        "clickable": false,
+        "routes": [ "A", "B", "C", "D" ]
+      },
+      {
+        "id": 14,
+        "name": "Direction",
+        "active": {
+          "default": "dir",
+          "occ": "dir-occ",
+          "route": "dir-route"
+        },
+        "off": {
+          "default": "dir",
+          "occ": "dir-occ",
+          "route": "dir-route"
+        },
+        "clickable": false,
+        "routes": [ "CA!", "DB!", "AC!", "BD!" ]
+      },
+      {
+        "id": 15,
+        "name": "Direction (all)",
+        "active": {
+          "default": "dirall",
+          "occ": "dirall-occ",
+          "route": "dirall-route"
+        },
+        "off": {
+          "default": "dirall",
+          "occ": "dirall-occ",
+          "route": "dirall-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 16,
+        "name": "Decoupler",
+        "active": {
+          "default": "decoupler-on",
+          "occ": "decoupler-on-occ",
+          "route": "decoupler-on-route"
+        },
+        "off": {
+          "default": "decoupler",
+          "occ": "decoupler-occ",
+          "route": "decoupler-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 17,
+        "name": "Connector",
+        "active": {
+          "default": "connector",
+          "occ": "connector-occ",
+          "route": "connector-route"
+        },
+        "off": {
+          "default": "connector",
+          "occ": "connector-occ",
+          "route": "connector-route"
+        },
+        "clickable": false,
+        "routes": [ "AC+", "BD+", "CA+", "DB+" ]
+      },
+      {
+        "id": 18,
+        "name": "Connector Curve Right",
+        "active": {
+          "default": "connector-curve-right",
+          "occ": "connector-curve-right-occ",
+          "route": "connector-curve-right-route"
+        },
+        "off": {
+          "default": "connector-curve-right",
+          "occ": "connector-curve-right-occ",
+          "route": "connector-curve-right-route"
+        },
+        "clickable": false,
+        "routes": [ "AD+", "BA+", "CB+", "DC+" ]
+      },
+      {
+        "id": 19,
+        "name": "Connector Curve Left",
+        "active": {
+          "default": "connector-curve-left",
+          "occ": "connector-curve-left-occ",
+          "route": "connector-curve-left-route"
+        },
+        "off": {
+          "default": "connector-curve-left",
+          "occ": "connector-curve-left-occ",
+          "route": "connector-curve-left-route"
+        },
+        "clickable": false,
+        "routes": [ "AB+", "BC+", "CD+", "DA+" ]
+      }
+    ]
+  },
+  {
+    "category": "Switch",
+    "objects": [
+      {
+        "id": 50,
+        "name": "Turnout Left",
+        "active": {
+          "default": "turnoutleft-t",
+          "occ": "turnoutleft-t-occ",
+          "route": "turnoutleft-t-route"
+        },
+        "off": {
+          "default": "turnoutleft",
+          "occ": "turnoutleft-occ",
+          "route": "turnoutleft-route"
+        },
+        "clickable": false,
+        "routes": [ "AC,CA,CD,DC", "BD,DB,DA,AD", "AC,CA,AB,BA", "BD,DB,BC,CB" ] 
+      },
+      {
+        "id": 51,
+        "name": "Turnout Right",
+        "active": {
+          "default": "turnoutright-t",
+          "occ": "turnoutright-t-occ",
+          "route": "turnoutright-t-route"
+        },
+        "off": {
+          "default": "turnoutright",
+          "occ": "turnoutright-occ",
+          "route": "turnoutright-route"
+        },
+        "clickable": false,
+        "routes": [ "AC,CA,AD,DA", "BD,DB,BA,AB", "CA,AC,CB,BC", "DB,BD,DC,CD" ]
+      },
+      {
+        "id": 52,
+        "name": "Threeway",
+        "active": {
+          "default": "threeway",
+          "occ": "threeway-occ",
+          "route": "threeway-route"
+        },
+        "off": {
+          "default": "threeway",
+          "occ": "threeway-occ",
+          "route": "threeway-route"
+        },
+        "clickable": false,
+        "routes": [ "CA,AC,CB,BC,CD,DC", "DA,AD,DB,BD,DC,CD", "AC,CA,AB,BA,AD,DA", "BD,DB,BA,AB,BC,CB" ] 
+      },
+      {
+        "id": 53,
+        "name": "Twoway",
+        "active": {
+          "default": "twoway-tr",
+          "occ": "twoway-tr-occ",
+          "route": "twoway-tr-route"
+        },
+        "off": {
+          "default": "twoway-tr",
+          "occ": "twoway-tr-occ",
+          "route": "twoway-tr-route"
+        },
+        "clickable": false,
+        "routes": [ "BC,CB,DC,CD", "AD,DA,CD,DC", "AB,BA,AD,DA", "BC,CB,CD,DC" ] 
+      },
+      {
+        "id": -1, 
+        "_id": 54,
+        "name": "Crossing A",
+        "active": {
+          "default": "ccrossing",
+          "occ": "ccrossing-occ",
+          "route": "ccrossing-route"
+        },
+        "off": {
+          "default": "ccrossing",
+          "occ": "ccrossing-occ",
+          "route": "ccrossing-route"
+        },
+        "clickable": false,
+        "routes": [ "", "", "", "" ]
+      },
+      {
+        "id": 55,
+        "name": "Crossing B",
+        "active": {
+          "default": "crossing",
+          "occ": "crossing-occ",
+          "route": "crossing-route"
+        },
+        "off": {
+          "default": "crossing",
+          "occ": "crossing-occ",
+          "route": "crossing-route"
+        },
+        "clickable": false,
+        "routes": [ "AC,CA,BD,DB", "AC,CA,BD,DB", "AC,CA,BD,DB", "AC,CA,BD,DB" ]
+      },
+      {
+        "_id": 56,
+        "id": -1, 
+        "name": "Crossing Right 0m",
+        "active": {
+          "default": "crossingright0m",
+          "occ": "crossingright0m-occ",
+          "route": "crossingright0m-route"
+        },
+        "off": {
+          "default": "crossingright0m",
+          "occ": "crossingright0m-occ",
+          "route": "crossingright0m-route"
+        },
+        "clickable": false,
+        "routes": [ "A1C2,B2D1", "B1D2,A1C2", "A1C2,B2D1", "B1D2,A1C2" ]
+      },
+      {
+        "_id": 57,
+        "id": -1, 
+        "name": "Crossing Left 0m",
+        "active": {
+          "default": "crossingleft0m",
+          "occ": "crossingleft0m-occ",
+          "route": "crossingleft0m-route"
+        },
+        "off": {
+          "default": "crossingleft0m",
+          "occ": "crossingleft0m-occ",
+          "route": "crossingleft0m-route"
+        },
+        "clickable": false,
+        "routes": [ "A1C2,B1D2", "B1D2,C1A2", "A1C2,B1D2", "B1D2,C1A2" ]
+      },
+      {
+        "_id": 58,
+        "id": -1, 
+        "name": "Crossing Right sr",
+        "active": {
+          "default": "dcrossingright-sr",
+          "occ": "dcrossingright-srocc",
+          "route": "dcrossingright-sr-route"
+        },
+        "off": {
+          "default": "dcrossingright-sr",
+          "occ": "dcrossingright-srocc",
+          "route": "dcrossingright-sr-route"
+        },
+        "clickable": false,
+        "routes": [ "A1C2,B2D1", "B1D2,A1C2", "A1C2,B2D1", "B1D2,A1C2" ],
+        "dimensions": [ "2x1", "1x2", "2x1", "1x2" ] 
+      },
+      {
+        "_id": 59,
+        "id": -1, 
+        "name": "Crossing Left sr",
+        "active": {
+          "default": "dcrossingleft-sr",
+          "occ": "dcrossingleft-sr-occ",
+          "route": "dcrossingleft-sr-route"
+        },
+        "off": {
+          "default": "dcrossingleft-sr",
+          "occ": "dcrossingleft-sr-occ",
+          "route": "dcrossingleft-sr-route"
+        },
+        "clickable": false,
+        "routes": [ "A1C2,B1D2", "B1D2,C1A2", "A1C2,B1D2", "B1D2,C1A2" ],
+        "dimensions": [ "2x1", "1x2", "2x1", "1x2" ]
+      }
+    ]
+  },
+  {
+    "category": "Signal",
+    "objects": [
+      {
+        "id": 100,
+        "name": "Distant Signal",
+        "active": {
+          "default": "signaldistant-2-r",
+          "occ": "signaldistant-2-occ",
+          "route": "signaldistant-2-r-route"
+        },
+        "off": {
+          "default": "signaldistant-2-r",
+          "occ": "signaldistant-2-occ",
+          "route": "signaldistant-2-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 101,
+        "name": "Main Signal A",
+        "active": {
+          "default": "signalmain-r",
+          "occ": "signalmain-r-occ",
+          "route": "signalmain-r-route"
+        },
+        "off": {
+          "default": "signalmain-r",
+          "occ": "signalmain-r-occ",
+          "route": "signalmain-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 102,
+        "name": "Main Signal B",
+        "active": {
+          "default": "signalmain-2-r",
+          "occ": "signalmain-2-r-occ",
+          "route": "signalmain-2-r-occ"
+        },
+        "off": {
+          "default": "signalmain-2-r",
+          "occ": "signalmain-2-r-occ",
+          "route": "signalmain-2-r-occ"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 103,
+        "name": "Dwarf Signal",
+        "active": {
+          "default": "signalmain-dwarf-r",
+          "occ": "signalmain-dwarf-r-occ",
+          "route": "signalmain-dwarf-r-route"
+        },
+        "off": {
+          "default": "signalmain-dwarf-r",
+          "occ": "signalmain-dwarf-r-occ",
+          "route": "signalmain-dwarf-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 104,
+        "name": "Shunting Signal",
+        "active": {
+          "default": "signalshunting-2-r",
+          "occ": "signalshunting-2-r-occ",
+          "route": "signalshunting-2-r-route"
+        },
+        "off": {
+          "default": "signalshunting-2-r",
+          "occ": "signalshunting-2-r-occ",
+          "route": "signalshunting-2-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 105,
+        "name": "Distant Semaphore",
+        "active": {
+          "default": "semaphoredistant-r",
+          "occ": "semaphoredistant-r-occ",
+          "route": "semaphoredistant-r-route"
+        },
+        "off": {
+          "default": "semaphoredistant-r",
+          "occ": "semaphoredistant-r-occ",
+          "route": "semaphoredistant-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 106,
+        "name": "Main Semaphore A",
+        "active": {
+          "default": "semaphoremain-r",
+          "occ": "semaphoremain-r-occ",
+          "route": "semaphoremain-r-route"
+        },
+        "off": {
+          "default": "semaphoremain-r",
+          "occ": "semaphoremain-r-occ",
+          "route": "semaphoremain-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 107,
+        "name": "Main Semaphore B",
+        "active": {
+          "default": "semaphoremain-2-r",
+          "occ": "semaphoremain-2-r-occ",
+          "route": "semaphoremain-2-r-route"
+        },
+        "off": {
+          "default": "semaphoremain-2-r",
+          "occ": "semaphoremain-2-r-occ",
+          "route": "semaphoremain-2-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 108,
+        "name": "Shunting Semaphore",
+        "active": {
+          "default": "semaphoreshunting-r",
+          "occ": "semaphoreshunting-r-occ",
+          "route": "semaphoreshunting-r-route"
+        },
+        "off": {
+          "default": "semaphoreshunting-r",
+          "occ": "semaphoreshunting-r-occ",
+          "route": "semaphoreshunting-r-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 109,
+        "name": "Block State",
+        "active": {
+          "default": "blockstate",
+          "occ": "blockstate",
+          "route": "blockstate"
+        },
+        "off": {
+          "default": "blockstate",
+          "occ": "blockstate",
+          "route": "blockstate"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      }
+    ]
+  },
+  {
+    "category": "Block",
+    "objects": [
+      {
+        "id": 150,
+        "name": "Block",
+        "active": {
+          "default": "block",
+          "occ": "block",
+          "route": "block"
+        },
+        "off": {
+          "default": "block",
+          "occ": "block",
+          "route": "block"
+        },
+        "clickable": false,
+        "routes": [ "AC,CA", "BD,DB", "AC,CA", "BD,DB" ],
+        "dimensions": [ "4x1", "1x4", "4x1", "1x4" ]
+      },
+      {
+        "id": 151,
+        "name": "Short Block",
+        "active": {
+          "default": "block-s",
+          "occ": "block-s",
+          "route": "block-s"
+        },
+        "off": {
+          "default": "block-s",
+          "occ": "block-s",
+          "route": "block-s"
+        },
+        "clickable": false,
+        "routes": [ "AC,CA", "BD,DB", "AC,CA", "BD,DB" ],
+        "dimensions": [ "2x1", "1x2", "2x1", "1x2" ]
+      },
+      {
+        "id": 152,
+        "name": "Stage",
+        "active": {
+          "default": "stage",
+          "occ": "stage",
+          "route": "stage"
+        },
+        "off": {
+          "default": "stage",
+          "occ": "stage",
+          "route": "stage"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ],
+        "dimensions": [ "4x1", "1x4", "4x1", "1x4" ]
+      }
+    ]
+  },
+  {
+    "category": "Sensor",
+    "objects": [
+      {
+        "id": 200,
+        "name": "Sensor",
+        "active": {
+          "default": "sensor-on",
+          "occ": "sensor-on-occ",
+          "route": "sensor-on-route"
+        },
+        "off": {
+          "default": "sensor-off",
+          "occ": "sensor-off-occ",
+          "route": "sensor-off-route"
+        },
+        "clickable": false,
+        "routes": [ "AC", "BD", "AC", "BD" ] 
+      },
+      {
+        "id": 201,
+        "name": "Curve Sensor",
+        "active": {
+          "default": "curve-sensor-on",
+          "occ": "curve-sensor-on-occ",
+          "route": "curve-sensor-on-route"
+        },
+        "off": {
+          "default": "curve-sensor-off",
+          "occ": "curve-sensor-off-occ",
+          "route": "curve-sensor-off-route"
+        },
+        "clickable": false,
+        "routes": [ "AD,DA", "AB,BA", "BC,CD", "CD,DC" ]
+      },
+      {
+        "id": 202,
+        "name": "General Sensor",
+        "active": {
+          "default": "accessory-4-on",
+          "occ": "accessory-4-on-occ",
+          "route": "accessory-4-n-route"
+        },
+        "off": {
+          "default": "accessory-4-off",
+          "occ": "accessory-4-off-occ",
+          "route": "accessory-4-off-route"
+        },
+        "clickable": true
+      }
+    ]
+  },
+  {
+    "category": "Accessory",
+    "objects": [
+      {
+        "id": 250,
+        "name": "Output A",
+        "active": {
+          "default": "button-0-on",
+          "occ": "button-0-on-occ",
+          "route": "button-0-on-route"
+        },
+        "off": {
+          "default": "button-0-off",
+          "occ": "button-0-off-occ",
+          "route": "button-0-off-route"
+        },
+        "clickable": true
+      },
+      {
+        "id": 251,
+        "name": "Output B",
+        "active": {
+          "default": "button-1-on",
+          "occ": "button-1-on-occ",
+          "route": "button-1-on-route"
+        },
+        "off": {
+          "default": "button-1-off",
+          "occ": "button-1-off-occ",
+          "route": "button-1-off-route"
+        },
+        "clickable": true
+      },
+      {
+        "id": 252,
+        "name": "Output C",
+        "active": {
+          "default": "button-4-on",
+          "occ": "button-4-on-occ",
+          "route": "button-4-on-route"
+        },
+        "off": {
+          "default": "button-4-off",
+          "occ": "button-4-off-occ",
+          "route": "button-4-off-route"
+        },
+        "clickable": true
+      },
+      {
+        "id": 253,
+        "name": "Level Crossing A",
+        "active": {
+          "default": "accessory-10-on",
+          "occ": "accessory-10-on-occ",
+          "route": "accessory-10-on-route"
+        },
+        "off": {
+          "default": "accessory-10-off",
+          "occ": "accessory-10-off-occ",
+          "route": "accessory-10-off-route"
+        },
+        "clickable": true
+      },
+      {
+        "id": 254,
+        "name": "Level Crossing B",
+        "active": {
+          "default": "accessory-11-on",
+          "occ": "accessory-11-on-occ",
+          "route": "accessory-11-on-route"
+        },
+        "off": {
+          "default": "accessory-11-off",
+          "occ": "accessory-11-off-occ",
+          "route": "accessory-11-off-route"
+        },
+        "clickable": true
+      },
+      {
+        "id": 255,
+        "name": "Level Crossing C",
+        "active": {
+          "default": "accessory-12-on",
+          "occ": "accessory-12-on-occ",
+          "route": "accessory-12-on-route"
+        },
+        "off": {
+          "default": "accessory-12-off",
+          "occ": "accessory-12-off-occ",
+          "route": "accessory-12-off-route"
+        },
+        "clickable": true
+      }
+    ]
+  }
+]

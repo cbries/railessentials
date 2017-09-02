@@ -1,0 +1,218 @@
+[
+  {
+    "x": 6,
+    "y": 2,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 6,
+    "y": 5,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 5,
+    "y": 2,
+    "themeId": 14,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 4,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 11,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 10,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 11,
+    "y": 5,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 3,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 3,
+    "y": 3,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 3,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 4,
+    "y": 5,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 5,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 3,
+    "y": 2,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 2,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 5,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 3,
+    "y": 5,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 10,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 4,
+    "y": 6,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 4,
+    "y": 7,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 4,
+    "y": 8,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 5,
+    "y": 8,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 6,
+    "y": 8,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 11,
+    "y": 6,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 11,
+    "y": 7,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 10,
+    "y": 8,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 11,
+    "y": 8,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  }
+]

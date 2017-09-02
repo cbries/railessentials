@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--
+/*
+ * MIT License
+ *
+ * Copyright (c) 2017 Dr. Christian Benjamin Ries
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>-.-</title>
+	<script src="js/jquery/jquery-1.9.0.min.js" type="text/javascript"></script>
+	<script src="js/jquery/jquery-ui.js" type="text/javascript"></script>
+	<script src="js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
+	<script src="js/msdropdown/jquery.dd.js" type="text/javascript"></script>	
+	<script src="js/railwayessential.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/msdropdown/dd.css" />
+	<script>
+	  {{GLOBALJS}}
+	</script>
+	<style>
+	  {{GLOBALCSS}}
+	</style>
+</head>
+<body>
+
+<div id="editMenu" style="display: none; margin-top: 10px; margin-bottom: 10px; float: left;">
+
+<div style="width: 100%; display: table;">
+	<div style="display: table-row">
+		<div style="display: table-cell;"> 
+			<div style="vertical-align: middle; width: 120px;">
+			  <select name="webmenuCategories" id="webmenuCategories" style="width: 100px; vertical-align: middle;">
+				{{TRACKSYMBOLCATEGORIES}}
+			  </select>
+			</div>
+		</div>
+		
+		<div style="display: table-cell;">
+		  {{TRACKSYMBOLS_Track}}
+		  {{TRACKSYMBOLS_Switch}}
+		  {{TRACKSYMBOLS_Signal}}
+		  {{TRACKSYMBOLS_Block}}
+		  {{TRACKSYMBOLS_Sensor}}
+		  {{TRACKSYMBOLS_Accessory}}
+		</div>
+
+		<div style="display: table-cell;">
+		  <fieldset style="margin-left: 15px; vertical-align: middle;">
+			<label for="mode-1">Add/Move</label>
+			<input type="radio" name="mode" id="mode-1" checked>
+
+			<label for="mode-2">Remove</label>
+			<input type="radio" name="mode" id="mode-2">
+
+			<label for="mode-3">Rotate</label>
+			<input type="radio" name="mode" id="mode-3">
+
+			<label for="mode-4">Object Assignment</label>
+			<input type="radio" name="mode" id="mode-4">
+		  </fieldset>
+		</div>
+	</div>
+</div>
+
+</div>
+
+{{TRACKTABLE}}
+
+<!--
+<div class="container">
+  <div class="statusLeft"><img id="cmdEdit" width="24" height="24" style="vertical-align: middle;" border="0" src="edit.png"></div>
+  <div>&nbsp;</div>  
+  <div class="statusRight">ECOS2</div>
+</div>
+-->
+
+<div class="childDiv" style="position: absolute; top: 0px; left: 0px; display: inline; overflow: visible;">
+</div>
+
+</body>
+</html>

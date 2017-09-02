@@ -1,0 +1,122 @@
+[
+  {
+    "x": 8,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 9,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 13,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 8,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 9,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 12,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 13,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 14,
+    "y": 2,
+    "themeId": 17,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "2"
+    }
+  },
+  {
+    "x": 14,
+    "y": 5,
+    "themeId": 17,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "2"
+    }
+  },
+  {
+    "x": 7,
+    "y": 2,
+    "themeId": 17,
+    "orientation": "rot180",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "1"
+    }
+  },
+  {
+    "x": 7,
+    "y": 5,
+    "themeId": 17,
+    "orientation": "rot180",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "1"
+    }
+  },
+  {
+    "x": 10,
+    "y": 2,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "x": 10,
+    "y": 5,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  }
+]

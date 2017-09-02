@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="RailwayEssentialMdi.Views.LogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="300"
+             MinWidth="300" MinHeight="200">
+    <Grid VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <DockPanel HorizontalAlignment="Right" Grid.Column="0">
+            <!--
+            <CheckBox Content="Autoscroll" IsChecked="{Binding Autoscroll, Mode=TwoWay}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+            -->
+            <Button Content="Save" Width="45" Height="22" Margin="2,0,0,1" Command="{Binding SaveCommand}"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="0">
+            <TextBox Name="Log" 
+                     TextWrapping="NoWrap" 
+                     Text="{Binding Log.Message, Mode=OneWay}" 
+                     VerticalScrollBarVisibility="Auto" 
+                     HorizontalScrollBarVisibility="Auto" 
+                     TextChanged="Log_OnTextChanged" 
+                     IsReadOnly="True" 
+                     Background="WhiteSmoke"></TextBox>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,7 @@
+
+2017 ... 
+- visualization of target block of a route, the locomotive is shown with the color green
+
+2017 September 2nd
+------------------
+Release Candidate (RC)

@@ -6,6 +6,8 @@ RailwayEssential is a software for controlling your Model Trains especially when
 
 ### YouTube
 
+Click the image :-)
+
 [![RailwayEssential in Progress (YouTube)](https://img.youtube.com/vi/LcHo5y3PwqM/0.jpg)](https://youtu.be/LcHo5y3PwqM)
 
 ### Prerequisites

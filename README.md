@@ -4,6 +4,10 @@ RailwayEssential is a software for controlling your Model Trains especially when
 
 ![RailwayEssential Main Window](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main.png)
 
+### YouTube
+
+[![RailwayEssential in Progress (YouTube)](https://img.youtube.com/vi/LcHo5y3PwqM/0.jpg)](https://youtu.be/LcHo5y3PwqM)
+
 ### Prerequisites
 
 RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefor it would be great to own it :-)

@@ -9,6 +9,4 @@
 
 [A] Vor-/Rückwaertsfahrt erkennen und im Block so anzeigen; evtl. einfach einstellba machen
 
-[A] irgendwie die Ankunft der Lok im Zielblock visualisieren
-
 [C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

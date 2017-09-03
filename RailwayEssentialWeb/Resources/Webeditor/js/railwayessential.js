@@ -56,9 +56,9 @@ function changeDirectionMarker(col, row, direction) {
         var id = getIdOfDirectionLbl(col, row);
         var el = $('#' + id)[0];
         if (direction === 1)
-            el.firstChild.data = '<';
+            el.firstChild.data = 'R';
         else if (direction === 2)
-            el.firstChild.data = '>';
+            el.firstChild.data = 'F';
         else
             el.firstChild.data = '?';
     } catch (ex) { }
@@ -68,6 +68,18 @@ function changeLocnameMarker(col, row, locname) {
     try {
         var id = getIdOfLocanameLbl(col, row);
         var el = $('#' + id)[0];
+        el.setAttribute('stroke', 'black');
+        el.setAttribute('fill', 'black');
+        el.firstChild.data = locname;
+    } catch (ex) { }
+}
+
+function changeLocnameMarkerPreview(col, row, locname) {
+    try {
+        var id = getIdOfLocanameLbl(col, row);
+        var el = $('#' + id)[0];
+        el.setAttribute('stroke', 'green');
+        el.setAttribute('fill', 'green');
         el.firstChild.data = locname;
     } catch (ex) { }
 }

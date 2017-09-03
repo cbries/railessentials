@@ -1003,42 +1003,47 @@ namespace RailwayEssentialMdi.Entities
             var y = info.Y;
             var themeId = info.ThemeId;
 
+            var dataProvider = _dispatcher.GetDataProvider();
+            if (dataProvider == null)
+                return;
+
             if (x != -1 && y != -1 && themeId != -1)
             {
                 var item = _track.Get(x, y);
 
-                if (item != null)
-                {
-                    var opt = item.GetOption("blockCurrentLocomotive");
-                    if (string.IsNullOrEmpty(opt))
-                    {
-                        Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, ' ');");
-                    }
-                    else
-                    {
-                        int objectId = -1;
-                        if (int.TryParse(opt, out objectId))
-                        {
-                            var dataProvider = _dispatcher.GetDataProvider();
-                            if (dataProvider == null)
-                                return;
-
-                            var loc = dataProvider.GetObjectBy(objectId) as Locomotive;
-                            if (loc != null)
-                            {
-                                if (Viewer != null)
-                                    Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, '{loc.Name}');");
-                            }
-                        }
-                        else
-                        {
-                            Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, 'FAILURE');");
-                        }
-                    }
-                }
-                else
+                if (item == null)
                 {
                     Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, ' ');");
+                    Viewer.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, ' ');");
+                    return;
+                }
+
+                var objectId = item.GetLocomotiveObjectId();
+                var objectIdPreview = item.GetLocomotivePreviewObjectId();
+
+                if (objectId == -1 || objectIdPreview == -1)
+                {
+
+                    if(objectId == -1)
+                        Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, ' ');");
+
+                    if(objectIdPreview == -1)
+                        Viewer.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, ' ');");
+                }
+
+                if (objectId != -1)
+                {
+                    var loc = dataProvider.GetObjectBy(objectId) as Locomotive;
+                    if (loc != null)
+                        Viewer?.ExecuteJs($"changeLocnameMarker({x}, {y}, '{loc.Name}');");
+                }
+
+
+                if (objectIdPreview != -1)
+                {
+                    var locPreview = dataProvider.GetObjectBy(objectIdPreview) as Locomotive;
+                    if (locPreview != null)
+                        Viewer?.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, '{locPreview.Name}');");
                 }
             }
         }

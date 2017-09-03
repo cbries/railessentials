@@ -137,7 +137,30 @@ namespace TrackPlanParser
 
         public void SetLocomotiveObjectId(int objectId)
         {
-            SetOption("blockCurrentLocomotive", $"{objectId}");
+            if (objectId == -1)
+                SetOption("blockCurrentLocomotive", "");
+            else
+                SetOption("blockCurrentLocomotive", $"{objectId}");
+        }
+
+        public int GetLocomotivePreviewObjectId()
+        {
+            var vv = GetOption("blockPreviewLocomotive");
+            if (string.IsNullOrEmpty(vv))
+                return -1;
+
+            if (int.TryParse(vv, out var objectId))
+                return objectId;
+
+            return -1;
+        }
+
+        public void SetLocomotivePreviewObjectId(int objectId)
+        {
+            if(objectId == -1)
+                SetOption("blockPreviewLocomotive", "");
+            else
+                SetOption("blockPreviewLocomotive", $"{objectId}");
         }
 
         #endregion

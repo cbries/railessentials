@@ -237,6 +237,7 @@ namespace RailwayEssentialMdi.Autoplay
                         if (Autoplayer != null)
                             locObjectId = Autoplayer.GetLocObjectIdOfRoute(Route);
                         locObject = Model.Dispatcher.GetDataProvider().GetObjectBy(locObjectId) as Locomotive;
+                        DestBlock.SetLocomotivePreviewObjectId(locObjectId);
 
                         if (locObject != null)
                         {
@@ -425,6 +426,11 @@ namespace RailwayEssentialMdi.Autoplay
 
                         Model?.LogAutoplay($"{Prefix} {s}  TO  {d}");
                         Trace.WriteLine($"{Prefix} {s}  TO  {d}");
+
+                        Model.UiSyncCtx?.Send((x) =>
+                        {
+                            Model.TrackEntity.UpdateAllVisualBlocks();
+                        }, null);
                     }
 
                     foreach (var s88Data in routeData)
@@ -532,8 +538,9 @@ namespace RailwayEssentialMdi.Autoplay
                                     // reset current route
                                     // be ready for next routing decision
 
-                                    SrcBlock.SetOption("blockCurrentLocomotive", "");
-                                    DestBlock.SetOption("blockCurrentLocomotive", $"{locObject.ObjectId}");
+                                    SrcBlock.SetLocomotiveObjectId(-1);
+                                    DestBlock.SetLocomotiveObjectId(locObject.ObjectId);
+                                    DestBlock.SetLocomotivePreviewObjectId(-1);
                                     Model.UiSyncCtx?.Send(x =>
                                     {
                                         Model.Project.Save();

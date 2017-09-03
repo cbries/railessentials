@@ -1,2 +1,2 @@
 theme: jekyll-theme-cayman
-exclude: [ThirdParty, CefLibs, CefSharp.BrowserSubprocess.exe]
+exclude: ["ThirdParty", "CefLibs", "CefSharp.BrowserSubprocess.exe"]

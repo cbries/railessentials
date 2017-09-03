@@ -7,6 +7,6 @@
 
 [A] die Zugfahrt einer Loc sperren
 
-[A] Vor-/Rückwaertsfahrt erkennen und im Block so anzeigen; evtl. einfach einstellba machen
+[A] Vor-/Rückwaertsfahrt erkennen und im Block so anzeigen; evtl. einfach einstellbar machen
 
 [C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

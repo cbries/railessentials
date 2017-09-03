@@ -3,13 +3,14 @@
 
 
 #define MyAppName "RailwayEssential"
-#define MyAppVersion "1.0"
-#define MyAppInfoVersion "1.0.0.0"
+#define MyAppVersion "1.0 RC"
 #define MyAppPublisher "Dr. Christian Benjamin Ries"
 #define MyAppCopyright "Copyright (C) 2017 Dr. C.B.Ries"
 #define MyAppURL "http://www.railwayessential.net"
 #define MyAppExeName "RailwayEssential.exe"
-#define MyAppBuildDir "C:\Users\ChristianRi\Desktop\Github\modeling\RailwayEssential"
+#define MyAppBuildDir "C:\Users\ChristianRi\Source\Repos\railwayessential"
+; exe / dll file version
+#define MyAppInfoVersion "1.0.0.0" 
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -28,7 +29,7 @@ AppUpdatesURL={#MyAppURL}
 AppCopyright={#MyAppCopyright}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputDir=C:\Users\ChristianRi\Desktop\Github\modeling\RailwayEssential\Setup
+OutputDir={#MyAppBuildDir}\Setup
 OutputBaseFilename=setup
 SetupIconFile={#MyAppBuildDir}\RailwayEssentialMdi\Resources\Main.ico
 Compression=lzma

@@ -13,15 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		Documentation\accessory-manager.txt = Documentation\accessory-manager.txt
 		Documentation\Commands.txt = Documentation\Commands.txt
-		Documentation\Commands2.txt = Documentation\Commands2.txt
-		Documentation\Commands3.txt = Documentation\Commands3.txt
 		Documentation\ecos_pc_interface3.pdf = Documentation\ecos_pc_interface3.pdf
-		Documentation\ESU-ECOS-Command-Execution.odt = Documentation\ESU-ECOS-Command-Execution.odt
-		Documentation\ESU-ECOS-Commands.odt = Documentation\ESU-ECOS-Commands.odt
 		Documentation\Gleisplanung.odt = Documentation\Gleisplanung.odt
 		Documentation\Gleisplanung.pdf = Documentation\Gleisplanung.pdf
-		Documentation\Gleispläne.docx = Documentation\Gleispläne.docx
-		Documentation\Schattenbahnhof-unten.json = Documentation\Schattenbahnhof-unten.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackInformation", "TrackInformation\TrackInformation.csproj", "{6925E932-7AD6-4AFA-A6BA-CBBF35014264}"
@@ -39,13 +33,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackInformationCore", "TrackInformationCore\TrackInformationCore.csproj", "{B839732A-5C4A-4501-8B5E-990D12627C56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWeaver", "TrackWeaver\TrackWeaver.csproj", "{BC3EAEFC-CD4D-4A9E-870E-918685C49C3D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testdata", "Testdata", "{C15A7336-4B35-4BD3-9C31-7F7C8DD65E6B}"
-	ProjectSection(SolutionItems) = preProject
-		Documentation\Testdata\TrackObjects.json = Documentation\Testdata\TrackObjects.json
-		Documentation\Testdata\TrackPlan.json = Documentation\Testdata\TrackPlan.json
-		Documentation\Testdata\TrackWeaving.json = Documentation\Testdata\TrackWeaving.json
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theme", "Theme\Theme.csproj", "{F4CAD622-048A-4BC3-9B60-06BDFE0D6EE6}"
 EndProject
@@ -67,6 +54,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{B79D6212
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgThemeIconGenerator", "SvgThemeIconGenerator\SvgThemeIconGenerator.csproj", "{B1C59CB8-A598-4AD3-9109-99C675684DE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Website", "Website", "{9FA49E59-5658-4FA1-93EE-979730C23019}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Website\README.md.txt = Documentation\Website\README.md.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{C4399612-92D4-4BD7-9F85-1469A76AA457}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Website\images\RailwayEssential-main.png = Documentation\Website\images\RailwayEssential-main.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -251,7 +248,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C15A7336-4B35-4BD3-9C31-7F7C8DD65E6B} = {5050BCD2-2DB5-4B46-9798-E034F293C22E}
+		{9FA49E59-5658-4FA1-93EE-979730C23019} = {5050BCD2-2DB5-4B46-9798-E034F293C22E}
+		{C4399612-92D4-4BD7-9F85-1469A76AA457} = {9FA49E59-5658-4FA1-93EE-979730C23019}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C52D5BED-2900-496F-8227-13B3F8335997}

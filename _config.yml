@@ -1,2 +1,2 @@
 theme: jekyll-theme-cayman
-exclude: [**/*.exe]
+exclude: [RailwayEssentialMdi/ThirdParty, RailwayEssentialMdi\ThirdParty]

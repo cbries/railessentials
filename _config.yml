@@ -1,2 +1,2 @@
 theme: jekyll-theme-cayman
-exclude: [RailwayEssentialMdi/ThirdParty, RailwayEssentialMdi\ThirdParty]
+exclude: [ThirdParty, CefLibs, CefSharp.BrowserSubprocess.exe]

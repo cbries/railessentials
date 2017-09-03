@@ -222,8 +222,21 @@ namespace RailwayEssentialMdi
                     }
                 }
 
+                MenuItem m2 = null;
+                if (locItem.Locked)
+                {
+                    m2 = new MenuItem { Header = "Unlock" };
+                    m2.Click += (o, args) => _dataContext.SetLockToLocomotive(locItem, false);
+                }
+                else
+                {
+                    m2 = new MenuItem { Header = "Lock" };
+                    m2.Click += (o, args) => _dataContext.SetLockToLocomotive(locItem, true);
+                }
+
                 mnu.Items.Add(m0);
                 mnu.Items.Add(m1);
+                mnu.Items.Add(m2);
 
                 s.ContextMenu = mnu;
             }

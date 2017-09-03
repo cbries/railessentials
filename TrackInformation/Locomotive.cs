@@ -53,6 +53,19 @@ namespace TrackInformation
 
         public bool InitQueryStateDone { get; set; }
 
+        private bool _locked;
+
+        public bool Locked
+        {
+            get => _locked;
+            set
+            {
+                _locked = value;
+                OnPropertyChanged();
+                OnPropertyChanged("Locked");
+            }
+        }
+
         private string _name;
 
         public string Name
@@ -405,7 +418,8 @@ namespace TrackInformation
                 ["funcset"] = m,
                 ["nrOfFunctions"] = NrOfFunctions,
                 ["maxSpeedPercentage"] = MaxSpeedPercentage,
-                ["blockSpeedPercentage"]  = BlockSpeedPercentage
+                ["blockSpeedPercentage"]  = BlockSpeedPercentage,
+                ["locked"] = Locked
             };
 
             return o;
@@ -442,6 +456,8 @@ namespace TrackInformation
                 MaxSpeedPercentage = (int) obj["maxSpeedPercentage"];
             if (obj["blockSpeedPercentage"] != null)
                 BlockSpeedPercentage = (int) obj["blockSpeedPercentage"];
+            if (obj["locked"] != null)
+                Locked = (bool) obj["locked"];
         }
     }
 }

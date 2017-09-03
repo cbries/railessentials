@@ -1145,6 +1145,15 @@ namespace RailwayEssentialMdi.ViewModels
             item2.UpdateFuncset();
         }
 
+        public void SetLockToLocomotive(Locomotive locItem, bool state)
+        {
+            LogError("TODO set lock/unlock");
+
+            locItem.Locked = state;
+
+            // TODO
+        }
+
         public void DryRun(object p)
         {
             IsDryRun = true;

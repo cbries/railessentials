@@ -1,6 +1,7 @@
 
 2017 ... 
 - visualization of target block of a route, the locomotive is shown with the color green
+- instead of arrows (i.e. '>' and '<') letters are shown (i.e. 'F' and 'R') for providing information in which direction a locomotive is driven, i.e. F:=Forward and R:=Reverse
 
 2017 September 2nd
 ------------------

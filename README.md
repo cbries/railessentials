@@ -15,7 +15,7 @@ RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50
 
 ## Authors
 
-* **Dr. Christian Benjamin Ries ** - *Initial work* - [Website](http://www.christianbenjaminries.de)
+* **Dr. Christian Benjamin Ries** - *Initial work* - [Personal Website](http://www.christianbenjaminries.de)
 
 See also the list of [contributors](https://github.com/cbries/railwayessential/graphs/contributors) who participated in this project.
 

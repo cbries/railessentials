@@ -10,14 +10,20 @@ Click the image :-)
 
 [![RailwayEssential in Progress (YouTube)](https://img.youtube.com/vi/LcHo5y3PwqM/0.jpg)](https://youtu.be/LcHo5y3PwqM)
 
+### Releases
+
+Current test releases are available here: [Releases / Release Candidates / Other Setups](https://github.com/cbries/railwayessential/releases).
+
 ### Prerequisites
 
-RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefor it would be great to own it :-)
+RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefor it would be great to own one :-)
 
 ## Built With
 
 * [VisualStudio 2017](https://www.visualstudio.com/vs/whatsnew/) - The IDE used for
 * [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344) - Microsoft .NET Framework
+
+In case you like to build the software on you on. Just load the Solution file 'RailwayEssential.sln', set 'RailwayEssentialMdi' as startup poject, change the Achitecture to 'x86' or 'x64' and press 'F5'. Enjoy.
 
 ## Authors
 

@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 var TESTDATA = false;
-
 var isEdit = false;
 
 const ModeAddMove = 0;
@@ -84,6 +83,26 @@ function changeLocnameMarkerPreview(col, row, locname) {
     } catch (ex) { }
 }
 
+function changeLocnameMarkerLock(col, row, lock) {
+    try {
+        var id = getIdOfLocanameLbl(col, row);
+        var el = $('#' + id)[0];
+        if (lock) {
+            el.setAttribute('stroke', 'red');
+            el.setAttribute('fill', 'red');
+            //    el.setAttribute('style', 'font-style: italic; text-decoration: line-through;');			
+            var img = el.parentElement.querySelectorAll('image')[1];
+            img.setAttributeNS(null, 'visibility', 'visible');
+        } else {
+            //    el.setAttribute('stroke', 'black');
+            //    el.setAttribute('fill', 'black');
+            //    el.setAttribute('style', '');
+            var img = el.parentElement.querySelectorAll('image')[1];
+            img.setAttributeNS(null, 'visibility', 'hidden');
+        }
+    } catch (ex) { }
+}
+
 function changeItemIdMarker(col, row, idname) {
     try {
         var id = getIdOfItemNameLbl(col, row);
@@ -107,8 +126,8 @@ function appendBlockText(col, row, esvg, themeId) {
         el.setAttribute('x', 5);
         el.setAttribute('y', 18);
         el.setAttribute('font-size', '12px');
-        el.setAttribute('stroke', 'red');
-        el.setAttribute('fill', 'red');
+        el.setAttribute('stroke', 'blue');
+        el.setAttribute('fill', 'blue');
         el.innerHTML = '.';
         esvg.append(el);
         changeDirectionMarker(col, row, 2);
@@ -121,6 +140,15 @@ function appendBlockText(col, row, esvg, themeId) {
         el.setAttribute('stroke', 'black');
         el.setAttribute('fill', 'black');
         el.innerHTML = '.';
+        esvg.append(el);
+
+        el = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        el.setAttributeNS(null, 'height', '22');
+        el.setAttributeNS(null, 'width', '22');
+        el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'images/lock.png');
+        el.setAttributeNS(null, 'x', '104');
+        el.setAttributeNS(null, 'y', '5');
+        el.setAttributeNS(null, 'visibility', 'hidden');
         esvg.append(el);
     }
 
@@ -155,6 +183,11 @@ function appendBlockText(col, row, esvg, themeId) {
     changeLocnameMarker(col, row, ' ');
     changeItemIdMarker(col, row, ' ');
     //}
+
+    if (TESTDATA) {
+        changeLocnameMarker(col, row, 'BR 10');
+        changeLocnameMarkerLock(col, row, true);
+    }
 }
 
 function preloadSvgsLoaded() {
@@ -457,38 +490,38 @@ function simulateClick(col, row, themeid, symbol, orientation, response) {
         var svgChild = newChild.find("svg");
         appendBlockText(col, row, svgChild, themeid);
 
-        newChild.mousedown(function(evt) {
+        newChild.mousedown(function (evt) {
 
             if (isEdit) {
                 switch (evt.which) {
-                case 2: // middle button
-                    break;
-                case 3: // right button
-                    rotateElement(col, row, $(this));
-                    return;
+                    case 2: // middle button
+                        break;
+                    case 3: // right button
+                        rotateElement(col, row, $(this));
+                        return;
                 }
             }
 
             switch (editMode) {
-            case ModeRotate:
-                if (isEdit) {
-                    rotateElement(col, row, $(this));
-                }
-                break;
+                case ModeRotate:
+                    if (isEdit) {
+                        rotateElement(col, row, $(this));
+                    }
+                    break;
 
-            case ModeRemove:
-                if (isEdit) {
-                    $(this).remove();
-                    resetSelection();
-                    rebuildTable();
-                }
-                break;
+                case ModeRemove:
+                    if (isEdit) {
+                        $(this).remove();
+                        resetSelection();
+                        rebuildTable();
+                    }
+                    break;
 
-            case ModeObject:
-                if (isEdit) {
-                    selectElement(col, row, $(this));
-                }
-                break;
+                case ModeObject:
+                    if (isEdit) {
+                        selectElement(col, row, $(this));
+                    }
+                    break;
             }
         });
 
@@ -654,11 +687,11 @@ $(document).ready(function (e) {
 
                         if (isEdit) {
                             switch (evt.which) {
-                            case 2: // middle button
-                                break;
-                            case 3: // right button
-                                rotateElement(col, row, $(this));
-                                return;
+                                case 2: // middle button
+                                    break;
+                                case 3: // right button
+                                    rotateElement(col, row, $(this));
+                                    return;
                             }
                         }
 
@@ -738,11 +771,11 @@ $(document).ready(function (e) {
 
                     if (isEdit) {
                         switch (evt.which) {
-                        case 2: // middle button
-                            break;
-                        case 3: // right button
-                            rotateElement(col, row, $(this));
-                            return;
+                            case 2: // middle button
+                                break;
+                            case 3: // right button
+                                rotateElement(col, row, $(this));
+                                return;
                         }
                     }
 

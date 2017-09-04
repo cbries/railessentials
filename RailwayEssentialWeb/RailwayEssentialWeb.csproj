@@ -126,6 +126,7 @@
     <Content Include="Resources\Webeditor\css\msdropdown\sprite.css" />
     <Content Include="Resources\Webeditor\css\reset.css" />
     <Content Include="Resources\Webeditor\edit.png" />
+    <Content Include="Resources\Webeditor\images\lock.png" />
     <Content Include="Resources\Webeditor\images\msdropdown\skin1\dd_arrow.gif" />
     <Content Include="Resources\Webeditor\images\msdropdown\skin1\title-bg.gif" />
     <Content Include="Resources\Webeditor\js\jquery\jquery-1.9.0.min.js" />

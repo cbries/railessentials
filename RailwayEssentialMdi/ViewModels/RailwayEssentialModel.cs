@@ -1147,22 +1147,19 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void SetLockToLocomotive(Locomotive locItem, bool state)
         {
-            LogError("TODO set lock/unlock");
-
             locItem.Locked = state;
-
-            // TODO
+            Project.Save();
+            SetDirty(false);
+            Thread.Sleep(125);
+            TrackEntity.UpdateAllVisualBlocks();
         }
 
         public void DryRun(object p)
         {
             IsDryRun = true;
-
             var weaveFilepath = Path.Combine(Project.Dirpath, Project.Track.Weave);
             _dispatcher.InitializeWeaving(_trackEntity.Track, weaveFilepath);
-
             Thread.Sleep(125);
-
             TriggerUpdateUi();
         }
 

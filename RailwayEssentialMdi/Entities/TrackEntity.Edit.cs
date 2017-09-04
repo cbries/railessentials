@@ -1015,6 +1015,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, ' ');");
                     Viewer.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, ' ');");
+                    Viewer.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, false);");
                     return;
                 }
 
@@ -1024,18 +1025,31 @@ namespace RailwayEssentialMdi.Entities
                 if (objectId == -1 || objectIdPreview == -1)
                 {
 
-                    if(objectId == -1)
+                    if (objectId == -1)
+                    {
                         Viewer.ExecuteJs($"changeLocnameMarker({x}, {y}, ' ');");
+                        Viewer.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, false);");
+                    }
 
-                    if(objectIdPreview == -1)
+                    if (objectIdPreview == -1)
+                    {
                         Viewer.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, ' ');");
+                        Viewer.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, false);");
+                    }
                 }
 
                 if (objectId != -1)
                 {
                     var loc = dataProvider.GetObjectBy(objectId) as Locomotive;
                     if (loc != null)
+                    {
                         Viewer?.ExecuteJs($"changeLocnameMarker({x}, {y}, '{loc.Name}');");
+
+                        if(loc.Locked)
+                            Viewer.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, true);");
+                        else
+                            Viewer.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, false);");
+                    }
                 }
 
 

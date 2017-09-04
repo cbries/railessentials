@@ -25,7 +25,7 @@ RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50
 * [VisualStudio 2017](https://www.visualstudio.com/vs/whatsnew/) - The IDE used for
 * [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344) - Microsoft .NET Framework
 
-In case you like to build the software on you on. Just load the Solution file 'RailwayEssential.sln', set 'RailwayEssentialMdi' as startup poject, change the Achitecture to 'x86' or 'x64' and press 'F5'. Enjoy.
+In case you like to build the software on your own. Just load the Solution file 'RailwayEssential.sln', set 'RailwayEssentialMdi' as startup poject, change the Achitecture to 'x86' or 'x64' and press 'F5'. Enjoy.
 
 ## Authors
 

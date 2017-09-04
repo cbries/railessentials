@@ -204,6 +204,16 @@ namespace RailwayEssentialMdi.Autoplay
                     var locObjectIdStart = GetLocObjectIdOfRoute(r);
                     var locObjectIdEnd = GetLocObjectIdOfRoute(r, true);
 
+                    // check if loc is locked, if yes just check next route and ignore 'r'
+                    if (locObjectIdStart != -1)
+                    {
+                        if (Ctx.Dispatcher.GetDataProvider().GetObjectBy(locObjectIdStart) is Locomotive locObj)
+                        {
+                            if (locObj.Locked)
+                                continue;
+                        }
+                    }
+
                     if (locObjectIdStart != -1 && locObjectIdEnd == -1 && !r.IsBusy)
                     {
                         if (Ctx.Dispatcher.GetDataProvider().GetObjectBy(locObjectIdStart) is Locomotive locObj)

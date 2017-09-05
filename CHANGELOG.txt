@@ -5,6 +5,7 @@
 - allow to Lock/Unlock specific Locomotives, therfor they will not be started automatically within Automode
 - allow to open the project directory direct by using the "Project / Show Project Directory"
 - Sync of project Locomotives with Locomotives configured by the ESU ECoS command station
+- provide "stop all trains" and "restart all trains"
 
 2017 September 2nd
 ------------------

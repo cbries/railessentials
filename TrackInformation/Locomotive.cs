@@ -252,6 +252,16 @@ namespace TrackInformation
             OnCommandsReady(this, ctrlCmds);
         }
 
+        public void Restart()
+        {
+            var sp = this.Speed;
+
+            StartTime = DateTime.Now;
+            StopTime = DateTime.MaxValue;
+
+            ChangeSpeed(sp);
+        }
+
         public void ToggleFunction(uint nr, bool state)
         {
             int v = state ? 1 : 0;

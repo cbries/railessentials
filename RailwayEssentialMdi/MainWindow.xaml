@@ -93,6 +93,9 @@
                     <MenuItem Header="Simulation" Command="{Binding SimulationCommand}" IsCheckable="True" IsChecked="False"/>
                     -->
                     <Separator/>
+                    <MenuItem Header="Stop All Locomotives" Command="{Binding StopAllLocsCmd}"/>
+                    <MenuItem Header="Restart All Locomotives" Command="{Binding RestartAllLocsCmd}"/>
+                    <Separator/>
                     <MenuItem Header="Properties" Command="{Binding CmdStationsPropertiesCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Project">

@@ -248,6 +248,8 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand DryRunCommand { get;  }
         public RelayCommand TogglePowerCommand { get; }
         public RelayCommand AutoplayCommand { get; }
+        public RelayCommand StopAllLocsCmd { get; }
+        public RelayCommand RestartAllLocsCmd { get;  }
         public RelayCommand SimulationCommand { get; }
         public RelayCommand CmdStationsPropertiesCommand { get; }
 
@@ -295,6 +297,8 @@ namespace RailwayEssentialMdi.ViewModels
             DryRunCommand = new RelayCommand(DryRun, CheckDryRun);
             TogglePowerCommand = new RelayCommand(TogglePower, CheckTogglePower);
             AutoplayCommand = new RelayCommand(DoAutoplay, CheckDoAutoplay);
+            StopAllLocsCmd = new RelayCommand(DoStopAllLocsCmd, CheckStopAllLocsCmd);
+            RestartAllLocsCmd = new RelayCommand(DoRestartAllLocsCmd, CheckRestartAllLocsCmd);
             SimulationCommand = new RelayCommand(DoSimulation, CheckDoSimulation);
             CmdStationsPropertiesCommand = new RelayCommand(PropertiesCommandStation);
             ShowLogCommand = new RelayCommand(ShowLog);
@@ -1095,6 +1099,48 @@ namespace RailwayEssentialMdi.ViewModels
             }
         }
 
+        private bool _locsHasBeenStopped;
+
+        public void DoStopAllLocsCmd(object p)
+        {
+            try
+            {
+                var dp = Dispatcher.GetDataProvider();
+                if (dp == null)
+                    return;
+                foreach (var o in dp.Objects.OfType<Locomotive>())
+                    o?.Stop();
+            }
+            catch
+            {
+                // ignore
+            }
+            finally
+            {
+                _locsHasBeenStopped = true;
+            }
+        }
+
+        public void DoRestartAllLocsCmd(object p)
+        {
+            try
+            {
+                var dp = Dispatcher.GetDataProvider();
+                if (dp == null)
+                    return;
+                foreach (var o in dp.Objects.OfType<Locomotive>())
+                    o?.Restart();
+            }
+            catch
+            {
+                // ignore
+            }
+            finally
+            {
+                _locsHasBeenStopped = false;
+            }
+        }
+
         private bool _doSimulation = false;
 
         public void DoSimulation(object p)
@@ -1490,6 +1536,29 @@ namespace RailwayEssentialMdi.ViewModels
                 return true;
 
             return _dispatcher.GetRunMode();
+        }
+
+        public bool CheckStopAllLocsCmd(object p)
+        {
+            if (_project == null)
+                return false;
+            if (_locsHasBeenStopped)
+                return false;
+            if (IsDryRun || Dispatcher.GetRunMode())
+                return true;
+            return false;
+        }
+
+        public bool CheckRestartAllLocsCmd(object p)
+        {
+            if (_project == null)
+                return false;
+            if (IsDryRun || Dispatcher.GetRunMode())
+            {
+                if(_locsHasBeenStopped)
+                    return true;
+            }
+            return false;
         }
 
         public bool CheckDoSimulation(object p)

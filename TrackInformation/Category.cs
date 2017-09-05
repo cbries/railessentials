@@ -25,7 +25,11 @@ namespace TrackInformation
 {
     public class Category : Item
     {
+        public int Index { get; set; }
+        
         public Category()
-        {}
+        {
+            
+        }
     }
 }

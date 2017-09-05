@@ -4,6 +4,7 @@
 - instead of arrows (i.e. '>' and '<') letters are shown (i.e. 'F' and 'B') for providing information in which direction a locomotive is driving, i.e. F:=Forward and B:=Backward
 - allow to Lock/Unlock specific Locomotives, therfor they will not be started automatically within Automode
 - allow to open the project directory direct by using the "Project / Show Project Directory"
+- Sync of project Locomotives with Locomotives configured by the ESU ECoS command station
 
 2017 September 2nd
 ------------------

@@ -213,7 +213,10 @@ namespace TrackInformation
 
         public override void UpdateTitle()
         {
-            Title = $"{Name}";
+            if (IsKnownByCommandStation)
+                Title = $"{Name}";
+            else
+                Title = $"{Name} (X)";
         }
 
         public bool IsBackward => Direction == 1;

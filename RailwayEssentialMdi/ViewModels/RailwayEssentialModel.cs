@@ -80,12 +80,12 @@ namespace RailwayEssentialMdi.ViewModels
 
         public Theme.Theme Theme => _theme;
 
-        private readonly Category _itemStatus = new Category { Title = "Status", IconName = "cat_status.png" };
-        private readonly Category _itemLocomotives = new Category { Title = "Locomotives", IconName = "cat_locomotive.png" };
-        private readonly Category _itemS88 = new Category { Title = "S88 Ports", IconName = "cat_s88.png" };
-        private readonly Category _itemSwitches = new Category { Title = "Switches", IconName = "cat_switch.png" };
-        private readonly Category _itemRoutes = new Category { Title = "Routes", IconName = "cat_route.png" };
-        private readonly Category _itemBlockRoutes = new Category { Title = "Block Routes", IconName = "cat_blockroutes.png" };
+        private readonly Category _itemStatus = new Category { Index = 0, Title = "Status", IconName = "cat_status.png" };
+        private readonly Category _itemLocomotives = new Category { Index = 1, Title = "Locomotives", IconName = "cat_locomotive.png" };
+        private readonly Category _itemS88 = new Category { Index = 2, Title = "S88 Ports", IconName = "cat_s88.png" };
+        private readonly Category _itemSwitches = new Category { Index = 3, Title = "Switches", IconName = "cat_switch.png" };
+        private readonly Category _itemRoutes = new Category { Index = 4, Title = "Routes", IconName = "cat_route.png" };
+        private readonly Category _itemBlockRoutes = new Category { Index = 5, Title = "Block Routes", IconName = "cat_blockroutes.png" };
 
         private ObservableCollection<Item> _rootItems = new ObservableCollection<Item>();
 
@@ -97,6 +97,14 @@ namespace RailwayEssentialMdi.ViewModels
                 _rootItems = value;
                 RaisePropertyChanged("RootItems");
             }
+        }
+
+        internal void RemoveItemLocomotiveFromCategory(TrackInformation.Item obj)
+        {
+            if (obj == null)
+                return;
+
+            _itemLocomotives.Items.Remove(obj);
         }
 
         public void Log(string text, params object[] args)
@@ -902,11 +910,9 @@ namespace RailwayEssentialMdi.ViewModels
 
                 if (IsDirty)
                 {
-                    System.Windows.Style style = new System.Windows.Style();
-                    style.Setters.Add(new Setter(Xceed.Wpf.Toolkit.MessageBox.YesButtonContentProperty, "Save Project"));
-                    style.Setters.Add(new Setter(Xceed.Wpf.Toolkit.MessageBox.NoButtonContentProperty, "Discard Changes"));
-                    MessageBoxResult result = Xceed.Wpf.Toolkit.MessageBox.Show("Project has been modified, save before close?", "Project modified", MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes, style);
-                    if(result == MessageBoxResult.Yes || result == MessageBoxResult.OK)
+                    var r = Helper.Ask("Project has been modified, save before close?", 
+                        "Project modified", "Save Project", "Discard Changes");
+                    if(r)
                         Save(null);
                 }
 

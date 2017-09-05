@@ -23,6 +23,7 @@
  */
 using System;
 using System.IO;
+using System.Windows;
 using TrackPlanParser;
 using TrackWeaver;
 
@@ -100,7 +101,18 @@ namespace RailwayEssentialMdi
 
             return null;
         }
-        
+
+        public static bool Ask(string promptMsg, string title, string yesText="Yes", string noText="No")
+        {
+            System.Windows.Style style = new System.Windows.Style();
+            style.Setters.Add(new Setter(Xceed.Wpf.Toolkit.MessageBox.YesButtonContentProperty, yesText));
+            style.Setters.Add(new Setter(Xceed.Wpf.Toolkit.MessageBox.NoButtonContentProperty, noText));
+            MessageBoxResult result = Xceed.Wpf.Toolkit.MessageBox.Show(promptMsg, title, MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.Yes, style);
+            if (result == MessageBoxResult.Yes || result == MessageBoxResult.OK)
+                return true;
+            return false;
+
+        }
     }
 
     public static class ByteArrayExt

@@ -50,6 +50,19 @@ namespace TrackInformation
             return -1;
         }
 
+        private bool _isKnownByCommandStation;
+
+        public bool IsKnownByCommandStation
+        {
+            get => _isKnownByCommandStation;
+            set
+            {
+                _isKnownByCommandStation = value;
+                OnPropertyChanged();
+                OnPropertyChanged("IsKnownByCommandStation");
+            }
+        }
+
         public bool HasView { get; private set; }
 
         private bool _isRouted;

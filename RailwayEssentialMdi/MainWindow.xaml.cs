@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -32,6 +33,7 @@ using System.Windows.Input;
 using RailwayEssentialMdi.Analyze;
 using RailwayEssentialMdi.Interfaces;
 using RailwayEssentialMdi.ViewModels;
+using TrackInformation;
 using Xceed.Wpf.AvalonDock;
 
 namespace RailwayEssentialMdi
@@ -168,6 +170,7 @@ namespace RailwayEssentialMdi
                 mnu.Items.Add(m2);
 
                 s.ContextMenu = mnu;
+                s.ContextMenu.IsOpen = true;
             }
             else if (item is TrackInformation.Locomotive locItem)
             {
@@ -253,6 +256,69 @@ namespace RailwayEssentialMdi
                 s.ContextMenu = mnu;
                 s.ContextMenu.IsOpen = true;
             }
+            else if (item is Category catItem)
+            {
+                ContextMenu mnu = new ContextMenu();
+
+                switch (catItem.Index)
+                {
+                    case 1: // Locomotives
+                    {
+                        MenuItem m0 = new MenuItem {Header = "Sync"};
+                        m0.Click += (o, args) =>
+                        {
+                            var m = _dataContext;
+
+                            var r = Helper.Ask("Sync will remove Locomotives which are currently unknown by the connected command station. Do you like to sync anyway?", "Sync Locomotives", "Yes", "Abort");
+                            if (r)
+                            {
+                                var dataProvider = m?.Dispatcher?.GetDataProvider();
+                                if (dataProvider != null)
+                                {
+                                    lock (dataProvider.Objects)
+                                    {
+                                        var objs = dataProvider.Objects.OfType<Locomotive>()
+                                            .Where(x => !x.IsKnownByCommandStation);
+
+                                        List<int> indeces = new List<int>();
+
+                                        foreach (var oo in objs)
+                                            indeces.Add(dataProvider.Objects.IndexOf(oo));
+
+                                        indeces.Sort();
+                                        indeces.Reverse();
+
+                                        foreach (int idx in indeces)
+                                        {
+                                            m.RemoveItemLocomotiveFromCategory(dataProvider.Objects[idx] as TrackInformation.Item);
+                                            dataProvider.Objects.RemoveAt(idx);
+                                        }
+                                    }
+
+                                    m.Project.Save();
+                                    m.SetDirty(false);
+                                }
+                            }
+                        };
+
+                        mnu.Items.Add(m0);
+                    }
+                        break;
+
+                    case 2: // S88
+                        break;
+
+                    case 3: //Switches
+                        break;
+                }
+
+                if (mnu.Items.Count > 0)
+                {
+                    s.ContextMenu = mnu;
+                    s.ContextMenu.IsOpen = true;
+                }
+            }
+
         }
 
         private void PropagateTestRoute(Items.BlockRouteItem item=null)

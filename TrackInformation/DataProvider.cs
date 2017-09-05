@@ -509,6 +509,7 @@ namespace TrackInformation
                     if (!DoesObjectIdExist((uint) e.ObjectId))
                     {
                         var l = new Locomotive { ObjectId = e.ObjectId };
+                        l.IsKnownByCommandStation = true;
                         l.Parse(e.Arguments);
                         l.CommandsReady += CommandsReady;
                         _objects.Add(l);
@@ -521,7 +522,8 @@ namespace TrackInformation
                         var l = GetObjectBy(e.ObjectId) as Locomotive;
                         if (l != null)
                         {
-                            l.Parse(e.Arguments);
+                            l.IsKnownByCommandStation = true;
+                            l.Parse(e.Arguments);                            
                             l.CommandsReady -= CommandsReady;
                             l.CommandsReady += CommandsReady;
 

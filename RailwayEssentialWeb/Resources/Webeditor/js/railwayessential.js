@@ -43,6 +43,8 @@ var objPosition = null; // top, left
 //   a) changeDirectionMarker(col, row, direction)   direction := 1 or 2
 //   b) changeLocnameMarker(col, row, locname)
 //   c) changeItemIdMarker(col, row, idname)
+//   d) changeLocnameMarkerPreview(col, row, locname)
+//   e) changeLocnameMarkerLock(col, row, lockState)
 
 function getIdOfItemNameLbl(col, row) { return 'lbl_' + col + '_' + row + '_itemname'; }
 function getIdOfDirectionLbl(col, row) { return 'lbl_' + col + '_' + row + '_direction'; }
@@ -142,14 +144,28 @@ function appendBlockText(col, row, esvg, themeId) {
         el.innerHTML = '.';
         esvg.append(el);
 
-        el = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-        el.setAttributeNS(null, 'height', '22');
-        el.setAttributeNS(null, 'width', '22');
-        el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'images/lock.png');
-        el.setAttributeNS(null, 'x', '104');
-        el.setAttributeNS(null, 'y', '5');
-        el.setAttributeNS(null, 'visibility', 'hidden');
-        esvg.append(el);
+        if (themeId == 150 || themeId == 152) {
+            el = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+            el.setAttributeNS(null, 'height', '22');
+            el.setAttributeNS(null, 'width', '22');
+            el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'images/lock.png');
+            if (themeId == 152)
+                el.setAttributeNS(null, 'x', '102');
+            else
+                el.setAttributeNS(null, 'x', '104');
+            el.setAttributeNS(null, 'y', '5');
+            el.setAttributeNS(null, 'visibility', 'hidden');
+            esvg.append(el);
+        } else if (themeId == 151) {
+            el = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+            el.setAttributeNS(null, 'height', '10');
+            el.setAttributeNS(null, 'width', '10');
+            el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'images/lock.png');
+            el.setAttributeNS(null, 'x', '53');
+            el.setAttributeNS(null, 'y', '1');
+            el.setAttributeNS(null, 'visibility', 'hidden');
+            esvg.append(el);
+        }
     }
 
     // Switch

@@ -939,6 +939,11 @@ namespace RailwayEssentialMdi.ViewModels
             }
         }
 
+        internal void Save()
+        {
+            Save(null);
+        }
+
         public void Save(object p)
         {
             var ee = _trackEntity as IPersist;
@@ -1158,8 +1163,7 @@ namespace RailwayEssentialMdi.ViewModels
         public void SetLockToLocomotive(Locomotive locItem, bool state)
         {
             locItem.Locked = state;
-            Project.Save();
-            SetDirty(false);
+            Save();
             Thread.Sleep(125);
             TrackEntity.UpdateAllVisualBlocks();
         }
@@ -1191,6 +1195,8 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void DisconnectFromCommandStation(object p)
         {
+            TrackEntity.Viewer.ExecuteJs("changeEditMode(false);");
+
             if (IsDryRun)
             {
                 IsDryRun = false;
@@ -1368,8 +1374,7 @@ namespace RailwayEssentialMdi.ViewModels
 
                 Project.BlockRoutes.Clear();
                 UpdateBlockRouteItems();
-                Project.Save();
-                SetDirty(false);
+                Save();
             }
         }
         public void AddTrack(object p)

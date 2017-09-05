@@ -93,7 +93,7 @@ namespace TrackPlanParser
             if (Options == null)
                 Options = new JObject();
 
-            if (value == null)
+            if (string.IsNullOrEmpty(value))
             {
                 try
                 {
@@ -101,7 +101,7 @@ namespace TrackPlanParser
                 }
                 catch
                 {
-                    // ignore
+                    Options[name] = "";
                 }
 
                 return;

@@ -543,10 +543,9 @@ namespace RailwayEssentialMdi.Autoplay
                                     DestBlock.SetLocomotivePreviewObjectId(-1);
                                     Model.UiSyncCtx?.Send(x =>
                                     {
-                                        Model.Project.Save();
-                                        Model.SetDirty(false);
                                         Autoplayer.SetRoute(Route, false);
                                         Model.TrackEntity.UpdateAllVisualBlocks();
+                                        Model.Save();
                                     }, null);
                                     Route.IsBusy = false;
                                     Route.StartBusiness = DateTime.MaxValue;

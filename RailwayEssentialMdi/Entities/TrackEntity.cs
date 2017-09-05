@@ -171,6 +171,14 @@ namespace RailwayEssentialMdi.Entities
 
         #endregion
 
+        public void DisableEdit()
+        {
+            Viewer.ExecuteJs("changeEditMode(false);");
+
+            RaisePropertyChanged("CanClose");
+            RaisePropertyChanged("CanEdit");
+        }
+
         public Theme.Theme Theme
         {
             get => _theme;

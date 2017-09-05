@@ -1,19 +1,6 @@
 ﻿{
   "locomotives": [
     {
-      "objectId": 1002,
-      "name": "kleine Schwarze",
-      "protocol": "MM14",
-      "addr": 2,
-      "speed": 0,
-      "speedstep": 0,
-      "direction": 0,
-      "funcset": "00000000000000000000000000000000",
-      "nrOfFunctions": 8,
-      "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
-    },
-    {
       "objectId": 1007,
       "name": "Kompressorlok",
       "protocol": "MM14",
@@ -24,7 +11,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 4,
       "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
+      "blockSpeedPercentage": 50,
+      "locked": false
     },
     {
       "objectId": 1004,
@@ -37,7 +25,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 4,
       "maxSpeedPercentage": 65,
-      "blockSpeedPercentage": 30
+      "blockSpeedPercentage": 35,
+      "locked": false
     },
     {
       "objectId": 1006,
@@ -50,7 +39,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 25,
-      "blockSpeedPercentage": 7
+      "blockSpeedPercentage": 7,
+      "locked": true
     },
     {
       "objectId": 1008,
@@ -63,7 +53,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
+      "blockSpeedPercentage": 50,
+      "locked": false
     },
     {
       "objectId": 1000,
@@ -76,7 +67,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
+      "blockSpeedPercentage": 50,
+      "locked": true
     },
     {
       "objectId": 1009,
@@ -89,46 +81,8 @@
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 80,
-      "blockSpeedPercentage": 35
-    },
-    {
-      "objectId": 1001,
-      "name": "Kompressor",
-      "protocol": "MM14",
-      "addr": 78,
-      "speed": 0,
-      "speedstep": 0,
-      "direction": 0,
-      "funcset": "00000000000000000000000000000000",
-      "nrOfFunctions": 5,
-      "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
-    },
-    {
-      "objectId": 1003,
-      "name": "kleine Schwarze ",
-      "protocol": "MM14",
-      "addr": 2,
-      "speed": 0,
-      "speedstep": 0,
-      "direction": 0,
-      "funcset": "00000000000000000000000000000000",
-      "nrOfFunctions": 5,
-      "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
-    },
-    {
-      "objectId": 1005,
-      "name": "Dampf #2",
-      "protocol": "MM14",
-      "addr": 20,
-      "speed": 0,
-      "speedstep": 0,
-      "direction": 0,
-      "funcset": "00000000000000000000000000000000",
-      "nrOfFunctions": 9,
-      "maxSpeedPercentage": 50,
-      "blockSpeedPercentage": 50
+      "blockSpeedPercentage": 35,
+      "locked": true
     }
   ],
   "switches": [
@@ -145,7 +99,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -161,7 +115,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -177,7 +131,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -193,7 +147,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -289,7 +243,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -305,7 +259,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -388,13 +342,13 @@
       "objectId": 100,
       "index": 0,
       "ports": 16,
-      "stateOriginal": "0x626b"
+      "stateOriginal": "0xf0f8"
     },
     {
       "objectId": 101,
       "index": 1,
       "ports": 16,
-      "stateOriginal": "0xb00"
+      "stateOriginal": "0x800"
     },
     {
       "objectId": 102,

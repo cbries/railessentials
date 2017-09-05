@@ -886,7 +886,7 @@ namespace RailwayEssentialMdi.ViewModels
         {
             if (_project != null)
             {
-                TrackEntity.Viewer.ExecuteJs("changeEditMode(false);");
+                TrackEntity.DisableEdit();
 
                 _autoplayer?.Stop();
                 _autoplayer?.Cleanup();
@@ -1195,7 +1195,7 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void DisconnectFromCommandStation(object p)
         {
-            TrackEntity.Viewer.ExecuteJs("changeEditMode(false);");
+            TrackEntity.DisableEdit();
 
             if (IsDryRun)
             {

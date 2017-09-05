@@ -481,6 +481,7 @@
     <None Include="ThirdParty\CefLib\natives_blob.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="ThirdParty\.nojekyll" />
     <None Include="ThirdParty\CefLib\snapshot_blob.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

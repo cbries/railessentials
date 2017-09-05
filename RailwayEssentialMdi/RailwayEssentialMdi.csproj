@@ -903,7 +903,7 @@
   <PropertyGroup>
     <PostBuildEvent>md "$(TargetDir)\Themes"
 xcopy /S /C /Y /J /R "$(ProjectDir)\Resources\Theme" "$(TargetDir)\Themes"
-xcopy /S /C /Y /J /R "$(TargetDir)ThirdParty\CefLib\*" "$(TargetDir)"
+xcopy /S /C /Y /J /R "$(TargetDir)ThirdParty\CefLib\*" "$(TargetDir)" /EXCLUDE:"$(TargetDir)ThirdParty\CefLib\*.pdb"
 
 md "$(TargetDir)\Trackplans\Webeditor"
 xcopy /S /C /Y /J /R "$(ProjectDir)\..\RailwayEssentialWeb\Resources\Webeditor" "$(TargetDir)\Trackplans\Webeditor"

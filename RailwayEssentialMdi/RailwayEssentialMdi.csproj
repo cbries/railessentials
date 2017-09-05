@@ -155,6 +155,7 @@
     <Compile Include="Interfaces\ILocomotiveView.cs" />
     <Compile Include="Interfaces\IMainView.cs" />
     <Compile Include="Items\BlockRouteItem.cs" />
+    <Compile Include="MainWindow.Helper.cs" />
     <Compile Include="Registry\Registry.cs" />
     <Compile Include="Styles\PanesStyleSelector.cs" />
     <Compile Include="ViewModels\BaseWindow.cs" />

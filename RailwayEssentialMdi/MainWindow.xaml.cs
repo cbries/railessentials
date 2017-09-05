@@ -127,10 +127,22 @@ namespace RailwayEssentialMdi
             PropagateTreeViewSelection();
         }
 
+        private void TreeView_OnPreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TreeViewItem treeViewItem = VisualUpwardSearch(e.OriginalSource as DependencyObject);
+
+            if (treeViewItem != null)
+            {
+                treeViewItem.Focus();
+                e.Handled = true;
+            }
+        }
+
         private void TreeView_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             if (_dataContext == null)
                 return;
+
             var s = Explorer;
             if (s == null)
                 return;
@@ -239,6 +251,7 @@ namespace RailwayEssentialMdi
                 mnu.Items.Add(m2);
 
                 s.ContextMenu = mnu;
+                s.ContextMenu.IsOpen = true;
             }
         }
 

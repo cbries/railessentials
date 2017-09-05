@@ -878,6 +878,8 @@ namespace RailwayEssentialMdi.ViewModels
         {
             if (_project != null)
             {
+                TrackEntity.Viewer.ExecuteJs("changeEditMode(false);");
+
                 _autoplayer?.Stop();
                 _autoplayer?.Cleanup();
                 try

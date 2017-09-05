@@ -128,15 +128,15 @@ namespace RailwayEssentialMdi.ViewModels
             v -= TrackViewZoomer.ZoomLevelIncrement;
             TrackViewZoomer.ZoomLevel = v;
         }
-
+        
         private void EditState(object p)
         {
-            if(_entity == null)
+            if (_entity == null)
                 return;
 
             if (_entity.Viewer == null)
                 return;
-            
+
             _entity.Viewer.ExecuteJs("changeEditMode();");
         }
 

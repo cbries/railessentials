@@ -216,9 +216,12 @@ namespace TrackInformation
             Title = $"{Name}";
         }
 
+        public bool IsBackward => Direction == 1;
+        public bool IsForward => Direction == 0;
+
         public override void UpdateSubTitle()
         {
-            string v = Direction == 1 ? "Backward" : "Forward";
+            string v = IsBackward ? "Backward" : "Forward";
 
             SubTitle = $"V[{Speed}]->{v} ({Protocol}, {Addr}, {NrOfFunctions})";
         }

@@ -926,8 +926,7 @@ namespace RailwayEssentialMdi.Entities
                                     string changedHhexValue = BitConverter.ToInt32(changedBytes, 0).ToString("X");
                                     s88Item.StateOriginal = changedHhexValue;
 
-                                    var afterBinary = s88Item.StateBinary;
-
+                                    //var afterBinary = s88Item.StateBinary;
                                     //Trace.WriteLine($"Binaries: {beforeBinary}");
                                     //Trace.WriteLine($"Binaries: {afterBinary}");
 
@@ -1009,6 +1008,8 @@ namespace RailwayEssentialMdi.Entities
 
             if (x != -1 && y != -1 && themeId != -1)
             {
+                Viewer?.ExecuteJs($"changeDirectionMarker({x}, {y}, -1);");
+
                 var item = _track.Get(x, y);
 
                 if (item == null)
@@ -1043,6 +1044,11 @@ namespace RailwayEssentialMdi.Entities
                     var loc = dataProvider.GetObjectBy(objectId) as Locomotive;
                     if (loc != null)
                     {
+                        if (loc.IsBackward)
+                            Viewer?.ExecuteJs($"changeDirectionMarker({x}, {y}, 1);");
+                        else
+                            Viewer?.ExecuteJs($"changeDirectionMarker({x}, {y}, 2);");
+
                         Viewer?.ExecuteJs($"changeLocnameMarker({x}, {y}, '{loc.Name}');");
 
                         if(loc.Locked)

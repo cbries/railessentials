@@ -49,17 +49,17 @@ function getIdOfDirectionLbl(col, row) { return 'lbl_' + col + '_' + row + '_dir
 function getIdOfLocanameLbl(col, row) { return 'lbl_' + col + '_' + row + '_locname'; }
 
 function changeDirectionMarker(col, row, direction) {
-    // direction = 1 -> left
-    // direction = 2 -> right
+    // direction = 1 -> Reverse / Backward
+    // direction = 2 -> Forward
     try {
         var id = getIdOfDirectionLbl(col, row);
         var el = $('#' + id)[0];
         if (direction === 1)
-            el.firstChild.data = 'R';
+            el.firstChild.data = 'B';
         else if (direction === 2)
             el.firstChild.data = 'F';
         else
-            el.firstChild.data = '?';
+            el.firstChild.data = ' ';
     } catch (ex) { }
 }
 

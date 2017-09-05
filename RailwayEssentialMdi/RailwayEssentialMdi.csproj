@@ -901,12 +901,13 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>md "$(TargetDir)\Themes"
-xcopy /S /C /Y /J /R "$(ProjectDir)\Resources\Theme" "$(TargetDir)\Themes"
-xcopy /S /C /Y /J /R "$(TargetDir)ThirdParty\CefLib\*" "$(TargetDir)" /EXCLUDE:"$(TargetDir)ThirdParty\CefLib\*.pdb"
+    <PostBuildEvent>
+md "$(TargetDir)\Themes"
+xcopy /S /C /Y /J /R "$(ProjectDir)\Resources\Theme" "$(TargetDir)\Themes" 2&gt;nul 1&gt;nul 
+xcopy /S /C /Y /J /R "$(TargetDir)ThirdParty\CefLib\*" "$(TargetDir)" /EXCLUDE:"$(TargetDir)ThirdParty\CefLib\*.pdb" 2&gt;nul 1&gt;nul 
 
 md "$(TargetDir)\Trackplans\Webeditor"
-xcopy /S /C /Y /J /R "$(ProjectDir)\..\RailwayEssentialWeb\Resources\Webeditor" "$(TargetDir)\Trackplans\Webeditor"
+xcopy /S /C /Y /J /R "$(ProjectDir)\..\RailwayEssentialWeb\Resources\Webeditor" "$(TargetDir)\Trackplans\Webeditor" 2&gt;nul 1&gt;nul 
 	</PostBuildEvent>
   </PropertyGroup>
 </Project>

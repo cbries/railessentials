@@ -96,10 +96,11 @@
                     <MenuItem Header="Properties" Command="{Binding CmdStationsPropertiesCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Project">
-                    <MenuItem Header="Add View" Command="{Binding AddTrackCommand}"/>
                     <!--
+                    <MenuItem Header="Add View" Command="{Binding AddTrackCommand}"/>
                     <MenuItem Header="Remove Track" Command="{Binding RemoveTrackCommand}"/>
                     -->
+                    <MenuItem Header="Show Project Directory" Command="{Binding OpenProjectDirectoryCommand}"/>
                 </MenuItem>
 
                 <MenuItem Header="View">

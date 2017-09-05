@@ -255,6 +255,7 @@ namespace RailwayEssentialMdi.ViewModels
 
         public RelayCommand AddTrackCommand { get; }
         public RelayCommand RemoveTrackCommand { get; }
+        public RelayCommand OpenProjectDirectoryCommand { get; }
 
         private readonly LogEntity _logMessagesGeneral = new LogEntity();
         private readonly LogEntity _logMessagesCommands = new LogEntity();
@@ -297,6 +298,7 @@ namespace RailwayEssentialMdi.ViewModels
             AnalyzeCleanCommand = new RelayCommand(AnalyzeClean, CheckAnalyzeClean);
             AddTrackCommand = new RelayCommand(AddTrack, CheckAddTrack);
             RemoveTrackCommand = new RelayCommand(RemoveTrack, CheckRemoveTrack);
+            OpenProjectDirectoryCommand = new RelayCommand(OpenProjectDirectory, CheckOpenProjectDirectory);
 
             // TEST
             //int _counter = 0;
@@ -1407,6 +1409,27 @@ namespace RailwayEssentialMdi.ViewModels
             // TODO
         }
 
+        public void OpenProjectDirectory(object p)
+        {
+            var fname = Project.Filepath;
+            if (!File.Exists(fname))
+            {
+                LogError($"Project file is missing: {fname}");
+            }
+            else
+            {
+                var pp = Path.GetDirectoryName(fname);
+                try
+                {
+                    Process.Start("explorer.exe", pp);
+                }
+                catch (Exception ex)
+                {
+                    LogError($"explorer.exe failed to open dir project directory: {pp}");
+                }
+            }
+        }
+
 #region can execute checks
 
         public bool CheckAnalyzeRoutes(object p)
@@ -1484,6 +1507,13 @@ namespace RailwayEssentialMdi.ViewModels
             if (_project == null)
                 return false;
             if (_trackEntity != null)
+                return true;
+            return false;
+        }
+
+        private bool CheckOpenProjectDirectory(object p)
+        {
+            if (Project != null)
                 return true;
             return false;
         }

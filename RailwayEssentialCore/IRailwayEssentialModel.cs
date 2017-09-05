@@ -33,5 +33,6 @@ namespace RailwayEssentialCore
         void SetDirty(bool state);
         void ShowBlockRoutePreview(object blockRouteItem);
         void ResetBlockRoutePreview();
+        void UpdateTrackUi();
     }
 }

@@ -1813,6 +1813,16 @@ namespace RailwayEssentialMdi.ViewModels
                 TrackEntity.Viewer.ExecuteJs("resetHighlightRoute()");
         }
 
+        public void UpdateTrackUi()
+        {
+            var state = false;
+            if (_dispatcher?.Model != null)
+                state = _dispatcher.Model.IsVisualLabelActivated;
+
+            TrackEntity?.UpdateAllVisualIds(state);
+            TrackEntity?.UpdateAllVisualBlocks();
+        }
+
         #endregion
     }
 }

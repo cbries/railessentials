@@ -249,6 +249,8 @@ namespace RailwayEssentialMdi.Entities
                 ObjectItem.UpdateTitle();
                 ObjectItem.UpdateSubTitle();
             }
+
+            Model?.UpdateTrackUi();
         }
 
         protected override void OnPropertyChanged(string propertyName)

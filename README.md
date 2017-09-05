@@ -2,6 +2,7 @@
 
 RailwayEssential is a software for controlling your Model Trains especially when [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/) is used. RailwayEssential provides a Track-designer, an Analyzer for automatic detection of all possible Routes between directly connected Blocks, and an Event-system (e.g. by use of S88-Feedback-Bus) for setup a fully automatic drive of all your trains. Furthermore, any Train can be manually controlled, their functions are allowed to be switched directly on and off by the user interface. 
 
+[![Ohloh Project Status](https://www.openhub.net/p/railwayessential/widgets/project_thin_badge.gif)](https://www.openhub.net/p/railwayessential)
 [![Build status](https://ci.appveyor.com/api/projects/status/s9tr0h3ct3fv645q/branch/master?svg=true)](https://ci.appveyor.com/project/cbries/railwayessential/branch/master)
 [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/13689.svg)](https://scan.coverity.com/projects/cbries-railwayessential)
 [![Coverage Status](https://scan.coverity.com/projects/13689/badge.svg)](https://scan.coverity.com/projects/cbries-railwayessential)

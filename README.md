@@ -34,7 +34,7 @@ In case you like to build the software on your own. Just load the Solution file 
 
 ## Authors
 
-* **Dr. Christian Benjamin Ries** - *Initial work* - [Personal Website](http://www.christianbenjaminries.de) [mail@cbries.de](http://mailto:mail@cbries.de)
+* **Dr. Christian Benjamin Ries** - *Initial work* - [Personal Website](http://www.christianbenjaminries.de)
 
 See also the list of [contributors](https://github.com/cbries/railwayessential/graphs/contributors) who participated in this project.
 

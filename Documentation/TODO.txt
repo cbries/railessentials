@@ -5,4 +5,6 @@
 
 ##########################################################################################
 
+[A] handle S88 event as state-machine, that unexpected triggers do not start/stop trains when route is still busy
+
 [C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

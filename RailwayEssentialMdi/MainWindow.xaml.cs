@@ -100,20 +100,12 @@ namespace RailwayEssentialMdi
             if (!_initialized)
                 return;
 
-            Trace.WriteLine("Document: " + e.Document);
+            //Trace.WriteLine("Document: " + e.Document);
         }
 
         private void MainWindow_Unloaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var serializer = new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(dockManager);
-                serializer.Serialize(@".\AvalonDock.config");
-            }
-            catch
-            {
-                // ignore
-            }
+            //SaveLayout();
         }
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
@@ -369,6 +361,19 @@ namespace RailwayEssentialMdi
         }
 
         #region IMainView
+
+        public void SaveLayout()
+        {
+            try
+            {
+                var serializer = new Xceed.Wpf.AvalonDock.Layout.Serialization.XmlLayoutSerializer(dockManager);
+                serializer.Serialize(@".\AvalonDock.config");
+            }
+            catch
+            {
+                // ignore
+            }
+        }
 
         public void LoadLayout()
         {

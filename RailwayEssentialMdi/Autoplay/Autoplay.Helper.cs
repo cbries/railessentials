@@ -133,7 +133,7 @@ namespace RailwayEssentialMdi.Autoplay
                                 symbol = parts[0] + "-t";
                         }
 
-                        trackEntity.Viewer.ExecuteJs($"changeSymbol({x}, {y}, {themeId}, \"{orientation}\", \"{symbol}\");");
+                        Ctx.ExecuteJs($"changeSymbol({x}, {y}, {themeId}, \"{orientation}\", \"{symbol}\");");
                     }
                 }
             }

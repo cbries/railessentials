@@ -34,5 +34,6 @@ namespace RailwayEssentialCore
         void ShowBlockRoutePreview(object blockRouteItem);
         void ResetBlockRoutePreview();
         void UpdateTrackUi();
+        void ExecuteJs(string code, object sender=null);
     }
 }

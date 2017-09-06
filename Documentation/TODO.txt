@@ -5,6 +5,8 @@
 
 ##########################################################################################
 
+[A] provide multiview of tracks
+
 [A] handle S88 event as state-machine, that unexpected triggers do not start/stop trains when route is still busy
 
 [B] redesign locomotive control

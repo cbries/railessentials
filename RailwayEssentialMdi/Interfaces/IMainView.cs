@@ -28,6 +28,7 @@ namespace RailwayEssentialMdi.Interfaces
     public interface IMainView
     {
         DockingManager GetDock();
+        void SaveLayout();
         void LoadLayout();
     }
 }

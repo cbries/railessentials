@@ -29,7 +29,6 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RailwayEssentialCore;
-using RailwayEssentialMdi.Analyze;
 using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.ViewModels;
 using RailwayEssentialWeb;
@@ -173,7 +172,15 @@ namespace RailwayEssentialMdi.Entities
 
         public void DisableEdit()
         {
-            Viewer.ExecuteJs("changeEditMode(false);");
+            Model?.ExecuteJs("changeEditMode(false);");
+
+            RaisePropertyChanged("CanClose");
+            RaisePropertyChanged("CanEdit");
+        }
+
+        public void EnableEdit()
+        {
+            Model?.ExecuteJs("changeEditMode(true);", this);
 
             RaisePropertyChanged("CanClose");
             RaisePropertyChanged("CanEdit");
@@ -221,6 +228,8 @@ namespace RailwayEssentialMdi.Entities
             return e;
         }
 
+        private static string _trackname = "";
+
         public bool Initialize()
         {
             if (_initialized)
@@ -234,7 +243,10 @@ namespace RailwayEssentialMdi.Entities
 
             _track = parser.Track;
 
-            _tmpTrackName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "_track.html";
+            if (string.IsNullOrEmpty(_trackname))
+                _trackname = Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "_track.html";
+
+            _tmpTrackName = _trackname;
             _tmpTrackName = Path.Combine(Utils.TrackplansEditor, _tmpTrackName);
             _tmpTrackName = _tmpTrackName.ExpandRailwayEssential();
 
@@ -287,8 +299,7 @@ namespace RailwayEssentialMdi.Entities
                 }
             }
 
-            if (_trackViewer != null)
-                _trackViewer.ExecuteJs($"simulateClick2({arClicks.ToString(Formatting.None)});");
+            Model?.ExecuteJs($"simulateClick2({arClicks.ToString(Formatting.None)});");
 
             UpdateAllVisualBlocks();
             UpdateAllVisualIds(Model.IsVisualLabelActivated);
@@ -460,7 +471,7 @@ namespace RailwayEssentialMdi.Entities
                         if (_trackViewer != null && _trackViewer.JsCallback != null)
                         {
                             _trackViewer.JsCallback.TrackEdit.ChangeSymbol(x, y, themeId);
-                            _trackViewer.ExecuteJs($"changeSymbol({x}, {y}, {themeId}, \"{orientation}\", \"{symbol}\");");
+                            Model?.ExecuteJs($"changeSymbol({x}, {y}, {themeId}, \"{orientation}\", \"{symbol}\");");
                         }
 
                         //Trace.WriteLine($"CHANGE: {x},{y} -> {themeId} | {symbol} | {orientation}");

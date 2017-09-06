@@ -21,6 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+using System;
+using System.Threading.Tasks;
+
 namespace RailwayEssentialMdi.ViewModels
 {
     using System.Diagnostics;
@@ -31,6 +35,8 @@ namespace RailwayEssentialMdi.ViewModels
 
     public class TrackWindow : BaseWindow, ITrackWindow
     {
+        public event EventHandler Loaded;
+
         public object TrackView { get; set; }
         public ProjectTrackView ProjectTrackView { get; set; }
         public ITrackViewerZoom TrackViewZoomer { get; set; }
@@ -50,9 +56,7 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand MinusRowBottomCommand { get; }
         public RelayCommand PlusRowBottomCommand { get; }
         
-
-
-        public TrackWindow(TrackEntity entity, ProjectTrackView trackView)
+        public TrackWindow(TrackEntity entity, ProjectTrackView trackView, TaskCompletionSource<bool> tcs)
         {
             _entity = entity;
 
@@ -131,13 +135,7 @@ namespace RailwayEssentialMdi.ViewModels
         
         private void EditState(object p)
         {
-            if (_entity == null)
-                return;
-
-            if (_entity.Viewer == null)
-                return;
-
-            _entity.Viewer.ExecuteJs("changeEditMode();");
+            Entity.EnableEdit();
         }
 
         private bool CheckEditState(object p)
@@ -165,14 +163,13 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void ViewerReady()
         {
-            if (_entity != null)
-                _entity.ViewerReady();
+            _entity?.ViewerReady();
+            Loaded?.Invoke(this, null);
         }
 
         public void PromoteViewer(ITrackViewer trackViewer)
         {
-            if (_entity != null)
-                _entity.PromoteViewer(trackViewer);
+            _entity?.PromoteViewer(trackViewer);
         }
 
         #endregion

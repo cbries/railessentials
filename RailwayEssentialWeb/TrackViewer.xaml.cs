@@ -118,7 +118,7 @@ namespace RailwayEssentialWeb
 
         private void BrowserOnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
         {
-            Trace.WriteLine("Loading state: " + args.IsLoading);
+            //Trace.WriteLine("Loading state: " + args.IsLoading);
         }
 
         public void Reload()
@@ -141,9 +141,9 @@ namespace RailwayEssentialWeb
 
         private void BrowserOnLoadError(object sender, LoadErrorEventArgs loadErrorEventArgs)
         {
-            Trace.WriteLine("<error> " + loadErrorEventArgs.ErrorCode);
-            Trace.WriteLine("<error> " + loadErrorEventArgs.ErrorText);
-            Trace.WriteLine("<error> " + loadErrorEventArgs.FailedUrl);
+            //Trace.WriteLine("<error> " + loadErrorEventArgs.ErrorCode);
+            //Trace.WriteLine("<error> " + loadErrorEventArgs.ErrorText);
+            //Trace.WriteLine("<error> " + loadErrorEventArgs.FailedUrl);
         }
 
         private void Browser_OnInitialized(object sender, EventArgs e)

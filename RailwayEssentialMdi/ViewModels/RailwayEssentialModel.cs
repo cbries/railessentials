@@ -29,6 +29,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -263,6 +264,9 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand AnalyzeRoutesCommand { get; }
         public RelayCommand AnalyzeCleanCommand { get; }
 
+        public RelayCommand LoadLayoutCommand { get; }
+        public RelayCommand SaveLayoutCommand { get; }
+
         public RelayCommand AddTrackCommand { get; }
         public RelayCommand RemoveTrackCommand { get; }
         public RelayCommand OpenProjectDirectoryCommand { get; }
@@ -308,6 +312,8 @@ namespace RailwayEssentialMdi.ViewModels
             AboutCommand = new RelayCommand(ShowAbout);
             AnalyzeRoutesCommand = new RelayCommand(AnalyzeRoutes, CheckAnalyzeRoutes);
             AnalyzeCleanCommand = new RelayCommand(AnalyzeClean, CheckAnalyzeClean);
+            LoadLayoutCommand = new RelayCommand(LoadLayout);
+            SaveLayoutCommand = new RelayCommand(SaveLayout);
             AddTrackCommand = new RelayCommand(AddTrack, CheckAddTrack);
             RemoveTrackCommand = new RelayCommand(RemoveTrack, CheckRemoveTrack);
             OpenProjectDirectoryCommand = new RelayCommand(OpenProjectDirectory, CheckOpenProjectDirectory);
@@ -533,7 +539,7 @@ namespace RailwayEssentialMdi.ViewModels
             AfterOpen();
         }
 
-        private void AfterOpen()
+        private async void AfterOpen()
         {
             if (_project == null)
                 return;
@@ -607,11 +613,26 @@ namespace RailwayEssentialMdi.ViewModels
                 if (view == null)
                     continue;
 
+                TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+
+                TrackWindow item = null;
+
                 if (numberOfViewsCreated == 0)
                 {
                     if (view.Show)
                     {
-                        var item = new TrackWindow(_trackEntity, view);
+                        item = new TrackWindow(_trackEntity, view, tcs);
+                        item.Loaded += (s, ev) =>
+                        {
+                            try
+                            {
+                                tcs.SetResult(true);
+                            }
+                            catch
+                            {
+                                // ignore
+                            }
+                        };
                         item.Closing += (s, ev) => Windows.Remove(item);
                         Windows.Add(item);
                         ++numberOfViewsCreated;
@@ -619,13 +640,19 @@ namespace RailwayEssentialMdi.ViewModels
                 }
                 else
                 {
-                    // TODO any additional view must load to end
-                    // TODO before other views are added
-                    // TODO it seems that CEF does only load when
-                    // TODO the window is active and in front
-
                     var trackEntityClone = _trackEntity.Clone();
-                    var item = new TrackWindow(trackEntityClone, view);
+                    item = new TrackWindow(trackEntityClone, view, tcs);
+                    item.Loaded += (s, ev) =>
+                    {
+                        try
+                        {
+                            tcs.SetResult(true);
+                        }
+                        catch
+                        {
+                            // ignore
+                        }
+                    };
                     item.Closing += (s, ev) =>
                     {
                         var v = item.ProjectTrackView;
@@ -635,6 +662,13 @@ namespace RailwayEssentialMdi.ViewModels
                     };
                     Windows.Add(item);
                     ++numberOfViewsCreated;
+                }
+
+                if (item != null)
+                {
+                    item.Entity.IsActive = true;
+
+                    await tcs.Task;
                 }
             }
             UpdateCanClose();
@@ -1423,7 +1457,18 @@ namespace RailwayEssentialMdi.ViewModels
                 Save();
             }
         }
-        public void AddTrack(object p)
+
+        public void LoadLayout(object p)
+        {
+            MainView.LoadLayout();
+        }
+
+        public void SaveLayout(object p)
+        {
+            MainView.SaveLayout();
+        }
+
+        public async void AddTrack(object p)
         {
             var trackEntityClone = _trackEntity.Clone();
 
@@ -1450,15 +1495,31 @@ namespace RailwayEssentialMdi.ViewModels
                 StartY = 0
             };
 
-            var item = new TrackWindow(trackEntityClone, view);
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            var item = new TrackWindow(trackEntityClone, view, tcs);
+            item.Loaded += (s, ev) =>
+            {
+                try
+                {
+                    tcs.SetResult(true);
+                }
+                catch
+                {
+                    // ignore
+                }
+            };
             item.Closing += (s, ev) =>
             {
                 var v = item.ProjectTrackView;
                 if (v != null)
                     Project.TrackViews.Remove(v);
-                Windows.Remove(item);                
+
+                Windows.Remove(item);
             };
             lock (Windows) { Windows.Add(item); }
+            item.Entity.IsSelected = true;
+            item.Entity.IsActive = true;
+            await tcs.Task;
             Project.TrackViews.Add(view);
             UpdateCanClose();
         }
@@ -1837,9 +1898,9 @@ namespace RailwayEssentialMdi.ViewModels
 
             if (TrackEntity != null && TrackEntity.Viewer != null)
             {
-                TrackEntity.Viewer.ExecuteJs($"highlightRoute({arStart.ToString(Formatting.None)}, 'routeHighlightStart');");
-                TrackEntity.Viewer.ExecuteJs($"highlightRoute({arEnd.ToString(Formatting.None)}, 'routeHighlightEnd');");
-                TrackEntity.Viewer.ExecuteJs($"highlightRoute({arGeneral.ToString(Formatting.None)}, 'routeHighlight');");
+                ExecuteJs($"highlightRoute({arStart.ToString(Formatting.None)}, 'routeHighlightStart');");
+                ExecuteJs($"highlightRoute({arEnd.ToString(Formatting.None)}, 'routeHighlightEnd');");
+                ExecuteJs($"highlightRoute({arGeneral.ToString(Formatting.None)}, 'routeHighlight');");
             }
         }
 
@@ -1883,8 +1944,7 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void ResetBlockRoutePreview()
         {
-            if (TrackEntity != null && TrackEntity.Viewer != null)
-                TrackEntity.Viewer.ExecuteJs("resetHighlightRoute()");
+            ExecuteJs("resetHighlightRoute()");
         }
 
         public void UpdateTrackUi()
@@ -1895,6 +1955,30 @@ namespace RailwayEssentialMdi.ViewModels
 
             TrackEntity?.UpdateAllVisualIds(state);
             TrackEntity?.UpdateAllVisualBlocks();
+        }
+
+        public void ExecuteJs(string code, object sender=null)
+        {
+            if(string.IsNullOrEmpty(code))
+                return;
+
+            if (sender != null)
+            {
+                var s = sender as TrackEntity;
+                if (s != null)
+                {
+                    s.Viewer.ExecuteJs(code);
+                }
+            }
+            else
+            {
+
+                foreach (var w in Windows)
+                {
+                    var ww = w as TrackWindow;
+                    ww?.Entity.Viewer.ExecuteJs(code);
+                }
+            }
         }
 
         #endregion

@@ -90,9 +90,7 @@ namespace Dispatcher
                 {
                     case WeaveItemT.S88:
                     {
-                        var s88Item = _dataProvider.GetObjectBy(item.ObjectId) as S88;
-
-                        if (s88Item != null)
+                        if (_dataProvider.GetObjectBy(item.ObjectId) is S88 s88Item)
                         {
                             var trackObject = _track.Get(item.VisuX, item.VisuY);
 
@@ -111,9 +109,7 @@ namespace Dispatcher
 
                     case WeaveItemT.Switch:
                     {
-                        var switchItem = _dataProvider.GetObjectBy(item.ObjectId) as Switch;
-
-                        if (switchItem != null)
+                        if (_dataProvider.GetObjectBy(item.ObjectId) is Switch switchItem)
                         {
                             var trackObject = _track.Get(item.VisuX, item.VisuY);
 
@@ -211,7 +207,7 @@ namespace Dispatcher
             await _communication.SendCommands(initialCommands);
         }
 
-        private void CommunicationOnCommunicationStarted(object sender, EventArgs args)
+        private async void CommunicationOnCommunicationStarted(object sender, EventArgs args)
         {
             // send initial commands
             List<ICommand> initialCommands = new List<ICommand>()
@@ -227,7 +223,7 @@ namespace Dispatcher
                 CommandFactory.Create("request(1, view)")
             };
 
-            _communication.SendCommands(initialCommands);
+            await _communication.SendCommands(initialCommands);
 
             if (Model != null)
             {
@@ -236,8 +232,7 @@ namespace Dispatcher
                 Model.TriggerPropertyChanged("TogglePowerCaption");
             }
 
-            if(ReadyToPlay != null)
-                ReadyToPlay(this, EventArgs.Empty);
+            ReadyToPlay?.Invoke(this, EventArgs.Empty);
         }
 
         private void CommunicationOnCommunicationStopped(object sender, EventArgs eventArgs)
@@ -252,8 +247,7 @@ namespace Dispatcher
 
         private void CommunicationOnCommunicationFailed(object sender, EventArgs eventArgs)
         {
-            var c = sender as Communication;
-            if (c != null && c.HasError)
+            if (sender is Communication c && c.HasError)
             {
                 Logger?.Log($"<Dispatcher> Communication failed: {c.ErrorMessage}\r\n");
                 Logger?.LogError($"Connection to ECoS2 failed: {c.ErrorMessage}");
@@ -286,8 +280,7 @@ namespace Dispatcher
                     _dataProvider.Add(blk);
             }
 
-            if (UpdateUi != null)
-                UpdateUi(this, _trackWeaver);
+            UpdateUi?.Invoke(this, _trackWeaver);
         }
     }
 }

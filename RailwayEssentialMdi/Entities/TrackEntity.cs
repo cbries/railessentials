@@ -33,6 +33,7 @@ using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.ViewModels;
 using RailwayEssentialWeb;
 using TrackWeaver;
+using Switch = TrackInformation.Switch;
 
 namespace RailwayEssentialMdi.Entities
 {
@@ -437,8 +438,7 @@ namespace RailwayEssentialMdi.Entities
                                     {
                                         var direction = checkResult.Direction.Value;
 
-                                        var objS = seam.ObjectItem as TrackInformation.Switch;
-                                        if (objS != null && objS.InvertCommand)
+                                        if (seam.ObjectItem is Switch objS && objS.InvertCommand)
                                         {
                                             if (direction == TrackCheckResult.SwitchDirection.Straight)
                                                 direction = TrackCheckResult.SwitchDirection.Turn;
@@ -482,7 +482,7 @@ namespace RailwayEssentialMdi.Entities
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // ignore
             }

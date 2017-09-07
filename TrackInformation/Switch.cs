@@ -167,11 +167,7 @@ namespace TrackInformation
         public override void UpdateSubTitle()
         {
             var ext = string.Join(", ", Addrext);
-            var direction = "Turn";
-            if (State == 0)
-                direction = "Straight";
-            else
-                direction = "Turn";
+            var direction = State == 0 ? "Straight" : "Turn";
 
             SubTitle = $"{direction} - [{ext}]";
         }

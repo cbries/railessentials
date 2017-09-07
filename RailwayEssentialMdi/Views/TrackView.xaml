@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:railwayEssentialWeb="clr-namespace:RailwayEssentialWeb;assembly=RailwayEssentialWeb"
-             xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:xamlMagic="clr-namespace:RailwayEssentialMdi.XamlMagic"
              mc:Ignorable="d" Initialized="TrackView_OnInitialized" DataContextChanged="TrackView_OnDataContextChanged"
@@ -81,7 +80,7 @@
                                 <StackPanel>
                                     <DockPanel Margin="0,5,0,0">
                                         <TextBlock Text="Name:" FontWeight="Bold" VerticalAlignment="Center" Width="100"/>
-                                        <TextBox Text="{Binding Entity.TrackInfoSelectionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
+                                        <TextBox Text="{Binding Entity.TrackInfoSelectionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" MaxLength="32" ToolTip="Maxlength is 32 characters"/>
                                     </DockPanel>
 
                                     <DockPanel Margin="0,5,0,0">

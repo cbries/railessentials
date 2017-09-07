@@ -32,7 +32,7 @@ namespace RailwayEssentialMdi.Analyze
 {
     public class MapItem
     {
-        private static int _instanceId = 0;
+        private static int _instanceId;
         private int _localId;
         private TrackInfo _info;
         private readonly Map _ctx;
@@ -51,10 +51,12 @@ namespace RailwayEssentialMdi.Analyze
 
         public MapItem ShallowCopy()
         {
-            var item = new MapItem(_model, _ctx);
-            item._localId = _localId;
-            item._info = _info;
-            item.HasTurn = HasTurn;
+            var item = new MapItem(_model, _ctx)
+            {
+                _localId = _localId,
+                _info = _info,
+                HasTurn = HasTurn
+            };
             return item;
         }
 
@@ -87,7 +89,7 @@ namespace RailwayEssentialMdi.Analyze
 
         private bool _dimensionInitialized;
         private int _orientationIndex;
-        private Theme.ThemeItem _themeInfo;
+        private ThemeItem _themeInfo;
         private ThemeItemDimension _dim;
 
         private void InitializeDimension()
@@ -553,8 +555,7 @@ namespace RailwayEssentialMdi.Analyze
                         if (targetItem != null)
                         {
                             wasConnected = true;
-                            bool __dummy;
-                            return targetItem.GetReachableNeighbours(out __dummy, source);
+                            return targetItem.GetReachableNeighbours(out _, source);
                         }
                     }
                 }
@@ -568,7 +569,9 @@ namespace RailwayEssentialMdi.Analyze
                 var itemInfo = item.Info;
 
                 if (ignore != null && ignore.Equals(itemInfo))
-                    ; // ignore
+                {
+                    // ignore
+                }
                 else if (itemInfo != null)
                     neighbours.Add(itemInfo);
             }
@@ -588,7 +591,9 @@ namespace RailwayEssentialMdi.Analyze
                 }
 
                 if (ignore != null && ignore.Equals(itemInfo))
-                    ; // ignore
+                {
+                    // ignore    
+                }
                 else if (itemInfo != null)
                     neighbours.Add(itemInfo);
             }
@@ -608,7 +613,9 @@ namespace RailwayEssentialMdi.Analyze
                 }
 
                 if (ignore != null && ignore.Equals(itemInfo))
-                    ; // ignore
+                {
+                    // ignore    
+                }
                 else if (itemInfo != null)
                     neighbours.Add(itemInfo);
             }
@@ -619,7 +626,9 @@ namespace RailwayEssentialMdi.Analyze
                 var item = _ctx.Get(xx, y);
                 TrackInfo itemInfo = item.Info;
                 if (ignore != null && ignore.Equals(itemInfo))
-                    ; // ignore
+                {
+                    // ignore    
+                }
                 else if (itemInfo != null)
                     neighbours.Add(itemInfo);
             }
@@ -629,8 +638,7 @@ namespace RailwayEssentialMdi.Analyze
         public List<int> GetReachableNeighbourIds()
         {
             List<int> indeces = new List<int>();
-            bool wasConnected;
-            var neighbours = GetReachableNeighbours(out wasConnected);
+            var neighbours = GetReachableNeighbours(out _);
             foreach (var n in neighbours)
             {
                 MapItem nItem = _ctx.Get(n.X, n.Y);
@@ -646,8 +654,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromLeftToBottom()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -665,8 +672,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromLeftToTop()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -684,8 +690,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromLeftToRight()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -703,8 +708,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromRightToBottom()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -722,8 +726,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromRightToTop()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -741,8 +744,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromRightToLeft()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -760,8 +762,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromTopToBottom()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -779,8 +780,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromTopToRight()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -798,8 +798,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromTopToLeft()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -817,8 +816,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromBottomToTop()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -836,8 +834,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromBottomToRight()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 
@@ -855,8 +852,7 @@ namespace RailwayEssentialMdi.Analyze
 
         public bool CanGoFromBottomToLeft()
         {
-            bool wasConnected;
-            var nbs = GetReachableNeighbours(out wasConnected);
+            var nbs = GetReachableNeighbours(out _);
             if (nbs == null || nbs.Count <= 0)
                 return false;
 

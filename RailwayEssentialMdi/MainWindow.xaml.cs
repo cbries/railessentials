@@ -50,12 +50,12 @@ namespace RailwayEssentialMdi
             Unloaded += MainWindow_Unloaded;
 
             EventManager.RegisterClassHandler(typeof(Window),
-                Keyboard.KeyDownEvent, new KeyEventHandler(keyDown), true);
+                Keyboard.KeyDownEvent, new KeyEventHandler(KeyDownInternal), true);
         }
 
         private bool _ctrlIsHold = false;
 
-        private void keyDown(object sender, KeyEventArgs e)
+        private void KeyDownInternal(object sender, KeyEventArgs e)
         {
             if (!_initialized)
                 return;
@@ -85,9 +85,7 @@ namespace RailwayEssentialMdi
 
         private void MainWindow_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var m = DataContext as RailwayEssentialModel;
-
-            if (m != null)
+            if (DataContext is RailwayEssentialModel m)
             {
                 _dataContext = m;
 
@@ -261,7 +259,9 @@ namespace RailwayEssentialMdi
                         {
                             var m = _dataContext;
 
-                            var r = Helper.Ask("Sync will remove Locomotives which are currently unknown by the connected command station. Do you like to sync anyway?", "Sync Locomotives", "Yes", "Abort");
+                            var r = Helper.Ask(
+                                "Sync will remove Locomotives which are currently unknown by the connected command station. Do you like to sync anyway?",
+                                "Sync Locomotives", "Yes", "Abort");
                             if (r)
                             {
                                 var dataProvider = m?.Dispatcher?.GetDataProvider();
@@ -282,7 +282,8 @@ namespace RailwayEssentialMdi
 
                                         foreach (int idx in indeces)
                                         {
-                                            m.RemoveItemLocomotiveFromCategory(dataProvider.Objects[idx] as TrackInformation.Item);
+                                            m.RemoveItemLocomotiveFromCategory(
+                                                dataProvider.Objects[idx] as TrackInformation.Item);
                                             dataProvider.Objects.RemoveAt(idx);
                                         }
                                     }
@@ -309,8 +310,27 @@ namespace RailwayEssentialMdi
                     s.ContextMenu = mnu;
                     s.ContextMenu.IsOpen = true;
                 }
-            }
+                else
+                {
+                    mnu.Items.Clear();
 
+                    if (s.ContextMenu != null)
+                    {
+                        s.ContextMenu.Items.Clear();
+                        s.ContextMenu.IsOpen = false;
+                        e.Handled = true;
+                    }
+                }
+            }
+            else
+            {
+                if (s.ContextMenu != null)
+                {
+                    s.ContextMenu.Items.Clear();
+                    s.ContextMenu.IsOpen = false;
+                    e.Handled = true;
+                }
+            }
         }
 
         private void PropagateTestRoute(Items.BlockRouteItem item=null)

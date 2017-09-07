@@ -13,11 +13,12 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
-            <TextBox Text="{Binding Entity.Name, Mode=TwoWay}" FontWeight="Bold" VerticalAlignment="Center" Background="Transparent" BorderThickness="0"/>
-            <Label Content=" : " FontWeight="Bold" VerticalAlignment="Center"/>
-            <Label Content="{Binding Entity.ObjectItem.ObjectId}" FontWeight="Bold" VerticalAlignment="Center"/>
-            
-            <Image Width="32" Height="32" HorizontalAlignment="Right" Margin="2,2,10,2" Source="/RailwayEssential;component/Resources/Main.ico"/>
+            <Image Width="32" Height="32" HorizontalAlignment="Left" Margin="2,2,10,2" Source="/RailwayEssential;component/Resources/Main.ico"/>
+            <TextBox Text="{Binding Entity.Name, Mode=TwoWay}" FontWeight="Bold" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" MinWidth="50"/>
+
+            <Label Content=" (" FontWeight="Bold" FontSize="12" FontStyle="Italic" VerticalAlignment="Center"/>
+            <Label Content="{Binding Entity.ObjectItem.ObjectId}" FontWeight="Bold" FontSize="12" FontStyle="Italic" VerticalAlignment="Center"/>
+            <Label Content=")" FontWeight="Bold" FontSize="12" FontStyle="Italic" VerticalAlignment="Center"/>
         </DockPanel>
         <Grid Grid.Row="1" VerticalAlignment="Top" IsEnabled="{Binding Entity.IsEnabled}">
             <Grid.ColumnDefinitions>
@@ -68,20 +69,20 @@
             
             <StackPanel Grid.Column="2" HorizontalAlignment="Stretch">
                 <DockPanel Margin="0,2,0,0">
-                    <Label Content="Max speed:" VerticalAlignment="Center" Width="85"/>
-                    <TextBox VerticalContentAlignment="Center" Height="25" Width="75" TextAlignment="Center" Text="{Binding Entity.ObjectItem.MaxSpeedPercentage, Mode=TwoWay}"/>
+                    <Label Content="Max speed:" VerticalAlignment="Center" Width="75"/>
+                    <TextBox VerticalContentAlignment="Center" Height="25" Width="50" TextAlignment="Center" Text="{Binding Entity.ObjectItem.MaxSpeedPercentage, Mode=TwoWay}"/>
                 </DockPanel>
 
                 <DockPanel Margin="0,2,0,0">
-                    <Label Content="Block speed:" VerticalAlignment="Center" Width="85"/>
-                    <TextBox VerticalContentAlignment="Center" Height="25" Width="75" TextAlignment="Center" Text="{Binding Entity.ObjectItem.BlockSpeedPercentage, Mode=TwoWay}"/>
+                    <Label Content="Block speed:" VerticalAlignment="Center" Width="75"/>
+                    <TextBox VerticalContentAlignment="Center" Height="25" Width="50" TextAlignment="Center" Text="{Binding Entity.ObjectItem.BlockSpeedPercentage, Mode=TwoWay}"/>
                 </DockPanel>
             </StackPanel>
         </Grid>
 
         <DockPanel Grid.Row="2" IsEnabled="{Binding Entity.IsEnabled}">
             <Button Content="STOP" Margin="10,0,00,0" FontWeight="Bold" FontSize="14" Height="35" Width="50" HorizontalAlignment="Left" Command="{Binding StopCommand}"/>
-            <DockPanel HorizontalAlignment="Right">
+            <DockPanel HorizontalAlignment="Left" Margin="170,0,0,0">
                 <ToggleButton Content="&lt;&lt;" Margin="0,0,5,0" FontWeight="Bold" FontSize="14" Height="35" Width="35" IsChecked="{Binding Entity.DriveBackward, Mode=TwoWay}"/>
                 <ToggleButton Content=">>" Margin="0,0,10,0" FontWeight="Bold" FontSize="14" Height="35" Width="35" IsChecked="{Binding Entity.DriveForward, Mode=TwoWay}"/>
             </DockPanel>

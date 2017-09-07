@@ -757,8 +757,7 @@ namespace RailwayEssentialMdi.Entities
 
                                             if (!string.IsNullOrEmpty(opt))
                                             {
-                                                int v;
-                                                if (int.TryParse(opt, out v))
+                                                if (int.TryParse(opt, out var v))
                                                     ConnectorIdentifier = v;
                                                 else
                                                     ConnectorIdentifier = 1;
@@ -780,8 +779,7 @@ namespace RailwayEssentialMdi.Entities
 
                                             if (!string.IsNullOrEmpty(opt))
                                             {
-                                                int v;
-                                                if (int.TryParse(opt, out v))
+                                                if (int.TryParse(opt, out var v))
                                                     BlockGroupIdentifier = v;
                                                 else
                                                     BlockGroupIdentifier = 1;
@@ -830,12 +828,10 @@ namespace RailwayEssentialMdi.Entities
 
                 foreach (var e in dataProvider.Objects)
                 {
-                    var ee0 = e as S88;
-                    if (ee0 != null)
+                    if (e is S88 ee0)
                         _itemsS88.Add(ee0);
 
-                    var ee1 = e as TrackInformation.Switch;
-                    if (ee1 != null)
+                    if (e is TrackInformation.Switch ee1)
                         _itemsSwitch.Add(ee1);
                 }
 
@@ -849,12 +845,10 @@ namespace RailwayEssentialMdi.Entities
             if (Dispatcher != null && Dispatcher.Model != null)
                 Dispatcher.Model.SetDirty(true);
 
-            JsonObjectEventArgs evObj = ev as JsonObjectEventArgs;
-            if (evObj != null && evObj.GetData() != null)
+            if (ev is JsonObjectEventArgs evObj && evObj.GetData() != null)
             {
                 int x = -1;
                 int y = -1;
-                int themeId = -1;
 
                 var data = evObj.GetData();
 
@@ -862,8 +856,6 @@ namespace RailwayEssentialMdi.Entities
                     x = (int)data["x"];
                 if (data["y"] != null)
                     y = (int)data["y"];
-                //if (data["themeId"] != null)
-                //    themeId = (int) data["themeId"];
 
                 var state = false;
                 if (_dispatcher != null && _dispatcher.Model != null)
@@ -885,8 +877,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     case TrackInformation.Switch.Typeid:
                         {
-                            var switchItem = objItem as TrackInformation.Switch;
-                            if (switchItem != null)
+                            if (objItem is TrackInformation.Switch switchItem)
                             {
                                 if (switchItem.State == 0)
                                     switchItem.ChangeDirection(1);
@@ -908,10 +899,7 @@ namespace RailwayEssentialMdi.Entities
 
                                 if (pin != -1)
                                 {
-                                    //Trace.WriteLine("Simulate S88 PIN change!");
-
-                                    var s88Item = objItem as TrackInformation.S88;
-                                    if (s88Item != null)
+                                    if (objItem is S88 s88Item)
                                     {
                                         var beforeBinary = s88Item.StateBinary;
 
@@ -1039,8 +1027,7 @@ namespace RailwayEssentialMdi.Entities
 
                 if (objectId != -1)
                 {
-                    var loc = dataProvider.GetObjectBy(objectId) as Locomotive;
-                    if (loc != null)
+                    if (dataProvider.GetObjectBy(objectId) is Locomotive loc)
                     {
                         if (loc.IsBackward)
                             Model?.ExecuteJs($"changeDirectionMarker({x}, {y}, 1);");
@@ -1059,8 +1046,7 @@ namespace RailwayEssentialMdi.Entities
 
                 if (objectIdPreview != -1)
                 {
-                    var locPreview = dataProvider.GetObjectBy(objectIdPreview) as Locomotive;
-                    if (locPreview != null)
+                    if (dataProvider.GetObjectBy(objectIdPreview) is Locomotive locPreview)
                         Model?.ExecuteJs($"changeLocnameMarkerPreview({x}, {y}, '{locPreview.Name}');");
                 }
             }

@@ -85,12 +85,13 @@ namespace RailwayEssentialWeb
 
             var catnames = Theme.CategoryNames;
 
-            foreach (var k in catnames)
-                mhtmlCategories += "<option value=\"" + k + "\">" + k + "</option>\r\n";
-            _selectCategory = mhtmlCategories;
-
             if (catnames == null || catnames.Count == 0)
                 return;
+
+            foreach (var k in catnames)
+                mhtmlCategories += "<option value=\"" + k + "\">" + k + "</option>\r\n";
+
+            _selectCategory = mhtmlCategories;
 
             foreach (var k in catnames)
             {

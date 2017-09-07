@@ -216,7 +216,7 @@ namespace TrackInformation
             if (IsKnownByCommandStation)
                 Title = $"{Name}";
             else
-                Title = $"{Name} (X)";
+                Title = $"{Name} (NOT SYNC)";
         }
 
         public bool IsBackward => Direction == 1;

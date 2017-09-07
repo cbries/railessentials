@@ -36,8 +36,6 @@ namespace RailwayEssentialMdi.Autoplay
 
         public RailwayEssentialModel Ctx { get; set; }
 
-        public bool DoSimulation { get; set; }
-
         private BackgroundWorker _worker = null;
 
         private bool _stopped = true;
@@ -96,8 +94,7 @@ namespace RailwayEssentialMdi.Autoplay
 
             _worker.RunWorkerAsync();
 
-            if (Started != null)
-                Started(this, null);
+            Started?.Invoke(this, null);
 
             return true;
         }
@@ -157,8 +154,7 @@ namespace RailwayEssentialMdi.Autoplay
                 // ignore
             }
 
-            if (Stopped != null)
-                Stopped(this, null);
+            Stopped?.Invoke(this, null);
 
             return true;
         }

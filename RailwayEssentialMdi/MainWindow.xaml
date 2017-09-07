@@ -73,12 +73,6 @@
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Command Station">
-                    <MenuItem Header="Locomotive" Command="{Binding ShowLocomotiveCommand}">
-                        <MenuItem.Icon>
-                            <Image Source="Resources/train.png" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator/>
                     <MenuItem Header="Connect" Command="{Binding ConnectCommand}"/>
                     <MenuItem Header="Disconnect" Command="{Binding DisconnectCommand}"/>
                     <Separator/>
@@ -90,9 +84,6 @@
                             <Image Source="Resources/autoplay.png" Width="16" Height="16"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <!--
-                    <MenuItem Header="Simulation" Command="{Binding SimulationCommand}" IsCheckable="True" IsChecked="False"/>
-                    -->
                     <Separator/>
                     <MenuItem Header="Stop All Locomotives" Command="{Binding StopAllLocsCmd}"/>
                     <MenuItem Header="Restart All Locomotives" Command="{Binding RestartAllLocsCmd}"/>

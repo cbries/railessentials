@@ -29,8 +29,10 @@ using Newtonsoft.Json.Linq;
 
 namespace TrackInformation
 {
-    public class Locomotive : Item
+    public sealed class Locomotive : Item
     {
+        public enum FncTypes { Light = 0, Smoke = 1, SoundPipe = 2, SoundCruise = 3 }
+        
         public static int SpeedStop = 0;
         public static int SpeedNormal = 50;
         public static int SpeedBlockEntered = 35;
@@ -197,11 +199,101 @@ namespace TrackInformation
             }
         }
 
+        #region Function Types
+
+        private List<string> _fncNames;
+        private List<string> _fncTypeNames;
+        private string _fncSelectedName = "--";
+        private int _fncTypeIndex = 0;
+        private static int NumberOfFncTypes = 4;
+
+        public List<string> FncNames
+        {
+            get => _fncNames;
+            set
+            {
+                _fncNames = value;
+                OnPropertyChanged("FncNames");
+            }
+        }
+
+        public string FncSelectedName
+        {
+            get => _fncSelectedName;
+            set
+            {
+                _fncSelectedName = value;
+
+                if (_fncTypes.ContainsKey(value))
+                    FncTypeIndex = (int) _fncTypes[value];
+                else
+                    FncTypeIndex = 0;
+
+                OnPropertyChanged("FncSelectedName");
+            }
+        }
+
+        public int FncTypeIndex
+        {
+            get => _fncTypeIndex;
+            set
+            {
+                _fncTypeIndex = value;
+                OnPropertyChanged("FncTypeIndex");
+            }
+        }
+
+        public string GetFncTypename(FncTypes type)
+        {
+            switch (type)
+            {
+                case FncTypes.Light: return "Lights";
+                case FncTypes.Smoke: return "Smoke";
+                case FncTypes.SoundPipe: return "Pipe (Sound)";
+                case FncTypes.SoundCruise: return "Cruise (Sound)";
+            }
+            return null;
+        }
+
+        public List<string> FncTypeNames
+        {
+            get => _fncTypeNames;
+            set
+            {
+                _fncTypeNames = value;
+                OnPropertyChanged("FncTypeNames");
+            }
+        }
+
+        private readonly Dictionary<string, FncTypes> _fncTypes = new Dictionary<string, FncTypes>();
+
+        public void ApplyFncType()
+        {
+            if (string.IsNullOrEmpty(FncSelectedName))
+                return;
+            if (FncSelectedName.Trim().EndsWith("--", StringComparison.OrdinalIgnoreCase))
+                return;
+
+            if (_fncTypes.ContainsKey(FncSelectedName))
+                _fncTypes[FncSelectedName] = (FncTypes)FncTypeIndex;
+            else
+                _fncTypes.Add(FncSelectedName, (FncTypes)FncTypeIndex);
+        }
+
+        #endregion
+
         public Locomotive()
         {
             StartTime = DateTime.MaxValue;
             StopTime = DateTime.MinValue;
 
+            if (_fncTypeNames == null)
+                _fncTypeNames = new List<string>();
+            for (int i = 0; i < NumberOfFncTypes; ++i)
+                _fncTypeNames.Add(GetFncTypename((FncTypes)i));
+            _fncTypeNames.Insert(0, "--");
+            OnPropertyChanged(nameof(FncTypeNames));
+            
             _funcset = new List<bool>(32);
 
             if (_funcset.Count == 0)
@@ -342,32 +434,28 @@ namespace TrackInformation
                     Protocol = arg.Parameter[0];
                 else if (arg.Name.Equals("addr", StringComparison.OrdinalIgnoreCase))
                 {
-                    int v;
-                    if (int.TryParse(arg.Parameter[0], out v))
+                    if (int.TryParse(arg.Parameter[0], out int v))
                         Addr = v;
                     else
                         Addr = -1;
                 }
                 else if (arg.Name.Equals("speed", StringComparison.OrdinalIgnoreCase))
                 {
-                    int v;
-                    if (int.TryParse(arg.Parameter[0], out v))
+                    if (int.TryParse(arg.Parameter[0], out int v))
                         Speed = v;
                     else
                         Speed = -1;
                 }
                 else if (arg.Name.Equals("speedstep", StringComparison.OrdinalIgnoreCase))
                 {
-                    int v;
-                    if (int.TryParse(arg.Parameter[0], out v))
+                    if (int.TryParse(arg.Parameter[0], out int v))
                         Speedstep = v;
                     else
                         Speedstep = -1;
                 }
                 else if (arg.Name.Equals("dir", StringComparison.OrdinalIgnoreCase))
                 {
-                    int v;
-                    if (int.TryParse(arg.Parameter[0], out v))
+                    if (int.TryParse(arg.Parameter[0], out int v))
                         Direction = v;
                     else
                         Direction = -1;
@@ -377,11 +465,9 @@ namespace TrackInformation
                     var sindex = arg.Parameter[0].Trim();
                     var stype = arg.Parameter[1].Trim();
 
-                    int index;
-                    if (!int.TryParse(sindex, out index))
+                    if (!int.TryParse(sindex, out int index))
                         index = -1;
-                    int type;
-                    if (!int.TryParse(stype, out type))
+                    if (!int.TryParse(stype, out int type))
                         type = -1;
 
                     Trace.WriteLine("funcdesc: " + index + ", " + type);
@@ -422,6 +508,20 @@ namespace TrackInformation
                     m += "0";
             }
 
+            JArray fncTypes = new JArray();
+            foreach (var k in _fncTypes.Keys)
+            {
+                var vv = (int)_fncTypes[k];
+
+                JObject oo = new JObject
+                {
+                    ["name"] = k,
+                    ["fnc"] = vv
+                };
+
+                fncTypes.Add(oo);
+            }
+
             JObject o = new JObject
             {
                 ["objectId"] = ObjectId,
@@ -435,7 +535,8 @@ namespace TrackInformation
                 ["nrOfFunctions"] = NrOfFunctions,
                 ["maxSpeedPercentage"] = MaxSpeedPercentage,
                 ["blockSpeedPercentage"]  = BlockSpeedPercentage,
-                ["locked"] = Locked
+                ["locked"] = Locked,
+                ["fncTypes"] = fncTypes
             };
 
             return o;
@@ -474,6 +575,33 @@ namespace TrackInformation
                 BlockSpeedPercentage = (int) obj["blockSpeedPercentage"];
             if (obj["locked"] != null)
                 Locked = (bool) obj["locked"];
+
+            if (obj["fncTypes"] != null)
+            {
+                if (obj["fncTypes"] is JArray ar)
+                {
+                    foreach (var oo in ar)
+                    {
+                        var ooo = oo as JObject;
+                        if (ooo == null)
+                            continue;
+
+                        string name = "";
+                        int fncType = -1;
+
+                        if (ooo["name"] != null)
+                            name = ooo["name"].ToString();
+                        if (ooo["fnc"] != null)
+                            fncType = (int) ooo["fnc"];
+
+                        if (!string.IsNullOrEmpty(name) && fncType > 0)
+                            _fncTypes.Add(name, (FncTypes) fncType);
+                    }
+
+                    OnPropertyChanged("FncNames");
+                    OnPropertyChanged("FncTypeNames");
+                }
+            }
         }
     }
 }

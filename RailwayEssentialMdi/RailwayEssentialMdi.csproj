@@ -742,6 +742,7 @@
     <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-occ.png" />
     <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r-route.png" />
     <Resource Include="Resources\Theme\RailwayEssential\signalmain-dwarf-r.png" />
+    <Resource Include="Resources\lightbulb_on.png" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-route.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off.svg" />

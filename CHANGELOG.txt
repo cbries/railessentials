@@ -3,6 +3,7 @@
 Release Candidate 3 (RC3)
 - multiview of tracks, distributable to different monitors, free dockable 
 - multiviews of locomotive controls
+- functions can be categorized
 
 2017 September 5th 
 ------------------

@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using RailwayEssentialMdi.Interfaces;
 
 namespace RailwayEssentialMdi.Views
@@ -91,6 +91,14 @@ namespace RailwayEssentialMdi.Views
 
         #endregion
 
+        private void CmdFncTypeSet_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (_dataContext == null)
+                return;
+
+            _dataContext.Entity.ObjectItem.ApplyFncType();
+        }
+
         private void SpeedSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (_dataContext == null)
@@ -107,5 +115,6 @@ namespace RailwayEssentialMdi.Views
 
             _dataContext.PromoteSpeed();
         }
+
     }
 }

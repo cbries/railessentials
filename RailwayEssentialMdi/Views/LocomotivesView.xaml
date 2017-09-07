@@ -77,6 +77,12 @@
                     <Label Content="Block speed:" VerticalAlignment="Center" Width="75"/>
                     <TextBox VerticalContentAlignment="Center" Height="25" Width="50" TextAlignment="Center" Text="{Binding Entity.ObjectItem.BlockSpeedPercentage, Mode=TwoWay}"/>
                 </DockPanel>
+            
+                <DockPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <ComboBox Margin="2" ItemsSource="{Binding Entity.ObjectItem.FncNames, Mode=OneWay}" SelectedItem="{Binding Entity.ObjectItem.FncSelectedName}" Width="50"/>
+                    <ComboBox Margin="0,2,2,2" Width="100" SelectedIndex="{Binding Entity.ObjectItem.FncTypeIndex}" ItemsSource="{Binding Entity.ObjectItem.FncTypeNames, Mode=OneWay}"/>
+                    <Button Name="CmdFncTypeSet" Content="SET" Click="CmdFncTypeSet_OnClick"/>
+                </DockPanel>
             </StackPanel>
         </Grid>
 

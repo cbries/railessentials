@@ -21,6 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace RailwayEssentialMdi.ViewModels
@@ -170,6 +173,8 @@ namespace RailwayEssentialMdi.ViewModels
             if (_entity != null && _entity.ObjectItem != null)
                 nrOfFunctions = _entity.ObjectItem.NrOfFunctions;
             
+            List<string> fncNames = new List<string>();
+
             for (int i = 0; i < 32; ++i)
             {
                 string name = $"F{i}";
@@ -184,6 +189,7 @@ namespace RailwayEssentialMdi.ViewModels
                         var state = _entity.ObjectItem.Funcset[i];
                         LocomotiveView.SetToggleButton(name, state);
                         LocomotiveView.SetToggleButtonVisibility(name, true);
+                        fncNames.Add(name);
                     }
                 }
                 else
@@ -191,6 +197,10 @@ namespace RailwayEssentialMdi.ViewModels
                     LocomotiveView.SetToggleButtonVisibility(name, false);
                 }
             }
-        }
+
+            fncNames.Insert(0, "--");
+
+            Entity.ObjectItem.FncNames = fncNames;
+        }        
     }
 }

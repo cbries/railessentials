@@ -692,8 +692,73 @@ namespace RailwayEssentialMdi.ViewModels
             //if (MainView != null)
             //    MainView.LoadLayout();
 
+            UpdateTrackUi();
+
             UpdateBlockRouteItems();
+            UpdateCanClose();            
+        }
+
+        public async void AddTrack(object p)
+        {
+            var trackEntityClone = _trackEntity.Clone();
+
+            var currentViews = Project.TrackViews;
+            List<string> currentViewNames = new List<string>();
+            foreach (var vv in currentViews)
+                currentViewNames.Add(vv.Name);
+            string newViewName = null;
+            for (int i = 1; i < 1000; ++i)
+            {
+                var testname = $"TrackView{i}";
+                if (!currentViewNames.Contains(testname))
+                {
+                    newViewName = testname;
+                    break;
+                }
+            }
+
+            var view = new ProjectTrackView
+            {
+                Name = !string.IsNullOrEmpty(newViewName) ? newViewName : "Unnamed",
+                Show = true,
+                StartX = 0,
+                StartY = 0
+            };
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            var item = new TrackWindow(trackEntityClone, view, tcs);
+            item.Loaded += (s, ev) =>
+            {
+                try
+                {
+                    tcs.SetResult(true);
+
+                    UpdateTrackUi();
+                }
+                catch
+                {
+                    // ignore
+                }
+            };
+            item.Closing += (s, ev) =>
+            {
+                var v = item.ProjectTrackView;
+                if (v != null)
+                    Project.TrackViews.Remove(v);
+
+                Windows.Remove(item);
+            };
+            lock (Windows) { Windows.Add(item); }
+            item.Entity.IsSelected = true;
+            item.Entity.IsActive = true;
+            await tcs.Task;
+            Project.TrackViews.Add(view);
             UpdateCanClose();
+        }
+
+        public void RemoveTrack(object p)
+        {
+            // TODO
         }
 
         public void UpdateBlockRouteItems()
@@ -1468,67 +1533,6 @@ namespace RailwayEssentialMdi.ViewModels
             MainView.SaveLayout();
         }
 
-        public async void AddTrack(object p)
-        {
-            var trackEntityClone = _trackEntity.Clone();
-
-            var currentViews = Project.TrackViews;
-            List<string> currentViewNames = new List<string>();
-            foreach (var vv in currentViews)
-                currentViewNames.Add(vv.Name);
-            string newViewName = null;
-            for (int i = 1; i < 1000; ++i)
-            {
-                var testname = $"TrackView{i}";
-                if (!currentViewNames.Contains(testname))
-                {
-                    newViewName = testname;
-                    break;
-                }
-            }
-
-            var view = new ProjectTrackView
-            {
-                Name = !string.IsNullOrEmpty(newViewName) ? newViewName : "Unnamed",
-                Show = true,
-                StartX = 0,
-                StartY = 0
-            };
-
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            var item = new TrackWindow(trackEntityClone, view, tcs);
-            item.Loaded += (s, ev) =>
-            {
-                try
-                {
-                    tcs.SetResult(true);
-                }
-                catch
-                {
-                    // ignore
-                }
-            };
-            item.Closing += (s, ev) =>
-            {
-                var v = item.ProjectTrackView;
-                if (v != null)
-                    Project.TrackViews.Remove(v);
-
-                Windows.Remove(item);
-            };
-            lock (Windows) { Windows.Add(item); }
-            item.Entity.IsSelected = true;
-            item.Entity.IsActive = true;
-            await tcs.Task;
-            Project.TrackViews.Add(view);
-            UpdateCanClose();
-        }
-
-        public void RemoveTrack(object p)
-        {
-            // TODO
-        }
-
         public void OpenProjectDirectory(object p)
         {
             var fname = Project.Filepath;
@@ -1953,6 +1957,10 @@ namespace RailwayEssentialMdi.ViewModels
             if (_dispatcher?.Model != null)
                 state = _dispatcher.Model.IsVisualLabelActivated;
 
+            var e = Windows.Where(x => !(x as TrackWindow).Entity.IsClone);
+            if(e != null && e.Count() > 0)
+                (e.First() as TrackWindow).Entity.RaiseUiUpdates();
+
             TrackEntity?.UpdateAllVisualIds(state);
             TrackEntity?.UpdateAllVisualBlocks();
         }
@@ -1965,7 +1973,7 @@ namespace RailwayEssentialMdi.ViewModels
             if (sender != null)
             {
                 var s = sender as TrackEntity;
-                if (s != null)
+                if (s != null && s.Viewer != null)
                 {
                     s.Viewer.ExecuteJs(code);
                 }
@@ -1976,7 +1984,12 @@ namespace RailwayEssentialMdi.ViewModels
                 foreach (var w in Windows)
                 {
                     var ww = w as TrackWindow;
-                    ww?.Entity.Viewer.ExecuteJs(code);
+                    if (ww == null)
+                        continue;
+                    if (ww.Entity == null)
+                        continue;
+
+                    ww.Entity.Viewer?.ExecuteJs(code);
                 }
             }
         }

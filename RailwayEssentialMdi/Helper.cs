@@ -66,8 +66,14 @@ namespace RailwayEssentialMdi
                         if (seam == null)
                             continue;
 
-                        if (seam.TrackObjects.ContainsKey(trackInfo))
-                            return seam.ObjectItem;
+                        foreach (TrackInfo key in seam.TrackObjects.Keys)
+                        {
+                            if (key == null)
+                                continue;
+
+                            if (key.X == trackInfo.X && key.Y == trackInfo.Y && key.ThemeId == trackInfo.ThemeId)
+                                return seam.ObjectItem;
+                        }
                     }
                 }
             }

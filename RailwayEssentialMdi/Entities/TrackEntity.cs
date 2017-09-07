@@ -49,6 +49,9 @@ namespace RailwayEssentialMdi.Entities
         private ITrackViewer _trackViewer;
         private TrackPlanParser.Track _track;
         private WebGenerator _webGenerator;
+        private string _trackname = "";
+
+        public bool IsClone { get; private set; }
 
         public string TrackObjectFilepath { get; set; }
 
@@ -170,10 +173,31 @@ namespace RailwayEssentialMdi.Entities
 
         #endregion
 
+        public bool IsEditEnabled { get; private set; }
+
+        public TrackEntity Clone()
+        {
+            var e = new TrackEntity(_dispatcher)
+            {
+                TrackObjectFilepath = TrackObjectFilepath,
+                Theme = _theme,
+                Ctx = Ctx,
+                ProjectTrack = ProjectTrack,
+                Cfg = Cfg,
+                Model = Model,
+                IsClone = true,
+                _trackname = _trackname
+            };
+
+            e.Initialize();
+
+            return e;
+        }
+
         public void DisableEdit()
         {
             Model?.ExecuteJs("changeEditMode(false);");
-
+            IsEditEnabled = false;
             RaisePropertyChanged("CanClose");
             RaisePropertyChanged("CanEdit");
         }
@@ -181,7 +205,7 @@ namespace RailwayEssentialMdi.Entities
         public void EnableEdit()
         {
             Model?.ExecuteJs("changeEditMode(true);", this);
-
+            IsEditEnabled = true;
             RaisePropertyChanged("CanClose");
             RaisePropertyChanged("CanEdit");
         }
@@ -210,25 +234,6 @@ namespace RailwayEssentialMdi.Entities
             ContentId = ToolContentId;
             TrackEditor = Utils.TrackplansEditor.ExpandRailwayEssential();
         }
-
-        public TrackEntity Clone()
-        {
-            var e = new TrackEntity(_dispatcher)
-            {
-                TrackObjectFilepath = TrackObjectFilepath,
-                Theme = _theme,
-                Ctx = Ctx,
-                ProjectTrack = ProjectTrack,
-                Cfg = Cfg,
-                Model = Model
-            };
-
-            e.Initialize();
-
-            return e;
-        }
-
-        private static string _trackname = "";
 
         public bool Initialize()
         {
@@ -300,9 +305,6 @@ namespace RailwayEssentialMdi.Entities
             }
 
             Model?.ExecuteJs($"simulateClick2({arClicks.ToString(Formatting.None)});");
-
-            UpdateAllVisualBlocks();
-            UpdateAllVisualIds(Model.IsVisualLabelActivated);
 
             return true;
         }

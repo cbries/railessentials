@@ -135,7 +135,10 @@ namespace RailwayEssentialMdi.ViewModels
         
         private void EditState(object p)
         {
-            Entity.EnableEdit();
+            if(Entity.IsEditEnabled)
+                Entity.DisableEdit();
+            else
+                Entity.EnableEdit();
         }
 
         private bool CheckEditState(object p)
@@ -164,6 +167,7 @@ namespace RailwayEssentialMdi.ViewModels
         public void ViewerReady()
         {
             _entity?.ViewerReady();
+
             Loaded?.Invoke(this, null);
         }
 

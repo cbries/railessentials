@@ -1,7 +1,7 @@
 2017 September ..
 ------------------
 Release Candidate 3 (RC3)
-- multiview of tracks
+- multiview of tracks, distributable to different monitors, free dockable 
 
 2017 September 5th 
 ------------------

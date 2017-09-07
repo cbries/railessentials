@@ -57,6 +57,13 @@ namespace RailwayEssentialMdi.Entities
         private List<string> _availableSensors = new List<string>();
         private List<TrackInformation.Item> _availableLocomotives = new List<Item>();
 
+        internal void RaiseUiUpdates()
+        {
+            RaisePropertyChanged("AvailableLocomotives");
+            RaisePropertyChanged("AvailableBlocks");
+            RaisePropertyChanged("AvailableSensors");
+        }
+
         public TrackInfo TrackInfoSelection
         {
             get => _trackInfoSelection;
@@ -630,9 +637,13 @@ namespace RailwayEssentialMdi.Entities
                         if (seam == null)
                             continue;
 
-                        if (seam.TrackObjects.ContainsKey(trackInfo))
+                        foreach (TrackInfo key in seam.TrackObjects.Keys)
                         {
-                            return seam;
+                            if (key == null)
+                                continue;
+
+                            if (key.X == trackInfo.X && key.Y == trackInfo.Y && key.ThemeId == trackInfo.ThemeId)
+                                return seam;
                         }
                     }
                 }

@@ -735,7 +735,7 @@ namespace RailwayEssentialMdi.Entities
 
                                     if (tv != null)
                                     {
-                                        tv?.SetCheckboxState(true);
+                                        tv.SetCheckboxState(true);
 
                                         var startFncTypes = weaveItem.StartFncTypes;
                                         foreach (var i in startFncTypes)

@@ -61,8 +61,8 @@ namespace RailwayEssentialMdi.Analyze
         private Entities.TrackEntity TrackEntity => _model?.TrackEntity;
         public int ThemeId => Info?.ThemeId ?? -1;
         private Theme.Theme Theme => _model?.TrackEntity.Theme;
-        private int MaxX => TrackEntity.Cfg.DesignerColumns;
-        private int MaxY => TrackEntity.Cfg.DesignerRows;
+        private int MaxX => TrackEntity?.Cfg?.DesignerColumns ?? -1;
+        private int MaxY => TrackEntity?.Cfg?.DesignerRows ?? -1;
         public string Identifier => $"({Info.X},{Info.Y})";
         public bool HasTurn { get; set; }
 
@@ -96,8 +96,13 @@ namespace RailwayEssentialMdi.Analyze
                 return;
             _dimensionInitialized = true;
             _orientationIndex = Helper.GetOrientation(Info);
-            _themeInfo = Theme.Get(ThemeId);
-            _dim = _themeInfo.Dimensions[_orientationIndex];
+            if(Theme != null)
+                _themeInfo = Theme.Get(ThemeId);
+            if (_themeInfo != null)
+            {
+                if (_orientationIndex > 0 && _themeInfo.Dimensions.Count > _orientationIndex)
+                    _dim = _themeInfo.Dimensions[_orientationIndex];
+            }
         }
 
         public int X0
@@ -233,6 +238,9 @@ namespace RailwayEssentialMdi.Analyze
         private void UpdateOrientation()
         {
             ThemeItemRoute e = GetWays();
+
+            if (e == null)
+                return;
 
             List<string> parts = new List<string>();
 
@@ -404,7 +412,7 @@ namespace RailwayEssentialMdi.Analyze
         {
             var neighbours = GetNeighbours();
 
-            if (neighbours.Count <= 0)
+            if (neighbours == null || neighbours.Count <= 0)
             {
                 CanMoveDown = false;
                 CanMoveLeft = false;
@@ -938,7 +946,7 @@ namespace RailwayEssentialMdi.Analyze
         /// <returns></returns>
         public ThemeItemRoute GetWays()
         {
-            var themeInfo = Theme.Get(ThemeId);
+            var themeInfo = Theme?.Get(ThemeId);
             if (themeInfo == null)
                 return null;
             int index = Helper.GetOrientation(Info);

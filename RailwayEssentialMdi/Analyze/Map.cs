@@ -85,8 +85,14 @@ namespace RailwayEssentialMdi.Analyze
 
             var o = _model?.TrackEntity;
 
-            var maxX = o.Cfg.DesignerColumns;
-            var maxY = o.Cfg.DesignerRows;
+            int maxX = 40;
+            int maxY = 40;
+
+            if (o != null)
+            {
+                maxX = o.Cfg.DesignerColumns;
+                maxY = o.Cfg.DesignerRows;
+            }
 
             var index = 0;
 
@@ -434,9 +440,13 @@ namespace RailwayEssentialMdi.Analyze
 
                     if (wasConnected)
                     {
-                        var target = item.GetConnectorTarget();
-                        _currentWay += $"{target.Identifier} -> ";
-                        Walk(nbsItem, target ?? item);
+                        if (item != null)
+                        {
+                            var target = item.GetConnectorTarget();
+                            if(target != null)
+                                _currentWay += $"{target.Identifier} -> ";
+                            Walk(nbsItem, target ?? item);
+                        }
                     }
                     else
                     {

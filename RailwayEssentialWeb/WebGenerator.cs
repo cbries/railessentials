@@ -82,11 +82,17 @@ namespace RailwayEssentialWeb
             // categories
             // [key:=category name, value:=selector list entries]
             string mhtmlCategories = "";
-            foreach (var k in Theme.CategoryNames)
+
+            var catnames = Theme.CategoryNames;
+
+            foreach (var k in catnames)
                 mhtmlCategories += "<option value=\"" + k + "\">" + k + "</option>\r\n";
             _selectCategory = mhtmlCategories;
 
-            foreach (var k in Theme.CategoryNames)
+            if (catnames == null || catnames.Count == 0)
+                return;
+
+            foreach (var k in catnames)
             {
                 string html = $"<div id=\"webmenuDiv{k}\" style=\"width: 400px; vertical-align: middle;\">\r\n<select name=\"webmenu{k}\" id=\"webmenu{k}\" style=\"width: 400px; vertical-align: middle;\">\r\n";
 

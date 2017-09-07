@@ -88,11 +88,7 @@ namespace RailwayEssentialMdi.Autoplay
             {
                 if (_cts == null)
                     return false;
-                if (_tkn == null)
-                    return false;
-                if (Task.Status == TaskStatus.Running
-                    || Task.Status == TaskStatus.WaitingToRun
-                  )
+                if (Task.Status == TaskStatus.Running || Task.Status == TaskStatus.WaitingToRun)
                     return true;
                 if (Task.Status == TaskStatus.Canceled)
                     return false;
@@ -430,7 +426,7 @@ namespace RailwayEssentialMdi.Autoplay
                         Model.UiSyncCtx?.Send((x) =>
                         {
                             Model.TrackEntity.UpdateAllVisualBlocks();
-                        }, null);
+                        }, new object());
                     }
 
                     foreach (var s88Data in routeData)
@@ -546,7 +542,7 @@ namespace RailwayEssentialMdi.Autoplay
                                         Autoplayer.SetRoute(Route, false);
                                         Model.TrackEntity.UpdateAllVisualBlocks();
                                         Model.Save();
-                                    }, null);
+                                    }, new object());
                                     Route.IsBusy = false;
                                     Route.StartBusiness = DateTime.MaxValue;
                                     Route.StopBusiness = DateTime.Now;

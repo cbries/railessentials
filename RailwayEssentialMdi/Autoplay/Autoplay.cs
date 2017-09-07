@@ -112,8 +112,8 @@ namespace RailwayEssentialMdi.Autoplay
 
             try
             {
-                if (_worker.WorkerSupportsCancellation)
-                    _worker?.CancelAsync();
+                if (_worker != null && _worker.WorkerSupportsCancellation)
+                    _worker.CancelAsync();
             }
             catch
             {
@@ -182,17 +182,26 @@ namespace RailwayEssentialMdi.Autoplay
         public static void DoWorkWithModal(Action<IProgress<string>> work)
         {
             ProgressWindow dlg = new ProgressWindow {Title = "Wait for Trains..."};
-
+            BackgroundWorker worker = new BackgroundWorker();
             dlg.Loaded += (_, args) =>
             {
-                BackgroundWorker worker = new BackgroundWorker();
                 Progress<string> progress = new Progress<string>(data => dlg.Msg.Text = data);
                 worker.DoWork += (s, workerArgs) => work(progress);
                 worker.RunWorkerCompleted += (s, workerArgs) => dlg.Close();
                 worker.RunWorkerAsync();
+                worker.Dispose();
             };
 
-            dlg.CmdCancel.Click += (s, ev) => dlg.Close();
+            dlg.CmdCancel.Click += (s, ev) =>
+            {
+                dlg.Close();
+
+                if (worker != null)
+                {
+                    worker.Dispose();
+                    worker = null;
+                }
+            };
             dlg.ShowDialog();
         }
     }

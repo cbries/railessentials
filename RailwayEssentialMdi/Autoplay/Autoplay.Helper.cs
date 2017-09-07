@@ -87,7 +87,7 @@ namespace RailwayEssentialMdi.Autoplay
                             }
                             else
                             {
-                                bool rS88 = checkResult?.State != null && checkResult.State.Value;
+                                bool rS88 = checkResult.State != null && checkResult.State.Value;
 
                                 if (rS88 && s88item != null)
                                 {

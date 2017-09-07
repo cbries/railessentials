@@ -51,7 +51,7 @@ namespace Ecos2Core.Replies
             var lastPart = line.Substring(n + 1).Trim();
             lastPart = lastPart.TrimStart('(').TrimEnd(')');
             if (!string.IsNullOrEmpty(lastPart))
-                ErrorMessage = lastPart;
+                ErrorMessage = line.TrimStart('(').TrimEnd(')');
             else
                 ErrorMessage = lastPart;
         }

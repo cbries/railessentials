@@ -93,6 +93,8 @@ namespace RailwayEssentialWeb
             _jsCallback = new TrackViewerJsCallback();
 
             Browser.RegisterJsObject("railwayEssentialCallback", _jsCallback);
+
+            settings.Dispose();
         }
 
         private void BrowserOnConsoleMessage(object sender, ConsoleMessageEventArgs arg)
@@ -113,7 +115,7 @@ namespace RailwayEssentialWeb
                             vm.ViewerReady();
                     }
                 }
-            }, null);
+            }, new object());
         }
 
         private void BrowserOnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
@@ -130,7 +132,7 @@ namespace RailwayEssentialWeb
             {
                 if (Browser != null && Browser.IsBrowserInitialized)
                     Browser.Reload();
-            }, null);
+            }, new object());
         }
 
         private void BrowserOnIsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
@@ -178,7 +180,7 @@ namespace RailwayEssentialWeb
                     return;
 
                 Browser.ExecuteScriptAsync(scriptCode.Trim());
-            }, null);
+            }, new object());
         }
 
         public void SetUrl(string url)

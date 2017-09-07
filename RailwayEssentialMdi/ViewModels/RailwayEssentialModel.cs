@@ -118,7 +118,7 @@ namespace RailwayEssentialMdi.ViewModels
             _ctx.Send(state =>
             {
                 Xceed.Wpf.Toolkit.MessageBox.Show(string.Format(msg, args), "Error", MessageBoxButton.OK);
-            }, null);
+            }, new object());
         }
 
         public void LogNetwork(string text, params object[] args)
@@ -335,7 +335,7 @@ namespace RailwayEssentialMdi.ViewModels
             //                    _ctx.Send(state =>
             //                    {
             //                        // ...
-            //                    }, null);
+            //                    }, new object());
             //                }
             //            }
 
@@ -982,7 +982,7 @@ namespace RailwayEssentialMdi.ViewModels
                         }
                     }
                 }
-            }, null);
+            }, new object());
         }
 
         public void Close(object o)
@@ -1255,7 +1255,7 @@ namespace RailwayEssentialMdi.ViewModels
             _ctx?.Send(state =>
             {
                 LogAutoplay("Autoplay started");
-            }, null);
+            }, new object());
         }
 
         private void Stopped(object sender, EventArgs eventArgs)
@@ -1263,7 +1263,7 @@ namespace RailwayEssentialMdi.ViewModels
             _ctx?.Send(state =>
             {
                 LogAutoplay("Autoplay stopped");
-            }, null);
+            }, new object());
         }
 
         private void Failed(object sender, EventArgs eventArgs)
@@ -1271,7 +1271,7 @@ namespace RailwayEssentialMdi.ViewModels
             _ctx?.Send(state =>
             {
                 LogAutoplay("Autoplay failed");
-            }, null);
+            }, new object());
         }
 
         public void ShowLocomotive(object p)
@@ -1796,7 +1796,7 @@ namespace RailwayEssentialMdi.ViewModels
             _ctx.Send(state =>
             {
                 RaisePropertyChanged(name);
-            }, null);
+            }, new object());
         }
 
         private TrackInformation.Locomotive _currentLocomotive;
@@ -1847,7 +1847,7 @@ namespace RailwayEssentialMdi.ViewModels
                 int w = 1;
                 int h = 1;
                 var trackInfo = TrackEntity.Track.Get(r.X, r.Y);
-                if (trackInfo != null)
+                if (trackInfo != null && _theme != null)
                 {
                     var themeInfo = _theme.Get(trackInfo.ThemeId);
                     if (themeInfo != null)
@@ -1858,7 +1858,10 @@ namespace RailwayEssentialMdi.ViewModels
                     }
                 }
 
-                bool isBlock = new List<int> {150, 151, 152}.Contains(trackInfo.ThemeId);
+                bool isBlock = false;
+
+                if(trackInfo != null)
+                    isBlock = new List<int> {150, 151, 152}.Contains(trackInfo.ThemeId);
 
                 if (w > 1 || h > 1)
                 {

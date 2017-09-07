@@ -73,7 +73,7 @@ namespace RailwayEssentialMdi.Autoplay
                 Ctx._ctx.Send(state =>
                 {
                     Ctx.LogAutoplay(msg);
-                }, null);
+                }, new object());
             }
         }
 

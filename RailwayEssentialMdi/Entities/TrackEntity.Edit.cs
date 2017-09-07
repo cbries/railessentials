@@ -104,7 +104,7 @@ namespace RailwayEssentialMdi.Entities
                 RaisePropertyChanged("TrackInfoSelectionDescription");
             }
         }
-        
+
         public S88 ItemsS88Selection
         {
             get => _itemS88Selection;
@@ -184,39 +184,33 @@ namespace RailwayEssentialMdi.Entities
         {
             get
             {
-                lock (_availableBlocks)
-                {
-                    _availableBlocks.Clear();
+                _availableBlocks.Clear();
 
-                    if (Track == null)
-                        return _availableBlocks;
-
-                    foreach (var e in Track)
-                    {
-                        if (e == null)
-                            continue;
-
-                        if (!Globals.BlockIds.Contains(e.ThemeId))
-                            continue;
-
-                        if (string.IsNullOrEmpty(e.Name))
-                            _availableBlocks.Add(e.ToString());
-                        else
-                            _availableBlocks.Add(e.Name);
-                    }
-
-                    _availableBlocks.Insert(0, "--");
-
+                if (Track == null)
                     return _availableBlocks;
+
+                foreach (var e in Track)
+                {
+                    if (e == null)
+                        continue;
+
+                    if (!Globals.BlockIds.Contains(e.ThemeId))
+                        continue;
+
+                    if (string.IsNullOrEmpty(e.Name))
+                        _availableBlocks.Add(e.ToString());
+                    else
+                        _availableBlocks.Add(e.Name);
                 }
+
+                _availableBlocks.Insert(0, "--");
+
+                return _availableBlocks;
             }
             set
             {
-                lock (_availableBlocks)
-                {
-                    _availableBlocks = (List<string>) value;
-                    RaisePropertyChanged("AvailableBlocks");
-                }
+                _availableBlocks = (List<string>)value;
+                RaisePropertyChanged("AvailableBlocks");
             }
         }
 
@@ -224,39 +218,33 @@ namespace RailwayEssentialMdi.Entities
         {
             get
             {
-                lock (_availableSensors)
-                {
-                    _availableSensors.Clear();
+                _availableSensors.Clear();
 
-                    if (Track == null)
-                        return _availableSensors;
-
-                    foreach (var e in Track)
-                    {
-                        if (e == null)
-                            continue;
-
-                        if (!Globals.SensorIds.Contains(e.ThemeId))
-                            continue;
-
-                        if (string.IsNullOrEmpty(e.Name))
-                            _availableSensors.Add($"{e} [INVALID - 'Name' should be set!]");
-                        else
-                            _availableSensors.Add(e.Name);
-                    }
-
-                    _availableSensors.Insert(0, "--");
-
+                if (Track == null)
                     return _availableSensors;
+
+                foreach (var e in Track)
+                {
+                    if (e == null)
+                        continue;
+
+                    if (!Globals.SensorIds.Contains(e.ThemeId))
+                        continue;
+
+                    if (string.IsNullOrEmpty(e.Name))
+                        _availableSensors.Add($"{e} [INVALID - 'Name' should be set!]");
+                    else
+                        _availableSensors.Add(e.Name);
                 }
+
+                _availableSensors.Insert(0, "--");
+
+                return _availableSensors;
             }
             set
             {
-                lock (_availableSensors)
-                {
-                    _availableSensors = (List<string>)value;
-                    RaisePropertyChanged("AvailableSensors");
-                }
+                _availableSensors = (List<string>)value;
+                RaisePropertyChanged("AvailableSensors");
             }
         }
 
@@ -289,7 +277,7 @@ namespace RailwayEssentialMdi.Entities
             }
             set
             {
-                _availableLocomotives = (List<Item>) value;
+                _availableLocomotives = (List<Item>)value;
                 RaisePropertyChanged("AvailableLocomotives");
             }
         }
@@ -613,9 +601,8 @@ namespace RailwayEssentialMdi.Entities
 
             SaveEvents();
 
-            prj?.Save();
-            Model.SetDirty(false);
-            
+            if(Model is RailwayEssentialModel mm)
+                mm.Save();
         }
 
         private TrackWeaverItem GetWeaverItem(int x, int y)
@@ -680,7 +667,7 @@ namespace RailwayEssentialMdi.Entities
                     ShowObjectEdit = false;
                     ItemsS88.Clear();
                     ItemsSwitch.Clear();
-                }, null);
+                }, new object());
 
                 return;
             }
@@ -706,41 +693,41 @@ namespace RailwayEssentialMdi.Entities
                 {
                     //ConnectorVisible = false;
                     //SelectionTabIndex = 0;
-                    
+
                     switch (objItem.TypeId())
                     {
                         case TrackInformation.S88.Typeid:
-                        {
-                            ItemsS88Selection = objItem as S88;
-                            //SelectionTabIndex = TabIndexS88;
+                            {
+                                ItemsS88Selection = objItem as S88;
+                                //SelectionTabIndex = TabIndexS88;
 
-                            var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
-                            if (weaveItem != null)
-                                ItemsS88SelectionPin = weaveItem.Pin;
-                            ItemsSwitchInvert = false;
-                        }
+                                var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
+                                if (weaveItem != null)
+                                    ItemsS88SelectionPin = weaveItem.Pin;
+                                ItemsSwitchInvert = false;
+                            }
                             break;
 
                         case TrackInformation.Switch.Typeid:
-                        {
-                            ItemsSwitchSelection = objItem as TrackInformation.Switch;
-                            //SelectionTabIndex = TabIndexSwitch;
-                            ItemsS88SelectionPin = -1;
-                            if(ItemsSwitchSelection != null)
-                                ItemsSwitchInvert = ItemsSwitchSelection.InvertCommand;
-                            else
-                                ItemsSwitchInvert = false;
-                        }
+                            {
+                                ItemsSwitchSelection = objItem as TrackInformation.Switch;
+                                //SelectionTabIndex = TabIndexSwitch;
+                                ItemsS88SelectionPin = -1;
+                                if (ItemsSwitchSelection != null)
+                                    ItemsSwitchInvert = ItemsSwitchSelection.InvertCommand;
+                                else
+                                    ItemsSwitchInvert = false;
+                            }
                             break;
 
                         default:
-                        {
-                            ItemsS88Selection = null;
-                            ItemsSwitchSelection = null;
-                            //SelectionTabIndex = TabIndexGeneral;
-                            ItemsS88SelectionPin = -1;
-                            ItemsSwitchInvert = false;
-                        }
+                            {
+                                ItemsS88Selection = null;
+                                ItemsSwitchSelection = null;
+                                //SelectionTabIndex = TabIndexGeneral;
+                                ItemsS88SelectionPin = -1;
+                                ItemsSwitchInvert = false;
+                            }
                             break;
                     }
                 }
@@ -854,12 +841,12 @@ namespace RailwayEssentialMdi.Entities
 
                 LoadEvents();
 
-            }, null);
+            }, new object());
         }
 
         private void JsCallbackOnCellEdited(object o, EventArgs ev)
         {
-            if(Dispatcher != null && Dispatcher.Model != null)
+            if (Dispatcher != null && Dispatcher.Model != null)
                 Dispatcher.Model.SetDirty(true);
 
             JsonObjectEventArgs evObj = ev as JsonObjectEventArgs;
@@ -872,14 +859,14 @@ namespace RailwayEssentialMdi.Entities
                 var data = evObj.GetData();
 
                 if (data["x"] != null)
-                    x = (int) data["x"];
+                    x = (int)data["x"];
                 if (data["y"] != null)
-                    y = (int) data["y"];
+                    y = (int)data["y"];
                 //if (data["themeId"] != null)
                 //    themeId = (int) data["themeId"];
 
                 var state = false;
-                if(_dispatcher != null && _dispatcher.Model != null)
+                if (_dispatcher != null && _dispatcher.Model != null)
                     state = _dispatcher.Model.IsVisualLabelActivated;
 
                 UpdateVisualId(x, y, state);
@@ -897,61 +884,61 @@ namespace RailwayEssentialMdi.Entities
                 switch (objItem.TypeId())
                 {
                     case TrackInformation.Switch.Typeid:
-                    {
-                        var switchItem = objItem as TrackInformation.Switch;
-                        if (switchItem != null)
                         {
-                            if (switchItem.State == 0)
-                                switchItem.ChangeDirection(1);
-                            else
-                                switchItem.ChangeDirection(0);
+                            var switchItem = objItem as TrackInformation.Switch;
+                            if (switchItem != null)
+                            {
+                                if (switchItem.State == 0)
+                                    switchItem.ChangeDirection(1);
+                                else
+                                    switchItem.ChangeDirection(0);
+                            }
                         }
-                    }
                         break;
 
                     case TrackInformation.S88.Typeid:
-                    {
-                        if (Model is RailwayEssentialModel m && m.IsDryRun)
                         {
-                            int pin = -1;
-
-                            var weaveItem = Helper.GetWeaveItem(_dispatcher, x, y);
-                            if (weaveItem != null)
-                                pin = weaveItem.Pin;
-
-                            if (pin != -1)
+                            if (Model is RailwayEssentialModel m && m.IsDryRun)
                             {
-                                //Trace.WriteLine("Simulate S88 PIN change!");
+                                int pin = -1;
 
-                                var s88Item = objItem as TrackInformation.S88;
-                                if (s88Item != null)
+                                var weaveItem = Helper.GetWeaveItem(_dispatcher, x, y);
+                                if (weaveItem != null)
+                                    pin = weaveItem.Pin;
+
+                                if (pin != -1)
                                 {
-                                    var beforeBinary = s88Item.StateBinary;
+                                    //Trace.WriteLine("Simulate S88 PIN change!");
 
-                                    int len = s88Item.Ports;
-                                    int idx = pin - 1;
+                                    var s88Item = objItem as TrackInformation.S88;
+                                    if (s88Item != null)
+                                    {
+                                        var beforeBinary = s88Item.StateBinary;
 
-                                    var currentState = Convert.ToInt32(s88Item.StateOriginal, 16);
-                                    byte[] bytes = BitConverter.GetBytes(currentState);
-                                    var changedBytes = bytes.ToggleBit(idx);
-                                    string changedHhexValue = BitConverter.ToInt32(changedBytes, 0).ToString("X");
-                                    s88Item.StateOriginal = changedHhexValue;
+                                        int len = s88Item.Ports;
+                                        int idx = pin - 1;
 
-                                    //var afterBinary = s88Item.StateBinary;
-                                    //Trace.WriteLine($"Binaries: {beforeBinary}");
-                                    //Trace.WriteLine($"Binaries: {afterBinary}");
+                                        var currentState = Convert.ToInt32(s88Item.StateOriginal, 16);
+                                        byte[] bytes = BitConverter.GetBytes(currentState);
+                                        var changedBytes = bytes.ToggleBit(idx);
+                                        string changedHhexValue = BitConverter.ToInt32(changedBytes, 0).ToString("X");
+                                        s88Item.StateOriginal = changedHhexValue;
 
-                                    m.TriggerUpdateUi();
+                                        //var afterBinary = s88Item.StateBinary;
+                                        //Trace.WriteLine($"Binaries: {beforeBinary}");
+                                        //Trace.WriteLine($"Binaries: {afterBinary}");
+
+                                        m.TriggerUpdateUi();
+                                    }
                                 }
-                             }
+                            }
                         }
-                    }
                         break;
                 }
             }
         }
 
-        public void UpdateVisualId(int x, int y, bool show=true)
+        public void UpdateVisualId(int x, int y, bool show = true)
         {
             if (x != -1 && y != -1)
             {
@@ -961,7 +948,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     if (Viewer != null)
                     {
-                        if(show)
+                        if (show)
                             Model?.ExecuteJs($"changeItemIdMarker({x}, {y}, \"{item.Name}\");");
                         else
                             Model?.ExecuteJs($"changeItemIdMarker({x}, {y}, \" \");");
@@ -970,7 +957,7 @@ namespace RailwayEssentialMdi.Entities
             }
         }
 
-        public void UpdateVisualId(TrackInfo info, bool show=true)
+        public void UpdateVisualId(TrackInfo info, bool show = true)
         {
             var x = info.X;
             var y = info.Y;
@@ -984,7 +971,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     if (Viewer != null)
                     {
-                        if(show)
+                        if (show)
                             Model?.ExecuteJs($"changeItemIdMarker({x}, {y}, '{item.Name}');");
                         else
                             Model?.ExecuteJs($"changeItemIdMarker({x}, {y}, ' ');");
@@ -1062,7 +1049,7 @@ namespace RailwayEssentialMdi.Entities
 
                         Model?.ExecuteJs($"changeLocnameMarker({x}, {y}, '{loc.Name}');");
 
-                        if(loc.Locked)
+                        if (loc.Locked)
                             Model?.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, true);");
                         else
                             Model?.ExecuteJs($"changeLocnameMarkerLock({x}, {y}, false);");
@@ -1089,7 +1076,7 @@ namespace RailwayEssentialMdi.Entities
                 if (item == null)
                     continue;
 
-                if(Globals.BlockIds.Contains(item.ThemeId))
+                if (Globals.BlockIds.Contains(item.ThemeId))
                     UpdateVisualBlock(item);
             }
         }

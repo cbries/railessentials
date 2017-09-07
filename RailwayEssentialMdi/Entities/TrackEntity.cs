@@ -375,6 +375,8 @@ namespace RailwayEssentialMdi.Entities
 
                         int themeId = trackItem.ThemeId;
                         var themeObject = _theme.Get(themeId);
+                        if (themeObject == null)
+                            return false;
                         string symbol = "";
 
                         switch (seam.ObjectItem.TypeId())

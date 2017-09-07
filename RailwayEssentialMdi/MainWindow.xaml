@@ -100,6 +100,8 @@
                 </MenuItem>
 
                 <MenuItem Header="View">
+                    <MenuItem Header="Update Visualization" Command="{Binding UpdateVisualizationCommand}"/>
+                    <Separator/>
                     <MenuItem Header="General Log" Command="{Binding ShowLogCommand}"/>
                     <MenuItem Header="Command Log" Command="{Binding ShowCommandLogCommand}"/>
                     <MenuItem Header="Autoplay Log" Command="{Binding ShowAutoplayLogCommand}"/>

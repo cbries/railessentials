@@ -43,6 +43,7 @@ using RailwayEssentialMdi.Commands;
 using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.Entities;
 using RailwayEssentialMdi.Interfaces;
+using RailwayEssentialMdi.Views;
 using TrackInformation;
 using Switch = TrackInformation.Switch;
 
@@ -251,7 +252,7 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand StopAllLocsCmd { get; }
         public RelayCommand RestartAllLocsCmd { get;  }
         public RelayCommand CmdStationsPropertiesCommand { get; }
-
+        public RelayCommand UpdateVisualizationCommand { get; }
         public RelayCommand ShowLogCommand { get; }
         public RelayCommand ShowCommandLogCommand { get; }
         public RelayCommand ShowAutoplayLogCommand { get; }
@@ -301,6 +302,7 @@ namespace RailwayEssentialMdi.ViewModels
             StopAllLocsCmd = new RelayCommand(DoStopAllLocsCmd, CheckStopAllLocsCmd);
             RestartAllLocsCmd = new RelayCommand(DoRestartAllLocsCmd, CheckRestartAllLocsCmd);
             CmdStationsPropertiesCommand = new RelayCommand(PropertiesCommandStation);
+            UpdateVisualizationCommand = new RelayCommand(UpdateVisualization, CheckUpdateVisualization);
             ShowLogCommand = new RelayCommand(ShowLog);
             ShowCommandLogCommand = new RelayCommand(ShowCommandLog);
             ShowAutoplayLogCommand = new RelayCommand(ShowAutoplayLog);
@@ -1366,6 +1368,11 @@ namespace RailwayEssentialMdi.ViewModels
             }
         }
 
+        public void UpdateVisualization(object p)
+        {
+            UpdateTrackUi();
+        }
+
         public void ShowLog(object p)
         {
             var w = GetWindow<LogWindow>();
@@ -1623,6 +1630,13 @@ namespace RailwayEssentialMdi.ViewModels
                     return true;
             }
             return false;
+        }
+
+        public bool CheckUpdateVisualization(object p)
+        {
+            if (_project == null)
+                return false;
+            return true;
         }
 
         public bool CheckAddTrack(object p)

@@ -5,6 +5,7 @@ Release Candidate 3 (RC3)
 - multiviews of locomotive controls
 - functions can be categorized
 - functions are triggers when s88 event are triggered, e.g. smoke is switched on or off
+- provide a trigger for updating the visualization
 
 2017 September 5th 
 ------------------

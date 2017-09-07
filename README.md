@@ -23,7 +23,7 @@ Current test releases are available here: [Releases / Release Candidates / Other
 
 ### Prerequisites
 
-RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefor it would be great to own one :-)
+RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefore it would be great to own one :-)
 
 ## Built With
 

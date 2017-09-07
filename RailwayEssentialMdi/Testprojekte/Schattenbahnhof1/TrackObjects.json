@@ -68,7 +68,7 @@
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 50,
-      "locked": true
+      "locked": false
     },
     {
       "objectId": 1009,
@@ -82,7 +82,7 @@
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 80,
       "blockSpeedPercentage": 35,
-      "locked": true
+      "locked": false
     }
   ],
   "switches": [
@@ -147,7 +147,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -163,7 +163,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -195,7 +195,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -211,7 +211,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -227,7 +227,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -243,7 +243,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -342,13 +342,13 @@
       "objectId": 100,
       "index": 0,
       "ports": 16,
-      "stateOriginal": "0xf0f8"
+      "stateOriginal": "0x30ff"
     },
     {
       "objectId": 101,
       "index": 1,
       "ports": 16,
-      "stateOriginal": "0x800"
+      "stateOriginal": "0xd00"
     },
     {
       "objectId": 102,

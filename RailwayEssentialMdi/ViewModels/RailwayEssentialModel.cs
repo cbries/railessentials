@@ -1239,7 +1239,7 @@ namespace RailwayEssentialMdi.ViewModels
         {
             _ctx?.Send(state =>
             {
-                LogAutoplay("Autoplay started");
+                LogAutoplay("Autoplay started\n");
             }, new object());
         }
 
@@ -1247,7 +1247,7 @@ namespace RailwayEssentialMdi.ViewModels
         {
             _ctx?.Send(state =>
             {
-                LogAutoplay("Autoplay stopped");
+                LogAutoplay("Autoplay stopped\n");
             }, new object());
         }
 
@@ -1255,7 +1255,7 @@ namespace RailwayEssentialMdi.ViewModels
         {
             _ctx?.Send(state =>
             {
-                LogAutoplay("Autoplay failed");
+                LogAutoplay("Autoplay failed\n");
             }, new object());
         }
 

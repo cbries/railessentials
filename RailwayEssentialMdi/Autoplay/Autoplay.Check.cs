@@ -164,7 +164,7 @@ namespace RailwayEssentialMdi.Autoplay
 
                             if (route != null)
                             {
-                                Ctx?.LogAutoplay($"START Group {g.GroupName} with Route {route}");
+                                Ctx?.LogAutoplay($"START Group {g.GroupName} with Route {route}\n");
                                 Trace.WriteLine($"START Group {g.GroupName} with Route {route}");
 
                                 GetByRoute(route)?.Start();
@@ -258,7 +258,7 @@ namespace RailwayEssentialMdi.Autoplay
 
                 if (route != null)
                 {
-                    Ctx?.LogAutoplay($"START Group {grp.GroupName} with Route {routeIdx}");
+                    Ctx?.LogAutoplay($"START Group {grp.GroupName} with Route {routeIdx}\n");
                     Trace.WriteLine($"START Group {grp.GroupName} with Route {routeIdx}");
 
                     GetByRoute(route)?.Start();

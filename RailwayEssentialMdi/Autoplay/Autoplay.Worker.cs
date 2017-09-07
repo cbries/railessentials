@@ -62,11 +62,11 @@ namespace RailwayEssentialMdi.Autoplay
             var msg = "";
 
             if(e.Cancelled)
-                msg = "Canceled!";
+                msg = "Canceled!\n";
             else if (e.Error != null)
-                msg = "Error: " + e.Error.Message;
+                msg = "Error: " + e.Error.Message + "\n";
             else
-                msg = "Done!";
+                msg = "Done!\n";
 
             if (Ctx != null && Ctx._ctx != null)
             {

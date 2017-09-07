@@ -237,7 +237,7 @@ namespace RailwayEssentialMdi.Autoplay
 
                         if (locObject != null)
                         {
-                            Model?.LogAutoplay($"{Prefix} Locomotive: {locObject.Name}");
+                            Model?.LogAutoplay($"{Prefix} Locomotive: {locObject.Name}\n");
                             Trace.WriteLine($"{Prefix} Locomotive: {locObject.Name}");
                         }
 
@@ -420,7 +420,7 @@ namespace RailwayEssentialMdi.Autoplay
                             locObject.ChangeSpeed(locObject.MaxSpeedPercentage);
                         }
 
-                        Model?.LogAutoplay($"{Prefix} {s}  TO  {d}");
+                        Model?.LogAutoplay($"{Prefix} {s}  TO  {d}\n");
                         Trace.WriteLine($"{Prefix} {s}  TO  {d}");
 
                         Model.UiSyncCtx?.Send((x) =>
@@ -446,7 +446,7 @@ namespace RailwayEssentialMdi.Autoplay
                         }
                         catch(Exception ex)
                         {
-                            Model?.LogAutoplay($"{Prefix} {ex.Message}");
+                            Model?.LogAutoplay($"{Prefix} {ex.Message}\n");
                             Trace.WriteLine($"{Prefix} {ex.Message}");
                         }
 
@@ -454,7 +454,7 @@ namespace RailwayEssentialMdi.Autoplay
                         {
                             s88Data.S88HasBeenHandled = true;
 
-                            //Model?.LogAutoplay($"{Prefix} {s88Data.Info} {s88Data.ItemS88} state '{state}' -> {s88Data.DestBlockEvent}");
+                            //Model?.LogAutoplay($"{Prefix} {s88Data.Info} {s88Data.ItemS88} state '{state}' -> {s88Data.DestBlockEvent}\n");
 
                             string evName = s88Data.DestBlockEvent;
                             if (!string.IsNullOrEmpty(evName))

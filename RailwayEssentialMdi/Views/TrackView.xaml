@@ -105,6 +105,9 @@
                                                             Maximum="{Binding Entity.ItemsS88Selection.Ports}" Minimum="1" 
                                                             FormatString="N0" AllowSpin="True"/>
                                     </DockPanel>
+                                
+                                    <GroupBox Name="GrpS88FncsStart" Header="Functions (Start)" Margin="0,5,0,0"/>
+                                    <GroupBox Name="GrpS88FncsStop" Header="Functions (Stop)" Margin="0,5,0,0"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem>

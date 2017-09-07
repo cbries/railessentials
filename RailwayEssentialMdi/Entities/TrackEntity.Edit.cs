@@ -26,6 +26,8 @@ using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using RailwayEssentialCore;
 using RailwayEssentialMdi.ViewModels;
+using RailwayEssentialMdi.Views;
+using RailwayEssentialWeb;
 using TrackPlanParser;
 
 namespace RailwayEssentialMdi.Entities
@@ -112,7 +114,14 @@ namespace RailwayEssentialMdi.Entities
             {
                 _itemS88Selection = value;
                 if (_itemS88Selection == null)
+                {
                     ItemsS88SelectionPin = -1;
+                }
+                else
+                {
+                    // ignore
+                }
+
                 RaisePropertyChanged("ItemsS88Selection");
             }
         }
@@ -578,6 +587,17 @@ namespace RailwayEssentialMdi.Entities
                 item.Type = WeaveItemT.S88;
                 item.ObjectId = _itemS88Selection.ObjectId;
                 item.Pin = ItemsS88SelectionPin;
+
+                var w = this.Window as TrackWindow;
+                TrackView tv = null;
+                if (w != null)
+                    tv = w.TrackView as TrackView;
+
+                if (tv != null)
+                {
+                    item.StartFncTypes = tv.StartFncs;
+                    item.StopFncTypes = tv.StopFncs;
+                }
             }
 
             if (_itemSwitchSelection != null)
@@ -694,6 +714,13 @@ namespace RailwayEssentialMdi.Entities
                     //ConnectorVisible = false;
                     //SelectionTabIndex = 0;
 
+                    var w = this.Window as TrackWindow;
+                    TrackView tv = null;
+                    if (w != null)
+                        tv = w.TrackView as TrackView;
+
+                    tv?.SetCheckboxState(false);
+
                     switch (objItem.TypeId())
                     {
                         case TrackInformation.S88.Typeid:
@@ -703,7 +730,33 @@ namespace RailwayEssentialMdi.Entities
 
                                 var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
                                 if (weaveItem != null)
+                                {
                                     ItemsS88SelectionPin = weaveItem.Pin;
+
+                                    if (tv != null)
+                                    {
+                                        tv?.SetCheckboxState(true);
+
+                                        var startFncTypes = weaveItem.StartFncTypes;
+                                        foreach (var i in startFncTypes)
+                                        {
+                                            var ii = (int)i;
+                                            var chk = tv.GetChk($"ChkFncStart{ii}");
+                                            if (chk != null)
+                                                chk.IsChecked = true;
+                                        }
+
+                                        var stopFncTypes = weaveItem.StopFncTypes;
+                                        foreach (var i in stopFncTypes)
+                                        {
+                                            var ii = (int)i;
+                                            var chk = tv.GetChk($"ChkFncStop{ii}");
+                                            if (chk != null)
+                                                chk.IsChecked = true;
+                                        }
+                                    }
+
+                                }
                                 ItemsSwitchInvert = false;
                             }
                             break;

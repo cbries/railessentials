@@ -26,13 +26,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Ecos2Core;
 using Newtonsoft.Json.Linq;
+using TrackInformationCore;
 
 namespace TrackInformation
 {
     public sealed class Locomotive : Item
     {
-        public enum FncTypes { Light = 0, Smoke = 1, SoundPipe = 2, SoundCruise = 3 }
-        
+        public static string GetFncTypename(FncTypes type)
+        {
+            switch (type)
+            {
+                case FncTypes.Light: return "Lights";
+                case FncTypes.Smoke: return "Smoke";
+                case FncTypes.SoundPipe: return "Pipe (Sound)";
+                case FncTypes.SoundCruise: return "Cruise (Sound)";
+            }
+            return null;
+        }
+
+        public static List<string> GetFncTypenames()
+        {
+            int n = Enum.GetNames(typeof(FncTypes)).Length;
+
+            List<string> names = new List<string>();
+            for(int i=0; i < n; ++i)
+                names.Add(GetFncTypename((FncTypes) i));
+            return names;
+        }
+
         public static int SpeedStop = 0;
         public static int SpeedNormal = 50;
         public static int SpeedBlockEntered = 35;
@@ -205,7 +226,6 @@ namespace TrackInformation
         private List<string> _fncTypeNames;
         private string _fncSelectedName = "--";
         private int _fncTypeIndex = 0;
-        private static int NumberOfFncTypes = 4;
 
         public List<string> FncNames
         {
@@ -243,19 +263,7 @@ namespace TrackInformation
             }
         }
 
-        public string GetFncTypename(FncTypes type)
-        {
-            switch (type)
-            {
-                case FncTypes.Light: return "Lights";
-                case FncTypes.Smoke: return "Smoke";
-                case FncTypes.SoundPipe: return "Pipe (Sound)";
-                case FncTypes.SoundCruise: return "Cruise (Sound)";
-            }
-            return null;
-        }
-
-        public List<string> FncTypeNames
+        public  List<string> FncTypeNames
         {
             get => _fncTypeNames;
             set
@@ -287,9 +295,11 @@ namespace TrackInformation
             StartTime = DateTime.MaxValue;
             StopTime = DateTime.MinValue;
 
+            int n = Enum.GetNames(typeof(FncTypes)).Length;
+
             if (_fncTypeNames == null)
                 _fncTypeNames = new List<string>();
-            for (int i = 0; i < NumberOfFncTypes; ++i)
+            for (int i = 0; i < n; ++i)
                 _fncTypeNames.Add(GetFncTypename((FncTypes)i));
             _fncTypeNames.Insert(0, "--");
             OnPropertyChanged(nameof(FncTypeNames));

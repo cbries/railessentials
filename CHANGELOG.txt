@@ -4,6 +4,7 @@ Release Candidate 3 (RC3)
 - multiview of tracks, distributable to different monitors, free dockable 
 - multiviews of locomotive controls
 - functions can be categorized
+- functions are triggers when s88 event are triggered, e.g. smoke is switched on or off
 
 2017 September 5th 
 ------------------

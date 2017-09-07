@@ -54,6 +54,8 @@ namespace RailwayEssentialMdi.Entities
 
         public bool IsClone { get; private set; }
 
+        public object Window { get; set; }
+
         public string TrackObjectFilepath { get; set; }
 
         internal SynchronizationContext Ctx { get; set; }

@@ -22,7 +22,9 @@
  * SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using TrackInformationCore;
 
 namespace TrackWeaver
 {
@@ -39,7 +41,11 @@ namespace TrackWeaver
         public int VisuX { get; set; }
         public int VisuY { get; set; }
         public bool InvertSwitch { get; set; }
-        
+
+        public List<FncTypes> StartFncTypes { get; set; }
+        public List<FncTypes> StopFncTypes { get; set; }
+
+
         public TrackWeaveItem()
         {
             Type = WeaveItemT.Unknown;
@@ -47,6 +53,8 @@ namespace TrackWeaver
             VisuX = -1;
             VisuY = -1;
             InvertSwitch = false;
+            StartFncTypes = new List<FncTypes>();
+            StopFncTypes = new List<FncTypes>();
         }
 
         public bool Parse(JObject o)
@@ -86,6 +94,30 @@ namespace TrackWeaver
                     VisuY = (int) os["visuY"];
                 if (os["invertSwitch"] != null)
                     InvertSwitch = (bool) os["invertSwitch"];
+
+                if (os["startFncTypes"] != null)
+                {
+                    if (os["startFncTypes"] is JArray ar)
+                    {
+                        if (StartFncTypes == null)
+                            StartFncTypes = new List<FncTypes>();
+
+                        foreach (var i in ar)
+                            StartFncTypes.Add((FncTypes)(int)i);
+                    }
+                }
+                if (os["stopFncTypes"] != null)
+                {
+                    if (os["stopFncTypes"] is JArray ar)
+                    {
+                        if (StopFncTypes == null)
+                            StopFncTypes = new List<FncTypes>();
+
+                        foreach (var i in ar)
+                            StopFncTypes.Add((FncTypes)(int)i);
+                    }
+                }
+
             }
 
             return true;
@@ -93,6 +125,14 @@ namespace TrackWeaver
 
         public JObject ToJson()
         {
+            var startFt = new JArray();
+            foreach (var it in StartFncTypes)
+                startFt.Add((int)it);
+
+            var stopFt = new JArray();
+            foreach (var it in StopFncTypes)
+                stopFt.Add((int)it);
+
             JObject o = new JObject {["type"] = Type.ToString()};
             JObject oo = new JObject
             {
@@ -100,7 +140,9 @@ namespace TrackWeaver
                 ["pin"] = Pin,
                 ["visuX"] = VisuX,
                 ["visuY"] = VisuY,
-                ["invertSwitch"] = InvertSwitch
+                ["invertSwitch"] = InvertSwitch,
+                ["startFncTypes"] = startFt,
+                ["stopFncTypes"] = stopFt
             };
             o["setup"] = oo;
             return o;

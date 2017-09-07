@@ -450,13 +450,38 @@ namespace RailwayEssentialMdi.Autoplay
                             Trace.WriteLine($"{Prefix} {ex.Message}");
                         }
 
-                        if (state)
+                        if (state && !s88Data.S88HasBeenHandled)
                         {
                             s88Data.S88HasBeenHandled = true;
 
-                            //Model?.LogAutoplay($"{Prefix} {s88Data.Info} {s88Data.ItemS88} state '{state}' -> {s88Data.DestBlockEvent}\n");
+                            var weaveItem = Helper.GetWeaveItem(this.Model.Dispatcher, s88Data.Info.X, s88Data.Info.Y);
+                            if (weaveItem != null)
+                            {
+                                var startFnc = weaveItem.StartFncTypes;
+                                foreach (var i in startFnc)
+                                {
+                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
+
+                                    Model?.LogAutoplay($"{Prefix} Locomotive switch on {fncName}\n");
+                                    Trace.WriteLine($"{Prefix} Locomotive switch on {fncName}");
+
+                                    locObject.ToggleFunction((uint) i, true);
+                                }
+
+                                var stopFnc = weaveItem.StopFncTypes;
+                                foreach (var i in stopFnc)
+                                {
+                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
+
+                                    Model?.LogAutoplay($"{Prefix} Locomotive switch off {fncName}\n");
+                                    Trace.WriteLine($"{Prefix} Locomotive switch off {fncName}");
+
+                                    locObject.ToggleFunction((uint) i, false);
+                                }
+                            }
 
                             string evName = s88Data.DestBlockEvent;
+
                             if (!string.IsNullOrEmpty(evName))
                             {
                                 var stopped = false;
@@ -479,8 +504,6 @@ namespace RailwayEssentialMdi.Autoplay
                                         {
                                             locObject.ChangeSpeed(blockSpeed);
                                         }
-
-                                        //locObject.ChangeSpeed(Locomotive.SpeedBlockEntered);
                                     }
 
                                     Trace.WriteLine($"{Prefix} New speed {Locomotive.SpeedBlockEntered} for {locObject.Name}");

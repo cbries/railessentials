@@ -110,10 +110,6 @@ namespace TrackInformation
             return $"{ObjectId} {Index}:{Ports} {StateBinary}";
         }
 
-        public S88() : base()
-        {
-        }
-
         public bool Pin(uint nr)
         {
             if (_ports < nr)
@@ -121,7 +117,7 @@ namespace TrackInformation
 
             try
             {
-                var p = StateBinary[(int) _ports - (int) nr];
+                var p = StateBinary[_ports - (int) nr];
 
                 if (p.Equals('0'))
                     return false;
@@ -154,6 +150,7 @@ namespace TrackInformation
 
         public override JObject ToJson()
         {
+
             JObject o = new JObject
             {
                 ["objectId"] = ObjectId,

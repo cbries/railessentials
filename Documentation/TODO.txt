@@ -7,6 +7,6 @@
 
 [A] handle S88 event as state-machine, that unexpected triggers do not start/stop trains when route is still busy
 
-[B] allow individual actions on events, e.g. buttons should start something, or locomotives should switch on/off lights in specific moments
+[B] allow individual actions on events, e.g. buttons should start something
 
 [C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

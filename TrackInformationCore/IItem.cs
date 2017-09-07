@@ -29,6 +29,8 @@ namespace TrackInformationCore
 {
     public delegate void CommandsReadyDelegator(object sender, IReadOnlyList<ICommand> commands);
 
+    public enum FncTypes { Light = 0, Smoke = 1, SoundPipe = 2, SoundCruise = 3 }
+
     public interface IItem
     {
         event CommandsReadyDelegator CommandsReady;

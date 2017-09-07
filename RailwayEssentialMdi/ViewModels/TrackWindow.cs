@@ -59,6 +59,7 @@ namespace RailwayEssentialMdi.ViewModels
         public TrackWindow(TrackEntity entity, ProjectTrackView trackView, TaskCompletionSource<bool> tcs)
         {
             _entity = entity;
+            _entity.Window = this;
 
             ProjectTrackView = trackView;
 

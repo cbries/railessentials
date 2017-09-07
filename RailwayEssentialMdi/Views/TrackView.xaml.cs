@@ -22,9 +22,14 @@
  * SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using RailwayEssentialMdi.ViewModels;
+using TrackInformation;
+using TrackInformationCore;
+using CheckBox = System.Windows.Controls.CheckBox;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace RailwayEssentialMdi.Views
 {
@@ -35,8 +40,33 @@ namespace RailwayEssentialMdi.Views
             InitializeComponent();
         }
 
+        private readonly List<CheckBox> _generatedCheckboxes = new List<CheckBox>();
+
         private void TrackView_OnInitialized(object sender, EventArgs e)
         {
+            var fncNames = Locomotive.GetFncTypenames();
+            int n = fncNames.Count;
+
+            DockPanel[] panel = { new DockPanel(), new DockPanel() };
+            
+            for (int i = 0; i < n; ++i)
+            {
+                var name = fncNames[i];
+                if (string.IsNullOrEmpty(name))
+                    continue;
+
+                CheckBox chkStart = new CheckBox { Name = "ChkFncStart" + i, Content = name, Margin = new Thickness(2,2,0,2) };
+                CheckBox chkStop = new CheckBox { Name = "ChkFncStop" + i, Content = name, Margin = new Thickness(2, 2, 0, 2) };
+
+                _generatedCheckboxes.Add(chkStart);
+                _generatedCheckboxes.Add(chkStop);
+
+                panel[0].Children.Add(chkStart);
+                panel[1].Children.Add(chkStop);
+            }
+
+            GrpS88FncsStart.Content = panel[0];
+            GrpS88FncsStop.Content = panel[1];
         }
 
         private void TrackView_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -48,5 +78,79 @@ namespace RailwayEssentialMdi.Views
             ctx.TrackView = this;
             ctx.TrackViewZoomer = trackViewer;
         }
+
+        public CheckBox GetChk(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return null;
+            foreach (var chk in _generatedCheckboxes)
+            {
+                if (chk == null)
+                    continue;
+                if (string.IsNullOrEmpty(chk.Name))
+                    continue;
+                if (chk.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    return chk;
+            }
+            return null;
+        }
+
+        public void SetCheckboxState(bool state)
+        {
+            foreach (var chk in _generatedCheckboxes)
+            {
+                if (chk == null)
+                    continue;
+                chk.IsEnabled = state;
+                chk.IsChecked = false;
+            }
+        }
+
+        public List<FncTypes> StartFncs
+        {
+            get
+            {
+                var fncNames = Locomotive.GetFncTypenames();
+                int n = fncNames.Count;
+
+                List<FncTypes> fncs = new List<FncTypes>();
+                for(int i=0; i < n; ++i)
+                {
+                    var name = $"ChkFncStart{i}";
+                    var chk = GetChk(name);
+                    if (chk == null)
+                        continue;
+
+                    bool state = chk.IsChecked ?? false;
+                    if(state)
+                        fncs.Add((FncTypes) i);
+                }
+                return fncs;
+            }
+        }
+
+        public List<FncTypes> StopFncs
+        {
+            get
+            {
+                var fncNames = Locomotive.GetFncTypenames();
+                int n = fncNames.Count;
+
+                List<FncTypes> fncs = new List<FncTypes>();
+                for (int i = 0; i < n; ++i)
+                {
+                    var name = $"ChkFncStop{i}";
+                    var chk = GetChk(name);
+                    if (chk == null)
+                        continue;
+
+                    bool state = chk.IsChecked ?? false;
+                    if(state)
+                        fncs.Add((FncTypes)i);
+                }
+                return fncs;
+            }
+        }
+
     }
 }

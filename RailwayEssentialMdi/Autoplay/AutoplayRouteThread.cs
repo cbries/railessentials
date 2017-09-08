@@ -462,8 +462,8 @@ namespace RailwayEssentialMdi.Autoplay
                                 {
                                     var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
 
-                                    Model?.LogAutoplay($"{Prefix} Locomotive switch on {fncName}\n");
-                                    Trace.WriteLine($"{Prefix} Locomotive switch on {fncName}");
+                                    Model?.LogAutoplay($"{Prefix} {locObject.Name} switch on {fncName}\n");
+                                    Trace.WriteLine($"{Prefix} {locObject.Name} switch on {fncName}");
 
                                     locObject.ToggleFunctionType((int) i, true);
                                 }
@@ -473,8 +473,8 @@ namespace RailwayEssentialMdi.Autoplay
                                 {
                                     var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
 
-                                    Model?.LogAutoplay($"{Prefix} Locomotive switch off {fncName}\n");
-                                    Trace.WriteLine($"{Prefix} Locomotive switch off {fncName}");
+                                    Model?.LogAutoplay($"{Prefix} {locObject.Name} switch off {fncName}\n");
+                                    Trace.WriteLine($"{Prefix} {locObject.Name} switch off {fncName}");
 
                                     locObject.ToggleFunctionType((int) i, false);
                                 }

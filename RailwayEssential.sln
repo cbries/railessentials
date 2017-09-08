@@ -66,6 +66,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{C4399612-92D4-4BD7-9F85-1469A76AA457}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Website\images\RailwayEssential-main.png = Documentation\Website\images\RailwayEssential-main.png
+		Documentation\Website\images\RailwayEssential-main2.png = Documentation\Website\images\RailwayEssential-main2.png
+		Documentation\Website\images\RailwayEssential-main3.png = Documentation\Website\images\RailwayEssential-main3.png
 	EndProjectSection
 EndProject
 Global

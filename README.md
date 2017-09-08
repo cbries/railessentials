@@ -9,9 +9,9 @@ RailwayEssential is a software for controlling your Model Trains especially when
 
 ![RailwayEssential Main Window](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main.png)
 
-![RailwayEssential Included Example 'SingleCircle'](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main2.png)
-
 ![RailwayEssential Multi-Document Interface (MDI)](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main3.png)
+
+![RailwayEssential Included Example 'SingleCircle'](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main2.png)
 
 ### YouTube
 

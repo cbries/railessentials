@@ -12,7 +12,13 @@
       "nrOfFunctions": 4,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 50,
-      "locked": false
+      "locked": false,
+      "fncTypes": [
+        {
+          "name": "F0",
+          "fnc": 0
+        }
+      ]
     },
     {
       "objectId": 1004,
@@ -26,7 +32,13 @@
       "nrOfFunctions": 4,
       "maxSpeedPercentage": 65,
       "blockSpeedPercentage": 35,
-      "locked": false
+      "locked": true,
+      "fncTypes": [
+        {
+          "name": "F0",
+          "fnc": 1
+        }
+      ]
     },
     {
       "objectId": 1006,
@@ -40,7 +52,13 @@
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 25,
       "blockSpeedPercentage": 7,
-      "locked": true
+      "locked": true,
+      "fncTypes": [
+        {
+          "name": "F0",
+          "fnc": 0
+        }
+      ]
     },
     {
       "objectId": 1008,
@@ -50,11 +68,25 @@
       "speed": 0,
       "speedstep": 0,
       "direction": 0,
-      "funcset": "00000000000000000000000000000000",
+      "funcset": "00001000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 50,
-      "locked": false
+      "locked": false,
+      "fncTypes": [
+        {
+          "name": "F3",
+          "fnc": 2
+        },
+        {
+          "name": "F4",
+          "fnc": 3
+        },
+        {
+          "name": "F0",
+          "fnc": 0
+        }
+      ]
     },
     {
       "objectId": 1000,
@@ -64,11 +96,17 @@
       "speed": 0,
       "speedstep": 0,
       "direction": 0,
-      "funcset": "00000000000000000000000000000000",
+      "funcset": "10000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 50,
-      "locked": false
+      "locked": true,
+      "fncTypes": [
+        {
+          "name": "F0",
+          "fnc": 0
+        }
+      ]
     },
     {
       "objectId": 1009,
@@ -82,7 +120,13 @@
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 80,
       "blockSpeedPercentage": 35,
-      "locked": false
+      "locked": true,
+      "fncTypes": [
+        {
+          "name": "F0",
+          "fnc": 0
+        }
+      ]
     }
   ],
   "switches": [
@@ -147,7 +191,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -227,7 +271,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -243,7 +287,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -259,7 +303,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -342,7 +386,7 @@
       "objectId": 100,
       "index": 0,
       "ports": 16,
-      "stateOriginal": "0x30ff"
+      "stateOriginal": "0xa0ad"
     },
     {
       "objectId": 101,

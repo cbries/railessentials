@@ -465,7 +465,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     Model?.LogAutoplay($"{Prefix} Locomotive switch on {fncName}\n");
                                     Trace.WriteLine($"{Prefix} Locomotive switch on {fncName}");
 
-                                    locObject.ToggleFunction((uint) i, true);
+                                    locObject.ToggleFunctionType((int) i, true);
                                 }
 
                                 var stopFnc = weaveItem.StopFncTypes;
@@ -476,7 +476,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     Model?.LogAutoplay($"{Prefix} Locomotive switch off {fncName}\n");
                                     Trace.WriteLine($"{Prefix} Locomotive switch off {fncName}");
 
-                                    locObject.ToggleFunction((uint) i, false);
+                                    locObject.ToggleFunctionType((int) i, false);
                                 }
                             }
 

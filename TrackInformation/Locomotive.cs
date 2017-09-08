@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Ecos2Core;
 using Newtonsoft.Json.Linq;
 using TrackInformationCore;
@@ -283,9 +284,9 @@ namespace TrackInformation
                 return;
 
             if (_fncTypes.ContainsKey(FncSelectedName))
-                _fncTypes[FncSelectedName] = (FncTypes)FncTypeIndex;
+                _fncTypes[FncSelectedName] = (FncTypes)FncTypeIndex-1;
             else
-                _fncTypes.Add(FncSelectedName, (FncTypes)FncTypeIndex);
+                _fncTypes.Add(FncSelectedName, (FncTypes)FncTypeIndex-1);
         }
 
         #endregion
@@ -362,6 +363,26 @@ namespace TrackInformation
             StopTime = DateTime.MaxValue;
 
             ChangeSpeed(sp);
+        }
+
+        public void ToggleFunctionType(int fncType, bool state)
+        {
+            List<int> fncs = new List<int>();
+
+            foreach (var k in _fncTypes.Keys)
+            {
+                var v = (int)_fncTypes[k];
+
+                if (v == fncType)
+                {
+                    var vv = k.TrimStart('F');
+                    if (int.TryParse(vv, out int fidx))
+                        fncs.Add(fidx);
+                }
+            }
+
+            foreach (var idx in fncs)
+                ToggleFunction((uint)idx, state);
         }
 
         public void ToggleFunction(uint nr, bool state)

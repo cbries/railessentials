@@ -3,7 +3,7 @@
 
 
 #define MyAppName "RailwayEssential"
-#define MyAppVersion "1.0 RC2"
+#define MyAppVersion "1.0 RC23"
 #define MyAppPublisher "Dr. Christian Benjamin Ries"
 #define MyAppCopyright "Copyright (C) 2017 Dr. C.B.Ries"
 #define MyAppURL "http://www.railwayessential.net"

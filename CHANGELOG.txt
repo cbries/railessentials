@@ -6,6 +6,7 @@ Release Candidate 3 (RC3)
 - functions can be categorized
 - functions are triggers when s88 event are triggered, e.g. smoke is switched on or off
 - provide a trigger for updating the visualization
+- provide pdf print dialog to generate a pdf version of the trackplan
 
 2017 September 5th 
 ------------------

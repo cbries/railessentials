@@ -44,6 +44,7 @@ using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.Entities;
 using RailwayEssentialMdi.Interfaces;
 using RailwayEssentialMdi.Views;
+using RailwayEssentialWeb;
 using TrackInformation;
 using Switch = TrackInformation.Switch;
 
@@ -107,6 +108,14 @@ namespace RailwayEssentialMdi.ViewModels
                 return;
 
             _itemLocomotives.Items.Remove(obj);
+        }
+
+        public void Prompt(string msg, params object[] args)
+        {
+            _ctx.Send(state =>
+            {
+                Xceed.Wpf.Toolkit.MessageBox.Show(string.Format(msg, args), "", MessageBoxButton.OK);
+            }, new object());
         }
 
         public void Log(string text, params object[] args)
@@ -263,6 +272,8 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand AnalyzeRoutesCommand { get; }
         public RelayCommand AnalyzeCleanCommand { get; }
 
+        public RelayCommand PrintCommand { get; }
+
         public RelayCommand LoadLayoutCommand { get; }
         public RelayCommand SaveLayoutCommand { get; }
 
@@ -310,6 +321,7 @@ namespace RailwayEssentialMdi.ViewModels
             AboutCommand = new RelayCommand(ShowAbout);
             AnalyzeRoutesCommand = new RelayCommand(AnalyzeRoutes, CheckAnalyzeRoutes);
             AnalyzeCleanCommand = new RelayCommand(AnalyzeClean, CheckAnalyzeClean);
+            PrintCommand = new RelayCommand(DoPrint, CheckDoPrint);
             LoadLayoutCommand = new RelayCommand(LoadLayout);
             SaveLayoutCommand = new RelayCommand(SaveLayout);
             AddTrackCommand = new RelayCommand(AddTrack, CheckAddTrack);
@@ -1529,6 +1541,58 @@ namespace RailwayEssentialMdi.ViewModels
             }
         }
 
+        public async void DoPrint(object p)
+        {
+            var w = Windows.OfType<TrackWindow>();
+
+            var trackWindows = w as TrackWindow[] ?? w.ToArray();
+            if (!trackWindows.Any())
+            {
+                LogError("No Track available");
+                return;
+            }
+
+            var firstWin = trackWindows.First();
+
+            var name = Path.GetFileNameWithoutExtension(Project.Name);
+            var dname = Path.GetDirectoryName(Project.Dirpath);
+
+            if (string.IsNullOrEmpty(dname) || !Directory.Exists(dname))
+            {
+                string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)).FullName;
+                if (Environment.OSVersion.Version.Major >= 6)
+                    dname = Directory.GetParent(path).ToString();
+
+                if (string.IsNullOrEmpty(dname) || !Directory.Exists(dname))
+                    dname = "C:\\";
+            }
+
+            var dialog = new Microsoft.Win32.SaveFileDialog
+            {
+                FileName = name + ".pdf",
+                InitialDirectory = dname,
+                DefaultExt = ".pdf",
+                Filter = "Pdf documents (.pdf)|*.pdf"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                if (!(firstWin.TrackViewer is TrackViewer view))
+                {
+                    LogError("No Track available");
+                    return;
+                }
+
+                bool printRes = await view.Print(dialog.FileName);
+
+                if (printRes)
+                    Prompt($"Pdf was saved to {dialog.FileName}");
+                else
+                    LogError($"Unable to save Pdf, check you have write permissions to {dialog.FileName}");
+
+            }
+        }
+
         public void LoadLayout(object p)
         {
             MainView.LoadLayout();
@@ -1581,6 +1645,13 @@ namespace RailwayEssentialMdi.ViewModels
             if (Project == null)
                 return false;
 
+            return true;
+        }
+
+        public bool CheckDoPrint(object p)
+        {
+            if (_project == null)
+                return false;
             return true;
         }
 

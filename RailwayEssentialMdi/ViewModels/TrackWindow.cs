@@ -38,6 +38,7 @@ namespace RailwayEssentialMdi.ViewModels
         public event EventHandler Loaded;
 
         public object TrackView { get; set; }
+        public ITrackViewer TrackViewer { get; private set; }
         public ProjectTrackView ProjectTrackView { get; set; }
         public ITrackViewerZoom TrackViewZoomer { get; set; }
         private readonly TrackEntity _entity;
@@ -174,6 +175,7 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void PromoteViewer(ITrackViewer trackViewer)
         {
+            TrackViewer = trackViewer;
             _entity?.PromoteViewer(trackViewer);
         }
 

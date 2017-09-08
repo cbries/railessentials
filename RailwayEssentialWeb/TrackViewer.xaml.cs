@@ -24,8 +24,10 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using CefSharp;
+using CefSharp.Wpf;
 using RailwayEssentialCore;
 using RailwayEssentialWeb.Cef;
 
@@ -50,7 +52,6 @@ namespace RailwayEssentialWeb
         }
 
         public IWebGenerator WebGenerator { get; set; }
-
         #region ITrackViewerZoom
 
         public double ZoomLevel
@@ -180,6 +181,7 @@ namespace RailwayEssentialWeb
                     return;
 
                 Browser.ExecuteScriptAsync(scriptCode.Trim());
+
             }, new object());
         }
 
@@ -192,6 +194,18 @@ namespace RailwayEssentialWeb
         {
             Browser.Address = Url.Replace(" ", "%20");
             Browser.Reload();
+        }
+
+        public async Task<bool> Print(string targetFilename)
+        {
+            return await Browser.PrintToPdfAsync(targetFilename, new PdfPrintSettings
+            {
+                MarginType = CefPdfPrintMarginType.Custom,
+                MarginBottom = 10,
+                MarginTop = 10,
+                MarginLeft = 15,
+                MarginRight = 15
+            });
         }
 
         #endregion

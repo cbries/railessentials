@@ -66,6 +66,8 @@
                         <MenuItem Header="Clean" Command="{Binding AnalyzeCleanCommand}"/>
                     </MenuItem>
                     <Separator/>
+                    <MenuItem Header="Print..." Command="{Binding PrintCommand}"/>
+                    <Separator/>
                     <MenuItem Header="Exit" Command="{Binding ExitCommand}">
                         <MenuItem.Icon>
                             <Image Source="Resources/close.png" Width="16" Height="16"/>

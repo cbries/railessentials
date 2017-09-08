@@ -597,6 +597,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     item.StartFncTypes = tv.StartFncs;
                     item.StopFncTypes = tv.StopFncs;
+                    item.FncToggle = tv.ToggleFncs;
                 }
             }
 
@@ -736,6 +737,10 @@ namespace RailwayEssentialMdi.Entities
                                     if (tv != null)
                                     {
                                         tv.SetCheckboxState(true);
+
+                                        var toggleState = tv.GetCtrl("ChkFncToggle");
+                                        if (toggleState != null)
+                                            toggleState.IsChecked = weaveItem.FncToggle;
 
                                         var startFncTypes = weaveItem.StartFncTypes;
                                         foreach (var i in startFncTypes)

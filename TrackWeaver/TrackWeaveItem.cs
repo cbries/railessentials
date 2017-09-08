@@ -42,6 +42,7 @@ namespace TrackWeaver
         public int VisuY { get; set; }
         public bool InvertSwitch { get; set; }
 
+        public bool FncToggle { get; set; }
         public List<FncTypes> StartFncTypes { get; set; }
         public List<FncTypes> StopFncTypes { get; set; }
 
@@ -53,6 +54,7 @@ namespace TrackWeaver
             VisuX = -1;
             VisuY = -1;
             InvertSwitch = false;
+            FncToggle = false;
             StartFncTypes = new List<FncTypes>();
             StopFncTypes = new List<FncTypes>();
         }
@@ -94,6 +96,9 @@ namespace TrackWeaver
                     VisuY = (int) os["visuY"];
                 if (os["invertSwitch"] != null)
                     InvertSwitch = (bool) os["invertSwitch"];
+
+                if (os["fncToggle"] != null)
+                    FncToggle = (bool) os["fncToggle"];
 
                 if (os["startFncTypes"] != null)
                 {
@@ -141,6 +146,7 @@ namespace TrackWeaver
                 ["visuX"] = VisuX,
                 ["visuY"] = VisuY,
                 ["invertSwitch"] = InvertSwitch,
+                ["fncToggle"] = FncToggle,
                 ["startFncTypes"] = startFt,
                 ["stopFncTypes"] = stopFt
             };

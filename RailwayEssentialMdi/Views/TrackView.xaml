@@ -87,8 +87,10 @@
                         <TextBlock Text="{Binding Entity.SelectionY, Mode=OneWay}" Margin="5,0,0,0" VerticalAlignment="Center"/>
                     </DockPanel>
                 </StackPanel>
-                
-                <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch">
+
+                <Button Content="Apply" Grid.Column="0" Grid.Row="1" Width="65" Height="24" HorizontalAlignment="Stretch" Margin="0,0,0,-40" Command="{Binding SaveCommand}"/>
+
+                <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch">
                     <TabControl MinHeight="175" MaxHeight="175" SelectedIndex="{Binding Entity.SelectionTabIndex, Mode=TwoWay}">
 
                         <TabItem Header="General">
@@ -112,18 +114,28 @@
                                 <StackPanel>
                                     <DockPanel Margin="0,5,0,0" Visibility="{Binding Entity.SelectionXYvisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
                                         <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsS88}" SelectedItem="{Binding Entity.ItemsS88Selection, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" />
-                                    </DockPanel>
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock Text="Pin: " FontWeight="Bold"/>
 
+                                        <TextBlock Text="Pin: " FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0"/>
                                         <xctk:IntegerUpDown Name="NumberOfColumns" Height="22" Width="75" HorizontalAlignment="Left" Margin="5,0,0,0"
                                                             Value="{Binding Entity.ItemsS88SelectionPin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                             Maximum="{Binding Entity.ItemsS88Selection.Ports}" Minimum="1" 
-                                                            FormatString="N0" AllowSpin="True"/>
+                                                            FormatString="N0" AllowSpin="True" VerticalAlignment="Center"/>
                                     </DockPanel>
-                                
-                                    <GroupBox Name="GrpS88FncsStart" Header="Functions (Start)" Margin="0,5,0,0"/>
-                                    <GroupBox Name="GrpS88FncsStop" Header="Functions (Stop)" Margin="0,5,0,0"/>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <CheckBox Name="ChkFncToggle" Content="Toggle Start/Stop" VerticalAlignment="Center" Margin="3" ToolTip="Toggles the states of the functions."/>
+                                        
+                                        <StackPanel Grid.Column="1">
+                                            <GroupBox Name="GrpS88FncsStart" Header="Functions (Start)" Margin="0,5,0,0"/>
+                                            <GroupBox Name="GrpS88FncsStop" Header="Functions (Stop)" Margin="0,5,0,0"/>
+                                        </StackPanel>
+                                    </Grid>
+
                                 </StackPanel>
                             </ScrollViewer>
                         </TabItem>
@@ -213,8 +225,6 @@
                     -->
                     </TabControl>
                 </StackPanel>
-
-                <Button Content="Apply" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Width="75" Height="32" HorizontalAlignment="Left" Margin="5" Command="{Binding SaveCommand}"/>
 
             </Grid>
         </Grid>

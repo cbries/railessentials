@@ -83,6 +83,7 @@ namespace RailwayEssentialMdi.Views
         {
             if (string.IsNullOrEmpty(name))
                 return null;
+
             foreach (var chk in _generatedCheckboxes)
             {
                 if (chk == null)
@@ -92,6 +93,13 @@ namespace RailwayEssentialMdi.Views
                 if (chk.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                     return chk;
             }
+            return null;
+        }
+
+        public CheckBox GetCtrl(string name)
+        {
+            if (name.Equals("ChkFncToggle", StringComparison.OrdinalIgnoreCase))
+                return ChkFncToggle;
             return null;
         }
 
@@ -149,6 +157,19 @@ namespace RailwayEssentialMdi.Views
                         fncs.Add((FncTypes)i);
                 }
                 return fncs;
+            }
+        }
+
+        public bool ToggleFncs
+        {
+            get
+            {
+                var name = $"ChkFncToggle";
+                var chk = GetCtrl(name);
+                if (chk == null)
+                    return false;
+
+                return chk.IsChecked ?? false;
             }
         }
 

@@ -457,26 +457,35 @@ namespace RailwayEssentialMdi.Autoplay
                             var weaveItem = Helper.GetWeaveItem(this.Model.Dispatcher, s88Data.Info.X, s88Data.Info.Y);
                             if (weaveItem != null)
                             {
-                                var startFnc = weaveItem.StartFncTypes;
-                                foreach (var i in startFnc)
+                                var toggleFncs = weaveItem.FncToggle;
+
+                                if (toggleFncs)
                                 {
-                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
-
-                                    Model?.LogAutoplay($"{Prefix} {locObject.Name} switch on {fncName}\n");
-                                    Trace.WriteLine($"{Prefix} {locObject.Name} switch on {fncName}");
-
-                                    locObject.ToggleFunctionType((int) i, true);
+                                    // TODO implement toggle of function
                                 }
-
-                                var stopFnc = weaveItem.StopFncTypes;
-                                foreach (var i in stopFnc)
+                                else
                                 {
-                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
+                                    var startFnc = weaveItem.StartFncTypes;
+                                    foreach (var i in startFnc)
+                                    {
+                                        var fncName = Enum.GetNames(typeof(FncTypes))[(int) i];
 
-                                    Model?.LogAutoplay($"{Prefix} {locObject.Name} switch off {fncName}\n");
-                                    Trace.WriteLine($"{Prefix} {locObject.Name} switch off {fncName}");
+                                        Model?.LogAutoplay($"{Prefix} {locObject.Name} switch on {fncName}\n");
+                                        Trace.WriteLine($"{Prefix} {locObject.Name} switch on {fncName}");
 
-                                    locObject.ToggleFunctionType((int) i, false);
+                                        locObject.ToggleFunctionType((int) i, true);
+                                    }
+
+                                    var stopFnc = weaveItem.StopFncTypes;
+                                    foreach (var i in stopFnc)
+                                    {
+                                        var fncName = Enum.GetNames(typeof(FncTypes))[(int) i];
+
+                                        Model?.LogAutoplay($"{Prefix} {locObject.Name} switch off {fncName}\n");
+                                        Trace.WriteLine($"{Prefix} {locObject.Name} switch off {fncName}");
+
+                                        locObject.ToggleFunctionType((int) i, false);
+                                    }
                                 }
                             }
 

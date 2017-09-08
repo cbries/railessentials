@@ -632,7 +632,7 @@ namespace RailwayEssentialMdi.ViewModels
                 {
                     if (view.Show)
                     {
-                        item = new TrackWindow(_trackEntity, view, tcs);
+                        item = new TrackWindow(_trackEntity, view, tcs) {Model = this};
                         item.Loaded += (s, ev) =>
                         {
                             try
@@ -652,7 +652,7 @@ namespace RailwayEssentialMdi.ViewModels
                 else
                 {
                     var trackEntityClone = _trackEntity.Clone();
-                    item = new TrackWindow(trackEntityClone, view, tcs);
+                    item = new TrackWindow(trackEntityClone, view, tcs) {Model = this};
                     item.Loaded += (s, ev) =>
                     {
                         try
@@ -737,7 +737,7 @@ namespace RailwayEssentialMdi.ViewModels
             };
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            var item = new TrackWindow(trackEntityClone, view, tcs);
+            var item = new TrackWindow(trackEntityClone, view, tcs) {Model = this};
             item.Loaded += (s, ev) =>
             {
                 try

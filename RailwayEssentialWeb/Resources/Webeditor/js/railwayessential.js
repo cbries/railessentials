@@ -45,6 +45,30 @@ var objPosition = null; // top, left
 //   c) changeItemIdMarker(col, row, idname)
 //   d) changeLocnameMarkerPreview(col, row, locname)
 //   e) changeLocnameMarkerLock(col, row, lockState)
+//   f) activateEditMode(modeindex)
+
+function activateEditMode(modeindex) {
+    switch (modeindex) {
+        case 1:
+            editMode = ModeAddMove;
+            resetSelection();
+            break;
+        case 2:
+            editMode = ModeRemove;
+            resetSelection();
+            break;
+        case 3:
+            editMode = ModeRotate;
+            resetSelection();
+            break;
+        case 4:
+            editMode = ModeObject;
+            break;
+        default:
+            editMode = ModeAddMove;
+            break;
+    }
+}
 
 function getIdOfItemNameLbl(col, row) { return 'lbl_' + col + '_' + row + '_itemname'; }
 function getIdOfDirectionLbl(col, row) { return 'lbl_' + col + '_' + row + '_direction'; }
@@ -573,17 +597,6 @@ function changeEditMode(state) {
     updateUi();
 }
 
-function ResetRadios() {
-    $("#mode-1").prop('checked', false).checkboxradio('refresh');
-    $("#mode-2").prop('checked', false).checkboxradio('refresh');
-    $("#mode-3").prop('checked', false).checkboxradio('refresh');
-    $("#mode-4").prop('checked', false).checkboxradio('refresh');
-
-    $("#mode-1").prop('checked', true).checkboxradio('refresh');
-
-    updateEditMode();
-}
-
 $(document).ready(function (e) {
 
     var isMouseDown = false;
@@ -599,13 +612,6 @@ $(document).ready(function (e) {
     $('#webmenuDivSensor').hide();
     $('#webmenuDivAccessory').hide();
 
-    $('#webmenuDivTrack').change(ResetRadios);
-    $('#webmenuDivSwitch').change(ResetRadios);
-    $('#webmenuDivSignal').change(ResetRadios);
-    $('#webmenuDivBlock').change(ResetRadios);
-    $('#webmenuDivSensor').change(ResetRadios);
-    $('#webmenuDivAccessory').change(ResetRadios);
-
     $('#webmenuCategories').change(function () {
         $('#webmenuDivTrack').hide();
         $('#webmenuDivSwitch').hide();
@@ -613,8 +619,6 @@ $(document).ready(function (e) {
         $('#webmenuDivBlock').hide();
         $('#webmenuDivSensor').hide();
         $('#webmenuDivAccessory').hide();
-
-        ResetRadios();
 
         var cname = $(this).val();
 
@@ -849,32 +853,5 @@ $(document).ready(function (e) {
         railwayEssentialCallback.message(e.message);
     }
 
-    $("#mode-1").checkboxradio();
-    $("#mode-2").checkboxradio();
-    $("#mode-3").checkboxradio();
-    $("#mode-4").checkboxradio();
-
-    $("#mode-1").change(updateEditMode);
-    $("#mode-2").change(updateEditMode);
-    $("#mode-3").change(updateEditMode);
-    $("#mode-4").change(updateEditMode);
-
     updateUi();
 });
-
-function updateEditMode() {
-    if ($("#mode-1").is(':checked')) {
-        editMode = ModeAddMove;
-        resetSelection();
-    }
-    else if ($("#mode-2").is(':checked')) {
-        editMode = ModeRemove;
-        resetSelection();
-    } else if ($("#mode-3").is(':checked')) {
-        editMode = ModeRotate;
-        resetSelection();
-    } else if ($("#mode-4").is(':checked'))
-        editMode = ModeObject;
-    else
-        editMode = ModeAddMove;
-}

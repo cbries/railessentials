@@ -21,19 +21,35 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0" HorizontalAlignment="Left">
-            <Button Height="20" Width="20" Margin="5,0,10,0" Command="{Binding EditCommand}" HorizontalAlignment="Left" Padding="0" Visibility="{Binding Entity.CanEdit, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+            <Button Height="20" Width="20" Margin="5,0,0,0" Command="{Binding EditCommand}" HorizontalAlignment="Left" Padding="0" Visibility="{Binding Entity.CanEdit, Mode=OneWay, Converter={StaticResource BoolToVis}}">
                 <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/edit.png"/>
             </Button>
             
-            <Button Height="20" Width="20" Margin="0,0,3,0" Command="{Binding ZoomResetCommand}" Padding="0" ToolTip="Reset Zoom">
+            <Button Height="20" Width="20" Margin="20,0,3,0" Command="{Binding ZoomResetCommand}" Padding="0" ToolTip="Reset Zoom">
                 <Image Source="/RailwayEssential;component/Resources/zoomnot.png"/>
             </Button>
             <Button Height="20" Width="20" Margin="0,0,3,0" Command="{Binding ZoomMinusCommand}" Padding="0" ToolTip="Zoom-Out">
                 <Image Source="/RailwayEssential;component/Resources/zoomminus.png"/>
             </Button>
-            <Button Height="20" Width="20" Margin="0,0,3,0" Command="{Binding ZoomPlusCommand}" Padding="0" ToolTip="Zoom-In">
+            <Button Height="20" Width="20" Margin="0,0,0,0" Command="{Binding ZoomPlusCommand}" Padding="0" ToolTip="Zoom-In">
                 <Image Source="/RailwayEssential;component/Resources/zoomplus.png"/>
             </Button>
+
+            <ToggleButton Height="20" Width="20" Margin="20,0,3,0" Command="{Binding AddCommand}" IsChecked="{Binding Entity.BtnModeAddIsChecked, Mode=TwoWay}" ToolTip="Add items to the track." IsEnabled="{Binding Entity.IsEditEnabled, Mode=OneWay}">
+                <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/additem.png"/>
+            </ToggleButton>
+            <ToggleButton Height="20" Width="20" Margin="3,0,3,0" Command="{Binding MoveCommand}" IsChecked="{Binding Entity.BtnModeMoveIsChecked, Mode=TwoWay}" ToolTip="Move items of the track." IsEnabled="{Binding Entity.IsEditEnabled, Mode=OneWay}">
+                <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/moveitem.png"/>
+            </ToggleButton>
+            <ToggleButton Height="20" Width="20" Margin="3,0,3,0" Command="{Binding RotateCommand}" IsChecked="{Binding Entity.BtnModeRotateIsChecked, Mode=TwoWay}" ToolTip="Rotate items of the track." IsEnabled="{Binding Entity.IsEditEnabled, Mode=OneWay}">
+                <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/rotateitem.png"/>
+            </ToggleButton>
+            <ToggleButton Height="20" Width="20" Margin="3,0,3,0" Command="{Binding RemoveCommand}" IsChecked="{Binding Entity.BtnModeRemoveIsChecked, Mode=TwoWay}" ToolTip="Remove items from the track." IsEnabled="{Binding Entity.IsEditEnabled, Mode=OneWay}">
+                <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/removeitem.png"/>
+            </ToggleButton>
+            <ToggleButton Height="20" Width="20" Margin="3,0,3,0" Command="{Binding ObjectCommand}" IsChecked="{Binding Entity.BtnModeObjectIsChecked, Mode=TwoWay}" ToolTip="Edit object attributes of items of the track." IsEnabled="{Binding Entity.IsEditEnabled, Mode=OneWay}">
+                <xamlMagic:AutoGreyableImage Source="/RailwayEssential;component/Resources/objectitem.png"/>
+            </ToggleButton>
         </DockPanel>
         
         <Grid Grid.Row="1">

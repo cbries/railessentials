@@ -176,6 +176,85 @@ namespace RailwayEssentialMdi.Entities
 
         #endregion
 
+        #region edit mode buttons
+
+
+
+        private readonly bool[] _btnModes = new[] { true, false, false, false, false };
+
+        internal void RaiseModeBlah()
+        {
+            RaisePropertyChanged("BtnModeAddIsChecked");
+            RaisePropertyChanged("BtnModeMoveIsChecked");
+            RaisePropertyChanged("BtnModeRotateIsChecked");
+            RaisePropertyChanged("BtnModeRemoveIsChecked");
+            RaisePropertyChanged("BtnModeObjectIsChecked");
+        }
+
+        private void ResetModeBlah()
+        {
+            for (int i = 0; i < _btnModes.Length; ++i)
+                _btnModes[i] = false;
+        }
+
+        public bool BtnModeAddIsChecked
+        {
+            get => _btnModes[0];
+            set
+            {
+                ResetModeBlah();
+                _btnModes[0] = value;
+                RaiseModeBlah();
+            }
+        }
+
+        public bool BtnModeMoveIsChecked
+        {
+            get => _btnModes[1];
+            set
+            {
+                ResetModeBlah();
+                _btnModes[1] = value;
+                RaiseModeBlah();
+            }
+        }
+
+        public bool BtnModeRotateIsChecked
+        {
+            get => _btnModes[2];
+            set
+            {
+                ResetModeBlah();
+                _btnModes[2] = value;
+                RaiseModeBlah();
+            }
+        }
+
+        public bool BtnModeRemoveIsChecked
+        {
+            get => _btnModes[3];
+            set
+            {
+                ResetModeBlah();
+                _btnModes[3] = value;
+                RaiseModeBlah();
+            }
+        }
+
+        public bool BtnModeObjectIsChecked
+        {
+            get => _btnModes[4];
+            set
+            {
+                ResetModeBlah();
+                _btnModes[4] = value;
+                RaiseModeBlah();
+            }
+        }
+
+
+        #endregion
+
         public bool IsEditEnabled { get; private set; }
 
         public TrackEntity Clone()
@@ -203,6 +282,7 @@ namespace RailwayEssentialMdi.Entities
             IsEditEnabled = false;
             RaisePropertyChanged("CanClose");
             RaisePropertyChanged("CanEdit");
+            RaisePropertyChanged("IsEditEnabled");
         }
 
         public void EnableEdit()
@@ -211,6 +291,7 @@ namespace RailwayEssentialMdi.Entities
             IsEditEnabled = true;
             RaisePropertyChanged("CanClose");
             RaisePropertyChanged("CanEdit");
+            RaisePropertyChanged("IsEditEnabled");
         }
 
         public Theme.Theme Theme

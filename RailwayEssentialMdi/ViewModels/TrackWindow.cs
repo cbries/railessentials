@@ -52,6 +52,12 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand ZoomMinusCommand { get; }
         public RelayCommand EditCommand { get; }
 
+        public RelayCommand AddCommand { get; }
+        public RelayCommand MoveCommand { get; }
+        public RelayCommand RotateCommand { get; }
+        public RelayCommand RemoveCommand { get; }
+        public RelayCommand ObjectCommand { get; }
+
         public RelayCommand PlusColumRightCommand { get; }
         public RelayCommand MinusColumnRightCommand { get; }
         public RelayCommand MinusRowBottomCommand { get; }
@@ -73,6 +79,12 @@ namespace RailwayEssentialMdi.ViewModels
             ZoomPlusCommand = new RelayCommand(ZoomPlus);
             ZoomMinusCommand = new RelayCommand(ZoomMinus);
             EditCommand = new RelayCommand(EditState, CheckEditState);
+
+            AddCommand = new RelayCommand(AddItemCmd, CheckEditState);
+            MoveCommand = new RelayCommand(MoveItemCmd, CheckEditState);
+            RotateCommand = new RelayCommand(RotateItemCommand, CheckEditState);
+            RemoveCommand = new RelayCommand(RemoveItemCmd, CheckEditState);
+            ObjectCommand = new RelayCommand(ObjectItemCommand, CheckEditState);
 
             SaveCommand = new RelayCommand(Save);
 
@@ -137,10 +149,41 @@ namespace RailwayEssentialMdi.ViewModels
         
         private void EditState(object p)
         {
-            if(Entity.IsEditEnabled)
+            if (Entity.IsEditEnabled)
                 Entity.DisableEdit();
             else
+            {
+                Entity.BtnModeAddIsChecked = true;
                 Entity.EnableEdit();
+            }
+
+            Entity.RaiseModeBlah();
+        }
+
+
+        private void AddItemCmd(object p)
+        {
+            Model?.ExecuteJs("activateEditMode(1);");
+        }
+
+        private void MoveItemCmd(object p)
+        {
+            Model?.ExecuteJs("activateEditMode(1);");
+        }
+
+        private void RotateItemCommand(object p)
+        {
+            Model?.ExecuteJs("activateEditMode(3);");
+        }
+
+        private void RemoveItemCmd(object p)
+        {
+            Model?.ExecuteJs("activateEditMode(2);");
+        }
+
+        private void ObjectItemCommand(object p)
+        {
+            Model?.ExecuteJs("activateEditMode(4);");
         }
 
         private bool CheckEditState(object p)

@@ -123,7 +123,7 @@ namespace TrackInformation
                         {
                             if (arItem == null)
                                 continue;
-
+                            
                             var e = new Locomotive();
                             e.ParseJson(arItem as JObject);
                             e.CommandsReady += CommandsReady;

@@ -1300,15 +1300,12 @@ namespace RailwayEssentialMdi.ViewModels
                 return;
             }
 
-            var item2 = new LocomotivesWindow
-            {
-                Entity = new LocomotiveEntity
-                {
-                    ObjectItem = locItem,
-                    Model = this,
-                    IsSelected = true
-                }
-            };
+            var le = new LocomotiveEntity();
+            le.Model = this;
+            le.IsSelected = true;
+            le.ObjectItem = locItem;
+
+            var item2 = new LocomotivesWindow { Entity = le };
 
             item2.Entity.UpdateUi();
             item2.Closing += (s, e) => Windows.Remove(item2);
@@ -2019,6 +2016,22 @@ namespace RailwayEssentialMdi.ViewModels
             ExecuteJs("resetHighlightRoute()");
         }
 
+        public void UpdateWindowUi(int winid)
+        {
+            UiSyncCtx?.Send(x =>
+            {
+                if (winid <= 0)
+                    return;
+
+                if (winid == 1)
+                {
+                    var locWin = Windows.OfType<LocomotivesWindow>();
+                    foreach (var w in locWin)
+                        w.UpdateFuncset();
+                }
+
+            }, new object());
+        }
         public void UpdateTrackUi()
         {
             var state = false;

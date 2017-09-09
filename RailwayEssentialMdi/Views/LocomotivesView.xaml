@@ -319,7 +319,7 @@
                                 </Style>
                             </ToggleButton.Style>
                         </ToggleButton>
-
+                        
                     </Grid>
 
                     <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="10, 0, 10, 10">

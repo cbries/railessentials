@@ -34,6 +34,8 @@ namespace RailwayEssentialCore
         void ShowBlockRoutePreview(object blockRouteItem);
         void ResetBlockRoutePreview();
         void UpdateTrackUi();
+        // winid: 1:=Locomotives, TBD
+        void UpdateWindowUi(int winid);
         void ExecuteJs(string code, object sender=null);
     }
 }

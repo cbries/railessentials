@@ -29,7 +29,6 @@ using RailwayEssentialCore;
 namespace RailwayEssentialMdi.Entities
 {
     using System;
-    using System.Diagnostics;
 
     public class LocomotiveEntity : Bases.ViewModelBase
     {
@@ -265,8 +264,6 @@ namespace RailwayEssentialMdi.Entities
 
         public void UpdateUi()
         {
-            //Trace.WriteLine(" *** UpdateUi() of Locomotive *** ");
-
             if (_objectItem == null)
             {
                 IsEnabled = false;
@@ -304,10 +301,11 @@ namespace RailwayEssentialMdi.Entities
                 ObjectItem.RaisePropertyChange("ObjectItem.MaxSpeedPercentage");
                 ObjectItem.RaisePropertyChange("ObjectItem.BlockSpeedPercentage");
                 ObjectItem.UpdateTitle();
-                ObjectItem.UpdateSubTitle();
+                ObjectItem.UpdateSubTitle();                
             }
 
             Model?.UpdateTrackUi();
+            Model?.UpdateWindowUi(1);
         }
 
         protected override void OnPropertyChanged(string propertyName)

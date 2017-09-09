@@ -470,6 +470,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     Trace.WriteLine($"{Prefix} {locObj.Name} switch on {fncName}");
                                     locObj.ToggleFunctionType((int)i, true);
                                 }
+
                                 return true;
 
                             };
@@ -510,6 +511,8 @@ namespace RailwayEssentialMdi.Autoplay
                                     startFncs(locObject);
                                     stopFncs(locObject);
                                 }
+
+                                Model?.UpdateWindowUi(1);
                             }
 
                             string evName = s88Data.DestBlockEvent;

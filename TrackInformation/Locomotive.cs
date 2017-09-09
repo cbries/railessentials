@@ -216,6 +216,7 @@ namespace TrackInformation
             set
             {
                 _funcset = value;
+                Ctx?.UpdateWindowUi(1);
                 OnPropertyChanged();
             }
         }
@@ -571,7 +572,11 @@ namespace TrackInformation
                     NrOfFunctions = arg.Parameter[0].Length;
 
                     for (int i = 0; i < NrOfFunctions; ++i)
-                        Funcset[i] = arg.Parameter[0][i] == '1' ? true : false;
+                        Funcset[i] = arg.Parameter[0][i].Equals('1') ? true : false;
+
+                    OnPropertyChanged("Funcset");
+
+                    Ctx?.UpdateWindowUi(1);
                 }
                 else if (arg.Name.Equals("func", StringComparison.OrdinalIgnoreCase))
                 {

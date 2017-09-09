@@ -25,6 +25,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Media.Imaging;
 using Ecos2Core;
 using Newtonsoft.Json.Linq;
 using TrackInformationCore;
@@ -324,6 +325,27 @@ namespace TrackInformation
                 _imgLocBase64Format = value;
                 OnPropertyChanged();
             }
+        }
+
+        public override BitmapSource IconSource
+        {
+            get
+            {
+                try
+                {
+                    var img = RailwayEssentialCore.ImageHelper.Base64ToImageSource(LocomotiveThumbnailBase64);
+                    if (img != null && img is BitmapImage)
+                        return img as BitmapImage;
+
+                    return new BitmapImage(new Uri(@"pack://application:,,,/RailwayEssential;component/Resources/Main.ico"));
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            set => OnPropertyChanged();
         }
 
         #endregion

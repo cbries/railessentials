@@ -127,7 +127,7 @@ namespace TrackInformation
 
         private BitmapSource _iconSource = null;
 
-        public BitmapSource IconSource
+        public virtual BitmapSource IconSource
         {
             get
             {
@@ -137,6 +137,12 @@ namespace TrackInformation
                 UpdateIconPath();
 
                 return _iconSource;
+            }
+
+            set
+            {
+                _iconSource = value;
+                OnPropertyChanged();
             }
         }
 

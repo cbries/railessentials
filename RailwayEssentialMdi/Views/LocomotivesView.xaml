@@ -13,16 +13,18 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
-            <Image Width="32" Height="32" HorizontalAlignment="Left" Margin="2,2,10,2" Source="{Binding Entity.LocomotiveIconImage}">
-                <Image.ToolTip>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Entity.LocomotiveImage}"/>
-                        <!--
-                        <TextBlock Text="{Binding Entity.Name}"/>
-                        -->
-                    </StackPanel>
-                </Image.ToolTip>
-            </Image>
+            <Border BorderThickness="1" BorderBrush="#FF000000" VerticalAlignment="Top" Margin="2,2,10,2">
+                <Image Width="32" Height="32" HorizontalAlignment="Left" Source="{Binding Entity.LocomotiveIconImage}" RenderOptions.BitmapScalingMode="Fant">
+                    <Image.ToolTip>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Entity.LocomotiveImage}"/>
+                            <!--
+                            <TextBlock Text="{Binding Entity.Name}"/>
+                            -->
+                        </StackPanel>
+                    </Image.ToolTip>
+                </Image>
+            </Border>
             <TextBox Text="{Binding Entity.Name, Mode=TwoWay}" FontWeight="Bold" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" MinWidth="50"/>
 
             <Label Content=" (" FontWeight="Bold" FontSize="12" FontStyle="Italic" VerticalAlignment="Center"/>
@@ -79,7 +81,7 @@
                     </DockPanel>
                 </Grid>
             </TabItem>
-            
+
             <TabItem Header="Properties">
                 <Grid VerticalAlignment="Top" IsEnabled="{Binding Entity.IsEnabled}">
                     <Grid.ColumnDefinitions>
@@ -108,24 +110,22 @@
                         <ComboBox Margin="0,2,2,2" Width="100" SelectedIndex="{Binding Entity.ObjectItem.FncTypeIndex}" ItemsSource="{Binding Entity.ObjectItem.FncTypeNames, Mode=OneWay}"/>
                         <Button Name="CmdFncTypeSet" Content="SET" Click="CmdFncTypeSet_OnClick"/>
                     </DockPanel>
-                    
+
                     <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-                        <Border BorderThickness="1"
-                                BorderBrush="#FF000000"
-                                VerticalAlignment="Top">
-                            <Image MinWidth="150" MinHeight="100" MaxWidth="210" MaxHeight="150" Source="{Binding Entity.LocomotiveImage}"/>
+                        <Border BorderThickness="1" BorderBrush="#FF000000" VerticalAlignment="Top">
+                            <Image MinWidth="150" MinHeight="100" MaxWidth="210" MaxHeight="150" Source="{Binding Entity.LocomotiveImage}" RenderOptions.BitmapScalingMode="Fant"/>
                         </Border>
                         <Button Name="BtnAddImage" Content="Add image..." Width="90" HorizontalAlignment="Left" Margin="3" Click="BtnAddImage_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
         <DockPanel Grid.Row="2" IsEnabled="{Binding Entity.IsEnabled}">
             <ToggleButton Margin="10,0,0,0" FontWeight="Bold" Height="34" Width="34" HorizontalAlignment="Center" Command="{Binding StopCommand}" ToolTip="Stops this train">
                 <xamlMagic:AutoGreyableImage Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/RailwayEssential;component/Resources/locstop.png"/>
             </ToggleButton>
-                        
+
             <DockPanel HorizontalAlignment="Left" Margin="170,0,0,0">
                 <ToggleButton Content="&lt;&lt;" Margin="0,0,5,0" FontWeight="Bold" FontSize="14" Height="35" Width="35" IsChecked="{Binding Entity.DriveBackward, Mode=TwoWay}"/>
                 <ToggleButton Content=">>" Margin="0,0,10,0" FontWeight="Bold" FontSize="14" Height="35" Width="35" IsChecked="{Binding Entity.DriveForward, Mode=TwoWay}"/>

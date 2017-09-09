@@ -1287,6 +1287,7 @@ namespace RailwayEssentialMdi.ViewModels
                 if (lw.Entity.ObjectItem.ObjectId == locItem.ObjectId)
                 {
                     w = lw;
+                    lw.Entity.IsSelected = true;
                     break;
                 }
             }
@@ -1304,7 +1305,8 @@ namespace RailwayEssentialMdi.ViewModels
                 Entity = new LocomotiveEntity
                 {
                     ObjectItem = locItem,
-                    Model = this
+                    Model = this,
+                    IsSelected = true
                 }
             };
 

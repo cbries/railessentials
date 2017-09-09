@@ -22,13 +22,12 @@
  * SOFTWARE.
  */
 
-using System;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Microsoft.Win32;
+using RailwayEssentialCore;
 using RailwayEssentialMdi.Interfaces;
 using Image = System.Drawing.Image;
 
@@ -132,7 +131,7 @@ namespace RailwayEssentialMdi.Views
             if (res.HasValue && !res.Value)
                 return;
 
-            //Image img = Image.FromFile(dlg.FileName);
+            Image imgOriginal = Image.FromFile(dlg.FileName);
             ImageFormat fmt = ImageFormat.Bmp;
             //var imgExt = Path.GetExtension(dlg.FileName);
             //if (!string.IsNullOrEmpty(imgExt))
@@ -150,12 +149,12 @@ namespace RailwayEssentialMdi.Views
             //    }
             //}
 
-            var img2 = ImageHelper.ResizeImage(320, 320, dlg.FileName, false);
+            var img2 = ImageHelper.ResizeImage(imgOriginal, 320, 320);
             var imgBase64 = ImageHelper.ImageToBase64(img2, fmt);
             if (_dataContext != null && _dataContext.Entity != null)
             {
                 // create thumbnail
-                var thumbnailImage = ImageHelper.ResizeImage(64, 64, dlg.FileName, false);
+                var thumbnailImage = ImageHelper.ResizeImageInPictureBox(64, 64, dlg.FileName, false);
                 var thumbnailBase64 = ImageHelper.ImageToBase64(thumbnailImage, fmt);
 
                 var locobj = _dataContext.Entity.ObjectItem;

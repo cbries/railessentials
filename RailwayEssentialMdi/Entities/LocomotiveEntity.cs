@@ -22,11 +22,9 @@
  * SOFTWARE.
  */
 
-using System.Drawing.Imaging;
-using System.IO.Packaging;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using RailwayEssentialCore;
 
 namespace RailwayEssentialMdi.Entities
 {
@@ -246,7 +244,12 @@ namespace RailwayEssentialMdi.Entities
                 {
                     var img = ImageHelper.Base64ToImageSource(ObjectItem.LocomotiveThumbnailBase64);
                     if (img != null)
+                    {
+                        if (_objectItem != null)
+                            _objectItem.IconSource = img as BitmapImage;
+
                         return img;
+                    }
 
                     var imgIcon = new BitmapImage(new Uri(@"pack://application:,,,/RailwayEssential;component/Resources/Main.ico"));
                     return imgIcon;

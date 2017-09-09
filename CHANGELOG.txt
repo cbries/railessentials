@@ -1,3 +1,9 @@
+2017 September 9th
+------------------
+Release Candidate 4 (RC4)
+- ui restructuring of the locomotive control window
+- locomotives can have images/photos for better recognition
+
 2017 September 8th
 ------------------
 Release Candidate 3 (RC3)

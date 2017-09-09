@@ -22,10 +22,15 @@
  * SOFTWARE.
  */
 
+using System;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using Microsoft.Win32;
 using RailwayEssentialMdi.Interfaces;
+using Image = System.Drawing.Image;
 
 namespace RailwayEssentialMdi.Views
 {
@@ -116,5 +121,45 @@ namespace RailwayEssentialMdi.Views
             _dataContext.PromoteSpeed();
         }
 
+        private void BtnAddImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp",
+                Title = "Please select a locomotive image"
+            };
+            var res = dlg.ShowDialog();
+            if (res.HasValue && !res.Value)
+                return;
+
+            Image img = Image.FromFile(dlg.FileName);
+            ImageFormat fmt = ImageFormat.Bmp;
+            //var imgExt = Path.GetExtension(dlg.FileName);
+            //if (!string.IsNullOrEmpty(imgExt))
+            //{
+            //    if (imgExt.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+            //        fmt = ImageFormat.Png;
+            //    else if(imgExt.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+            //        || imgExt.EndsWith("jpeg", StringComparison.OrdinalIgnoreCase))
+            //        fmt = ImageFormat.Jpeg;
+            //    else if (imgExt.EndsWith("bmp", StringComparison.OrdinalIgnoreCase))
+            //        fmt = ImageFormat.Bmp;
+            //    else
+            //    {
+            //        return;
+            //    }
+            //}
+            var imgBase64 = ImageHelper.ImageToBase64(img, fmt);
+            if (_dataContext != null && _dataContext.Entity != null)
+            {
+                var locobj = _dataContext.Entity.ObjectItem;
+                if (locobj != null)
+                {
+                    locobj.LocomotiveImageBase64Format = fmt;
+                    locobj.LocomotiveImageBase64 = imgBase64;                    
+                }
+                _dataContext.Entity.UpdateUi();
+            }
+        }
     }
 }

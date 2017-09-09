@@ -748,6 +748,7 @@
     <Resource Include="Resources\objectitem.png" />
     <Resource Include="Resources\removeitem.png" />
     <Resource Include="Resources\rotateitem.png" />
+    <Resource Include="Resources\locstop.png" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-route.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off.svg" />

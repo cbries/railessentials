@@ -21,6 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+using System.Drawing.Imaging;
+using System.IO.Packaging;
+using System.Runtime.Remoting.Messaging;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
 namespace RailwayEssentialMdi.Entities
 {
     using System;
@@ -172,7 +179,9 @@ namespace RailwayEssentialMdi.Entities
         }
 
         #endregion
-        
+
+        #region Drive Direction
+
         private bool _driveForward;
         private bool _driveBackward;
 
@@ -210,6 +219,47 @@ namespace RailwayEssentialMdi.Entities
             }
         }
 
+        #endregion
+
+        #region Locomotive Image
+
+        public ImageSource LocomotiveImage
+        {
+            get
+            {
+                try
+                {
+                    return ImageHelper.Base64ToImageSource(ObjectItem.LocomotiveImageBase64);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        public ImageSource LocomotiveIconImage
+        {
+            get
+            {
+                try
+                {
+                    var img = ImageHelper.Base64ToImageSource(ObjectItem.LocomotiveImageBase64);
+                    if (img != null)
+                        return img;
+
+                    var imgIcon = new BitmapImage(new Uri(@"pack://application:,,,/RailwayEssential;component/Resources/Main.ico"));
+                    return imgIcon;
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        #endregion
+
         public void UpdateUi()
         {
             //Trace.WriteLine(" *** UpdateUi() of Locomotive *** ");
@@ -241,11 +291,15 @@ namespace RailwayEssentialMdi.Entities
 
             RaisePropertyChanged("DriveForward");
             RaisePropertyChanged("DriveBackward");
+            RaisePropertyChanged("LocomotiveImage");
+            RaisePropertyChanged("LocomotiveIconImage");
 
             if (ObjectItem != null)
             {
                 ObjectItem.RaisePropertyChange("Speed");
                 ObjectItem.RaisePropertyChange("ObjectItem.Speed");
+                ObjectItem.RaisePropertyChange("ObjectItem.MaxSpeedPercentage");
+                ObjectItem.RaisePropertyChange("ObjectItem.BlockSpeedPercentage");
                 ObjectItem.UpdateTitle();
                 ObjectItem.UpdateSubTitle();
             }

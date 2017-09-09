@@ -22,8 +22,13 @@
  * SOFTWARE.
  */
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using TrackPlanParser;
 using TrackWeaver;
 
@@ -153,4 +158,80 @@ namespace RailwayEssentialMdi
         }
     }
 
+    public static class ImageHelper
+    {
+        public static string ImageToBase64(Image image, System.Drawing.Imaging.ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Convert Image to byte[]
+                image.Save(ms, format);
+                byte[] imageBytes = ms.ToArray();
+
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
+            }
+        }
+
+        public static Image Base64ToImage(string base64String)
+        {
+            // Convert Base64 String to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+
+                // Convert byte[] to Image
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                Image image = Image.FromStream(ms, true);
+                return image;
+            }
+        }
+
+        public static ImageSource ToImageSource(this Image img, System.Drawing.Imaging.ImageFormat fmt)
+        {
+            try
+            {
+                using (var ms = new MemoryStream())
+                {
+                    img.Save(ms, fmt);
+                    ms.Seek(0, SeekOrigin.Begin);
+
+                    var bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = ms;
+                    bitmapImage.EndInit();
+
+                    return bitmapImage;
+                }
+            }
+            catch
+            {
+                
+            }
+            return null;
+        }
+
+        public static ImageSource Base64ToImageSource(string base64String)
+        {
+            if (string.IsNullOrEmpty(base64String))
+                return null;
+
+            try
+            {
+                byte[] imageBytes = Convert.FromBase64String(base64String);
+                using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+                {
+                    ms.Write(imageBytes, 0, imageBytes.Length);
+                    Image image = Image.FromStream(ms, true);
+                    return image.ToImageSource(ImageFormat.Bmp);
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
 }

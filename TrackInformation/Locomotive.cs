@@ -217,7 +217,6 @@ namespace TrackInformation
             {
                 _funcset = value;
                 OnPropertyChanged();
-                OnPropertyChanged("Title");
             }
         }
 
@@ -287,6 +286,33 @@ namespace TrackInformation
                 _fncTypes[FncSelectedName] = (FncTypes)FncTypeIndex-1;
             else
                 _fncTypes.Add(FncSelectedName, (FncTypes)FncTypeIndex-1);
+        }
+
+        #endregion
+
+        #region locomotive image/icon
+
+        private System.Drawing.Imaging.ImageFormat _imgLocBase64Format;
+        private string _imgLocBase64;
+
+        public string LocomotiveImageBase64
+        {
+            get => _imgLocBase64;
+            set
+            {
+                _imgLocBase64 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public System.Drawing.Imaging.ImageFormat LocomotiveImageBase64Format
+        {
+            get => _imgLocBase64Format;
+            set
+            {
+                _imgLocBase64Format = value;
+                OnPropertyChanged();
+            }
         }
 
         #endregion
@@ -567,7 +593,8 @@ namespace TrackInformation
                 ["maxSpeedPercentage"] = MaxSpeedPercentage,
                 ["blockSpeedPercentage"]  = BlockSpeedPercentage,
                 ["locked"] = Locked,
-                ["fncTypes"] = fncTypes
+                ["fncTypes"] = fncTypes,
+                ["locimg"] = LocomotiveImageBase64
             };
 
             return o;
@@ -633,6 +660,9 @@ namespace TrackInformation
                     OnPropertyChanged("FncTypeNames");
                 }
             }
+
+            if (obj["locimg"] != null)
+                LocomotiveImageBase64 = obj["locimg"].ToString();
         }
     }
 }

@@ -53,20 +53,272 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <ToggleButton Grid.Row="0" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F0" Command="{Binding SwitchFncCommand}" CommandParameter="0"/>
-                        <ToggleButton Grid.Row="0" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F1" Command="{Binding SwitchFncCommand}" CommandParameter="1"/>
-                        <ToggleButton Grid.Row="0" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F2" Command="{Binding SwitchFncCommand}" CommandParameter="2"/>
-                        <ToggleButton Grid.Row="0" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F3" Command="{Binding SwitchFncCommand}" CommandParameter="3"/>
+                        <ToggleButton Grid.Row="0" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F0" Command="{Binding SwitchFncCommand}" CommandParameter="0">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="0" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F1" Command="{Binding SwitchFncCommand}" CommandParameter="1">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="0" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F2" Command="{Binding SwitchFncCommand}" CommandParameter="2">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="0" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F3" Command="{Binding SwitchFncCommand}" CommandParameter="3">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
 
-                        <ToggleButton Grid.Row="1" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F4" Command="{Binding SwitchFncCommand}" CommandParameter="4"/>
-                        <ToggleButton Grid.Row="1" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F5" Command="{Binding SwitchFncCommand}" CommandParameter="5"/>
-                        <ToggleButton Grid.Row="1" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F6" Command="{Binding SwitchFncCommand}" CommandParameter="6"/>
-                        <ToggleButton Grid.Row="1" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F7" Command="{Binding SwitchFncCommand}" CommandParameter="7"/>
+                        <ToggleButton Grid.Row="1" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F4" Command="{Binding SwitchFncCommand}" CommandParameter="4">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="1" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F5" Command="{Binding SwitchFncCommand}" CommandParameter="5">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="1" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F6" Command="{Binding SwitchFncCommand}" CommandParameter="6">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="1" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F7" Command="{Binding SwitchFncCommand}" CommandParameter="7">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
 
-                        <ToggleButton Grid.Row="2" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F8" Command="{Binding SwitchFncCommand}" CommandParameter="8"/>
-                        <ToggleButton Grid.Row="2" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F9" Command="{Binding SwitchFncCommand}" CommandParameter="9"/>
-                        <ToggleButton Grid.Row="2" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F10" Command="{Binding SwitchFncCommand}" CommandParameter="10"/>
-                        <ToggleButton Grid.Row="2" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F11" Command="{Binding SwitchFncCommand}" CommandParameter="11"/>
+                        <ToggleButton Grid.Row="2" Grid.Column="0" Width="32" Height="32" Margin="0,2,0,2" Content="F8" Command="{Binding SwitchFncCommand}" CommandParameter="8">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="2" Grid.Column="1" Width="32" Height="32" Margin="0,2,0,2" Content="F9" Command="{Binding SwitchFncCommand}" CommandParameter="9">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="2" Grid.Column="2" Width="32" Height="32" Margin="0,2,0,2" Content="F10" Command="{Binding SwitchFncCommand}" CommandParameter="10">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
+                        <ToggleButton Grid.Row="2" Grid.Column="3" Width="32" Height="32" Margin="0,2,0,2" Content="F11" Command="{Binding SwitchFncCommand}" CommandParameter="11">
+                            <ToggleButton.Style>
+                                <Style TargetType="{x:Type ToggleButton}">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ToggleButton">
+                                                <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="Background" Value="GreenYellow" />
+                                            <Setter Property="Foreground" Value="DarkGreen" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ToggleButton.Style>
+                        </ToggleButton>
 
                     </Grid>
 
@@ -124,8 +376,30 @@
         </TabControl>
 
         <DockPanel Grid.Row="2" IsEnabled="{Binding Entity.IsEnabled}">
-            <ToggleButton Margin="10,0,0,0" FontWeight="Bold" Height="34" Width="34" HorizontalAlignment="Center" Command="{Binding StopCommand}" ToolTip="Stops this train">
-                <xamlMagic:AutoGreyableImage Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/RailwayEssential;component/Resources/locstop.png"/>
+            <ToggleButton IsChecked="False" Margin="10,0,0,0" FontWeight="Bold" Height="34" Width="34" HorizontalAlignment="Center" Command="{Binding StopCommand}" ToolTip="Stops this train">
+                
+                <Image Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/RailwayEssential;component/Resources/locstop.png"/>
+
+                <ToggleButton.Style>
+                    <Style TargetType="{x:Type ToggleButton}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#f9d2c5" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ToggleButton.Style>
+
             </ToggleButton>
 
             <DockPanel HorizontalAlignment="Left" Margin="170,0,0,0">

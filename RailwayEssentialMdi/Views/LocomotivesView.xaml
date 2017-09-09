@@ -106,8 +106,10 @@
                     </StackPanel>
 
                     <DockPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0">
-                        <ComboBox Margin="2" ItemsSource="{Binding Entity.ObjectItem.FncNames, Mode=OneWay}" SelectedItem="{Binding Entity.ObjectItem.FncSelectedName}" Width="50"/>
-                        <ComboBox Margin="0,2,2,2" Width="100" SelectedIndex="{Binding Entity.ObjectItem.FncTypeIndex}" ItemsSource="{Binding Entity.ObjectItem.FncTypeNames, Mode=OneWay}"/>
+                        <ComboBox Margin="2" ItemsSource="{Binding Entity.ObjectItem.FncNames, Mode=OneWay}" 
+                                  SelectedItem="{Binding Entity.ObjectItem.FncSelectedName}" Width="50"/>
+                        <ComboBox Margin="0,2,2,2" Width="100" ItemsSource="{Binding Entity.ObjectItem.FncTypeNames, Mode=OneWay}"
+                                  SelectedIndex="{Binding Entity.ObjectItem.FncTypeIndex}"/>
                         <Button Name="CmdFncTypeSet" Content="SET" Click="CmdFncTypeSet_OnClick"/>
                     </DockPanel>
 

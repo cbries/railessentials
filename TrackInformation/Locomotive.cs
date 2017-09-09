@@ -246,7 +246,7 @@ namespace TrackInformation
                 _fncSelectedName = value;
 
                 if (_fncTypes.ContainsKey(value))
-                    FncTypeIndex = (int) _fncTypes[value];
+                    FncTypeIndex = (int) _fncTypes[value] + 1; // +1 because "--" has index 0
                 else
                     FncTypeIndex = 0;
 

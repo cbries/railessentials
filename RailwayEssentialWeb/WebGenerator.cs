@@ -168,7 +168,7 @@ namespace RailwayEssentialWeb
                 oSb.Append("<tr class=\"row\">");
                 for (int x = 0; x < Columns; ++x)
                 {
-                    var cellInfo = $"title=\"X={x+1}, Y={y+1}\"";
+                    var cellInfo = ""; // $"title=\"X={x+1}, Y={y+1}\"";
                     var cellId = $"id=\"td_{x+1}_{y+1}\"";
 
                     oSb.Append($"<td {cellId} class=\"cell\" {cellInfo}><div class=\"overflow\"></div></td></td>");

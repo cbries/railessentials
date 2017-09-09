@@ -13,6 +13,8 @@ RailwayEssential is a software for controlling your Model Trains especially when
 
 ![RailwayEssential Included Example 'SingleCircle'](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main2.png)
 
+![RailwayEssential Locomotive Control](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-Locomotive.png)
+
 ### YouTube
 
 Click the image :-)

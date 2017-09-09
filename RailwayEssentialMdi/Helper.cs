@@ -31,6 +31,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TrackPlanParser;
 using TrackWeaver;
+using Color = System.Drawing.Color;
+using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
 namespace RailwayEssentialMdi
 {
@@ -232,6 +234,70 @@ namespace RailwayEssentialMdi
             {
                 return null;
             }
+        }
+
+        // Source: https://stackoverflow.com/questions/1922040/resize-an-image-c-sharp
+        public static Image ResizeImage(int newWidth, int newHeight, string stPhotoPath, bool keepProportion=true)
+        {
+            Image imgPhoto = Image.FromFile(stPhotoPath);
+
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+
+            // Consider vertical pics
+            if (sourceWidth < sourceHeight)
+            {
+                int buff = newWidth;
+
+                newWidth = newHeight;
+                newHeight = buff;
+            }
+
+            int sourceX = 0, sourceY = 0, destX = 0, destY = 0;
+            float nPercent = 1.0f, nPercentW = 1.0f, nPercentH = 1.0f;
+
+            nPercentW = ((float)newWidth / (float)sourceWidth);
+            nPercentH = ((float)newHeight / (float)sourceHeight);
+            if (nPercentH < nPercentW)
+            {
+                nPercent = nPercentH;
+                destX = System.Convert.ToInt16((newWidth - (sourceWidth * nPercent)) / 2);
+            }
+            else
+            {
+                nPercent = nPercentW;
+                destY = System.Convert.ToInt16((newHeight - (sourceHeight * nPercent)) / 2);
+            }
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            if (!keepProportion)
+            {
+                if (destWidth > destHeight)
+                    destHeight = destWidth;
+                else
+                    destWidth = destHeight;
+
+                destX = destY = 0;
+            }
+
+            Bitmap bmPhoto = new Bitmap(newWidth, newHeight, PixelFormat.Format24bppRgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            grPhoto.Clear(Color.White);
+            grPhoto.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(destX, destY, destWidth, destHeight),
+                new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+            imgPhoto.Dispose();
+
+            return bmPhoto;
         }
     }
 }

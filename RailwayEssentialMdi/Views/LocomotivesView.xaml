@@ -13,8 +13,16 @@
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" HorizontalAlignment="Stretch">
-            <Image Width="32" Height="32" HorizontalAlignment="Left" Margin="2,2,10,2" 
-                   Source="{Binding Entity.LocomotiveIconImage}"/>
+            <Image Width="32" Height="32" HorizontalAlignment="Left" Margin="2,2,10,2" Source="{Binding Entity.LocomotiveIconImage}">
+                <Image.ToolTip>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Entity.LocomotiveImage}"/>
+                        <!--
+                        <TextBlock Text="{Binding Entity.Name}"/>
+                        -->
+                    </StackPanel>
+                </Image.ToolTip>
+            </Image>
             <TextBox Text="{Binding Entity.Name, Mode=TwoWay}" FontWeight="Bold" VerticalAlignment="Center" Background="Transparent" BorderThickness="0" MinWidth="50"/>
 
             <Label Content=" (" FontWeight="Bold" FontSize="12" FontStyle="Italic" VerticalAlignment="Center"/>

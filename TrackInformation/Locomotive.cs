@@ -294,6 +294,7 @@ namespace TrackInformation
 
         private System.Drawing.Imaging.ImageFormat _imgLocBase64Format;
         private string _imgLocBase64;
+        private string _thumbnailLocBase64;
 
         public string LocomotiveImageBase64
         {
@@ -301,6 +302,16 @@ namespace TrackInformation
             set
             {
                 _imgLocBase64 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LocomotiveThumbnailBase64
+        {
+            get => _thumbnailLocBase64;
+            set
+            {
+                _thumbnailLocBase64 = value;
                 OnPropertyChanged();
             }
         }
@@ -594,7 +605,8 @@ namespace TrackInformation
                 ["blockSpeedPercentage"]  = BlockSpeedPercentage,
                 ["locked"] = Locked,
                 ["fncTypes"] = fncTypes,
-                ["locimg"] = LocomotiveImageBase64
+                ["locimg"] = LocomotiveImageBase64,
+                ["locthumbnail"] = LocomotiveThumbnailBase64
             };
 
             return o;
@@ -663,6 +675,9 @@ namespace TrackInformation
 
             if (obj["locimg"] != null)
                 LocomotiveImageBase64 = obj["locimg"].ToString();
+
+            if (obj["locthumbnail"] != null)
+                LocomotiveThumbnailBase64 = obj["locthumbnail"].ToString();
         }
     }
 }

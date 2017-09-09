@@ -132,7 +132,7 @@ namespace RailwayEssentialMdi.Views
             if (res.HasValue && !res.Value)
                 return;
 
-            Image img = Image.FromFile(dlg.FileName);
+            //Image img = Image.FromFile(dlg.FileName);
             ImageFormat fmt = ImageFormat.Bmp;
             //var imgExt = Path.GetExtension(dlg.FileName);
             //if (!string.IsNullOrEmpty(imgExt))
@@ -149,14 +149,21 @@ namespace RailwayEssentialMdi.Views
             //        return;
             //    }
             //}
-            var imgBase64 = ImageHelper.ImageToBase64(img, fmt);
+
+            var img2 = ImageHelper.ResizeImage(320, 320, dlg.FileName, false);
+            var imgBase64 = ImageHelper.ImageToBase64(img2, fmt);
             if (_dataContext != null && _dataContext.Entity != null)
             {
+                // create thumbnail
+                var thumbnailImage = ImageHelper.ResizeImage(64, 64, dlg.FileName, false);
+                var thumbnailBase64 = ImageHelper.ImageToBase64(thumbnailImage, fmt);
+
                 var locobj = _dataContext.Entity.ObjectItem;
                 if (locobj != null)
                 {
                     locobj.LocomotiveImageBase64Format = fmt;
-                    locobj.LocomotiveImageBase64 = imgBase64;                    
+                    locobj.LocomotiveImageBase64 = imgBase64;
+                    locobj.LocomotiveThumbnailBase64 = thumbnailBase64;
                 }
                 _dataContext.Entity.UpdateUi();
             }

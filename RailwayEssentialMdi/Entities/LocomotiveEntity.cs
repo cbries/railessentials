@@ -244,7 +244,7 @@ namespace RailwayEssentialMdi.Entities
             {
                 try
                 {
-                    var img = ImageHelper.Base64ToImageSource(ObjectItem.LocomotiveImageBase64);
+                    var img = ImageHelper.Base64ToImageSource(ObjectItem.LocomotiveThumbnailBase64);
                     if (img != null)
                         return img;
 

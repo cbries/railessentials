@@ -32,12 +32,24 @@ namespace RailwayEssentialMdi.Entities
 
         private readonly List<string> _messages = new List<string>();
 
-        public string Message => string.Join("", _messages);
+        public string Message
+        {
+            get
+            {
+                lock (_messages)
+                {
+                    return string.Join("", _messages);
+                }
+            }
+        }
 
         public void Add(string text, params object[] args)
         {
-            _messages.Add(string.Format(text, args));
-            RaisePropertyChanged("Message");
+            lock (_messages)
+            {
+                _messages.Add(string.Format(text, args));
+                RaisePropertyChanged("Message");
+            }
         }
 
         protected override void OnPropertyChanged(string propertyName)

@@ -2,58 +2,6 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
-      "pin": 10,
-      "visuX": 17,
-      "visuY": 2,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 11,
-      "visuX": 17,
-      "visuY": 3,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 12,
-      "visuX": 17,
-      "visuY": 4,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 14,
-      "visuX": 17,
-      "visuY": 6,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
       "objectId": 101,
       "pin": 12,
       "visuX": 7,
@@ -792,22 +740,6 @@
     "type": "S88",
     "setup": {
       "objectId": 102,
-      "pin": 2,
-      "visuX": 3,
-      "visuY": 6,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 102,
       "pin": 5,
       "visuX": 21,
       "visuY": 4,
@@ -818,23 +750,6 @@
         3
       ],
       "stopFncTypes": []
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 9,
-      "visuX": 17,
-      "visuY": 1,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
     }
   },
   {
@@ -870,39 +785,6 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
-      "pin": 13,
-      "visuX": 17,
-      "visuY": 5,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 102,
-      "pin": 6,
-      "visuX": 23,
-      "visuY": 2,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
       "objectId": 101,
       "pin": 10,
       "visuX": 7,
@@ -924,23 +806,6 @@
       "pin": 11,
       "visuX": 7,
       "visuY": 3,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 101,
-      "pin": 9,
-      "visuX": 7,
-      "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
       "startFncTypes": [],
@@ -1005,16 +870,37 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
-      "pin": 16,
-      "visuX": 17,
-      "visuY": 8,
+      "objectId": 102,
+      "pin": 3,
+      "visuX": 3,
+      "visuY": 3,
       "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
       "stopFncTypes": [
         0,
-        2,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 6,
+      "visuX": 23,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
         3
       ]
     }
@@ -1027,20 +913,99 @@
       "visuX": 17,
       "visuY": 7,
       "invertSwitch": false,
-      "fncToggle": false,
+      "fncToggle": true,
       "startFncTypes": [
         0,
         3
       ],
-      "stopFncTypes": []
+      "stopFncTypes": [
+        0,
+        3
+      ]
     }
   },
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
-      "pin": 3,
-      "visuX": 3,
+      "objectId": 100,
+      "pin": 16,
+      "visuX": 17,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 14,
+      "visuX": 17,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 13,
+      "visuX": 17,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 12,
+      "visuX": 17,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 11,
+      "visuX": 17,
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": true,
@@ -1048,6 +1013,79 @@
         0,
         3
       ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 10,
+      "visuX": 17,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 9,
+      "visuX": 17,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 2,
+      "visuX": 3,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncTypes": [
+        0,
+        3
+      ],
+      "stopFncTypes": [
+        0,
+        3
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 9,
+      "visuX": 7,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncTypes": [],
       "stopFncTypes": []
     }
   }

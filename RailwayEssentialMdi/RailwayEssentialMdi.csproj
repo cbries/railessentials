@@ -321,11 +321,21 @@
     <None Include="Testprojekte\Crossing\TrackWeaving.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Testprojekte\Project0.zip" />
-    <None Include="Testprojekte\Project0\Project0.railwayprj" />
-    <None Include="Testprojekte\Project0\TrackObjects.json" />
-    <None Include="Testprojekte\Project0\TrackPlan.json" />
-    <None Include="Testprojekte\Project0\TrackWeaving.json" />
+    <None Include="Testprojekte\Project0.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Project0\Project0.railwayprj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Project0\TrackObjects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Project0\TrackPlan.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Testprojekte\Project0\TrackWeaving.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Testprojekte\SingleCircle\SingleCircle.railwayprj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

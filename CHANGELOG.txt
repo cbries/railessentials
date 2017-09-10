@@ -1,9 +1,11 @@
-2017 September 9th
-------------------
+2017 September 10th
+-------------------
 Release Candidate 4 (RC4)
 - ui restructuring of the locomotive control window
 - locomotives can have images/photos for better recognition
 - toggle locomotive switches during route cruising
+- several improvements
+- first step tutorial and project
 
 2017 September 8th
 ------------------

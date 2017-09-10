@@ -3,7 +3,7 @@
 
 
 #define MyAppName "RailwayEssential"
-#define MyAppVersion "1.0 RC23"
+#define MyAppVersion "1.0 RC4"
 #define MyAppPublisher "Dr. Christian Benjamin Ries"
 #define MyAppCopyright "Copyright (C) 2017 Dr. C.B.Ries"
 #define MyAppURL "http://www.railwayessential.net"
@@ -44,7 +44,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppBuildDir}\RailwayEssentialMdi\bin\{#APPBUILD}\*" ; \
+Source: "{#MyAppBuildDir}\RailwayEssentialMdi\bin\x86\{#APPBUILD}\*" ; \
   Excludes: "*.pdb,*.log, CefLib" ; \
   DestDir: "{app}" ; \
   Flags: ignoreversion recursesubdirs createallsubdirs

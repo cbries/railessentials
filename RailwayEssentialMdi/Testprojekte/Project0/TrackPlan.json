@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Track#1",
+    "x": 7,
+    "y": 2,
+    "themeId": 14,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#1",
+    "x": 8,
+    "y": 2,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"Sensor#1\",\r\n  \"sensor1\": \"Sensor#4\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"in\",\r\n  \"event1\": \"enter\",\r\n  \"event2\": \"--\"\r\n}",
+      "blockPreviewLocomotive": "1008"
+    }
+  },
+  {
+    "name": "Block#2",
+    "x": 8,
+    "y": 5,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"Sensor#2\",\r\n  \"sensor1\": \"Sensor#3\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
+      "blockCurrentLocomotive": "1008"
+    }
+  },
+  {
+    "name": "Track#2",
+    "x": 12,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#3",
+    "x": 12,
+    "y": 5,
+    "themeId": 14,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#4",
+    "x": 7,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#5",
+    "x": 5,
+    "y": 3,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#6",
+    "x": 5,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#7",
+    "x": 14,
+    "y": 3,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#8",
+    "x": 14,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#9",
+    "x": 5,
+    "y": 2,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#10",
+    "x": 5,
+    "y": 5,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#11",
+    "x": 14,
+    "y": 2,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#12",
+    "x": 14,
+    "y": 5,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#1",
+    "x": 6,
+    "y": 2,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Sensor#2",
+    "x": 6,
+    "y": 5,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Sensor#4",
+    "x": 13,
+    "y": 2,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Sensor#3",
+    "x": 13,
+    "y": 5,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  }
+]

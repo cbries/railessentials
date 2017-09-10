@@ -534,10 +534,12 @@ namespace RailwayEssentialMdi.Autoplay
                                             var currentSpeed = locObject.Speed;
                                             currentSpeed -= (int) (currentSpeed / 2.0f);
                                             locObject.ChangeSpeed(currentSpeed);
+                                            Model?.LogAutoplay($"{Prefix} [ENTER] {locObject.Name} change speed to {currentSpeed}\n");
                                         }
                                         else
                                         {
                                             locObject.ChangeSpeed(blockSpeed);
+                                            Model?.LogAutoplay($"{Prefix} [ENTER] {locObject.Name} change speed to {blockSpeed}\n");
                                         }
                                     }
 
@@ -552,6 +554,8 @@ namespace RailwayEssentialMdi.Autoplay
                                         int speedSteps = currentSpeed / secondsToStop;
 
                                         var o = locObject;
+
+                                        Model?.LogAutoplay($"{Prefix} [ENTER IN] {locObject.Name} change speed to {Locomotive.SpeedStop} in {secondsToStop} seconds.\n");
 
                                         var task = Task.Run(() =>
                                         {
@@ -581,6 +585,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     if (locObject != null)
                                         locObject.ChangeSpeed(Locomotive.SpeedStop);
 
+                                    Model?.LogAutoplay($"{Prefix} [IN] {locObject.Name} change speed to {Locomotive.SpeedStop}\n");
                                     Trace.WriteLine($"{Prefix} STOP {Locomotive.SpeedStop}");
 
                                     stopped = true;

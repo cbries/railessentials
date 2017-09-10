@@ -975,6 +975,9 @@ namespace RailwayEssentialMdi.Entities
                                         //Trace.WriteLine($"Binaries: {afterBinary}");
 
                                         m.TriggerUpdateUi();
+
+                                        s88Item.UpdateSubTitle();
+                                        s88Item.UpdateTitle();
                                     }
                                 }
                             }

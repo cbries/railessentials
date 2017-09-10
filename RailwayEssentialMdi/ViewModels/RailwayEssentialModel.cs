@@ -451,8 +451,15 @@ namespace RailwayEssentialMdi.ViewModels
 
                     File.WriteAllText(fname, o.ToString(Formatting.Indented), Encoding.UTF8);
 
-                    Project = new ProjectFile();
-                    Project.Load(fname);
+                    var prj = new ProjectFile();
+
+                    if (!prj.Load(fname))
+                        Log("Project load failed: " + prj.Filepath + "\r\n");
+                    else
+                    {
+                        Project = prj;
+                        Log("Project opened: " + prj.Name + "\r\n");
+                    }
                 }
                 catch
                 {

@@ -102,7 +102,7 @@ namespace RailwayEssentialMdi.Analyze
                 _themeInfo = Theme.Get(ThemeId);
             if (_themeInfo != null)
             {
-                if (_orientationIndex > 0 && _themeInfo.Dimensions.Count > _orientationIndex)
+                if (_orientationIndex >= 0 && _themeInfo.Dimensions.Count > _orientationIndex)
                     _dim = _themeInfo.Dimensions[_orientationIndex];
             }
         }

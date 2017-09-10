@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\ecos_pc_interface3.pdf = Documentation\ecos_pc_interface3.pdf
 		Documentation\Gleisplanung.odt = Documentation\Gleisplanung.odt
 		Documentation\Gleisplanung.pdf = Documentation\Gleisplanung.pdf
+		Documentation\Website\images\RailwayEssential-main,smaller.png = Documentation\Website\images\RailwayEssential-main,smaller.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackInformation", "TrackInformation\TrackInformation.csproj", "{6925E932-7AD6-4AFA-A6BA-CBBF35014264}"

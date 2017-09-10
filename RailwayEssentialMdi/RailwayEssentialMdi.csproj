@@ -321,6 +321,7 @@
     <None Include="Testprojekte\Crossing\TrackWeaving.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Testprojekte\Project0.zip" />
     <None Include="Testprojekte\Project0\Project0.railwayprj" />
     <None Include="Testprojekte\Project0\TrackObjects.json" />
     <None Include="Testprojekte\Project0\TrackPlan.json" />

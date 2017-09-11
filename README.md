@@ -10,6 +10,14 @@ RailwayEssential is a software for controlling your Model Trains especially when
 ### First Step Tutorials
 * Create your first Track: [Tutorial: Create a First Track](https://github.com/cbries/railwayessential/wiki/Tutorial:-Create-a-First-Track)
 
+### Requirements (Hardware & Software)
+- .Net 4.6 must be installed, [you can find it here: Website](https://www.microsoft.com/en-us/download/details.aspx?id=48130)
+- Works smoothly on Windows 7 and newer systems (e.g. Windows 10)
+- Support for x86 and x64
+- Required HDD-space is approximately 150 MB
+- We use CefSharp [(see Website)](https://github.com/cefsharp/CefSharp), therefore if on your computer Firefox or Chrome work, then anything is fine!
+
+
 ### Impressions
 
 ![RailwayEssential Main Window](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main.png)

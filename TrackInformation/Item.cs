@@ -45,6 +45,8 @@ namespace TrackInformation
 
         public ObservableCollection<Item> Items { get; set; }
 
+        public bool IsDummyItem { get; set; }
+
         public virtual int TypeId()
         {
             return -1;
@@ -81,7 +83,12 @@ namespace TrackInformation
 
         public string Title
         {
-            get => _title;
+            get
+            {
+                if (IsDummyItem)
+                    return "--";
+                return _title;
+            }
             set
             {
                 _title = value;

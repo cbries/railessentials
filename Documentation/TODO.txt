@@ -5,6 +5,10 @@
 
 ##########################################################################################
 
+[A] query speed step and provide stepping in locomotive control
+
+[A] query information about any Locomotive's function
+
 [A] assign trains to specific routes to allow shuttle mode
 
 [B] handle S88 event as state-machine, that unexpected triggers do not start/stop trains when route is still busy

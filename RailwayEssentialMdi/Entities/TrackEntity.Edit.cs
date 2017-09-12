@@ -41,10 +41,12 @@ namespace RailwayEssentialMdi.Entities
     public partial class TrackEntity
     {
         private const int TabIndexGeneral = 0;
-        private const int TabIndexS88 = 1;
-        private const int TabIndexSwitch = 2;
-        private const int TabIndexConnector = 3;
-        private const int TabIndexBlock = 4;
+        //private const int TabIndexS88 = 1;
+        //private const int TabIndexSwitch = 2;
+        //private const int TabIndexConnector = 3;
+        //private const int TabIndexBlock = 4;
+
+        private Locomotive _dummyLocomotive = new Locomotive { Name = "--", Addr = -1, ObjectId = -1, IsDummyItem = true };
 
         private TrackInfo _trackInfoSelection;
         private S88 _itemS88Selection;
@@ -180,7 +182,8 @@ namespace RailwayEssentialMdi.Entities
                     if (_blockCurrentLocomotive.ObjectId == -1)
                         _trackInfoSelection.SetOption("blockCurrentLocomotive", "");
                     else
-                        _trackInfoSelection.SetOption("blockCurrentLocomotive", $"{_blockCurrentLocomotive.ObjectId}");
+                        _trackInfoSelection.SetOption("blockCurrentLocomotive",
+                            $"{_blockCurrentLocomotive.ObjectId}");
                 }
 
                 UpdateAllVisualBlocks();
@@ -274,13 +277,11 @@ namespace RailwayEssentialMdi.Entities
                     if (e?.TypeId() == 1)
                         _availableLocomotives.Add(e as Locomotive);
                 }
-
-                var dummyLocomotive = new Locomotive { Name = "--", Addr = -1, ObjectId = -1 };
-
+                
                 if (_availableLocomotives.Count == 0)
-                    _availableLocomotives.Add(dummyLocomotive);
+                    _availableLocomotives.Add(_dummyLocomotive);
                 else
-                    _availableLocomotives.Insert(0, dummyLocomotive);
+                    _availableLocomotives.Insert(0, _dummyLocomotive);
 
                 return _availableLocomotives;
             }
@@ -582,7 +583,7 @@ namespace RailwayEssentialMdi.Entities
             item.VisuX = x;
             item.VisuY = y;
 
-            if (_itemS88Selection != null)
+            if (_itemS88Selection != null && !_itemS88Selection.IsDummyItem)
             {
                 item.Type = WeaveItemT.S88;
                 item.ObjectId = _itemS88Selection.ObjectId;
@@ -601,7 +602,7 @@ namespace RailwayEssentialMdi.Entities
                 }
             }
 
-            if (_itemSwitchSelection != null)
+            if (_itemSwitchSelection != null && !_itemSwitchSelection.IsDummyItem)
             {
                 item.Type = WeaveItemT.Switch;
                 item.ObjectId = _itemSwitchSelection.ObjectId;
@@ -615,8 +616,6 @@ namespace RailwayEssentialMdi.Entities
             }
             else
             {
-                // reload weave
-
                 _dispatcher.InitializeWeaving(Track, weaveFilepath);
             }
 
@@ -712,9 +711,6 @@ namespace RailwayEssentialMdi.Entities
 
                 if (objItem != null)
                 {
-                    //ConnectorVisible = false;
-                    //SelectionTabIndex = 0;
-
                     var w = this.Window as TrackWindow;
                     TrackView tv = null;
                     if (w != null)
@@ -724,10 +720,9 @@ namespace RailwayEssentialMdi.Entities
 
                     switch (objItem.TypeId())
                     {
-                        case TrackInformation.S88.Typeid:
+                        case S88.Typeid:
                             {
                                 ItemsS88Selection = objItem as S88;
-                                //SelectionTabIndex = TabIndexS88;
 
                                 var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
                                 if (weaveItem != null)
@@ -769,7 +764,6 @@ namespace RailwayEssentialMdi.Entities
                         case TrackInformation.Switch.Typeid:
                             {
                                 ItemsSwitchSelection = objItem as TrackInformation.Switch;
-                                //SelectionTabIndex = TabIndexSwitch;
                                 ItemsS88SelectionPin = -1;
                                 if (ItemsSwitchSelection != null)
                                     ItemsSwitchInvert = ItemsSwitchSelection.InvertCommand;
@@ -780,11 +774,9 @@ namespace RailwayEssentialMdi.Entities
 
                         default:
                             {
-                                ItemsS88Selection = null;
-                                ItemsSwitchSelection = null;
-                                //SelectionTabIndex = TabIndexGeneral;
                                 ItemsS88SelectionPin = -1;
                                 ItemsSwitchInvert = false;
+                                BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
                             }
                             break;
                     }
@@ -808,9 +800,6 @@ namespace RailwayEssentialMdi.Entities
                                         {
                                             // show Connector's configuration tab    
 
-                                            //SelectionTabIndex = TabIndexConnector;
-                                            //ConnectorVisible = true;
-
                                             var opt = TrackInfoSelection.GetOption("connectorIdentifier");
 
                                             if (!string.IsNullOrEmpty(opt))
@@ -824,13 +813,13 @@ namespace RailwayEssentialMdi.Entities
                                             {
                                                 ConnectorIdentifier = -1;
                                             }
+
+                                            BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
                                         }
                                         break;
 
                                     case Globals.ThemeIdType.Block:
                                         {
-                                            //SelectionTabIndex = TabIndexBlock;
-
                                             #region blockGroupIdentifier
 
                                             var opt = TrackInfoSelection.GetOption("blockGroupIdentifier");
@@ -875,8 +864,9 @@ namespace RailwayEssentialMdi.Entities
                                         break;
 
                                     default:
-                                        //ConnectorVisible = false;
-                                        //SelectionTabIndex = 0;
+                                    {
+                                        BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
+                                    }
                                         break;
                                 }
                             }

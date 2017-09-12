@@ -7,6 +7,9 @@ RailwayEssential is a software for controlling your Model Trains especially when
 [![Coverity Scan Build Status](https://img.shields.io/coverity/scan/13689.svg)](https://scan.coverity.com/projects/cbries-railwayessential)
 [![Coverage Status](https://scan.coverity.com/projects/13689/badge.svg)](https://scan.coverity.com/projects/cbries-railwayessential)
 
+## Download Setup & Releases
+Current test releases are available here: [Releases / Release Candidates / Other Setups](https://github.com/cbries/railwayessential/releases).
+
 ### First Step Tutorials
 * Create your first Track: [Tutorial: Create a First Track](https://github.com/cbries/railwayessential/wiki/Tutorial:-Create-a-First-Track)
 
@@ -16,7 +19,6 @@ RailwayEssential is a software for controlling your Model Trains especially when
 - Support for x86 and x64
 - Required HDD-space is approximately 150 MB
 - We use CefSharp [(see Website)](https://github.com/cefsharp/CefSharp), therefore if on your computer Firefox or Chrome work, then anything is fine!
-
 
 ### Impressions
 
@@ -31,10 +33,6 @@ RailwayEssential is a software for controlling your Model Trains especially when
 Click the image :-)
 
 [![RailwayEssential in Progress (YouTube)](https://img.youtube.com/vi/LcHo5y3PwqM/0.jpg)](https://youtu.be/LcHo5y3PwqM)
-
-### Releases
-
-Current test releases are available here: [Releases / Release Candidates / Other Setups](https://github.com/cbries/railwayessential/releases).
 
 ### Prerequisites
 

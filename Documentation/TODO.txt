@@ -1,11 +1,13 @@
 
-[A] := hohe Priorität
+[A] := hohe PrioritÃ¤t
 [B] := ...
-[C] := niedrige Priorität
+[C] := niedrige PrioritÃ¤t
 
 ##########################################################################################
 
-[A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
+[A] implement synchronous communication approach for get/set-dlgs between RailwayEssential and CommandStation
+
+[A] assign locomotives to different type groups, e.g. cargo (GÃ¼terzug), intercity (Fernverkehr), local (Nahverkehr)
 
 [A] query speed step and provide stepping in locomotive control
 
@@ -17,4 +19,4 @@
 
 [B] allow individual actions on events, e.g. buttons should start something
 
-[C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können
+[C] "Fast Edit"-Tabelle fÃ¼r alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu kÃ¶nnen

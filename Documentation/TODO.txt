@@ -5,6 +5,8 @@
 
 ##########################################################################################
 
+[A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
+
 [A] query speed step and provide stepping in locomotive control
 
 [A] query information about any Locomotive's function

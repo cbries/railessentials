@@ -88,6 +88,7 @@
     <Compile Include="Commands\Request.cs" />
     <Compile Include="Commands\Unknown.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="FunctionDescriptions.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="ILogging.cs" />
     <Compile Include="Replies\EventBlock.cs" />

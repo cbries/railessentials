@@ -131,8 +131,8 @@
                                         <CheckBox Name="ChkFncToggle" Content="Toggle Start/Stop" VerticalAlignment="Center" Margin="3" ToolTip="Toggles the states of the functions."/>
                                         
                                         <StackPanel Grid.Column="1">
-                                            <GroupBox Name="GrpS88FncsStart" Header="Functions (Start)" Margin="0,5,0,0"/>
-                                            <GroupBox Name="GrpS88FncsStop" Header="Functions (Stop)" Margin="0,5,0,0"/>
+                                            <GroupBox Name="GrpS88FncGroupsStart" Header="Function Groups (Start)" Margin="0,5,0,0"/>
+                                            <GroupBox Name="GrpS88FncGroupsStop" Header="Function Groups (Stop)" Margin="0,5,0,0"/>
                                         </StackPanel>
                                     </Grid>
 

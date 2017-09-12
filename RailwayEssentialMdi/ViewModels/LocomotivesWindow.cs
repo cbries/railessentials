@@ -24,6 +24,7 @@
 
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Ecos2Core;
 
 namespace RailwayEssentialMdi.ViewModels
 {
@@ -185,6 +186,15 @@ namespace RailwayEssentialMdi.ViewModels
                 {
                     if (_entity != null && _entity.ObjectItem != null)
                     {
+                        var fncType = 0;
+                        if(_entity.ObjectItem.Funcdesc != null && _entity.ObjectItem.Funcdesc.ContainsKey(i))
+                            fncType = _entity.ObjectItem.Funcdesc[i];
+                        var fncTypename = "unknown";
+                        if(FunctionDescriptions.Functions.ContainsKey(fncType))
+                            fncTypename = FunctionDescriptions.Functions[fncType];
+
+                        FuncdescTooltip[i] = fncTypename;
+
                         var state = _entity.ObjectItem.Funcset[i];
                         LocomotiveView.SetToggleButton(name, state);
                         LocomotiveView.SetToggleButtonVisibility(name, true);
@@ -199,7 +209,26 @@ namespace RailwayEssentialMdi.ViewModels
 
             fncNames.Insert(0, "--");
 
-            Entity.ObjectItem.FncNames = fncNames;
-        }        
+            Entity.ObjectItem.FncGroupNames = fncNames;
+
+            RaisePropertyChanged("FuncdescTooltip");
+        }
+
+        private List<string> _funcdescTooltip = new List<string>()
+        {
+            "", "", "", "",
+            "", "", "", "",
+            "", "", "", ""
+        };
+
+        public List<string> FuncdescTooltip
+        {
+            get => _funcdescTooltip;
+            set
+            {
+                _funcdescTooltip = value;
+                RaisePropertyChanged("FuncdescTooltip");
+            }
+        }
     }
 }

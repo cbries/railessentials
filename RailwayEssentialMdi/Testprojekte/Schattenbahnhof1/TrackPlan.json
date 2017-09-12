@@ -768,7 +768,8 @@
     "description": "",
     "options": {
       "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"0,10\",\r\n  \"sensor1\": \"1,10\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}"
+      "events": "{\r\n  \"sensor0\": \"0,10\",\r\n  \"sensor1\": \"1,10\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
+      "blockCurrentLocomotive": "1004"
     }
   },
   {
@@ -781,7 +782,7 @@
     "options": {
       "blockGroupIdentifier": "7",
       "events": "{\r\n  \"sensor0\": \"0,11\",\r\n  \"sensor1\": \"1,11\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1004"
+      "blockCurrentLocomotive": "1008"
     }
   },
   {
@@ -818,8 +819,7 @@
     "description": "",
     "options": {
       "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"1,14\",\r\n  \"sensor1\": \"0,14\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1009"
+      "events": "{\r\n  \"sensor0\": \"1,14\",\r\n  \"sensor1\": \"0,14\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}"
     }
   },
   {
@@ -1137,7 +1137,7 @@
     "options": {
       "blockGroupIdentifier": "7",
       "events": "{\r\n  \"sensor0\": \"0,9\",\r\n  \"sensor1\": \"1,9\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1008"
+      "blockCurrentLocomotive": "1000"
     }
   },
   {
@@ -1150,7 +1150,7 @@
     "options": {
       "blockGroupIdentifier": "7",
       "events": "{\r\n  \"sensor0\": \"1,16\",\r\n  \"sensor1\": \"0,16\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1000"
+      "blockCurrentLocomotive": "1009"
     }
   },
   {

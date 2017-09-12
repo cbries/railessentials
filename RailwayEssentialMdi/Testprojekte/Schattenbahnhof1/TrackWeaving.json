@@ -8,8 +8,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -21,8 +21,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -34,8 +34,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -47,8 +47,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -60,8 +60,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -73,8 +73,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -86,8 +86,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -99,8 +99,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -112,8 +112,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -125,8 +125,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -138,8 +138,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -151,8 +151,8 @@
       "visuY": 1,
       "invertSwitch": true,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -164,8 +164,8 @@
       "visuY": 5,
       "invertSwitch": true,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -177,8 +177,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -190,8 +190,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -203,8 +203,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -216,8 +216,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -229,8 +229,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -242,8 +242,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -255,8 +255,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -268,8 +268,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -281,8 +281,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -294,8 +294,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -307,8 +307,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -320,8 +320,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -333,8 +333,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -346,8 +346,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -359,8 +359,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -372,8 +372,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -385,8 +385,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -398,8 +398,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -411,8 +411,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -424,8 +424,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -437,8 +437,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -450,8 +450,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -463,8 +463,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -476,8 +476,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -489,8 +489,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -502,8 +502,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -515,8 +515,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -528,8 +528,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -541,8 +541,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -554,8 +554,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -567,8 +567,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -580,8 +580,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -593,8 +593,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -606,8 +606,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -619,8 +619,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -632,8 +632,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -645,8 +645,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -658,8 +658,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -671,8 +671,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -684,8 +684,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -697,11 +697,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -713,11 +710,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -729,11 +723,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -745,11 +736,8 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -761,8 +749,8 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -774,12 +762,8 @@
       "visuY": 5,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -791,12 +775,8 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -808,12 +788,8 @@
       "visuY": 3,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -825,12 +801,8 @@
       "visuY": 8,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -842,12 +814,8 @@
       "visuY": 7,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -859,31 +827,8 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": [
-        0,
-        2,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 102,
-      "pin": 3,
-      "visuX": 3,
-      "visuY": 3,
-      "invertSwitch": false,
-      "fncToggle": true,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": [
-        0,
-        3
-      ]
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   },
   {
@@ -895,51 +840,58 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": false,
-      "startFncTypes": [
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 9,
+      "visuX": 7,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 3,
+      "visuX": 3,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
-      "pin": 15,
-      "visuX": 17,
-      "visuY": 7,
+      "objectId": 102,
+      "pin": 2,
+      "visuX": 3,
+      "visuY": 6,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 16,
-      "visuX": 17,
-      "visuY": 8,
-      "invertSwitch": false,
-      "fncToggle": true,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": [
-        0,
-        3
+        2
       ]
     }
   },
@@ -952,13 +904,13 @@
       "visuY": 6,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
@@ -966,18 +918,18 @@
     "type": "S88",
     "setup": {
       "objectId": 100,
-      "pin": 13,
+      "pin": 11,
       "visuX": 17,
-      "visuY": 5,
+      "visuY": 3,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
@@ -990,32 +942,13 @@
       "visuY": 4,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
-      ]
-    }
-  },
-  {
-    "type": "S88",
-    "setup": {
-      "objectId": 100,
-      "pin": 11,
-      "visuX": 17,
-      "visuY": 3,
-      "invertSwitch": false,
-      "fncToggle": true,
-      "startFncTypes": [
-        0,
-        3
-      ],
-      "stopFncTypes": [
-        0,
-        3
+        2
       ]
     }
   },
@@ -1028,13 +961,13 @@
       "visuY": 2,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
@@ -1047,46 +980,71 @@
       "visuY": 1,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
-      "pin": 2,
-      "visuX": 3,
-      "visuY": 6,
+      "objectId": 100,
+      "pin": 16,
+      "visuX": 17,
+      "visuY": 8,
       "invertSwitch": false,
       "fncToggle": true,
-      "startFncTypes": [
+      "startFncGroupTypes": [
         0,
-        3
+        2
       ],
-      "stopFncTypes": [
+      "stopFncGroupTypes": [
         0,
-        3
+        2
       ]
     }
   },
   {
     "type": "S88",
     "setup": {
-      "objectId": 101,
-      "pin": 9,
-      "visuX": 7,
-      "visuY": 1,
+      "objectId": 100,
+      "pin": 15,
+      "visuX": 17,
+      "visuY": 7,
       "invertSwitch": false,
-      "fncToggle": false,
-      "startFncTypes": [],
-      "stopFncTypes": []
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 13,
+      "visuX": 17,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
     }
   }
 ]

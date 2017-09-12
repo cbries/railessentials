@@ -44,7 +44,7 @@ namespace RailwayEssentialMdi.Views
 
         private void TrackView_OnInitialized(object sender, EventArgs e)
         {
-            var fncNames = Locomotive.GetFncTypenames();
+            var fncNames = Locomotive.GetFncGroupTypenames();
             int n = fncNames.Count;
 
             DockPanel[] panel = { new DockPanel(), new DockPanel() };
@@ -55,8 +55,8 @@ namespace RailwayEssentialMdi.Views
                 if (string.IsNullOrEmpty(name))
                     continue;
 
-                CheckBox chkStart = new CheckBox { Name = "ChkFncStart" + i, Content = name, Margin = new Thickness(2,2,0,2) };
-                CheckBox chkStop = new CheckBox { Name = "ChkFncStop" + i, Content = name, Margin = new Thickness(2, 2, 0, 2) };
+                CheckBox chkStart = new CheckBox { Name = "ChkFncGroupStart" + i, Content = name, Margin = new Thickness(2,2,0,2) };
+                CheckBox chkStop = new CheckBox { Name = "ChkFncGroupStop" + i, Content = name, Margin = new Thickness(2, 2, 0, 2) };
 
                 _generatedCheckboxes.Add(chkStart);
                 _generatedCheckboxes.Add(chkStop);
@@ -65,8 +65,8 @@ namespace RailwayEssentialMdi.Views
                 panel[1].Children.Add(chkStop);
             }
 
-            GrpS88FncsStart.Content = panel[0];
-            GrpS88FncsStop.Content = panel[1];
+            GrpS88FncGroupsStart.Content = panel[0];
+            GrpS88FncGroupsStop.Content = panel[1];
         }
 
         private void TrackView_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -114,47 +114,47 @@ namespace RailwayEssentialMdi.Views
             }
         }
 
-        public List<FncTypes> StartFncs
+        public List<FncGroupTypes> StartFncGroups
         {
             get
             {
-                var fncNames = Locomotive.GetFncTypenames();
+                var fncNames = Locomotive.GetFncGroupTypenames();
                 int n = fncNames.Count;
 
-                List<FncTypes> fncs = new List<FncTypes>();
+                List<FncGroupTypes> fncs = new List<FncGroupTypes>();
                 for(int i=0; i < n; ++i)
                 {
-                    var name = $"ChkFncStart{i}";
+                    var name = $"ChkFncGroupStart{i}";
                     var chk = GetChk(name);
                     if (chk == null)
                         continue;
 
                     bool state = chk.IsChecked ?? false;
                     if(state)
-                        fncs.Add((FncTypes) i);
+                        fncs.Add((FncGroupTypes) i);
                 }
                 return fncs;
             }
         }
 
-        public List<FncTypes> StopFncs
+        public List<FncGroupTypes> StopFncs
         {
             get
             {
-                var fncNames = Locomotive.GetFncTypenames();
+                var fncNames = Locomotive.GetFncGroupTypenames();
                 int n = fncNames.Count;
 
-                List<FncTypes> fncs = new List<FncTypes>();
+                List<FncGroupTypes> fncs = new List<FncGroupTypes>();
                 for (int i = 0; i < n; ++i)
                 {
-                    var name = $"ChkFncStop{i}";
+                    var name = $"ChkFncGroupStop{i}";
                     var chk = GetChk(name);
                     if (chk == null)
                         continue;
 
                     bool state = chk.IsChecked ?? false;
                     if(state)
-                        fncs.Add((FncTypes)i);
+                        fncs.Add((FncGroupTypes)i);
                 }
                 return fncs;
             }

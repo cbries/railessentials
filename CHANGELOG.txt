@@ -1,3 +1,8 @@
+2017 September xyz
+------------------
+Release Candidate 5 (RC5)
+- information about any Locomotive's function
+
 2017 September 10th
 -------------------
 Release Candidate 4 (RC4)

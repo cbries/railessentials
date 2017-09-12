@@ -596,8 +596,8 @@ namespace RailwayEssentialMdi.Entities
 
                 if (tv != null)
                 {
-                    item.StartFncTypes = tv.StartFncs;
-                    item.StopFncTypes = tv.StopFncs;
+                    item.StartFncGroupTypes = tv.StartFncGroups;
+                    item.StopFncGroupTypes = tv.StopFncs;
                     item.FncToggle = tv.ToggleFncs;
                 }
             }
@@ -737,20 +737,20 @@ namespace RailwayEssentialMdi.Entities
                                         if (toggleState != null)
                                             toggleState.IsChecked = weaveItem.FncToggle;
 
-                                        var startFncTypes = weaveItem.StartFncTypes;
-                                        foreach (var i in startFncTypes)
+                                        var startFncGroupTypes = weaveItem.StartFncGroupTypes;
+                                        foreach (var i in startFncGroupTypes)
                                         {
                                             var ii = (int)i;
-                                            var chk = tv.GetChk($"ChkFncStart{ii}");
+                                            var chk = tv.GetChk($"ChkFncGroupStart{ii}");
                                             if (chk != null)
                                                 chk.IsChecked = true;
                                         }
 
-                                        var stopFncTypes = weaveItem.StopFncTypes;
-                                        foreach (var i in stopFncTypes)
+                                        var stopFncGroupTypes = weaveItem.StopFncGroupTypes;
+                                        foreach (var i in stopFncGroupTypes)
                                         {
                                             var ii = (int)i;
-                                            var chk = tv.GetChk($"ChkFncStop{ii}");
+                                            var chk = tv.GetChk($"ChkFncGroupStop{ii}");
                                             if (chk != null)
                                                 chk.IsChecked = true;
                                         }

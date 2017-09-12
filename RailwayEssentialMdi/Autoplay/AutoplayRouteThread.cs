@@ -462,10 +462,10 @@ namespace RailwayEssentialMdi.Autoplay
 
                             Func<Locomotive, bool> startFncs = delegate(Locomotive locObj)
                             {
-                                var startFnc = weaveItem.StartFncTypes;
-                                foreach (var i in startFnc)
+                                var startFncGroup = weaveItem.StartFncGroupTypes;
+                                foreach (var i in startFncGroup)
                                 {
-                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
+                                    var fncName = Enum.GetNames(typeof(FncGroupTypes))[(int)i];
                                     Model?.LogAutoplay($"{Prefix} {locObj.Name} switch on {fncName}\n");
                                     Trace.WriteLine($"{Prefix} {locObj.Name} switch on {fncName}");
                                     locObj.ToggleFunctionType((int)i, true);
@@ -477,10 +477,10 @@ namespace RailwayEssentialMdi.Autoplay
 
                             Func<Locomotive, bool> stopFncs = delegate(Locomotive locObj)
                             {
-                                var stopFnc = weaveItem.StopFncTypes;
-                                foreach (var i in stopFnc)
+                                var stopFncGroup = weaveItem.StopFncGroupTypes;
+                                foreach (var i in stopFncGroup)
                                 {
-                                    var fncName = Enum.GetNames(typeof(FncTypes))[(int)i];
+                                    var fncName = Enum.GetNames(typeof(FncGroupTypes))[(int)i];
                                     Model?.LogAutoplay($"{Prefix} {locObj.Name} switch off {fncName}\n");
                                     Trace.WriteLine($"{Prefix} {locObj.Name} switch off {fncName}");
                                     locObj.ToggleFunctionType((int)i, false);

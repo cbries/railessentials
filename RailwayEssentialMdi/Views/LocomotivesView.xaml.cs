@@ -95,12 +95,12 @@ namespace RailwayEssentialMdi.Views
 
         #endregion
 
-        private void CmdFncTypeSet_OnClick(object sender, RoutedEventArgs e)
+        private void CmdFncGroupTypeSet_OnClick(object sender, RoutedEventArgs e)
         {
             if (_dataContext == null)
                 return;
 
-            _dataContext.Entity.ObjectItem.ApplyFncType();
+            _dataContext.Entity.ObjectItem.ApplyFncGroupType();
         }
 
         private void SpeedSlider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

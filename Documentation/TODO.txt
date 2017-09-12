@@ -5,18 +5,12 @@
 
 ##########################################################################################
 
-[A] implement synchronous communication approach for get/set-dlgs between RailwayEssential and CommandStation
-
-[A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
-
 [A] query speed step and provide stepping in locomotive control
-
-[A] query information about any Locomotive's function
-
+[A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
 [A] assign trains to specific routes to allow shuttle mode
 
+[B] implement synchronous communication approach for get/set-dlgs between RailwayEssential and CommandStation
 [B] handle S88 event as state-machine, that unexpected triggers do not start/stop trains when route is still busy
-
 [B] allow individual actions on events, e.g. buttons should start something
 
 [C] "Fast Edit"-Tabelle für alle Objekte, TrackInformationen, etc. um schnell einen Plan editieren zu können

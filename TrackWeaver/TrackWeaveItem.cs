@@ -43,8 +43,8 @@ namespace TrackWeaver
         public bool InvertSwitch { get; set; }
 
         public bool FncToggle { get; set; }
-        public List<FncTypes> StartFncTypes { get; set; }
-        public List<FncTypes> StopFncTypes { get; set; }
+        public List<FncGroupTypes> StartFncGroupTypes { get; set; }
+        public List<FncGroupTypes> StopFncGroupTypes { get; set; }
 
 
         public TrackWeaveItem()
@@ -55,8 +55,8 @@ namespace TrackWeaver
             VisuY = -1;
             InvertSwitch = false;
             FncToggle = false;
-            StartFncTypes = new List<FncTypes>();
-            StopFncTypes = new List<FncTypes>();
+            StartFncGroupTypes = new List<FncGroupTypes>();
+            StopFncGroupTypes = new List<FncGroupTypes>();
         }
 
         public bool Parse(JObject o)
@@ -100,26 +100,26 @@ namespace TrackWeaver
                 if (os["fncToggle"] != null)
                     FncToggle = (bool) os["fncToggle"];
 
-                if (os["startFncTypes"] != null)
+                if (os["startFncGroupTypes"] != null)
                 {
-                    if (os["startFncTypes"] is JArray ar)
+                    if (os["startFncGroupTypes"] is JArray ar)
                     {
-                        if (StartFncTypes == null)
-                            StartFncTypes = new List<FncTypes>();
+                        if (StartFncGroupTypes == null)
+                            StartFncGroupTypes = new List<FncGroupTypes>();
 
                         foreach (var i in ar)
-                            StartFncTypes.Add((FncTypes)(int)i);
+                            StartFncGroupTypes.Add((FncGroupTypes)(int)i);
                     }
                 }
-                if (os["stopFncTypes"] != null)
+                if (os["stopFncGroupTypes"] != null)
                 {
-                    if (os["stopFncTypes"] is JArray ar)
+                    if (os["stopFncGroupTypes"] is JArray ar)
                     {
-                        if (StopFncTypes == null)
-                            StopFncTypes = new List<FncTypes>();
+                        if (StopFncGroupTypes == null)
+                            StopFncGroupTypes = new List<FncGroupTypes>();
 
                         foreach (var i in ar)
-                            StopFncTypes.Add((FncTypes)(int)i);
+                            StopFncGroupTypes.Add((FncGroupTypes)(int)i);
                     }
                 }
 
@@ -131,11 +131,11 @@ namespace TrackWeaver
         public JObject ToJson()
         {
             var startFt = new JArray();
-            foreach (var it in StartFncTypes)
+            foreach (var it in StartFncGroupTypes)
                 startFt.Add((int)it);
 
             var stopFt = new JArray();
-            foreach (var it in StopFncTypes)
+            foreach (var it in StopFncGroupTypes)
                 stopFt.Add((int)it);
 
             JObject o = new JObject {["type"] = Type.ToString()};
@@ -147,8 +147,8 @@ namespace TrackWeaver
                 ["visuY"] = VisuY,
                 ["invertSwitch"] = InvertSwitch,
                 ["fncToggle"] = FncToggle,
-                ["startFncTypes"] = startFt,
-                ["stopFncTypes"] = stopFt
+                ["startFncGroupTypes"] = startFt,
+                ["stopFncGroupTypes"] = stopFt
             };
             o["setup"] = oo;
             return o;

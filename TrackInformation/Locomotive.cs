@@ -33,25 +33,24 @@ namespace TrackInformation
 {
     public sealed class Locomotive : Item
     {
-        public static string GetFncTypename(FncTypes type)
+        public static string GetFncGroupTypename(FncGroupTypes type)
         {
             switch (type)
             {
-                case FncTypes.Light: return "Lights";
-                case FncTypes.Smoke: return "Smoke";
-                case FncTypes.SoundPipe: return "Pipe (Sound)";
-                case FncTypes.SoundCruise: return "Cruise (Sound)";
+                case FncGroupTypes.GroupLight: return "Lights";
+                case FncGroupTypes.GroupSmoke: return "Smoke";
+                case FncGroupTypes.GroupCruise: return "Cruising";
             }
             return null;
         }
 
-        public static List<string> GetFncTypenames()
+        public static List<string> GetFncGroupTypenames()
         {
-            int n = Enum.GetNames(typeof(FncTypes)).Length;
+            int n = Enum.GetNames(typeof(FncGroupTypes)).Length;
 
             List<string> names = new List<string>();
             for(int i=0; i < n; ++i)
-                names.Add(GetFncTypename((FncTypes) i));
+                names.Add(GetFncGroupTypename((FncGroupTypes) i));
             return names;
         }
 
@@ -86,7 +85,6 @@ namespace TrackInformation
             {
                 _locked = value;
                 OnPropertyChanged();
-                OnPropertyChanged("Locked");
             }
         }
 
@@ -112,7 +110,6 @@ namespace TrackInformation
             {
                 _maxSpeedPercentage = value;
                 OnPropertyChanged();
-                OnPropertyChanged("MaxSpeedPercentage");
             }
         }
 
@@ -125,7 +122,6 @@ namespace TrackInformation
             {
                 _blockSpeedPercentage = value;
                 OnPropertyChanged();
-                OnPropertyChanged("BlockSpeedPercentage");
             }
         }
 
@@ -221,72 +217,85 @@ namespace TrackInformation
             }
         }
 
-        #region Function Types
+        private Dictionary<int, int> _funcdesc = new Dictionary<int, int>();
 
-        private List<string> _fncNames;
-        private List<string> _fncTypeNames;
-        private string _fncSelectedName = "--";
-        private int _fncTypeIndex = 0;
-
-        public List<string> FncNames
+        public Dictionary<int, int> Funcdesc
         {
-            get => _fncNames;
+            get => _funcdesc;
             set
             {
-                _fncNames = value;
-                OnPropertyChanged("FncNames");
+                _funcdesc = value;
+                Ctx?.UpdateWindowUi(1);
+                OnPropertyChanged();
             }
         }
 
-        public string FncSelectedName
+        #region Function Groups
+
+        private List<string> _fncGroupNames;
+        private List<string> _fncGroupTypeNames;
+        private string _fncGroupSelectedName = "--";
+        private int _fncGroupTypeIndex;
+
+        public List<string> FncGroupNames
         {
-            get => _fncSelectedName;
+            get => _fncGroupNames;
             set
             {
-                _fncSelectedName = value;
+                _fncGroupNames = value;
+                OnPropertyChanged();
+            }
+        }
 
-                if (_fncTypes.ContainsKey(value))
-                    FncTypeIndex = (int) _fncTypes[value] + 1; // +1 because "--" has index 0
+        public string FncGroupSelectedName
+        {
+            get => _fncGroupSelectedName;
+            set
+            {
+                _fncGroupSelectedName = value;
+
+                if (_fncGroupTypes.ContainsKey(value))
+                    FncGroupTypeIndex = (int)_fncGroupTypes[value] + 1; // +1 because "--" has index 0
                 else
-                    FncTypeIndex = 0;
+                    FncGroupTypeIndex = 0;
 
-                OnPropertyChanged("FncSelectedName");
+                OnPropertyChanged();
             }
         }
 
-        public int FncTypeIndex
+        public int FncGroupTypeIndex
         {
-            get => _fncTypeIndex;
+            get => _fncGroupTypeIndex;
             set
             {
-                _fncTypeIndex = value;
-                OnPropertyChanged("FncTypeIndex");
+                _fncGroupTypeIndex = value;
+                OnPropertyChanged();
             }
         }
 
-        public  List<string> FncTypeNames
+        public  List<string> FncGroupTypeNames
         {
-            get => _fncTypeNames;
+            get => _fncGroupTypeNames;
             set
             {
-                _fncTypeNames = value;
-                OnPropertyChanged("FncTypeNames");
+                _fncGroupTypeNames = value;
+                OnPropertyChanged();
             }
         }
 
-        private readonly Dictionary<string, FncTypes> _fncTypes = new Dictionary<string, FncTypes>();
+        private readonly Dictionary<string, FncGroupTypes> _fncGroupTypes = new Dictionary<string, FncGroupTypes>();
 
-        public void ApplyFncType()
+        public void ApplyFncGroupType()
         {
-            if (string.IsNullOrEmpty(FncSelectedName))
+            if (string.IsNullOrEmpty(FncGroupSelectedName))
                 return;
-            if (FncSelectedName.Trim().EndsWith("--", StringComparison.OrdinalIgnoreCase))
+            if (FncGroupSelectedName.Trim().EndsWith("--", StringComparison.OrdinalIgnoreCase))
                 return;
 
-            if (_fncTypes.ContainsKey(FncSelectedName))
-                _fncTypes[FncSelectedName] = (FncTypes)FncTypeIndex-1;
+            if (_fncGroupTypes.ContainsKey(FncGroupSelectedName))
+                _fncGroupTypes[FncGroupSelectedName] = (FncGroupTypes)FncGroupTypeIndex - 1;
             else
-                _fncTypes.Add(FncSelectedName, (FncTypes)FncTypeIndex-1);
+                _fncGroupTypes.Add(FncGroupSelectedName, (FncGroupTypes)FncGroupTypeIndex - 1);
         }
 
         #endregion
@@ -355,14 +364,14 @@ namespace TrackInformation
             StartTime = DateTime.MaxValue;
             StopTime = DateTime.MinValue;
 
-            int n = Enum.GetNames(typeof(FncTypes)).Length;
+            int n = Enum.GetNames(typeof(FncGroupTypes)).Length;
 
-            if (_fncTypeNames == null)
-                _fncTypeNames = new List<string>();
+            if (_fncGroupTypeNames == null)
+                _fncGroupTypeNames = new List<string>();
             for (int i = 0; i < n; ++i)
-                _fncTypeNames.Add(GetFncTypename((FncTypes)i));
-            _fncTypeNames.Insert(0, "--");
-            OnPropertyChanged(nameof(FncTypeNames));
+                _fncGroupTypeNames.Add(GetFncGroupTypename((FncGroupTypes)i));
+            _fncGroupTypeNames.Insert(0, "--");
+            OnPropertyChanged(nameof(FncGroupTypeNames));
             
             _funcset = new List<bool>(32);
 
@@ -416,7 +425,7 @@ namespace TrackInformation
 
         public void Restart()
         {
-            var sp = this.Speed;
+            var sp = Speed;
 
             StartTime = DateTime.Now;
             StopTime = DateTime.MaxValue;
@@ -428,9 +437,9 @@ namespace TrackInformation
         {
             List<int> fncs = new List<int>();
 
-            foreach (var k in _fncTypes.Keys)
+            foreach (var k in _fncGroupTypes.Keys)
             {
-                var v = (int)_fncTypes[k];
+                var v = (int)_fncGroupTypes[k];
 
                 if (v == fncType)
                 {
@@ -505,7 +514,7 @@ namespace TrackInformation
         {
             List<ICommand> ctrlCmds = new List<ICommand>
             {
-                CommandFactory.Create($"get({ObjectId}, speed, profile, protocol, name, addr, dir, funcset)"),
+                CommandFactory.Create($"get({ObjectId}, speed, profile, protocol, name, addr, dir, funcset, funcdesc)"),
             };
 
             OnCommandsReady(this, ctrlCmds);
@@ -560,19 +569,21 @@ namespace TrackInformation
                     if (!int.TryParse(stype, out int type))
                         type = -1;
 
-                    Trace.WriteLine("funcdesc: " + index + ", " + type);
+                    if (Funcdesc.ContainsKey(index))
+                        Funcdesc[index] = type;
+                    else
+                        Funcdesc.Add(index, type);
 
-                    //if (index != -1 && state != -1)
-                    //    Funcset[index] = state == 1;
+                    OnPropertyChanged("Funcdesc");
+
+                    Ctx?.UpdateWindowUi(1);
                 }
                 else if (arg.Name.Equals("funcset", StringComparison.OrdinalIgnoreCase))
                 {
-                    Trace.WriteLine("funcset: " + arg.Parameter[0]);
-
                     NrOfFunctions = arg.Parameter[0].Length;
 
                     for (int i = 0; i < NrOfFunctions; ++i)
-                        Funcset[i] = arg.Parameter[0][i].Equals('1') ? true : false;
+                        Funcset[i] = arg.Parameter[0][i].Equals('1');
 
                     OnPropertyChanged("Funcset");
 
@@ -603,9 +614,9 @@ namespace TrackInformation
             }
 
             JArray fncTypes = new JArray();
-            foreach (var k in _fncTypes.Keys)
+            foreach (var k in _fncGroupTypes.Keys)
             {
-                var vv = (int)_fncTypes[k];
+                var vv = (int)_fncGroupTypes[k];
 
                 JObject oo = new JObject
                 {
@@ -691,11 +702,11 @@ namespace TrackInformation
                             fncType = (int) ooo["fnc"];
 
                         if (!string.IsNullOrEmpty(name) && fncType > 0)
-                            _fncTypes.Add(name, (FncTypes) fncType);
+                            _fncGroupTypes.Add(name, (FncGroupTypes) fncType);
                     }
 
-                    OnPropertyChanged("FncNames");
-                    OnPropertyChanged("FncTypeNames");
+                    OnPropertyChanged("FncGroupNames");
+                    OnPropertyChanged("FncGroupTypeNames");
                 }
             }
 

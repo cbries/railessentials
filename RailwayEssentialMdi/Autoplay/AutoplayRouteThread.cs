@@ -220,6 +220,7 @@ namespace RailwayEssentialMdi.Autoplay
                 List<ItemData> routeData = new List<ItemData>(); // s88 and switches on the route 
 
                 bool fncHasBeenStarted = false;
+                bool fncHasBeenStopped = false;
 
                 for (;;)
                 {
@@ -463,6 +464,7 @@ namespace RailwayEssentialMdi.Autoplay
                             Func<Locomotive, bool> startFncs = delegate(Locomotive locObj)
                             {
                                 var startFncGroup = weaveItem.StartFncGroupTypes;
+                                
                                 foreach (var i in startFncGroup)
                                 {
                                     var fncName = Enum.GetNames(typeof(FncGroupTypes))[(int)i];
@@ -471,7 +473,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     locObj.ToggleFunctionType((int)i, true);
                                 }
 
-                                return true;
+                                return startFncGroup.Count > 0;
 
                             };
 
@@ -486,7 +488,7 @@ namespace RailwayEssentialMdi.Autoplay
                                     locObj.ToggleFunctionType((int)i, false);
                                 }
 
-                                return true;
+                                return stopFncGroup.Count > 0;
                             };
 
                             if (weaveItem != null)
@@ -497,19 +499,30 @@ namespace RailwayEssentialMdi.Autoplay
                                 {
                                     if (!fncHasBeenStarted)
                                     {
-                                        fncHasBeenStarted = true;
-                                        startFncs(locObject);
+                                        if (fncHasBeenStopped)
+                                        {
+                                            startFncs(locObject);
+                                            fncHasBeenStarted = true;
+                                        }
+                                        fncHasBeenStopped = false;
                                     }
                                     else
                                     {
                                         fncHasBeenStarted = false;
-                                        stopFncs(locObject);
+                                        if (!fncHasBeenStopped)
+                                        {
+                                            stopFncs(locObject);
+                                            fncHasBeenStopped = true;
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    startFncs(locObject);
-                                    stopFncs(locObject);
+                                    if (!fncHasBeenStopped)
+                                    {
+                                        fncHasBeenStarted = startFncs(locObject);
+                                        fncHasBeenStopped = stopFncs(locObject);
+                                    }
                                 }
 
                                 Model?.UpdateWindowUi(1);

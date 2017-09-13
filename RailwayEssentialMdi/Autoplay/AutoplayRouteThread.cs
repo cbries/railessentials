@@ -491,44 +491,51 @@ namespace RailwayEssentialMdi.Autoplay
                                 return stopFncGroup.Count > 0;
                             };
 
+                            string evName = s88Data.DestBlockEvent;
+                            bool isInEvent = evName.Equals("in", StringComparison.OrdinalIgnoreCase);
+                            bool isEnterEvent = evName.Equals("enter", StringComparison.OrdinalIgnoreCase);
+
                             if (weaveItem != null)
                             {
                                 var toggleFncs = weaveItem.FncToggle;
 
                                 if (toggleFncs)
                                 {
-                                    if (!fncHasBeenStarted)
+                                    if (!fncHasBeenStarted && fncHasBeenStopped && !isInEvent)
                                     {
-                                        if (fncHasBeenStopped)
-                                        {
-                                            startFncs(locObject);
-                                            fncHasBeenStarted = true;
-                                        }
+                                        startFncs(locObject);
+                                        fncHasBeenStarted = true;
                                         fncHasBeenStopped = false;
+                                    }
+                                    else if (fncHasBeenStarted && fncHasBeenStopped)
+                                    {
+                                        // ignore
+                                    }
+                                    else if (fncHasBeenStarted && !fncHasBeenStopped)
+                                    {
+                                        if (isEnterEvent)
+                                        {
+                                            fncHasBeenStopped = stopFncs(locObject);
+                                            fncHasBeenStarted = false;
+                                        }
                                     }
                                     else
                                     {
-                                        fncHasBeenStarted = false;
-                                        if (!fncHasBeenStopped)
+                                        if (!fncHasBeenStarted && !fncHasBeenStopped)
                                         {
-                                            stopFncs(locObject);
-                                            fncHasBeenStopped = true;
+                                            fncHasBeenStarted = startFncs(locObject);
+                                            fncHasBeenStopped = false;
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    if (!fncHasBeenStopped)
-                                    {
-                                        fncHasBeenStarted = startFncs(locObject);
-                                        fncHasBeenStopped = stopFncs(locObject);
-                                    }
+                                    fncHasBeenStarted = startFncs(locObject);
+                                    fncHasBeenStopped = stopFncs(locObject);
                                 }
 
                                 Model?.UpdateWindowUi(1);
                             }
-
-                            string evName = s88Data.DestBlockEvent;
 
                             if (!string.IsNullOrEmpty(evName))
                             {

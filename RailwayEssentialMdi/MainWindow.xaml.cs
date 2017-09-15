@@ -205,6 +205,17 @@ namespace RailwayEssentialMdi
                         if (targetBlock == null)
                             continue;
 
+                        #region check destination block if loc is there
+
+                        var destTrackInfo = m.TrackEntity.Track.Get(targetBlock.X, targetBlock.Y);
+                        if (destTrackInfo != null)
+                        {
+                            if (destTrackInfo.GetLocomotiveObjectId() > 0)
+                                continue;
+                        }
+
+                        #endregion
+
                         x = targetBlock.X;
                         y = targetBlock.Y;
 

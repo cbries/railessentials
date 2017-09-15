@@ -492,8 +492,14 @@ namespace RailwayEssentialMdi.Autoplay
                             };
 
                             string evName = s88Data.DestBlockEvent;
-                            bool isInEvent = evName.Equals("in", StringComparison.OrdinalIgnoreCase);
-                            bool isEnterEvent = evName.Equals("enter", StringComparison.OrdinalIgnoreCase);
+                            bool isInEvent = false;
+                            bool isEnterEvent = false;
+
+                            if (!string.IsNullOrEmpty(evName))
+                            {
+                                isInEvent = evName.Equals("in", StringComparison.OrdinalIgnoreCase);
+                                isEnterEvent = evName.Equals("enter", StringComparison.OrdinalIgnoreCase);
+                            }
 
                             if (weaveItem != null)
                             {

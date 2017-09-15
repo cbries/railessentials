@@ -322,11 +322,14 @@
                         
                     </Grid>
 
-                    <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="10, 0, 10, 10">
+                    <DockPanel Grid.Column="1" HorizontalAlignment="Stretch" Margin="10, 0, 0, 10">
                         <Slider Name="SpeedSlider" Orientation="Vertical" Margin="2,2,2,2" Minimum="0" Maximum="100" Value="{Binding Entity.ObjectItem.Speed, Mode=OneWay}" ValueChanged="SpeedSlider_OnValueChanged" 
                         Thumb.DragCompleted="SpeedSlider_OnDragCompleted"/>
                         <StackPanel>
-                            <TextBox Width="50" FontWeight="Bold" HorizontalContentAlignment="Center" Text="{Binding Entity.ObjectItem.Speed, Mode=TwoWay}" Margin="5" IsReadOnly="True" Background="WhiteSmoke"/>
+                            <TextBox Width="60" FontWeight="Bold" HorizontalContentAlignment="Center" Text="{Binding Entity.ObjectItem.Speed, Mode=TwoWay, StringFormat={}{0} %}" Margin="5" IsReadOnly="True" Background="WhiteSmoke" ToolTip="Speed [%]"/>
+
+                            <TextBox Width="60" FontWeight="Bold" HorizontalContentAlignment="Center" Text="{Binding Entity.ObjectItem.Speedstep, Mode=TwoWay, StringFormat={}{0} Step}" Margin="5,-3,5,5" IsReadOnly="True" Background="WhiteSmoke" ToolTip="Speed [Step]"/>
+
                             <Button Content="++" FontWeight="Bold" FontSize="14" Margin="5, 20, 5, 0" Command="{Binding SpeedIncCommand}"/>
                             <Button Content="--" FontWeight="Bold" FontSize="14" Margin="5" Command="{Binding SpeedDecCommand}"/>
                         </StackPanel>

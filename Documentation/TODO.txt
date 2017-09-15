@@ -5,7 +5,6 @@
 
 ##########################################################################################
 
-[A] query speed step and provide stepping in locomotive control
 [A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
 [A] assign trains to specific routes to allow shuttle mode
 

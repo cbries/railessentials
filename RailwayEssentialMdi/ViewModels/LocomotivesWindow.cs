@@ -124,28 +124,44 @@ namespace RailwayEssentialMdi.ViewModels
         {
             if (Entity == null)
                 return;
-            var v = Entity.ObjectItem.Speed;
-            v += 5;
-            if (v >= 100)
-                v = 100;
 
-            Speed = v;
+            int currentSpeedstep = Entity.ObjectItem.Speedstep;
+            int maxSpeedstep = Entity.ObjectItem.GetNumberOfSpeedsteps();
+            if (currentSpeedstep >= maxSpeedstep)
+                currentSpeedstep = maxSpeedstep;
+            else
+                ++currentSpeedstep;        
+            Entity.ObjectItem.Speedstep = currentSpeedstep;
+            PromoteSpeedstep();
 
-            PromoteSpeed();
+            //var v = Entity.ObjectItem.Speed;
+            //v += 5;
+            //if (v >= 100)
+            //    v = 100;
+            //Speed = v;
+            //PromoteSpeed();
         }
 
         private void SpeedDec(object p)
         {
             if (Entity == null)
                 return;
-            var v = Entity.ObjectItem.Speed;
-            v -= 5;
-            if (v <= 0)
-                v = 0;
 
-            Speed = v;
+            int currentSpeedstep = Entity.ObjectItem.Speedstep;
+            int minSpeedstep = 0;
+            if (currentSpeedstep <= minSpeedstep)
+                currentSpeedstep = minSpeedstep;
+            else
+                --currentSpeedstep;
+            Entity.ObjectItem.Speedstep = currentSpeedstep;
+            PromoteSpeedstep();
 
-            PromoteSpeed();
+            //var v = Entity.ObjectItem.Speed;
+            //v -= 5;
+            //if (v <= 0)
+            //    v = 0;
+            //Speed = v;
+            //PromoteSpeed();
         }
 
         private void Stop(object p)
@@ -160,6 +176,11 @@ namespace RailwayEssentialMdi.ViewModels
         public void PromoteSpeed()
         {
             Entity.ObjectItem.ChangeSpeed(Entity.ObjectItem.Speed);
+        }
+
+        public void PromoteSpeedstep()
+        {
+            Entity.ObjectItem.ChangeSpeedstep(Entity.ObjectItem.Speedstep);
         }
 
         public void UpdateFuncset()

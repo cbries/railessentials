@@ -125,15 +125,35 @@ namespace TrackInformation
             }
         }
 
+        public int GetNumberOfSpeedsteps()
+        {
+            if (string.IsNullOrEmpty(_protocol))
+                return 128;
+            if (_protocol.Equals("MM14", StringComparison.OrdinalIgnoreCase))
+                return 14;
+            if (_protocol.Equals("MM27", StringComparison.OrdinalIgnoreCase))
+                return 27;
+            if (_protocol.Equals("MM128", StringComparison.OrdinalIgnoreCase))
+                return 128;
+            if (_protocol.Equals("DCC14", StringComparison.OrdinalIgnoreCase))
+                return 14;
+            if (_protocol.Equals("DCC28", StringComparison.OrdinalIgnoreCase))
+                return 28;
+            if (_protocol.Equals("DCC128", StringComparison.OrdinalIgnoreCase))
+                return 128;
+            return 128;
+        }
+
         private string _protocol;
 
-        // MM14, MM27, MM28, DCC14, DCC28, DCC128, SX32, MMFKT
+        // MM14, MM27, MM128, DCC14, DCC28, DCC128, SX32, MMFKT
         public string Protocol
         {
             get => _protocol;
             set
             {
                 _protocol = value;
+
                 OnPropertyChanged();
                 OnPropertyChanged("Title");
             }
@@ -502,10 +522,40 @@ namespace TrackInformation
             {
                 CommandFactory.Create($"request({ObjectId}, control, force)"),
                 CommandFactory.Create($"set({ObjectId}, speed[{percentage}])"),
-                CommandFactory.Create($"release({ObjectId}, control)")
+                CommandFactory.Create($"release({ObjectId}, control)"),
+                CommandFactory.Create($"get({ObjectId}, speed, speedstep)")
             };
 
             Speed = percentage;
+
+            OnCommandsReady(this, ctrlCmds);
+        }
+
+        public void ChangeSpeedstep(int step)
+        {
+            if (_speed == 0 && step > 0)
+            {
+                StartTime = DateTime.Now;
+                StopTime = DateTime.MinValue;
+            }
+            else
+            {
+                if (step <= 0)
+                {
+                    StartTime = DateTime.MaxValue;
+                    StopTime = DateTime.Now;
+                }
+            }
+
+            List<ICommand> ctrlCmds = new List<ICommand>
+            {
+                CommandFactory.Create($"request({ObjectId}, control, force)"),
+                CommandFactory.Create($"set({ObjectId}, speedstep[{step}])"),
+                CommandFactory.Create($"release({ObjectId}, control)"),
+                CommandFactory.Create($"get({ObjectId}, speed, speedstep)")
+            };
+
+            Speedstep = step;
 
             OnCommandsReady(this, ctrlCmds);
         }
@@ -514,7 +564,7 @@ namespace TrackInformation
         {
             List<ICommand> ctrlCmds = new List<ICommand>
             {
-                CommandFactory.Create($"get({ObjectId}, speed, profile, protocol, name, addr, dir, funcset, funcdesc)"),
+                CommandFactory.Create($"get({ObjectId}, speed, speedstep, profile, protocol, name, addr, dir, funcset, funcdesc)"),
             };
 
             OnCommandsReady(this, ctrlCmds);

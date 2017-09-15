@@ -57,7 +57,7 @@
       "protocol": "MM14",
       "addr": 10,
       "speed": 0,
-      "speedstep": 5,
+      "speedstep": 0,
       "direction": 0,
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
@@ -100,7 +100,7 @@
       "protocol": "MM14",
       "addr": 20,
       "speed": 0,
-      "speedstep": 5,
+      "speedstep": 0,
       "direction": 0,
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
@@ -369,19 +369,19 @@
       "objectId": 100,
       "index": 0,
       "ports": 16,
-      "stateOriginal": "0x808f"
+      "stateOriginal": "0x90ff"
     },
     {
       "objectId": 101,
       "index": 1,
       "ports": 16,
-      "stateOriginal": "0xf00"
+      "stateOriginal": "0xb00"
     },
     {
       "objectId": 102,
       "index": 2,
       "ports": 16,
-      "stateOriginal": "0xffff"
+      "stateOriginal": "0xc0"
     },
     {
       "objectId": 103,

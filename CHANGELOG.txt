@@ -2,6 +2,7 @@
 ------------------
 Release Candidate 5 (RC5)
 - information about any Locomotive's function
+- query speed step and provide stepping in locomotive control
 
 2017 September 10th
 -------------------

@@ -76,6 +76,29 @@ namespace TrackInformation
 
         public bool InitQueryStateDone { get; set; }
 
+        private bool _hasLeftController;
+        private bool _hasRightController;
+
+        public bool HasLeftController
+        {
+            get => _hasLeftController;
+            set
+            {
+                _hasLeftController = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool HasRightController
+        {
+            get => _hasRightController;
+            set
+            {
+                _hasRightController = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _locked;
 
         public bool Locked
@@ -433,9 +456,12 @@ namespace TrackInformation
 
         public void Stop()
         {
+            ChangeSpeedstep(0);
+            ChangeSpeed(0);
+
             List<ICommand> ctrlCmds = new List<ICommand>
             {
-                CommandFactory.Create($"set({ObjectId}, stop)"),
+                CommandFactory.Create($"set({ObjectId}, stop)")
             };
 
             StopTime = DateTime.Now;
@@ -480,12 +506,19 @@ namespace TrackInformation
             {
                 CommandFactory.Create($"request({ObjectId}, control, force)"),
                 CommandFactory.Create($"set({ObjectId}, func[{nr}, {v}])"),
-                CommandFactory.Create($"release({ObjectId}, control)")
+                CommandFactory.Create($"release({ObjectId}, control)"),
+                CommandFactory.Create($"get({ObjectId}, funcset)")
             };
 
             Funcset[(int)nr] = state;
 
             OnCommandsReady(this, ctrlCmds);
+        }
+
+        public void ToggleFunction(uint nr)
+        {
+            var currentState = Funcset[(int) nr];
+            ToggleFunction(nr, !currentState);
         }
 
         public void ChangeDirection(bool backward)
@@ -558,6 +591,26 @@ namespace TrackInformation
             Speedstep = step;
 
             OnCommandsReady(this, ctrlCmds);
+        }
+
+        public void IncreaseSpeed()
+        {
+            int maxSpeedstep = GetNumberOfSpeedsteps();
+            int currentSpeedstep = Speedstep;
+            if (currentSpeedstep >= maxSpeedstep)
+                return;
+            ++currentSpeedstep;
+
+            ChangeSpeedstep(currentSpeedstep);
+        }
+
+        public void DescreaseSpeed()
+        {
+            int currentSpeedstep = Speedstep;
+            if (currentSpeedstep <= 0)
+                return;
+            --currentSpeedstep;
+            ChangeSpeedstep(currentSpeedstep);
         }
 
         public void QueryState()
@@ -693,7 +746,9 @@ namespace TrackInformation
                 ["locked"] = Locked,
                 ["fncTypes"] = fncTypes,
                 ["locimg"] = LocomotiveImageBase64,
-                ["locthumbnail"] = LocomotiveThumbnailBase64
+                ["locthumbnail"] = LocomotiveThumbnailBase64,
+                ["hasLeftController"] = HasLeftController,
+                ["hasRightController"] = HasRightController
             };
 
             return o;
@@ -765,6 +820,12 @@ namespace TrackInformation
 
             if (obj["locthumbnail"] != null)
                 LocomotiveThumbnailBase64 = obj["locthumbnail"].ToString();
+
+            if (obj["hasLeftController"] != null)
+                HasLeftController = (bool) obj["hasLeftController"];
+
+            if (obj["hasRightController"] != null)
+                HasRightController = (bool) obj["hasRightController"];
         }
     }
 }

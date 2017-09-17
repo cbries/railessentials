@@ -3,6 +3,9 @@
   "version": 1.0,
   "targetHost": "192.168.178.61",
   "targetPort": 15471,
+  "gamepad": {
+    "guid": "8FF24210-9B10-11E7-8004-444553540000"
+  },
   "designerColumns": 40,
   "designerRows": 40,
   "track": {

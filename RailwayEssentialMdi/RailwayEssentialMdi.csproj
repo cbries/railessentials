@@ -84,6 +84,12 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.4.0.1\lib\net45\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -174,6 +180,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="DataObjects\ProjectFile.cs" />
+    <Compile Include="DataObjects\ProjectGamepad.cs" />
     <Compile Include="DataObjects\ProjectTrack.cs" />
     <Compile Include="DataObjects\ProjectTrackView.cs" />
     <Compile Include="Entities\LogEntity.cs" />
@@ -181,6 +188,8 @@
     <Compile Include="Entities\TrackEntity.cs" />
     <Compile Include="Entities\TrackEntity.Edit.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Input\Gamepad.cs" />
+    <Compile Include="Input\GamepadInput.cs" />
     <Compile Include="Interfaces\IContent.cs" />
     <Compile Include="Interfaces\ILocomotiveView.cs" />
     <Compile Include="Interfaces\IMainView.cs" />
@@ -764,6 +773,7 @@
     <Resource Include="Resources\removeitem.png" />
     <Resource Include="Resources\rotateitem.png" />
     <Resource Include="Resources\locstop.png" />
+    <Resource Include="Resources\gamepad.jpg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-route.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off.svg" />

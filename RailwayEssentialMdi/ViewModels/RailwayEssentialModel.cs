@@ -42,9 +42,11 @@ using RailwayEssentialMdi.Bases;
 using RailwayEssentialMdi.Commands;
 using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.Entities;
+using RailwayEssentialMdi.Input;
 using RailwayEssentialMdi.Interfaces;
 using RailwayEssentialMdi.Views;
 using RailwayEssentialWeb;
+using SharpDX.DirectInput;
 using TrackInformation;
 using Switch = TrackInformation.Switch;
 
@@ -602,6 +604,7 @@ namespace RailwayEssentialMdi.ViewModels
             _cfg.Port = Project.TargetPort;
             _cfg.DesignerColumns = Project.DesignerColumns;
             _cfg.DesignerRows = Project.DesignerRows;
+            _cfg.Gamepad = Project.Gamepad;
 
             _dispatcher = new Dispatcher.Dispatcher(_cfg)
             {
@@ -858,6 +861,136 @@ namespace RailwayEssentialMdi.ViewModels
             var allSwitches = _dispatcher.GetDataProvider().Objects.OfType<TrackInformation.Switch>();
             foreach (var sw in allSwitches)
                 sw?.ChangeDirection(0);
+
+            StartGamepad();
+        }
+
+        private void StartGamepad()
+        {
+            // start gamecontroller
+            if (_cfg.Gamepad != null)
+            {
+                var sg = _cfg.Gamepad.Guid;
+                if (!string.IsNullOrEmpty(sg) && !sg.Equals("--"))
+                {
+                    Gamepad = new Gamepad();
+                    if (!Gamepad.ActivateGamepad(Guid.Parse(sg)))
+                        LogError($"No Joystick/Gamepad found: {sg}");
+                    else
+                    {
+                        Gamepad.ButtonHandler += (s, args) =>
+                        {
+                            var ev = args as GamepadEventArgs;
+                            //Log("<Event> " + ev?.Data + ", " + ev?.Direction
+                            //    + $", IsLeftStick({ev?.IsLeftStick})"
+                            //    + $", IsRightStick({ev?.IsRightStick})\n");
+
+                            if (_dispatcher != null && ev != null)
+                            {
+                                var g = new GamepadInput();
+                                var data = ev.Data;
+                                var dir = ev.Direction;
+
+                                /* Left:
+                                 * Buttons6, Buttons4, 
+                                 * PointOfViewControllers0::TOP
+                                 * PointOfViewControllers0::RIGHT
+                                 * PointOfViewControllers0::BOTTOM
+                                 * PointOfViewControllers0::LEFT
+                                 * Y::TOP
+                                 * Y::BOTTOM
+                                 * X::LEFT
+                                 * X::RIGHT
+                                 */
+                                if (data.Offset == JoystickOffset.Buttons6 ||
+                                    data.Offset == JoystickOffset.Buttons4 ||
+                                    data.Offset == JoystickOffset.PointOfViewControllers0 ||
+                                    data.Offset == JoystickOffset.Y ||
+                                    data.Offset == JoystickOffset.X)
+                                {
+                                    g.IsLeft = true;
+
+                                    if (data.Offset == JoystickOffset.Y && dir == StickDirection.Top)
+                                        g.IncSpeed = true;
+                                    else if (data.Offset == JoystickOffset.Y && dir == StickDirection.Bottom)
+                                        g.DecSpeed = true;
+                                    else if (data.Offset == JoystickOffset.X && dir == StickDirection.Left)
+                                        g.MaxSpeed = true;
+                                    else if (data.Offset == JoystickOffset.X && dir == StickDirection.Right)
+                                        g.StopSpeed = true;
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Left)
+                                        g.F0 = true;
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Bottom)
+                                        g.F1 = true;
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Top)
+                                        g.F2 = true;
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Right)
+                                        g.F3 = true;
+                                    else if (data.Offset == JoystickOffset.Buttons4)
+                                        g.F4 = true;
+                                    else if (data.Offset == JoystickOffset.Buttons6)
+                                        g.F5 = true;
+                                }
+
+                                /* Right:
+                                 * Buttons7, Buttons5
+                                 * Buttons0
+                                 * Buttons1
+                                 * Buttons2
+                                 * sButtons3
+                                 * RotationZ::TOP
+                                 * RotationY::BOTTOM
+                                 * Z::LEFT
+                                 * Z::RIGHT
+                                 */
+                                if (!g.IsLeft)
+                                {
+                                    if (data.Offset == JoystickOffset.Buttons7 ||
+                                        data.Offset == JoystickOffset.Buttons5 ||
+                                        data.Offset == JoystickOffset.Buttons0 ||
+                                        data.Offset == JoystickOffset.Buttons1 ||
+                                        data.Offset == JoystickOffset.Buttons2 ||
+                                        data.Offset == JoystickOffset.Buttons3 ||
+                                        data.Offset == JoystickOffset.RotationZ ||
+                                        data.Offset == JoystickOffset.Z)
+                                    {
+                                        g.IsRight = true;
+
+                                        if (data.Offset == JoystickOffset.RotationZ && dir == StickDirection.Top)
+                                            g.IncSpeed = true;
+                                        else if (data.Offset == JoystickOffset.RotationZ && dir == StickDirection.Bottom)
+                                            g.DecSpeed = true;
+                                        else if (data.Offset == JoystickOffset.Z && dir == StickDirection.Left)
+                                            g.StopSpeed = true;
+                                        else if (data.Offset == JoystickOffset.Z && dir == StickDirection.Right)
+                                            g.MaxSpeed = true;
+                                        else if (data.Offset == JoystickOffset.Buttons1)
+                                            g.F0 = true;
+                                        else if (data.Offset == JoystickOffset.Buttons2)
+                                            g.F1 = true;
+                                        else if (data.Offset == JoystickOffset.Buttons0)
+                                            g.F2 = true;
+                                        else if (data.Offset == JoystickOffset.Buttons3)
+                                            g.F3 = true;
+                                        else if (data.Offset == JoystickOffset.Buttons5)
+                                            g.F4 = true;
+                                        else if (data.Offset == JoystickOffset.Buttons7)
+                                            g.F5 = true;
+                                    }
+                                }
+
+                                if (g.IsLeft || g.IsRight)
+                                {
+                                    Log($"Gamepad: {g}\n");
+
+                                    List<IGamepadInput> cmds = new List<IGamepadInput> { g };
+                                    _dispatcher.ForwardGamepadInput(cmds);
+                                }
+                            }
+                        };
+                    }
+                }
+            }
         }
 
         private void DispatcherOnUpdateUi(object sender, TrackWeaver.TrackWeaver trackWeaver)
@@ -1338,6 +1471,7 @@ namespace RailwayEssentialMdi.ViewModels
             var weaveFilepath = Path.Combine(Project.Dirpath, Project.Track.Weave);
             _dispatcher.InitializeWeaving(_trackEntity.Track, weaveFilepath);
             Thread.Sleep(125);
+            StartGamepad();
             TriggerUpdateUi();
         }
 
@@ -1855,6 +1989,8 @@ namespace RailwayEssentialMdi.ViewModels
 #endregion
 
         #region IRailwayEssentialModel
+
+        public IGamepad Gamepad { get; set; }
 
         public void TriggerPropertyChanged(string name)
         {

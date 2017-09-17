@@ -44,6 +44,7 @@ namespace RailwayEssentialMdi.DataObjects
         public UInt16 TargetPort { get; set; }
         public int DesignerColumns { get; set; }
         public int DesignerRows { get; set; }
+        public ProjectGamepad Gamepad { get; set; }
         public List<string> Objects { get; set; }
         public ProjectTrack Track { get; set; }
         public List<ProjectTrackView> TrackViews { get; set; }
@@ -57,6 +58,7 @@ namespace RailwayEssentialMdi.DataObjects
             TrackViews = new List<ProjectTrackView>();
             BlockRoutes = new List<Route>();
             BlockRouteGroups= new List<RouteGroup>();
+            Gamepad= new ProjectGamepad();
         }
 
         public bool Load(string path)
@@ -95,6 +97,15 @@ namespace RailwayEssentialMdi.DataObjects
                         TargetPort = v;
                     else
                         TargetPort = 15471;
+                }
+
+                if (o["gamepad"] != null)
+                {
+                    var go = new ProjectGamepad();
+                    if (go.Parse(o["gamepad"]))
+                        Gamepad = go;
+                    else
+                        Gamepad = new ProjectGamepad();
                 }
 
                 if (o["designerColumns"] != null)
@@ -213,6 +224,7 @@ namespace RailwayEssentialMdi.DataObjects
                 ["version"] = Version,
                 ["targetHost"] = TargetHost,
                 ["targetPort"] = TargetPort,
+                ["gamepad"] = Gamepad.ToJson(),
                 ["designerColumns"] = DesignerColumns,
                 ["designerRows"] = DesignerRows,
                 ["track"] = Track.ToJson(),

@@ -21,6 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+using System.Collections.Generic;
+using RailwayEssentialMdi.DataObjects;
+using RailwayEssentialMdi.Input;
+
 namespace RailwayEssentialMdi
 {
     using System;
@@ -28,6 +33,19 @@ namespace RailwayEssentialMdi
 
     public class Configuration : Bases.ViewModelBase, IConfiguration
     {
+        private ProjectGamepad _gamepad;
+
+        public ProjectGamepad Gamepad
+        {
+            get => _gamepad;
+            set
+            {
+                _gamepad = value;
+                RaisePropertyChanged("Gamepad");
+                RaisePropertyChanged("ControllerGuid");
+            }
+        }
+
         private string _ipAddress;
         private UInt16 _port;
         private int _designerColumns;
@@ -50,6 +68,33 @@ namespace RailwayEssentialMdi
             {
                 _port = value;
                 RaisePropertyChanged("Port");
+            }
+        }
+
+        public string ControllerGuid
+        {
+            get => Gamepad.Guid;
+            set
+            {
+                Gamepad.Guid = value;
+                RaisePropertyChanged("ControllerGuid");
+            }
+        }
+        
+        public List<string> ControllerGuids
+        {
+            get
+            {
+                var mgr = new Gamepad();
+                var devices = mgr.GetAvailableDevices();
+                List<string> guids = new List<string>();
+                foreach (var dev in devices)
+                {
+                    if (!guids.Contains(dev.ToString("D").ToUpper()))
+                        guids.Add(dev.ToString("D").ToUpper());
+                }
+                guids.Insert(0, "--");
+                return guids;
             }
         }
 
@@ -77,6 +122,7 @@ namespace RailwayEssentialMdi
 
         public Configuration()
         {
+            Gamepad = new ProjectGamepad();
 #if DEBUG
             IpAddress = "192.168.178.61";
 #else

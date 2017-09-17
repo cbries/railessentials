@@ -250,9 +250,40 @@ namespace RailwayEssentialMdi
                     m2.Click += (o, args) => _dataContext.SetLockToLocomotive(locItem, true);
                 }
 
+                MenuItem m3 = new MenuItem { Header = "Gamepad" };
+                MenuItem m30 = new MenuItem
+                {
+                    IsCheckable = true,
+                    IsChecked = locItem.HasLeftController,
+                    Header = "Left Controller"
+                };
+                m30.Click += (o, args) =>
+                {
+                    var allLocs = _dataContext.Dispatcher.GetDataProvider().Objects.OfType<Locomotive>();
+                    foreach (var loc in allLocs)
+                        loc.HasLeftController = false;
+                    locItem.HasLeftController = true;
+                };
+                MenuItem m31 = new MenuItem
+                {
+                    IsCheckable = true,
+                    IsChecked = locItem.HasRightController,
+                    Header = "Right Controller"
+                };
+                m31.Click += (o, args) =>
+                {
+                    var allLocs = _dataContext.Dispatcher.GetDataProvider().Objects.OfType<Locomotive>();
+                    foreach (var loc in allLocs)
+                        loc.HasRightController = false;
+                    locItem.HasRightController = true;
+                };
+                m3.Items.Add(m30);
+                m3.Items.Add(m31);
+
                 mnu.Items.Add(m0);
                 mnu.Items.Add(m1);
                 mnu.Items.Add(m2);
+                mnu.Items.Add(m3);
 
                 s.ContextMenu = mnu;
                 s.ContextMenu.IsOpen = true;

@@ -6,32 +6,56 @@
              xmlns:local="clr-namespace:RailwayEssentialMdi.Views"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="450">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <TabControl>
+            <TabItem Header="Command Station">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <TextBlock Text="Host" Margin="4" Grid.Row="0" Grid.Column="0" FontWeight="Bold"/>
-        <TextBox Margin="4" Grid.Row="0" Grid.Column="1" Text="{Binding Entity.IpAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                    <TextBlock Text="Host" Margin="4" Grid.Row="0" Grid.Column="0" FontWeight="Bold"/>
+                    <TextBox Margin="4" Grid.Row="0" Grid.Column="1" Text="{Binding Entity.IpAddress, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
-        <TextBlock Text="Port" Margin="4" Grid.Row="2" Grid.Column="0" FontWeight="Bold"/>
-        <TextBox Margin="4" Grid.Row="2" Grid.Column="1" Text="{Binding Entity.Port, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <TextBlock Text="Port" Margin="4" Grid.Row="2" Grid.Column="0" FontWeight="Bold"/>
+                    <TextBox Margin="4" Grid.Row="2" Grid.Column="1" Text="{Binding Entity.Port, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
-        <TextBlock Text="Track Size" Margin="4" Grid.Row="3" Grid.Column="0" FontWeight="Bold"/>
-        <DockPanel Margin="4" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <xctk:IntegerUpDown Name="NumberOfColumns" Height="22" Width="75" Value="{Binding Entity.DesignerColumns, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="100" Minimum="25" FormatString="N0" Watermark="Columns" AllowSpin="True"/>
-            <xctk:IntegerUpDown Name="NumberOfRows" Margin="10,0,0,0" Height="22" Width="75" Value="{Binding Entity.DesignerRows, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="100" Minimum="10" FormatString="N0" Watermark="Rows" AllowSpin="True"/>
-        </DockPanel>
+                    <TextBlock Text="Track Size" Margin="4" Grid.Row="3" Grid.Column="0" FontWeight="Bold"/>
+                    <DockPanel Margin="4" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <xctk:IntegerUpDown Name="NumberOfColumns" Height="22" Width="75" Value="{Binding Entity.DesignerColumns, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="100" Minimum="25" FormatString="N0" Watermark="Columns" AllowSpin="True"/>
+                        <xctk:IntegerUpDown Name="NumberOfRows" Margin="10,0,0,0" Height="22" Width="75" Value="{Binding Entity.DesignerRows, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="100" Minimum="10" FormatString="N0" Watermark="Rows" AllowSpin="True"/>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Gamepad">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="400"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0">
+                        <TextBlock Text="Controller" Margin="4" FontWeight="Bold"/>
+                        <ComboBox Margin="4" SelectedItem="{Binding Entity.ControllerGuid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Entity.ControllerGuids, Mode=OneWay}"/>
+                    </DockPanel>
+                    
+                    <Grid Grid.Row="1" VerticalAlignment="Top" Visibility="Collapsed">
+                        <Image Source="pack://application:,,,/RailwayEssential;component/Resources/gamepad.jpg"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
         
         <!--
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.ColumnSpan="2" Grid.Row="3">

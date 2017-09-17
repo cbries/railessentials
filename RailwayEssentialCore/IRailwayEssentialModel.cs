@@ -25,6 +25,7 @@ namespace RailwayEssentialCore
 {
     public interface IRailwayEssentialModel
     {
+        IGamepad Gamepad { get; set; }
         bool IsVisualLabelActivated { get; set; }
 
         void TriggerPropertyChanged(string name);

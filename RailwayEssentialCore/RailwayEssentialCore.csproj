@@ -70,6 +70,12 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DirectInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DirectInput.4.0.1\lib\net45\SharpDX.DirectInput.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -86,6 +92,8 @@
     <Compile Include="Base64.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="IConfiguration.cs" />
+    <Compile Include="IGamepad.cs" />
+    <Compile Include="IGamepadInput.cs" />
     <Compile Include="IPersist.cs" />
     <Compile Include="IRailwayEssentialModel.cs" />
     <Compile Include="ITrackEdit.cs" />

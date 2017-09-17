@@ -23,6 +23,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Ecos2Core;
 using RailwayEssentialCore;
@@ -136,6 +138,67 @@ namespace Dispatcher
             }
             
             return true;
+        }
+
+        public void ForwardGamepadInput(IReadOnlyList<IGamepadInput> commands)
+        {
+            var allLocs = GetDataProvider().Objects.OfType<Locomotive>();
+
+            foreach (var cmd in commands)
+            {
+                if (cmd == null)
+                    continue;
+
+                Locomotive locObj = null;
+
+                if (cmd.IsRight)
+                {
+                    var locObjs = allLocs.Where(x => x.HasRightController).ToList();
+                    if(locObjs.Count <= 0)
+                        continue;
+
+                    locObj = locObjs[0];
+                }
+                else if (cmd.IsLeft)
+                {
+                    var locObjs = allLocs.Where(x => x.HasLeftController).ToList();
+                    if (locObjs.Count <= 0)
+                        continue;
+
+                    locObj = locObjs[0];
+                }
+                
+                if (locObj != null)
+                {
+                    if (cmd.F0)
+                        locObj.ToggleFunction(0);
+                    if (cmd.F1)
+                        locObj.ToggleFunction(1);
+                    if (cmd.F2)
+                        locObj.ToggleFunction(2);
+                    if (cmd.F3)
+                        locObj.ToggleFunction(3);
+                    if (cmd.F4)
+                        locObj.ToggleFunction(4);
+                    if (cmd.F5)
+                        locObj.ToggleFunction(5);
+
+                    if (cmd.IncSpeed)
+                        locObj.IncreaseSpeed();
+
+                    if (cmd.DecSpeed)
+                        locObj.DescreaseSpeed();
+
+                    if (cmd.MaxSpeed)
+                    {
+                        var maxSpeedstep = locObj.GetNumberOfSpeedsteps();
+                        locObj.ChangeSpeedstep(maxSpeedstep);
+                    }
+
+                    if(cmd.StopSpeed)
+                        locObj.ChangeSpeedstep(0);
+                }
+            }
         }
 
         public async Task ForwardCommands(IReadOnlyList<ICommand> commands)

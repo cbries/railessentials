@@ -301,7 +301,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 9,
       "visuX": 16,
       "visuY": 1,
@@ -314,7 +314,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 9,
       "visuX": 18,
       "visuY": 1,
@@ -327,7 +327,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 10,
       "visuX": 16,
       "visuY": 2,
@@ -340,7 +340,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 10,
       "visuX": 18,
       "visuY": 2,
@@ -353,7 +353,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 11,
       "visuX": 16,
       "visuY": 3,
@@ -366,7 +366,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 11,
       "visuX": 18,
       "visuY": 3,
@@ -379,7 +379,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 12,
       "visuX": 16,
       "visuY": 4,
@@ -392,7 +392,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 12,
       "visuX": 18,
       "visuY": 4,
@@ -405,7 +405,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 13,
       "visuX": 16,
       "visuY": 5,
@@ -418,7 +418,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 13,
       "visuX": 18,
       "visuY": 5,
@@ -431,7 +431,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 14,
       "visuX": 16,
       "visuY": 6,
@@ -444,7 +444,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 14,
       "visuX": 18,
       "visuY": 6,
@@ -457,7 +457,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 15,
       "visuX": 16,
       "visuY": 7,
@@ -470,7 +470,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 15,
       "visuX": 18,
       "visuY": 7,
@@ -483,7 +483,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 16,
       "visuX": 16,
       "visuY": 8,
@@ -496,7 +496,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 16,
       "visuX": 18,
       "visuY": 8,
@@ -587,7 +587,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 1,
       "visuX": 15,
       "visuY": 1,
@@ -600,7 +600,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 2,
       "visuX": 15,
       "visuY": 2,
@@ -613,7 +613,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 3,
       "visuX": 15,
       "visuY": 3,
@@ -626,7 +626,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 4,
       "visuX": 15,
       "visuY": 4,
@@ -639,7 +639,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 5,
       "visuX": 15,
       "visuY": 5,
@@ -652,7 +652,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 6,
       "visuX": 15,
       "visuY": 6,
@@ -665,7 +665,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 7,
       "visuX": 15,
       "visuY": 7,
@@ -678,7 +678,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 8,
       "visuX": 15,
       "visuY": 8,
@@ -691,7 +691,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 3,
       "visuX": 4,
       "visuY": 2,
@@ -704,7 +704,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 1,
       "visuX": 5,
       "visuY": 8,
@@ -717,7 +717,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 2,
       "visuX": 4,
       "visuY": 7,
@@ -730,7 +730,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 5,
       "visuX": 21,
       "visuY": 4,
@@ -743,7 +743,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 4,
       "visuX": 5,
       "visuY": 1,
@@ -821,7 +821,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 6,
       "visuX": 23,
       "visuY": 2,
@@ -847,7 +847,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 3,
       "visuX": 3,
       "visuY": 3,
@@ -863,7 +863,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 16,
       "visuX": 17,
       "visuY": 8,
@@ -879,7 +879,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 15,
       "visuX": 17,
       "visuY": 7,
@@ -895,7 +895,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 13,
       "visuX": 17,
       "visuY": 5,
@@ -911,7 +911,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 12,
       "visuX": 17,
       "visuY": 4,
@@ -927,7 +927,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 11,
       "visuX": 17,
       "visuY": 3,
@@ -943,7 +943,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 10,
       "visuX": 17,
       "visuY": 2,
@@ -959,7 +959,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 9,
       "visuX": 17,
       "visuY": 1,
@@ -975,7 +975,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 100,
+      "objectId": 102,
       "pin": 14,
       "visuX": 17,
       "visuY": 6,
@@ -991,7 +991,7 @@
   {
     "type": "S88",
     "setup": {
-      "objectId": 102,
+      "objectId": 100,
       "pin": 2,
       "visuX": 3,
       "visuY": 6,

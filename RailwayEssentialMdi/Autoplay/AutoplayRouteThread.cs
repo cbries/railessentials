@@ -419,7 +419,8 @@ namespace RailwayEssentialMdi.Autoplay
 
                         if (locObject != null)
                         {
-                            locObject.ChangeDirection(false);
+                            // DO NOT CHANGE DIRECTION OF LOCOMOTIVE (!!)
+                            //locObject.ChangeDirection(false);
                             locObject.ChangeSpeed(locObject.MaxSpeedPercentage);
                         }
 

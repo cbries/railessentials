@@ -50,7 +50,7 @@
                         <ComboBox Margin="4" SelectedItem="{Binding Entity.ControllerGuid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" ItemsSource="{Binding Entity.ControllerGuids, Mode=OneWay}"/>
                     </DockPanel>
                     
-                    <Grid Grid.Row="1" VerticalAlignment="Top" Visibility="Collapsed">
+                    <Grid Grid.Row="1" VerticalAlignment="Top">
                         <Image Source="pack://application:,,,/RailwayEssential;component/Resources/gamepad.jpg"/>
                     </Grid>
                 </Grid>

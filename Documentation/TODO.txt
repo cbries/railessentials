@@ -5,6 +5,7 @@
 
 ##########################################################################################
 
+[A] signal control (!!) -- currently we have no support for signals
 [A] assign locomotives to different type groups, e.g. cargo (Güterzug), intercity (Fernverkehr), local (Nahverkehr)
 [A] assign trains to specific routes to allow shuttle mode
 

@@ -1,0 +1,1023 @@
+﻿[
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 12,
+      "visuX": 7,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20000,
+      "pin": 0,
+      "visuX": 3,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20011,
+      "pin": 0,
+      "visuX": 5,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20010,
+      "pin": 0,
+      "visuX": 4,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20001,
+      "pin": 0,
+      "visuX": 4,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20004,
+      "pin": 0,
+      "visuX": 22,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20003,
+      "pin": 0,
+      "visuX": 21,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20006,
+      "pin": 0,
+      "visuX": 21,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20007,
+      "pin": 0,
+      "visuX": 22,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20008,
+      "pin": 0,
+      "visuX": 23,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20002,
+      "pin": 0,
+      "visuX": 5,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20005,
+      "pin": 0,
+      "visuX": 23,
+      "visuY": 1,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20009,
+      "pin": 0,
+      "visuX": 3,
+      "visuY": 5,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 11,
+      "visuX": 6,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 13,
+      "visuX": 6,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 13,
+      "visuX": 8,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 11,
+      "visuX": 8,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 12,
+      "visuX": 6,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 12,
+      "visuX": 8,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 10,
+      "visuX": 6,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 10,
+      "visuX": 8,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 9,
+      "visuX": 6,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 9,
+      "visuX": 8,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 9,
+      "visuX": 16,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 9,
+      "visuX": 18,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 10,
+      "visuX": 16,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 10,
+      "visuX": 18,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 11,
+      "visuX": 16,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 11,
+      "visuX": 18,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 12,
+      "visuX": 16,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 12,
+      "visuX": 18,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 13,
+      "visuX": 16,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 13,
+      "visuX": 18,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 14,
+      "visuX": 16,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 14,
+      "visuX": 18,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 15,
+      "visuX": 16,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 15,
+      "visuX": 18,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 16,
+      "visuX": 16,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 16,
+      "visuX": 18,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 16,
+      "visuX": 6,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 16,
+      "visuX": 8,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 15,
+      "visuX": 8,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 15,
+      "visuX": 6,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 14,
+      "visuX": 6,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 14,
+      "visuX": 8,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 1,
+      "visuX": 15,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 2,
+      "visuX": 15,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 3,
+      "visuX": 15,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 4,
+      "visuX": 15,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 5,
+      "visuX": 15,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 6,
+      "visuX": 15,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 7,
+      "visuX": 15,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 8,
+      "visuX": 15,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 3,
+      "visuX": 4,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 1,
+      "visuX": 5,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 2,
+      "visuX": 4,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 5,
+      "visuX": 21,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 4,
+      "visuX": 5,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 13,
+      "visuX": 7,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 10,
+      "visuX": 7,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 11,
+      "visuX": 7,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 16,
+      "visuX": 7,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 15,
+      "visuX": 7,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 6,
+      "visuX": 23,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 9,
+      "visuX": 7,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 3,
+      "visuX": 3,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 16,
+      "visuX": 17,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 15,
+      "visuX": 17,
+      "visuY": 7,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 13,
+      "visuX": 17,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 12,
+      "visuX": 17,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 11,
+      "visuX": 17,
+      "visuY": 3,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 10,
+      "visuX": 17,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 9,
+      "visuX": 17,
+      "visuY": 1,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 102,
+      "pin": 14,
+      "visuX": 17,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": true,
+      "startFncGroupTypes": [
+        0,
+        2
+      ],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 100,
+      "pin": 2,
+      "visuX": 3,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "type": "S88",
+    "setup": {
+      "objectId": 101,
+      "pin": 14,
+      "visuX": 7,
+      "visuY": 6,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": [
+        0,
+        2
+      ]
+    }
+  }
+]

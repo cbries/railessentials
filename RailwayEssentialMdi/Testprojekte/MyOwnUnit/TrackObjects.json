@@ -26,7 +26,7 @@
       "addr": 2,
       "speed": 0,
       "speedstep": 0,
-      "direction": 0,
+      "direction": 1,
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 4,
       "maxSpeedPercentage": 65,
@@ -45,7 +45,7 @@
       "addr": 21,
       "speed": 0,
       "speedstep": 0,
-      "direction": 0,
+      "direction": 1,
       "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 25,
@@ -65,7 +65,7 @@
       "speed": 0,
       "speedstep": 0,
       "direction": 0,
-      "funcset": "00100000000000000000000000000000",
+      "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 25,
@@ -131,7 +131,7 @@
       "speed": 0,
       "speedstep": 0,
       "direction": 0,
-      "funcset": "10000000000000000000000000000000",
+      "funcset": "00000000000000000000000000000000",
       "nrOfFunctions": 3,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 50,
@@ -354,6 +354,358 @@
       "mode": "SWITCH",
       "state": 0,
       "switching": 0
+    },
+    {
+      "name1": "s1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20012,
+      "addrext": [
+        "20g",
+        "20r"
+      ],
+      "addr": 20,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20013,
+      "addrext": [
+        "21g",
+        "21r"
+      ],
+      "addr": 21,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s3",
+      "name2": "",
+      "name3": "",
+      "objectId": 20014,
+      "addrext": [
+        "22g",
+        "22r"
+      ],
+      "addr": 22,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s4",
+      "name2": "",
+      "name3": "",
+      "objectId": 20015,
+      "addrext": [
+        "23g",
+        "23r"
+      ],
+      "addr": 23,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s5.1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20016,
+      "addrext": [
+        "24g",
+        "24r"
+      ],
+      "addr": 24,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s5.2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20017,
+      "addrext": [
+        "25g",
+        "25r"
+      ],
+      "addr": 25,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s6.1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20018,
+      "addrext": [
+        "26g",
+        "26r"
+      ],
+      "addr": 26,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s6.2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20019,
+      "addrext": [
+        "27g",
+        "27r"
+      ],
+      "addr": 27,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s7",
+      "name2": "",
+      "name3": "",
+      "objectId": 20020,
+      "addrext": [
+        "28g",
+        "28r"
+      ],
+      "addr": 28,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s8",
+      "name2": "",
+      "name3": "",
+      "objectId": 20021,
+      "addrext": [
+        "29g",
+        "29r"
+      ],
+      "addr": 29,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "s9",
+      "name2": "",
+      "name3": "",
+      "objectId": 20022,
+      "addrext": [
+        "30g",
+        "30r"
+      ],
+      "addr": 30,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S30",
+      "name2": "zur Parade",
+      "name3": "",
+      "objectId": 20023,
+      "addrext": [
+        "33g",
+        "33r"
+      ],
+      "addr": 33,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S31",
+      "name2": "SHBf-rechts",
+      "name3": "",
+      "objectId": 20024,
+      "addrext": [
+        "32g",
+        "32r"
+      ],
+      "addr": 32,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S11",
+      "name2": "zur Parade",
+      "name3": "",
+      "objectId": 20025,
+      "addrext": [
+        "35g",
+        "35r"
+      ],
+      "addr": 35,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S11",
+      "name2": "SHBf-links",
+      "name3": "",
+      "objectId": 20026,
+      "addrext": [
+        "34g",
+        "34r"
+      ],
+      "addr": 34,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S41",
+      "name2": "",
+      "name3": "",
+      "objectId": 20027,
+      "addrext": [
+        "41g",
+        "41r"
+      ],
+      "addr": 41,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S42",
+      "name2": "",
+      "name3": "",
+      "objectId": 20028,
+      "addrext": [
+        "42g",
+        "42r"
+      ],
+      "addr": 42,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S43",
+      "name2": "",
+      "name3": "",
+      "objectId": 20029,
+      "addrext": [
+        "43g",
+        "43r"
+      ],
+      "addr": 43,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "S44",
+      "name2": "",
+      "name3": "",
+      "objectId": 20030,
+      "addrext": [
+        "44g",
+        "44r"
+      ],
+      "addr": 44,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "Sbhf#2",
+      "name2": "links",
+      "name3": "",
+      "objectId": 20031,
+      "addrext": [
+        "61g",
+        "61r"
+      ],
+      "addr": 61,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "Neuer",
+      "name2": "Artikel",
+      "name3": ">0001<",
+      "objectId": 20032,
+      "addrext": [
+        "62g",
+        "62r"
+      ],
+      "addr": 62,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
+    },
+    {
+      "name1": "Shbf#2",
+      "name2": "rechts",
+      "name3": "",
+      "objectId": 20033,
+      "addrext": [
+        "36g",
+        "36r"
+      ],
+      "addr": 36,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0
     }
   ],
   "routes": [
@@ -412,6 +764,34 @@
       "name2": "Fahrweg",
       "name3": "",
       "type": "ROUTE"
+    },
+    {
+      "objectId": 30003,
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "hinten",
+      "type": "ROUTE"
+    },
+    {
+      "objectId": 30009,
+      "name1": "Shbf#2",
+      "name2": "hinten",
+      "name3": "",
+      "type": "ROUTE"
+    },
+    {
+      "objectId": 30010,
+      "name1": "Shbf#2",
+      "name2": "vorne",
+      "name3": "",
+      "type": "ROUTE"
+    },
+    {
+      "objectId": 30011,
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "vorne",
+      "type": "ROUTE"
     }
   ],
   "s88": [
@@ -431,7 +811,7 @@
       "objectId": 102,
       "index": 2,
       "ports": 16,
-      "stateOriginal": "0xb0bf"
+      "stateOriginal": "0x1c0"
     },
     {
       "objectId": 103,

@@ -38,15 +38,15 @@
 	<link rel="stylesheet" type="text/css" href="css/base.css" />
 	<link rel="stylesheet" type="text/css" href="css/msdropdown/dd.css" />
 	<script>
-	  {{GLOBALJS}}
+		{{GLOBALJS}}
 	</script>
 	<style>
-	  {{GLOBALCSS}}
+		{{GLOBALCSS}}
 	</style>
 </head>
 <body>
 
-<div id="editMenu" style="display: none; margin-top: 10px; margin-bottom: 10px; float: left;">
+<div id="editMenu" style="padding-left: 10px; bottom: 10px; position: fixed; z-index: 3000;">
 
 <div style="width: 100%; display: table;">
 	<div style="display: table-row">

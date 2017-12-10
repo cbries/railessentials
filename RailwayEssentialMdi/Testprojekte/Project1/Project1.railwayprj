@@ -1,0 +1,28 @@
+﻿{
+  "name": "Project1",
+  "version": 1.0,
+  "targetHost": "192.168.178.61",
+  "targetPort": 15471,
+  "gamepad": {
+    "guid": "--"
+  },
+  "designerColumns": 40,
+  "designerRows": 40,
+  "track": {
+    "name": "Project1",
+    "path": "TrackPlan.json",
+    "weave": "TrackWeaving.json"
+  },
+  "trackViews": [
+    {
+      "name": "S#1",
+      "startX": 0,
+      "startY": 0,
+      "show": true
+    }
+  ],
+  "objects": [
+    "TrackObjects.json"
+  ],
+  "blockRoutes": []
+}

@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var TESTDATA = true;
-var isEdit = true;
+var TESTDATA = false;
+var isEdit = false;
 
 const ModeAddMove = 0;
 const ModeRemove = 1;

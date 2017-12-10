@@ -1513,7 +1513,7 @@
     "name": "Track#9",
     "x": 4,
     "y": 10,
-    "themeId": 10,
+    "themeId": 107,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1657,7 +1657,7 @@
     "name": "Track#27",
     "x": 21,
     "y": 10,
-    "themeId": 10,
+    "themeId": 107,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1777,7 +1777,10 @@
     "themeId": 17,
     "orientation": "rot90",
     "description": "",
-    "options": {}
+    "options": {
+      "connectorIdentifier": "2",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
     "name": "Connector#2",
@@ -1786,32 +1789,1445 @@
     "themeId": 17,
     "orientation": "rot90",
     "description": "",
+    "options": {
+      "connectorIdentifier": "3",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Switch#6",
+    "x": 6,
+    "y": 16,
+    "themeId": 13,
+    "orientation": "rot180",
+    "description": "",
     "options": {}
   },
   {
-    "name": "Switch#3",
-    "x": 4,
-    "y": 15,
+    "name": "Switch#7",
+    "x": 7,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#8",
+    "x": 5,
+    "y": 17,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#19",
+    "x": 6,
+    "y": 17,
     "themeId": 51,
     "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#9",
+    "x": 3,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#39",
+    "x": 2,
+    "y": 18,
+    "themeId": 201,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#41",
+    "x": 4,
+    "y": 18,
+    "themeId": 51,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#42",
+    "x": 5,
+    "y": 18,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#44",
+    "x": 5,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#12",
+    "x": 6,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#13",
+    "x": 7,
+    "y": 21,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#45",
+    "x": 4,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#46",
+    "x": 6,
+    "y": 18,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#47",
+    "x": 7,
+    "y": 17,
+    "themeId": 51,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#48",
+    "x": 6,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#49",
+    "x": 8,
+    "y": 16,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#51",
+    "x": 9,
+    "y": 15,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#52",
+    "x": 9,
+    "y": 16,
+    "themeId": 50,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#53",
+    "x": 7,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#15",
+    "x": 2,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#65",
+    "x": 6,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#67",
+    "x": 7,
+    "y": 22,
+    "themeId": 50,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#68",
+    "x": 6,
+    "y": 22,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#1",
+    "x": 8,
+    "y": 19,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#4",
+    "x": 8,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#5",
+    "x": 8,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#6",
+    "x": 10,
+    "y": 15,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#7",
+    "x": 10,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#69",
+    "x": 16,
+    "y": 15,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#8",
+    "x": 13,
+    "y": 16,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#9",
+    "x": 13,
+    "y": 15,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#70",
+    "x": 12,
+    "y": 15,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#71",
+    "x": 12,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#72",
+    "x": 8,
+    "y": 17,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#73",
+    "x": 7,
+    "y": 18,
+    "themeId": 12,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#74",
+    "x": 8,
+    "y": 18,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#75",
+    "x": 9,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#10",
+    "x": 10,
+    "y": 18,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#76",
+    "x": 9,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#11",
+    "x": 10,
+    "y": 19,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#13",
+    "x": 11,
+    "y": 22,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#14",
+    "x": 11,
+    "y": 21,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#77",
+    "x": 10,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#78",
+    "x": 10,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#79",
+    "x": 9,
+    "y": 21,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#80",
+    "x": 9,
+    "y": 22,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#1",
+    "x": 11,
+    "y": 16,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#2",
+    "x": 11,
+    "y": 15,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#3",
+    "x": 16,
+    "y": 16,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#4",
+    "x": 15,
+    "y": 18,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#5",
+    "x": 15,
+    "y": 19,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#6",
+    "x": 14,
+    "y": 21,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#7",
+    "x": 14,
+    "y": 22,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#8",
+    "x": 2,
+    "y": 23,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#15",
+    "x": 2,
+    "y": 21,
+    "themeId": 151,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#81",
+    "x": 2,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#3",
+    "x": 2,
+    "y": 24,
+    "themeId": 17,
+    "orientation": "rot90",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "2",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Track#82",
+    "x": 14,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#83",
+    "x": 14,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#84",
+    "x": 13,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#85",
+    "x": 13,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#86",
+    "x": 15,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#87",
+    "x": 15,
+    "y": 15,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#17",
+    "x": 19,
+    "y": 16,
+    "themeId": 51,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#18",
+    "x": 17,
+    "y": 21,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#19",
+    "x": 18,
+    "y": 21,
+    "themeId": 50,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#20",
+    "x": 19,
+    "y": 19,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#21",
+    "x": 20,
+    "y": 18,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#88",
+    "x": 16,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#89",
+    "x": 19,
+    "y": 20,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#91",
+    "x": 18,
+    "y": 20,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#92",
+    "x": 17,
+    "y": 22,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#93",
+    "x": 20,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#94",
+    "x": 19,
+    "y": 15,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#95",
+    "x": 17,
+    "y": 15,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#96",
+    "x": 18,
+    "y": 15,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#97",
+    "x": 18,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#98",
+    "x": 17,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#99",
+    "x": 20,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#100",
+    "x": 21,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#101",
+    "x": 19,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#102",
+    "x": 18,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#103",
+    "x": 17,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#104",
+    "x": 17,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#105",
+    "x": 18,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#106",
+    "x": 16,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#107",
+    "x": 16,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#108",
+    "x": 15,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#109",
+    "x": 15,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#110",
+    "x": 16,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#111",
+    "x": 19,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#112",
+    "x": 20,
+    "y": 21,
+    "themeId": 13,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#114",
+    "x": 21,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#9",
+    "x": 22,
+    "y": 18,
+    "themeId": 201,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#115",
+    "x": 22,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#116",
+    "x": 22,
+    "y": 22,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#4",
+    "x": 22,
+    "y": 24,
+    "themeId": 17,
+    "orientation": "rot90",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "3",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Sensor#10",
+    "x": 22,
+    "y": 23,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#16",
+    "x": 22,
+    "y": 21,
+    "themeId": 151,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#5",
+    "x": 30,
+    "y": 1,
+    "themeId": 17,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "4",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Switch#3",
+    "x": 30,
+    "y": 2,
+    "themeId": 51,
+    "orientation": "rot90",
     "description": "",
     "options": {}
   },
   {
     "name": "Switch#4",
-    "x": 5,
-    "y": 15,
+    "x": 29,
+    "y": 10,
+    "themeId": 17,
+    "orientation": "rot90",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "5",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Track#20",
+    "x": 29,
+    "y": 9,
     "themeId": 51,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#40",
+    "x": 30,
+    "y": 9,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#43",
+    "x": 29,
+    "y": 3,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#50",
+    "x": 30,
+    "y": 3,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#11",
+    "x": 29,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#12",
+    "x": 29,
+    "y": 8,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#13",
+    "x": 30,
+    "y": 8,
+    "themeId": 200,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#14",
+    "x": 30,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#3",
+    "x": 30,
+    "y": 6,
+    "themeId": 151,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#12",
+    "x": 29,
+    "y": 6,
+    "themeId": 151,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#15",
+    "x": 29,
+    "y": 7,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#16",
+    "x": 30,
+    "y": 7,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#54",
+    "x": 29,
+    "y": 2,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#7",
+    "x": 22,
+    "y": 16,
+    "themeId": 17,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "4",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Track#55",
+    "x": 24,
+    "y": 20,
+    "themeId": 13,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#17",
+    "x": 25,
+    "y": 20,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
   },
   {
-    "name": "Switch#5",
-    "x": 5,
-    "y": 16,
-    "themeId": 51,
+    "name": "Track#56",
+    "x": 26,
+    "y": 20,
+    "themeId": 10,
     "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#22",
+    "x": 27,
+    "y": 20,
+    "themeId": 52,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#18",
+    "x": 28,
+    "y": 20,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#131",
+    "x": 29,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#2",
+    "x": 30,
+    "y": 20,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#132",
+    "x": 32,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#27",
+    "x": 33,
+    "y": 20,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#133",
+    "x": 34,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#23",
+    "x": 35,
+    "y": 20,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#134",
+    "x": 36,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#24",
+    "x": 37,
+    "y": 20,
+    "themeId": 51,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#135",
+    "x": 38,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#136",
+    "x": 39,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#6",
+    "x": 40,
+    "y": 20,
+    "themeId": 17,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#137",
+    "x": 37,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#138",
+    "x": 37,
+    "y": 18,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#25",
+    "x": 35,
+    "y": 21,
+    "themeId": 50,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#139",
+    "x": 36,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#140",
+    "x": 37,
+    "y": 21,
+    "themeId": 13,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#141",
+    "x": 34,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#28",
+    "x": 33,
+    "y": 21,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#142",
+    "x": 32,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#20",
+    "x": 30,
+    "y": 21,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#143",
+    "x": 29,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#29",
+    "x": 28,
+    "y": 21,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#144",
+    "x": 27,
+    "y": 21,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#145",
+    "x": 27,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#30",
+    "x": 28,
+    "y": 19,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#146",
+    "x": 29,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#21",
+    "x": 30,
+    "y": 19,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#147",
+    "x": 32,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#31",
+    "x": 33,
+    "y": 19,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#148",
+    "x": 34,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#149",
+    "x": 35,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#150",
+    "x": 36,
+    "y": 19,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#26",
+    "x": 36,
+    "y": 18,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#151",
+    "x": 35,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#152",
+    "x": 34,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#32",
+    "x": 33,
+    "y": 18,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#153",
+    "x": 32,
+    "y": 18,
+    "themeId": 13,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   }

@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var TESTDATA = false;
-var isEdit = false;
+var TESTDATA = true;
+var isEdit = true;
 
 const ModeAddMove = 0;
 const ModeRemove = 1;
@@ -334,8 +334,8 @@ function rebuildTable() {
 
 function findTargetTd(evt, callback) {
 
-    var clientX = evt.clientX;
-    var clientY = evt.clientY;
+    var clientX = evt.pageX;
+    var clientY = evt.pageY;
 
     $('td').each(function (index, el) {
 
@@ -650,6 +650,8 @@ $(document).ready(function (e) {
             var col = $(this).parent().children().index($(this)) + 1;
             var row = $(this).parent().parent().children().index($(this).parent()) + 1;
 
+			//console.log("Pos: " + col + ", " + row);
+			
             if (isDragging && objDrag !== null) {
 
                 // ###################
@@ -690,6 +692,8 @@ $(document).ready(function (e) {
                     if (c.find("svg").length == 1)
                         return;
 
+					//console.log(c);
+					
                     //var img = $(svgCache[src]).clone();
                     var symbol = src.substring(src.lastIndexOf('/') + 1);
                     symbol = symbol.substring(0, symbol.lastIndexOf('.'));

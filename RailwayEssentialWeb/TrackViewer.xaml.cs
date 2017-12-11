@@ -208,7 +208,11 @@ namespace RailwayEssentialWeb
                 MarginBottom = 10,
                 MarginTop = 10,
                 MarginLeft = 15,
-                MarginRight = 15
+                MarginRight = 15,
+                Landscape = true,
+                HeaderFooterEnabled = false
+                //BackgroundsEnabled = false,
+                //SelectionOnly = false                
             });
         }
 

@@ -176,7 +176,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 1,
+      "state": 0,
       "switching": 0
     },
     {
@@ -368,7 +368,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -400,7 +400,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -464,7 +464,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -512,7 +512,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -576,7 +576,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -608,7 +608,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -640,7 +640,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -656,7 +656,7 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     },
     {
@@ -704,93 +704,93 @@
       "protocol": "DCC",
       "type": "ACCESSORY",
       "mode": "SWITCH",
-      "state": 0,
+      "state": 1,
       "switching": 0
     }
   ],
   "routes": [
     {
       "objectId": 30000,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S1",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30001,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S2",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30002,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S3",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30004,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S4",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30005,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S5",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30006,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S6",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30007,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S7",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30008,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "S8",
+      "name2": "Fahrweg",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30003,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "hinten",
       "type": "ROUTE"
     },
     {
       "objectId": 30009,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "Shbf#2",
+      "name2": "hinten",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30010,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "Shbf#2",
+      "name2": "vorne",
+      "name3": "",
       "type": "ROUTE"
     },
     {
       "objectId": 30011,
-      "name1": "",
-      "name2": null,
-      "name3": null,
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "vorne",
       "type": "ROUTE"
     }
   ],
@@ -811,7 +811,7 @@
       "objectId": 102,
       "index": 2,
       "ports": 16,
-      "stateOriginal": "0x87c2"
+      "stateOriginal": "0x83c2"
     },
     {
       "objectId": 103,

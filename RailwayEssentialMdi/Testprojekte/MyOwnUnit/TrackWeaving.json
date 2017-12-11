@@ -1023,7 +1023,7 @@
   {
     "type": "Switch",
     "setup": {
-      "objectId": 20000,
+      "objectId": 20026,
       "pin": 0,
       "visuX": 1,
       "visuY": 5,
@@ -1041,6 +1041,201 @@
       "visuX": 1,
       "visuY": 10,
       "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20023,
+      "pin": 0,
+      "visuX": 25,
+      "visuY": 10,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20024,
+      "pin": 0,
+      "visuX": 25,
+      "visuY": 8,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20031,
+      "pin": 0,
+      "visuX": 30,
+      "visuY": 2,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20033,
+      "pin": 0,
+      "visuX": 29,
+      "visuY": 9,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20022,
+      "pin": 0,
+      "visuX": 19,
+      "visuY": 16,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20021,
+      "pin": 0,
+      "visuX": 20,
+      "visuY": 18,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20015,
+      "pin": 0,
+      "visuX": 7,
+      "visuY": 22,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20020,
+      "pin": 0,
+      "visuX": 19,
+      "visuY": 19,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20012,
+      "pin": 0,
+      "visuX": 4,
+      "visuY": 18,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20013,
+      "pin": 0,
+      "visuX": 7,
+      "visuY": 17,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20014,
+      "pin": 0,
+      "visuX": 6,
+      "visuY": 17,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20027,
+      "pin": 0,
+      "visuX": 37,
+      "visuY": 20,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20029,
+      "pin": 0,
+      "visuX": 36,
+      "visuY": 18,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20028,
+      "pin": 0,
+      "visuX": 35,
+      "visuY": 20,
+      "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20030,
+      "pin": 0,
+      "visuX": 35,
+      "visuY": 21,
+      "invertSwitch": true,
       "fncToggle": false,
       "startFncGroupTypes": [],
       "stopFncGroupTypes": []

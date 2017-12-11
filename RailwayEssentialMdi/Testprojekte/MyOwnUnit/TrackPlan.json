@@ -1,15 +1,6 @@
 [
   {
     "name": "",
-    "x": 20,
-    "y": 4,
-    "themeId": 10,
-    "orientation": "",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
     "x": 6,
     "y": 5,
     "themeId": 10,
@@ -149,7 +140,7 @@
     "name": "",
     "x": 9,
     "y": 6,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -158,7 +149,7 @@
     "name": "",
     "x": 9,
     "y": 8,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -254,19 +245,8 @@
   {
     "name": "",
     "x": 18,
-    "y": 5,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "",
-    "x": 18,
     "y": 6,
-    "themeId": 10,
+    "themeId": 201,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -277,8 +257,8 @@
     "name": "",
     "x": 18,
     "y": 7,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 51,
+    "orientation": "rot180",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -298,26 +278,8 @@
   {
     "name": "",
     "x": 19,
-    "y": 5,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 19,
-    "y": 6,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 19,
     "y": 7,
-    "themeId": 10,
+    "themeId": 201,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -326,8 +288,8 @@
     "name": "",
     "x": 19,
     "y": 8,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 51,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -357,7 +319,7 @@
     "name": "",
     "x": 9,
     "y": 1,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -399,7 +361,7 @@
     "name": "",
     "x": 19,
     "y": 1,
-    "themeId": 10,
+    "themeId": 50,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -417,16 +379,7 @@
     "name": "",
     "x": 21,
     "y": 1,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 22,
-    "y": 1,
-    "themeId": 10,
+    "themeId": 11,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -457,7 +410,7 @@
     "name": "",
     "x": 9,
     "y": 2,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -488,7 +441,7 @@
     "name": "",
     "x": 18,
     "y": 2,
-    "themeId": 10,
+    "themeId": 50,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -499,17 +452,8 @@
     "name": "",
     "x": 19,
     "y": 2,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 20,
-    "y": 2,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 201,
+    "orientation": "rot90",
     "description": "",
     "options": {}
   },
@@ -518,7 +462,7 @@
     "x": 21,
     "y": 2,
     "themeId": 10,
-    "orientation": "rot0",
+    "orientation": "rot90",
     "description": "",
     "options": {}
   },
@@ -557,7 +501,7 @@
     "name": "",
     "x": 9,
     "y": 3,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -588,21 +532,12 @@
     "name": "",
     "x": 18,
     "y": 3,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 201,
+    "orientation": "rot90",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
-  },
-  {
-    "name": "",
-    "x": 20,
-    "y": 3,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
   },
   {
     "name": "",
@@ -648,7 +583,7 @@
     "name": "",
     "x": 9,
     "y": 4,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -676,53 +611,11 @@
     }
   },
   {
-    "name": "",
-    "x": 18,
-    "y": 4,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "",
-    "x": 24,
-    "y": 1,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "s16",
-    "x": 23,
-    "y": 1,
-    "themeId": 50,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "s15",
-    "x": 22,
-    "y": 2,
-    "themeId": 50,
-    "orientation": "",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
     "name": "s14",
     "x": 21,
     "y": 3,
-    "themeId": 50,
-    "orientation": "",
+    "themeId": 10,
+    "orientation": "rot90",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -760,155 +653,6 @@
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
-  },
-  {
-    "name": "Schatten#7",
-    "x": 11,
-    "y": 2,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"0,10\",\r\n  \"sensor1\": \"1,10\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1007"
-    }
-  },
-  {
-    "name": "Schatten#6",
-    "x": 11,
-    "y": 3,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"0,11\",\r\n  \"sensor1\": \"1,11\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1001"
-    }
-  },
-  {
-    "name": "Schatten#5",
-    "x": 11,
-    "y": 4,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"0,12\",\r\n  \"sensor1\": \"1,12\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1006"
-    }
-  },
-  {
-    "name": "Schatten#4",
-    "x": 11,
-    "y": 5,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"1,13\",\r\n  \"sensor1\": \"0,13\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1004"
-    }
-  },
-  {
-    "name": "Schatten#3",
-    "x": 11,
-    "y": 6,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"1,14\",\r\n  \"sensor1\": \"0,14\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1000"
-    }
-  },
-  {
-    "name": "Schatten#2",
-    "x": 11,
-    "y": 7,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"1,15\",\r\n  \"sensor1\": \"0,15\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 1,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 2,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 3,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 4,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 5,
-    "themeId": 10,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 6,
-    "themeId": 10,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 7,
-    "themeId": 10,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 10,
-    "y": 8,
-    "themeId": 10,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
   },
   {
     "name": "1,9",
@@ -1000,7 +744,7 @@
     "name": "0,9",
     "x": 17,
     "y": 1,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1011,7 +755,7 @@
     "name": "0,10",
     "x": 17,
     "y": 2,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1022,7 +766,7 @@
     "name": "0,11",
     "x": 17,
     "y": 3,
-    "themeId": 200,
+    "themeId": 50,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1033,8 +777,8 @@
     "name": "0,12",
     "x": 17,
     "y": 4,
-    "themeId": 200,
-    "orientation": "rot0",
+    "themeId": 201,
+    "orientation": "rot90",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -1044,7 +788,7 @@
     "name": "0,13",
     "x": 17,
     "y": 5,
-    "themeId": 200,
+    "themeId": 201,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1055,8 +799,8 @@
     "name": "0,14",
     "x": 17,
     "y": 6,
-    "themeId": 200,
-    "orientation": "rot0",
+    "themeId": 51,
+    "orientation": "rot180",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -1066,7 +810,7 @@
     "name": "0,15",
     "x": 17,
     "y": 7,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1077,7 +821,7 @@
     "name": "0,16",
     "x": 17,
     "y": 8,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1123,59 +867,11 @@
     }
   },
   {
-    "name": "Schatten#8",
-    "x": 11,
-    "y": 1,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"0,9\",\r\n  \"sensor1\": \"1,9\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1008"
-    }
-  },
-  {
-    "name": "Schatten#1",
-    "x": 11,
-    "y": 8,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "7",
-      "events": "{\r\n  \"sensor0\": \"1,16\",\r\n  \"sensor1\": \"0,16\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"enter\",\r\n  \"event1\": \"in\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockCurrentLocomotive": "1009"
-    }
-  },
-  {
-    "name": "s26",
-    "x": 23,
-    "y": 8,
-    "themeId": 51,
-    "orientation": "rot180",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "s25",
-    "x": 22,
-    "y": 7,
-    "themeId": 51,
-    "orientation": "rot180",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
     "name": "s24",
     "x": 21,
     "y": 6,
-    "themeId": 51,
-    "orientation": "rot180",
+    "themeId": 10,
+    "orientation": "rot-90",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -1183,121 +879,36 @@
   },
   {
     "name": "",
-    "x": 20,
-    "y": 5,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 20,
-    "y": 6,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 20,
-    "y": 7,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
     "x": 21,
     "y": 7,
     "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 21,
-    "y": 8,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 20,
-    "y": 8,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 22,
-    "y": 8,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 24,
-    "y": 8,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 21,
-    "y": 5,
-    "themeId": 201,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 22,
-    "y": 6,
-    "themeId": 201,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "",
-    "x": 23,
-    "y": 7,
-    "themeId": 201,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "",
-    "x": 23,
-    "y": 2,
-    "themeId": 201,
     "orientation": "rot90",
     "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
+    "options": {}
   },
   {
     "name": "",
-    "x": 22,
-    "y": 3,
-    "themeId": 201,
+    "x": 21,
+    "y": 8,
+    "themeId": 50,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "",
+    "x": 20,
+    "y": 8,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "",
+    "x": 21,
+    "y": 5,
+    "themeId": 10,
     "orientation": "rot90",
     "description": "",
     "options": {}
@@ -1306,7 +917,7 @@
     "name": "",
     "x": 21,
     "y": 4,
-    "themeId": 201,
+    "themeId": 10,
     "orientation": "rot90",
     "description": "",
     "options": {
@@ -1411,42 +1022,10 @@
     }
   },
   {
-    "name": "",
-    "x": 25,
-    "y": 1,
-    "themeId": 11,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "connectorIdentifier": "3"
-    }
-  },
-  {
-    "name": "",
-    "x": 25,
-    "y": 8,
-    "themeId": 50,
-    "orientation": "rot90",
-    "description": "",
-    "options": {
-      "connectorIdentifier": "3",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Track#1",
-    "x": 19,
-    "y": 4,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
     "name": "Track#2",
     "x": 9,
     "y": 5,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1455,16 +1034,7 @@
     "name": "Track#3",
     "x": 9,
     "y": 7,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#4",
-    "x": 19,
-    "y": 3,
-    "themeId": 10,
+    "themeId": 150,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1484,10 +1054,13 @@
     "name": "Track#5",
     "x": 1,
     "y": 11,
-    "themeId": 10,
+    "themeId": 17,
     "orientation": "rot90",
     "description": "",
-    "options": {}
+    "options": {
+      "connectorIdentifier": "2",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
     "name": "Track#6",
@@ -1622,7 +1195,7 @@
     "name": "Track#23",
     "x": 18,
     "y": 10,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1631,8 +1204,8 @@
     "name": "Track#24",
     "x": 19,
     "y": 10,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 107,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -1649,126 +1222,16 @@
     "name": "Track#26",
     "x": 20,
     "y": 10,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot180",
     "description": "",
     "options": {}
   },
   {
-    "name": "Switch#2",
-    "x": 25,
-    "y": 10,
-    "themeId": 50,
-    "orientation": "rot90",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
     "name": "Track#27",
     "x": 21,
     "y": 10,
-    "themeId": 107,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#28",
-    "x": 22,
-    "y": 10,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#29",
-    "x": 23,
-    "y": 10,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#30",
-    "x": 24,
-    "y": 10,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#31",
-    "x": 25,
-    "y": 9,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#32",
-    "x": 25,
-    "y": 7,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#33",
-    "x": 25,
-    "y": 6,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#34",
-    "x": 25,
-    "y": 5,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#35",
-    "x": 25,
-    "y": 4,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#36",
-    "x": 25,
-    "y": 3,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#37",
-    "x": 25,
-    "y": 2,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#38",
-    "x": 25,
-    "y": 11,
-    "themeId": 10,
+    "themeId": 50,
     "orientation": "rot90",
     "description": "",
     "options": {}
@@ -1783,34 +1246,10 @@
     "options": {}
   },
   {
-    "name": "Connector#1",
-    "x": 1,
-    "y": 12,
-    "themeId": 17,
-    "orientation": "rot90",
-    "description": "",
-    "options": {
-      "connectorIdentifier": "2",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Connector#2",
-    "x": 25,
-    "y": 12,
-    "themeId": 17,
-    "orientation": "rot90",
-    "description": "",
-    "options": {
-      "connectorIdentifier": "3",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
     "name": "Switch#6",
     "x": 6,
     "y": 16,
-    "themeId": 13,
+    "themeId": 12,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -1819,8 +1258,8 @@
     "name": "Switch#7",
     "x": 7,
     "y": 16,
-    "themeId": 10,
-    "orientation": "rot180",
+    "themeId": 101,
+    "orientation": "rot0",
     "description": "",
     "options": {}
   },
@@ -1829,7 +1268,7 @@
     "x": 5,
     "y": 17,
     "themeId": 11,
-    "orientation": "rot-90",
+    "orientation": "rot0",
     "description": "",
     "options": {}
   },
@@ -1837,37 +1276,8 @@
     "name": "Track#19",
     "x": 6,
     "y": 17,
-    "themeId": 51,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Switch#9",
-    "x": 3,
-    "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#39",
-    "x": 2,
-    "y": 18,
-    "themeId": 201,
-    "orientation": "rot-90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#41",
-    "x": 4,
-    "y": 18,
-    "themeId": 51,
-    "orientation": "rot0",
+    "themeId": 11,
+    "orientation": "rot180",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -1877,7 +1287,7 @@
     "name": "Track#42",
     "x": 5,
     "y": 18,
-    "themeId": 11,
+    "themeId": 10,
     "orientation": "rot90",
     "description": "",
     "options": {}
@@ -1886,8 +1296,8 @@
     "name": "Track#44",
     "x": 5,
     "y": 19,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 50,
+    "orientation": "rot-90",
     "description": "",
     "options": {}
   },
@@ -1895,8 +1305,8 @@
     "name": "Switch#12",
     "x": 6,
     "y": 20,
-    "themeId": 10,
-    "orientation": "rot90",
+    "themeId": 101,
+    "orientation": "rot0",
     "description": "",
     "options": {}
   },
@@ -1904,34 +1314,19 @@
     "name": "Switch#13",
     "x": 7,
     "y": 21,
-    "themeId": 10,
-    "orientation": "rot-90",
+    "themeId": 17,
+    "orientation": "rot0",
     "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#45",
-    "x": 4,
-    "y": 19,
-    "themeId": 11,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#46",
-    "x": 6,
-    "y": 18,
-    "themeId": 11,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
+    "options": {
+      "connectorIdentifier": "2",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
     "name": "Track#47",
     "x": 7,
     "y": 17,
-    "themeId": 51,
+    "themeId": 101,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1942,7 +1337,7 @@
     "name": "Track#48",
     "x": 6,
     "y": 19,
-    "themeId": 11,
+    "themeId": 101,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1951,17 +1346,8 @@
     "name": "Track#49",
     "x": 8,
     "y": 16,
-    "themeId": 50,
+    "themeId": 10,
     "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#51",
-    "x": 9,
-    "y": 15,
-    "themeId": 11,
-    "orientation": "rot-90",
     "description": "",
     "options": {}
   },
@@ -1969,7 +1355,7 @@
     "name": "Track#52",
     "x": 9,
     "y": 16,
-    "themeId": 50,
+    "themeId": 200,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -1978,17 +1364,8 @@
     "name": "Track#53",
     "x": 7,
     "y": 19,
-    "themeId": 11,
-    "orientation": "rot180",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Switch#15",
-    "x": 2,
-    "y": 19,
     "themeId": 10,
-    "orientation": "rot90",
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -1996,28 +1373,8 @@
     "name": "Track#65",
     "x": 6,
     "y": 21,
-    "themeId": 50,
-    "orientation": "rot-90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#67",
-    "x": 7,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot180",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Track#68",
-    "x": 6,
-    "y": 22,
-    "themeId": 11,
-    "orientation": "rot180",
+    "themeId": 200,
+    "orientation": "rot0",
     "description": "",
     "options": {}
   },
@@ -2026,33 +1383,6 @@
     "x": 8,
     "y": 19,
     "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Block#4",
-    "x": 8,
-    "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Block#5",
-    "x": 8,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Block#6",
-    "x": 10,
-    "y": 15,
-    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2067,103 +1397,13 @@
     "options": {}
   },
   {
-    "name": "Track#69",
-    "x": 16,
-    "y": 15,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Bhf1: Gleis 5",
-    "x": 13,
-    "y": 16,
-    "themeId": 151,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "-1",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Bhf1: Gleis 6",
-    "x": 13,
-    "y": 15,
-    "themeId": 151,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "-1",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Track#70",
-    "x": 12,
-    "y": 15,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#71",
-    "x": 12,
-    "y": 16,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
     "name": "Track#72",
     "x": 8,
     "y": 17,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#73",
-    "x": 7,
-    "y": 18,
-    "themeId": 12,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#74",
-    "x": 8,
-    "y": 18,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#75",
-    "x": 9,
-    "y": 18,
     "themeId": 10,
-    "orientation": "rot0",
+    "orientation": "rot180",
     "description": "",
     "options": {}
-  },
-  {
-    "name": "Bhf1: Gleis 4",
-    "x": 10,
-    "y": 18,
-    "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "-1",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
   },
   {
     "name": "Track#76",
@@ -2175,34 +1415,22 @@
     "options": {}
   },
   {
-    "name": "Bhf1: Gleis 3",
+    "name": "Bhf1: Gleis 2",
     "x": 10,
     "y": 19,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Bhf1: Gleis 4",
+    "x": 11,
+    "y": 16,
     "themeId": 150,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "-1",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Bhf1: Gleis 1",
-    "x": 11,
-    "y": 22,
-    "themeId": 151,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "blockGroupIdentifier": "-1",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Bhf1: Gleis 2",
-    "x": 11,
-    "y": 21,
-    "themeId": 151,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -2210,73 +1438,10 @@
     }
   },
   {
-    "name": "Track#77",
-    "x": 10,
-    "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#78",
-    "x": 10,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#79",
-    "x": 9,
-    "y": 21,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#80",
-    "x": 9,
-    "y": 22,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#1",
-    "x": 11,
-    "y": 16,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#2",
-    "x": 11,
-    "y": 15,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
     "name": "Sensor#3",
     "x": 16,
     "y": 16,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#4",
-    "x": 15,
-    "y": 18,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2285,67 +1450,22 @@
     "name": "Sensor#5",
     "x": 15,
     "y": 19,
-    "themeId": 200,
-    "orientation": "rot0",
+    "themeId": 101,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
   {
-    "name": "Sensor#6",
-    "x": 14,
-    "y": 21,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#7",
-    "x": 14,
-    "y": 22,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#8",
-    "x": 2,
-    "y": 23,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Blk:Bahnhof links",
+    "name": "Bahnhof links",
     "x": 2,
     "y": 21,
-    "themeId": 10,
-    "orientation": "rot90",
+    "themeId": 151,
+    "orientation": "rot0",
     "description": "",
     "options": {
       "blockGroupIdentifier": "-1",
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
-  },
-  {
-    "name": "Track#81",
-    "x": 2,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#82",
-    "x": 14,
-    "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
   },
   {
     "name": "Track#83",
@@ -2357,37 +1477,10 @@
     "options": {}
   },
   {
-    "name": "Track#84",
-    "x": 13,
-    "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#85",
-    "x": 13,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
     "name": "Track#86",
     "x": 15,
     "y": 16,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#87",
-    "x": 15,
-    "y": 15,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2396,8 +1489,8 @@
     "name": "Switch#17",
     "x": 19,
     "y": 16,
-    "themeId": 51,
-    "orientation": "rot180",
+    "themeId": 50,
+    "orientation": "rot0",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -2407,7 +1500,7 @@
     "name": "Switch#18",
     "x": 17,
     "y": 21,
-    "themeId": 50,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2416,7 +1509,7 @@
     "name": "Switch#19",
     "x": 18,
     "y": 21,
-    "themeId": 50,
+    "themeId": 10,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -2425,102 +1518,19 @@
     "name": "Switch#20",
     "x": 19,
     "y": 19,
-    "themeId": 50,
+    "themeId": 13,
     "orientation": "rot0",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
-  },
-  {
-    "name": "Switch#21",
-    "x": 20,
-    "y": 18,
-    "themeId": 50,
-    "orientation": "rot0",
-    "description": "",
-    "options": {
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
-  },
-  {
-    "name": "Track#88",
-    "x": 16,
-    "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#89",
-    "x": 19,
-    "y": 20,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#91",
-    "x": 18,
-    "y": 20,
-    "themeId": 11,
-    "orientation": "rot-90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#92",
-    "x": 17,
-    "y": 22,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#93",
-    "x": 20,
-    "y": 19,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#94",
-    "x": 19,
-    "y": 15,
-    "themeId": 11,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#95",
-    "x": 17,
-    "y": 15,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#96",
-    "x": 18,
-    "y": 15,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
   },
   {
     "name": "Track#97",
     "x": 18,
     "y": 16,
     "themeId": 10,
-    "orientation": "rot0",
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2528,8 +1538,8 @@
     "name": "Track#98",
     "x": 17,
     "y": 16,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 102,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2546,16 +1556,7 @@
     "name": "Track#100",
     "x": 21,
     "y": 16,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#101",
-    "x": 19,
-    "y": 18,
-    "themeId": 10,
+    "themeId": 201,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2564,8 +1565,8 @@
     "name": "Track#102",
     "x": 18,
     "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 11,
+    "orientation": "rot90",
     "description": "",
     "options": {}
   },
@@ -2573,8 +1574,8 @@
     "name": "Track#103",
     "x": 17,
     "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 11,
+    "orientation": "rot-90",
     "description": "",
     "options": {}
   },
@@ -2582,8 +1583,8 @@
     "name": "Track#104",
     "x": 17,
     "y": 19,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 50,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2592,7 +1593,7 @@
     "x": 18,
     "y": 19,
     "themeId": 10,
-    "orientation": "rot0",
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2600,7 +1601,7 @@
     "name": "Track#106",
     "x": 16,
     "y": 19,
-    "themeId": 10,
+    "themeId": 50,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2609,8 +1610,8 @@
     "name": "Track#107",
     "x": 16,
     "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 200,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2618,98 +1619,20 @@
     "name": "Track#108",
     "x": 15,
     "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 17,
+    "orientation": "rot180",
     "description": "",
-    "options": {}
+    "options": {
+      "connectorIdentifier": "3",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
-    "name": "Track#109",
-    "x": 15,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#110",
-    "x": 16,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#111",
+    "name": "Bahnhof rechts",
     "x": 19,
     "y": 21,
-    "themeId": 10,
+    "themeId": 151,
     "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#112",
-    "x": 20,
-    "y": 21,
-    "themeId": 13,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#114",
-    "x": 21,
-    "y": 18,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#9",
-    "x": 22,
-    "y": 18,
-    "themeId": 201,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#115",
-    "x": 22,
-    "y": 19,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#116",
-    "x": 22,
-    "y": 22,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#10",
-    "x": 22,
-    "y": 23,
-    "themeId": 11,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Blk:Bahnhof rechts",
-    "x": 22,
-    "y": 21,
-    "themeId": 10,
-    "orientation": "rot90",
     "description": "",
     "options": {
       "blockGroupIdentifier": "-1",
@@ -2717,16 +1640,13 @@
     }
   },
   {
-    "name": "Connector#7",
-    "x": 22,
-    "y": 16,
-    "themeId": 17,
-    "orientation": "rot0",
+    "name": "Track#114",
+    "x": 21,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot90",
     "description": "",
-    "options": {
-      "connectorIdentifier": "4",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
+    "options": {}
   },
   {
     "name": "Track#55",
@@ -2768,7 +1688,7 @@
     "name": "Sensor#18",
     "x": 28,
     "y": 20,
-    "themeId": 200,
+    "themeId": 108,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2777,7 +1697,7 @@
     "name": "Track#131",
     "x": 29,
     "y": 20,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2816,8 +1736,8 @@
     "name": "Track#133",
     "x": 34,
     "y": 20,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 102,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2933,8 +1853,8 @@
     "name": "Track#141",
     "x": 34,
     "y": 21,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 101,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2972,7 +1892,7 @@
     "name": "Track#143",
     "x": 29,
     "y": 21,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2981,7 +1901,7 @@
     "name": "Sensor#29",
     "x": 28,
     "y": 21,
-    "themeId": 200,
+    "themeId": 108,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -3008,7 +1928,7 @@
     "name": "Sensor#30",
     "x": 28,
     "y": 19,
-    "themeId": 200,
+    "themeId": 108,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -3017,7 +1937,7 @@
     "name": "Track#146",
     "x": 29,
     "y": 19,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -3065,8 +1985,8 @@
     "name": "Track#149",
     "x": 35,
     "y": 19,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 101,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -3192,22 +2112,27 @@
     "options": {}
   },
   {
-    "name": "Block#2",
+    "name": "Berg #1",
     "x": 29,
     "y": 15,
     "themeId": 151,
     "orientation": "rot0",
     "description": "",
-    "options": {}
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
   },
   {
-    "name": "Block#3",
+    "name": "Berg #2",
     "x": 29,
     "y": 14,
     "themeId": 151,
     "orientation": "rot0",
     "description": "",
-    "options": {}
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
     "name": "Track#59",
@@ -3276,77 +2201,209 @@
     }
   },
   {
-    "name": "Track#50",
-    "x": 22,
+    "name": "Signal#4",
+    "x": 9,
     "y": 20,
     "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#62",
-    "x": 2,
-    "y": 20,
-    "themeId": 10,
-    "orientation": "rot90",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Block#9",
-    "x": 4,
-    "y": 23,
-    "themeId": 151,
     "orientation": "rot0",
     "description": "",
     "options": {}
   },
   {
-    "name": "Track#63",
-    "x": 3,
-    "y": 23,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#64",
-    "x": 6,
-    "y": 23,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Sensor#13",
-    "x": 7,
-    "y": 23,
+    "name": "Signal#5",
+    "x": 9,
+    "y": 17,
     "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
   },
   {
-    "name": "Connector#11",
-    "x": 8,
-    "y": 23,
-    "themeId": 17,
+    "name": "Track#54",
+    "x": 16,
+    "y": 17,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
-    "options": {
-      "connectorIdentifier": "2",
-      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
-    }
+    "options": {}
   },
   {
-    "name": "Connector#12",
-    "x": 16,
-    "y": 23,
-    "themeId": 17,
+    "name": "Track#113",
+    "x": 15,
+    "y": 17,
+    "themeId": 200,
     "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Block#11",
+    "x": 12,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#11",
+    "x": 13,
+    "y": 1,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#12",
+    "x": 13,
+    "y": 2,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#15",
+    "x": 13,
+    "y": 3,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#16",
+    "x": 13,
+    "y": 4,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#19",
+    "x": 13,
+    "y": 5,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#20",
+    "x": 13,
+    "y": 6,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#25",
+    "x": 13,
+    "y": 7,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#26",
+    "x": 13,
+    "y": 8,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#117",
+    "x": 14,
+    "y": 8,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#118",
+    "x": 14,
+    "y": 7,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#119",
+    "x": 14,
+    "y": 6,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#120",
+    "x": 14,
+    "y": 5,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#121",
+    "x": 14,
+    "y": 4,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#122",
+    "x": 14,
+    "y": 3,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#123",
+    "x": 14,
+    "y": 2,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#124",
+    "x": 14,
+    "y": 1,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#127",
+    "x": 21,
+    "y": 9,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#3",
+    "x": 21,
+    "y": 11,
+    "themeId": 17,
+    "orientation": "rot90",
     "description": "",
     "options": {
       "connectorIdentifier": "3",
@@ -3354,38 +2411,582 @@
     }
   },
   {
-    "name": "Sensor#14",
-    "x": 17,
-    "y": 23,
+    "name": "Signal#6",
+    "x": 9,
+    "y": 13,
+    "themeId": 102,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#128",
+    "x": 8,
+    "y": 13,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#33",
+    "x": 10,
+    "y": 13,
     "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
   },
   {
-    "name": "Track#66",
-    "x": 18,
-    "y": 23,
+    "name": "Track#129",
+    "x": 11,
+    "y": 13,
     "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
   },
   {
-    "name": "Block#11",
-    "x": 19,
-    "y": 23,
+    "name": "Bhf1: Gleis 6",
+    "x": 12,
+    "y": 13,
     "themeId": 151,
     "orientation": "rot0",
     "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Track#130",
+    "x": 14,
+    "y": 13,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
     "options": {}
   },
   {
-    "name": "Track#90",
-    "x": 21,
-    "y": 23,
+    "name": "Sensor#34",
+    "x": 15,
+    "y": 13,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#154",
+    "x": 16,
+    "y": 13,
     "themeId": 10,
     "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#7",
+    "x": 17,
+    "y": 13,
+    "themeId": 101,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#155",
+    "x": 18,
+    "y": 13,
+    "themeId": 11,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#3",
+    "x": 18,
+    "y": 14,
+    "themeId": 51,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#156",
+    "x": 19,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#157",
+    "x": 20,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Connector#4",
+    "x": 21,
+    "y": 14,
+    "themeId": 17,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "connectorIdentifier": "4",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Switch#4",
+    "x": 8,
+    "y": 14,
+    "themeId": 50,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#11",
+    "x": 7,
+    "y": 14,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#158",
+    "x": 6,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#159",
+    "x": 5,
+    "y": 14,
+    "themeId": 13,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#8",
+    "x": 9,
+    "y": 14,
+    "themeId": 101,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#35",
+    "x": 10,
+    "y": 14,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#160",
+    "x": 11,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Bhf1: Gleis 5",
+    "x": 12,
+    "y": 14,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
+  },
+  {
+    "name": "Track#161",
+    "x": 14,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#36",
+    "x": 15,
+    "y": 14,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#162",
+    "x": 16,
+    "y": 14,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#9",
+    "x": 17,
+    "y": 14,
+    "themeId": 102,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#163",
+    "x": 7,
+    "y": 15,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#14",
+    "x": 6,
+    "y": 15,
+    "themeId": 51,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#16",
+    "x": 5,
+    "y": 15,
+    "themeId": 51,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#164",
+    "x": 4,
+    "y": 15,
+    "themeId": 11,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#165",
+    "x": 4,
+    "y": 16,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#27",
+    "x": 3,
+    "y": 16,
+    "themeId": 51,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#166",
+    "x": 2,
+    "y": 16,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#37",
+    "x": 1,
+    "y": 16,
+    "themeId": 201,
+    "orientation": "rot-90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#167",
+    "x": 1,
+    "y": 17,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#168",
+    "x": 1,
+    "y": 18,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#169",
+    "x": 1,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#10",
+    "x": 1,
+    "y": 20,
+    "themeId": 101,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#170",
+    "x": 1,
+    "y": 21,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#171",
+    "x": 3,
+    "y": 17,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#172",
+    "x": 4,
+    "y": 17,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#173",
+    "x": 5,
+    "y": 16,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#174",
+    "x": 21,
+    "y": 17,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#175",
+    "x": 10,
+    "y": 17,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Bhf1: Gleis 3",
+    "x": 11,
+    "y": 17,
+    "themeId": 150,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
+  },
+  {
+    "name": "Signal#11",
+    "x": 17,
+    "y": 17,
+    "themeId": 101,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Switch#28",
+    "x": 18,
+    "y": 17,
+    "themeId": 50,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#176",
+    "x": 19,
+    "y": 17,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#177",
+    "x": 5,
+    "y": 20,
+    "themeId": 11,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#38",
+    "x": 13,
+    "y": 19,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#178",
+    "x": 16,
+    "y": 20,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#12",
+    "x": 15,
+    "y": 20,
+    "themeId": 101,
+    "orientation": "rot180",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#179",
+    "x": 14,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Sensor#39",
+    "x": 13,
+    "y": 20,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#180",
+    "x": 12,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Bhf1: Gleis 1",
+    "x": 10,
+    "y": 20,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
+  },
+  {
+    "name": "Sensor#40",
+    "x": 8,
+    "y": 20,
+    "themeId": 200,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#181",
+    "x": 7,
+    "y": 20,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#182",
+    "x": 4,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#183",
+    "x": 5,
+    "y": 21,
+    "themeId": 10,
+    "orientation": "rot0",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#184",
+    "x": 21,
+    "y": 19,
+    "themeId": 10,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Signal#13",
+    "x": 21,
+    "y": 20,
+    "themeId": 101,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#185",
+    "x": 21,
+    "y": 21,
+    "themeId": 11,
+    "orientation": "rot90",
     "description": "",
     "options": {}
   }

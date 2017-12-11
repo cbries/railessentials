@@ -7,6 +7,7 @@
         xmlns:trackInformation="clr-namespace:TrackInformation;assembly=TrackInformation"
         xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" 
         xmlns:local="clr-namespace:RailwayEssentialMdi"
+        xmlns:localMagic="clr-namespace:RailwayEssentialMdi.XamlMagic"
         xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:styles="clr-namespace:RailwayEssentialMdi.Styles"
         x:Class="RailwayEssentialMdi.MainWindow"
@@ -18,6 +19,7 @@
 
     <Window.Resources>
         <xcad:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <localMagic:ConverterSort x:Key="converterSort"/>
     </Window.Resources>
 
     <Window.DataContext>
@@ -181,7 +183,8 @@
                                           ContextMenuOpening="TreeView_OnContextMenuOpening"
                                           KeyDown="TreeView_OnKeyDown" Margin="0,5,0,-5">
                                     <TreeView.ItemTemplate>
-                                        <HierarchicalDataTemplate DataType="{x:Type trackInformation:Item}" ItemsSource="{Binding Items}">
+                                        <HierarchicalDataTemplate DataType="{x:Type trackInformation:Item}" 
+                                                                  ItemsSource="{Binding Items, Converter={StaticResource converterSort}, ConverterParameter=Title}">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="16"/>
@@ -193,9 +196,11 @@
                                                            VerticalAlignment="Center" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
                                                     <TextBlock Text="{Binding Title}" FontSize="12" FontWeight="Bold"/>
                                                 </DockPanel>
+                                                <!--
                                                 <DockPanel Margin="0,1,0,1" Grid.Row="1" Height="{Binding SubTitleHeight}">
                                                     <TextBlock Text="{Binding SubTitle}" FontSize="11"/>
                                                 </DockPanel>
+                                                -->
                                             </Grid>
                                         </HierarchicalDataTemplate>
                                     </TreeView.ItemTemplate>

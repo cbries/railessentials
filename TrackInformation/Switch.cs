@@ -161,7 +161,12 @@ namespace TrackInformation
 
         public override void UpdateTitle()
         {
-            Title = $"{Name1}";
+            if(!string.IsNullOrEmpty(Name1) && !string.IsNullOrEmpty(Name2) && !string.IsNullOrEmpty(Name3))
+                Title = $"{Name1}, {Name2}, {Name3}";
+            else if (!string.IsNullOrEmpty(Name1) && !string.IsNullOrEmpty(Name2))
+                Title = $"{Name1}, {Name2}";
+            else
+                Title = $"{Name1}";
         }
 
         public override void UpdateSubTitle()

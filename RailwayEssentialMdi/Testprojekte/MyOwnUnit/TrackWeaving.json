@@ -15,19 +15,6 @@
   {
     "type": "Switch",
     "setup": {
-      "objectId": 20000,
-      "pin": 0,
-      "visuX": 3,
-      "visuY": 4,
-      "invertSwitch": false,
-      "fncToggle": false,
-      "startFncGroupTypes": [],
-      "stopFncGroupTypes": []
-    }
-  },
-  {
-    "type": "Switch",
-    "setup": {
       "objectId": 20011,
       "pin": 0,
       "visuX": 5,
@@ -1018,6 +1005,45 @@
         0,
         2
       ]
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20000,
+      "pin": 0,
+      "visuX": 3,
+      "visuY": 4,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20000,
+      "pin": 0,
+      "visuX": 1,
+      "visuY": 5,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Switch",
+    "setup": {
+      "objectId": 20025,
+      "pin": 0,
+      "visuX": 1,
+      "visuY": 10,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
     }
   }
 ]

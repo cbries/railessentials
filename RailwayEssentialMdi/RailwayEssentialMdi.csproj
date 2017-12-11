@@ -216,6 +216,7 @@
       <DependentUpon>TrackView.xaml</DependentUpon>
     </Compile>
     <Compile Include="XamlMagic\AutoGreyableImage.cs" />
+    <Compile Include="XamlMagic\ConverterSort.cs" />
     <Page Include="About\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

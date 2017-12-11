@@ -44,6 +44,7 @@ namespace RailwayEssentialMdi.DataObjects
         public UInt16 TargetPort { get; set; }
         public int DesignerColumns { get; set; }
         public int DesignerRows { get; set; }
+        public double ZoomLevel { get; set; }
         public ProjectGamepad Gamepad { get; set; }
         public List<string> Objects { get; set; }
         public ProjectTrack Track { get; set; }
@@ -53,6 +54,7 @@ namespace RailwayEssentialMdi.DataObjects
 
         public ProjectFile()
         {
+            ZoomLevel = 1.0f;
             Objects = new List<string>();
             Track = new ProjectTrack();
             TrackViews = new List<ProjectTrackView>();
@@ -113,6 +115,9 @@ namespace RailwayEssentialMdi.DataObjects
 
                 if (o["designerRows"] != null)
                     DesignerRows = (int) o["designerRows"];
+
+                if (o["zoomLevel"] != null)
+                    ZoomLevel = (double) o["zoomLevel"];
 
                 if (o["objects"] != null)
                 {
@@ -227,6 +232,7 @@ namespace RailwayEssentialMdi.DataObjects
                 ["gamepad"] = Gamepad.ToJson(),
                 ["designerColumns"] = DesignerColumns,
                 ["designerRows"] = DesignerRows,
+                ["zoomLevel"] = ZoomLevel,
                 ["track"] = Track.ToJson(),
                 ["trackViews"] = trackViews,
                 ["objects"] = objects,

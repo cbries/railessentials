@@ -647,6 +647,10 @@ namespace RailwayEssentialMdi.ViewModels
                         {
                             try
                             {
+                                var trackWnd = s as TrackWindow;
+                                if (trackWnd?.TrackViewZoomer != null)
+                                    trackWnd.TrackViewZoomer.ZoomLevel = _project.ZoomLevel;
+
                                 tcs.SetResult(true);
                             }
                             catch
@@ -1211,6 +1215,10 @@ namespace RailwayEssentialMdi.ViewModels
             Project.TargetPort = _cfg.Port;
             Project.DesignerColumns = _cfg.DesignerColumns;
             Project.DesignerRows = _cfg.DesignerRows;
+
+            var viewerZoom = _trackEntity?.Viewer as ITrackViewerZoom;
+            if (viewerZoom != null)
+                Project.ZoomLevel = viewerZoom.ZoomLevel;
 
             // transfer window dimensions
             // ...

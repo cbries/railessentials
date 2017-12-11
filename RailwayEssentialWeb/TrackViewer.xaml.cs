@@ -52,12 +52,16 @@ namespace RailwayEssentialWeb
         }
 
         public IWebGenerator WebGenerator { get; set; }
+
         #region ITrackViewerZoom
 
         public double ZoomLevel
         {
             get => Browser.ZoomLevel;
-            set { Browser.ZoomLevel = value; }
+            set
+            {
+                Browser.ZoomLevel = value;
+            }
         }
 
         public double ZoomLevelIncrement => Browser.ZoomLevelIncrement;

@@ -21,6 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Newtonsoft.Json.Linq;
+using RailwayEssentialCore;
+using RailwayEssentialMdi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,9 +31,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using RailwayEssentialCore;
-using RailwayEssentialMdi.ViewModels;
 using TrackInformation;
 using TrackInformationCore;
 using TrackPlanParser;
@@ -112,7 +112,7 @@ namespace RailwayEssentialMdi.Autoplay
 
             Dictionary<string, string> results = new Dictionary<string, string>();
 
-              string[] sensors = new string[3];
+            string[] sensors = new string[3];
             string[] eventNames = new string[3];
             for (int i = 0; i < 3; ++i)
             {
@@ -143,18 +143,18 @@ namespace RailwayEssentialMdi.Autoplay
             public Analyze.Route Route { get; set; }
             public TrackInfo Info { get; set; }
             public IItem Item { get; set; }
-            public TrackInformation.Switch ItemSwitch => Item as TrackInformation.Switch;
+            public TrackInformation.Accessory ItemAccessory => Item as TrackInformation.Accessory;
             public S88 ItemS88 => Item as S88;
             public Func<TrackCheckResult> S88Checker { get; set; }
             public bool S88HasBeenHandled { get; set; }
-            
+
             public bool IsS88 => Item is S88;
-            public bool IsSwitch => Item is TrackInformation.Switch;
-            public bool HasSwitchTurn
+            public bool IsAccessory => Item is TrackInformation.Accessory;
+            public bool HasAccessoryTurn
             {
                 get
                 {
-                    if (!IsSwitch)
+                    if (!IsAccessory)
                         return false;
 
                     foreach (var r in Route)
@@ -168,7 +168,7 @@ namespace RailwayEssentialMdi.Autoplay
                         if (r.Y != Info.Y)
                             continue;
 
-                        if (!Globals.SwitchIds.Contains(r.ThemeId))
+                        if (!Globals.SwitchIds.Contains(r.ThemeId) && !Globals.SignalIds.Contains(r.ThemeId))
                             return false;
 
                         return r.HasTurn;
@@ -217,12 +217,12 @@ namespace RailwayEssentialMdi.Autoplay
 
                 bool isRouteSet = false; // flag initialization of route's handling thread
                 Locomotive locObject = null; // the current locomotive on the route
-                List<ItemData> routeData = new List<ItemData>(); // s88 and switches on the route 
+                List<ItemData> routeData = new List<ItemData>(); // s88 and accessories on the route 
 
                 bool fncHasBeenStarted = false;
                 bool fncHasBeenStopped = false;
 
-                for (;;)
+                for (; ; )
                 {
                     var s = SrcBlock.ToString().Replace(" ", "");
                     var d = DestBlock.ToString().Replace(" ", "");
@@ -284,7 +284,7 @@ namespace RailwayEssentialMdi.Autoplay
                         #endregion
 
                         Dictionary<TrackInfo, S88> s88TrackObjects = new Dictionary<TrackInfo, S88>();
-                        Dictionary<TrackInfo, TrackInformation.Switch> switchTrackObjects = new Dictionary<TrackInfo, TrackInformation.Switch>();
+                        Dictionary<TrackInfo, TrackInformation.Accessory> switchTrackObjects = new Dictionary<TrackInfo, TrackInformation.Accessory>();
 
                         #region prepare route data
 
@@ -302,8 +302,8 @@ namespace RailwayEssentialMdi.Autoplay
                                 if (obj is S88)
                                     s88TrackObjects.Add(trackInfo, obj as S88);
 
-                                if(obj is TrackInformation.Switch)
-                                    switchTrackObjects.Add(trackInfo, obj as TrackInformation.Switch);
+                                if (obj is TrackInformation.Accessory)
+                                    switchTrackObjects.Add(trackInfo, obj as TrackInformation.Accessory);
                             }
                         }
 
@@ -367,7 +367,8 @@ namespace RailwayEssentialMdi.Autoplay
 
                                     if (it == null)
                                     {
-                                        var s88Obj = Helper.GetObject(Model.Dispatcher, Model.TrackEntity.Track, sensorTrackInfo.X, sensorTrackInfo.Y);
+                                        var s88Objs = Helper.GetObjects(Model.Dispatcher, Model.TrackEntity.Track, sensorTrackInfo.X, sensorTrackInfo.Y);
+                                        var s88Obj = s88Objs.FirstOrDefault();
 
                                         var fnc = Weaver.GetCheckFnc(s88Obj, sensorTrackInfo);
                                         if (fnc == null)
@@ -396,23 +397,23 @@ namespace RailwayEssentialMdi.Autoplay
 
                         #endregion
 
-                        #region set switches to let the locomotive pass the route
+                        #region set accessories to let the locomotive pass the route
 
                         foreach (var data in routeData)
                         {
-                            if (data == null || !data.IsSwitch || data.ItemSwitch == null)
+                            if (data == null || !data.IsAccessory || data.ItemAccessory == null)
                                 continue;
 
-                            var sw = data.ItemSwitch;
-                            var v = data.HasSwitchTurn ? 0 : 1;
+                            var sw = data.ItemAccessory;
+                            var v = data.HasAccessoryTurn ? 0 : 1;
                             if (sw.InvertCommand)
                             {
                                 if (v == 1) v = 0;
                                 else v = 1;
                             }
                             var vs = v == 1 ? "TURN" : "STRAIGHT";
-                            Trace.WriteLine($"{Prefix} Switch '{sw.Name1}' change to '{vs}'");
-                            sw.ChangeDirection(v);
+                            Trace.WriteLine($"{Prefix} Accessory '{sw.Name1}' change to '{vs}'");
+                            sw.DoChange(v);
                         }
 
                         #endregion
@@ -420,7 +421,7 @@ namespace RailwayEssentialMdi.Autoplay
                         if (locObject != null)
                         {
                             // DO NOT CHANGE DIRECTION OF LOCOMOTIVE (!!)
-                            //locObject.ChangeDirection(false);
+                            //locObject.DoChange(false);
                             locObject.ChangeSpeed(locObject.MaxSpeedPercentage);
                         }
 
@@ -450,7 +451,7 @@ namespace RailwayEssentialMdi.Autoplay
                             if (bb != null && bb.State != null)
                                 state = bb.State.Value;
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             Model?.LogAutoplay($"{Prefix} {ex.Message}\n");
                             Trace.WriteLine($"{Prefix} {ex.Message}");
@@ -462,10 +463,10 @@ namespace RailwayEssentialMdi.Autoplay
 
                             var weaveItem = Helper.GetWeaveItem(this.Model.Dispatcher, s88Data.Info.X, s88Data.Info.Y);
 
-                            Func<Locomotive, bool> startFncs = delegate(Locomotive locObj)
+                            Func<Locomotive, bool> startFncs = delegate (Locomotive locObj)
                             {
                                 var startFncGroup = weaveItem.StartFncGroupTypes;
-                                
+
                                 foreach (var i in startFncGroup)
                                 {
                                     var fncName = Enum.GetNames(typeof(FncGroupTypes))[(int)i];
@@ -478,7 +479,7 @@ namespace RailwayEssentialMdi.Autoplay
 
                             };
 
-                            Func<Locomotive, bool> stopFncs = delegate(Locomotive locObj)
+                            Func<Locomotive, bool> stopFncs = delegate (Locomotive locObj)
                             {
                                 var stopFncGroup = weaveItem.StopFncGroupTypes;
                                 foreach (var i in stopFncGroup)
@@ -559,7 +560,7 @@ namespace RailwayEssentialMdi.Autoplay
                                         if (blockSpeed <= 0)
                                         {
                                             var currentSpeed = locObject.Speed;
-                                            currentSpeed -= (int) (currentSpeed / 2.0f);
+                                            currentSpeed -= (int)(currentSpeed / 2.0f);
                                             locObject.ChangeSpeed(currentSpeed);
                                             Model?.LogAutoplay($"{Prefix} [ENTER] {locObject.Name} change speed to {currentSpeed}\n");
                                         }
@@ -647,7 +648,7 @@ namespace RailwayEssentialMdi.Autoplay
                                         catch
                                         {
                                             // ignore
-                                        }                
+                                        }
                                     }
 
                                     return;
@@ -679,7 +680,7 @@ namespace RailwayEssentialMdi.Autoplay
             Task?.Start();
         }
 
-        public void Stop(bool waitFor=false)
+        public void Stop(bool waitFor = false)
         {
             try
             {
@@ -709,7 +710,7 @@ namespace RailwayEssentialMdi.Autoplay
             }
             finally
             {
-                
+
             }
         }
 

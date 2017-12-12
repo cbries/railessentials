@@ -30,8 +30,9 @@ namespace TrackWeaver
 {
     public class TrackCheckResult
     {
-        public enum SwitchDirection { Straight, Turn }
-        public SwitchDirection? Direction { get; set; }
+        public enum AccessoryDirection { Straight, Turn }
+
+        public AccessoryDirection? Direction { get; set; }
 
         public bool? State { get; set; }
     }

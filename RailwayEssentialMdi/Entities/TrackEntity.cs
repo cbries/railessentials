@@ -21,19 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RailwayEssentialCore;
 using RailwayEssentialMdi.DataObjects;
 using RailwayEssentialMdi.ViewModels;
 using RailwayEssentialWeb;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
 using TrackWeaver;
-using Switch = TrackInformation.Switch;
+using Accessory = TrackInformation.Accessory;
 
 namespace RailwayEssentialMdi.Entities
 {
@@ -420,7 +419,7 @@ namespace RailwayEssentialMdi.Entities
 
             _webGenerator.Generate(_tmpTrackName);
         }
-        
+
         public bool UpdateTrackViewerUi(TrackWeaver.TrackWeaver weaver)
         {
             var sw = StopWatch.Create();
@@ -515,33 +514,33 @@ namespace RailwayEssentialMdi.Entities
                                 }
                                 break;
 
-                            case TrackInformation.Switch.Typeid:
+                            case TrackInformation.Accessory.Typeid:
                                 {
                                     if (checkResult != null && checkResult.Direction.HasValue)
                                     {
                                         var direction = checkResult.Direction.Value;
 
-                                        if (seam.ObjectItem is Switch objS && objS.InvertCommand)
+                                        if (seam.ObjectItem is Accessory objS && objS.InvertCommand)
                                         {
-                                            if (direction == TrackCheckResult.SwitchDirection.Straight)
-                                                direction = TrackCheckResult.SwitchDirection.Turn;
+                                            if (direction == TrackCheckResult.AccessoryDirection.Straight)
+                                                direction = TrackCheckResult.AccessoryDirection.Turn;
                                             else
-                                                direction = TrackCheckResult.SwitchDirection.Straight;
+                                                direction = TrackCheckResult.AccessoryDirection.Straight;
                                         }
 
-                                        if (direction == TrackCheckResult.SwitchDirection.Straight)
+                                        if (direction == TrackCheckResult.AccessoryDirection.Straight)
                                         {
                                             //if (seam.ObjectItem.IsRouted)
                                             //    symbol = themeObject.Active.Route;
                                             //else
-                                                symbol = themeObject.Active.Default;
+                                            symbol = themeObject.Active.Default;
                                         }
-                                        else if (direction == TrackCheckResult.SwitchDirection.Turn)
+                                        else if (direction == TrackCheckResult.AccessoryDirection.Turn)
                                         {
                                             //if (seam.ObjectItem.IsRouted)
                                             //    symbol = themeObject.Off.Route;
                                             //else
-                                                symbol = themeObject.Off.Default;
+                                            symbol = themeObject.Off.Default;
                                         }
                                         else
                                         {

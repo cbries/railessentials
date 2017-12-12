@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using TrackPlanParser;
@@ -48,12 +49,15 @@ namespace RailwayEssentialMdi
             return 0;
         }
 
-        public static TrackInformationCore.IItem GetObject(Dispatcher.Dispatcher dispatcher, Track track, int x, int y
-        ) {
+        public static List<TrackInformationCore.IItem> GetObjects(Dispatcher.Dispatcher dispatcher, Track track, int x, int y
+        )
+        {
             var trackInfo = track.Get(x, y);
 
             if (trackInfo == null)
                 return null;
+
+            var items = new List<TrackInformationCore.IItem>();
 
             var weaver = dispatcher.Weaver;
             if (weaver != null)
@@ -72,13 +76,13 @@ namespace RailwayEssentialMdi
                                 continue;
 
                             if (key.X == trackInfo.X && key.Y == trackInfo.Y && key.ThemeId == trackInfo.ThemeId)
-                                return seam.ObjectItem;
+                                items.Add(seam.ObjectItem);
                         }
                     }
                 }
             }
 
-            return null;
+            return items;
         }
 
         /// <summary> Call of GetWeaveItem(..) can be speed up by NOT reading the weave file on any call. </summary>
@@ -108,7 +112,7 @@ namespace RailwayEssentialMdi
             return null;
         }
 
-        public static bool Ask(string promptMsg, string title, string yesText="Yes", string noText="No")
+        public static bool Ask(string promptMsg, string title, string yesText = "Yes", string noText = "No")
         {
             System.Windows.Style style = new System.Windows.Style();
             style.Setters.Add(new Setter(Xceed.Wpf.Toolkit.MessageBox.YesButtonContentProperty, yesText));

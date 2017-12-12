@@ -779,6 +779,7 @@
     <Resource Include="Resources\rotateitem.png" />
     <Resource Include="Resources\locstop.png" />
     <Resource Include="Resources\gamepad.jpg" />
+    <Resource Include="Resources\cat_accessories.png" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-occ.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off-route.svg" />
     <Content Include="Resources\Theme\RailwayEssential\accessory-10-off.svg" />

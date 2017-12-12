@@ -21,16 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Ecos2Core;
 using RailwayEssentialCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using TrackInformation;
 using TrackWeaver;
-using Switch = TrackInformation.Switch;
+using Accessory = TrackInformation.Accessory;
 
 namespace Dispatcher
 {
@@ -42,7 +41,7 @@ namespace Dispatcher
         public IConfiguration Configuration { get; set; }
         public ILogging Logger { get; set; }
         public IRailwayEssentialModel Model { get; set; }
-        private readonly Communication _communication = null;
+        private readonly Communication _communication;
         private readonly DataProvider _dataProvider = new DataProvider();
         private TrackWeaver.TrackWeaver _trackWeaver;
         private TrackPlanParser.Track _track;
@@ -55,7 +54,7 @@ namespace Dispatcher
         {
             return _dataProvider;
         }
-        
+
         public Dispatcher(IConfiguration cfg)
         {
             Configuration = cfg;
@@ -69,7 +68,7 @@ namespace Dispatcher
 
         public bool InitializeWeaving(TrackPlanParser.Track track, string weaveFilepath)
         {
-            if(_track == null)
+            if (_track == null)
                 _track = track;
 
             if (_trackWeaver == null)
@@ -78,7 +77,7 @@ namespace Dispatcher
             {
                 _trackWeaver.WovenSeam.Clear();
             }
-            
+
             TrackWeaveItems weaverItems = new TrackWeaveItems();
             if (!weaverItems.Load(weaveFilepath))
                 return false;
@@ -91,58 +90,59 @@ namespace Dispatcher
                 switch (item.Type)
                 {
                     case WeaveItemT.S88:
-                    {
-                        if (_dataProvider.GetObjectBy(item.ObjectId) is S88 s88Item)
                         {
-                            var trackObject = _track.Get(item.VisuX, item.VisuY);
-
-                            if (trackObject != null)
+                            if (_dataProvider.GetObjectBy(item.ObjectId) is S88 s88Item)
                             {
-                                _trackWeaver.Link(s88Item, trackObject,
+                                var trackObject = _track.Get(item.VisuX, item.VisuY);
+
+                                if (trackObject != null)
+                                {
+                                    _trackWeaver.Link(s88Item, trackObject,
+                                        () =>
+                                        {
+                                            var res = s88Item.Pin((uint)item.Pin);
+                                            return new TrackCheckResult { State = res };
+                                        });
+                                }
+                            }
+                        }
+                        break;
+
+                    case WeaveItemT.Accessory:
+                        {
+                            if (_dataProvider.GetObjectBy(item.ObjectId) is Accessory accessoryItem)
+                            {
+                                var trackObject = _track.Get(item.VisuX, item.VisuY);
+
+                                accessoryItem.InvertCommand = item.InvertAccessory;
+
+                                _trackWeaver.Link(accessoryItem, trackObject,
                                     () =>
                                     {
-                                        var res = s88Item.Pin((uint) item.Pin);
-                                        return new TrackCheckResult {State = res};
+
+                                        TrackCheckResult.AccessoryDirection direction = TrackCheckResult.AccessoryDirection.Straight;
+
+                                        if (accessoryItem.State == 0)
+                                            direction = TrackCheckResult.AccessoryDirection.Straight;
+                                        else
+                                            direction = TrackCheckResult.AccessoryDirection.Turn;
+
+                                        return new TrackCheckResult { Direction = direction };
                                     });
-                                }
+                            }
                         }
-                    }
                         break;
 
-                    case WeaveItemT.Switch:
-                    {
-                        if (_dataProvider.GetObjectBy(item.ObjectId) is Switch switchItem)
-                        {
-                            var trackObject = _track.Get(item.VisuX, item.VisuY);
-
-                            switchItem.InvertCommand = item.InvertSwitch;
-
-                            _trackWeaver.Link(switchItem, trackObject,
-                                () => {
-
-                                    TrackCheckResult.SwitchDirection direction = TrackCheckResult.SwitchDirection.Straight;
-
-                                    if (switchItem.State == 0)
-                                        direction = TrackCheckResult.SwitchDirection.Straight;
-                                    else
-                                        direction = TrackCheckResult.SwitchDirection.Turn;
-
-                                    return new TrackCheckResult { Direction = direction };
-                                });
-                        }
-                    }
-                        break;
-
-                    // TODO add other item weaves :-D
+                        // TODO add other item weaves :-D
                 }
             }
-            
+
             return true;
         }
 
         public void ForwardGamepadInput(IReadOnlyList<IGamepadInput> commands)
         {
-            var allLocs = GetDataProvider().Objects.OfType<Locomotive>();
+            var allLocs = GetDataProvider().Objects.OfType<Locomotive>().ToList();
 
             foreach (var cmd in commands)
             {
@@ -154,7 +154,7 @@ namespace Dispatcher
                 if (cmd.IsRight)
                 {
                     var locObjs = allLocs.Where(x => x.HasRightController).ToList();
-                    if(locObjs.Count <= 0)
+                    if (locObjs.Count <= 0)
                         continue;
 
                     locObj = locObjs[0];
@@ -167,7 +167,7 @@ namespace Dispatcher
 
                     locObj = locObjs[0];
                 }
-                
+
                 if (locObj != null)
                 {
                     if (cmd.F0)
@@ -195,7 +195,7 @@ namespace Dispatcher
                         locObj.ChangeSpeedstep(maxSpeedstep);
                     }
 
-                    if(cmd.StopSpeed)
+                    if (cmd.StopSpeed)
                         locObj.ChangeSpeedstep(0);
                 }
             }
@@ -207,7 +207,7 @@ namespace Dispatcher
             {
                 if (Logger != null)
                 {
-                    foreach(var cmd in commands)
+                    foreach (var cmd in commands)
                         Logger.Log($"<DryRun> {cmd}\r\n");
                 }
             }
@@ -229,7 +229,7 @@ namespace Dispatcher
                 }
                 catch (Exception ex)
                 {
-                    if(Logger != null)
+                    if (Logger != null)
                         Logger.LogNetwork("<Dispatcher> {0}", ex.Message);
                 }
             }
@@ -315,7 +315,7 @@ namespace Dispatcher
                 Logger?.Log($"<Dispatcher> Communication failed: {c.ErrorMessage}\r\n");
                 Logger?.LogError($"Connection to ECoS2 failed: {c.ErrorMessage}");
             }
-            
+
             if (Model != null)
             {
                 Model.TriggerPropertyChanged("ConnectionState");
@@ -335,11 +335,11 @@ namespace Dispatcher
 
                 if (blk.StartLine.IndexOf("EVENT", StringComparison.OrdinalIgnoreCase) == -1)
                 {
-                    if(Logger != null)
+                    if (Logger != null)
                         Logger.LogNetwork(blk.NativeBlock.Trim() + "\r\n");
                 }
 
-                if(_dataProvider != null)
+                if (_dataProvider != null)
                     _dataProvider.Add(blk);
             }
 

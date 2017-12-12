@@ -21,13 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using RailwayEssentialCore;
 using RailwayEssentialMdi.ViewModels;
 using RailwayEssentialMdi.Views;
-using RailwayEssentialWeb;
+using System;
+using System.Collections.Generic;
 using TrackPlanParser;
 
 namespace RailwayEssentialMdi.Entities
@@ -35,8 +34,8 @@ namespace RailwayEssentialMdi.Entities
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.IO;
-    using TrackWeaver;
     using TrackInformation;
+    using TrackWeaver;
 
     public partial class TrackEntity
     {
@@ -50,16 +49,18 @@ namespace RailwayEssentialMdi.Entities
 
         private TrackInfo _trackInfoSelection;
         private S88 _itemS88Selection;
-        private TrackInformation.Switch _itemSwitchSelection;
-        private bool _itemsSwitchInvert;
+        private Accessory _itemAccessorySelection;
+        private Accessory _itemAccessorySelection2;
+        private bool _itemsAccessoryInvert;
+        private bool _itemsAccessoryInvert2;
         private int _itemsS88SelectionPin;
         private bool _connectorVisible = true;
         private int _connectorIdentifier = -1;
         private int _blockGroupIdentifier;
-        private TrackInformation.Locomotive _blockCurrentLocomotive;
+        private Locomotive _blockCurrentLocomotive;
         private List<string> _availableBlocks = new List<string>();
         private List<string> _availableSensors = new List<string>();
-        private List<TrackInformation.Item> _availableLocomotives = new List<Item>();
+        private List<Item> _availableLocomotives = new List<Item>();
 
         internal void RaiseUiUpdates()
         {
@@ -127,13 +128,22 @@ namespace RailwayEssentialMdi.Entities
                 RaisePropertyChanged("ItemsS88Selection");
             }
         }
-        public TrackInformation.Switch ItemsSwitchSelection
+        public Accessory ItemsAccessorySelection
         {
-            get => _itemSwitchSelection;
+            get => _itemAccessorySelection;
             set
             {
-                _itemSwitchSelection = value;
-                RaisePropertyChanged("ItemsSwitchSelection");
+                _itemAccessorySelection = value;
+                RaisePropertyChanged("ItemsAccessorySelection");
+            }
+        }
+        public Accessory ItemsAccessorySelection2
+        {
+            get => _itemAccessorySelection2;
+            set
+            {
+                _itemAccessorySelection2 = value;
+                RaisePropertyChanged("ItemsAccessorySelection2");
             }
         }
         public int ItemsS88SelectionPin
@@ -145,13 +155,22 @@ namespace RailwayEssentialMdi.Entities
                 RaisePropertyChanged("ItemsS88SelectionPin");
             }
         }
-        public bool ItemsSwitchInvert
+        public bool ItemsAccessoryInvert
         {
-            get => _itemsSwitchInvert;
+            get => _itemsAccessoryInvert;
             set
             {
-                _itemsSwitchInvert = value;
-                RaisePropertyChanged("ItemsSwitchInvert");
+                _itemsAccessoryInvert = value;
+                RaisePropertyChanged("ItemsAccessoryInvert");
+            }
+        }
+        public bool ItemsAccessoryInvert2
+        {
+            get => _itemsAccessoryInvert2;
+            set
+            {
+                _itemsAccessoryInvert2 = value;
+                RaisePropertyChanged("ItemsAccessoryInvert2");
             }
         }
         public int BlockGroupIdentifier
@@ -170,7 +189,7 @@ namespace RailwayEssentialMdi.Entities
             }
         }
 
-        public TrackInformation.Locomotive BlockCurrentLocomotive
+        public Locomotive BlockCurrentLocomotive
         {
             get => _blockCurrentLocomotive;
             set
@@ -260,7 +279,7 @@ namespace RailwayEssentialMdi.Entities
             }
         }
 
-        public IList<TrackInformation.Item> AvailableLocomotives
+        public IList<Item> AvailableLocomotives
         {
             get
             {
@@ -277,7 +296,7 @@ namespace RailwayEssentialMdi.Entities
                     if (e?.TypeId() == 1)
                         _availableLocomotives.Add(e as Locomotive);
                 }
-                
+
                 if (_availableLocomotives.Count == 0)
                     _availableLocomotives.Add(_dummyLocomotive);
                 else
@@ -492,7 +511,7 @@ namespace RailwayEssentialMdi.Entities
         }
 
         private ObservableCollection<S88> _itemsS88 = new ObservableCollection<S88>();
-        private ObservableCollection<TrackInformation.Switch> _itemsSwitch = new ObservableCollection<TrackInformation.Switch>();
+        private ObservableCollection<Accessory> _itemsAccessory = new ObservableCollection<Accessory>();
 
         public ObservableCollection<S88> ItemsS88
         {
@@ -504,13 +523,13 @@ namespace RailwayEssentialMdi.Entities
             }
         }
 
-        public ObservableCollection<TrackInformation.Switch> ItemsSwitch
+        public ObservableCollection<Accessory> ItemsAccessory
         {
-            get => _itemsSwitch;
+            get => _itemsAccessory;
             set
             {
-                _itemsSwitch = value;
-                RaisePropertyChanged("ItemsSwitch");
+                _itemsAccessory = value;
+                RaisePropertyChanged("ItemsAccessory");
             }
         }
 
@@ -539,7 +558,7 @@ namespace RailwayEssentialMdi.Entities
                     trackInfo.Description = TrackInfoSelection.Description.Trim();
             }
 
-            var m = _dispatcher.Model as ViewModels.RailwayEssentialModel;
+            var m = _dispatcher.Model as RailwayEssentialModel;
             if (m == null)
                 return;
 
@@ -553,35 +572,43 @@ namespace RailwayEssentialMdi.Entities
             var x = SelectionX;
             var y = SelectionY;
 
-            TrackWeaveItem item = null;
+            List<TrackWeaveItem> itemsToRemove = new List<TrackWeaveItem>();
 
             foreach (var e in weaverItems.Items)
             {
                 if (e == null)
                     continue;
 
-
                 if (e.VisuX == x && e.VisuY == y)
-                {
-                    item = e;
+                    itemsToRemove.Add(e);
+            }
 
-                    break;
+            if (itemsToRemove.Count > 0)
+            {
+                foreach (var e in itemsToRemove)
+                {
+                    if (e == null)
+                        continue;
+
+                    weaverItems.Items.Remove(e);
                 }
             }
 
-            if (item != null)
-                weaverItems.Items.Remove(item);
+            bool addItemCheck = _itemS88Selection != null ||
+                                _itemAccessorySelection != null ||
+                                _itemAccessorySelection2 != null;
 
-            if (item == null)
-                item = new TrackWeaveItem();
-
-            bool addItemCheck = _itemS88Selection != null || _itemSwitchSelection != null;
+            var item = new TrackWeaveItem();
+            var item2 = new TrackWeaveItem();
 
             if (addItemCheck)
+            {
                 weaverItems.Items.Add(item);
+                weaverItems.Items.Add(item2);
+            }
 
-            item.VisuX = x;
-            item.VisuY = y;
+            item.VisuX = item2.VisuX = x;
+            item.VisuY = item2.VisuY = y;
 
             if (_itemS88Selection != null && !_itemS88Selection.IsDummyItem)
             {
@@ -589,7 +616,7 @@ namespace RailwayEssentialMdi.Entities
                 item.ObjectId = _itemS88Selection.ObjectId;
                 item.Pin = ItemsS88SelectionPin;
 
-                var w = this.Window as TrackWindow;
+                var w = Window as TrackWindow;
                 TrackView tv = null;
                 if (w != null)
                     tv = w.TrackView as TrackView;
@@ -602,11 +629,18 @@ namespace RailwayEssentialMdi.Entities
                 }
             }
 
-            if (_itemSwitchSelection != null && !_itemSwitchSelection.IsDummyItem)
+            if (_itemAccessorySelection != null && !_itemAccessorySelection.IsDummyItem)
             {
-                item.Type = WeaveItemT.Switch;
-                item.ObjectId = _itemSwitchSelection.ObjectId;
-                item.InvertSwitch = ItemsSwitchInvert;
+                item.Type = WeaveItemT.Accessory;
+                item.ObjectId = _itemAccessorySelection.ObjectId;
+                item.InvertAccessory = ItemsAccessoryInvert;
+            }
+
+            if (_itemAccessorySelection2 != null && !_itemAccessorySelection2.IsDummyItem)
+            {
+                item2.Type = WeaveItemT.Accessory;
+                item2.ObjectId = _itemAccessorySelection2.ObjectId;
+                item2.InvertAccessory = ItemsAccessoryInvert2;
             }
 
             bool res = weaverItems.Save();
@@ -621,17 +655,19 @@ namespace RailwayEssentialMdi.Entities
 
             SaveEvents();
 
-            if(Model is RailwayEssentialModel mm)
+            if (Model is RailwayEssentialModel mm)
                 mm.Save();
         }
 
-        private TrackWeaverItem GetWeaverItem(int x, int y)
+        private List<TrackWeaverItem> GetWeaverItems(int x, int y)
         {
             var track = Track;
             var trackInfo = track.Get(x, y);
 
             if (trackInfo == null)
                 return null;
+
+            var items = new List<TrackWeaverItem>();
 
             var weaver = _dispatcher.Weaver;
             if (weaver != null)
@@ -650,11 +686,14 @@ namespace RailwayEssentialMdi.Entities
                                 continue;
 
                             if (key.X == trackInfo.X && key.Y == trackInfo.Y && key.ThemeId == trackInfo.ThemeId)
-                                return seam;
+                                items.Add(seam);
                         }
                     }
                 }
             }
+
+            if (items.Count > 0)
+                return items;
 
             return null;
         }
@@ -686,7 +725,7 @@ namespace RailwayEssentialMdi.Entities
                 {
                     ShowObjectEdit = false;
                     ItemsS88.Clear();
-                    ItemsSwitch.Clear();
+                    ItemsAccessory.Clear();
                 }, new object());
 
                 return;
@@ -707,78 +746,100 @@ namespace RailwayEssentialMdi.Entities
                 if (trackInfo != null)
                     TrackInfoSelection = trackInfo;
 
-                var objItem = Helper.GetObject(_dispatcher, Track, x, y);
+                var objItems = Helper.GetObjects(_dispatcher, Track, x, y);
 
-                if (objItem != null)
+                if (objItems != null && objItems.Count > 0)
                 {
-                    var w = this.Window as TrackWindow;
+                    var w = Window as TrackWindow;
                     TrackView tv = null;
                     if (w != null)
                         tv = w.TrackView as TrackView;
 
                     tv?.SetCheckboxState(false);
 
-                    switch (objItem.TypeId())
+                    if (objItems.Count == 1)
                     {
-                        case S88.Typeid:
-                            {
-                                ItemsS88Selection = objItem as S88;
+                        var objItem = objItems[0];
 
-                                var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
-                                if (weaveItem != null)
+                        switch (objItem.TypeId())
+                        {
+                            case S88.Typeid:
                                 {
-                                    ItemsS88SelectionPin = weaveItem.Pin;
+                                    ItemsS88Selection = objItem as S88;
 
-                                    if (tv != null)
+                                    var weaveItem = Helper.GetWeaveItem(_dispatcher, SelectionX, SelectionY);
+                                    if (weaveItem != null)
                                     {
-                                        tv.SetCheckboxState(true);
+                                        ItemsS88SelectionPin = weaveItem.Pin;
 
-                                        var toggleState = tv.GetCtrl("ChkFncToggle");
-                                        if (toggleState != null)
-                                            toggleState.IsChecked = weaveItem.FncToggle;
-
-                                        var startFncGroupTypes = weaveItem.StartFncGroupTypes;
-                                        foreach (var i in startFncGroupTypes)
+                                        if (tv != null)
                                         {
-                                            var ii = (int)i;
-                                            var chk = tv.GetChk($"ChkFncGroupStart{ii}");
-                                            if (chk != null)
-                                                chk.IsChecked = true;
+                                            tv.SetCheckboxState(true);
+
+                                            var toggleState = tv.GetCtrl("ChkFncToggle");
+                                            if (toggleState != null)
+                                                toggleState.IsChecked = weaveItem.FncToggle;
+
+                                            var startFncGroupTypes = weaveItem.StartFncGroupTypes;
+                                            foreach (var i in startFncGroupTypes)
+                                            {
+                                                var ii = (int)i;
+                                                var chk = tv.GetChk($"ChkFncGroupStart{ii}");
+                                                if (chk != null)
+                                                    chk.IsChecked = true;
+                                            }
+
+                                            var stopFncGroupTypes = weaveItem.StopFncGroupTypes;
+                                            foreach (var i in stopFncGroupTypes)
+                                            {
+                                                var ii = (int)i;
+                                                var chk = tv.GetChk($"ChkFncGroupStop{ii}");
+                                                if (chk != null)
+                                                    chk.IsChecked = true;
+                                            }
                                         }
 
-                                        var stopFncGroupTypes = weaveItem.StopFncGroupTypes;
-                                        foreach (var i in stopFncGroupTypes)
-                                        {
-                                            var ii = (int)i;
-                                            var chk = tv.GetChk($"ChkFncGroupStop{ii}");
-                                            if (chk != null)
-                                                chk.IsChecked = true;
-                                        }
                                     }
-
+                                    ItemsAccessoryInvert = false;
                                 }
-                                ItemsSwitchInvert = false;
-                            }
-                            break;
+                                break;
 
-                        case TrackInformation.Switch.Typeid:
-                            {
-                                ItemsSwitchSelection = objItem as TrackInformation.Switch;
-                                ItemsS88SelectionPin = -1;
-                                if (ItemsSwitchSelection != null)
-                                    ItemsSwitchInvert = ItemsSwitchSelection.InvertCommand;
-                                else
-                                    ItemsSwitchInvert = false;
-                            }
-                            break;
+                            case Accessory.Typeid:
+                                {
+                                    ItemsAccessorySelection = objItem as Accessory;
+                                    ItemsS88SelectionPin = -1;
+                                    if (ItemsAccessorySelection != null)
+                                        ItemsAccessoryInvert = ItemsAccessorySelection.InvertCommand;
+                                    else
+                                        ItemsAccessoryInvert = false;
+                                }
+                                break;
 
-                        default:
-                            {
-                                ItemsS88SelectionPin = -1;
-                                ItemsSwitchInvert = false;
-                                BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
-                            }
-                            break;
+                            default:
+                                {
+                                    ItemsS88SelectionPin = -1;
+                                    ItemsAccessoryInvert = false;
+                                    BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
+                                }
+                                break;
+                        }
+                    }
+                    else if (objItems.Count == 2)
+                    {
+                        ItemsAccessorySelection = objItems[0] as Accessory;
+                        ItemsS88SelectionPin = -1;
+                        if (ItemsAccessorySelection != null)
+                            ItemsAccessoryInvert = ItemsAccessorySelection.InvertCommand;
+                        else
+                            ItemsAccessoryInvert = false;
+
+                        ItemsAccessorySelection2 = objItems[1] as Accessory;
+                        ItemsS88SelectionPin = -1;
+                        if (ItemsAccessorySelection2 != null)
+                            ItemsAccessoryInvert2 = ItemsAccessorySelection2.InvertCommand;
+                        else
+                            ItemsAccessoryInvert2 = false;
+
                     }
                 }
                 else
@@ -864,9 +925,9 @@ namespace RailwayEssentialMdi.Entities
                                         break;
 
                                     default:
-                                    {
-                                        BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
-                                    }
+                                        {
+                                            BlockCurrentLocomotive = _availableLocomotives[0] as Locomotive;
+                                        }
                                         break;
                                 }
                             }
@@ -879,8 +940,8 @@ namespace RailwayEssentialMdi.Entities
                     if (e is S88 ee0)
                         _itemsS88.Add(ee0);
 
-                    if (e is TrackInformation.Switch ee1)
-                        _itemsSwitch.Add(ee1);
+                    if (e is Accessory ee1)
+                        _itemsAccessory.Add(ee1);
                 }
 
                 LoadEvents();
@@ -915,27 +976,30 @@ namespace RailwayEssentialMdi.Entities
 
         private void JsCallbackOnCellClicked(object o, int x, int y)
         {
-            var weaverItem = GetWeaverItem(x, y);
+            var weaverItems = GetWeaverItems(x, y);
 
-            var objItem = weaverItem?.ObjectItem;
-
-            if (objItem != null)
+            foreach (var w in weaverItems)
             {
+                var objItem = w?.ObjectItem;
+
+                if (objItem == null)
+                    continue;
+
                 switch (objItem.TypeId())
                 {
-                    case TrackInformation.Switch.Typeid:
+                    case Accessory.Typeid:
                         {
-                            if (objItem is TrackInformation.Switch switchItem)
+                            if (objItem is Accessory switchItem)
                             {
                                 if (switchItem.State == 0)
-                                    switchItem.ChangeDirection(1);
+                                    switchItem.DoChange(1);
                                 else
-                                    switchItem.ChangeDirection(0);
+                                    switchItem.DoChange(0);
                             }
                         }
                         break;
 
-                    case TrackInformation.S88.Typeid:
+                    case S88.Typeid:
                         {
                             if (Model is RailwayEssentialModel m && m.IsDryRun)
                             {

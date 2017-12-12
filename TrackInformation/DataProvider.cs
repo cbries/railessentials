@@ -21,6 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Ecos2Core;
+using Ecos2Core.Blocks;
+using Ecos2Core.Replies;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -29,16 +34,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Ecos2Core;
-using Ecos2Core.Blocks;
-using Ecos2Core.Replies;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using TrackInformation.Annotations;
 using TrackInformationCore;
 
 namespace TrackInformation
-{    
+{
     public class DataProvider : IDataProvider, INotifyPropertyChanged
     {
         public event DataChangedDelegator DataChanged;
@@ -57,7 +57,7 @@ namespace TrackInformation
                 lock (_objects)
                 {
                     JArray arLocomotives = new JArray();
-                    JArray arSwitches = new JArray();
+                    JArray arAccessories = new JArray();
                     JArray arRoutes = new JArray();
                     JArray arS88 = new JArray();
 
@@ -70,8 +70,8 @@ namespace TrackInformation
 
                         if (item is Locomotive && jsonO != null)
                             arLocomotives.Add(jsonO);
-                        else if (item is Switch && jsonO != null)
-                            arSwitches.Add(jsonO);
+                        else if (item is Accessory && jsonO != null)
+                            arAccessories.Add(jsonO);
                         else if (item is Route && jsonO != null)
                             arRoutes.Add(jsonO);
                         else if (item is S88 && jsonO != null)
@@ -85,7 +85,7 @@ namespace TrackInformation
                     var o = new JObject
                     {
                         ["locomotives"] = arLocomotives,
-                        ["switches"] = arSwitches,
+                        ["accessories"] = arAccessories,
                         ["routes"] = arRoutes,
                         ["s88"] = arS88
                     };
@@ -95,7 +95,7 @@ namespace TrackInformation
 
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Trace.WriteLine("<DataProvider> " + ex.Message);
                 return false;
@@ -123,7 +123,7 @@ namespace TrackInformation
                         {
                             if (arItem == null)
                                 continue;
-                            
+
                             var e = new Locomotive();
                             e.ParseJson(arItem as JObject);
                             e.CommandsReady += CommandsReady;
@@ -133,9 +133,13 @@ namespace TrackInformation
                     }
                 }
 
-                if (o["switches"] != null)
+                var accessoriesToken = o["switches"];
+                if (accessoriesToken == null)
+                    accessoriesToken = o["accessories"];
+
+                if (accessoriesToken != null)
                 {
-                    JArray ar = o["switches"] as JArray;
+                    JArray ar = accessoriesToken as JArray;
                     if (ar != null)
                     {
                         foreach (var arItem in ar)
@@ -143,7 +147,7 @@ namespace TrackInformation
                             if (arItem == null)
                                 continue;
 
-                            var e = new Switch();
+                            var e = new Accessory();
                             e.ParseJson(arItem as JObject);
                             e.CommandsReady += CommandsReady;
                             _objects.Add(e);
@@ -230,10 +234,10 @@ namespace TrackInformation
 
                     return true;
                 }
-                else if(s88Info != null)
+                else if (s88Info != null)
                 {
-                    if (DoesObjectIdExist((uint) s88Info.ObjectId))
-                        RemoveObjectWithId((uint) s88Info.ObjectId);
+                    if (DoesObjectIdExist((uint)s88Info.ObjectId))
+                        RemoveObjectWithId((uint)s88Info.ObjectId);
 
                     int n = _objects.Count(x => x is S88);
 
@@ -294,11 +298,11 @@ namespace TrackInformation
 
         private bool HandleEventSwitch(IItem item, ListEntry listEntry)
         {
-            Switch e = item as Switch;
+            Accessory e = item as Accessory;
             if (e == null)
                 return false;
 
-            var itemSwitch = GetObjectBy(e.ObjectId) as Switch;
+            var itemSwitch = GetObjectBy(e.ObjectId) as Accessory;
 
             if (itemSwitch != null)
             {
@@ -361,7 +365,7 @@ namespace TrackInformation
                     objectId = 10;
             }
 
-            switch(objectId)
+            switch (objectId)
             {
                 case 1: // baseobject
                     return HandleBaseobject(block);
@@ -415,15 +419,15 @@ namespace TrackInformation
                 switch (e.ObjectId)
                 {
                     case Globals.ID_EV_BASEOBJECT:
-                    {
-                        if (Baseobject == null)
-                            Baseobject = new Ecos2 {ObjectId = e.ObjectId};
+                        {
+                            if (Baseobject == null)
+                                Baseobject = new Ecos2 { ObjectId = e.ObjectId };
 
-                        Baseobject.Parse(e.Arguments);
-                        if (!DoesObjectIdExist((uint) e.ObjectId))
-                            _objects.Add(Baseobject);
-                        DataChanged?.Invoke(this);                            
-                    }
+                            Baseobject.Parse(e.Arguments);
+                            if (!DoesObjectIdExist((uint)e.ObjectId))
+                                _objects.Add(Baseobject);
+                            DataChanged?.Invoke(this);
+                        }
                         break;
                 }
             }
@@ -446,9 +450,9 @@ namespace TrackInformation
                 if (sid.StartsWith("20", StringComparison.OrdinalIgnoreCase))
                 {
                     var sw = GetObjectBy(e.ObjectId);
-                    if(sw == null)
-                    { 
-                        sw = new Switch { ObjectId = e.ObjectId };
+                    if (sw == null)
+                    {
+                        sw = new Accessory { ObjectId = e.ObjectId };
                         sw.Parse(e.Arguments);
                         sw.CommandsReady += CommandsReady;
                         _objects.Add(sw);
@@ -470,7 +474,7 @@ namespace TrackInformation
                     var r = GetObjectBy(e.ObjectId);
                     if (r == null)
                     {
-                        r = new Route {ObjectId = e.ObjectId};
+                        r = new Route { ObjectId = e.ObjectId };
                         r.Parse(e.Arguments);
                         r.CommandsReady += CommandsReady;
                         _objects.Add(r);
@@ -506,7 +510,7 @@ namespace TrackInformation
 
                 if (sid.StartsWith("10", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!DoesObjectIdExist((uint) e.ObjectId))
+                    if (!DoesObjectIdExist((uint)e.ObjectId))
                     {
                         var l = new Locomotive { ObjectId = e.ObjectId };
                         l.IsKnownByCommandStation = true;
@@ -523,7 +527,7 @@ namespace TrackInformation
                         if (l != null)
                         {
                             l.IsKnownByCommandStation = true;
-                            l.Parse(e.Arguments);                            
+                            l.Parse(e.Arguments);
                             l.CommandsReady -= CommandsReady;
                             l.CommandsReady += CommandsReady;
 
@@ -563,7 +567,7 @@ namespace TrackInformation
                     var s88 = GetObjectBy(e.ObjectId) as S88;
                     if (s88 == null)
                     {
-                        s88 = new S88 {ObjectId = e.ObjectId, Index = n};
+                        s88 = new S88 { ObjectId = e.ObjectId, Index = n };
                         s88.Parse(e.Arguments);
                         s88.CommandsReady += CommandsReady;
                         _objects.Add(s88);

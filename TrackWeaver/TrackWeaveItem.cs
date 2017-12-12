@@ -21,16 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using TrackInformationCore;
 
 namespace TrackWeaver
 {
     public enum WeaveItemT
     {
-        Unknown, S88, Switch, Accessory, RouteActivator
+        Unknown = 0,
+        S88 = 1,
+        Accessory = 2,
+        RouteActivator = 4
     }
 
     public class TrackWeaveItem
@@ -40,7 +43,7 @@ namespace TrackWeaver
         public int Pin { get; set; }
         public int VisuX { get; set; }
         public int VisuY { get; set; }
-        public bool InvertSwitch { get; set; }
+        public bool InvertAccessory { get; set; }
 
         public bool FncToggle { get; set; }
         public List<FncGroupTypes> StartFncGroupTypes { get; set; }
@@ -53,7 +56,7 @@ namespace TrackWeaver
             ObjectId = -1;
             VisuX = -1;
             VisuY = -1;
-            InvertSwitch = false;
+            InvertAccessory = false;
             FncToggle = false;
             StartFncGroupTypes = new List<FncGroupTypes>();
             StopFncGroupTypes = new List<FncGroupTypes>();
@@ -72,8 +75,8 @@ namespace TrackWeaver
 
                 if (v.Equals("s88", StringComparison.OrdinalIgnoreCase))
                     Type = WeaveItemT.S88;
-                else if(v.Equals("switch", StringComparison.OrdinalIgnoreCase))
-                    Type = WeaveItemT.Switch;
+                else if (v.Equals("accessory", StringComparison.OrdinalIgnoreCase))
+                    Type = WeaveItemT.Accessory;
                 else
                 {
                     // TODO
@@ -87,18 +90,18 @@ namespace TrackWeaver
                     return false;
 
                 if (os["objectId"] != null)
-                    ObjectId = (int) os["objectId"];
+                    ObjectId = (int)os["objectId"];
                 if (os["pin"] != null)
-                    Pin = (int) os["pin"];
+                    Pin = (int)os["pin"];
                 if (os["visuX"] != null)
-                    VisuX = (int) os["visuX"];
+                    VisuX = (int)os["visuX"];
                 if (os["visuY"] != null)
-                    VisuY = (int) os["visuY"];
+                    VisuY = (int)os["visuY"];
                 if (os["invertSwitch"] != null)
-                    InvertSwitch = (bool) os["invertSwitch"];
+                    InvertAccessory = (bool)os["invertSwitch"];
 
                 if (os["fncToggle"] != null)
-                    FncToggle = (bool) os["fncToggle"];
+                    FncToggle = (bool)os["fncToggle"];
 
                 if (os["startFncGroupTypes"] != null)
                 {
@@ -138,14 +141,14 @@ namespace TrackWeaver
             foreach (var it in StopFncGroupTypes)
                 stopFt.Add((int)it);
 
-            JObject o = new JObject {["type"] = Type.ToString()};
+            JObject o = new JObject { ["type"] = Type.ToString() };
             JObject oo = new JObject
             {
                 ["objectId"] = ObjectId,
                 ["pin"] = Pin,
                 ["visuX"] = VisuX,
                 ["visuY"] = VisuY,
-                ["invertSwitch"] = InvertSwitch,
+                ["invertSwitch"] = InvertAccessory,
                 ["fncToggle"] = FncToggle,
                 ["startFncGroupTypes"] = startFt,
                 ["stopFncGroupTypes"] = stopFt

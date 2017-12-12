@@ -21,18 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using RailwayEssentialMdi.Analyze;
+using RailwayEssentialMdi.Interfaces;
+using RailwayEssentialMdi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using RailwayEssentialMdi.Analyze;
-using RailwayEssentialMdi.Interfaces;
-using RailwayEssentialMdi.ViewModels;
 using TrackInformation;
 using Xceed.Wpf.AvalonDock;
 
@@ -146,13 +145,13 @@ namespace RailwayEssentialMdi
 
                 ContextMenu mnu = new ContextMenu();
 
-                MenuItem m0 = new MenuItem {Header = "Force Switches"};
+                MenuItem m0 = new MenuItem { Header = "Force Accessories" };
                 m0.Click += (o, args) => PropagateTestRoute(routeGrpItem);
 
-                MenuItem m1 = new MenuItem {Header = "Show Route"};
+                MenuItem m1 = new MenuItem { Header = "Show Route" };
                 m1.Click += (o, args) => _dataContext.ShowBlockRoutePreview(routeGrpItem);
 
-                MenuItem m2 = new MenuItem {Header = "Reset Route"};
+                MenuItem m2 = new MenuItem { Header = "Reset Route" };
                 m2.Click += (o, args) => _dataContext.ResetBlockRoutePreview();
 
                 mnu.Items.Add(m0);
@@ -166,10 +165,10 @@ namespace RailwayEssentialMdi
             {
                 ContextMenu mnu = new ContextMenu();
 
-                MenuItem m0 = new MenuItem {Header = "Stop"};
+                MenuItem m0 = new MenuItem { Header = "Stop" };
                 m0.Click += (o, args) => locItem.Stop();
 
-                MenuItem m1 = new MenuItem {Header = "Send to Block...", IsEnabled = true};
+                MenuItem m1 = new MenuItem { Header = "Send to Block...", IsEnabled = true };
                 if (_dataContext.Project == null /*|| !_dataContext.AutoplayState2*/)
                 {
                     m1.IsEnabled = false;
@@ -227,7 +226,7 @@ namespace RailwayEssentialMdi
                         if (string.IsNullOrEmpty(header))
                             header = trackInfo.ToString();
 
-                        MenuItem itm = new MenuItem {Header = header};
+                        MenuItem itm = new MenuItem { Header = header };
                         itm.Click += (o, args) =>
                         {
                             var autoplayer = _dataContext.Autoplayer;
@@ -295,55 +294,55 @@ namespace RailwayEssentialMdi
                 switch (catItem.Index)
                 {
                     case 1: // Locomotives
-                    {
-                        MenuItem m0 = new MenuItem {Header = "Sync"};
-                        m0.Click += (o, args) =>
                         {
-                            var m = _dataContext;
-
-                            var r = Helper.Ask(
-                                "Sync will remove Locomotives which are currently unknown by the connected command station. Do you like to sync anyway?",
-                                "Sync Locomotives", "Yes", "Abort");
-                            if (r)
+                            MenuItem m0 = new MenuItem { Header = "Sync" };
+                            m0.Click += (o, args) =>
                             {
-                                var dataProvider = m?.Dispatcher?.GetDataProvider();
-                                if (dataProvider != null)
+                                var m = _dataContext;
+
+                                var r = Helper.Ask(
+                                    "Sync will remove Locomotives which are currently unknown by the connected command station. Do you like to sync anyway?",
+                                    "Sync Locomotives", "Yes", "Abort");
+                                if (r)
                                 {
-                                    lock (dataProvider.Objects)
+                                    var dataProvider = m?.Dispatcher?.GetDataProvider();
+                                    if (dataProvider != null)
                                     {
-                                        var objs = dataProvider.Objects.OfType<Locomotive>()
-                                            .Where(x => !x.IsKnownByCommandStation);
-
-                                        List<int> indeces = new List<int>();
-
-                                        foreach (var oo in objs)
-                                            indeces.Add(dataProvider.Objects.IndexOf(oo));
-
-                                        indeces.Sort();
-                                        indeces.Reverse();
-
-                                        foreach (int idx in indeces)
+                                        lock (dataProvider.Objects)
                                         {
-                                            m.RemoveItemLocomotiveFromCategory(
-                                                dataProvider.Objects[idx] as TrackInformation.Item);
-                                            dataProvider.Objects.RemoveAt(idx);
+                                            var objs = dataProvider.Objects.OfType<Locomotive>()
+                                                .Where(x => !x.IsKnownByCommandStation);
+
+                                            List<int> indeces = new List<int>();
+
+                                            foreach (var oo in objs)
+                                                indeces.Add(dataProvider.Objects.IndexOf(oo));
+
+                                            indeces.Sort();
+                                            indeces.Reverse();
+
+                                            foreach (int idx in indeces)
+                                            {
+                                                m.RemoveItemLocomotiveFromCategory(
+                                                    dataProvider.Objects[idx] as TrackInformation.Item);
+                                                dataProvider.Objects.RemoveAt(idx);
+                                            }
                                         }
+
+                                        m.Project.Save();
+                                        m.SetDirty(false);
                                     }
-
-                                    m.Project.Save();
-                                    m.SetDirty(false);
                                 }
-                            }
-                        };
+                            };
 
-                        mnu.Items.Add(m0);
-                    }
+                            mnu.Items.Add(m0);
+                        }
                         break;
 
                     case 2: // S88
                         break;
 
-                    case 3: //Switches
+                    case 3: // Accessories
                         break;
                 }
 
@@ -375,7 +374,7 @@ namespace RailwayEssentialMdi
             }
         }
 
-        private void PropagateTestRoute(Items.BlockRouteItem item=null)
+        private void PropagateTestRoute(Items.BlockRouteItem item = null)
         {
             if (_dataContext == null)
                 return;
@@ -393,7 +392,7 @@ namespace RailwayEssentialMdi
 
         private void TreeView_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
                 PropagateTreeViewSelection();
             else if (e.Key == Key.Escape)
                 _dataContext.ResetBlockRoutePreview();
@@ -412,7 +411,7 @@ namespace RailwayEssentialMdi
 
             if (item is TrackInformation.Locomotive)
                 _dataContext.SetCurrentLocomotive(item);
-            else if (item is TrackInformation.Switch)
+            else if (item is TrackInformation.Accessory)
                 _dataContext.SetCurrentSwitch(item);
             else if (item is Items.BlockRouteItem)
                 _dataContext.ShowBlockRoutePreview(item);

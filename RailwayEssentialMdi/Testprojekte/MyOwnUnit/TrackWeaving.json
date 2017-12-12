@@ -13,7 +13,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20011,
       "pin": 0,
@@ -26,7 +26,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20010,
       "pin": 0,
@@ -39,7 +39,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20001,
       "pin": 0,
@@ -52,7 +52,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20004,
       "pin": 0,
@@ -65,7 +65,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20003,
       "pin": 0,
@@ -78,7 +78,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20006,
       "pin": 0,
@@ -91,7 +91,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20007,
       "pin": 0,
@@ -104,7 +104,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20008,
       "pin": 0,
@@ -117,7 +117,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20002,
       "pin": 0,
@@ -130,7 +130,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20005,
       "pin": 0,
@@ -143,7 +143,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20009,
       "pin": 0,
@@ -1008,7 +1008,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20000,
       "pin": 0,
@@ -1021,7 +1021,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20026,
       "pin": 0,
@@ -1034,7 +1034,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20025,
       "pin": 0,
@@ -1047,7 +1047,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20023,
       "pin": 0,
@@ -1060,7 +1060,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20024,
       "pin": 0,
@@ -1073,7 +1073,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20031,
       "pin": 0,
@@ -1086,7 +1086,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20033,
       "pin": 0,
@@ -1099,7 +1099,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20022,
       "pin": 0,
@@ -1112,7 +1112,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20021,
       "pin": 0,
@@ -1125,7 +1125,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20015,
       "pin": 0,
@@ -1138,7 +1138,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20020,
       "pin": 0,
@@ -1151,7 +1151,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20012,
       "pin": 0,
@@ -1164,7 +1164,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20013,
       "pin": 0,
@@ -1177,7 +1177,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20014,
       "pin": 0,
@@ -1190,7 +1190,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20027,
       "pin": 0,
@@ -1203,7 +1203,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20029,
       "pin": 0,
@@ -1216,7 +1216,7 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20028,
       "pin": 0,
@@ -1229,13 +1229,39 @@
     }
   },
   {
-    "type": "Switch",
+    "type": "Accessory",
     "setup": {
       "objectId": 20030,
       "pin": 0,
       "visuX": 35,
       "visuY": 21,
       "invertSwitch": true,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Accessory",
+    "setup": {
+      "objectId": 20018,
+      "pin": 0,
+      "visuX": 17,
+      "visuY": 19,
+      "invertSwitch": false,
+      "fncToggle": false,
+      "startFncGroupTypes": [],
+      "stopFncGroupTypes": []
+    }
+  },
+  {
+    "type": "Accessory",
+    "setup": {
+      "objectId": 20019,
+      "pin": 0,
+      "visuX": 17,
+      "visuY": 19,
+      "invertSwitch": false,
       "fncToggle": false,
       "startFncGroupTypes": [],
       "stopFncGroupTypes": []

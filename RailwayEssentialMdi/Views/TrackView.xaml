@@ -11,6 +11,7 @@
     
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <xamlMagic:ConverterSort x:Key="converterSort"/>
     </UserControl.Resources>
     
     <Grid>
@@ -109,11 +110,11 @@
                             </ScrollViewer>
                         </TabItem>
 
-                        <TabItem Header="S88">
+                        <TabItem Header="S88 Feedback">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
                                 <StackPanel>
                                     <DockPanel Margin="0,5,0,0" Visibility="{Binding Entity.SelectionXYvisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                                        <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsS88}" SelectedItem="{Binding Entity.ItemsS88Selection, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" />
+                                        <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsS88, Converter={StaticResource converterSort}, ConverterParameter=Title}" SelectedItem="{Binding Entity.ItemsS88Selection, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left" />
 
                                         <TextBlock Text="Pin: " FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0"/>
                                         <xctk:IntegerUpDown Name="NumberOfColumns" Height="22" Width="75" HorizontalAlignment="Left" Margin="5,0,0,0"
@@ -142,13 +143,19 @@
                             </ScrollViewer>
                         </TabItem>
 
-                        <TabItem Header="Switch">
+                        <TabItem Header="Switch/Semaphore">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
                                 <StackPanel>
                                     <DockPanel Margin="0,5,0,0" Visibility="{Binding Entity.SelectionXYvisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                                        <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsSwitch}" SelectedItem="{Binding Entity.ItemsSwitchSelection, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left"/>
-
-                                        <CheckBox Content="Invert ECoS' Command" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Entity.ItemsSwitchInvert, Mode=TwoWay}"/>
+                                        <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsAccessory, Converter={StaticResource converterSort}, ConverterParameter=Title}" 
+                                                  SelectedItem="{Binding Entity.ItemsAccessorySelection, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left"/>
+                                        <CheckBox Content="Invert ECoS' Command" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Entity.ItemsAccessoryInvert, Mode=TwoWay}"/>
+                                    </DockPanel>
+                                    
+                                    <DockPanel Margin="0,5,0,0" Visibility="{Binding Entity.SelectionXYvisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                        <ComboBox Margin="0,0,0,0" ItemsSource="{Binding Entity.ItemsAccessory, Converter={StaticResource converterSort}, ConverterParameter=Title}" 
+                                                  SelectedItem="{Binding Entity.ItemsAccessorySelection2, Mode=TwoWay}" VerticalAlignment="Center" Width="200" HorizontalAlignment="Left"/>
+                                        <CheckBox Content="Invert ECoS' Command" VerticalAlignment="Center" Margin="10,0,0,0" IsChecked="{Binding Entity.ItemsAccessoryInvert2, Mode=TwoWay}"/>
                                     </DockPanel>
                                 </StackPanel>
                             </ScrollViewer>
@@ -181,7 +188,7 @@
 
                                         <TextBlock Text="Current Locomotive: " Margin="20,0,0,0"/>
                                         <ComboBox Name="BlockCurrentLocomotive" Height="22" Width="150" HorizontalAlignment="Left" Margin="5,0,0,0"
-                                                  ItemsSource="{Binding Entity.AvailableLocomotives}"
+                                                  ItemsSource="{Binding Entity.AvailableLocomotives, Converter={StaticResource converterSort}, ConverterParameter=Title}"
                                                   SelectedItem="{Binding Entity.BlockCurrentLocomotive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
                                     </DockPanel>

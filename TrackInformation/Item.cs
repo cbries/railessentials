@@ -171,7 +171,7 @@ namespace TrackInformation
                 {
                     if (item is Locomotive)
                         _iconSource = new BitmapImage(new Uri(BasePackUrlsPath + "train.png"));
-                    else if (item is Switch)
+                    else if (item is Accessory)
                         _iconSource = new BitmapImage(new Uri(BasePackUrlsPath + "switch.png"));
                     else if (item is Route)
                         _iconSource = new BitmapImage(new Uri(BasePackUrlsPath + "route.png"));

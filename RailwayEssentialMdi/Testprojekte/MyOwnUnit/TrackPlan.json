@@ -322,7 +322,9 @@
     "themeId": 150,
     "orientation": "rot0",
     "description": "",
-    "options": {}
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
   },
   {
     "name": "s12",
@@ -1418,7 +1420,7 @@
     "name": "Bhf1: Gleis 2",
     "x": 10,
     "y": 19,
-    "themeId": 151,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -1450,7 +1452,7 @@
     "name": "Sensor#5",
     "x": 15,
     "y": 19,
-    "themeId": 101,
+    "themeId": 10,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -1471,7 +1473,7 @@
     "name": "Track#83",
     "x": 14,
     "y": 19,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -1580,13 +1582,15 @@
     "options": {}
   },
   {
-    "name": "Track#104",
+    "name": "Kreuzung rechts",
     "x": 17,
     "y": 19,
-    "themeId": 50,
+    "themeId": 54,
     "orientation": "rot180",
     "description": "",
-    "options": {}
+    "options": {
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
+    }
   },
   {
     "name": "Track#105",
@@ -1601,8 +1605,8 @@
     "name": "Track#106",
     "x": 16,
     "y": 19,
-    "themeId": 50,
-    "orientation": "rot0",
+    "themeId": 101,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2237,15 +2241,6 @@
     "options": {}
   },
   {
-    "name": "Block#11",
-    "x": 12,
-    "y": 19,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
     "name": "Sensor#11",
     "x": 13,
     "y": 1,
@@ -2546,7 +2541,7 @@
     "name": "Switch#4",
     "x": 8,
     "y": 14,
-    "themeId": 50,
+    "themeId": 54,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -2555,7 +2550,7 @@
     "name": "Switch#11",
     "x": 7,
     "y": 14,
-    "themeId": 50,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2563,15 +2558,6 @@
   {
     "name": "Track#158",
     "x": 6,
-    "y": 14,
-    "themeId": 10,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#159",
-    "x": 5,
     "y": 14,
     "themeId": 13,
     "orientation": "rot180",
@@ -2656,8 +2642,8 @@
     "name": "Track#163",
     "x": 7,
     "y": 15,
-    "themeId": 11,
-    "orientation": "rot90",
+    "themeId": 10,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2865,7 +2851,7 @@
     "name": "Sensor#38",
     "x": 13,
     "y": 19,
-    "themeId": 200,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2874,8 +2860,8 @@
     "name": "Track#178",
     "x": 16,
     "y": 20,
-    "themeId": 11,
-    "orientation": "rot90",
+    "themeId": 101,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2883,7 +2869,7 @@
     "name": "Signal#12",
     "x": 15,
     "y": 20,
-    "themeId": 101,
+    "themeId": 10,
     "orientation": "rot180",
     "description": "",
     "options": {}
@@ -2892,7 +2878,7 @@
     "name": "Track#179",
     "x": 14,
     "y": 20,
-    "themeId": 10,
+    "themeId": 200,
     "orientation": "rot0",
     "description": "",
     "options": {}
@@ -2900,15 +2886,6 @@
   {
     "name": "Sensor#39",
     "x": 13,
-    "y": 20,
-    "themeId": 200,
-    "orientation": "rot0",
-    "description": "",
-    "options": {}
-  },
-  {
-    "name": "Track#180",
-    "x": 12,
     "y": 20,
     "themeId": 10,
     "orientation": "rot0",
@@ -2919,7 +2896,7 @@
     "name": "Bhf1: Gleis 1",
     "x": 10,
     "y": 20,
-    "themeId": 151,
+    "themeId": 10,
     "orientation": "rot0",
     "description": "",
     "options": {
@@ -2989,5 +2966,45 @@
     "orientation": "rot90",
     "description": "",
     "options": {}
+  },
+  {
+    "name": "Track#1",
+    "x": 8,
+    "y": 15,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Track#4",
+    "x": 17,
+    "y": 20,
+    "themeId": 11,
+    "orientation": "rot90",
+    "description": "",
+    "options": {}
+  },
+  {
+    "name": "Bhf1: Gleis 1",
+    "x": 11,
+    "y": 20,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
+  },
+  {
+    "name": "Bhf1: Gleis 2",
+    "x": 11,
+    "y": 19,
+    "themeId": 151,
+    "orientation": "rot0",
+    "description": "",
+    "options": {
+      "blockGroupIdentifier": "-1"
+    }
   }
 ]

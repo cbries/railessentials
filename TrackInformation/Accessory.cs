@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Ecos2Core;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Ecos2Core;
-using Newtonsoft.Json.Linq;
 
 namespace TrackInformation
 {
-    public class Switch : Item
+    public class Accessory : Item
     {
         public const int Typeid = 5;
 
@@ -155,13 +155,13 @@ namespace TrackInformation
             }
         }
 
-        public Switch() : base()
+        public Accessory() : base()
         {
         }
 
         public override void UpdateTitle()
         {
-            if(!string.IsNullOrEmpty(Name1) && !string.IsNullOrEmpty(Name2) && !string.IsNullOrEmpty(Name3))
+            if (!string.IsNullOrEmpty(Name1) && !string.IsNullOrEmpty(Name2) && !string.IsNullOrEmpty(Name3))
                 Title = $"{Name1}, {Name2}, {Name3}";
             else if (!string.IsNullOrEmpty(Name1) && !string.IsNullOrEmpty(Name2))
                 Title = $"{Name1}, {Name2}";
@@ -173,7 +173,6 @@ namespace TrackInformation
         {
             var ext = string.Join(", ", Addrext);
             var direction = State == 0 ? "Straight" : "Turn";
-
             SubTitle = $"{direction} - [{ext}]";
         }
 
@@ -285,9 +284,9 @@ namespace TrackInformation
                 }
             }
             if (o["objectId"] != null)
-                ObjectId = (int) o["objectId"];
+                ObjectId = (int)o["objectId"];
             if (o["addr"] != null)
-                Addr = (int) o["addr"];
+                Addr = (int)o["addr"];
             if (o["protocol"] != null)
                 Protocol = o["protocol"].ToString();
             if (o["type"] != null)
@@ -295,12 +294,12 @@ namespace TrackInformation
             if (o["mode"] != null)
                 Mode = o["mode"].ToString();
             if (o["state"] != null)
-                State = (int) o["state"];
+                State = (int)o["state"];
             if (o["switching"] != null)
-                Switching = (int) o["switching"];
+                Switching = (int)o["switching"];
         }
 
-        public void ChangeDirection(int index)
+        public void DoChange(int index)
         {
             string s = Addrext[index];
 

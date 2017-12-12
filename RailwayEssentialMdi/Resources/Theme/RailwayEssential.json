@@ -232,13 +232,12 @@
         "routes": [ "BC,CB,DC,CD", "AD,DA,CD,DC", "AB,BA,AD,DA", "BC,CB,CD,DC" ] 
       },
       {
-        "id": -1, 
-        "_id": 54,
+        "id": 54,
         "name": "Crossing A",
         "active": {
-          "default": "ccrossing",
-          "occ": "ccrossing-occ",
-          "route": "ccrossing-route"
+          "default": "ccrossing-t",
+          "occ": "ccrossing-t-occ",
+          "route": "ccrossing-t-route"
         },
         "off": {
           "default": "ccrossing",
@@ -246,7 +245,7 @@
           "route": "ccrossing-route"
         },
         "clickable": false,
-        "routes": [ "", "", "", "" ]
+        "routes": [ "AC,CA,BD,DB,AB,BA,CD,DC", "AC,CA,BD,DB,BC,CB,DA,AD", "AC,CA,BD,DB,AB,BA,CD,DC", "AC,CA,BD,DB,BC,CB,DA,AD" ]
       },
       {
         "id": 55,

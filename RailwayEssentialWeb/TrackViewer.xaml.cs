@@ -21,15 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using CefSharp;
+using RailwayEssentialCore;
+using RailwayEssentialWeb.Cef;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using CefSharp;
-using CefSharp.Wpf;
-using RailwayEssentialCore;
-using RailwayEssentialWeb.Cef;
 
 namespace RailwayEssentialWeb
 {
@@ -74,7 +73,7 @@ namespace RailwayEssentialWeb
             // for some reason, performance sucks w/ the gpu enabled
             //settings.CefCommandLineArgs.Add("disable-gpu", "1");
             //settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
-            if(!CefSharp.Cef.IsInitialized)
+            if (!CefSharp.Cef.IsInitialized)
                 CefSharp.Cef.Initialize(settings);
 
             InitializeComponent();

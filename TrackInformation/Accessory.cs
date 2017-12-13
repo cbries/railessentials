@@ -317,10 +317,10 @@ namespace TrackInformation
             OnCommandsReady(this, ctrlCmds);
 
             // create dummy block to trigger trackviewer immediatelly
-            //<EVENT 11>
-            // 11 switch[DCC4r]
+            //<EVENT ObjectID>
+            // ObjectID state[1|0]
             // <END 0(OK)>
-            var blocks = Utils.GetBlocks($"<EVENT {ObjectId}>\r\n{ObjectId} switch[{Protocol}{s}]\r\n<END 0(OK)>\r\n");
+            var blocks = Utils.GetBlocks($"<EVENT {ObjectId}>\r\n{ObjectId} state[{index}]\r\n<END 0(OK)>\r\n");
             OnFakeCommands(this, blocks);
         }
     }

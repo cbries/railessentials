@@ -712,6 +712,8 @@ namespace RailwayEssentialMdi.ViewModels
 
                     dataProvider.Add(blk);
                 }
+
+                TriggerUpdateUi();
             };
 
             foreach (var objFilename in Project.Objects)

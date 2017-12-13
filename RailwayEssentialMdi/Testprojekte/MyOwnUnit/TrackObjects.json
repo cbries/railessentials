@@ -69,7 +69,7 @@
       "nrOfFunctions": 5,
       "maxSpeedPercentage": 50,
       "blockSpeedPercentage": 25,
-      "locked": true,
+      "locked": false,
       "fncTypes": [
         {
           "name": "F4",

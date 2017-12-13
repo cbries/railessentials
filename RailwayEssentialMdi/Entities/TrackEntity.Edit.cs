@@ -978,6 +978,9 @@ namespace RailwayEssentialMdi.Entities
         {
             var weaverItems = GetWeaverItems(x, y);
 
+            if (weaverItems == null)
+                return;
+
             foreach (var w in weaverItems)
             {
                 var objItem = w?.ObjectItem;

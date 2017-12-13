@@ -326,7 +326,6 @@
     "description": "",
     "options": {
       "blockGroupIdentifier": "-1",
-      "blockCurrentLocomotive": "1008",
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
   },
@@ -421,7 +420,6 @@
     "description": "",
     "options": {
       "blockGroupIdentifier": "-1",
-      "blockCurrentLocomotive": "1000",
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
   },
@@ -1470,7 +1468,9 @@
     "orientation": "rot0",
     "description": "",
     "options": {
-      "blockGroupIdentifier": "-1"
+      "blockGroupIdentifier": "-1",
+      "blockCurrentLocomotive": "1004",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
   },
   {
@@ -1501,7 +1501,7 @@
     "options": {
       "blockGroupIdentifier": "-1",
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockPreviewLocomotive": "1000"
+      "blockPreviewLocomotive": "1004"
     }
   },
   {
@@ -1684,7 +1684,7 @@
     "options": {
       "blockGroupIdentifier": "-1",
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}",
-      "blockPreviewLocomotive": "1008"
+      "blockPreviewLocomotive": "1004"
     }
   },
   {
@@ -2763,7 +2763,7 @@
     "x": 4,
     "y": 15,
     "themeId": 51,
-    "orientation": "rot-90",
+    "orientation": "rot0",
     "description": "",
     "options": {
       "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
@@ -2874,8 +2874,8 @@
     "name": "Track#175",
     "x": 10,
     "y": 17,
-    "themeId": 10,
-    "orientation": "rot0",
+    "themeId": 14,
+    "orientation": "rot180",
     "description": "",
     "options": {}
   },
@@ -2887,7 +2887,9 @@
     "orientation": "rot0",
     "description": "",
     "options": {
-      "blockGroupIdentifier": "-1"
+      "blockGroupIdentifier": "-1",
+      "blockCurrentLocomotive": "1008",
+      "events": "{\r\n  \"sensor0\": \"--\",\r\n  \"sensor1\": \"--\",\r\n  \"sensor2\": \"--\",\r\n  \"event0\": \"--\",\r\n  \"event1\": \"--\",\r\n  \"event2\": \"--\"\r\n}"
     }
   },
   {
@@ -3117,7 +3119,7 @@
     "x": 1,
     "y": 15,
     "themeId": 201,
-    "orientation": "rot0",
+    "orientation": "rot-90",
     "description": "",
     "options": {}
   }

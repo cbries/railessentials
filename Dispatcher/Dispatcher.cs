@@ -323,6 +323,11 @@ namespace Dispatcher
             }
         }
 
+        public void HandleFakeBlocks(IReadOnlyList<IBlock> blocks)
+        {
+            CommunicationOnBlocksReceived(null, blocks);
+        }
+
         private void CommunicationOnBlocksReceived(object sender, IReadOnlyList<IBlock> blocks)
         {
             if (Logger != null)

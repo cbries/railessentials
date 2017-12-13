@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+using Ecos2Core;
+using Newtonsoft.Json.Linq;
+using RailwayEssentialCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
-using Ecos2Core;
-using Newtonsoft.Json.Linq;
-using RailwayEssentialCore;
 using TrackInformation.Annotations;
 using TrackInformationCore;
 
@@ -37,7 +37,8 @@ namespace TrackInformation
 {
     public class Item : IItem, INotifyPropertyChanged
     {
-        public event CommandsReadyDelegator CommandsReady;
+        public event CommandsReadyDelegator CommandsReadyItem;
+        public event FakeCommandsDelegator FakeCommands;
 
         public IRailwayEssentialModel Ctx { get; set; }
 
@@ -235,8 +236,14 @@ namespace TrackInformation
 
         protected virtual void OnCommandsReady(object sender, IReadOnlyList<ICommand> commands)
         {
-            if (CommandsReady != null)
-                CommandsReady(sender, commands);
+            if (CommandsReadyItem != null)
+                CommandsReadyItem(sender, commands);
+        }
+
+        protected virtual void OnFakeCommands(object sender, IReadOnlyList<IBlock> blocks)
+        {
+            if (FakeCommands != null)
+                FakeCommands(sender, blocks);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

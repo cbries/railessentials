@@ -21,19 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System.Collections.Generic;
 using Ecos2Core;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace TrackInformationCore
 {
     public delegate void CommandsReadyDelegator(object sender, IReadOnlyList<ICommand> commands);
 
+    public delegate void FakeCommandsDelegator(object sender, IReadOnlyList<IBlock> blocks);
+
     public enum FncGroupTypes { GroupLight = 0, GroupSmoke = 1, GroupCruise = 2 }
 
     public interface IItem
     {
-        event CommandsReadyDelegator CommandsReady;
+        event CommandsReadyDelegator CommandsReadyItem;
+        event FakeCommandsDelegator FakeCommands;
 
         string IconName { get; set; }
 

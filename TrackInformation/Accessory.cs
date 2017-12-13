@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 using Ecos2Core;
+using Ecos2Core.Replies;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -307,20 +308,20 @@ namespace TrackInformation
             {
                 CommandFactory.Create($"request(11, control, force)"),
                 CommandFactory.Create($"set(11, switch[{Protocol}{s}])"),
-                CommandFactory.Create($"release(11, control)")
+                CommandFactory.Create($"release(11, control)"),
+
+                // request update for current object
+                CommandFactory.Create($"get({ObjectId}, state)")
             };
 
             OnCommandsReady(this, ctrlCmds);
 
-            // get update
-            ctrlCmds.Clear();
-
-            ctrlCmds = new List<ICommand>
-            {
-                CommandFactory.Create($"get({ObjectId}, state)"),
-            };
-
-            OnCommandsReady(this, ctrlCmds);
+            // create dummy block to trigger trackviewer immediatelly
+            //<EVENT 11>
+            // 11 switch[DCC4r]
+            // <END 0(OK)>
+            var blocks = Utils.GetBlocks($"<EVENT {ObjectId}>\r\n{ObjectId} switch[{Protocol}{s}]\r\n<END 0(OK)>\r\n");
+            OnFakeCommands(this, blocks);
         }
     }
 }

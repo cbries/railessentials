@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Communicator;
 using Ecos2Core;
 using Ecos2Core.Replies;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Dispatcher
 {
@@ -66,7 +66,7 @@ namespace Dispatcher
         {
             try
             {
-                if(_client != null)
+                if (_client != null)
                     return _client.Stop();
                 return true;
             }
@@ -106,7 +106,7 @@ namespace Dispatcher
                 HasError = false;
                 ErrorMessage = "";
 
-                _client = new Connector {Cfg = Cfg};
+                _client = new Connector { Cfg = Cfg };
                 _client.Started += COnStarted;
                 _client.Stopped += COnStopped;
                 _client.Failed += COnFailed;
@@ -115,7 +115,7 @@ namespace Dispatcher
 
                 return r;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 HasError = true;
                 ErrorMessage = ex.Message;
@@ -151,7 +151,7 @@ namespace Dispatcher
                     BlocksReceived(this, blocks);
 
                 _lines.Clear();
-            }           
+            }
         }
 
         private void COnFailed(object o, string errmsg)
@@ -170,7 +170,7 @@ namespace Dispatcher
             HasError = false;
             ErrorMessage = "";
 
-            if(CommunicationStopped != null)
+            if (CommunicationStopped != null)
                 CommunicationStopped(this, EventArgs.Empty);
 
             Logger?.Log("Communication stopped\r\n");

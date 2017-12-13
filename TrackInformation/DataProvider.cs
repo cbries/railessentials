@@ -43,6 +43,7 @@ namespace TrackInformation
     {
         public event DataChangedDelegator DataChanged;
         public event CommandsReadyDelegator CommandsReady;
+        public event FakeCommandsDelegator FakeCommands;
 
         private readonly ObservableCollection<IItem> _objects = new ObservableCollection<IItem>();
 
@@ -126,7 +127,7 @@ namespace TrackInformation
 
                             var e = new Locomotive();
                             e.ParseJson(arItem as JObject);
-                            e.CommandsReady += CommandsReady;
+                            e.CommandsReadyItem += CommandsReady;
                             _objects.Add(e);
                             DataChanged?.Invoke(this);
                         }
@@ -149,7 +150,8 @@ namespace TrackInformation
 
                             var e = new Accessory();
                             e.ParseJson(arItem as JObject);
-                            e.CommandsReady += CommandsReady;
+                            e.CommandsReadyItem += CommandsReady;
+                            e.FakeCommands += FakeCommands;
                             _objects.Add(e);
                             DataChanged?.Invoke(this);
                         }
@@ -168,7 +170,7 @@ namespace TrackInformation
 
                             var e = new Route();
                             e.ParseJson(arItem as JObject);
-                            e.CommandsReady += CommandsReady;
+                            e.CommandsReadyItem += CommandsReady;
                             _objects.Add(e);
                             DataChanged?.Invoke(this);
                         }
@@ -187,7 +189,7 @@ namespace TrackInformation
 
                             var e = new S88();
                             e.ParseJson(arItem as JObject);
-                            e.CommandsReady += CommandsReady;
+                            e.CommandsReadyItem += CommandsReady;
                             _objects.Add(e);
                             DataChanged?.Invoke(this);
                         }
@@ -249,7 +251,7 @@ namespace TrackInformation
                     }
 
                     var s88 = new S88 { ObjectId = s88Info.ObjectId, Index = n };
-                    s88.CommandsReady += CommandsReady;
+                    s88.CommandsReadyItem += CommandsReady;
                     _objects.Add(s88);
                     DataChanged?.Invoke(this);
                     s88.EnableView();
@@ -268,7 +270,7 @@ namespace TrackInformation
                 if (HandleEventS88(item, e))
                     continue;
 
-                if (HandleEventSwitch(item, e))
+                if (HandleEventAccessory(item, e))
                     continue;
 
                 if (HandleEventLocomotive(item, e))
@@ -296,19 +298,16 @@ namespace TrackInformation
             return true;
         }
 
-        private bool HandleEventSwitch(IItem item, ListEntry listEntry)
+        private bool HandleEventAccessory(IItem item, ListEntry listEntry)
         {
-            Accessory e = item as Accessory;
-            if (e == null)
+            if (!(item is Accessory e))
                 return false;
 
-            var itemSwitch = GetObjectBy(e.ObjectId) as Accessory;
-
-            if (itemSwitch != null)
+            if (GetObjectBy(e.ObjectId) is Accessory itemAccessory)
             {
-                itemSwitch.Parse(listEntry.Arguments);
-                itemSwitch.UpdateTitle();
-                itemSwitch.UpdateSubTitle();
+                itemAccessory.Parse(listEntry.Arguments);
+                itemAccessory.UpdateTitle();
+                itemAccessory.UpdateSubTitle();
             }
 
             return true;
@@ -371,7 +370,7 @@ namespace TrackInformation
                     return HandleBaseobject(block);
 
                 case 11: // switch or route
-                    return AddSwitchOrRoute(block);
+                    return AddAccessoryOrRoute(block);
 
                 case 10: // locomotive
                     return AddLocomotive(block);
@@ -435,7 +434,7 @@ namespace TrackInformation
             return true;
         }
 
-        private bool AddSwitchOrRoute(IBlock block)
+        private bool AddAccessoryOrRoute(IBlock block)
         {
             if (block == null)
                 return false;
@@ -449,24 +448,28 @@ namespace TrackInformation
 
                 if (sid.StartsWith("20", StringComparison.OrdinalIgnoreCase))
                 {
-                    var sw = GetObjectBy(e.ObjectId);
-                    if (sw == null)
+                    var accessory = GetObjectBy(e.ObjectId);
+
+                    if (accessory == null)
                     {
-                        sw = new Accessory { ObjectId = e.ObjectId };
-                        sw.Parse(e.Arguments);
-                        sw.CommandsReady += CommandsReady;
-                        _objects.Add(sw);
+                        accessory = new Accessory { ObjectId = e.ObjectId };
+                        accessory.Parse(e.Arguments);
+                        accessory.CommandsReadyItem += CommandsReady;
+                        accessory.FakeCommands += FakeCommands;
+                        _objects.Add(accessory);
                         DataChanged?.Invoke(this);
-                        sw.EnableView();
+                        accessory.EnableView();
                     }
                     else
                     {
-                        sw.Parse(e.Arguments);
-                        sw.CommandsReady -= CommandsReady;
-                        sw.CommandsReady += CommandsReady;
+                        accessory.Parse(e.Arguments);
+                        accessory.CommandsReadyItem -= CommandsReady;
+                        accessory.CommandsReadyItem += CommandsReady;
+                        accessory.FakeCommands -= FakeCommands;
+                        accessory.FakeCommands += FakeCommands;
                         DataChanged?.Invoke(this);
-                        if (!sw.HasView)
-                            sw.EnableView();
+                        if (!accessory.HasView)
+                            accessory.EnableView();
                     }
                 }
                 else if (sid.StartsWith("30", StringComparison.OrdinalIgnoreCase))
@@ -476,7 +479,7 @@ namespace TrackInformation
                     {
                         r = new Route { ObjectId = e.ObjectId };
                         r.Parse(e.Arguments);
-                        r.CommandsReady += CommandsReady;
+                        r.CommandsReadyItem += CommandsReady;
                         _objects.Add(r);
                         DataChanged?.Invoke(this);
                         r.EnableView();
@@ -484,8 +487,8 @@ namespace TrackInformation
                     else
                     {
                         r.Parse(e.Arguments);
-                        r.CommandsReady -= CommandsReady;
-                        r.CommandsReady += CommandsReady;
+                        r.CommandsReadyItem -= CommandsReady;
+                        r.CommandsReadyItem += CommandsReady;
                         if (!r.HasView)
                             r.EnableView();
                         DataChanged?.Invoke(this);
@@ -515,7 +518,7 @@ namespace TrackInformation
                         var l = new Locomotive { ObjectId = e.ObjectId };
                         l.IsKnownByCommandStation = true;
                         l.Parse(e.Arguments);
-                        l.CommandsReady += CommandsReady;
+                        l.CommandsReadyItem += CommandsReady;
                         _objects.Add(l);
                         DataChanged?.Invoke(this);
                         l.EnableView();
@@ -528,8 +531,8 @@ namespace TrackInformation
                         {
                             l.IsKnownByCommandStation = true;
                             l.Parse(e.Arguments);
-                            l.CommandsReady -= CommandsReady;
-                            l.CommandsReady += CommandsReady;
+                            l.CommandsReadyItem -= CommandsReady;
+                            l.CommandsReadyItem += CommandsReady;
 
                             if (!l.HasView)
                                 l.EnableView();
@@ -569,7 +572,7 @@ namespace TrackInformation
                     {
                         s88 = new S88 { ObjectId = e.ObjectId, Index = n };
                         s88.Parse(e.Arguments);
-                        s88.CommandsReady += CommandsReady;
+                        s88.CommandsReadyItem += CommandsReady;
                         _objects.Add(s88);
                         DataChanged?.Invoke(this);
                         s88.EnableView();
@@ -577,8 +580,8 @@ namespace TrackInformation
                     else
                     {
                         s88.Parse(e.Arguments);
-                        s88.CommandsReady -= CommandsReady;
-                        s88.CommandsReady += CommandsReady;
+                        s88.CommandsReadyItem -= CommandsReady;
+                        s88.CommandsReadyItem += CommandsReady;
                         if (!s88.HasView)
                             s88.EnableView();
                         DataChanged?.Invoke(this);

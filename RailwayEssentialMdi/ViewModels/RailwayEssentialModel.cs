@@ -703,6 +703,16 @@ namespace RailwayEssentialMdi.ViewModels
             var dataProvider = _dispatcher.GetDataProvider();
             dataProvider.DataChanged += OnDataChanged;
             dataProvider.CommandsReady += DataProviderOnCommandsReady;
+            dataProvider.FakeCommands += (sender, blocks) =>
+            {
+                foreach (var blk in blocks)
+                {
+                    if (blk == null)
+                        continue;
+
+                    dataProvider.Add(blk);
+                }
+            };
 
             foreach (var objFilename in Project.Objects)
             {
@@ -1040,6 +1050,12 @@ namespace RailwayEssentialMdi.ViewModels
         {
             if (_dispatcher != null)
                 await _dispatcher.ForwardCommands(commands);
+        }
+
+        private void ForwardFakeCommands(object sender, IReadOnlyList<IBlock> blocks)
+        {
+            if (_dispatcher != null)
+                _dispatcher.HandleFakeBlocks(blocks);
         }
 
         private void OnDataChanged(object sender)

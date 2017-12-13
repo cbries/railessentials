@@ -105,7 +105,7 @@ namespace Ecos2Core.Replies
 
                     if (firstLine.StartsWith("<EVENT ", StringComparison.OrdinalIgnoreCase))
                         instance = new EventBlock();
-                    else if(firstLine.StartsWith("<REPLY ", StringComparison.OrdinalIgnoreCase))
+                    else if (firstLine.StartsWith("<REPLY ", StringComparison.OrdinalIgnoreCase))
                         instance = new ReplyBlock();
 
                     if (instance != null)
@@ -123,6 +123,26 @@ namespace Ecos2Core.Replies
             }
 
             return blocks;
+        }
+
+        public static IReadOnlyList<IBlock> GetBlocks(string msg)
+        {
+            var line = msg.Trim();
+            List<string> lines = new List<string>();
+            if (Utils.HasAnyBlock(msg))
+            {
+                lines.Clear();
+                lines.AddRange(msg.Split(new[] { '\r' }, StringSplitOptions.RemoveEmptyEntries));
+            }
+            else
+            {
+                lines.Add(line);
+            }
+
+            if (Utils.HasAnyBlock(lines))
+                return Utils.GetBlocks(lines);
+
+            return null;
         }
     }
 }

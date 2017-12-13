@@ -13,7 +13,11 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <xamlMagic:ConverterSort x:Key="converterSort"/>
     </UserControl.Resources>
-    
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="S" Modifiers="Alt" Command="{Binding SaveCommand}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>
@@ -89,7 +93,8 @@
                     </DockPanel>
                 </StackPanel>
 
-                <Button Content="Apply" Grid.Column="0" Grid.Row="1" Width="65" Height="24" HorizontalAlignment="Stretch" Margin="0,0,0,-40" Command="{Binding SaveCommand}"/>
+                <Button Content="Apply" Grid.Column="0" Grid.Row="1" Width="65" Height="24" HorizontalAlignment="Stretch" 
+                        Margin="0,0,0,-40" Command="{Binding SaveCommand}"/>
 
                 <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch">
                     <TabControl MinHeight="175" MaxHeight="175" SelectedIndex="{Binding Entity.SelectionTabIndex, Mode=TwoWay}">
@@ -121,7 +126,10 @@
                                                             Value="{Binding Entity.ItemsS88SelectionPin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                                                             Maximum="{Binding Entity.ItemsS88Selection.Ports}" Minimum="1" 
                                                             FormatString="N0" AllowSpin="True" VerticalAlignment="Center"/>
+
+                                        <Button HorizontalAlignment="Right" Content="Clear" Command="{Binding ClearS88Command}"/>
                                     </DockPanel>
+                                    
 
                                     <Grid>
                                         <Grid.ColumnDefinitions>

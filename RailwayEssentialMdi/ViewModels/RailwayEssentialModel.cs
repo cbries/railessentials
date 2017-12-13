@@ -878,7 +878,13 @@ namespace RailwayEssentialMdi.ViewModels
                 {
                     Gamepad = new Gamepad();
                     if (!Gamepad.ActivateGamepad(Guid.Parse(sg)))
-                        LogError($"No Joystick/Gamepad found: {sg}");
+                    {
+#if DEBUG
+                        //LogError($"No Joystick/Gamepad found: {sg}");
+#else
+                        Log($"No Joystick/Gamepad found: {sg}");
+#endif
+                    }
                     else
                     {
                         Gamepad.ButtonHandler += (s, args) =>
@@ -921,13 +927,17 @@ namespace RailwayEssentialMdi.ViewModels
                                         g.MaxSpeed = true;
                                     else if (data.Offset == JoystickOffset.X && dir == StickDirection.Right)
                                         g.StopSpeed = true;
-                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Left)
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 &&
+                                             dir == StickDirection.Left)
                                         g.F0 = true;
-                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Bottom)
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 &&
+                                             dir == StickDirection.Bottom)
                                         g.F1 = true;
-                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Top)
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 &&
+                                             dir == StickDirection.Top)
                                         g.F2 = true;
-                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 && dir == StickDirection.Right)
+                                    else if (data.Offset == JoystickOffset.PointOfViewControllers0 &&
+                                             dir == StickDirection.Right)
                                         g.F3 = true;
                                     else if (data.Offset == JoystickOffset.Buttons4)
                                         g.F4 = true;
@@ -961,7 +971,8 @@ namespace RailwayEssentialMdi.ViewModels
 
                                         if (data.Offset == JoystickOffset.RotationZ && dir == StickDirection.Top)
                                             g.IncSpeed = true;
-                                        else if (data.Offset == JoystickOffset.RotationZ && dir == StickDirection.Bottom)
+                                        else if (data.Offset == JoystickOffset.RotationZ &&
+                                                 dir == StickDirection.Bottom)
                                             g.DecSpeed = true;
                                         else if (data.Offset == JoystickOffset.Z && dir == StickDirection.Left)
                                             g.StopSpeed = true;

@@ -27,11 +27,11 @@ using System.Threading.Tasks;
 
 namespace RailwayEssentialMdi.ViewModels
 {
-    using System.Diagnostics;
-    using RailwayEssentialCore;
-    using DataObjects;
     using Commands;
+    using DataObjects;
     using Entities;
+    using RailwayEssentialCore;
+    using System.Diagnostics;
 
     public class TrackWindow : BaseWindow, ITrackWindow
     {
@@ -44,8 +44,10 @@ namespace RailwayEssentialMdi.ViewModels
         private readonly TrackEntity _entity;
         public TrackEntity Entity => _entity;
         public override string Name => ProjectTrackView.Name;
-        
+
         public RelayCommand SaveCommand { get; }
+
+        public RelayCommand ClearS88Command { get; }
 
         public RelayCommand ZoomResetCommand { get; }
         public RelayCommand ZoomPlusCommand { get; }
@@ -62,7 +64,7 @@ namespace RailwayEssentialMdi.ViewModels
         public RelayCommand MinusColumnRightCommand { get; }
         public RelayCommand MinusRowBottomCommand { get; }
         public RelayCommand PlusRowBottomCommand { get; }
-        
+
         public TrackWindow(TrackEntity entity, ProjectTrackView trackView, TaskCompletionSource<bool> tcs)
         {
             _entity = entity;
@@ -88,6 +90,8 @@ namespace RailwayEssentialMdi.ViewModels
 
             SaveCommand = new RelayCommand(Save);
 
+            ClearS88Command = new RelayCommand(ClearS88);
+
             RaisePropertyChanged("BlockEventNames");
         }
 
@@ -97,6 +101,17 @@ namespace RailwayEssentialMdi.ViewModels
                 return;
 
             _entity.ApplyAssignment();
+        }
+
+        private void ClearS88(object p)
+        {
+            if (_entity == null)
+                return;
+
+            _entity.ItemsS88Selection = null;
+            _entity.ItemsS88SelectionPin = -1;
+
+            Save(null);
         }
 
         private void PlusColumRight(object p)
@@ -146,7 +161,7 @@ namespace RailwayEssentialMdi.ViewModels
             v -= TrackViewZoomer.ZoomLevelIncrement;
             TrackViewZoomer.ZoomLevel = v;
         }
-        
+
         private void EditState(object p)
         {
             if (Entity.IsEditEnabled)

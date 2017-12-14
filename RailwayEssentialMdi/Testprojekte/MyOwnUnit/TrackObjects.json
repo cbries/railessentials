@@ -865,7 +865,7 @@
     },
     {
       "objectId": 30003,
-      "name1": "hinten",
+      "name1": "",
       "name2": null,
       "name3": null,
       "type": "ROUTE"
@@ -886,7 +886,7 @@
     },
     {
       "objectId": 30011,
-      "name1": "vorne",
+      "name1": "",
       "name2": null,
       "name3": null,
       "type": "ROUTE"

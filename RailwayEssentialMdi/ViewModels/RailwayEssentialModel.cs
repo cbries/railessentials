@@ -1170,6 +1170,13 @@ namespace RailwayEssentialMdi.ViewModels
 
         public void Close(object o)
         {
+            if (_project != null && IsDirty)
+            {
+                var rclose = Helper.AskWithCancel("Would you really like to close the project?", "Close project?");
+                if (rclose == null || !rclose.Value)
+                    return;
+            }
+
             if (_project != null)
             {
                 TrackEntity.DisableEdit();
@@ -1198,6 +1205,7 @@ namespace RailwayEssentialMdi.ViewModels
                 {
                     var r = Helper.Ask("Project has been modified, save before close?",
                         "Project modified", "Save Project", "Discard Changes");
+
                     if (r)
                         Save(null);
                 }

@@ -610,6 +610,8 @@ function changeEditMode(state) {
 
 $(document).ready(function (e) {
 
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
     var isMouseDown = false;
     var isDragging = false;
     var startingPos = [];

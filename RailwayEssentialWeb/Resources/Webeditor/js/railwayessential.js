@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-var TESTDATA = false;
-var isEdit = false;
+var __b = false;
+var TESTDATA = __b;
+var isEdit = __b;
 
 const ModeAddMove = 0;
 const ModeRemove = 1;
@@ -139,6 +140,12 @@ function changeItemIdMarker(col, row, idname) {
 
 function isBetween(n, a, b) {
     return (n - a) * (n - b) <= 0;
+}
+
+function isBlock(themeId) {
+    if (themeId === 150 || themeId === 151 || themeId === 152)
+        return true;
+    return false;
 }
 
 function appendBlockText(col, row, esvg, themeId) {
@@ -391,6 +398,10 @@ function rotateElement2(col, row, el) {
         return;
 
     var o = el;
+    var themeId = o.data("railway-themeid");
+
+    if (isBlock(themeId))
+        return;
 
     function ss(col, row, orientation) {
         //console.log("vs: cellRotated(" + col + ", " + row + ", " + orientation + ")");
@@ -650,8 +661,8 @@ $(document).ready(function (e) {
             var col = $(this).parent().children().index($(this)) + 1;
             var row = $(this).parent().parent().children().index($(this).parent()) + 1;
 
-			//console.log("Pos: " + col + ", " + row);
-			
+            //console.log("Pos: " + col + ", " + row);
+
             if (isDragging && objDrag !== null) {
 
                 // ###################
@@ -692,8 +703,8 @@ $(document).ready(function (e) {
                     if (c.find("svg").length == 1)
                         return;
 
-					//console.log(c);
-					
+                    //console.log(c);
+
                     //var img = $(svgCache[src]).clone();
                     var symbol = src.substring(src.lastIndexOf('/') + 1);
                     symbol = symbol.substring(0, symbol.lastIndexOf('.'));

@@ -1,7 +1,7 @@
 # Attention (Nov'18)
 The *next generation* is in progress.
 
-The first version within this Git-master is declared as **proof of concept** and implement as **conceptually try**.  
+The first version within this Git-master is declared as **proof of concept** and provides a **conceptually try**.  
 Have a look at the **railwayessential-ng** branch.
 
 ##

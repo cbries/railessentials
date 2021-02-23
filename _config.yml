@@ -1,3 +1,0 @@
-theme: jekyll-theme-cayman
-exclude: [CefSharp.BrowserSubprocess.exe, RailwayEssentialMdi/ThirdParty/CefLib/, RailwayEssentialMdi/ThirdParty/CefLib/CefSharp.BrowserSubprocess.exe, RailwayEssentialMdi/ThirdParty/CefLib/CefSharp.BrowserSubprocess.exe]
-

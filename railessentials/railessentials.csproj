@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4A7401F-9E67-467A-A657-E046F8885607}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>railessentials</RootNamespace>
+    <AssemblyName>railessentials</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>..\3rdparty\SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common">
+      <HintPath>..\3rdparty\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Dlr">
+      <HintPath>..\3rdparty\SuperSocket.Dlr.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Facility">
+      <HintPath>..\3rdparty\SuperSocket.Facility.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ProtoBase">
+      <HintPath>..\3rdparty\SuperSocket.ProtoBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase">
+      <HintPath>..\3rdparty\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine">
+      <HintPath>..\3rdparty\SuperSocket.SocketEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperWebSocket">
+      <HintPath>..\3rdparty\SuperWebSocket.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\3rdparty\WebSocket4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analyzer\Analyze.cs" />
+    <Compile Include="Analyzer\AnalyzeResult.cs" />
+    <Compile Include="AutoMode\AutoMode.cs" />
+    <Compile Include="AutoMode\AutoModeTaskBase.cs" />
+    <Compile Include="AutoMode\AutoModeTaskCore.cs" />
+    <Compile Include="ClientHandler\ClientHandler.AutoMode.cs" />
+    <Compile Include="ClientHandler\ClientHandler.cs" />
+    <Compile Include="ClientHandler\ClientHandler.Debug.cs" />
+    <Compile Include="ClientHandler\ClientHandler.InitializeSystem.cs" />
+    <Compile Include="ClientHandler\ClientHandler.RouteAnalyzer.cs" />
+    <Compile Include="ClientHandler\ClientHandler.Shutdown.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="DebugMessage.cs" />
+    <Compile Include="Feedbacks\Data.cs" />
+    <Compile Include="Feedbacks\DeniedLocomotive.cs" />
+    <Compile Include="Feedbacks\FbData.cs" />
+    <Compile Include="Feedbacks\FeedbacksData.cs" />
+    <Compile Include="Globals.cs" />
+    <Compile Include="IDebugMessages.cs" />
+    <Compile Include="Importer\Rocrail\ImportRocrail.cs" />
+    <Compile Include="Importer\Rocrail\XmlConverter.cs" />
+    <Compile Include="Importer\Rocrail\XmlConverter.Generator.cs" />
+    <Compile Include="Importer\Rocrail\Xml\BlockElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\CoElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\FbEvent.cs" />
+    <Compile Include="Importer\Rocrail\Xml\FeedbackElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\PortAddress.cs" />
+    <Compile Include="Importer\Rocrail\Xml\SignalElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\SwitchElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\TextElement.cs" />
+    <Compile Include="Importer\Rocrail\Xml\TrackElement.cs" />
+    <Compile Include="Importer\Ui\Importer.xaml.cs">
+      <DependentUpon>Importer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InitializeSystem.cs" />
+    <Compile Include="Locomotives\Data.cs" />
+    <Compile Include="Locomotives\Duration.cs" />
+    <Compile Include="Locomotives\LocomotivesData.cs" />
+    <Compile Include="Metadata.cs" />
+    <Compile Include="NextRouteInformation.cs" />
+    <Compile Include="Occ\OccBlock.cs" />
+    <Compile Include="Occ\OccData.cs" />
+    <Compile Include="Plan\BranchInfo.cs" />
+    <Compile Include="Plan\Path.cs" />
+    <Compile Include="Plan\PlanField.cs" />
+    <Compile Include="Plan\PlanGlobals.cs" />
+    <Compile Include="Plan\PlanItem.cs" />
+    <Compile Include="Plan\PlanItem.Path.cs" />
+    <Compile Include="Plan\PlanItemAddresses.cs" />
+    <Compile Include="Plan\PlanItemCoord.cs" />
+    <Compile Include="Plan\PlanItemDimension.cs" />
+    <Compile Include="Plan\PlanItemEditor.cs" />
+    <Compile Include="Plan\PlanSwitchState.cs" />
+    <Compile Include="Plan\Route.cs" />
+    <Compile Include="Plan\RouteList.cs" />
+    <Compile Include="Program.Closing.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelayCommand\RelayCommandWebsocket.cs" />
+    <Compile Include="Route\Route.cs" />
+    <Compile Include="Route\RouteAnalyzer.cs" />
+    <Compile Include="Route\RouteList.cs" />
+    <Compile Include="Route\RouterListExtensions.cs" />
+    <Compile Include="Theming\ThemeCategory.cs" />
+    <Compile Include="Theming\ThemeDimension.cs" />
+    <Compile Include="Theming\ThemeItem.cs" />
+    <Compile Include="Theming\ThemeSwitchState.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="WebServer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="App.config" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="railessentials.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="startImporter.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="startRailEssentials.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ecoslibNet48\ecoslibNet48.csproj">
+      <Project>{48b0d647-d324-45e3-88e9-71ee3b5f95cc}</Project>
+      <Name>ecoslibNet48</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f0c66e6f-a1ae-4d0c-a63f-b8f49a88b7bd}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Importer\Ui\Importer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>@echo off
+del "$(SolutionDir)EcosApp\bin" /F
+del "$(SolutionDir)EcosApp\obj" /F
+
+echo "Copy workspaces..."
+mkdir "$(TargetDir)\Workspaces\"
+XCOPY "$(SolutionDir)Workspaces" "$(TargetDir)\Workspaces\" /E /Y
+
+echo "Copy demos..."
+mkdir "$(TargetDir)\Demos\"
+XCOPY "$(SolutionDir)Demos" "$(TargetDir)\Demos\" /E /Y
+
+XCOPY "$(SolutionDir)EcosApp\css" "$(TargetDir)\App\css\" /E /Y
+
+mkdir  "$(TargetDir)\App\images\"
+COPY "$(SolutionDir)EcosApp\images\*.png" "$(TargetDir)\App\images\" /V /Y
+COPY "$(SolutionDir)EcosApp\images\*.svg" "$(TargetDir)\App\images\" /V /Y
+XCOPY "$(SolutionDir)EcosApp\images\locomotives" "$(TargetDir)\App\images\locomotives\" /E /Y
+XCOPY "$(SolutionDir)EcosApp\libs" "$(TargetDir)\App\libs\" /E /Y
+XCOPY "$(SolutionDir)EcosApp\src" "$(TargetDir)\App\src\" /E /Y
+XCOPY "$(SolutionDir)EcosApp\theme" "$(TargetDir)\App\theme\" /E /Y
+
+COPY "$(SolutionDir)EcosApp\index.js" "$(TargetDir)\App\" /Y
+COPY "$(SolutionDir)EcosApp\index.html" "$(TargetDir)\App\" /Y
+
+del  "$(TargetDir)\App\*.zip" /S /F
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rmdir /S /Q "$(TargetDir)\App\"</PreBuildEvent>
+  </PropertyGroup>
+</Project>

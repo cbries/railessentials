@@ -1,0 +1,754 @@
+html, body {
+    font-family: Verdana,Arial,sans-serif;
+    background: #fcfcfc;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* hide vertical scrollbars */
+}
+
+/**
+    Workspace Selection
+*/
+
+#workspaceSelection {
+    padding: 10px;
+}
+
+/**
+    / Workspace Selection
+*/
+    /**
+    PLANFIELD
+*/
+    div#planField {
+        position: relative;
+        float: left;
+    }
+
+.planFieldBackground {
+    background-image: repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
+    background-size: 32px 32px;
+}
+
+.ctrlItem {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+}
+
+img.selected {
+    background-color: #800000;
+    background-color: rgba(128, 0, 0, 0.5);
+}
+
+div#planFieldItemEdit {
+    display: none;
+    z-index: 1500;
+    position: absolute;
+    background-color: white;
+    border: 1px solid lightgrey;
+    margin: 0;
+    padding: 2px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+
+div#planFieldItemEdit div.spacer {
+    margin-top: 0px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+    background-color: lightgrey;
+    height: 1px;
+}
+
+div#planFieldItemEdit div {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+div#planFieldItemEdit div img {
+    background-color: white;
+    margin: 0;
+    padding: -5px;
+    position: relative;
+}
+
+/**
+    / PLANFIELD
+*/
+
+.locomotiveSpeedometer {
+}
+
+.locomotiveSpeedstepValue {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+}
+
+#sidebar {
+    z-index: 100;
+}
+
+label {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+/**
+    Change some Locomotive Control CSS
+*/
+
+.ui-dialog .ui-dialog-content,
+.locomotiveControlMain {
+    background-color: #f3f3f3;
+}
+
+/*
+    END Locomotive Control CSS
+*/
+
+/**
+    Locomotive Info Control
+*/
+.locInfoCtrl {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    text-align: center;
+    background-color: #e6e6e6;
+    border: 1px solid #d3d3d3;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.locInfoSpeed {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+    .locInfoSpeed > i {
+        padding: 0;
+        cursor: pointer;
+    }
+
+.locSpeedSteps button {
+    font-size: 9px;
+    font-weight: bold;
+    width: 30px;
+    padding: 4px;
+    margin: -2px;
+    cursor: pointer;
+    -moz-filter: invert(100%);
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+    color: black;
+}
+
+.locInfoStop {
+    padding-top: 2px;
+}
+
+    .locInfoStop > i {
+        cursor: pointer;
+    }
+
+.locInfoDirection {
+    padding-top: 4px;
+    padding-bottom: 3px;
+}
+
+    .locInfoDirection > i {
+        padding: 0;
+        cursor: pointer;
+    }
+/*
+    // END Locomotive Info Control
+*/
+#dialogLightAndPower {
+    background-color: #f2f2f2;
+    font-size: 12px;
+}
+
+    #dialogLightAndPower .w2ui-field input {
+        width: 100px;
+        text-align: right;
+    }
+
+
+    #dialogLightAndPower .w2ui-field > div > span {
+        margin-left: 20px;
+    }
+
+    #dialogLightAndPower input[type=eu-time] {
+        text-align: center;
+        width: 50px;
+        display: none; /** TODO add clockwork */
+    }
+
+    #dialogLightAndPower input[type=w2int] {
+        text-align: center;
+        width: 30px;
+        height: 17px;
+    }
+
+    #dialogLightAndPower input[type=radio] {
+        text-align: center;
+        width: 30px;
+    }
+
+    #dialogLightAndPower .w2ui-field label {
+        width: 75px;
+    }
+
+    #dialogLightAndPower .w2ui-field > div {
+        margin-left: 90px;
+    }
+
+    #dialogLightAndPower .w2ui-field.power > div {
+        margin-left: 90px;
+        min-height: 21px;
+    }
+
+        #dialogLightAndPower .w2ui-field.power > div > input {
+            margin-top: 6px;
+            margin-left: 10px;
+            width: 36px;
+        }
+
+    #dialogLightAndPower .w2ui-field.power label {
+        width: 175px;
+    }
+
+
+/* change font of "Denied Locomotive" selection box in "Blocks & Feedbacks" */
+.select2-results__option {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 11px;
+}
+
+.select2-results__option--selectable {
+    padding: 1px;
+}
+
+div.highlightFeedback {
+    background-color: #195ff5;
+    background-color: rgba(25, 95, 245, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+}
+
+div.highlightFeedbackBlock {
+    background-color: #195ff5;
+    background-color: rgba(25, 95, 245, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+}
+
+div.highlightAccessory {
+    background-color: yellow;
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+}
+
+div.highlightRoute {
+    background-color: #f57a00;
+    background-color: rgba(245,122,0,0.3);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+}
+
+/**
+    Locomotive OCC Information
+*/
+div.locomotiveInfoFrom {
+    background-color: #0fc362;
+    background-color: rgba(15, 195, 98, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+    border: 2px solid black;
+}
+
+div.locomotiveInfoNext {
+    background-color: #b99700;
+    background-color: rgba(185, 151, 0, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+    border: 2px solid black;
+}
+
+div.locomotiveInfoFinal {
+    background-color: #fa320a;
+    background-color: rgba(250, 50, 10, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+    border: 2px solid black;
+}
+
+div.locomotiveInfoFinalEntering {
+    width: 10px;
+    height: 10px;
+    animation: blinker 2s linear infinite;
+    background-color: #fa320a;
+    margin-right: 5px;
+}
+
+@-webkit-keyframes blinker {
+    0% {
+        opacity: 1.0;
+    }
+
+    50% {
+        opacity: 0.25;
+    }
+
+    100% {
+        opacity: 1.0;
+    }
+}
+
+div.elEditorRoot {
+    display: none;
+    position: absolute;
+    /*    top: 300px;
+    left: 120px;*/
+}
+
+    div.elEditorRoot .elEditor {
+        font-size: 14px;
+        width: 128px;
+        height: 32px;
+        /*border: 1px solid lightgray;*/
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+div.textfieldElementToolbar {
+    position: absolute;
+    z-index: 999;
+    top: 100px;
+    left: 100px;
+    padding: 4px;
+    /*border: 1px solid #dfdfdf;*/
+    border-radius: 3px;
+}
+
+/**
+    StatusBar 
+*/
+
+#statusBar {
+    position: absolute;
+    bottom: 0;
+    height: 26px;
+    width: 100%;
+    background-color: #f4f4f4;
+    background-color: rgba(244, 244, 244, 1.0);
+    border-top: 1px solid #d3d3d3;
+    border-top: 1px solid rgba(211, 211, 211, 1.0);
+    z-index: 200000;
+}
+
+    #statusBar div.ecosPowerStatus {
+        position: relative;
+        float: left;
+        margin-top: 4px;
+        margin-left: 5px;
+    }
+
+    #statusBar div.online {
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        background-color: #00CC00;
+        border: 1px solid #009b00;
+        border: 1px solid rgba(0, 155, 0, 0.5);
+    }
+
+    #statusBar div.offline {
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        background-color: #CC0000;
+        border: 1px solid #9b0000;
+        border: 1px solid rgba(155, 0, 0, 0.5);
+    }
+
+    #statusBar div.ecosInformation {
+        position: relative;
+        float: left;
+        font-size: 0.75em;
+        margin-top: 6px;
+        margin-left: 5px;
+    }
+
+    #statusBar div.ctrlInfo {
+        position: relative;
+        float: right;
+        right: 42px;
+        font-size: 0.75em;
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+
+    #statusBar div.autoMode {
+        float: right;
+        position: absolute;
+        padding-top: 3px;
+        right: 21px;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    #statusBar div.logging {
+        float: right;
+        position: absolute;
+        padding-top: 3px;
+        right: 0;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+        #statusBar div.logging:hover {
+            background-color: #D8D8D8;
+            background-color: rgb(216,216,216);
+            -webkit-box-shadow: inset 0 0 0 1px #887788;
+            -moz-box-shadow: inset 0 0 0 1px #887788;
+            box-shadow: inset 0 0 0 1px #887788;
+        }
+
+    #statusBar .editPlanField {
+        float: right;
+        margin-right: 5px;
+        margin-top: 2px;
+    }
+
+        #statusBar .editPlanField img {
+            background-color: white;
+            width: 22px;
+            height: 22px;
+        }
+
+/**
+    /StatusBar
+*/
+
+/**
+    DebugConsole
+*/
+
+.debugConsole {
+    position: absolute;
+    float: right;
+    right: 0;
+    bottom: 0;
+    font-size: 10px;
+    background-color: #fcfcfc;
+    /*background-color: rgb(216,216,216);*/
+    opacity: 0.95;
+    border: 1px solid #887788;
+    width: 400px;
+    height: 175px;
+    display: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+    .debugConsole .messageContainer {
+        overflow-y: scroll;
+        height: 100%;
+    }
+
+        .debugConsole .messageContainer span.dt {
+            font-weight: bold;
+        }
+
+        .debugConsole .messageContainer span.msg {
+            padding-left: 7px;
+        }
+
+/**
+    / DebugConsole
+*/
+
+.container {
+    margin: auto;
+    display: flex;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.no {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+div.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 200000;
+    cursor: pointer;
+}
+
+    div.overlay .overlayText {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        font-size: 1.25em;
+        padding: 20px;
+        color: white;
+    }
+
+    div.overlay .infoOverlay {
+        background-color: #00c800;
+        background-color: rgba(0, 200, 0, 1.0);
+    }
+
+    div.overlay .errorOverlay {
+        background-color: #c80000;
+        background-color: rgba(200, 0, 0, 1.0);
+    }
+
+/**
+    Overwrite jquery ui css stuff
+*/
+
+.ui-dialog-title {
+    color: #000000;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.ui-resizable-disabled .ui-resizable-handle {
+    visibility: hidden;
+}
+
+/**
+    loader / spinner
+*/
+.lds-facebook {
+    display: inline-block;
+    position: absolute;
+}
+
+    .lds-facebook div {
+        display: inline-block;
+        position: absolute;
+        left: 2px;
+        width: 8px;
+        background: #00a600;
+        background: rgba(0, 166, 0, 0.9);
+        animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+
+        .lds-facebook div:nth-child(1) {
+            left: 2px;
+            animation-delay: -0.24s;
+        }
+
+        .lds-facebook div:nth-child(2) {
+            left: 12px;
+            animation-delay: -0.12s;
+        }
+
+        .lds-facebook div:nth-child(3) {
+            left: 22px;
+            animation-delay: 0;
+        }
+
+@keyframes lds-facebook {
+    0% {
+        top: 2px;
+        height: 16px;
+    }
+
+    50%, 100% {
+        top: 8px;
+        height: 8px;
+    }
+}
+
+/**
+    S88 Viewer
+*/
+
+.outerFeedback {
+    font-weight: bold;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 11px;
+}
+
+    .outerFeedback .feedbackOuterWrapper {
+        display: block;
+        vertical-align: middle;
+        margin-top: 10px;
+    }
+
+    .outerFeedback .feedbackPort {
+        max-height: 48px;
+        margin-left: 10px;
+    }
+
+    .outerFeedback .feedbackStateRed, .feedbackStateGreen {
+        display: inline-block;
+        position: relative;
+        -webkit-box-shadow: inset 0 0 0 1px #111111;
+        -moz-box-shadow: inset 0 0 0 1px #111111;
+        box-shadow: inset 0 0 0 1px #111111;
+        width: 24px;
+        height: 24px;
+        margin: 1px;
+    }
+
+    .outerFeedback .feedbackStateRed {
+        background: red;
+    }
+
+    .outerFeedback .feedbackStateGreen {
+        background: green;
+    }
+
+
+/**
+    Dialogs
+*/
+
+.ui-dialog {
+    padding: 0;
+}
+
+    .ui-dialog .ui-dialog-titlebar {
+        padding: 0;
+    }
+
+.ui-corner-all {
+    border-radius: 0;
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 0;
+}
+
+/**
+    Toolbox
+*/
+
+div#toolbox {
+    width: 250px;
+    height: calc(100% - 28px); /* 26px is statusBar height */
+    display: none;
+    left: 0;
+    top: 0;
+    float: left;
+    border: 1px solid lightgray;
+    background-color: white;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /*    
+    box-shadow: 2px 2px 5px #888888;
+    */
+}
+
+    div#toolbox .toolboxHead {
+        padding-bottom: 5px;
+    }
+
+    div#toolbox .toolboxContainer {
+        margin: auto;
+        text-align: center;
+        overflow: hidden;
+        background-color: white;
+        padding-top: 2px;
+    }
+
+    div#toolbox .toolboxTitle {
+        font-size: 0.8em;
+        margin: 0;
+        margin-bottom: 3px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background-color: lightgrey;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+    }
+
+        div#toolbox .toolboxTitle img {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            right: 0;
+        }
+
+    div#toolbox .toolboxItem {
+        /*        float: left;
+        */
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+        margin: 0;
+        border: 1px solid lightgray;
+        box-shadow: 1px 1px 2px #eeeeee;
+        overflow: hidden;
+    }
+
+    div#toolbox .imgWithTooltip {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        padding: 0;
+    }
+
+.style-4::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255,211,211,0.3);
+    background-color: #F5F5F5;
+}
+
+.style-4::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.style-4::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border: 2px solid rgba(255,211,211,0.3);
+}
+

@@ -1,70 +1,65 @@
-# Attention (Nov'18)
-The *next generation* is in progress.
 
-The first version within this Git-master is declared as **proof of concept** and provides a **conceptually try**.  
-Have a look at the **railwayessential-ng** branch.
+### System Requirements
 
-##
-##
-## The master branch is deprecated!
-##
-##
+- Windows 10
+- .net Framework 4.8 or higher
+- Chrome, Firefox or Vivaldi
 
-## RailwayEssential
+### How to Build?
 
-RailwayEssential is a software for controlling your Model Trains especially when [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/) is used. RailwayEssential provides a Track-designer, an Analyzer for automatic detection of all possible Routes between directly connected Blocks, and an Event-system (e.g. by use of S88-Feedback-Bus) for setup a fully automatic drive of all your trains. Furthermore, any Train can be manually controlled, their functions are allowed to be switched directly on and off by the user interface. 
+- VisualStudio 2017 or VisualStudio 2019
+- TBD
 
-[![Ohloh Project Status](https://www.openhub.net/p/railwayessential/widgets/project_thin_badge.gif)](https://www.openhub.net/p/railwayessential)
-[![Build status](https://ci.appveyor.com/api/projects/status/s9tr0h3ct3fv645q/branch/master?svg=true)](https://ci.appveyor.com/project/cbries/railwayessential/branch/master)
-[![Coverity Scan Build Status](https://img.shields.io/coverity/scan/13689.svg)](https://scan.coverity.com/projects/cbries-railwayessential)
-[![Coverage Status](https://scan.coverity.com/projects/13689/badge.svg)](https://scan.coverity.com/projects/cbries-railwayessential)
+### First Steps
 
-## Download Setup & Releases
-Current test releases are available here: [Releases / Release Candidates / Other Setups](https://github.com/cbries/railwayessential/releases).
+TBD
 
-### First Step Tutorials
-* Create your first Track: [Tutorial: Create a First Track](https://github.com/cbries/railwayessential/wiki/Tutorial:-Create-a-First-Track)
+# First Impressions
 
-### Requirements (Hardware & Software)
-- .Net 4.6 must be installed, [you can find it here: Website](https://www.microsoft.com/en-us/download/details.aspx?id=48130)
-- Works smoothly on Windows 7 and newer systems (e.g. Windows 10)
-- Support for x86 and x64
-- Required HDD-space is approximately 150 MB
-- We use CefSharp [(see Website)](https://github.com/cefsharp/CefSharp), therefore if on your computer Firefox or Chrome work, then anything is fine!
+## Locomotive Control
 
-### Impressions
+![Locomotives]
 
-![RailwayEssential Main Window](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main.png)
+![LocomotivesView]
 
-![RailwayEssential Included Example 'SingleCircle'](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-main2.png)
+![LocomotivesControl]
 
-![RailwayEssential Locomotive Control](https://raw.githubusercontent.com/cbries/railwayessential/master/Documentation/Website/images/RailwayEssential-Locomotive.png)
+## Accessories
 
-### YouTube
+![Accessories]
 
-Click the image :-)
+## Blocks and S88
 
-[![RailwayEssential in Progress (YouTube)](https://img.youtube.com/vi/LcHo5y3PwqM/0.jpg)](https://youtu.be/LcHo5y3PwqM)
+![BlocksS88]
 
-### Prerequisites
+![S88Viewer]
 
-RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefore it would be great to own one :-)
+## Routing
 
-## Built With
+![Routes]
 
-* [VisualStudio 2017](https://www.visualstudio.com/vs/whatsnew/) - The IDE used for
-* [.Net 4.6](https://www.microsoft.com/en-us/download/details.aspx?id=53344) - Microsoft .NET Framework
+![RoutesAnalyzing]
 
-In case you like to build the software on your own. Just load the Solution file 'RailwayEssential.sln', set 'RailwayEssentialMdi' as startup poject, change the Achitecture to 'x86' or 'x64' and press 'F5'. Enjoy.
+## Edit
 
-## Authors
+![Labels]
 
-* **Dr. Christian Benjamin Ries** - *Initial work*
- - [Personal Website](http://www.christianbenjaminries.de) 
- - [Email: mail@cbries.de](mailto:mail@cbries.de?subject=RailwayEssential)
+![Toolbox]
 
-See also the list of [contributors](https://github.com/cbries/railwayessential/graphs/contributors) who participated in this project.
+![WorkspaceSelection]
 
-## License
+[Locomotives]: Screenshots/Impressions/RailEssentials-Locomotives.png "Locomotives View and Handling"
+[LocomotivesControl]: Screenshots/Impressions/RailEssentials-LocomotivesControl.png "Locomotives Control directly in the Plan"
+[LocomotivesView]: Screenshots/Impressions/RailEssentials-LocomotivesView.png "Locomotives View"
 
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/cbries/railwayessential/blob/master/LICENSE) file for details
+[Accessories]: Screenshots/Impressions/RailEssentials-Accessories.png "Accessories"
+
+[BlocksS88]: Screenshots/Impressions/RailEssentials-BlocksS88.png "Blocks and S88"
+[S88Viewer]: Screenshots/Impressions/RailEssentials-S88Viewer.png "S88 Viewer"
+
+[Routes]: Screenshots/Impressions/RailEssentials-Routes.png "Routes"
+[RoutesAnalyzing]: Screenshots/Impressions/RailEssentials-RoutesAnalyzing.png "Routes Analyzing"
+
+[Labels]: Screenshots/Impressions/RailEssentials-Labels.png "Labels in Track"
+[Toolbox]: Screenshots/Impressions/RailEssentials-Toolbox.png "Toolbox to create any Plan individually"
+[WorkspaceSelection]: Screenshots/Impressions/RailEssentials-WorkspaceSelection.png "Workspace Selection"

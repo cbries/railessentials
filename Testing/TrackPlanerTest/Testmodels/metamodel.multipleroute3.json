@@ -1,0 +1,713 @@
+{
+ "planField": {
+  "6x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 17,
+    "offsetY": 19,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_2",
+   "coord": {
+    "x": 6,
+    "y": 3
+   }
+  },
+  "14x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 17,
+    "offsetY": 19,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_3",
+   "coord": {
+    "x": 14,
+    "y": 3
+   }
+  },
+  "7x3": {
+   "id": 51,
+   "name": "Turnout Right",
+   "active": {
+    "default": "turnoutright-t",
+    "occ": "turnoutright-t-occ",
+    "route": "turnoutright-t-route"
+   },
+   "off": {
+    "default": "turnoutright",
+    "occ": "turnoutright-occ",
+    "route": "turnoutright-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC,CA,AD,DA",
+    "BD,DB,BA,AB",
+    "CA,AC,CB,BC",
+    "DB,BD,DC,CD"
+   ],
+   "editor": {
+    "themeId": 51,
+    "offsetX": 18,
+    "offsetY": 19,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_4",
+   "coord": {
+    "x": 7,
+    "y": 3
+   }
+  },
+  "13x3": {
+   "id": 50,
+   "name": "Turnout Left",
+   "active": {
+    "default": "turnoutleft-t",
+    "occ": "turnoutleft-t-occ",
+    "route": "turnoutleft-t-route"
+   },
+   "off": {
+    "default": "turnoutleft",
+    "occ": "turnoutleft-occ",
+    "route": "turnoutleft-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC,CA,CD,DC",
+    "BD,DB,DA,AD",
+    "AC,CA,AB,BA",
+    "BD,DB,BC,CB"
+   ],
+   "editor": {
+    "themeId": 50,
+    "offsetX": 15,
+    "offsetY": 19,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_5",
+   "coord": {
+    "x": 13,
+    "y": 3
+   }
+  },
+  "9x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_7",
+   "coord": {
+    "x": 9,
+    "y": 3
+   }
+  },
+  "10x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_8",
+   "coord": {
+    "x": 10,
+    "y": 3
+   }
+  },
+  "11x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_9",
+   "coord": {
+    "x": 11,
+    "y": 3
+   }
+  },
+  "12x3": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_10",
+   "coord": {
+    "x": 12,
+    "y": 3
+   }
+  },
+  "9x4": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_12",
+   "coord": {
+    "x": 9,
+    "y": 4
+   }
+  },
+  "11x4": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 21,
+    "offsetY": 15,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_14",
+   "coord": {
+    "x": 11,
+    "y": 4
+   }
+  },
+  "13x4": {
+   "id": 11,
+   "name": "Curve",
+   "active": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "off": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AD,DA",
+    "AB,BA",
+    "BC,CB",
+    "CD,DC"
+   ],
+   "editor": {
+    "themeId": 11,
+    "offsetX": 14,
+    "offsetY": 16,
+    "themeDimIdx": 1
+   },
+   "identifier": "Item_16",
+   "coord": {
+    "x": 13,
+    "y": 4
+   }
+  },
+  "7x4": {
+   "id": 11,
+   "name": "Curve",
+   "active": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "off": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AD,DA",
+    "AB,BA",
+    "BC,CB",
+    "CD,DC"
+   ],
+   "editor": {
+    "themeId": 11,
+    "offsetX": 14,
+    "offsetY": 16,
+    "themeDimIdx": 2
+   },
+   "identifier": "Item_17",
+   "coord": {
+    "x": 7,
+    "y": 4
+   }
+  },
+  "2x3": {
+   "id": 150,
+   "name": "Block",
+   "active": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "off": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "clickable": false,
+   "routes": [
+    "A0|C0,C0|A0",
+    "B0|D3,D3|B0"
+   ],
+   "dimensions": [
+    {
+     "w": 4,
+     "h": 1
+    },
+    {
+     "w": 1,
+     "h": 4
+    }
+   ],
+   "editor": {
+    "themeId": 150,
+    "offsetX": 65,
+    "offsetY": 19,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_0",
+   "coord": {
+    "x": 2,
+    "y": 3
+   }
+  },
+  "15x3": {
+   "id": 150,
+   "name": "Block",
+   "active": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "off": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "clickable": false,
+   "routes": [
+    "A0|C0,C0|A0",
+    "B0|D3,D3|B0"
+   ],
+   "dimensions": [
+    {
+     "w": 4,
+     "h": 1
+    },
+    {
+     "w": 1,
+     "h": 4
+    }
+   ],
+   "editor": {
+    "themeId": 150,
+    "offsetX": 21,
+    "offsetY": 17,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_1",
+   "coord": {
+    "x": 15,
+    "y": 3
+   }
+  },
+  "8x4": {
+   "id": 51,
+   "name": "Turnout Right",
+   "active": {
+    "default": "turnoutright-t",
+    "occ": "turnoutright-t-occ",
+    "route": "turnoutright-t-route"
+   },
+   "off": {
+    "default": "turnoutright",
+    "occ": "turnoutright-occ",
+    "route": "turnoutright-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC,CA,AD,DA",
+    "BD,DB,BA,AB",
+    "CA,AC,CB,BC",
+    "DB,BD,DC,CD"
+   ],
+   "editor": {
+    "themeId": 51,
+    "offsetX": 18,
+    "offsetY": 22,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_18",
+   "coord": {
+    "x": 8,
+    "y": 4
+   }
+  },
+  "12x4": {
+   "id": 50,
+   "name": "Turnout Left",
+   "active": {
+    "default": "turnoutleft-t",
+    "occ": "turnoutleft-t-occ",
+    "route": "turnoutleft-t-route"
+   },
+   "off": {
+    "default": "turnoutleft",
+    "occ": "turnoutleft-occ",
+    "route": "turnoutleft-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC,CA,CD,DC",
+    "BD,DB,DA,AD",
+    "AC,CA,AB,BA",
+    "BD,DB,BC,CB"
+   ],
+   "editor": {
+    "themeId": 50,
+    "offsetX": 29,
+    "offsetY": 16,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_19",
+   "coord": {
+    "x": 12,
+    "y": 4
+   }
+  },
+  "12x5": {
+   "id": 11,
+   "name": "Curve",
+   "active": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "off": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AD,DA",
+    "AB,BA",
+    "BC,CB",
+    "CD,DC"
+   ],
+   "editor": {
+    "themeId": 11,
+    "offsetX": 21,
+    "offsetY": 20,
+    "themeDimIdx": 1
+   },
+   "identifier": "Item_21",
+   "coord": {
+    "x": 12,
+    "y": 5
+   }
+  },
+  "9x5": {
+   "id": 151,
+   "name": "Short Block",
+   "active": {
+    "default": "block-s",
+    "occ": "block-s",
+    "route": "block-s"
+   },
+   "off": {
+    "default": "block-s",
+    "occ": "block-s",
+    "route": "block-s"
+   },
+   "clickable": false,
+   "routes": [
+    "A0|C0,C0|A0",
+    "B0|D2,D2|B0"
+   ],
+   "dimensions": [
+    {
+     "w": 2,
+     "h": 1
+    },
+    {
+     "w": 1,
+     "h": 2
+    }
+   ],
+   "editor": {
+    "themeId": 151,
+    "offsetX": 21,
+    "offsetY": 20,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_11",
+   "coord": {
+    "x": 9,
+    "y": 5
+   }
+  },
+  "10x4": {
+   "id": 14,
+   "name": "Direction",
+   "active": {
+    "default": "dir",
+    "occ": "dir-occ",
+    "route": "dir-route"
+   },
+   "off": {
+    "default": "dir",
+    "occ": "dir-occ",
+    "route": "dir-route"
+   },
+   "clickable": false,
+   "routes": [
+    "CA!",
+    "DB!",
+    "AC!",
+    "BD!"
+   ],
+   "editor": {
+    "themeId": 14,
+    "offsetX": 20,
+    "offsetY": 17,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_13",
+   "coord": {
+    "x": 10,
+    "y": 4
+   }
+  },
+  "8x3": {
+   "id": 15,
+   "name": "Direction (all)",
+   "active": {
+    "default": "dirall",
+    "occ": "dirall-occ",
+    "route": "dirall-route"
+   },
+   "off": {
+    "default": "dirall",
+    "occ": "dirall-occ",
+    "route": "dirall-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 15,
+    "offsetX": 28,
+    "offsetY": 17,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_6",
+   "coord": {
+    "x": 8,
+    "y": 3
+   }
+  },
+  "8x5": {
+   "id": 11,
+   "name": "Curve",
+   "active": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "off": {
+    "default": "curve",
+    "occ": "curve-occ",
+    "route": "curve-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AD,DA",
+    "AB,BA",
+    "BC,CB",
+    "CD,DC"
+   ],
+   "editor": {
+    "themeId": 11,
+    "offsetX": 18,
+    "offsetY": 19,
+    "themeDimIdx": 2
+   },
+   "identifier": "Item_15",
+   "coord": {
+    "x": 8,
+    "y": 5
+   }
+  },
+  "11x5": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 22,
+    "offsetY": 13,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_20",
+   "coord": {
+    "x": 11,
+    "y": 5
+   }
+  }
+ },
+ "ecosData": {}
+}

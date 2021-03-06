@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48B0D647-D324-45E3-88E9-71EE3B5F95CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ecoslib</RootNamespace>
+    <AssemblyName>ecoslib</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SuperSocket.ClientEngine">
+      <HintPath>..\3rdparty\SuperSocket.ClientEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperSocket.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Dlr">
+      <HintPath>..\3rdparty\SuperSocket.Dlr.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperSocket.Facility.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.ProtoBase, Version=1.7.0.17, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperSocket.ProtoBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperSocket.SocketBase.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperSocket.SocketEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperWebSocket, Version=0.9.0.0, Culture=neutral, PublicKeyToken=7ba53b9a7cef5d1c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdparty\SuperWebSocket.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebSocket4Net">
+      <HintPath>..\3rdparty\WebSocket4Net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Connector\ConnectorFaster.cs" />
+    <Compile Include="Connector\IConnector.cs" />
+    <Compile Include="Connector\ITcpClient.cs" />
+    <Compile Include="Connector\MessageEventArgs.cs" />
+    <Compile Include="Connector\TcpClient.cs" />
+    <Compile Include="Connector\TcpClient2.cs" />
+    <Compile Include="Entities\Accessory.cs" />
+    <Compile Include="Entities\DataProvider.cs" />
+    <Compile Include="Entities\Ecos2.cs" />
+    <Compile Include="Entities\IDataProvider.cs" />
+    <Compile Include="Entities\Item.cs" />
+    <Compile Include="Entities\Locomotive.cs" />
+    <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\S88.cs" />
+    <Compile Include="GlobalData.cs" />
+    <Compile Include="GlobalUtilities.cs" />
+    <Compile Include="IBlock.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="ICommandArgument.cs" />
+    <Compile Include="ICommandsBase64.cs" />
+    <Compile Include="IItem.cs" />
+    <Compile Include="IItemSerializer.cs" />
+    <Compile Include="IItemView.cs" />
+    <Compile Include="IListener.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="IPersist.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sniffer\ITcpServer.cs" />
+    <Compile Include="Sniffer\IWsClient.cs" />
+    <Compile Include="Sniffer\IWsServer.cs" />
+    <Compile Include="Sniffer\ServerCfg.cs" />
+    <Compile Include="Sniffer\Sniffer.Connector.cs" />
+    <Compile Include="Sniffer\Sniffer.cs" />
+    <Compile Include="Sniffer\Sniffer.WsServer.cs" />
+    <Compile Include="Sniffer\TcpServer.cs" />
+    <Compile Include="Sniffer\WsClient.cs" />
+    <Compile Include="Sniffer\WsServer.cs" />
+    <Compile Include="Utilities\Base64.cs" />
+    <Compile Include="Utilities\Blocks\RegisterS88.cs" />
+    <Compile Include="Utilities\BlockUtils.cs" />
+    <Compile Include="Utilities\Command.cs" />
+    <Compile Include="Utilities\CommandArgument.cs" />
+    <Compile Include="Utilities\CommandFactory.cs" />
+    <Compile Include="Utilities\Commands\Create.cs" />
+    <Compile Include="Utilities\Commands\Get.cs" />
+    <Compile Include="Utilities\Commands\QueryObjects.cs" />
+    <Compile Include="Utilities\Commands\Release.cs" />
+    <Compile Include="Utilities\Commands\Request.cs" />
+    <Compile Include="Utilities\Commands\Set.cs" />
+    <Compile Include="Utilities\Commands\Unknown.cs" />
+    <Compile Include="Utilities\Globals.cs" />
+    <Compile Include="Utilities\Replies\EventBlock.cs" />
+    <Compile Include="Utilities\Replies\ListEntry.cs" />
+    <Compile Include="Utilities\Replies\ReplyBlock.cs" />
+    <Compile Include="Utilities\Replies\ReplyResult.cs" />
+    <Compile Include="Utilities\StopWatch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net">
+      <Version>2.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{f0c66e6f-a1ae-4d0c-a63f-b8f49a88b7bd}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="Documentation\ecos_pc_interface3.pdf" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

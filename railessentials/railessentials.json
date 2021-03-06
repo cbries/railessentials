@@ -1,0 +1,28 @@
+﻿{
+  "SimulationMode": true,
+  "SimulationData": "Demos\\Ecos\\ecosJson.txt",
+  "RootWorkspace": "Workspaces\\", 
+  "RecentWorkspace": "Basement",
+  "Ecos": {
+    "Ip": "192.168.178.61",
+    "Port": 15471
+  },
+  "WsServer": {
+    "Ip": "any",
+    "Port": 45099
+  },
+  "WebServer": {
+    "HttpRoot": "App\\",
+    "HttpRootFallback": "App\\",
+    "Prefixes": [
+      "http://localhost:8081/",
+      "http://127.0.0.1:8081/"
+    ]
+  },
+  "Theme": {
+    "Root": "App\\theme",
+    "Name": "RailwayEssential"
+  },
+  "SaveOnEveryPlanfieldChange": true,
+  "InitializeDelay": 500
+}

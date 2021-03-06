@@ -1,0 +1,138 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30803.129
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "EcosApp", "EcosApp\EcosApp.njsproj", "{72C4CBDA-1A11-4144-A460-71A80C731350}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{E230E47A-8AB6-42CA-A395-3D4122F2BDE9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecoslibNet48", "ecoslibNet48\ecoslibNet48.csproj", "{48B0D647-D324-45E3-88E9-71EE3B5F95CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{F0C66E6F-A1AE-4D0C-A63F-B8F49A88B7BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{FA27C990-D082-41A6-BEC8-59A96342560B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecoslibServerNetTest", "Testing\ecoslibServerNetTest\ecoslibServerNetTest.csproj", "{692411DA-9EF0-432F-8A9A-39E1D2B92FF9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrackPlanerTest", "Testing\TrackPlanerTest\TrackPlanerTest.csproj", "{29D1CABA-6361-432E-B956-D010258CA3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesTest", "Testing\UtilitiesTest\UtilitiesTest.csproj", "{965AB44D-C50D-48ED-92AD-A22744B7F231}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workspaces", "Workspaces", "{DF65C5C0-6DB0-46F8-8705-51750B3D6FF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basement", "Basement", "{CDB31796-99F8-425A-BD24-0072836ACF61}"
+	ProjectSection(SolutionItems) = preProject
+		Workspaces\Basement\fbevents.json = Workspaces\Basement\fbevents.json
+		Workspaces\Basement\locomotives.json = Workspaces\Basement\locomotives.json
+		Workspaces\Basement\metamodel.json = Workspaces\Basement\metamodel.json
+		Workspaces\Basement\occ.json = Workspaces\Basement\occ.json
+		Workspaces\Basement\routes.json = Workspaces\Basement\routes.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RocrailDemo", "RocrailDemo", "{2FFBEF49-DF3A-4947-BC18-DE3F60BF8E21}"
+	ProjectSection(SolutionItems) = preProject
+		Workspaces\RocrailDemo\fbevents.json = Workspaces\RocrailDemo\fbevents.json
+		Workspaces\RocrailDemo\metamodel.json = Workspaces\RocrailDemo\metamodel.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "railessentials", "railessentials\railessentials.csproj", "{F4A7401F-9E67-467A-A657-E046F8885607}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rocrail", "Rocrail", "{ECE2EE9E-0AFE-438D-8F5D-843D959A4657}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basement", "Basement", "{BE219CF4-D411-4CC7-B2A4-927899530946}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Rocrail\Basement\occ.xml = Demos\Rocrail\Basement\occ.xml
+		Demos\Rocrail\Basement\plan.xml = Demos\Rocrail\Basement\plan.xml
+		Demos\Rocrail\Basement\rocrail.ini = Demos\Rocrail\Basement\rocrail.ini
+		Demos\Rocrail\Basement\rocrail.ini.linux = Demos\Rocrail\Basement\rocrail.ini.linux
+		Demos\Rocrail\Basement\rocrail.ini.windows = Demos\Rocrail\Basement\rocrail.ini.windows
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BasementDemoOriginal", "BasementDemoOriginal", "{C35821AB-684B-4CD9-925A-F73393658BC2}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Rocrail\BasementDemoOriginal\occ.xml = Demos\Rocrail\BasementDemoOriginal\occ.xml
+		Demos\Rocrail\BasementDemoOriginal\plan.xml = Demos\Rocrail\BasementDemoOriginal\plan.xml
+		Demos\Rocrail\BasementDemoOriginal\rocrail.ini = Demos\Rocrail\BasementDemoOriginal\rocrail.ini
+		Demos\Rocrail\BasementDemoOriginal\rocrail.ini.linux = Demos\Rocrail\BasementDemoOriginal\rocrail.ini.linux
+		Demos\Rocrail\BasementDemoOriginal\rocrail.ini.windows = Demos\Rocrail\BasementDemoOriginal\rocrail.ini.windows
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RocrailDemo", "RocrailDemo", "{686AEAFF-FDA6-4AFE-8EF2-9A451020E6AE}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Rocrail\RocrailDemo\occ.xml = Demos\Rocrail\RocrailDemo\occ.xml
+		Demos\Rocrail\RocrailDemo\plan.xml = Demos\Rocrail\RocrailDemo\plan.xml
+		Demos\Rocrail\RocrailDemo\rocrail.ini = Demos\Rocrail\RocrailDemo\rocrail.ini
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ecos", "Ecos", "{5F8A1631-AA22-48E1-A96D-B0ACF5360473}"
+	ProjectSection(SolutionItems) = preProject
+		Demos\Ecos\ecosJson.txt = Demos\Ecos\ecosJson.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ADC41415-22F7-4063-AC3E-5938436CBDAE}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.txt = CHANGELOG.txt
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72C4CBDA-1A11-4144-A460-71A80C731350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72C4CBDA-1A11-4144-A460-71A80C731350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72C4CBDA-1A11-4144-A460-71A80C731350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72C4CBDA-1A11-4144-A460-71A80C731350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48B0D647-D324-45E3-88E9-71EE3B5F95CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48B0D647-D324-45E3-88E9-71EE3B5F95CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48B0D647-D324-45E3-88E9-71EE3B5F95CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48B0D647-D324-45E3-88E9-71EE3B5F95CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C66E6F-A1AE-4D0C-A63F-B8F49A88B7BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C66E6F-A1AE-4D0C-A63F-B8F49A88B7BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C66E6F-A1AE-4D0C-A63F-B8F49A88B7BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C66E6F-A1AE-4D0C-A63F-B8F49A88B7BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692411DA-9EF0-432F-8A9A-39E1D2B92FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692411DA-9EF0-432F-8A9A-39E1D2B92FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692411DA-9EF0-432F-8A9A-39E1D2B92FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692411DA-9EF0-432F-8A9A-39E1D2B92FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D1CABA-6361-432E-B956-D010258CA3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D1CABA-6361-432E-B956-D010258CA3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D1CABA-6361-432E-B956-D010258CA3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D1CABA-6361-432E-B956-D010258CA3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{965AB44D-C50D-48ED-92AD-A22744B7F231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{965AB44D-C50D-48ED-92AD-A22744B7F231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{965AB44D-C50D-48ED-92AD-A22744B7F231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{965AB44D-C50D-48ED-92AD-A22744B7F231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A7401F-9E67-467A-A657-E046F8885607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A7401F-9E67-467A-A657-E046F8885607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A7401F-9E67-467A-A657-E046F8885607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A7401F-9E67-467A-A657-E046F8885607}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{692411DA-9EF0-432F-8A9A-39E1D2B92FF9} = {FA27C990-D082-41A6-BEC8-59A96342560B}
+		{29D1CABA-6361-432E-B956-D010258CA3EF} = {FA27C990-D082-41A6-BEC8-59A96342560B}
+		{965AB44D-C50D-48ED-92AD-A22744B7F231} = {FA27C990-D082-41A6-BEC8-59A96342560B}
+		{CDB31796-99F8-425A-BD24-0072836ACF61} = {DF65C5C0-6DB0-46F8-8705-51750B3D6FF8}
+		{2FFBEF49-DF3A-4947-BC18-DE3F60BF8E21} = {DF65C5C0-6DB0-46F8-8705-51750B3D6FF8}
+		{ECE2EE9E-0AFE-438D-8F5D-843D959A4657} = {A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}
+		{BE219CF4-D411-4CC7-B2A4-927899530946} = {ECE2EE9E-0AFE-438D-8F5D-843D959A4657}
+		{C35821AB-684B-4CD9-925A-F73393658BC2} = {ECE2EE9E-0AFE-438D-8F5D-843D959A4657}
+		{686AEAFF-FDA6-4AFE-8EF2-9A451020E6AE} = {ECE2EE9E-0AFE-438D-8F5D-843D959A4657}
+		{5F8A1631-AA22-48E1-A96D-B0ACF5360473} = {A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C91A5FD-A096-4732-AF10-4BBB412B07BB}
+	EndGlobalSection
+EndGlobal

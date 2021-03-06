@@ -1,0 +1,1095 @@
+﻿    [
+    {
+      "category": "Track",
+      "objects": [
+        {
+          "id": 10,
+          "name": "Straight",
+          "basename": "straight",
+          "clickable": false,
+          "routes": [ "AC", "BD" ]
+        },
+        {
+          "id": 11,
+          "name": "Curve",
+          "basename": "curve",
+          "clickable": false,
+          "routes": [ "AD,DA", "AB,BA", "BC,CB", "CD,DC" ]
+        },
+        {
+          "id": 12,
+          "name": "DoubleCurve",
+          "basename": "dcurve",
+          "clickable": false,
+          "routes": [ "AD,DA,BC,CB", "AB,BA,CD,DC" ]
+        },
+        {
+          "id": 13,
+          "name": "Buffer",
+          "basename": "buffer",
+          "clickable": false,
+          "routes": [ "A", "B", "C", "D" ]
+        },
+        {
+          "id": 14,
+          "name": "Direction",
+          "basename": "dir",
+          "clickable": false,
+          "routes": [ "CA!", "DB!", "AC!", "BD!" ]
+        },
+        {
+          "id": 15,
+          "name": "Direction (all)",
+          "basename": "dirall",
+          "clickable": false,
+          "routes": [ "AC", "BD" ]
+        },
+        {
+          "id": 70,
+          "name": "Decoupler",
+          "basename": "decoupler",
+          "clickable": true,
+          "routes": [ "AC", "BD" ]
+        },
+        {
+          "id": 17,
+          "name": "Connector",
+          "basename": "connector",
+          "clickable": false,
+          "routes": [ "A+", "B+", "C+", "D+" ]
+        },
+        {
+          "id": 18,
+          "name": "Connector Curve Right",
+          "basename": "connector-curve-right",
+          "clickable": false,
+          "routes": [ "A+", "B+", "C+", "D+" ]
+        },
+        {
+          "id": 19,
+          "name": "Connector Curve Left",
+          "basename": "connector-curve-left",
+          "clickable": false,
+          "routes": [ "A+", "B+", "C+", "D+" ]
+        }
+      ]
+    },
+    {
+    "category": "Switch",
+    "objects": [
+      {
+        "id": 50,
+        "name": "Turnout Left",
+        "basename": "turnoutleft",
+        "clickable": true,
+        "routes": [
+          "AC,CA,CD,DC",
+          "BD,DB,DA,AD",
+          "AC,CA,AB,BA",
+          "BD,DB,BC,CB"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnleft"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            }
+          ],
+          "deg180": [
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnleft"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            }
+          ],
+          "deg270": [
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnleft"
+            },
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnleft"
+            }
+          ]
+        }
+      },
+      {
+        "id": 51,
+        "name": "Turnout Right",
+        "basename": "turnoutright",
+        "clickable": true,
+        "routes": [
+          "AC,CA,AD,DA",
+          "BD,DB,BA,AB",
+          "CA,AC,CB,BC",
+          "DB,BD,DC,CD"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnright"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            }
+          ],
+          "deg180": [
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnright"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            }
+          ],
+          "deg270": [
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnright"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnright"
+            }
+          ]
+        }
+      },
+      {
+        "id": 52,
+        "name": "Threeway",
+        "basename": "threeway",
+        "clickable": true,
+        "routes": [
+          "CA,AC,CB,BC,CD,DC",
+          "DA,AD,DB,BD,DC,CD",
+          "AC,CA,AB,BA,AD,DA",
+          "BD,DB,BA,AB,BC,CB"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnright"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnleft"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnright"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            }
+          ],
+          "deg180": [
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight"
+            },
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnleft"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnright"
+            }
+          ],
+          "deg270": [
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "straight"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "straight"
+            }
+          ]
+        }
+      },
+      {
+        "id": 53,
+        "name": "Twoway",
+        "basename": "twoway",
+        "clickable": true,
+        "routes": [
+          "BC,CB,DC,CD",
+          "AD,DA,CD,DC",
+          "AB,BA,AD,DA",
+          "BC,CB,CD,DC"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnright"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnleft"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "turnright"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "turnright"
+            }
+          ],
+          "deg180": [
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnleft"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnright"
+            }
+          ],
+          "deg270": [
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnright"
+            },
+            {
+              "source": "top",
+              "to": "right",
+              "state": "turnleft"
+            },
+            {
+              "source": "right",
+              "to": "top",
+              "state": "turnleft"
+            }
+          ]
+        }
+      },
+      {
+        "id": 54,
+        "name": "Crossing A",
+        "basename": "ccrossing",
+        "clickable": false,
+        "routes": [
+          "AC,CA,BD,DB,AB,BA,CD,DC",
+          "AC,CA,BD,DB,BC,CB,DA,AD"
+        ]
+      },
+      {
+        "id": 55,
+        "name": "Crossing B",
+        "basename": "crossing",
+        "clickable": false,
+        "routes": [
+          "AC,CA,BD,DB" 
+
+        ]
+      },
+      {
+        "id": 56,
+        "name": "Crossing Right 0m",
+        "basename": "crossingright0m",
+        "clickable": true,
+        "routes": [
+          "A0|C0,B1|D0",
+          "A0|C1,B0|C0"
+        ],
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 2
+          }
+        ]
+      },
+      {
+        "id": 57,
+        "name": "Crossing Left 0m",
+        "basename": "crossingleft0m",
+        "clickable": true,
+        "routes": [ "A0|C0,B0|D1", "B0|D0,A1|C0" ],
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 2
+          }
+        ]
+      },
+      {
+        "id": 58,
+        "name": "Crossing Right sr",
+        "basename": "dcrossingright-sr",
+        "clickable": true,
+        "routes": [
+          "A0|C0,A0|B1,B1|D0,D0|C0",
+          "A0|C1,A0|D0,B0|D0,B0|C1"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight|straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "turnleft|turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "turnleft|turnleft"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight|straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "turnleft|turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "turnleft|turnleft"
+            }
+          ]
+        },
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 2
+          }
+        ]
+      },
+      {
+        "id": 59,
+        "name": "Crossing Left sr",
+        "basename": "dcrossingleft-sr",
+        "clickable": false,
+        "routes": [
+          "A0|C0,A0|D1,B0|D1,B0|C0",
+          "B0|D0,B0|A1,A1|C0,C0|D0"
+        ],
+        "states": {
+          "deg0": [
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight|straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "left",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "left",
+              "to": "bottom",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "turnleft|turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "turnleft|turnleft"
+            }
+          ],
+          "deg90": [
+            {
+              "source": "left",
+              "to": "top",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "top",
+              "to": "left",
+              "state": "turnleft|straight"
+            },
+            {
+              "source": "left",
+              "to": "right",
+              "state": "straight|straight"
+            },
+            {
+              "source": "right",
+              "to": "left",
+              "state": "straight|straight"
+            },
+            {
+              "source": "bottom",
+              "to": "right",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "right",
+              "to": "bottom",
+              "state": "straight|turnleft"
+            },
+            {
+              "source": "bottom",
+              "to": "top",
+              "state": "turnleft|turnleft"
+            },
+            {
+              "source": "top",
+              "to": "bottom",
+              "state": "turnleft|turnleft"
+            }
+          ]
+        },
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 2
+          }
+        ]
+      }
+    ]
+    },
+  {
+    "category": "Signal",
+    "objects": [
+      {
+        "id": 100,
+        "name": "Distant Signal",
+        "basename": "signaldistant-2-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 101,
+        "name": "Main Signal A",
+        "basename": "semaphoremain-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 102,
+        "name": "Main Signal B",
+        "basename": "signalmain-2-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 103,
+        "name": "Dwarf Signal",
+        "basename": "signalmain-dwarf-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 104,
+        "name": "Shunting Signal",
+        "basename": "signalshunting-2-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 105,
+        "name": "Distant Semaphore",
+        "basename": "semaphoredistant-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 106,
+        "name": "Main Semaphore A",
+        "basename": "semaphoremain-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 107,
+        "name": "Main Semaphore B",
+        "basename": "semaphoremain-2-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 108,
+        "name": "Shunting Semaphore",
+        "basename": "semaphoreshunting-r",
+        "clickable": true,
+        "routes": [ "AC", "BD", "AC", "BD" ]
+      },
+      {
+        "id": 109,
+        "name": "Block State",
+        "basename": "blockstate",
+        "clickable": false,
+        "routes": [ "AC", "BD" ]
+      }
+    ]
+  },
+  {
+    "category": "Block",
+    "objects": [
+      {
+        "id": 150,
+        "name": "Block",
+        "basename": "block",
+        "clickable": false,
+        "routes": [ "A0|C0,C0|A0", "B0|D0,D0|B0" ],
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 4
+          }
+        ]
+      },
+      {
+        "id": 151,
+        "name": "Short Block",
+        "basename": "block-s",
+        "clickable": false,
+        "routes": [ "A0|C0,C0|A0", "B0|D0,D0|B0" ],
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 2
+          }
+        ]
+      },
+      {
+        "id": 152,
+        "name": "Stage",
+        "basename": "stage",
+        "clickable": false,
+        "routes": [ "A0|C0,C0|A0", "B0|D0,D0|B0" ],
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Sensor",
+    "objects": [
+      {
+        "id": 200,
+        "name": "Sensor",
+        "basename": "sensor-off",
+        "clickable": true,
+        "routes": [ "AC", "BD" ]
+      },
+      {
+        "id": 201,
+        "name": "Curve Sensor",
+        "basename": "curve-sensor-off",
+        "clickable": true,
+        "routes": [ "AD", "AB", "BC", "CD" ]
+      },
+      {
+        "id": 202,
+        "name": "General Sensor",
+        "basename": "accessory-4-on",
+        "clickable": true
+      }
+    ]
+  },
+  {
+    "category": "Accessory",
+    "objects": [
+      {
+        "id": 71,
+        "name": "Output A",
+        "basename": "button-0-on",
+        "clickable": true
+      },
+      {
+        "id": 72,
+        "name": "Output B",
+        "basename": "button-1-on",
+        "clickable": true
+      },
+      {
+        "id": 73,
+        "name": "Output C",
+        "basename": "button-4-on",
+        "clickable": true
+      },
+      {
+        "id": 253,
+        "name": "Level Crossing A",
+        "basename": "accessory-10-on",
+        "clickable": true,
+        "routes": [ "AC", "BD" ]
+      },
+      {
+        "id": 254,
+        "name": "Level Crossing B",
+        "basename": "accessory-11-on",
+        "clickable": true,
+        "routes": [ "AC", "BD" ]
+      },
+      {
+        "id": 255,
+        "name": "Level Crossing C",
+        "basename": "accessory-12",
+        "clickable": true,
+        "routes": [ "AC", "BD" ]
+      },
+      {
+        "id": 1010,
+        "name": "Text",
+        "basename": "textelement",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 4
+          }
+        ]
+      },
+      {
+        "id": 1011,
+        "name": "Building",
+        "basename": "accessory-51-off",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 4
+          }
+        ]
+      },
+      {
+        "id": 1011,
+        "name": "Platform",
+        "basename": "accessory-52-off",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 4
+          }
+        ]
+      },
+      {
+        "id": 1012,
+        "name": "Building",
+        "basename": "accessory-53-off",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 2,
+            "h": 2
+          },
+          {
+            "w": 2,
+            "h": 2
+          }
+        ]
+      },
+      {
+        "id": 1013,
+        "name": "Industry",
+        "basename": "accessory-54-off",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 4,
+            "h": 2
+          },
+          {
+            "w": 2,
+            "h": 4
+          }
+        ]
+      },
+      {
+        "id": 1013,
+        "name": "Building",
+        "basename": "accessory-55-off",
+        "clickable": false,
+        "dimensions": [
+          {
+            "w": 1,
+            "h": 1
+          },
+          {
+            "w": 1,
+            "h": 1
+          }
+        ]
+      }
+    ]
+  }
+]

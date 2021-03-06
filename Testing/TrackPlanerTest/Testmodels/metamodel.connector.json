@@ -1,0 +1,211 @@
+{
+ "planField": {
+  "9x2": {
+   "id": 17,
+   "name": "Connector",
+   "active": {
+    "default": "connector",
+    "occ": "connector-occ",
+    "route": "connector-route"
+   },
+   "off": {
+    "default": "connector",
+    "occ": "connector-occ",
+    "route": "connector-route"
+   },
+   "clickable": false,
+   "routes": [
+    "A+",
+    "B+",
+    "C+",
+    "D+"
+   ],
+    "editor": {
+      "themeId": 17,
+      "offsetX": 18,
+      "offsetY": 13,
+      "themeDimIdx": 0,
+      "connectorId": 1337
+    },
+   "identifier": "Item_0",
+   "coord": {
+    "x": 9,
+    "y": 2
+   }
+  },
+  "8x2": {
+    "id": 10,
+    "name": "Straight",
+    "active": {
+      "default": "straight",
+      "occ": "straight-occ",
+      "route": "straight-route"
+    },
+    "off": {
+      "default": "straight",
+      "occ": "straight-occ",
+      "route": "straight-route"
+    },
+    "clickable": false,
+    "routes": [
+      "AC",
+      "BD"
+    ],
+    "editor": {
+      "themeId": 10,
+      "offsetX": 17,
+      "offsetY": 19,
+      "themeDimIdx": 0
+    },
+    "identifier": "Item_1",
+    "coord": {
+      "x": 8,
+      "y": 2
+    }
+  },
+  "4x2": {
+   "id": 150,
+   "name": "Block",
+   "active": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "off": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "clickable": false,
+   "routes": [
+    "A0|C0,C0|A0",
+    "B0|D3,D3|B0"
+   ],
+   "dimensions": [
+    {
+     "w": 4,
+     "h": 1
+    },
+    {
+     "w": 1,
+     "h": 4
+    }
+   ],
+   "editor": {
+    "themeId": 150,
+    "offsetX": 52,
+    "offsetY": 14,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_2",
+   "coord": {
+    "x": 4,
+    "y": 2
+   }
+  },
+  "4x4": {
+   "id": 150,
+   "name": "Block",
+   "active": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "off": {
+    "default": "block",
+    "occ": "block",
+    "route": "block"
+   },
+   "clickable": false,
+   "routes": [
+    "A0|C0,C0|A0",
+    "B0|D3,D3|B0"
+   ],
+   "dimensions": [
+    {
+     "w": 4,
+     "h": 1
+    },
+    {
+     "w": 1,
+     "h": 4
+    }
+   ],
+   "editor": {
+    "themeId": 150,
+    "offsetX": 52,
+    "offsetY": 14,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_3",
+   "coord": {
+    "x": 4,
+    "y": 4
+   }
+  },
+  "8x4": {
+   "id": 10,
+   "name": "Straight",
+   "active": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "off": {
+    "default": "straight",
+    "occ": "straight-occ",
+    "route": "straight-route"
+   },
+   "clickable": false,
+   "routes": [
+    "AC",
+    "BD"
+   ],
+   "editor": {
+    "themeId": 10,
+    "offsetX": 11,
+    "offsetY": 23,
+    "themeDimIdx": 0
+   },
+   "identifier": "Item_4",
+   "coord": {
+    "x": 8,
+    "y": 4
+   }
+  },
+  "9x4": {
+    "id": 17,
+    "name": "Connector",
+    "active": {
+      "default": "connector",
+      "occ": "connector-occ",
+      "route": "connector-route"
+    },
+    "off": {
+      "default": "connector",
+      "occ": "connector-occ",
+      "route": "connector-route"
+    },
+    "clickable": false,
+    "routes": [
+      "A+",
+      "B+",
+      "C+",
+      "D+"
+    ],
+    "editor": {
+      "themeId": 17,
+      "offsetX": 16,
+      "offsetY": 23,
+      "themeDimIdx": 0,
+      "connectorId": 1337
+    },
+    "identifier": "Item_5",
+    "coord": {
+      "x": 9,
+      "y": 4
+    }
+  }
+ },
+ "ecosData": {}
+}

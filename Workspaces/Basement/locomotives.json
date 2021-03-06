@@ -1,0 +1,206 @@
+{
+  "1004": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": true,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": "'-' Side"
+  },
+  "1009": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1002": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1003": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1005": {
+    "IsLocked": false,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1012": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1010": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1013": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1006": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1008": {
+    "IsLocked": false,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1001": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  },
+  "1014": {
+    "IsLocked": true,
+    "Durations": null,
+    "Settings": {
+      "OptionDirection": false,
+      "OptionMainline": false,
+      "TypeOthers": true,
+      "TypeLocal": false,
+      "TypeIntercity": false,
+      "TypeFreight": false,
+      "TypeShunting": false,
+      "TypeRegional": false,
+      "TypeBranchLine": false,
+      "TypeBranchLineFreight": false
+    },
+    "EnterBlockSide": ""
+  }
+}

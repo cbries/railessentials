@@ -1,0 +1,728 @@
+﻿// Copyright (c) 2021 Dr. Christian Benjamin Ries
+// Licensed under the MIT License
+// File: AutoMode.cs
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ecoslib.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using railessentials.Analyzer;
+using railessentials.Occ;
+using railessentials.Plan;
+using railessentials.Route;
+using RouteList = railessentials.Route.RouteList;
+// ReSharper disable InconsistentNaming
+// ReSharper disable NotAccessedField.Local
+
+namespace railessentials.AutoMode
+{
+    public delegate void AutoModeStarted(AutoMode sender);
+    public delegate void AutoModeStopped(AutoMode sender);
+    public delegate void AutoModeFailed(AutoMode sender, string reason);
+    public delegate void AutoModeFauled(AutoMode sender, Exception ex);
+    public delegate void AutoModeUpdate(AutoMode sender, string message);
+
+    public class AutoMode
+    {
+        public const int RunPauseForBlockSeconds = 10;
+        private const int RunDelayBetweenChecksMsecs = 2500;
+
+        public event AutoModeStarted Started;
+        public event AutoModeStopped Stopped;
+        public event AutoModeUpdate Update;
+
+        private readonly ClientHandler.ClientHandler _ctx;
+        private bool _isStopped = true;
+        private bool _isStopping;
+        private bool _isStarted;
+
+        private Metadata _metadata;
+        private DataProvider _dataProvider;
+        private DataProvider _dataProviderS88;
+        private RouteList _routeList;
+        private PlanField _planfield;
+
+        private readonly object _autoModeTasksLock = new();
+        private readonly List<AutoModeTaskCore> _autoModeTasks = new();
+
+        internal ClientHandler.ClientHandler GetClientHandler()
+        {
+            return _ctx;
+        }
+
+        public AutoMode(ClientHandler.ClientHandler ctx)
+        {
+            _ctx = ctx;
+        }
+
+        public bool IsStarted()
+        {
+            return _isStarted && !_isStopped;
+        }
+
+        public void Stop()
+        {
+            _isStarted = false;
+            _isStopping = true;
+
+            const int maxCheckSteps = 10;
+            const int checkStep = (2 * RunDelayBetweenChecksMsecs) / maxCheckSteps;
+            for (var i = 0; i < maxCheckSteps; i += checkStep)
+            {
+                if (_isStopped)
+                    break;
+
+                System.Threading.Thread.Sleep(checkStep);
+            }
+
+            var locOids = new List<int>();
+            foreach (var itOcc in _metadata?.Occ.Blocks ?? new List<OccBlock>())
+            {
+                if (itOcc == null) continue;
+                locOids.Add(itOcc.Oid);
+            }
+
+            locOids.ForEach(ResetRouteFor);
+            CleanOcc();
+
+            Update?.Invoke(this, "AutoMode STOP");
+            Stopped?.Invoke(this);
+        }
+
+        public void StopLocomotive(int oid)
+        {
+            if (oid <= 0) return;
+            lock (_autoModeTasksLock)
+            {
+                foreach (var it in _autoModeTasks)
+                    it?.Cancel();
+            }
+        }
+
+        public async Task HandleFeedbacks()
+        {
+            await Task.Run(() =>
+            {
+                _ctx?.Logger?.Log.Info("+++ handle feedbacks +++");
+            });
+        }
+
+        public async Task Run()
+        {
+            Started?.Invoke(this);
+            Update?.Invoke(this, "AutoMode START");
+
+            Initialize();
+
+            await Task.Run(() =>
+            {
+                _isStarted = true;
+                _isStopped = false;
+                _isStopping = false;
+
+                while (_isStopped == false)
+                {
+                    if (_isStopping) break;
+
+                    var nextRouteInformation = CheckForRoutesAndAssign();
+                    if (nextRouteInformation != null)
+                    {
+                        LogInfo($"{nextRouteInformation}");
+
+                        var instance = AutoModeTaskBase.Create(nextRouteInformation, this);
+                        instance.Finished += Instance_Finished;
+                        lock (_autoModeTasksLock)
+                        {
+                            _autoModeTasks.Add(instance);
+                        }
+
+                        try
+                        {
+                            var task = instance.Run();
+                            task.Start();
+                        }
+                        catch
+                        {
+                            // catch any exception
+                            // do not bubble them up
+                        }
+                    }
+
+                    System.Threading.Thread.Sleep(RunDelayBetweenChecksMsecs);
+                }
+
+                // stop all tasks, cleanup tasks and event handler
+                if (_isStopping)
+                {
+                    lock (_autoModeTasksLock)
+                    {
+                        foreach (var it in _autoModeTasks)
+                        {
+                            try
+                            {
+                                if (it == null) continue;
+                                it.Finished -= Instance_Finished;
+                                it.Cancel();
+                            }
+                            catch
+                            {
+                                // ignore
+                            }
+                        }
+
+                        _autoModeTasks.Clear();
+                    }
+                }
+
+                _isStopped = true;
+            });
+        }
+
+        private void Instance_Finished(AutoModeTaskCore sender)
+        {
+            lock (_autoModeTasksLock)
+            {
+                _autoModeTasks.Remove(sender);
+            }
+        }
+
+        public void ResetRouteFor(int locOid)
+        {
+            if (locOid <= 0) return;
+            var routeFinalName = string.Empty;
+            var routeNextName = string.Empty;
+            var blocks = _metadata.Occ.Blocks;
+            foreach (var itOccBlock in blocks)
+            {
+                if (itOccBlock.Oid != locOid) continue;
+                routeFinalName = itOccBlock.RouteToFinal;
+                routeNextName = itOccBlock.RouteToNext;
+                CleanOccBlock(itOccBlock);
+                break;
+            }
+
+            var routeFinal = _routeList.GetByName(routeFinalName);
+            if (routeFinal != null)
+                routeFinal.Occupied = false;
+
+            var routeNext = _routeList.GetByName(routeNextName);
+            if (routeNext != null)
+                routeNext.Occupied = false;
+
+            SaveOccAndPromote();
+            SaveRoutesAndPromote();
+
+            var ar = new JArray();
+            if (!string.IsNullOrEmpty(routeFinalName)) ar.Add(routeFinalName);
+            if (!string.IsNullOrEmpty(routeNextName)) ar.Add(routeNextName);
+            if (ar.Count > 0)
+            {
+                _ctx?.SendCommandToClients(new JObject
+                {
+                    ["command"] = "autoMode",
+                    ["data"] = new JObject
+                    {
+                        ["command"] = "routeReset",
+                        ["routeNames"] = ar
+                    }
+                });
+            }
+        }
+
+        public void SendRouteToClients()
+        {
+            var routeNames = new JArray();
+            lock (_autoModeTasksLock)
+            {
+                foreach (var it in _autoModeTasks)
+                {
+                    try
+                    {
+                        if (it == null) continue;
+                        routeNames.Add(it.RouteName);
+                    }
+                    catch
+                    {
+                        // ignore
+                    }
+                }
+            }
+
+            _ctx?.SendCommandToClients(new JObject
+            {
+                ["command"] = "autoMode",
+                ["data"] = new JObject
+                {
+                    ["command"] = "state",
+                    ["state"] = IsStarted()
+                }
+            });
+
+            if (routeNames.Count > 0)
+            {
+                _ctx?.SendCommandToClients(new JObject
+                {
+                    ["command"] = "autoMode",
+                    ["data"] = new JObject
+                    {
+                        ["command"] = "routeShow",
+                        ["routeNames"] = routeNames
+                    }
+                });
+            }
+        }
+
+        private NextRouteInformation CheckForRoutesAndAssign()
+        {
+            foreach (var itOccBlock in _metadata.Occ.Blocks)
+            {
+                // has already a destination
+                if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
+
+                var nextRoute = GetNextRoute(itOccBlock, out var locomotiveObjectId);
+                if (nextRoute == null) continue;
+
+                //
+                // query feedback sensors for the route
+                // in case no feedback sensors are set
+                // the route is invalid and will not be used
+                //
+                var resFb = GetFeedbacksForBlock(nextRoute.Blocks[1], out var fbEnter, out var fbIin);
+                if (!resFb)
+                {
+                    LogInfo($"Route {nextRoute.Name} has no feedback sensors and will be ignored");
+                    continue;
+                }
+
+                nextRoute.Occupied = true;
+
+                var fromBlock = nextRoute.Blocks[0];
+                var targetBlock = nextRoute.Blocks[1];
+
+                LogInfo($"Route: {nextRoute.Name} ({fromBlock.identifier} going to {targetBlock.identifier})");
+
+                itOccBlock.FinalBlock = targetBlock.identifier;
+                itOccBlock.RouteToFinal = nextRoute.Name;
+
+                SaveOccAndPromote();
+                SaveRoutesAndPromote();
+
+                // 
+                // change switch states for the route
+                //
+                _ctx?.ApplyRouteCommandForSwitches(nextRoute.Switches);
+                if (_ctx != null && _ctx.IsSimulationMode())
+                {
+                    _ctx.SaveAll();
+                    _ctx?._sniffer?.TriggerDataProviderModifiedForSimulation();
+                }
+                else
+                {
+                    _ctx?._sniffer?.SendCommandsToEcosStation();
+                }
+
+                //
+                // inform all client about a new taken route
+                //
+                _ctx?.SendCommandToClients(new JObject
+                {
+                    ["command"] = "autoMode",
+                    ["data"] = new JObject
+                    {
+                        ["command"] = "routeShow",
+                        ["routeNames"] = new JArray
+                        {
+                            nextRoute.Name
+                        }
+                    }
+                });
+
+                // prepare route information
+                var locDataEcos = _dataProvider.GetObjectBy(locomotiveObjectId) as Locomotive;
+                var locData = _metadata.LocomotivesData.GetData(locomotiveObjectId);
+                var planField = GetPlanField(_metadata);
+
+                return new NextRouteInformation
+                {
+                    Route = nextRoute,
+                    FbEnter = planField?.Get(fbEnter),
+                    FbIn = planField?.Get(fbIin),
+                    LocomotiveObjectId = locomotiveObjectId,
+                    Locomotive = locDataEcos,
+                    LocomotivesData = locData,
+                    DataProvider = _dataProvider,
+                    DataProviderS88 = _dataProviderS88,
+                    OccBlock = itOccBlock,
+                    FromBlock = fromBlock,
+                    TargetBlock = targetBlock
+                };
+            }
+
+            return null;
+        }
+
+        private Feedbacks.Data GetFeedbackDataOf(string blockName, SideMarker side)
+        {
+            if (string.IsNullOrEmpty(blockName)) return null;
+            if (side == SideMarker.None) return null;
+
+            var fbs = _metadata.FeedbacksData;
+            if (fbs == null) return null;
+
+            foreach (var itFb in fbs.Entries)
+            {
+                if (string.IsNullOrEmpty(itFb?.BlockId)) continue;
+                if (!itFb.BlockId.StartsWith(blockName, StringComparison.OrdinalIgnoreCase)) continue;
+
+                if (side == SideMarker.Plus)
+                {
+                    if (!itFb.BlockId.EndsWith("[+]", StringComparison.Ordinal))
+                        continue;
+                }
+                else if (side == SideMarker.Minus)
+                {
+                    if (!itFb.BlockId.EndsWith("[-]", StringComparison.Ordinal))
+                        continue;
+                }
+
+                return itFb;
+            }
+
+            return null;
+        }
+
+        private bool GetFeedbacksForBlock(RouteBlock block, out string fbEnter, out string fbIn)
+        {
+            fbEnter = string.Empty;
+            fbIn = string.Empty;
+
+            if (block == null) return false;
+
+            var fbs = _metadata.FeedbacksData;
+            if (fbs == null) return false;
+
+            foreach (var itFb in fbs.Entries)
+            {
+                if (string.IsNullOrEmpty(itFb?.BlockId)) continue;
+                if (!itFb.BlockId.StartsWith(block.identifier, StringComparison.OrdinalIgnoreCase)) continue;
+
+                if (block.side == SideMarker.Plus)
+                {
+                    if (!itFb.BlockId.EndsWith("[+]", StringComparison.Ordinal))
+                        continue;
+                }
+                else if (block.side == SideMarker.Minus)
+                {
+                    if (!itFb.BlockId.EndsWith("[-]", StringComparison.Ordinal))
+                        continue;
+                }
+
+                fbEnter = itFb.FbEnter;
+                fbIn = itFb.FbIn;
+
+                if (!string.IsNullOrEmpty(fbEnter)
+                    && !string.IsNullOrEmpty(fbIn))
+                    return true;
+
+                fbEnter = string.Empty;
+                fbIn = string.Empty;
+            }
+
+            return false;
+        }
+
+        internal void SaveOccAndPromote(bool promote = true)
+        {
+            if (_metadata == null) return;
+            _metadata.Save(Metadata.SaveModelType.OccData);
+            if (promote)
+                _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateOcc);
+        }
+
+        internal void SaveRoutesAndPromote(bool promote = true)
+        {
+            if (_metadata == null) return;
+            _metadata.SetRoutes(_routeList);
+            _metadata?.Save(Metadata.SaveModelType.RouteData);
+            if (promote)
+                _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateRoutes);
+        }
+
+        internal void SaveLocomotivesAndPromote(bool promote = true)
+        {
+            if (_metadata == null) return;
+            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+            if (promote)
+                _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateLocomotivesData);
+        }
+
+        private void Initialize()
+        {
+            if (_metadata != null) return;
+
+            _metadata = _ctx._metadata;
+            _dataProvider = _ctx._sniffer.GetDataProvider() as DataProvider;
+            _dataProviderS88 = _ctx._sniffer.GetDataProviderS88() as DataProvider;
+
+            var nativeRouteData = _metadata.Routes.ToString();
+            _routeList = JsonConvert.DeserializeObject<RouteList>(nativeRouteData);
+            _planfield = GetPlanField(_metadata);
+        }
+        
+        public void ApplyRouteDisableState(string routeName, bool disableState)
+        {
+            if (string.IsNullOrEmpty(routeName)) return;
+
+            foreach(var itRoute in _routeList)
+            {
+                if (itRoute == null) continue;
+                if(routeName.Equals(itRoute.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    itRoute.IsDisabled = disableState;
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Resets all OCC states.
+        /// Frees the occupied state for all routes.
+        /// </summary>
+        public void CleanOcc()
+        {
+            var occ = _metadata?.Occ;
+            if (occ != null)
+            {
+                for (var i = 0; i < occ.Blocks.Count; ++i)
+                    occ.Blocks[i] = CleanOccBlock(occ.Blocks[i]);
+
+                _metadata.Occ = occ;
+
+                SaveOccAndPromote();
+            }
+
+            if (_routeList != null)
+            {
+                foreach (var itRoute in _routeList)
+                {
+                    if (itRoute == null) continue;
+                    itRoute.Occupied = false;
+                }
+
+                SaveRoutesAndPromote();
+            }
+        }
+
+        /// <summary>
+        /// Resets the block of a occ block to empty.
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns></returns>
+        internal static OccBlock CleanOccBlock(OccBlock block)
+        {
+            block.FinalBlock = string.Empty;
+            block.NextBlock = string.Empty;
+            block.RouteToFinal = string.Empty;
+            block.RouteToNext = string.Empty;
+            block.NextEntered = false;
+            block.FinalEntered = false;
+            return block;
+        }
+
+        public Route.Route GetNextRoute(
+            OccBlock occBlock,
+            out int locomotiveObjectId)
+        {
+            locomotiveObjectId = 0;
+            var occFromBlock = occBlock.FromBlock;
+            if (string.IsNullOrEmpty(occFromBlock)) return null;
+
+            var occLocOid = occBlock.Oid;
+            var locDataEcos = _dataProvider.GetObjectBy(occLocOid) as Locomotive;
+            var locData = _metadata.LocomotivesData.GetData(occLocOid);
+
+            if (locDataEcos == null) return null;
+            if (locData == null) return null;
+
+            //
+            // NOTE check of the OCC has waiting long enough for a new start
+            // 
+            var lastReachedTime = occBlock.ReachedTime;
+            var allowedMinimumTime = lastReachedTime.AddSeconds(occBlock.SecondsToWait);
+            if (allowedMinimumTime > DateTime.Now)
+                return null;
+
+            //
+            // do not start any loc on any route when the loc is locked (i.e. not allowed to start)
+            if (locData.IsLocked) return null;
+            //
+
+            var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1 
+                ? SideMarker.Minus 
+                : SideMarker.Plus;
+
+            var originalSideEntered = sideToLeave == SideMarker.Minus 
+                ? SideMarker.Plus 
+                : SideMarker.Minus;
+
+            var routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+            
+            //
+            // in case there is no route to leave on the sideToLeave
+            // probably the trains' direction must change, if change
+            // is allowed:
+            // (1) check for a new route on the opposide sideToLeave
+            // (2) if one or more route available, check of the train is allowed to change the direction (as well the block)
+            // (3) change the direction
+            // (4) change the sideToLeave
+            // (5) ...start the additional route selection routines
+            //
+            if (routesFrom.Count == 0)
+            {
+                string step4enterBlockSide;
+
+                LogInfo($"The side to leave {sideToLeave} does not have any route to take.");
+                if (sideToLeave == SideMarker.Minus)
+                {
+                    step4enterBlockSide = "'-' Side";
+                    sideToLeave = SideMarker.Plus;
+                }
+                else
+                {
+                    step4enterBlockSide = "'+' Side";
+                    sideToLeave = SideMarker.Minus;
+                }
+
+                #region (1)
+                //
+                // (1)
+                //
+                routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+                if (routesFrom.Count == 0)
+                {
+                    LogInfo($"The other side to leave {sideToLeave} does not have any route to take.");
+                    LogInfo($"No route to take from {occFromBlock} for Locomotive({locDataEcos.Name ?? "-"}).");
+                    return null;
+                }
+
+                #endregion (1)
+
+                #region (2)
+                //
+                // (2)
+                //
+                if (locData.Settings.ContainsKey("OptionDirection"))
+                {
+                    var locState = locData.Settings["OptionDirection"];
+                    if (!locState)
+                    {
+                        LogInfo($"Locomotive({locDataEcos.Name}) is not allowed to change the direction.");
+                        return null;
+                    }
+                }
+
+                var fbData = GetFeedbackDataOf(occBlock.FromBlock, originalSideEntered);
+                if (fbData == null)
+                {
+                    LogInfo($"No feedback data available for block {occBlock.FromBlock}.");
+                    return null;
+                }
+
+                if (fbData.Settings.ContainsKey("OptionDirection"))
+                {
+                    var blockState = fbData.Settings["OptionDirection"];
+                    if (!blockState)
+                    {
+                        LogInfo($"Block({fbData.BlockId}) does not allow to change the direction.");
+                        return null;
+                    }
+                }
+
+                #endregion (2)
+
+                #region (3)
+                //
+                // (3)
+                //
+                var currentDirection = locDataEcos.Direction;
+                var newDirection = currentDirection == 1 ? 0 : 1;
+                if (_ctx.IsSimulationMode())
+                {
+                    locDataEcos.ChangeDirectionSimulation(newDirection == 1);
+                    _ctx.SaveAll();
+                    _ctx?._sniffer?.TriggerDataProviderModifiedForSimulation();
+                }
+                else
+                {
+                    locDataEcos.ChangeDirection(newDirection == 1);
+                    _ctx?._sniffer?.SendCommandsToEcosStation();
+                }
+
+                #endregion (3)
+
+                #region (4)
+                //
+                // (4)
+                //
+                // EnterBlockSide = "'+' Side"
+                // EnterBlockSide = "'-' Side"
+                if (string.IsNullOrEmpty(step4enterBlockSide))
+                {
+                    LogInfo($"Invalid enterBlockSide value for Locomotive({locDataEcos.Name}).");
+                    return null;
+                }
+
+                locData.EnterBlockSide = step4enterBlockSide;
+                SaveLocomotivesAndPromote();
+                SaveOccAndPromote();
+
+                #endregion (4)
+
+            }
+            var routesFromFiltered = routesFrom.FilterBy(locDataEcos, locData, _metadata.FeedbacksData);
+            var routesFromNotOccupied = routesFromFiltered.FilterNotOccupiedOrLocked(_metadata.Occ);
+            if (routesFromNotOccupied.Count == 0) return null;
+
+            var routesNoCross = routesFromNotOccupied.FilterNoCrossingOccupied(_routeList);
+            if (routesNoCross.Count == 0)
+            {
+                //
+                // no route free to take
+                //
+                return null;
+            }
+
+            locomotiveObjectId = occLocOid;
+
+            var idx = GetRndBetween(routesNoCross.Count);
+            return routesNoCross[idx];
+        }
+
+        #region Helper
+
+        internal void LogInfo(string msg)
+        {
+            if (string.IsNullOrEmpty(msg)) return;
+            _ctx?.Logger?.Log?.Info($"{msg}");
+            _ctx?.SendDebugMessage($"{msg}");
+        }
+
+        private static int GetRndBetween(int max = int.MaxValue, int from = 0)
+        {
+            var r = new Random(Guid.NewGuid().GetHashCode());
+            return r.Next(from, max);
+        }
+
+        private static PlanField GetPlanField(Metadata metadata)
+        {
+            var metamodel = metadata?.Metamodel;
+            if (metamodel == null) return null;
+            var planfield = JsonConvert.DeserializeObject<Dictionary<string, PlanField>>(metamodel.ToString(Formatting.None));
+            return planfield["planField"];
+        }
+
+        #endregion
+    }
+}

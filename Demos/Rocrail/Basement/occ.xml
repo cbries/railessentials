@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modocc>
+  <occ bkid="bk10" lcid="" auto="false" closed="false" placing="0" blockenterside="0"/>
+  <occ bkid="B01" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B02" lcid="S 3/6 BR18.4 sw" auto="false" closed="false" placing="1" blockenterside="1"/>
+  <occ bkid="B03" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B04" auto="false" closed="false" placing="1" blockenterside="1" lcid="V 80"/>
+  <occ bkid="B05" auto="false" closed="false" placing="1" blockenterside="1" lcid="74 854 DB"/>
+  <occ bkid="B06" auto="false" closed="false" placing="2" blockenterside="1" lcid="BR 86 130"/>
+  <occ bkid="B07" auto="false" closed="false" placing="1" blockenterside="2" lcid="BR52 Kondens."/>
+  <occ bkid="B08" auto="false" closed="false" placing="1" blockenterside="1" lcid="BR10"/>
+  <occ bkid="B09" auto="false" closed="false" placing="1" blockenterside="1" lcid="BR41 354"/>
+  <occ bkid="B10" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B11" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B12" auto="false" closed="false" placing="1" blockenterside="1" lcid="S 3/6 BR18.4 gr"/>
+  <occ bkid="B13" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B14" auto="false" closed="false" placing="2" blockenterside="2" lcid="V16 101 (blau)"/>
+  <occ bkid="B15" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B16" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B17" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B18" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B19" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B20" auto="false" closed="false" placing="0" lcid="" blockenterside="0"/>
+  <occ bkid="B21" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B22" auto="false" closed="false" placing="0" lcid="" blockenterside="0"/>
+  <occ bkid="B23" auto="false" closed="true" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B24" auto="false" closed="false" placing="0" blockenterside="0" lcid=""/>
+  <occ bkid="B25" lcid="" auto="false" closed="false" placing="0" blockenterside="0"/>
+</modocc>

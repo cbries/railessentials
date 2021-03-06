@@ -1,0 +1,338 @@
+[
+  {
+    "BlockId": "sb1[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb1[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb2[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb2[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb3[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb3[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb4[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "sb4[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb1[+]",
+    "FbEnter": "cb1e",
+    "FbIn": "cb1i",
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb1[-]",
+    "FbEnter": "cb1i",
+    "FbIn": "cb1e",
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb2[+]",
+    "FbEnter": "cb2e",
+    "FbIn": "cb2i",
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb2[-]",
+    "FbEnter": "cb2i",
+    "FbIn": "cb2e",
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb3[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb3[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb4[+]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "cb4[-]",
+    "FbEnter": null,
+    "FbIn": null,
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  }
+]

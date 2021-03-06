@@ -75,6 +75,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ecos", "Ecos", "{5F8A1631-A
 		Demos\Ecos\ecosJson.txt = Demos\Ecos\ecosJson.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ADC41415-22F7-4063-AC3E-5938436CBDAE}"
+	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.txt = CHANGELOG.txt
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -56,6 +56,16 @@ Have a bug or a feature request? Please open an issue here [https://github.com/c
 
 To be defined, probably will be provided under `Wiki`.
 
+## Third-Party Components at Their Best
+
+- [`w2ui`](http://w2ui.com/web/) JavaScript UI Library for the Modern Web
+- [`WebSocket4Net`](https://github.com/kerryjiang/WebSocket4Net) A popular .NET WebSocket Client
+- [`SuperSocket`](https://github.com/kerryjiang/SuperSocket) SuperSocket is a light weight extensible socket application framework.
+- [`jQuery colorpicker`](https://github.com/vanderlee/colorpicker) A full-featured colorpicker for jQueryUI with full theming support.
+- [`Contextual.js`](https://github.com/LucasReade/Contextual.js) Javascript contextual menu library
+- [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
+- [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
+
 <br><br><br>
 
 # First Impressions

@@ -15,8 +15,8 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestIconsRendering()
         {
-            var path = @"C:\tfs\cbriesGitHub\ecoslib\ecoslib\EcosApp\theme\RailwayEssential.json";
-            var pathToFiles = @"C:\tfs\cbriesGitHub\ecoslib\ecoslib\EcosApp\theme\RailwayEssential";
+            var path = TestMetamodel.ThemeRoot + @"RailwayEssential.json";
+            var pathToFiles = TestMetamodel.ThemeRoot + @"RailwayEssential";
             var targetHtmlFile = Path.Combine(Path.GetDirectoryName(path), "RailwayEssential.Test.html");
             File.Exists(path).Should().BeTrue();
 

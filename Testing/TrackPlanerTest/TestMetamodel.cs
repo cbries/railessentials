@@ -14,6 +14,9 @@ namespace TrackPlanerTest
     [TestClass]
     public class TestMetamodel
     {
+        public static string WorkspaceRoot = @"..\..\..\..\..\Workspaces\";
+        public static string ThemeRoot = @"..\..\..\..\..\EcosApp\theme\";
+
         private PlanField LoadPlanFieldFile(string path)
         {
             File.Exists(path).Should().BeTrue();
@@ -189,7 +192,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestCheckTrack()
         {
-            var path = @"..\..\..\..\rocrail2ecosApp\Demos\metamodel.RocrailDemo.json";
+            var path = WorkspaceRoot + @"RocrailDemo\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
             var tr0 = field["14x4"];
@@ -471,7 +474,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestRoutingRocrailDemo()
         {
-            var path = @"..\..\..\..\rocrail2ecosApp\Demos\metamodel.RocrailDemo.json";
+            var path = WorkspaceRoot + @"RocrailDemo\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
             var bk5_1 = field["5x1"];
@@ -533,12 +536,12 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestRoutingBasementDemo()
         {
-            var path = @"..\..\..\..\rocrail2ecosApp\Demos\metamodel.BasementDemo.json";
+            var path = WorkspaceRoot + @"Basement\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
             var startBlock = field["8x9"];
             var r8_9 = field.GetRoutes(startBlock);
-            var targetBlock = field["14x18"];
+            var targetBlock = field["21x18"];
             foreach (var itR in r8_9)
             {
                 if (itR.Target.identifier == targetBlock.identifier)
@@ -557,7 +560,7 @@ namespace TrackPlanerTest
             }
 
             var allBlocks = field.GetBlocks();
-            allBlocks.Count.Should().Be(22);
+            allBlocks.Count.Should().Be(21);
 
             var step = 0;
             var maxStep = allBlocks.Count;
@@ -574,7 +577,7 @@ namespace TrackPlanerTest
                 ShowProgress(step, maxStep, $"Analyzing Basement (Current routes: {totalRoutes})");
             }
 
-            totalRoutes.Should().Be(142);
+            totalRoutes.Should().Be(210);
 
             Trace.WriteLine($"Found {totalRoutes} routes.");
         }
@@ -685,7 +688,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestAnalyzer()
         {
-            var path = @"..\..\..\..\rocrail2ecosApp\Demos\metamodel.BasementDemo.json";
+            var path = WorkspaceRoot + @"Basement\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
             var analyzer = new Analyze(field);
@@ -693,7 +696,7 @@ namespace TrackPlanerTest
             {
                 ShowProgress(step, maxSteps, "Analyzing Basement");
             });
-            analyzerResult.NumberOfRoutes.Should().Be(142);
+            analyzerResult.NumberOfRoutes.Should().Be(210);
 
             var json = analyzerResult.ToJson();
             json.Length.Should().BeGreaterThan(0);

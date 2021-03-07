@@ -16,7 +16,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestSerializationPlanField()
         {
-            var path = @"..\..\..\..\rocrail2ecosApp\Demos\metamodel.RocrailDemo.json";
+            var path = TestMetamodel.WorkspaceRoot + @"RocrailDemo\metamodel.json";
             File.Exists(path).Should().BeTrue();
 
             var json = File.ReadAllText(path, Encoding.UTF8);
@@ -27,7 +27,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestDeserializationOfTheme()
         {
-            var path = @"..\..\..\..\EcosApp\theme\RailwayEssential.json";
+            var path = TestMetamodel.ThemeRoot + @"RailwayEssential.json";
             File.Exists(path).Should().BeTrue();
 
             var json = File.ReadAllText(path, Encoding.UTF8);

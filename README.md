@@ -1,6 +1,8 @@
 
 ## RailEssentials - MIT License
 
+![Build State](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml/badge.svg?branch=master)
+
 **~~RailwaysEssentials~~** is renamed to **RailEssentials**.
 
 **[`RailEssentials`](http://www.railessentials.net)** is a modern and intuitive software for creating and controling

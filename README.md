@@ -81,7 +81,7 @@ To be defined, probably will be provided under `Wiki`.
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 - [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
 
-<br><br>
+<br>
 
 # Impressions
 

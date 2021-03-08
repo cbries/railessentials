@@ -1,7 +1,7 @@
 ﻿{
   "SimulationMode": true,
   "SimulationData": "Demos\\Ecos\\ecosJson.txt",
-  "RootWorkspace": "Workspaces\\", 
+  "RootWorkspace": "Workspaces\\",
   "RecentWorkspace": "Basement",
   "Ecos": {
     "Ip": "192.168.178.61",
@@ -14,6 +14,8 @@
   "WebServer": {
     "HttpRoot": "App\\",
     "HttpRootFallback": "App\\",
+    "__HttpRootDebug__Note":  "If RailEssentials is a debug build, this path will be applied to 'HttpRoot' and 'HttpRootFallback'.", 
+    "HttpRootDebug": "..\\..\\..\\EcosApp\\",
     "Prefixes": [
       "http://localhost:8081/",
       "http://127.0.0.1:8081/"

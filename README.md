@@ -33,7 +33,7 @@ We do not provide any official releases yet, because the software is still under
 
 In the late of 2018 I wrote a book about programming the ESU's ECoS 50210.
 
-[![Book Cover](https://images-na.ssl-images-amazon.com/images/I/51MzctD3yXL._SX331_BO1,204,203,200_.jpg =150x)](https://www.amazon.de/Modelleisenbahnen-mit-NET-Standard-steuern/dp/1790364035/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=christian+benjamin+ries&qid=1615208360&sr=8-5)
+[![](https://images-na.ssl-images-amazon.com/images/I/51MzctD3yXL._SX331_BO1,204,203,200_.jpg | width=150)](https://www.amazon.de/Modelleisenbahnen-mit-NET-Standard-steuern/dp/1790364035/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=christian+benjamin+ries&qid=1615208360&sr=8-5)
 
 The book introduces the basics of managing commands for remote control of your model railway by use of C# and .NET Framework/.net Core. The includes examples and API information are all used in [`ecos`](https://github.com/cbries/ecos), a software library hosted on GitHub which is completly used by `RailEssentials` (with few improvements and bug fixes). The source is completly merged into `RailEssentials`, i.e. check out the subdirectory [`ecoslibNet48`](https://github.com/cbries/railessentials/tree/master/ecoslibNet48) 
 

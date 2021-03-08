@@ -1,0 +1,51 @@
+name: Deploy Nightly
+on:
+  schedule:
+    - cron: '0 2 * * *' # run at 2 AM UTC
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  SOLUTION_FILE_PATH: railessentials.sln
+  BUILD_CONFIGURATION: Release
+
+jobs:
+  nightly:
+    name: Deploy Nightly
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # build your asset first
+        - uses: actions/checkout@v2
+
+        - name: Add MSBuild to PATH
+          uses: microsoft/setup-msbuild@v1
+
+        - name: Restore NuGet packages
+          working-directory: ${{env.GITHUB_WORKSPACE}}
+          run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+
+        - name: Build Solution
+          working-directory: ${{env.GITHUB_WORKSPACE}}
+          run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+
+        - name: Create Release Zip
+          working-directory: ${{env.GITHUB_WORKSPACE}}
+          run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /t:ZipRelease buildRelease.proj
+
+        - name: Deploy Windows release
+          if: matrix.os == 'windows-latest'
+          uses: WebFreak001/deploy-nightly@v1.1.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
+          with:
+            upload_url: https://uploads.github.com/repos/cbries/railessentials/releases/39416663/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
+            release_id: 39416663 # same as above (id can just be taken out the upload_url, it's used to find old releases)
+            asset_path: ./railessentials-dailybuild/zip/railessentials-dailybuild.zip # path to archive to upload
+            asset_name: railessentials-dailybuild-$$.zip # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
+            asset_content_type: application/zip # required by GitHub API
+            max_releases: 7 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted

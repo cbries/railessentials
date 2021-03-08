@@ -83,7 +83,7 @@ To be defined, probably will be provided under `Wiki`.
 
 <br>
 
-# Impressions
+# Visual Impressions
 
 ## Locomotive Control
 

@@ -29,6 +29,14 @@ As default the workspace `Basement` is loaded and provided and can be used direc
 
 We do not provide any official releases yet, because the software is still under development, but we provide a [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild). In January'21 the RailEssentials team decided to do a full rewrite. To use this software, checkout the source, and just click "Build and Run (F5)" in VisualStudio.
 
+## Book
+
+In the late of 2018 I wrote a book about programming the ESU's ECoS 50210.
+
+![Book Cover](https://images-na.ssl-images-amazon.com/images/I/51MzctD3yXL._SX331_BO1,204,203,200_.jpg)(https://www.amazon.de/Modelleisenbahnen-mit-NET-Standard-steuern/dp/1790364035/ref=sr_1_5?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=christian+benjamin+ries&qid=1615208360&sr=8-5)
+
+The book introduces the basics of managing commands for remote control of your model railway by use of C# and .NET Framework/.net Core. The includes examples and API information are all used in [`ecos`](https://github.com/cbries/ecos), a software library hosted on GitHub which is completly used by `RailEssentials` (with few improvements and bug fixes). The source is completly merged into `RailEssentials`, i.e. check out the subdirectory [`ecoslibNet48`](https://github.com/cbries/railessentials/tree/master/ecoslibNet48) 
+
 ## Who is Using It?
 
 If you're using RailEssentials, I'd love to hear about it, please email to `mail@cbries.de` 

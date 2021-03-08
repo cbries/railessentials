@@ -76,6 +76,7 @@ To be defined, probably will be provided under `Wiki`.
 - [`Newtonsoft`](https://www.newtonsoft.com/json) Popular high-performance JSON framework for .NET
 - [`jQuery`](https://jquery.com/) jQuery is a fast, small, and feature-rich JavaScript library.
 - [`jQuery colorpicker`](https://github.com/vanderlee/colorpicker) A full-featured colorpicker for jQueryUI with full theming support.
+- [`jQuery Boxfit`](https://github.com/michikono/boxfit) Boxfit is a jQuery plugin for resizing text.
 - [`Contextual.js`](https://github.com/LucasReade/Contextual.js) Javascript contextual menu library
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 - [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
@@ -86,9 +87,9 @@ To be defined, probably will be provided under `Wiki`.
 
 ## Locomotive Control
 
-![LocomotivesView]
-
 ![LocomotivesControl]
+
+![LocomotivesView]
 
 ## Accessories
 

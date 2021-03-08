@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using ecoslib.Entities;
 using Newtonsoft.Json;
@@ -15,6 +17,7 @@ using railessentials.Route;
 using RouteList = railessentials.Route.RouteList;
 // ReSharper disable InconsistentNaming
 // ReSharper disable NotAccessedField.Local
+// ReSharper disable RemoveRedundantBraces
 
 namespace railessentials.AutoMode
 {
@@ -531,6 +534,31 @@ namespace railessentials.AutoMode
             return block;
         }
 
+        private bool IsLocAllowedForTargetBlock(
+            Locomotives.Data locData,
+            Feedbacks.Data fbData
+            ) {
+            if (locData == null) return false;
+            if (fbData == null) return false;
+
+            var locOption = locData.Settings.Where(x => x.Value && x.Key.StartsWith("Type", StringComparison.OrdinalIgnoreCase)).ToList();
+            var fbOption = fbData.Settings.Where(x => x.Value && x.Key.StartsWith("Type", StringComparison.OrdinalIgnoreCase)).ToList();
+
+            if (locOption.Count == 0) return false;
+            if (fbOption.Count == 0) return false;
+
+            foreach(var it in locOption)
+            {
+                foreach(var itt in fbOption)
+                {
+                    if (it.Key.Equals(itt.Key, StringComparison.OrdinalIgnoreCase))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         public Route.Route GetNextRoute(
             OccBlock occBlock,
             out int locomotiveObjectId)
@@ -556,8 +584,8 @@ namespace railessentials.AutoMode
 
             //
             // do not start any loc on any route when the loc is locked (i.e. not allowed to start)
-            if (locData.IsLocked) return null;
             //
+            if (locData.IsLocked) return null;
 
             var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1 
                 ? SideMarker.Minus 
@@ -567,8 +595,25 @@ namespace railessentials.AutoMode
                 ? SideMarker.Plus 
                 : SideMarker.Minus;
 
-            var routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
-            
+            var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+
+            //
+            // filter routes by allowed options, e.g. "mainline", "intercity", ...
+            // 
+            var routesFrom = new RouteList();
+            foreach(var it in routesFrom2)
+            {
+                var targetBlock = it.Blocks[1];
+                var targetBlockIdentifier = targetBlock.identifier;
+                if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
+
+                var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
+                if (targetFbData == null) continue;
+
+                if (IsLocAllowedForTargetBlock(locData, targetFbData))
+                    routesFrom.Add(it);
+            }
+
             //
             // in case there is no route to leave on the sideToLeave
             // probably the trains' direction must change, if change

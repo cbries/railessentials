@@ -1,7 +1,9 @@
 
 ## RailEssentials - MIT License
 
-![Build State](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml/badge.svg?branch=master)
+[![Build and UnitTests](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml/badge.svg)](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml)
+
+[![Deploy Nightly](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml/badge.svg)](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml)
 
 **~~RailwaysEssentials~~** is renamed to **RailEssentials**.
 
@@ -13,17 +15,17 @@ and any conntected webclient. The server is written in C# and the client is writ
 used in [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/), 
 and [Vivaldi](https://vivaldi.com/). 
 
-## System Requirements
+## Daily Builds
 
-- Windows 10
-- .NET Framework 4.8 or higher
-- Chrome, Firefox or Vivaldi
+`RailEssentials` is automatically build everyday. The always latest version is provided under the `Release` tab: [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
+- download the archive `railessentials-dailybuild-*.zip`
+- after unzip just call the included script `startRailEssentials.bat`
+
+As default the workspace `Basement` is loaded and provided and can be used directly in simulation mode.
 
 ## Releases
 
-We do not provide any official releases yet, because the software is still under development.
-In January'21 the RailEssentials team decided to do a full rewrite.
-To use this software, checkout the source, and just click "Build and Run (F5)" in VisualStudio.
+We do not provide any official releases yet, because the software is still under development, but we provide a [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild). In January'21 the RailEssentials team decided to do a full rewrite. To use this software, checkout the source, and just click "Build and Run (F5)" in VisualStudio.
 
 ## Who is Using It?
 
@@ -45,6 +47,12 @@ Finally, you should see something like this:
 ![firstImpressionsAfterBuild]
 
 [firstImpressionsAfterBuild]: docs/images/firstImpressionAfterBuild.png "Welcome View of RailEssentials after Build and Run"
+
+## System Requirements
+
+- Windows 10
+- .NET Framework 4.8 or higher
+- Chrome, Firefox or Vivaldi
 
 ## Documentation & Demos
 

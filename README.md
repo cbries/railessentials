@@ -23,6 +23,8 @@ and [Vivaldi](https://vivaldi.com/).
 
 As default the workspace `Basement` is loaded and provided and can be used directly in simulation mode.
 
+![Locomotives]
+
 ## Releases
 
 We do not provide any official releases yet, because the software is still under development, but we provide a [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild). In January'21 the RailEssentials team decided to do a full rewrite. To use this software, checkout the source, and just click "Build and Run (F5)" in VisualStudio.
@@ -78,13 +80,11 @@ To be defined, probably will be provided under `Wiki`.
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 - [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
 
-<br><br><br>
+<br><br>
 
-# First Impressions
+# Impressions
 
 ## Locomotive Control
-
-![Locomotives]
 
 ![LocomotivesView]
 

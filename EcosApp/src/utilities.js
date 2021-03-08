@@ -67,7 +67,6 @@ function toggleAllLocomotiveInformation(state) {
     for (i = 0; i < iMax; ++i) {
         if (state === true) {
             $(infos[i]).show();
-            $(infos[i]).boxfit();
         } else {
             $(infos[i]).hide();
         }

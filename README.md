@@ -71,6 +71,8 @@ To be defined, probably will be provided under `Wiki`.
 - [`w2ui`](http://w2ui.com/web/) JavaScript UI Library for the Modern Web
 - [`WebSocket4Net`](https://github.com/kerryjiang/WebSocket4Net) A popular .NET WebSocket Client
 - [`SuperSocket`](https://github.com/kerryjiang/SuperSocket) SuperSocket is a light weight extensible socket application framework.
+- [`Newtonsoft`](https://www.newtonsoft.com/json) Popular high-performance JSON framework for .NET
+- [`jQuery`](https://jquery.com/) jQuery is a fast, small, and feature-rich JavaScript library.
 - [`jQuery colorpicker`](https://github.com/vanderlee/colorpicker) A full-featured colorpicker for jQueryUI with full theming support.
 - [`Contextual.js`](https://github.com/LucasReade/Contextual.js) Javascript contextual menu library
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.

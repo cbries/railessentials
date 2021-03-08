@@ -29,8 +29,25 @@ namespace railessentials.ClientHandler
             CleanupHandler();
         }
 
+        private void SetAllLocomotiveToStopped()
+        {
+            lock (_metadataLock)
+            {
+                _metadata.LocomotivesData.SetAllLocomotivesStopped();
+                _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+            }
+
+            SendModelToClients(ModelType.UpdateLocomotivesData);
+        }
+
         private async void StartAutoMode()
         {
+            //
+            // when AutoMode is started, no Locomotive should start on-demand
+            // this is the most savest way for not destroying some expensive hardware
+            //
+            SetAllLocomotiveToStopped();
+
             InitAutoMode();
             if (_autoMode.IsStarted()) return;
             CleanupHandler();

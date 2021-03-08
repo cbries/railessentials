@@ -57,5 +57,12 @@ namespace railessentials.Locomotives
             if(data != null)
                 data.IsLocked = state;
         }
+
+        public void SetAllLocomotivesStopped()
+        {
+            if (Entries == null) return;
+            foreach (var it in Entries)
+                it.Value.IsStopped = true;
+        }
     }
 }

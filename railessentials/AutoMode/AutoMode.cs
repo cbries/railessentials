@@ -94,9 +94,32 @@ namespace railessentials.AutoMode
             Stopped?.Invoke(this);
         }
 
+        public void StartLocomotive(int oid)
+        {
+            // This call is a dummy and not really used in the moment.
+            // When the locomotive is not stopped 
+            // (i.e. railessentials.Locomotives.Data.IsStopped := false)
+            // then the locomotive will start in one of the next
+            // iteration of finding a free route
+
+            // REMARK Maybe we will change this behaviour in future, keep this method!
+        }
+
+        public void FinalizeLocomotive(int oid)
+        {
+            // This call do not stop the locomotive immediatelly.
+            // The flag for disabling the loc is already set to
+            // true (i.e. IsStopped:=true) and this will not start
+            // a next round for the loc. The current trip will finish
+            // until the loc reaches it's current target final block.
+
+            // REMARK Maybe we will change this behaviour in future, keep this method!
+        }
+
         public void StopLocomotive(int oid)
         {
             if (oid <= 0) return;
+
             lock (_autoModeTasksLock)
             {
                 foreach (var it in _autoModeTasks)
@@ -586,6 +609,13 @@ namespace railessentials.AutoMode
             // do not start any loc on any route when the loc is locked (i.e. not allowed to start)
             //
             if (locData.IsLocked) return null;
+
+            //
+            // do not start any loc on any route when the loc is "IsStopped:=true"
+            //
+            // REMARK we habe to distinguish IsLocked and IsStopped somehow
+            //
+            if (locData.IsStopped) return null;
 
             var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1 
                 ? SideMarker.Minus 

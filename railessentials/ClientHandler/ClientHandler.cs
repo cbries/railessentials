@@ -1007,6 +1007,42 @@ namespace railessentials.ClientHandler
                     }
                     break;
 
+                case "start":
+                    {
+                        var isStarted = data.GetBool("state");
+
+                        lock (_metadataLock)
+                        {
+                            var locData = _metadata.LocomotivesData.GetData(oid);
+                            locData.IsStopped = !isStarted;
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        if (IsAutoModeStarted())
+                            _autoMode?.StartLocomotive(oid);
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
+                    }
+                    break;
+
+                case "finalize":
+                    {
+                        var isStopped = data.GetBool("state");
+
+                        lock (_metadataLock)
+                        {
+                            var locData = _metadata.LocomotivesData.GetData(oid);
+                            locData.IsStopped = isStopped;
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        if (IsAutoModeStarted())
+                            _autoMode?.FinalizeLocomotive(oid);
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
+                    }
+                    break;
+
                 case "lock":
                     {
                         var isLocked = data.GetBool("locked");
@@ -1023,10 +1059,6 @@ namespace railessentials.ClientHandler
                         lock (_metadataLock)
                         {
                             _metadata.LocomotivesData.SetLocked(oid, isLocked);
-                        }
-
-                        lock (_metadataLock)
-                        {
                             _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
                         }
 

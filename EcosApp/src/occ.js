@@ -117,14 +117,26 @@ class Occ {
         let locLockStateCtrl = $('<i>').css({
             display: "none",
             position: "absolute",
-            right: "2px",
-            top: "15px",
+            right: "1px",
+            top: "18px",
             color: "red",
-            "font-size": "0.7rem"
+            "font-size": "0.6rem"
         })
             .addClass("fas fa-lock")
             .addClass("lockState");
         locLockStateCtrl.appendTo(locomotiveInfo);
+
+        let locIsStoppedCtrl = $('<i>').css({
+            display: "none",
+            position: "absolute",
+            left: "1px",
+            top: "18px",
+            color: "red",
+            "font-size": "0.6rem"
+        })
+            .addClass("fas fa-hand-paper")
+            .addClass("isStoppedState");
+        locIsStoppedCtrl.appendTo(locomotiveInfo);
 
         let locEnterSideCtrl = $('<i>').css({
             display: "none"
@@ -132,7 +144,7 @@ class Occ {
             .addClass("fas fa-long-arrow-alt-right")
             .addClass("enterSide");
         locEnterSideCtrl.appendTo(locomotiveInfo);
-        
+
         //
         // next locomotive info
         //
@@ -385,13 +397,17 @@ class Occ {
                 isSticky: false,
                 items: [
                     {
-                        cssIcon: 'fas fa-play', label: 'Start', onClick: () => {
-                            // TODO
+                        cssIcon: 'fas fa-play',
+                        enabled: window.__autoModeState,
+                        label: 'Start', onClick: () => {
+                            self.__saveLocomotiveStart(oid, true);
                         }
                     },
                     {
-                        cssIcon: 'fas fa-stop', label: 'Finalize', onClick: () => {
-                            // TODO
+                        cssIcon: 'fas fa-stop',
+                        enabled: window.__autoModeState,
+                        label: 'Finalize', onClick: () => {
+                            self.__saveLocomotiveFinalize(oid, true);
                         }
                     },
                     { type: 'seperator' },
@@ -503,7 +519,7 @@ class Occ {
         if (typeof locomotiveInfo === "undefined" || locomotiveInfo == null || locomotiveInfo.length === 0) {
             return;
         }
-        
+
         const locData = self.__getLocomotiveOfRecentData(oid);
         if (locData == null) {
             self.__fncScaleLbl(locomotiveInfo, 0.75);
@@ -545,16 +561,49 @@ class Occ {
             }
         }
 
-        const ctrl = locomotiveInfo.find('.lockState');
-        if (typeof ctrl !== "undefined" && ctrl != null && ctrl.length > 0) {
+        const ctrlLock = locomotiveInfo.find('.lockState');
+        if (typeof ctrlLock !== "undefined" && ctrlLock != null && ctrlLock.length > 0) {
+            //
+            // Lock of the Locomotive
+            //
             if (locData.IsLocked === false) {
-                ctrl.hide();
-                self.__fncScaleLbl(locomotiveInfo, 0.75);
+                ctrlLock.hide();
+                self.__fncScaleLbl(locomotiveInfo, 0.70);
             } else {
-                ctrl.show();
-                self.__fncScaleLbl(locomotiveInfo, 0.75);
+                ctrlLock.show();
+                self.__fncScaleLbl(locomotiveInfo, 0.70);
             }
         }
+
+        const ctrlStopped = locomotiveInfo.find('.isStoppedState');
+        if (typeof ctrlStopped !== "undefined" && ctrlStopped != null && ctrlStopped.length > 0) {
+            //
+            // Stop state of the Locomotive
+            //
+            if (locData.IsStopped === false) {
+                ctrlStopped.hide();
+            } else {
+                ctrlStopped.show();
+            }
+        }
+    }
+
+    __saveLocomotiveStart(oid, state) {
+        this.__trigger('setting',
+            {
+                'mode': 'locomotive',
+                'cmd': 'start',
+                'value': { oid: oid, state: state }
+            });
+    }
+
+    __saveLocomotiveFinalize(oid, state) {
+        this.__trigger('setting',
+            {
+                'mode': 'locomotive',
+                'cmd': 'finalize',
+                'value': { oid: oid, state: state }
+            });
     }
 
     __saveLocomotiveLock(oid, lockState) {
@@ -787,8 +836,8 @@ class Occ {
             }
 
             const finalEntered = occDataItem.FinalEntered;
-            if(typeof finalEntered !== "undefined" && finalEntered != null) {
-                if(finalEntered === true) {
+            if (typeof finalEntered !== "undefined" && finalEntered != null) {
+                if (finalEntered === true) {
                     infoInstanceFinal.find("div.locInfoLabel").addClass("locomotiveInfoFinalEntering");
                 } else {
                     infoInstanceFinal.find("div.locInfoLabel").removeClass("locomotiveInfoFinalEntering");

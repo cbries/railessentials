@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Start">
+
+  <Import Project="3rdparty\msbuild\tools\MSBuild.Community.Tasks.Targets" />
+
+  <PropertyGroup>
+	<!-- To change the output folder, use the following parameter: /p:BuildDir=C:\BuildTest-->
+	<ReleaseDir>railessentials-dailybuild</ReleaseDir>
+	<RailEssentialsBinaries>railessentials\bin\Release\</RailEssentialsBinaries>
+  </PropertyGroup>
+  
+  <Target Name="CopyRelease">
+	<MakeDir Directories="$(ReleaseDir)\bin"/>
+	<MakeDir Directories="$(ReleaseDir)\zip"/>
+	<ItemGroup>
+		<ReleaseFiles
+			Include="$(RailEssentialsBinaries)\**\*.*;LICENSE.txt"
+			Exclude="$(RailEssentialsBinaries)\*.pdb;">
+		</ReleaseFiles>
+	</ItemGroup>
+	<Copy SourceFiles="@(ReleaseFiles)"
+                DestinationFiles="@(ReleaseFiles->'$(ReleaseDir)\bin\%(RecursiveDir)%(Filename)%(Extension)')" />
+    
+  </Target>
+  
+  <Target Name="ZipRelease">
+  		<CallTarget Targets="CopyRelease"/>
+        <CreateItem Include="$(ReleaseDir)\bin\**\*.*" >
+            <Output ItemName="ZipFiles" TaskParameter="Include"/>
+        </CreateItem>
+        <Zip ZipFileName="$(ReleaseDir)\zip\railessentials-dailybuild.zip" 
+		WorkingDirectory="$(ReleaseDir)\bin" Files="@(ZipFiles)" />
+  </Target>
+  
+</Project>

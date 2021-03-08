@@ -11,7 +11,7 @@
 model railways. Currently, the only supported control unit 
 is [ESU's ECoS 50210/50200](http://www.esu.eu/produkte/digitale-steuerung/ecos-50210-zentrale/was-ecos-kann/). 
 The software is based on a client-server architecture, i.e the server is the brain and bridge between the control unit
-and any conntected webclient. The server is written in C# and the client is written in JavaScript/TypeScript and can be
+and any conntected webclient. The server is written in C# and .NET Framework and the client is written in JavaScript/TypeScript and can be
 used in [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/), 
 and [Vivaldi](https://vivaldi.com/). 
 

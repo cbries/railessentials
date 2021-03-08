@@ -5,7 +5,7 @@
 
 [![Deploy Nightly](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml/badge.svg)](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml)
 
-**~~RailwaysEssential~~** is renamed to **RailEssentials**.
+**~~RailwayEssentials~~** is renamed to **RailEssentials**.
 
 **[`RailEssentials`](http://www.railessentials.net)** is a modern and intuitive software for creating and controling
 model railways. Currently, the only supported control unit 

@@ -1,0 +1,12 @@
+.container {
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+	border: 1px solid lightgrey;
+}
+
+.nooby {
+	position: absolute;
+	float: left;
+	background-color: black;
+}

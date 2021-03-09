@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>speedCurve</title>
+	<script type="text/javascript" src="./libs/jquery-2.1.0.min.js"></script> 
+	<script type="text/javascript" src="./speedCurve.js"></script> 
+	<link rel="stylesheet" href="css/styles.css">
+<script>
+
+// MM14/DCC14 (14), 
+//window.__speedCfg = { maxSpeedsteps: 14, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
+// MM27 (27), 
+//window.__speedCfg = {	maxSpeedsteps: 27, extraWidthForSteps: 0,	speedNoobyWidth: 4,	speedNoobyHeight: 4 }
+// DCC28 (28), 
+//window.__speedCfg = { maxSpeedsteps: 28, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
+// MM128/DCC128 (128)
+window.__speedCfg = { maxSpeedsteps: 64, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
+
+$(document).ready(function () {
+	const speedCurve = new SpeedCurve();
+	speedCurve.install();
+});
+
+</script>
+</head>
+
+<body>
+
+<div class="container">
+</div>
+
+</body>
+</html>

@@ -99,6 +99,7 @@ namespace railessentials
 
     public class ConfigurationWebServer
     {
+        public string HttpRootDebug { get; set; }
         public string HttpRoot { get; set; }
         public string HttpRootFallback { get; set; }
         public List<string> Prefixes { get; set; } = new();

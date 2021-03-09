@@ -18,7 +18,7 @@ class Contextual{
         });
             
         if(event != undefined){
-            event.stopPropagation()
+            event.stopPropagation();
             document.body.appendChild(this.menuControl);
             contextualCore.PositionMenu(this.position, event, this.menuControl);        
         }
@@ -27,7 +27,7 @@ class Contextual{
             if(!e.target.classList.contains('contextualJs')){
                 contextualCore.CloseMenu();
             }
-        }    
+        };
     }
     /**
      * Adds item to this contextual menu instance
@@ -40,7 +40,7 @@ class Contextual{
      * Makes this contextual menu visible
      */
     show(){
-        event.stopPropagation()
+        event.stopPropagation();
         document.body.appendChild(this.menuControl);
         contextualCore.PositionMenu(this.position, event, this.menuControl);    
     }
@@ -48,14 +48,14 @@ class Contextual{
      * Hides this contextual menu
      */
     hide(){
-        event.stopPropagation()
+        event.stopPropagation();
         contextualCore.CloseMenu();
     }
     /**
      * Toggle visibility of menu
      */
     toggle(){
-        event.stopPropagation()
+        event.stopPropagation();
         if(this.menuControl.parentElement != document.body){
             document.body.appendChild(this.menuControl);
             contextualCore.PositionMenu(this.position, event, this.menuControl);        

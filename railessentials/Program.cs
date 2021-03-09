@@ -252,6 +252,10 @@ namespace railessentials
             }
 
             _webServer = new WebServer(_sniffer, Cfg.WebServer.Prefixes);
+#if DEBUG
+            Cfg.WebServer.HttpRoot = Cfg.WebServer.HttpRootDebug;
+            Cfg.WebServer.HttpRootFallback = Cfg.WebServer.HttpRootDebug;
+#endif
             if (!string.IsNullOrEmpty(Cfg.WebServer.HttpRoot) && Directory.Exists(Cfg.WebServer.HttpRoot))
             {
                 _webServer.RootDir = Cfg.WebServer.HttpRoot;

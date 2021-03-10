@@ -8,17 +8,13 @@
 	<link rel="stylesheet" href="css/styles.css">
 <script>
 
-// MM14/DCC14 (14), 
-//window.__speedCfg = { maxSpeedsteps: 14, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
-// MM27 (27), 
-//window.__speedCfg = {	maxSpeedsteps: 27, extraWidthForSteps: 0,	speedNoobyWidth: 4,	speedNoobyHeight: 4 }
-// DCC28 (28), 
-//window.__speedCfg = { maxSpeedsteps: 28, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
-// MM128/DCC128 (128)
-window.__speedCfg = { maxSpeedsteps: 64, extraWidthForSteps: 2, speedNoobyWidth: 4, speedNoobyHeight: 4 }
-
 $(document).ready(function () {
-	const speedCurve = new SpeedCurve();
+	const speedCurve = new SpeedCurve({
+		onChanged: function() {
+			const newData = speedCurve.getData();
+			console.log(newData);
+		}
+	});
 	speedCurve.install();
 });
 
@@ -27,7 +23,24 @@ $(document).ready(function () {
 
 <body>
 
-<div class="container">
+<div class="speedCurveContainer">
+	<div class="speedCurveRoot"></div>
+	
+	<div class="speedCurveControls">
+		Preloads:
+		<button id="cmdSpeedLinear">Linear</button>
+		<button id="cmdSpeedExponential">Exponential</button>
+		<input type="checkbox" id="chkLabelShow" name="chkLabelShow" checked>
+		<label for="chkLabelShow"> Show Labels</label>
+		
+		<div style="padding-top: 10px;">
+		Speedstep (max): <select id="cmdSpeedMax"></select>		
+		</div>
+		
+		<div style="padding-top: 10px;">
+		Time (max): <select id="cmdSpeedTimeMax"></select>
+		</div>
+	</div>
 </div>
 
 </body>

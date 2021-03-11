@@ -9,27 +9,27 @@ class SpeedCurve {
 	constructor(options = {}) {
 		
 		this.__speedCfgs = {
-			"dcc14": { speedsteps: 14, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4 },
-			"dcc28": { speedsteps: 28, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4 },
-			"dcc128": { speedsteps: 64, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4 },
-			"mm14": { speedsteps: 14, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4 },
-			"mm27": {	speedsteps: 27, extraWidthForSteps: 0,	noobyWidth: 4,	noobyHeight: 4 },
-			"mm128": { speedsteps: 64, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4 }
+			"dcc14": { speedsteps: 14, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 1 },
+			"dcc28": { speedsteps: 28, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 2 },
+			"dcc128": { speedsteps: 128, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 4 },
+			"mm14": { speedsteps: 14, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 1 },
+			"mm27": {	speedsteps: 27, extraWidthForSteps: 0,	noobyWidth: 4,	noobyHeight: 4, deltaShow: 2 },
+			"mm128": { speedsteps: 128, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 5 }
 		};
 		
 		this.__speedMode = this.__speedCfgs.dcc28;
 				
 		if(typeof options !== "undefined" && options != null) {
 			if(typeof options.speedMode !== "undefined" && options.speedMode != null)
-				this.__speedMode = this.__speedCfg[options.speedMode];
+				this.__speedMode = this.__speedCfgs[options.speedMode];
 		}
 		
 		this.__speedCurveContainerClass = ".speedCurveContainer";
 		this.__speedCurveRootClass = ".speedCurveRoot";
 
 		this.__speedCurveContainer = $(this.__speedCurveContainerClass);
+		this.__createControls();
 		this.__speedCurveRoot = $(this.__speedCurveRootClass);
-
 		this.__chkLabelShow = this.__speedCurveContainer.find("#chkLabelShow");
 
 		this.__recentMouseMoveCoord = { x: 0, y: 0, topPage: 0, leftPage: 0 };
@@ -55,6 +55,24 @@ class SpeedCurve {
 			if(typeof options.onChanged !== "undefined" && options.onChanged != null)
 				this.__onChanged = options.onChanged;
 		}
+	}
+	
+	__createControls() {
+		const self = this;
+		self.__speedCurveContainer.append(
+		'<div class="speedCurveControls">' +
+		'Preloads:' + 
+		'<button id="cmdSpeedLinear">Linear</button>' +
+		'<button id="cmdSpeedExponential">Exponential</button>' +
+		'<input type="checkbox" id="chkLabelShow" name="chkLabelShow" checked>' +
+		'<label for="chkLabelShow"> Show Labels</label>' +
+		'<div style="padding-top: 10px;">' +
+		'Speedstep (max): <select id="cmdSpeedMax"></select>' +
+		'</div>' +
+		'<div style="padding-top: 10px;">' +
+		'Time (max): <select id="cmdSpeedTimeMax"></select>' +
+		'</div>' +
+	  '</div>');
 	}
 	
 	install() {
@@ -103,7 +121,7 @@ class SpeedCurve {
 		const parentOffsetLeft = speedCurveContainer.get(0).getBoundingClientRect().left;
 		const xsteps_tmp = self.__maxWidth / self.__speedMode.speedsteps;
 		const xsteps = (self.__maxWidth + xsteps_tmp - (self.__speedMode.noobyWidth / 2) + self.__speedMode.extraWidthForSteps ) / self.__speedMode.speedsteps;
-		let elementsToAppend = $();
+		let elementsToAppend = $();		
 		for(let i=0; i < self.__speedMode.speedsteps; ++i) {
 			const nooby = $("<div>")
 				.css({
@@ -327,8 +345,52 @@ class SpeedCurve {
 		console.log("Preload exponential!");
 		const self = this;
 		const elements = $('.nooby');
+		const speedsteps = self.__speedMode.speedsteps;
+		const deltaStep = self.__speedMode.deltaShow;
+				
+		const preloadEsu28 = [ 
+			0, 
+			2.000, 5.763, 9.573, 13.480, 17.536, 21.794, 26.306, 31.127, 36.309, 
+			41.909, 47.980, 54.578, 61.759, 69.578, 78.091, 87.353, 97.423, 108.356, 
+			120.208, 133.037, 146.900, 161.854, 177.956, 195.264, 213.836, 233.728, 
+			255.000
+		];
 		
-		// TODO
+		const preloadLenz28 = [ 		
+			0,
+			2.000, 4.591, 7.786, 11.562, 15.905, 20.809, 26.266, 32.272, 38.822,
+			45.914, 53.543, 61.706, 70.402, 79.628, 89.382, 99.662, 110.465, 121.792, 
+			133.639, 146.005, 158.889, 172.290, 186.206, 200.636, 215.579, 231.034, 
+			247.000
+		];
+					
+		const values = preloadEsu28;
+					
+		const maxI = values.length;
+							
+		for(let i = 0, elIdx = 0; i < maxI - 1; ++i, elIdx += deltaStep) {
+			const el = $(elements[elIdx]);
+			
+			const v0 = values[i];
+			const v1 = values[i+1];
+			
+			let maxSub = elIdx + deltaStep;
+			if(i === maxI - 2) {
+				maxSub = speedsteps;
+			}
+						
+			const el_delta = maxSub - elIdx;
+			const v_delta = v1 - v0;
+			const factor = v_delta / el_delta;
+						
+			for(let j=elIdx, multi = 0; j < maxSub; ++j, ++multi) {
+				const v_ = v0 + (factor*multi);
+				const ell = $(elements[j]);
+				const y = (self.__maxHeight/255) * v_;
+								
+				self.__setY(ell, y);
+			}		
+		}
 		
 		self.__realignLines();
 	}

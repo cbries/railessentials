@@ -10,6 +10,7 @@
 
 $(document).ready(function () {
 	const speedCurve = new SpeedCurve({
+		speedMode: "dcc128",
 		onChanged: function() {
 			const newData = speedCurve.getData();
 			console.log(newData);
@@ -25,22 +26,6 @@ $(document).ready(function () {
 
 <div class="speedCurveContainer">
 	<div class="speedCurveRoot"></div>
-	
-	<div class="speedCurveControls">
-		Preloads:
-		<button id="cmdSpeedLinear">Linear</button>
-		<button id="cmdSpeedExponential">Exponential</button>
-		<input type="checkbox" id="chkLabelShow" name="chkLabelShow" checked>
-		<label for="chkLabelShow"> Show Labels</label>
-		
-		<div style="padding-top: 10px;">
-		Speedstep (max): <select id="cmdSpeedMax"></select>		
-		</div>
-		
-		<div style="padding-top: 10px;">
-		Time (max): <select id="cmdSpeedTimeMax"></select>
-		</div>
-	</div>
 </div>
 
 </body>

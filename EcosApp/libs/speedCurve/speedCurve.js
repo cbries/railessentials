@@ -2,6 +2,11 @@
 
     $.fn.speedCurve = function (options) {
 
+        this.refresh = function () {
+            __redrawSpeedDots(false);
+            __realignLines();
+        };
+
         var speedCfgs = {
             "dcc14": { speedsteps: 14, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 1 },
             "dcc28": { speedsteps: 28, extraWidthForSteps: 2, noobyWidth: 4, noobyHeight: 4, deltaShow: 2 },
@@ -41,7 +46,7 @@
                 '<input type="button" id="cmdSpeedExponentialEsu" value="Exponential ESU">' +
                 '<input type="button" id="cmdSpeedExponentialLenz" value="Exponential Lenz">' +
                 '<input type="checkbox" class="chkLabelShow" name="chkLabelShow">' +
-                '<label for="chkLabelShow"> Show Labels</label>' +
+                '<label for="chkLabelShow" style="padding-bottom: 1px;"> Show Labels</label>' +
                 '<div style="padding-top: 10px;">' +
                 'Speedstep (max): <select id="cmbSpeedMax"></select>' +
                 '&nbsp;&nbsp;Time (max): <select id="cmbSpeedTimeMax"></select>' +
@@ -49,10 +54,7 @@
                 '</div>');
         }
 
-        function __install() {
-            ctxContainer.get(0).onmousedown = function () { __mouseDown = true; }
-            ctxContainer.get(0).onmouseup = function () { __mouseDown = false; }
-
+        function __install() {            
             window.addEventListener("resize", function () {
                 __redrawSpeedDots(false);
                 __realignLines();
@@ -62,6 +64,9 @@
 
             __chkLabelShow = ctxContainer.find('.chkLabelShow');
             __speedCurveRoot = ctxContainer.find('.speedCurveRoot');
+            __speedCurveRoot.get(0).onmousedown = function () { __mouseDown = true; }
+            __speedCurveRoot.get(0).onmouseup = function () { __mouseDown = false; }
+
         }
 
         function __initDiagram() {
@@ -69,6 +74,8 @@
                 width: settings.width + "px",
                 height: settings.height + "px"
             });
+
+            const targetGraph = ctxContainer.find('.speedCurveRoot');
 
             //
             // add horizontally / vertically line for better recognization
@@ -86,8 +93,7 @@
             //
             // add noobys
             //
-            const xsteps_tmp = settings.width / __speedMode.speedsteps;
-            const xsteps = (settings.width + xsteps_tmp - (__speedMode.noobyWidth / 2) + __speedMode.extraWidthForSteps) / __speedMode.speedsteps;
+            const xsteps = settings.width / __speedMode.speedsteps;
             let elementsToAppend = $();
             for (let i = 0; i < __speedMode.speedsteps; ++i) {
                 const nooby = $("<div>")
@@ -109,7 +115,7 @@
 
                 elementsToAppend = elementsToAppend.add(nooby);
             }
-            ctxContainer.append(elementsToAppend);
+            targetGraph.append(elementsToAppend);
             __redrawSpeedDots();
 
             const selectSpeedCtrl = ctxContainer.find('select#cmbSpeedMax');
@@ -119,7 +125,7 @@
             }
             selectSpeedCtrl.change(function (ev) {
                 const v = $(this).val();
-                settings.speedStepMaxDefault = v;
+                settings.speedStepMaxDefault = parseInt(v);
                 __highlightMaxSpeed(v);
                 __realignLines();
             });
@@ -140,11 +146,11 @@
                 __realignLines();
             });
 
-            ctxContainer.mouseleave(function () {
+            __speedCurveRoot.mouseleave(function () {
                 __mouseDown = false;
             });
 
-            ctxContainer.mousemove(function (ev) {
+            __speedCurveRoot.mousemove(function (ev) {
                 ev.preventDefault();
                 const coord = __getMouseCoordRelativeTo(this, ev);
                 __recentMouseMoveCoord = coord;
@@ -152,7 +158,7 @@
                 __handleMouseClickMove(coord);
             });
 
-            ctxContainer.click(function () {
+            __speedCurveRoot.click(function () {
                 __handleMouseClickMove(__recentMouseMoveCoord);
             });
 
@@ -177,7 +183,7 @@
                 else if (settings.preloadData === "lenz")
                     __preloadExponential(1);
             } else {
-                if (settings.preloadData.length == 0) {                    
+                if (settings.preloadData.length == 0) {
                     __preloadExponential(0);
                 } else {
                     __preloadData(settings.preloadData);
@@ -197,13 +203,17 @@
             // align speed line
             const speedNooby = ctxContainer.find('.nooby_' + maxSpeed);
             let currentY = parseInt(speedNooby.css("top").replace("px", ""));
-            currentY += __speedMode.noobyHeight / 2;
-            lineSpeed.css({ "top": currentY });
+            if (currentY < 0) currentY = currentY * -1.0;
+            const lineY = settings.height - currentY; 
+            lineSpeed.css({ "top": lineY });
 
             // align time stuff
             let currentX = parseInt(speedNooby.css("left").replace("px", ""));
             currentX += __speedMode.noobyWidth / 2;
-            lineTime.css({ "left": currentX });
+            currentX += maxSpeed * __speedMode.noobyWidth;
+            lineTime.css({
+                "left": currentX
+            });
 
             const rect = speedCurveRoot.get(0).getBoundingClientRect();
             const bottom = rect.top + rect.height;
@@ -258,7 +268,7 @@
                         if (isShowChecked == true) elTimeLbl.show();
                         else elTimeLbl.hide();
                         if (isShowChecked == true) elSpeedLbl.show();
-                        else elSpeedLbl.hide();                        
+                        else elSpeedLbl.hide();
                     }
                     el.data("speed", speed);
                     el.data("timeStep", counterTime);
@@ -334,7 +344,7 @@
             let values = data;
             if (esuLenz === 0) values = preloadEsu28;
             else if (esuLenz === 1) values = preloadLenz28;
-            
+
             const maxI = values.length;
 
             for (let i = 0, elIdx = 0; i < maxI - 1; ++i, elIdx += deltaStep) {
@@ -363,34 +373,36 @@
         }
 
         function __getOffset() {
-            const rect = ctxContainer.get(0).getBoundingClientRect();
-            const parentOffsetTop = rect.top;
-            const parentOffsetLeft = rect.left;
-            const parentOffsetHeight = rect.height;
-            const newTop = parentOffsetTop + parentOffsetHeight - (__speedMode.noobyHeight / 2);
-            const newLeft = (parentOffsetLeft - (__speedMode.noobyWidth / 2 - 1));
-            return { top: newTop, left: newLeft };
+            return {
+                top: settings.height,
+                left: 0
+            }
         }
 
         function __setY(el, y) {
-            const yoffset = __getOffset().top;
-            y = yoffset - y;
-            el.css({ top: y + "px" });
+            if (y < 0) return;
+            if (y > settings.height) return;
+            const yoffset = __speedMode.noobyHeight;
+            el.css({ top: -y - yoffset + "px" });
         }
 
         function __redrawSpeedDots(initMode = true) {
             const offset = __getOffset();
-            console.log(offset);
             const elements = ctxContainer.find('.nooby');
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
                 const xsteps = el.data("xsteps");
-                const left = offset.left + parseInt(i * xsteps);
-                console.log("Left: " + left);
+                const left = offset.left + parseInt(i * xsteps) - (i * __speedMode.noobyWidth);
+
                 if (initMode == true) {
-                    el.css({ top: offset.top + "px", left: left + "px" });
+                    el.css({
+                        top: offset.top + "px",
+                        left: left + "px"
+                    });
                 } else {
-                    el.css({ left: left + "px" });
+                    el.css({
+                        left: left + "px"
+                    });
                 }
             }
         }
@@ -402,31 +414,25 @@
             const noobyEl = ctxContainer.find('.nooby_' + idx);
             if (typeof noobyEl === "undefined" || noobyEl == null || noobyEl.length === 0)
                 return;
-
-            const parentOffsetTop = ctxContainer.get(0).getBoundingClientRect().top;
-            const parentHeight = ctxContainer.get(0).getBoundingClientRect().height;
-            const maxY = parentOffsetTop + parentHeight - __speedMode.noobyHeight;;
-
-            if (coord.topPage > maxY) return;
-
-            noobyEl.css({
-                top: coord.topPage + "px"
-            });
-
+            const y = coord.y;
+            __setY(noobyEl, y);
             __realignLines();
         }
 
         function __getMouseCoordRelativeTo(rootElement, ev) {
             const evX = ev.pageX;
             const evY = ev.pageY;
-            const parentOffsetTop = rootElement.getBoundingClientRect().top;
-            const parentOffsetLeft = rootElement.getBoundingClientRect().left;
-            return {
+            const rect = rootElement.getBoundingClientRect();
+            const parentOffsetTop = rect.top;
+            const parentOffsetLeft = rect.left;
+            const parentHeight = rect.height;
+            const coord = {
                 x: evX - parentOffsetLeft,
-                y: evY - parentOffsetTop,
-                topPage: evY,
-                leftPage: evX
+                y: (parentHeight - (evY - parentOffsetTop)),
+                topPage: evX - parentOffsetLeft,
+                leftPage: parentHeight - (evY - parentOffsetTop)
             };
+            return coord;
         }
 
         function __getIndexByWidth(x, width, step) {
@@ -471,6 +477,8 @@
 
             return data;
         }
+
+        return this;
 
     } // $.fn.speedCurve
 

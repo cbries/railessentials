@@ -78,7 +78,7 @@
                 style: 'padding: 0px 0px 0px 0px; padding-left: 5px; background-color: white;',
                 width: 775,
                 height: 400,
-                showMax: true,
+                showMax: false,
                 onToggle: function (event) {
                     $(w2ui.foo.box).hide();
                     event.onComplete = function () {
@@ -88,7 +88,6 @@
                 },
                 onOpen: function (event) {
                     event.onComplete = function () {
-                        // specifying an onOpen handler instead is equivalent to specifying an onBeforeOpen handler, which would make this code execute too early and hence not deliver.
                         $('#w2ui-popup #form').w2render('formSpeedCurve');
                         const speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
                             speedMode: "dcc128",
@@ -110,10 +109,8 @@
     <div id="speedCurveContainer" class="speedCurveDesign"></div>
     <div id="speedCurveEsu" class="speedCurveDesign"></div>
     <div id="speedCurveLenz" class="speedCurveDesign"></div>
-
-    <br>
+    <br><br /><br />
+    <br><br /><br />
     <button class="w2ui-btn" onclick="openPopup()">Open Form in a Popup</button>
-    <br><br><br>
-
 </body>
 </html>

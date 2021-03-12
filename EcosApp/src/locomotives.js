@@ -349,6 +349,61 @@ class Locomotives {
 
     __showSpeedCurveDialog(locOid) {
         console.log("Locomotive Object ID: " + locOid);
+
+        if (!w2ui.foo) {
+                $().w2form({
+                    name: 'formSpeedCurve',
+                    style: 'border: 0px; background-color: white;',
+                    formHTML:
+                        '<div class="w2ui-page page-0">' +
+                        '    <div id="formSpeedCurveInstance" class="speedCurveDesign"></div>' +
+                        '</div>' +
+                        '<div class="w2ui-buttons">' +
+                        '    <button class="w2ui-btn" name="reset">Reset</button>' +
+                        '    <button class="w2ui-btn" name="save">Save</button>' +
+                        '</div>',
+                    fields: [],
+                    record: {},
+                    actions: {
+                        "save": function () {
+                            console.log("Save()");
+                        },
+                        "reset": function () {
+                            console.log("Reset()");
+                        }
+                    }
+                });
+            }
+
+            $().w2popup('open', {
+                title: 'SpeedCurve',
+                body: '<div id="form" style="width: 100%; height: 100%;"></div>',
+                style: 'padding: 0px 0px 0px 0px; padding-left: 5px; background-color: white;',
+                width: 775,
+                height: 400,
+                showMax: false,
+                onToggle: function (event) {
+                    $(w2ui.foo.box).hide();
+                    event.onComplete = function () {
+                        $(w2ui.foo.box).show();
+                        w2ui.foo.resize();
+                    }
+                },
+                onOpen: function (event) {
+                    event.onComplete = function () {
+                        // specifying an onOpen handler instead is equivalent to specifying an onBeforeOpen handler, which would make this code execute too early and hence not deliver.
+                        $('#w2ui-popup #form').w2render('formSpeedCurve');
+                        const speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
+                            speedMode: "dcc128",
+                            speedStepMaxDefault: 55,
+                            speedTimeMaxDefault: 15,
+                            height: 220,
+                            preloadData: "esu"
+                        });
+                        speedCurveInstance.refresh();
+                    }
+                }
+            });
     }
 
     __resizePreferences() {

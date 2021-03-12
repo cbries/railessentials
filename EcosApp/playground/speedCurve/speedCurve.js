@@ -414,32 +414,25 @@
             const noobyEl = ctxContainer.find('.nooby_' + idx);
             if (typeof noobyEl === "undefined" || noobyEl == null || noobyEl.length === 0)
                 return;
-
-            //const offset = __getOffset();
-            //const parentOffsetTop = ctxContainer.get(0).getBoundingClientRect().top;
-            //const parentHeight = ctxContainer.get(0).getBoundingClientRect().height;
-            //const maxY = parentOffsetTop + parentHeight - __speedMode.noobyHeight;;
-            //if (coord.topPage > maxY) return;
-
-            const offset = __getOffset();
-            const y = settings.height + (offset.top - coord.topPage);
-
+            const y = coord.y;
             __setY(noobyEl, y);
-
             __realignLines();
         }
 
         function __getMouseCoordRelativeTo(rootElement, ev) {
             const evX = ev.pageX;
             const evY = ev.pageY;
-            const parentOffsetTop = rootElement.getBoundingClientRect().top;
-            const parentOffsetLeft = rootElement.getBoundingClientRect().left;
-            return {
+            const rect = rootElement.getBoundingClientRect();
+            const parentOffsetTop = rect.top;
+            const parentOffsetLeft = rect.left;
+            const parentHeight = rect.height;
+            const coord = {
                 x: evX - parentOffsetLeft,
-                y: evY - parentOffsetTop,
-                topPage: evY,
-                leftPage: evX
+                y: (parentHeight - (evY - parentOffsetTop)),
+                topPage: evX - parentOffsetLeft,
+                leftPage: parentHeight - (evY - parentOffsetTop)
             };
+            return coord;
         }
 
         function __getIndexByWidth(x, width, step) {

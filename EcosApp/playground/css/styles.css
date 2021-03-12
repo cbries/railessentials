@@ -7,11 +7,10 @@ html, body {
     overflow: hidden; /* hide vertical scrollbars */
 }
 
-.speedCurveContainer {
-    margin-top: 100px;
+#speedCurveContainer,
+#speedCurveEsu,
+#speedCurveLenz {
     font-size: 12px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
     .speedCurveContainer input {

@@ -9,11 +9,31 @@
     <script>
 
         $(document).ready(function () {
-            $('.speedCurveContainer').speedCurve({
+            //$('#speedCurveContainer').speedCurve({
+            //    speedMode: "dcc128",
+            //    preloadData: [
+            //        100, 100, 100, 100,
+            //        50, 50, 50, 50,
+            //        100, 100, 100, 100,
+            //        50, 50, 50, 50,
+            //        100, 100, 100, 100,
+            //        50, 50, 50, 50,
+            //        100, 100, 100, 100,
+            //        50, 50, 50, 50
+            //    ],
+            //    onChanged: function (data) {
+            //        console.log(data);
+            //    }
+            //});
+
+            $('#speedCurveEsu').speedCurve({
                 speedMode: "dcc128",
-                onChanged: function (data) {
-                    console.log(data);
-                }
+                preloadData: "esu"
+            });
+
+            $('#speedCurveLenz').speedCurve({
+                speedMode: "dcc128",
+                preloadData: "lenz"
             });
         });
 
@@ -22,7 +42,12 @@
 
 <body>
 
-    <div class="speedCurveContainer"></div>
+<!-- 
+    <div id="speedCurveContainer"></div>
+    -->
+    <div id="speedCurveEsu"></div>
+
+    <div id="speedCurveLenz"></div>
 
 </body>
 </html>

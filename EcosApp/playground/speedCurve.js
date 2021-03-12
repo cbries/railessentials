@@ -36,6 +36,7 @@
                 '<div class="speedCurveRoot"></div>' +
                 '<div class="speedCurveControls">' +
                 'Preloads:' +
+                '<button id="cmdSpeedRestore">Restore</button>' +
                 '<button id="cmdSpeedLinear">Linear</button>' +
                 '<button id="cmdSpeedExponentialEsu">Exponential ESU</button>' +
                 '<button id="cmdSpeedExponentialLenz">Exponential Lenz</button>' +
@@ -122,6 +123,7 @@
             }
             selectSpeedCtrl.change(function (ev) {
                 const v = $(this).val();
+                settings.speedStepMaxDefault = v;
                 __highlightMaxSpeed(v);
                 __realignLines();
             });
@@ -138,6 +140,7 @@
                 }
             }
             selectTimeCtrl.change(function (ev) {
+                settings.speedTimeMaxDefault = $(this).val();
                 __realignLines();
             });
 
@@ -157,57 +160,47 @@
                 __handleMouseClickMove(__recentMouseMoveCoord);
             });
 
+            const cmdSpeedRestore = speedCurveContainer.find('#cmdSpeedRestore');
             const cmdSpeedLinear = speedCurveContainer.find("#cmdSpeedLinear");
             const cmdSpeedExponentialEsu = speedCurveContainer.find("#cmdSpeedExponentialEsu");
             const cmdSpeedExponentialLenz = speedCurveContainer.find("#cmdSpeedExponentialLenz")
 
-            cmdSpeedLinear.click(function (ev) {
-                __preloadLinear();
-            });
-            cmdSpeedExponentialEsu.click(function (ev) {
-                __preloadExponential(0);
-            });
-            cmdSpeedExponentialLenz.click(function (ev) {
-                __preloadExponential(1);
-            });
-            __chkLabelShow.click(function () {
-                const elementsSpeed = $('.noobySpeedLbl');
-                for (let i = 0; i < elementsSpeed.length; ++i) {
-                    const el = $(elementsSpeed[i]);
-                    if (this.checked === true) el.show();
-                    else el.hide();
-                }
-
-                const elementsTime = $('.noobyTimeLbl');
-                for (let i = 0; i < elementsTime.length; ++i) {
-                    const el = $(elementsTime[i]);
-                    if (this.checked === true) el.show();
-                    else el.hide();
-                }
-            });
+            cmdSpeedRestore.click(function () { __preloadData(settings.preloadData); });
+            cmdSpeedLinear.click(function () { __preloadLinear(); });
+            cmdSpeedExponentialEsu.click(function () { __preloadExponential(0); });
+            cmdSpeedExponentialLenz.click(function () { __preloadExponential(1); });
+            __chkLabelShow.click(function () { __realignLines(); });
 
             __realignLines();
 
-            if (settings.preloadData.length == 0) {
-                __preloadExponential(0);
+            if (typeof settings.preloadData === "string") {
+                if (settings.preloadData === "esu")
+                    __preloadExponential(0);
+                else if (settings.preloadData === "lenz")
+                    __preloadExponential(1);
+            } else {
+                if (settings.preloadData.length == 0) {                    
+                    __preloadExponential(0);
+                } else {
+                    __preloadData(settings.preloadData);
+                }
             }
         }
 
         function __realignLines() {
             const speedCurveContainer = ctxContainer;
             const speedCurveRoot = speedCurveContainer.find('.speedCurveRoot');
-            const selectSpeedCtrl = speedCurveContainer.find('select#cmbSpeedMax');
-            const selectTimeCtrl = speedCurveContainer.find('select#cmbSpeedTimeMax');
+
+            const maxSpeed = settings.speedStepMaxDefault;
+            const maxTime = settings.speedTimeMaxDefault;
 
             // align speed line
-            const maxSpeed = parseInt(selectSpeedCtrl.val());
             const speedNooby = $('.nooby_' + maxSpeed);
             let currentY = parseInt(speedNooby.css("top").replace("px", ""));
             currentY += __speedMode.noobyHeight / 2;
             __lineSpeed.css({ "top": currentY });
 
             // align time stuff
-            const maxTime = parseInt(selectTimeCtrl.val());
             let currentX = parseInt(speedNooby.css("left").replace("px", ""));
             currentX += __speedMode.noobyWidth / 2;
             __lineTime.css({ "left": currentX });
@@ -222,10 +215,16 @@
             const stepTime = maxTime / maxSpeed;
             let counterTime = 0;
             const elements = $('.nooby');
-            for (let i = 0; i < elements.length; ++i) {
+            let istep = 1;
+            if (elements.length > 32)
+                istep = 10;
+            for (let i = 0; i < elements.length; i++) {
                 const el = $(elements[i]);
                 const elTimeLbl = el.find('.noobyTimeLbl');
                 const elSpeedLbl = el.find('.noobySpeedLbl');
+
+                elTimeLbl.hide();
+                elSpeedLbl.hide();
 
                 let t = counterTime.toString();
                 t = t.substr(0, 3);
@@ -252,15 +251,18 @@
                     elTimeLbl.show();
                     elSpeedLbl.show();
                 } else {
-                    if (isShowChecked == true) elTimeLbl.show();
-                    else elTimeLbl.hide();
-                    if (isShowChecked == true) elSpeedLbl.show();
-                    else elSpeedLbl.hide();
+                    if (i % istep === 0) {
+                        if (isShowChecked == true) elTimeLbl.show();
+                        else elTimeLbl.hide();
+                        if (isShowChecked == true) elSpeedLbl.show();
+                        else elSpeedLbl.hide();                        
+                    }
                     el.data("speed", speed);
                     el.data("timeStep", counterTime);
                 }
 
-                counterTime += stepTime;
+                for (let j = 0; j < istep; ++j) 
+                    counterTime += stepTime;
             }
 
             if (settings.onChanged != null)
@@ -268,7 +270,6 @@
         }
 
         function __highlightMaxSpeed(idx) {
-            const self = this;
             const elements = $('.nooby');
             const iidx = parseInt(idx);
             for (let i = 0; i < elements.length; ++i) {
@@ -276,6 +277,20 @@
                 el.removeClass("noobyMax");
                 if (i === iidx)
                     el.addClass("noobyMax");
+            }
+        }
+
+        function __preloadData(data = []) {
+            if (typeof data === "string") {
+                if (settings.preloadData === "esu")
+                    __preloadExponential(0);
+                else if (settings.preloadData === "lenz")
+                    __preloadExponential(1);
+            } else {
+                if (typeof data !== "undefined" && data != null && data.length > 0)
+                    __preloadExponential(-1, data);
+                else
+                    __preloadExponential(-1, settings.preloadData);
             }
         }
 
@@ -292,7 +307,7 @@
             __realignLines();
         }
 
-        function __preloadExponential(esuLenz) {
+        function __preloadExponential(esuLenz, data = []) {
             const elements = $('.nooby');
             const speedsteps = __speedMode.speedsteps;
             const deltaStep = __speedMode.deltaShow;
@@ -313,14 +328,10 @@
                 247.000
             ];
 
-            let values = preloadEsu28;
+            let values = data;
             if (esuLenz === 0) values = preloadEsu28;
             else if (esuLenz === 1) values = preloadLenz28;
-
-            // settings.preloadData
-            if (typeof settings.preloadData !== "undefined" && settings.preloadData != null && settings.preloadData.length > 0)
-                values = settings.preloadData;
-
+            
             const maxI = values.length;
 
             for (let i = 0, elIdx = 0; i < maxI - 1; ++i, elIdx += deltaStep) {
@@ -367,15 +378,11 @@
 
         function __redrawSpeedDots(initMode = true) {
             const offset = __getOffset();
-
             const elements = $('.nooby');
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
-                const idx = el.data("index");
                 const xsteps = el.data("xsteps");
-
                 const left = offset.left + parseInt(i * xsteps);
-
                 if (initMode == true) {
                     el.css({ top: offset.top + "px", left: left + "px" });
                 } else {
@@ -407,7 +414,6 @@
         }
 
         function __getMouseCoordRelativeTo(rootElement, ev) {
-            const self = this;
             const evX = ev.pageX;
             const evY = ev.pageY;
             const parentOffsetTop = rootElement.getBoundingClientRect().top;

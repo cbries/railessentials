@@ -258,6 +258,13 @@ class Locomotives {
                             });
                         }
 
+                        const cmdSpeedCurve = $('#cmdSpeedCurveContainer_' + event.recid);
+                        cmdSpeedCurve.w2field('button');
+                        cmdSpeedCurve.click(function () {
+                            const locOid = event.recid;
+                            self.__showSpeedCurveDialog(locOid);
+                        });
+
                         self.__resizePreferences();
                     }
                 },
@@ -338,6 +345,10 @@ class Locomotives {
         }
 
         this.__installed = true;
+    }
+
+    __showSpeedCurveDialog(locOid) {
+        console.log("Locomotive Object ID: " + locOid);
     }
 
     __resizePreferences() {
@@ -524,6 +535,13 @@ class Locomotives {
 
         html += dataOptions.html;
         html += dataTypes.html;
+
+        html += '<div class="w2ui-field">';
+        html += '<label>Speed Curve:</label>';
+        html += '<input type="button" id="cmdSpeedCurveContainer_' + recid + '" ' +
+            'value="Modify" ' +
+            'style="padding: 2px; margin-top: 3px; margin-left: 5px;"></div>';
+        html += '</div>';
 
         html += '</div>';
 

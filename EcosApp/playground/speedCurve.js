@@ -40,7 +40,7 @@
                 '<input type="button" id="cmdSpeedLinear" value="Linear">' +
                 '<input type="button" id="cmdSpeedExponentialEsu" value="Exponential ESU">' +
                 '<input type="button" id="cmdSpeedExponentialLenz" value="Exponential Lenz">' +
-                '<input type="checkbox" id="chkLabelShow" name="chkLabelShow">' +
+                '<input type="checkbox" class="chkLabelShow" name="chkLabelShow">' +
                 '<label for="chkLabelShow"> Show Labels</label>' +
                 '<div style="padding-top: 10px;">' +
                 'Speedstep (max): <select id="cmbSpeedMax"></select>' +
@@ -50,8 +50,8 @@
         }
 
         function __install() {
-            document.body.onmousedown = function () { __mouseDown = true; }
-            document.body.onmouseup = function () { __mouseDown = false; }
+            ctxContainer.get(0).onmousedown = function () { __mouseDown = true; }
+            ctxContainer.get(0).onmouseup = function () { __mouseDown = false; }
 
             window.addEventListener("resize", function () {
                 __redrawSpeedDots(false);
@@ -60,7 +60,7 @@
 
             __createControls();
 
-            __chkLabelShow = ctxContainer.find('#chkLabelShow');
+            __chkLabelShow = ctxContainer.find('.chkLabelShow');
             __speedCurveRoot = ctxContainer.find('.speedCurveRoot');
         }
 
@@ -71,7 +71,7 @@
             });
 
             //
-            // add horizontally / vertically line for bette recognization
+            // add horizontally / vertically line for better recognization
             //
             __lineSpeed = $('<div>') // horizontally
                 .css({ width: settings.width + "px" })
@@ -152,7 +152,7 @@
                 __handleMouseClickMove(coord);
             });
 
-            ctxContainer.click(function (ev) {
+            ctxContainer.click(function () {
                 __handleMouseClickMove(__recentMouseMoveCoord);
             });
 
@@ -165,7 +165,9 @@
             cmdSpeedLinear.click(function () { __preloadLinear(); });
             cmdSpeedExponentialEsu.click(function () { __preloadExponential(0); });
             cmdSpeedExponentialLenz.click(function () { __preloadExponential(1); });
-            __chkLabelShow.click(function () { __realignLines(); });
+            __chkLabelShow.click(function () {
+                __realignLines();
+            });
 
             __realignLines();
 
@@ -215,7 +217,8 @@
             if (elements.length > 32)
                 istep = 10;
 
-            const isShowChecked = __chkLabelShow.is(":checked");
+            const chkLabelShow = ctxContainer.find('.chkLabelShow');
+            const isShowChecked = chkLabelShow.is(":checked");
             const stepTime = maxTime / maxSpeed / istep;
             let counterTime = 0;
             for (let i = 0; i < elements.length; i++) {

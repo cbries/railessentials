@@ -10,16 +10,36 @@ html, body {
 #speedCurveContainer,
 #speedCurveEsu,
 #speedCurveLenz {
-    font-size: 12px;
+    font-size: 11px;
+    margin: auto;
+    padding-top: 10px;
 }
 
-    .speedCurveContainer input {
+#speedCurveEsu,
+#speedCurveLenz {
+    padding-top: 100px;
+}
+
+    #speedCurveContainer select,
+    #speedCurveEsu select,
+    #speedCurveLenz select {
         vertical-align: middle;
+        font-size: 11px;
     }
 
-    .speedCurveContainer label {
+    #speedCurveContainer input,
+    #speedCurveEsu input,
+    #speedCurveLenz input {
+        vertical-align: middle;
+        font-size: 11px;
+    }
+
+    #speedCurveContainer label,
+    #speedCurveEsu label,
+    #speedCurveLenz label {
         display: inline-block;
         vertical-align: middle;
+        font-size: 11px;
     }
 
 .speedCurveRoot {

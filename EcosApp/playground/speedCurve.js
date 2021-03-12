@@ -36,17 +36,15 @@
                 '<div class="speedCurveRoot"></div>' +
                 '<div class="speedCurveControls">' +
                 'Preloads:' +
-                '<button id="cmdSpeedRestore">Restore</button>' +
-                '<button id="cmdSpeedLinear">Linear</button>' +
-                '<button id="cmdSpeedExponentialEsu">Exponential ESU</button>' +
-                '<button id="cmdSpeedExponentialLenz">Exponential Lenz</button>' +
+                '<input type="button" id="cmdSpeedRestore" value="Restore">' +
+                '<input type="button" id="cmdSpeedLinear" value="Linear">' +
+                '<input type="button" id="cmdSpeedExponentialEsu" value="Exponential ESU">' +
+                '<input type="button" id="cmdSpeedExponentialLenz" value="Exponential Lenz">' +
                 '<input type="checkbox" id="chkLabelShow" name="chkLabelShow">' +
                 '<label for="chkLabelShow"> Show Labels</label>' +
                 '<div style="padding-top: 10px;">' +
                 'Speedstep (max): <select id="cmbSpeedMax"></select>' +
-                '</div>' +
-                '<div style="padding-top: 10px;">' +
-                'Time (max): <select id="cmbSpeedTimeMax"></select>' +
+                '&nbsp;&nbsp;Time (max): <select id="cmbSpeedTimeMax"></select>' +
                 '</div>' +
                 '</div>');
         }
@@ -67,9 +65,7 @@
         }
 
         function __initDiagram() {
-            const speedCurveContainer = ctxContainer;
-
-            speedCurveContainer.css({
+            ctxContainer.css({
                 width: settings.width + "px",
                 height: settings.height + "px"
             });
@@ -113,10 +109,10 @@
 
                 elementsToAppend = elementsToAppend.add(nooby);
             }
-            speedCurveContainer.append(elementsToAppend);
+            ctxContainer.append(elementsToAppend);
             __redrawSpeedDots();
 
-            const selectSpeedCtrl = speedCurveContainer.find('select#cmbSpeedMax');
+            const selectSpeedCtrl = ctxContainer.find('select#cmbSpeedMax');
             for (let i = 0; i < __speedMode.speedsteps; ++i) {
                 const opt = $('<option>', { value: i }).html(i);
                 opt.appendTo(selectSpeedCtrl);
@@ -129,7 +125,7 @@
             });
             selectSpeedCtrl.val(settings.speedStepMaxDefault);
 
-            const selectTimeCtrl = speedCurveContainer.find('select#cmbSpeedTimeMax');
+            const selectTimeCtrl = ctxContainer.find('select#cmbSpeedTimeMax');
             for (let i = 0; i < __speedMode.speedsteps; ++i) {
                 if (i === settings.speedTimeMaxDefault) {
                     const opt = $('<option>', { value: i, selected: '' }).html(i + "s");
@@ -139,16 +135,16 @@
                     opt.appendTo(selectTimeCtrl);
                 }
             }
-            selectTimeCtrl.change(function (ev) {
+            selectTimeCtrl.change(function () {
                 settings.speedTimeMaxDefault = $(this).val();
                 __realignLines();
             });
 
-            speedCurveContainer.mouseleave(function (ev) {
+            ctxContainer.mouseleave(function () {
                 __mouseDown = false;
             });
 
-            speedCurveContainer.mousemove(function (ev) {
+            ctxContainer.mousemove(function (ev) {
                 ev.preventDefault();
                 const coord = __getMouseCoordRelativeTo(this, ev);
                 __recentMouseMoveCoord = coord;
@@ -156,14 +152,14 @@
                 __handleMouseClickMove(coord);
             });
 
-            speedCurveContainer.click(function (ev) {
+            ctxContainer.click(function (ev) {
                 __handleMouseClickMove(__recentMouseMoveCoord);
             });
 
-            const cmdSpeedRestore = speedCurveContainer.find('#cmdSpeedRestore');
-            const cmdSpeedLinear = speedCurveContainer.find("#cmdSpeedLinear");
-            const cmdSpeedExponentialEsu = speedCurveContainer.find("#cmdSpeedExponentialEsu");
-            const cmdSpeedExponentialLenz = speedCurveContainer.find("#cmdSpeedExponentialLenz")
+            const cmdSpeedRestore = ctxContainer.find('#cmdSpeedRestore');
+            const cmdSpeedLinear = ctxContainer.find("#cmdSpeedLinear");
+            const cmdSpeedExponentialEsu = ctxContainer.find("#cmdSpeedExponentialEsu");
+            const cmdSpeedExponentialLenz = ctxContainer.find("#cmdSpeedExponentialLenz")
 
             cmdSpeedRestore.click(function () { __preloadData(settings.preloadData); });
             cmdSpeedLinear.click(function () { __preloadLinear(); });
@@ -188,22 +184,24 @@
         }
 
         function __realignLines() {
-            const speedCurveContainer = ctxContainer;
-            const speedCurveRoot = speedCurveContainer.find('.speedCurveRoot');
+            const speedCurveRoot = ctxContainer.find('.speedCurveRoot');
 
             const maxSpeed = settings.speedStepMaxDefault;
             const maxTime = settings.speedTimeMaxDefault;
 
+            const lineSpeed = ctxContainer.find('.speedCurveLineSpeed');
+            const lineTime = ctxContainer.find('.speedCurveLineTime');
+
             // align speed line
-            const speedNooby = $('.nooby_' + maxSpeed);
+            const speedNooby = ctxContainer.find('.nooby_' + maxSpeed);
             let currentY = parseInt(speedNooby.css("top").replace("px", ""));
             currentY += __speedMode.noobyHeight / 2;
-            __lineSpeed.css({ "top": currentY });
+            lineSpeed.css({ "top": currentY });
 
             // align time stuff
             let currentX = parseInt(speedNooby.css("left").replace("px", ""));
             currentX += __speedMode.noobyWidth / 2;
-            __lineTime.css({ "left": currentX });
+            lineTime.css({ "left": currentX });
 
             const rect = speedCurveRoot.get(0).getBoundingClientRect();
             const bottom = rect.top + rect.height;
@@ -211,13 +209,15 @@
             //
             // hide time labels which are higher as the selected max time value
             //
-            const isShowChecked = __chkLabelShow.is(":checked");
-            const stepTime = maxTime / maxSpeed;
-            let counterTime = 0;
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
+
             let istep = 1;
             if (elements.length > 32)
                 istep = 10;
+
+            const isShowChecked = __chkLabelShow.is(":checked");
+            const stepTime = maxTime / maxSpeed / istep;
+            let counterTime = 0;
             for (let i = 0; i < elements.length; i++) {
                 const el = $(elements[i]);
                 const elTimeLbl = el.find('.noobyTimeLbl');
@@ -261,7 +261,7 @@
                     el.data("timeStep", counterTime);
                 }
 
-                for (let j = 0; j < istep; ++j) 
+                for (let j = 0; j < istep; ++j)
                     counterTime += stepTime;
             }
 
@@ -270,7 +270,7 @@
         }
 
         function __highlightMaxSpeed(idx) {
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
             const iidx = parseInt(idx);
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
@@ -295,7 +295,7 @@
         }
 
         function __preloadLinear() {
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
             const speedsteps = __speedMode.speedsteps;
             const ystep = settings.height / speedsteps;
             for (let i = 0; i < speedsteps; ++i) {
@@ -308,7 +308,7 @@
         }
 
         function __preloadExponential(esuLenz, data = []) {
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
             const speedsteps = __speedMode.speedsteps;
             const deltaStep = __speedMode.deltaShow;
 
@@ -360,8 +360,7 @@
         }
 
         function __getOffset() {
-            const speedCurveContainer = ctxContainer;
-            const rect = speedCurveContainer.get(0).getBoundingClientRect();
+            const rect = ctxContainer.get(0).getBoundingClientRect();
             const parentOffsetTop = rect.top;
             const parentOffsetLeft = rect.left;
             const parentOffsetHeight = rect.height;
@@ -378,7 +377,7 @@
 
         function __redrawSpeedDots(initMode = true) {
             const offset = __getOffset();
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
                 const xsteps = el.data("xsteps");
@@ -395,13 +394,12 @@
             const steps = settings.width / __speedMode.speedsteps;
             const idx = __getIndexByWidth(coord.x, settings.width, steps);
             if (idx < 0) return;
-            const noobyEl = $('.nooby_' + idx);
+            const noobyEl = ctxContainer.find('.nooby_' + idx);
             if (typeof noobyEl === "undefined" || noobyEl == null || noobyEl.length === 0)
                 return;
 
-            const speedCurveContainer = ctxContainer;
-            const parentOffsetTop = speedCurveContainer.get(0).getBoundingClientRect().top;
-            const parentHeight = speedCurveContainer.get(0).getBoundingClientRect().height;
+            const parentOffsetTop = ctxContainer.get(0).getBoundingClientRect().top;
+            const parentHeight = ctxContainer.get(0).getBoundingClientRect().height;
             const maxY = parentOffsetTop + parentHeight - __speedMode.noobyHeight;;
 
             if (coord.topPage > maxY) return;
@@ -441,14 +439,13 @@
         }
 
         function __getData() {
-            const speedCurveContainer = ctxContainer;
-            const selectSpeedCtrl = speedCurveContainer.find('select#cmbSpeedMax');
-            const selectTimeCtrl = speedCurveContainer.find('select#cmbSpeedTimeMax');
+            const selectSpeedCtrl = ctxContainer.find('select#cmbSpeedMax');
+            const selectTimeCtrl = ctxContainer.find('select#cmbSpeedTimeMax');
 
             const maxSpeed = parseInt(selectSpeedCtrl.val());
             const maxTime = parseInt(selectTimeCtrl.val());
 
-            const elements = $('.nooby');
+            const elements = ctxContainer.find('.nooby');
             let elAr = [];
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);

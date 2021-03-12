@@ -9,30 +9,35 @@
     <script>
 
         $(document).ready(function () {
-            //$('#speedCurveContainer').speedCurve({
-            //    speedMode: "dcc128",
-            //    preloadData: [
-            //        100, 100, 100, 100,
-            //        50, 50, 50, 50,
-            //        100, 100, 100, 100,
-            //        50, 50, 50, 50,
-            //        100, 100, 100, 100,
-            //        50, 50, 50, 50,
-            //        100, 100, 100, 100,
-            //        50, 50, 50, 50
-            //    ],
-            //    onChanged: function (data) {
-            //        console.log(data);
-            //    }
-            //});
+            $('#speedCurveContainer').speedCurve({
+                speedMode: "dcc128",
+                speedStepMaxDefault: 48,
+                speedTimeMaxDefault: 10,
+                height: 100,
+                preloadData: [
+                    100, 100, 100, 100, 50, 50, 50, 50,
+                    100, 100, 100, 100, 50, 50, 50, 50,
+                    100, 100, 100, 100, 50, 50, 50, 50,
+                    100, 100, 100, 100, 50, 50, 50, 50
+                ],
+                onChanged: function (data) {
+                    console.log(data);
+                }
+            });
 
             $('#speedCurveEsu').speedCurve({
                 speedMode: "dcc128",
+                speedStepMaxDefault: 55,
+                speedTimeMaxDefault: 15,
+                height: 100,
                 preloadData: "esu"
             });
 
             $('#speedCurveLenz').speedCurve({
                 speedMode: "dcc128",
+                speedStepMaxDefault: 45,
+                speedTimeMaxDefault: 20,
+                height: 100,
                 preloadData: "lenz"
             });
         });
@@ -42,11 +47,8 @@
 
 <body>
 
-<!-- 
     <div id="speedCurveContainer"></div>
-    -->
     <div id="speedCurveEsu"></div>
-
     <div id="speedCurveLenz"></div>
 
 </body>

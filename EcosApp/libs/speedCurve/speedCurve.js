@@ -22,7 +22,7 @@
         }, options);
 
         var __speedMode = speedCfgs[settings.speedMode];
-        var ctxContainer = this
+        var ctxContainer = this;
         var __mouseDown = false;
 
         if (settings.speedStepMaxDefault == null)
@@ -380,11 +380,13 @@
 
         function __redrawSpeedDots(initMode = true) {
             const offset = __getOffset();
+            console.log(offset);
             const elements = ctxContainer.find('.nooby');
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
                 const xsteps = el.data("xsteps");
                 const left = offset.left + parseInt(i * xsteps);
+                console.log("Left: " + left);
                 if (initMode == true) {
                     el.css({ top: offset.top + "px", left: left + "px" });
                 } else {

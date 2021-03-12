@@ -7,40 +7,34 @@ html, body {
     overflow: hidden; /* hide vertical scrollbars */
 }
 
-#speedCurveContainer,
-#speedCurveEsu,
-#speedCurveLenz {
+.speedCurveDesign {
     font-size: 11px;
     margin: auto;
     padding-top: 10px;
 }
 
-#speedCurveEsu,
-#speedCurveLenz {
-    padding-top: 100px;
-}
-
-    #speedCurveContainer select,
-    #speedCurveEsu select,
-    #speedCurveLenz select {
+    .speedCurveDesign select {
         vertical-align: middle;
         font-size: 11px;
     }
 
-    #speedCurveContainer input,
-    #speedCurveEsu input,
-    #speedCurveLenz input {
+    .speedCurveDesign input {
         vertical-align: middle;
         font-size: 11px;
+        padding: 2px;
+        margin: 2px;
     }
 
-    #speedCurveContainer label,
-    #speedCurveEsu label,
-    #speedCurveLenz label {
+    .speedCurveDesign label {
         display: inline-block;
         vertical-align: middle;
         font-size: 11px;
     }
+
+#speedCurveEsu,
+#speedCurveLenz {
+    padding-top: 100px;
+}
 
 .speedCurveRoot {
     display: block;
@@ -51,30 +45,31 @@ html, body {
 }
 
 .speedCurveControls {
+    float: left;
     padding: 5px;
     padding-top: 10px;
 }
 
 .speedCurveLineSpeed {
-    position: absolute;
+    position: relative;
     color: red;
     background-color: red;
-    opacity: 0.2;
+    opacity: 0.1;
     height: 1px;
     z-index: 10;
 }
 
 .speedCurveLineTime {
-    position: absolute;
+    position: relative;
     color: red;
     background-color: red;
-    opacity: 0.2;
+    opacity: 0.1;
     width: 1px;
     z-index: 10;
 }
 
 .nooby {
-    position: absolute;
+    position: relative;
     float: left;
     background-color: black;
     cursor: crosshair;
@@ -83,10 +78,11 @@ html, body {
 .noobySpeedLbl {
     position: relative;
     left: -3px;
-    top: -9px;
+    top: -10px;
     color: black;
     font-size: 8px;
     cursor: crosshair;
+    z-index: 15;
 }
 
 .speedHighlight {
@@ -99,22 +95,25 @@ html, body {
 
 .noobyTimeLbl {
     position: relative;
-    left: -2px;
-    top: -6px;
+    left: -0px;
+    top: -3px;
     color: black;
     font-size: 8px;
     cursor: crosshair;
+    z-index: 15;
 }
 
 .timeHighlight {
     font-weight: bold;
     font-size: 10px;
     left: -3px;
-    top: -6px;
+    top: -8px;
     color: red;
+    z-index: 15;
 }
 
 .noobyMax {
+    position: relative;
     color: red;
     background-color: red;
 }

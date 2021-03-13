@@ -9,10 +9,12 @@ namespace railessentials.Locomotives
 {
     public class SpeedCurve
     {
-        [JsonProperty(PropertyName = "maxSpeedstep")]
-        public int MaxSpeedstep { get; set; }
-        [JsonProperty(PropertyName = "maxTimeSeconds")]
-        public int MaxTimeSeconds { get; set; }
+        [JsonProperty(PropertyName = "maxSpeed")]
+        public int MaxSpeed { get; set; }
+
+        [JsonProperty(PropertyName = "maxTime")]
+        public int MaxTime { get; set; }
+        
         [JsonProperty(PropertyName = "steps")]
         public List<SpeedStep> Steps { get; set; }
     }
@@ -20,7 +22,7 @@ namespace railessentials.Locomotives
     public class SpeedStep  
     {
         [JsonProperty(PropertyName = "speed")]
-        public int Speed { get; set; }
+        public float Speed { get; set; }
 
         [JsonProperty(PropertyName = "timeStep")]
         public float TimeStep { get; set; }

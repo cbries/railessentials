@@ -63,7 +63,7 @@
                 '</div>');
         }
 
-        function __install() {            
+        function __install() {
             window.addEventListener("resize", function () {
                 __redrawSpeedDots(false);
                 __realignLines();
@@ -212,7 +212,7 @@
             const speedNooby = ctxContainer.find('.nooby_' + maxSpeed);
             let currentY = parseInt(speedNooby.css("top").replace("px", ""));
             if (currentY < 0) currentY = currentY * -1.0;
-            const lineY = settings.height - currentY; 
+            const lineY = settings.height - currentY;
             lineSpeed.css({ "top": lineY });
 
             // align time stuff
@@ -251,24 +251,27 @@
                 t = t.substr(0, 3);
                 elTimeLbl.html(t + "s");
 
+                const parentRect = el.parent().get(0).getBoundingClientRect();
                 const elRect = el.get(0).getBoundingClientRect();
-                const y = bottom - elRect.top;
-                const factor = y / settings.height;
-                const speed = parseInt(factor * __speedMode.speedsteps);
+                const y = parentRect.bottom - elRect.bottom;
+                const factor = settings.height / __speedMode.speedsteps;
+                const speed = (1 / factor) * y;
                 elSpeedLbl.html(speed);
 
                 elTimeLbl.removeClass("timeHighlight");
                 elSpeedLbl.removeClass("speedHighlight");
 
-                if (i > maxSpeed) {
+                if (speed > maxSpeed) {
                     elTimeLbl.hide();
                     elSpeedLbl.hide();
-                    el.data("speed", 0);
-                    el.data("timeStep", 0);
+                    el.data("speed", maxSpeed);
+                    el.data("timeStep", maxSpeed);
                 } else if (i === maxSpeed) {
                     elTimeLbl.addClass("timeHighlight");
                     elSpeedLbl.addClass("speedHighlight");
                     elSpeedLbl.html(maxSpeed);
+                    el.data("speed", speed);
+                    el.data("timeStep", counterTime);
                     elTimeLbl.show();
                     elSpeedLbl.show();
                 } else {
@@ -402,7 +405,7 @@
                 const xsteps = el.data("xsteps");
                 const left = offset.left + parseInt(i * xsteps) - (i * __speedMode.noobyWidth);
 
-                if (initMode == true) {
+                if (initMode === true) {
                     el.css({
                         top: offset.top + "px",
                         left: left + "px"
@@ -468,12 +471,16 @@
             let elAr = [];
             for (let i = 0; i < elements.length; ++i) {
                 const el = $(elements[i]);
-                const speed = el.data("speed");
-                const timeStep = el.data("timeStep");
+                let speed = el.data("speed");
+                let timeStep = el.data("timeStep");
 
-                if (timeStep === 0) continue;
+                if (speed < 0) speed = 0;
+                if (timeStep < 0) timeStep = 0;
 
-                const itm = { speed: speed, timeStep: timeStep };
+                const itm = {
+                    speed: speed,
+                    timeStep: timeStep
+                };
                 elAr.push(itm);
             }
 

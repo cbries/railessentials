@@ -1008,7 +1008,14 @@ namespace railessentials.ClientHandler
                             return;
                         }
 
-                        // TODO save data
+                        lock (_metadataLock)
+                        {
+                            var locData = _metadata.LocomotivesData.GetData(oid);
+                            locData.SpeedCurve = JsonConvert.DeserializeObject<Locomotives.SpeedCurve>(speedCurveData.ToString(Formatting.None));
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
                     }
                     break;
 

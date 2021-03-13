@@ -401,19 +401,19 @@ class Locomotives {
                     let preloadData = "esu";
                     let speedMax = 55;
                     let timeMax = 15;
-                    if (recentLocomotiveData != null) {
-                        if (typeof recentLocomotiveData.steps !== "undefined" &&
-                            recentLocomotiveData.steps != null) {
+                    if (recentLocomotiveData != null && recentLocomotiveData.SpeedCurve != null) {
+                        if (typeof recentLocomotiveData.SpeedCurve.steps !== "undefined" &&
+                            recentLocomotiveData.SpeedCurve.steps != null) {
                             preloadData = [];
-                            for (let ii = 0; ii < recentLocomotiveData.steps.length; ++ii) {
-                                preloadData.push(recentLocomotiveData.steps[ii].speed);
+                            for (let ii = 0; ii < recentLocomotiveData.SpeedCurve.steps.length; ++ii) {
+                                preloadData.push(recentLocomotiveData.SpeedCurve.steps[ii].speed);
                             }
                         }
-                        if (typeof recentLocomotiveData.maxSpeed !== "undefined") {
-                            speedMax = recentLocomotiveData.maxSpeed;
+                        if (typeof recentLocomotiveData.SpeedCurve.maxSpeed !== "undefined") {
+                            speedMax = recentLocomotiveData.SpeedCurve.maxSpeed;
                         }
-                        if (typeof recentLocomotiveData.maxTime !== "undefined") {
-                            timeMax = recentLocomotiveData.maxTime;
+                        if (typeof recentLocomotiveData.SpeedCurve.maxTime !== "undefined") {
+                            timeMax = recentLocomotiveData.SpeedCurve.maxTime;
                         }
                     }
 

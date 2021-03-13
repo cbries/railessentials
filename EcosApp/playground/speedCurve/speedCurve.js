@@ -2,9 +2,16 @@
 
     $.fn.speedCurve = function (options) {
 
+        var __isInstalled = false;
+
         this.refresh = function () {
             __redrawSpeedDots(false);
             __realignLines();
+            return this;
+        };
+
+        this.getData = function () {
+            return __getData();
         };
 
         var speedCfgs = {
@@ -36,6 +43,8 @@
         __install();
         __initDiagram();
 
+        __isInstalled = true;
+
         function __createControls() {
             ctxContainer.append(
                 '<div class="speedCurveRoot"></div>' +
@@ -66,7 +75,6 @@
             __speedCurveRoot = ctxContainer.find('.speedCurveRoot');
             __speedCurveRoot.get(0).onmousedown = function () { __mouseDown = true; }
             __speedCurveRoot.get(0).onmouseup = function () { __mouseDown = false; }
-
         }
 
         function __initDiagram() {
@@ -243,24 +251,27 @@
                 t = t.substr(0, 3);
                 elTimeLbl.html(t + "s");
 
-                const elRect = el.get(0).getBoundingClientRect();
-                const y = bottom - elRect.top;
-                const factor = y / settings.height;
-                const speed = parseInt(factor * __speedMode.speedsteps);
+				const parentRect = el.parent().get(0).getBoundingClientRect();
+				const elRect = el.get(0).getBoundingClientRect();
+				const y = parentRect.bottom - elRect.bottom;
+				const factor = settings.height / __speedMode.speedsteps;
+				const speed = (1/factor) * y;
                 elSpeedLbl.html(speed);
 
                 elTimeLbl.removeClass("timeHighlight");
                 elSpeedLbl.removeClass("speedHighlight");
 
-                if (i > maxSpeed) {
+                if (speed > maxSpeed) {
                     elTimeLbl.hide();
                     elSpeedLbl.hide();
-                    el.data("speed", 0);
-                    el.data("timeStep", 0);
+                    el.data("speed", maxSpeed);
+                    el.data("timeStep", maxSpeed);
                 } else if (i === maxSpeed) {
                     elTimeLbl.addClass("timeHighlight");
                     elSpeedLbl.addClass("speedHighlight");
                     elSpeedLbl.html(maxSpeed);
+                    el.data("speed", speed);
+                    el.data("timeStep", counterTime);
                     elTimeLbl.show();
                     elSpeedLbl.show();
                 } else {
@@ -278,7 +289,7 @@
                     counterTime += stepTime;
             }
 
-            if (settings.onChanged != null)
+            if (settings.onChanged != null && __isInstalled == true)
                 settings.onChanged({ data: __getData() });
         }
 
@@ -463,9 +474,13 @@
                 const speed = el.data("speed");
                 const timeStep = el.data("timeStep");
 
-                if (timeStep === 0) continue;
+                if (timeStep === 0 && i === 0)
+                    continue;
 
-                const itm = { speed: speed, timeStep: timeStep };
+                const itm = {
+                    speed: speed,
+                    timeStep: timeStep
+                };
                 elAr.push(itm);
             }
 

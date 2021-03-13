@@ -999,6 +999,19 @@ namespace railessentials.ClientHandler
 
             switch (cmd.ToLower())
             {
+                case "speedcurve":
+                    {
+                        var speedCurveData = data["data"] as JObject;
+                        if(speedCurveData == null)
+                        {
+                            SendDebugMessage($"Missing SpeedCurve data for Locomotive({oid}).");
+                            return;
+                        }
+
+                        // TODO save data
+                    }
+                    break;
+
                 case "rename":
                     {
                         var name = data.GetString("name");

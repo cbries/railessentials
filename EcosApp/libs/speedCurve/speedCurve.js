@@ -2,9 +2,16 @@
 
     $.fn.speedCurve = function (options) {
 
+        var __isInstalled = false;
+
         this.refresh = function () {
             __redrawSpeedDots(false);
             __realignLines();
+            return this;
+        };
+
+        this.getData = function () {
+            return __getData();
         };
 
         var speedCfgs = {
@@ -36,6 +43,8 @@
         __install();
         __initDiagram();
 
+        __isInstalled = true;
+
         function __createControls() {
             ctxContainer.append(
                 '<div class="speedCurveRoot"></div>' +
@@ -66,7 +75,6 @@
             __speedCurveRoot = ctxContainer.find('.speedCurveRoot');
             __speedCurveRoot.get(0).onmousedown = function () { __mouseDown = true; }
             __speedCurveRoot.get(0).onmouseup = function () { __mouseDown = false; }
-
         }
 
         function __initDiagram() {
@@ -278,7 +286,7 @@
                     counterTime += stepTime;
             }
 
-            if (settings.onChanged != null)
+            if (settings.onChanged != null && __isInstalled == true)
                 settings.onChanged({ data: __getData() });
         }
 

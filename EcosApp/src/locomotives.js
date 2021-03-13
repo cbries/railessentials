@@ -348,62 +348,86 @@ class Locomotives {
     }
 
     __showSpeedCurveDialog(locOid) {
+        const self = this;
+
         console.log("Locomotive Object ID: " + locOid);
 
-        if (!w2ui.foo) {
-                $().w2form({
-                    name: 'formSpeedCurve',
-                    style: 'border: 0px; background-color: white;',
-                    formHTML:
-                        '<div class="w2ui-page page-0">' +
-                        '    <div id="formSpeedCurveInstance" class="speedCurveDesign"></div>' +
-                        '</div>' +
-                        '<div class="w2ui-buttons">' +
-                        '    <button class="w2ui-btn" name="reset">Reset</button>' +
-                        '    <button class="w2ui-btn" name="save">Save</button>' +
-                        '</div>',
-                    fields: [],
-                    record: {},
-                    actions: {
-                        "save": function () {
-                            console.log("Save()");
-                        },
-                        "reset": function () {
-                            console.log("Reset()");
-                        }
-                    }
-                });
-            }
-
-            $().w2popup('open', {
-                title: 'SpeedCurve',
-                body: '<div id="form" style="width: 100%; height: 100%;"></div>',
-                style: 'padding: 0px 0px 0px 0px; padding-left: 5px; background-color: white;',
-                width: 775,
-                height: 400,
-                showMax: false,
-                onToggle: function (event) {
-                    $(w2ui.foo.box).hide();
-                    event.onComplete = function () {
-                        $(w2ui.foo.box).show();
-                        w2ui.foo.resize();
-                    }
-                },
-                onOpen: function (event) {
-                    event.onComplete = function () {
-                        // specifying an onOpen handler instead is equivalent to specifying an onBeforeOpen handler, which would make this code execute too early and hence not deliver.
-                        $('#w2ui-popup #form').w2render('formSpeedCurve');
-                        const speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
-                            speedMode: "dcc128",
-                            speedStepMaxDefault: 55,
-                            speedTimeMaxDefault: 15,
-                            height: 220,
-                            preloadData: "esu"
-                        });
-                        speedCurveInstance.refresh();
+        if (!w2ui.formSpeedCurve) {
+            $().w2form({
+                name: 'formSpeedCurve',
+                style: 'border: 0px; background-color: white;',
+                formHTML:
+                    '<div class="w2ui-page page-0">' +
+                    '    <div id="formSpeedCurveInstance" class="speedCurveDesign"></div>' +
+                    '</div>' +
+                    '<div class="w2ui-buttons">' +
+                    '    <button class="w2ui-btn" name="cancel">Cancel</button>' +
+                    '    <button class="w2ui-btn" name="save">Save</button>' +
+                    '</div>',
+                fields: [],
+                record: {},
+                actions: {
+                    "save": function () {
+                        const data = self.__speedCurveInstance.getData();
+                        self.__saveLocomotiveSpeedCurve(locOid, data);
+                        w2popup.close();
+                    },
+                    "cancel": function () {
+                        w2popup.close();
                     }
                 }
             });
+        }
+
+        $().w2popup('open', {
+            title: 'SpeedCurve',
+            body: '<div id="form" style="width: 100%; height: 100%;"></div>',
+            style: 'padding: 0px 0px 0px 0px; padding-left: 5px; background-color: white;',
+            width: 775,
+            height: 400,
+            showMax: false,
+            onToggle: function (event) {
+                $(w2ui.foo.box).hide();
+                event.onComplete = function () {
+                    $(w2ui.foo.box).show();
+                    w2ui.foo.resize();
+                }
+            },
+            onOpen: function (event) {
+                event.onComplete = function () {
+                    $('#w2ui-popup #form').w2render('formSpeedCurve');
+
+                    const recentLocomotiveData = self.__getLocomotiveOfRecentData(locOid);
+                    let preloadData = "esu";
+                    let speedMax = 55;
+                    let timeMax = 15;
+                    if (recentLocomotiveData != null) {
+                        if (typeof recentLocomotiveData.steps !== "undefined" &&
+                            recentLocomotiveData.steps != null) {
+                            preloadData = [];
+                            for (let ii = 0; ii < recentLocomotiveData.steps.length; ++ii) {
+                                preloadData.push(recentLocomotiveData.steps[ii].speed);
+                            }
+                        }
+                        if (typeof recentLocomotiveData.maxSpeed !== "undefined") {
+                            speedMax = recentLocomotiveData.maxSpeed;
+                        }
+                        if (typeof recentLocomotiveData.maxTime !== "undefined") {
+                            timeMax = recentLocomotiveData.maxTime;
+                        }
+                    }
+
+                    self.__speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
+                        speedMode: "dcc128",
+                        speedStepMaxDefault: speedMax,
+                        speedTimeMaxDefault: timeMax,
+                        height: 220,
+                        preloadData: preloadData
+                    });
+                    self.__speedCurveInstance.refresh();
+                }
+            }
+        });
     }
 
     __resizePreferences() {
@@ -423,8 +447,23 @@ class Locomotives {
         });
     }
 
+    __saveLocomotiveSpeedCurve(oid, speedCurveData) {
+        if (typeof speedCurveData === "undefined" || speedCurveData == null)
+            return;
+
+        this.__trigger('setting',
+            {
+                'mode': 'locomotive',
+                'cmd': 'speedCurve',
+                'value': {
+                    oid: oid,
+                    data: speedCurveData
+                }
+            });
+    }
+
     __saveLocomotiveSettings(locomotiveData) {
-        let chkStates = {};
+        const chkStates = {};
         const chkIds = locomotiveData.checkboxIds;
         for (let j = 0; j < chkIds.length; ++j) {
             const chkCtrl = $('#' + chkIds[j]);
@@ -442,7 +481,7 @@ class Locomotives {
                 'mode': 'locomotive',
                 'cmd': 'locomotiveData',
                 'value': {
-                    oid: locomotiveData.recid,
+                    oid: recid,
                     checkboxSettings: chkStates
                 }
             });

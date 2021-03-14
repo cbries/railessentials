@@ -258,6 +258,13 @@ class Locomotives {
                             });
                         }
 
+                        const cmdSpeedCurve = $('#cmdSpeedCurveContainer_' + event.recid);
+                        cmdSpeedCurve.w2field('button');
+                        cmdSpeedCurve.click(function () {
+                            const locOid = event.recid;
+                            self.__showSpeedCurveDialog(locOid);
+                        });
+
                         self.__resizePreferences();
                     }
                 },
@@ -340,6 +347,137 @@ class Locomotives {
         this.__installed = true;
     }
 
+    __getLocomotiveEcosData(oid) {
+        const self = this;
+        if (typeof self.__recentEcosData === "undefined" || self.__recentEcosData == null)
+            return null;
+        const localOid = parseInt(oid);
+        for (let i = 0; i < self.__recentEcosData.length; ++i) {
+            const loc = self.__recentEcosData[i];
+            if (loc == null) continue;
+            if (loc.objectId === localOid)
+                return loc;
+        }
+        return null;
+    }
+
+    __showSpeedCurveDialog(locOid) {
+        const self = this;
+
+        console.log("Locomotive Object ID: " + locOid);
+
+        if (!w2ui.formSpeedCurve) {
+            $().w2form({
+                name: 'formSpeedCurve',
+                style: 'border: 0px; background-color: white;',
+                formHTML:
+                    '<div class="w2ui-page page-0">' +
+                    '    <div id="formSpeedCurveInstance" class="speedCurveDesign"></div>' +
+                    '</div>' +
+                    '<div class="w2ui-buttons">' +
+                    '    <button class="w2ui-btn" name="cancel">Cancel</button>' +
+                    '    <button class="w2ui-btn" name="save">Save</button>' +
+                    '</div>',
+                fields: [],
+                record: {},
+                actions: {
+                    "save": function () {
+                        const data = self.__speedCurveInstance.getData();
+                        const oid = data.objectId;
+                        delete data.objectId;
+                        self.__saveLocomotiveSpeedCurve(oid, data);
+                        w2popup.close();
+                    },
+                    "cancel": function () {
+                        w2popup.close();
+                    }
+                }
+            });
+        }
+
+        $().w2popup('open', {
+            title: 'SpeedCurve',
+            body: '<div id="form" style="width: 100%; height: 100%;"></div>',
+            style: 'padding: 0px 0px 0px 0px; padding-left: 5px; background-color: white;',
+            width: 775,
+            height: 400,
+            showMax: false,
+            onToggle: function (event) {
+                $(w2ui.foo.box).hide();
+                event.onComplete = function () {
+                    $(w2ui.foo.box).show();
+                    w2ui.foo.resize();
+                }
+            },
+            onOpen: function (event) {
+                event.onComplete = function () {
+                    $('#w2ui-popup #form').w2render('formSpeedCurve');
+
+                    const locEsuData = self.__getLocomotiveEcosData(locOid);
+
+                    let speedModeProtocol = "dcc128";
+                    let speedMax = 55;
+                    let timeMax = 15;
+
+                    if (locEsuData != null) {
+                        if (locEsuData.protocol === "DCC128"
+                            || locEsuData.protocol === "MM128"
+                            || locEsuData.protocol === "MFX") {
+
+                            speedModeProtocol = "dcc128";
+                            speedMax = 55;
+                            timeMax = 15;
+
+                        } else if (locEsuData.protocol === "MMFKT"
+                            || locEsuData.protocol === "MM14"
+                            || locEsuData.protocol === "DCC14") {
+
+                            speedModeProtocol = "dcc14";
+                            speedMax = 7;
+                            timeMax = 5;
+
+                        } else if (locEsuData.protocol === "MM27" || locEsuData.protocol === "DCC28") {
+
+                            speedModeProtocol = "dcc28";
+                            speedMax = 7;
+                            timeMax = 5;
+
+                        }
+                    }
+
+                    const recentLocomotiveData = self.__getLocomotiveOfRecentData(locOid);
+                    let preloadData = "esu";
+                    
+                    if (recentLocomotiveData != null && recentLocomotiveData.SpeedCurve != null) {
+                        if (typeof recentLocomotiveData.SpeedCurve.steps !== "undefined" &&
+                            recentLocomotiveData.SpeedCurve.steps != null) {
+                            preloadData = [];
+                            for (let ii = 0; ii < recentLocomotiveData.SpeedCurve.steps.length; ++ii) {
+                                preloadData.push(recentLocomotiveData.SpeedCurve.steps[ii].speed);
+                            }
+                        }
+                        if (typeof recentLocomotiveData.SpeedCurve.maxSpeed !== "undefined") {
+                            speedMax = recentLocomotiveData.SpeedCurve.maxSpeed;
+                        }
+                        if (typeof recentLocomotiveData.SpeedCurve.maxTime !== "undefined") {
+                            timeMax = recentLocomotiveData.SpeedCurve.maxTime;
+                        }
+                    }
+
+                    self.__speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
+                        objectId: locOid,
+                        speedMode: speedModeProtocol,
+                        speedStepMaxDefault: speedMax,
+                        speedTimeMaxDefault: timeMax,
+                        height: 220,
+                        preloadData: preloadData
+                    });
+                    self.__speedCurveInstance.refresh();
+                }
+            }
+        });
+    }
+
     __resizePreferences() {
         const obj = this.__expandedPreferences;
         $.each(obj, function (recid, state) {
@@ -357,8 +495,23 @@ class Locomotives {
         });
     }
 
+    __saveLocomotiveSpeedCurve(oid, speedCurveData) {
+        if (typeof speedCurveData === "undefined" || speedCurveData == null)
+            return;
+
+        this.__trigger('setting',
+            {
+                'mode': 'locomotive',
+                'cmd': 'speedCurve',
+                'value': {
+                    oid: oid,
+                    data: speedCurveData
+                }
+            });
+    }
+
     __saveLocomotiveSettings(locomotiveData) {
-        let chkStates = {};
+        const chkStates = {};
         const chkIds = locomotiveData.checkboxIds;
         for (let j = 0; j < chkIds.length; ++j) {
             const chkCtrl = $('#' + chkIds[j]);
@@ -376,7 +529,7 @@ class Locomotives {
                 'mode': 'locomotive',
                 'cmd': 'locomotiveData',
                 'value': {
-                    oid: locomotiveData.recid,
+                    oid: recid,
                     checkboxSettings: chkStates
                 }
             });
@@ -415,7 +568,7 @@ class Locomotives {
 
     updateLocomotives(ecosDataLocomotives) {
         const self = this;
-        this.__recentEcosData = ecosDataLocomotives;
+        self.__recentEcosData = ecosDataLocomotives;
         if (typeof ecosDataLocomotives === "undefined" || ecosDataLocomotives == null)
             return;
 
@@ -524,6 +677,13 @@ class Locomotives {
 
         html += dataOptions.html;
         html += dataTypes.html;
+
+        html += '<div class="w2ui-field">';
+        html += '<label>Speed Curve:</label>';
+        html += '<input type="button" id="cmdSpeedCurveContainer_' + recid + '" ' +
+            'value="Modify" ' +
+            'style="padding: 2px; margin-top: 3px; margin-left: 5px;"></div>';
+        html += '</div>';
 
         html += '</div>';
 

@@ -999,6 +999,26 @@ namespace railessentials.ClientHandler
 
             switch (cmd.ToLower())
             {
+                case "speedcurve":
+                    {
+                        var speedCurveData = data["data"] as JObject;
+                        if(speedCurveData == null)
+                        {
+                            SendDebugMessage($"Missing SpeedCurve data for Locomotive({oid}).");
+                            return;
+                        }
+
+                        lock (_metadataLock)
+                        {
+                            var locData = _metadata.LocomotivesData.GetData(oid);
+                            locData.SpeedCurve = JsonConvert.DeserializeObject<Locomotives.SpeedCurve>(speedCurveData.ToString(Formatting.None));
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
+                    }
+                    break;
+
                 case "rename":
                     {
                         var name = data.GetString("name");

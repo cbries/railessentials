@@ -11,17 +11,17 @@ using railessentials.Plan;
 
 namespace railessentials.AutoMode
 {
-    public class AutoModeTaskBase : AutoModeTaskCore
+    public partial class AutoModeTaskBase : AutoModeTaskCore
     {
         private const int TimeBetweenFbTestMsecs = 500;
-                
+
         private bool IsCanceled()
         {
             if (!CancelSource.IsCancellationRequested) return false;
-            
+
             // frees the current route and resets the relevant block states
             Ctx?.ResetRouteFor(Route.LocomotiveObjectId);
-            
+
             SendDebugMessage($"{Route.Route.Name} has been canceled");
             return true;
         }
@@ -32,12 +32,14 @@ namespace railessentials.AutoMode
 
             var dpS88 = Route.DataProviderS88;
 
-            var currentDirection = Route.Locomotive.Direction;
+            //var currentDirection = Route.Locomotive.Direction;
             var currentSpeed = Route.Locomotive.Speedstep;
             var maxSpeed = Route.Locomotive.GetNumberOfSpeedsteps();
+            var speedCurve = Route.LocomotivesData?.SpeedCurve;
 
-            // TODO change targetSpeed source -- currently only for tests
-            var targetSpeed = (int)(maxSpeed / 2.0);
+            var targetSpeed = (int)(maxSpeed / 3.0);
+            if (speedCurve != null)
+                targetSpeed = speedCurve.MaxSpeed;
 
             #endregion
 
@@ -51,12 +53,24 @@ namespace railessentials.AutoMode
                 // NOTE start train, if the fbEnter is reached before the train got its full speed, cancel the speed-up
                 //
                 var fbEnterAlreadyReached = false;
-                await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, hasToBeCanceled: () =>
+                if (speedCurve != null)
                 {
-                    fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
-                    // TODO handle hasError (e.g. cancel route)
-                    return fbEnterAlreadyReached;
-                });
+                    await AccelerateLocomotiveCurve(currentSpeed, Route.Locomotive, speedCurve, hasToBeCanceled: () =>
+                    {
+                        fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
+                        // TODO handle hasError (e.g. cancel route)
+                        return fbEnterAlreadyReached;
+                    });
+                }
+                else
+                {
+                    await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, hasToBeCanceled: () =>
+                    {
+                        fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
+                        // TODO handle hasError (e.g. cancel route)
+                        return fbEnterAlreadyReached;
+                    });
+                }
 
                 if (IsCanceled()) return;
 
@@ -86,12 +100,24 @@ namespace railessentials.AutoMode
                 // NOTE decelerate the train
                 //
                 var fbInAlreadyReached = false;
-                await DecelerateLocomotive(Route.Locomotive, hasToBeCanceled: () =>
+                if(speedCurve != null)
                 {
-                    fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
-                    // TODO handle hasError (e.g. cancel route)
-                    return fbInAlreadyReached;
-                });
+                    await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, hasToBeCanceled: () =>
+                    {
+                        fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
+                        // TODO handle hasError (e.g. cancel route)
+                        return fbInAlreadyReached;
+                    });
+                }
+                else
+                {
+                    await DecelerateLocomotive(Route.Locomotive, hasToBeCanceled: () =>
+                    {
+                        fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
+                        // TODO handle hasError (e.g. cancel route)
+                        return fbInAlreadyReached;
+                    });
+                }
 
                 if (IsCanceled()) return;
 
@@ -151,98 +177,7 @@ namespace railessentials.AutoMode
 
             }, CancelSource.Token);
         }
-
-        private async Task DecelerateLocomotive(
-            Locomotive ecosLoc,
-            int maxSecsToStop = 10,
-            Func<bool> hasToBeCanceled = null)
-        {
-            var currentSpeed = (float)ecosLoc.Speedstep;
-            var deltaSpeedSteps = currentSpeed / maxSecsToStop;
-
-            var minSpeed = ecosLoc.GetNumberOfSpeedsteps() <= 28 ? 2 : 10;
-
-            await Task.Run(() =>
-            {
-                // 
-                // IMPORTANT NOTE:
-                // do not slow down the locomotive completly
-                // we still have to reach the fbIn, when reached
-                // the train will stop right at this moment
-                //
-
-                for (var i = currentSpeed; i > minSpeed; i -= deltaSpeedSteps)
-                {
-                    Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, (int)i);
-
-                    if (IsCanceled())
-                    {
-                        Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, 0);
-
-                        break;
-                    }
-
-                    if (hasToBeCanceled != null)
-                        if (hasToBeCanceled())
-                            break;
-
-                    var sleepMs = (maxSecsToStop * 1000) / deltaSpeedSteps;
-                    System.Threading.Thread.Sleep((int)sleepMs);
-
-                    if (hasToBeCanceled != null)
-                        if (hasToBeCanceled())
-                            break;
-                }
-                
-            }, CancelSource.Token);
-        }
-
-        private async Task AccelerateLocomotive(
-            int currentSpeed,
-            int targetSpeed,
-            Locomotive ecosLoc,
-            TimeSpan? delayBetween = null,
-            Func<bool> hasToBeCanceled = null)
-        {
-            var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
-            var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;
-
-            delayBetween ??= new TimeSpan(0, 0, 0, 0, msecsDelay);
-
-            // TODO add nice accelerate curve
-
-            await Task.Run(() =>
-            {
-                var hasCanceled = false;
-
-                for (var i = currentSpeed; i <= targetSpeed; ++i)
-                {
-                    Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, i);
-
-                    if (IsCanceled()) {
-                        hasCanceled = true;
-                        break;
-                    }
-
-                    if (hasToBeCanceled != null)
-                        if (hasToBeCanceled())
-                            break;
-
-                    System.Threading.Thread.Sleep(delayBetween.Value);
-
-                    if (hasToBeCanceled != null)
-                        if (hasToBeCanceled())
-                            break;
-                }
-
-                if(!hasCanceled)
-                {
-                    Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, targetSpeed);
-                }
-
-            }, CancelSource.Token);
-        }
-
+        
         private async Task WaitForFb(string fbName, PlanItem fb, DataProvider dpS88)
         {
             await Task.Run(() =>

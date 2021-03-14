@@ -81,7 +81,9 @@
     <Compile Include="Analyzer\Analyze.cs" />
     <Compile Include="Analyzer\AnalyzeResult.cs" />
     <Compile Include="AutoMode\AutoMode.cs" />
+    <Compile Include="AutoMode\AutoModeTaskBase.Accelerate.cs" />
     <Compile Include="AutoMode\AutoModeTaskBase.cs" />
+    <Compile Include="AutoMode\AutoModeTaskBase.Decelerate.cs" />
     <Compile Include="AutoMode\AutoModeTaskCore.cs" />
     <Compile Include="ClientHandler\ClientHandler.AutoMode.cs" />
     <Compile Include="ClientHandler\ClientHandler.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Locomotives\Data.cs" />
     <Compile Include="Locomotives\Duration.cs" />
     <Compile Include="Locomotives\LocomotivesData.cs" />
+    <Compile Include="Locomotives\SpeedCurve.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="NextRouteInformation.cs" />
     <Compile Include="Occ\OccBlock.cs" />

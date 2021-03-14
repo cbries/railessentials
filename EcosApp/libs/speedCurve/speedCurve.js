@@ -24,6 +24,7 @@
         };
 
         var settings = $.extend({
+            objectId: -1, // the ESU ECoS Locomotive ID
             speedMode: "dcc28",
             width: 750,
             height: 200,
@@ -492,6 +493,7 @@
             }
 
             let data = {
+                objectId: settings.objectId,
                 maxSpeed: maxSpeed,
                 maxTime: maxTime,
                 steps: elAr

@@ -383,7 +383,9 @@ class Locomotives {
                 actions: {
                     "save": function () {
                         const data = self.__speedCurveInstance.getData();
-                        self.__saveLocomotiveSpeedCurve(locOid, data);
+                        const oid = data.objectId;
+                        delete data.objectId;
+                        self.__saveLocomotiveSpeedCurve(oid, data);
                         w2popup.close();
                     },
                     "cancel": function () {
@@ -412,25 +414,40 @@ class Locomotives {
                     $('#w2ui-popup #form').w2render('formSpeedCurve');
 
                     const locEsuData = self.__getLocomotiveEcosData(locOid);
+
                     let speedModeProtocol = "dcc128";
+                    let speedMax = 55;
+                    let timeMax = 15;
+
                     if (locEsuData != null) {
                         if (locEsuData.protocol === "DCC128"
                             || locEsuData.protocol === "MM128"
                             || locEsuData.protocol === "MFX") {
+
                             speedModeProtocol = "dcc128";
+                            speedMax = 55;
+                            timeMax = 15;
+
                         } else if (locEsuData.protocol === "MMFKT"
                             || locEsuData.protocol === "MM14"
                             || locEsuData.protocol === "DCC14") {
+
                             speedModeProtocol = "dcc14";
+                            speedMax = 7;
+                            timeMax = 5;
+
                         } else if (locEsuData.protocol === "MM27" || locEsuData.protocol === "DCC28") {
+
                             speedModeProtocol = "dcc28";
+                            speedMax = 7;
+                            timeMax = 5;
+
                         }
                     }
 
                     const recentLocomotiveData = self.__getLocomotiveOfRecentData(locOid);
                     let preloadData = "esu";
-                    let speedMax = 55;
-                    let timeMax = 15;
+                    
                     if (recentLocomotiveData != null && recentLocomotiveData.SpeedCurve != null) {
                         if (typeof recentLocomotiveData.SpeedCurve.steps !== "undefined" &&
                             recentLocomotiveData.SpeedCurve.steps != null) {
@@ -448,6 +465,7 @@ class Locomotives {
                     }
 
                     self.__speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
+                        objectId: locOid,
                         speedMode: speedModeProtocol,
                         speedStepMaxDefault: speedMax,
                         speedTimeMaxDefault: timeMax,

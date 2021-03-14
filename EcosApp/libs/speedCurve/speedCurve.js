@@ -360,11 +360,30 @@
                 247.000
             ];
 
-            let values = data;
-            if (esuLenz === 0) values = preloadEsu28;
-            else if (esuLenz === 1) values = preloadLenz28;
+			const preloadEsu14 = [
+                0,
+                2.000, 9.573, 17.536, 26.306, 36.309,
+                47.980, 61.759, 78.091, 97.423,
+                120.208, 146.900, 177.956, 213.836
+            ];
 
-            const maxI = values.length;
+            const preloadLenz14 = [
+                0,
+                2.000, 7.786, 15.905, 26.266, 38.822,
+                53.543, 70.402, 89.382, 110.465,
+                133.639, 158.889, 186.206, 215.579                
+            ];
+
+            let values = data;
+			if(speedsteps === 14) {
+				if (esuLenz === 0) values = preloadEsu14;
+				else if (esuLenz === 1) values = preloadLenz14;
+			} else {
+				if (esuLenz === 0) values = preloadEsu28;
+				else if (esuLenz === 1) values = preloadLenz28;
+			}			
+
+            const maxI = values.length;		
 
             for (let i = 0, elIdx = 0; i < maxI - 1; ++i, elIdx += deltaStep) {
                 const v0 = values[i];

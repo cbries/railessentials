@@ -5,8 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using ecoslib.Utilities;
 using Newtonsoft.Json.Linq;
+// ReSharper disable InconsistentNaming
 
 namespace ecoslib.Entities
 {
@@ -16,11 +18,14 @@ namespace ecoslib.Entities
 
         public enum ProtocolSteps
         {
+            MMFKT = 14,
             MM14 = 14,
-            MM27 = 27,
-            MM128 = 128,
             DCC14 = 14,
+
+            MM27 = 27,
             DCC28 = 28,
+
+            MM128 = 128,
             DCC128 = 128,
             MFX = 128
         }
@@ -54,6 +59,7 @@ namespace ecoslib.Entities
             if (protocol.Equals("DCC28", StringComparison.OrdinalIgnoreCase)) return 28;
             if (protocol.Equals("DCC128", StringComparison.OrdinalIgnoreCase)) return 128;
             if (protocol.Equals("MFX", StringComparison.OrdinalIgnoreCase)) return 128;
+            if (protocol.Equals("MMFKT", StringComparison.OrdinalIgnoreCase)) return 14;
             return 128;
         }
 

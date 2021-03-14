@@ -191,7 +191,7 @@
                 else if (settings.preloadData === "lenz")
                     __preloadExponential(1);
             } else {
-                if (settings.preloadData.length == 0) {
+                if (settings.preloadData.length === 0) {
                     __preloadExponential(0);
                 } else {
                     __preloadData(settings.preloadData);
@@ -219,12 +219,9 @@
             let currentX = parseInt(speedNooby.css("left").replace("px", ""));
             currentX += __speedMode.noobyWidth / 2;
             currentX += maxSpeed * __speedMode.noobyWidth;
-            lineTime.css({
-                "left": currentX
-            });
+            lineTime.css({ "left": currentX });
 
             const rect = speedCurveRoot.get(0).getBoundingClientRect();
-            const bottom = rect.top + rect.height;
 
             //
             // hide time labels which are higher as the selected max time value
@@ -261,17 +258,16 @@
                 elTimeLbl.removeClass("timeHighlight");
                 elSpeedLbl.removeClass("speedHighlight");
 
+                el.data("speed", speed);
+                el.data("timeStep", counterTime);
+
                 if (speed > maxSpeed) {
                     elTimeLbl.hide();
                     elSpeedLbl.hide();
-                    el.data("speed", maxSpeed);
-                    el.data("timeStep", maxSpeed);
                 } else if (i === maxSpeed) {
                     elTimeLbl.addClass("timeHighlight");
                     elSpeedLbl.addClass("speedHighlight");
                     elSpeedLbl.html(maxSpeed);
-                    el.data("speed", speed);
-                    el.data("timeStep", counterTime);
                     elTimeLbl.show();
                     elSpeedLbl.show();
                 } else {
@@ -281,15 +277,13 @@
                         if (isShowChecked == true) elSpeedLbl.show();
                         else elSpeedLbl.hide();
                     }
-                    el.data("speed", speed);
-                    el.data("timeStep", counterTime);
                 }
 
                 for (let j = 0; j < istep; ++j)
                     counterTime += stepTime;
             }
 
-            if (settings.onChanged != null && __isInstalled == true)
+            if (settings.onChanged != null && __isInstalled === true)
                 settings.onChanged({ data: __getData() });
         }
 
@@ -312,9 +306,7 @@
                     __preloadExponential(1);
             } else {
                 if (typeof data !== "undefined" && data != null && data.length > 0)
-                    __preloadExponential(-1, data);
-                else
-                    __preloadExponential(-1, settings.preloadData);
+                    __preloadUserData(data);
             }
         }
 
@@ -326,6 +318,21 @@
                 const el = $(elements[i]);
                 const y = (i * ystep);
                 __setY(el, y);
+            }
+
+            __realignLines();
+        }
+
+        function __preloadUserData(data) {
+            const elements = ctxContainer.find('.nooby');
+            const speedsteps = __speedMode.speedsteps;
+            const ystep = settings.height / speedsteps;
+            const maxI = data.length;
+
+            for (let i = 0; i < maxI; ++i) {
+                const y = ystep * data[i];
+                const ell = $(elements[i]);
+                __setY(ell, y);
             }
 
             __realignLines();

@@ -347,6 +347,20 @@ class Locomotives {
         this.__installed = true;
     }
 
+    __getLocomotiveEcosData(oid) {
+        const self = this;
+        if (typeof self.__recentEcosData === "undefined" || self.__recentEcosData == null)
+            return null;
+        const localOid = parseInt(oid);
+        for (let i = 0; i < self.__recentEcosData.length; ++i) {
+            const loc = self.__recentEcosData[i];
+            if (loc == null) continue;
+            if (loc.objectId === localOid)
+                return loc;
+        }
+        return null;
+    }
+
     __showSpeedCurveDialog(locOid) {
         const self = this;
 
@@ -397,6 +411,22 @@ class Locomotives {
                 event.onComplete = function () {
                     $('#w2ui-popup #form').w2render('formSpeedCurve');
 
+                    const locEsuData = self.__getLocomotiveEcosData(locOid);
+                    let speedModeProtocol = "dcc128";
+                    if (locEsuData != null) {
+                        if (locEsuData.protocol === "DCC128"
+                            || locEsuData.protocol === "MM128"
+                            || locEsuData.protocol === "MFX") {
+                            speedModeProtocol = "dcc128";
+                        } else if (locEsuData.protocol === "MMFKT"
+                            || locEsuData.protocol === "MM14"
+                            || locEsuData.protocol === "DCC14") {
+                            speedModeProtocol = "dcc14";
+                        } else if (locEsuData.protocol === "MM27" || locEsuData.protocol === "DCC28") {
+                            speedModeProtocol = "dcc28";
+                        }
+                    }
+
                     const recentLocomotiveData = self.__getLocomotiveOfRecentData(locOid);
                     let preloadData = "esu";
                     let speedMax = 55;
@@ -418,7 +448,7 @@ class Locomotives {
                     }
 
                     self.__speedCurveInstance = $('#w2ui-popup #formSpeedCurveInstance').speedCurve({
-                        speedMode: "dcc128",
+                        speedMode: speedModeProtocol,
                         speedStepMaxDefault: speedMax,
                         speedTimeMaxDefault: timeMax,
                         height: 220,
@@ -520,7 +550,7 @@ class Locomotives {
 
     updateLocomotives(ecosDataLocomotives) {
         const self = this;
-        this.__recentEcosData = ecosDataLocomotives;
+        self.__recentEcosData = ecosDataLocomotives;
         if (typeof ecosDataLocomotives === "undefined" || ecosDataLocomotives == null)
             return;
 

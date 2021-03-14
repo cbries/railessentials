@@ -21,7 +21,8 @@ namespace ecoslib.Entities
             MM128 = 128,
             DCC14 = 14,
             DCC28 = 28,
-            DCC128 = 128
+            DCC128 = 128,
+            MFX = 128
         }
 
         public int GetSpeedByPercentage(float percentage)
@@ -52,6 +53,7 @@ namespace ecoslib.Entities
             if (protocol.Equals("DCC14", StringComparison.OrdinalIgnoreCase)) return 14;
             if (protocol.Equals("DCC28", StringComparison.OrdinalIgnoreCase)) return 28;
             if (protocol.Equals("DCC128", StringComparison.OrdinalIgnoreCase)) return 128;
+            if (protocol.Equals("MFX", StringComparison.OrdinalIgnoreCase)) return 128;
             return 128;
         }
 

@@ -14,7 +14,6 @@ namespace railessentials.AutoMode
     {
         public event AutoModeTaskFinished Finished;
 
-        protected Metadata Metadata { get; set; }
         protected AutoMode Ctx { get; set; }
 
         protected NextRouteInformation Route { get; set; }

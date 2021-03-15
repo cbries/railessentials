@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Testmodels\locomotives.speedCurve.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Testmodels\metamodel.connector.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

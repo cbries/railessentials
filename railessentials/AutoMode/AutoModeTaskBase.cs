@@ -5,7 +5,6 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Web.Caching;
 using ecoslib.Entities;
 using railessentials.Analyzer;
 using railessentials.Plan;
@@ -102,6 +101,18 @@ namespace railessentials.AutoMode
                 var fbInAlreadyReached = false;
                 if(speedCurve != null)
                 {
+                    var duration = 10.0;
+
+                    if(Ctx?._metadataLock != null)
+                    {
+                        lock(Ctx._metadataLock)
+                        {
+                            duration = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationTime(
+                                Route.LocomotiveObjectId, 
+                                Route.TargetBlock.identifier);
+                        }
+                    }
+
                     await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, hasToBeCanceled: () =>
                     {
                         fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
@@ -136,21 +147,27 @@ namespace railessentials.AutoMode
                 //
                 // save duration between FB-enter and FB-in
                 //
-                if(Metadata != null)
+                if(Ctx?._metadataLock != null)
                 {
-                    Metadata.LocomotivesDurationData.AddDecelerateDuration(
-                        Route.LocomotiveObjectId,
-                        Route.TargetBlock.identifier,
-                        startDt,
-                        stopDt);
+                    lock(Ctx._metadataLock)
+                    {
+                        if (Ctx?._metadata != null)
+                        {
+                            Ctx?._metadata.LocomotivesDurationData.AddDecelerateDuration(
+                                Route.LocomotiveObjectId,
+                                Route.TargetBlock.identifier,
+                                startDt,
+                                stopDt);
 
-                    Metadata.Save(Metadata.SaveModelType.LocomotivesDurationsData);
+                            Ctx?._metadata.Save(Metadata.SaveModelType.LocomotivesDurationsData);
+                        }
+                    }
                 }
 
                 //
                 // NOTE stop the locomotive in any case when fbIn is reached
                 //
-                Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(Route.Locomotive, 0);
+                Ctx?.GetClientHandler()?.LocomotiveChangeSpeedstep(Route.Locomotive, 0);
 
                 //
                 // NOTE reset the current OCC information and set the final block as new from block
@@ -240,13 +257,12 @@ namespace railessentials.AutoMode
             return pinState;
         }
 
-        public static AutoModeTaskBase Create(Metadata metadata, NextRouteInformation route, AutoMode ctx)
+        public static AutoModeTaskBase Create(NextRouteInformation route, AutoMode ctx)
         {
             var instance = new AutoModeTaskBase
             {
                 Ctx = ctx,
-                Route = route,
-                Metadata = metadata
+                Route = route
             };
 
             return instance;

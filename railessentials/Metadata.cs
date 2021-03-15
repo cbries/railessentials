@@ -35,6 +35,7 @@ namespace railessentials
         {
             Occ = new OccData(this);
             LocomotivesData = new LocomotivesData(this);
+            LocomotivesDurationData = new DurationsData(this);
             FeedbacksData = new FeedbacksData(this);
         }
 
@@ -117,7 +118,8 @@ namespace railessentials
         public bool LoadOccData(string pathToOccmodel, bool resetToInitState = false)
         {
             if (string.IsNullOrEmpty(pathToOccmodel)) return false;
-            if (!File.Exists(pathToOccmodel)) return false;
+            if (!File.Exists(pathToOccmodel))
+                File.WriteAllText(pathToOccmodel, "[]", Encoding.UTF8);
             Occ = new OccData(this);
             var r = Occ.Load(pathToOccmodel);
             if (resetToInitState)
@@ -141,7 +143,8 @@ namespace railessentials
         public bool LoadLocomotives(string pathToLocomotivesmodel)
         {
             if (string.IsNullOrEmpty(pathToLocomotivesmodel)) return false;
-            if (!File.Exists(pathToLocomotivesmodel)) return false;
+            if (!File.Exists(pathToLocomotivesmodel))
+                File.WriteAllText(pathToLocomotivesmodel, "{}", Encoding.UTF8);
             LocomotivesData = new LocomotivesData(this);
             return LocomotivesData.Load(pathToLocomotivesmodel);
         }
@@ -149,7 +152,8 @@ namespace railessentials
         public bool LoadLocomotivesDurations(string pathToLocomotiveDurations)
         {
             if (string.IsNullOrEmpty(pathToLocomotiveDurations)) return false;
-            if (!File.Exists(pathToLocomotiveDurations)) return false;
+            if (!File.Exists(pathToLocomotiveDurations))
+                File.WriteAllText(pathToLocomotiveDurations, "{}", Encoding.UTF8);
             LocomotivesDurationData = new DurationsData(this);
             return LocomotivesDurationData.Load(pathToLocomotiveDurations);
         }
@@ -157,7 +161,8 @@ namespace railessentials
         public bool LoadFeedbacks(string pathToFeedbacksmodel)
         {
             if (string.IsNullOrEmpty(pathToFeedbacksmodel)) return false;
-            if (!File.Exists(pathToFeedbacksmodel)) return false;
+            if (!File.Exists(pathToFeedbacksmodel))
+                File.WriteAllText(pathToFeedbacksmodel, "[]", Encoding.UTF8);
             FeedbacksData = new FeedbacksData(this);
             return FeedbacksData.Load(pathToFeedbacksmodel);
         }

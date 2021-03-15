@@ -38,7 +38,7 @@ namespace railessentials.ClientHandler
         internal Sniffer _sniffer;
         private JArray _themeData;
         internal Metadata _metadata;
-        private readonly object _metadataLock = new();
+        internal readonly object _metadataLock = new();
 
         public ILogger Logger { get; set; }
 

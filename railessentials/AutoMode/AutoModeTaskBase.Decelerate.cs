@@ -59,18 +59,28 @@ namespace railessentials.AutoMode
                     {
                         Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, 0);
 
-                        break;
+                        return;
                     }
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
-                            break;
+                            return;
 
-                    System.Threading.Thread.Sleep((int)timeSteps);
+                    var sl = (int)timeSteps;
+                    var deltaSteps = 10;
+                    var slSteps = sl / deltaSteps;
+                    for (var jj = 0; jj < deltaSteps; ++jj)
+                    {
+                        if (hasToBeCanceled != null)
+                            if (hasToBeCanceled())
+                                return;
+
+                        System.Threading.Thread.Sleep(slSteps);
+                    }
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
-                            break;
+                            return;
                 }
 
             }, CancelSource.Token);

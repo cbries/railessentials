@@ -2,8 +2,9 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using railessentials.Locomotives;
 using railessentials.LocomotivesDuration;
+using Data = railessentials.LocomotivesDuration.Data;
 
 namespace TrackPlanerTest
 {
@@ -76,6 +77,34 @@ namespace TrackPlanerTest
             duration.Should().BeInRange(15 - 0.001, 15 + 0.001);
 
             jsonObject.ContainsKey("1000").Should().BeFalse();
+        }
+
+        [TestMethod]
+        [DeploymentItem("Testmodels", "Testmodels")]
+        public void TestDurationWithSpeedCurve()
+        {
+            var testSeconds = 5.0;
+
+            var instance = new DurationsData(null);
+            var data1004 = instance.GetData(1004);
+            data1004.Should().BeNull();
+            const string blockName = "B01[+]";
+            for (var i = 0; i < 100; ++i)
+                instance.AddDecelerateDuration(1004, blockName, DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(testSeconds)).Should().BeTrue();
+
+            var avrDuration = instance.GetAverageDecelerationTime(1004, blockName);
+            avrDuration.Should().BeInRange((testSeconds - 0.001), testSeconds + 0.001);
+
+            var locdata = new LocomotivesData(null);
+            locdata.Load(@"Testmodels\locomotives.speedCurve.json").Should().BeTrue();
+            var locdata1004 = locdata.GetData(1004);
+            locdata1004.Should().NotBeNull();
+            var speedCurve = locdata1004.SpeedCurve;
+            speedCurve.Should().NotBeNull();
+            speedCurve.MaxTime.Should().Be(10);
+
+            var idx = speedCurve.GetIndexOfNearestSpeed(25);
+            idx.Should().BeGreaterThan(0);
         }
     }
 }

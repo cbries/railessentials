@@ -40,7 +40,8 @@ namespace railessentials.AutoMode
         private bool _isStopping;
         private bool _isStarted;
 
-        private Metadata _metadata;
+        internal Metadata _metadata;
+        internal object _metadataLock;
         private DataProvider _dataProvider;
         private DataProvider _dataProviderS88;
         private RouteList _routeList;
@@ -156,7 +157,7 @@ namespace railessentials.AutoMode
                     {
                         LogInfo($"{nextRouteInformation}");
 
-                        var instance = AutoModeTaskBase.Create(_metadata, nextRouteInformation, this);
+                        var instance = AutoModeTaskBase.Create(nextRouteInformation, this);
                         instance.Finished += Instance_Finished;
                         lock (_autoModeTasksLock)
                         {
@@ -393,7 +394,9 @@ namespace railessentials.AutoMode
             if (string.IsNullOrEmpty(blockName)) return null;
             if (side == SideMarker.None) return null;
 
-            var fbs = _metadata.FeedbacksData;
+            Feedbacks.FeedbacksData fbs;
+            lock (_metadataLock)
+                fbs = _metadata.FeedbacksData;
             if (fbs == null) return null;
 
             foreach (var itFb in fbs.Entries)
@@ -424,8 +427,11 @@ namespace railessentials.AutoMode
             fbIn = string.Empty;
 
             if (block == null) return false;
+            if (_metadataLock == null) return false;
 
-            var fbs = _metadata.FeedbacksData;
+            Feedbacks.FeedbacksData fbs;
+            lock(_metadataLock)
+                fbs = _metadata.FeedbacksData;
             if (fbs == null) return false;
 
             foreach (var itFb in fbs.Entries)
@@ -460,25 +466,34 @@ namespace railessentials.AutoMode
 
         internal void SaveOccAndPromote(bool promote = true)
         {
-            if (_metadata == null) return;
-            _metadata.Save(Metadata.SaveModelType.OccData);
+            if (_metadata == null || _metadataLock == null) return;
+            lock (_metadataLock)
+            {
+                _metadata.Save(Metadata.SaveModelType.OccData);
+            }
             if (promote)
                 _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateOcc);
         }
 
         internal void SaveRoutesAndPromote(bool promote = true)
         {
-            if (_metadata == null) return;
-            _metadata.SetRoutes(_routeList);
-            _metadata?.Save(Metadata.SaveModelType.RouteData);
+            if (_metadata == null || _metadataLock == null) return;
+            lock (_metadataLock)
+            {
+                _metadata.SetRoutes(_routeList);
+                _metadata?.Save(Metadata.SaveModelType.RouteData);
+            }
             if (promote)
                 _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateRoutes);
         }
 
         internal void SaveLocomotivesAndPromote(bool promote = true)
         {
-            if (_metadata == null) return;
-            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+            if (_metadata == null || _metadataLock == null) return;
+            lock (_metadataLock)
+            {
+                _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+            }
             if (promote)
                 _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateLocomotivesData);
         }
@@ -488,6 +503,7 @@ namespace railessentials.AutoMode
             if (_metadata != null) return;
 
             _metadata = _ctx._metadata;
+            _metadataLock = _ctx._metadata;
             _dataProvider = _ctx._sniffer.GetDataProvider() as DataProvider;
             _dataProviderS88 = _ctx._sniffer.GetDataProviderS88() as DataProvider;
 

@@ -49,12 +49,12 @@ namespace TrackPlanerTest
             const string blockName = "B01[+]";
             for (var i = 0; i < 100; ++i)
                 instance.AddDecelerateDuration(1004, blockName, DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(15)).Should().BeTrue();
-            var avr = instance.GetAverageDecelerationTime(1004, blockName);
+            var avr = instance.GetAverageDecelerationSeconds(1004, blockName);
             avr.Should().BeInRange((15 - 0.001), 15 + 0.001);
 
-            instance.GetAverageDecelerationTime(1000, "", 1337).Should().Be(1337);
-            instance.GetAverageDecelerationTime(1004, "", 1337).Should().Be(1337);
-            instance.GetAverageDecelerationTime(1004, "--", 1337).Should().Be(1337);
+            instance.GetAverageDecelerationSeconds(1000, "", 1337).Should().Be(1337);
+            instance.GetAverageDecelerationSeconds(1004, "", 1337).Should().Be(1337);
+            instance.GetAverageDecelerationSeconds(1004, "--", 1337).Should().Be(1337);
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace TrackPlanerTest
             for (var i = 0; i < 100; ++i)
                 instance.AddDecelerateDuration(1004, blockName, DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(testSeconds)).Should().BeTrue();
 
-            var avrDuration = instance.GetAverageDecelerationTime(1004, blockName);
+            var avrDuration = instance.GetAverageDecelerationSeconds(1004, blockName);
             avrDuration.Should().BeInRange((testSeconds - 0.001), testSeconds + 0.001);
 
             var locdata = new LocomotivesData(null);
@@ -102,9 +102,6 @@ namespace TrackPlanerTest
             var speedCurve = locdata1004.SpeedCurve;
             speedCurve.Should().NotBeNull();
             speedCurve.MaxTime.Should().Be(10);
-
-            var idx = speedCurve.GetIndexOfNearestSpeed(25);
-            idx.Should().BeGreaterThan(0);
         }
     }
 }

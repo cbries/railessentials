@@ -101,19 +101,19 @@ namespace railessentials.AutoMode
                 var fbInAlreadyReached = false;
                 if(speedCurve != null)
                 {
-                    var duration = 10.0;
+                    var durationSeconds = 10.0;
 
                     if(Ctx?._metadataLock != null)
                     {
                         lock(Ctx._metadataLock)
                         {
-                            duration = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationTime(
+                            durationSeconds = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationSeconds(
                                 Route.LocomotiveObjectId, 
                                 Route.TargetBlock.identifier);
                         }
                     }
 
-                    await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, hasToBeCanceled: () =>
+                    await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, maxSeconds: (int)durationSeconds, hasToBeCanceled: () =>
                     {
                         fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
                         // TODO handle hasError (e.g. cancel route)

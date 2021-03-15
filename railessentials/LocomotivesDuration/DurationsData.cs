@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -48,7 +47,7 @@ namespace railessentials.LocomotivesDuration
                 foreach (var itt in it.Value.DecelerateDurations)
                 {
                     var blockId = itt.Key;
-                    var blockDuration = GetAverageDecelerationTime(locId, blockId);
+                    var blockDuration = GetAverageDecelerationSeconds(locId, blockId);
 
                     var entry = new AverageDurationEntry
                     {
@@ -189,7 +188,7 @@ namespace railessentials.LocomotivesDuration
             return currentNo;
         }
 
-        public double GetAverageDecelerationTime(int locomotiveId, string blockId, int defaultSeconds = 10)
+        public double GetAverageDecelerationSeconds(int locomotiveId, string blockId, int defaultSeconds = 10)
         {
             if (locomotiveId <= 0) return defaultSeconds;
             if (string.IsNullOrEmpty(blockId)) return defaultSeconds;

@@ -16,7 +16,7 @@ namespace railessentials.AutoMode
             int currentSpeed,
             Locomotive ecosLoc,
             SpeedCurve speedCurve,
-            int maxTime = -1, // TODO measure real time between FB enter and FB in
+            int maxSeconds = -1,
             Func<bool> hasToBeCanceled = null)
         {
             Trace.WriteLine("AccelerateLocomotiveCurve()");
@@ -24,13 +24,18 @@ namespace railessentials.AutoMode
             if (ecosLoc == null) return;
             if (speedCurve == null) return;
 
+            if (maxSeconds <= -1)
+                maxSeconds = speedCurve.MaxTime;
+
             var targetSpeed = speedCurve.MaxSpeed;
-            var delayBetween = speedCurve.MaxTime / (float)speedCurve.MaxSpeed * 1000.0;
+            var timeSteps = speedCurve.MaxTime / (float)speedCurve.MaxSpeed * 1000.0;
 
             await Task.Run(() =>
             {
                 var hasCanceled = false;
-                
+
+                var sw = Stopwatch.StartNew();
+
                 var idxOfCurrentSpeed = 0;
                 for (var i = 0; i < speedCurve.Steps.Count - 1; ++i)
                 {
@@ -50,6 +55,12 @@ namespace railessentials.AutoMode
                     if (newSpeed >= targetSpeed)
                         break;
 
+                    //
+                    // walltime reached
+                    //
+                    if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
+                        return;
+
                     if (IsCanceled())
                     {
                         hasCanceled = true;
@@ -60,7 +71,27 @@ namespace railessentials.AutoMode
                         if (hasToBeCanceled())
                             break;
 
-                    System.Threading.Thread.Sleep((int)delayBetween);
+                    //
+                    // split delay for higher recognition
+                    //
+                    var sl = (int)timeSteps;
+                    var deltaSteps = 10;
+                    var slSteps = sl / deltaSteps;
+                    for (var jj = 0; jj < deltaSteps; ++jj)
+                    {
+                        if (hasToBeCanceled != null)
+                            if (hasToBeCanceled())
+                                return;
+
+                        //
+                        // walltime reached
+                        //
+                        if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
+                            return;
+
+                        System.Threading.Thread.Sleep(slSteps);
+                    }
+
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
@@ -83,7 +114,7 @@ namespace railessentials.AutoMode
             Func<bool> hasToBeCanceled = null)
         {
             Trace.WriteLine("AccelerateLocomotive()");
-
+            
             var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
             var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;
 

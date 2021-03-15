@@ -1,6 +1,8 @@
 ﻿using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using railessentials.LocomotivesDuration;
 
 namespace TrackPlanerTest
@@ -52,6 +54,28 @@ namespace TrackPlanerTest
             instance.GetAverageDecelerationTime(1000, "", 1337).Should().Be(1337);
             instance.GetAverageDecelerationTime(1004, "", 1337).Should().Be(1337);
             instance.GetAverageDecelerationTime(1004, "--", 1337).Should().Be(1337);
+        }
+
+        [TestMethod]
+        public void TestDecelerationJson()
+        {
+            var instance = new DurationsData(null);
+            var data1004 = instance.GetData(1004);
+            data1004.Should().BeNull();
+            const string blockName = "B01[+]";
+            for (var i = 0; i < 100; ++i)
+                instance.AddDecelerateDuration(1004, blockName, DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(15)).Should().BeTrue();
+
+            var json = instance.ToJsonDecelerationDurations();
+            var jsonObject = JsonConvert.DeserializeObject<AverageDurations>(json);
+            jsonObject.ContainsKey("1004").Should().BeTrue();
+            var it1004 = jsonObject["1004"];
+            it1004.Should().NotBeNull();
+            it1004.Count.Should().Be(1);
+            var duration = jsonObject.GetDuration(1004, blockName);
+            duration.Should().BeInRange(15 - 0.001, 15 + 0.001);
+
+            jsonObject.ContainsKey("1000").Should().BeFalse();
         }
     }
 }

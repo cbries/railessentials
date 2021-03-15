@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using ecoslib.Entities;
 using Newtonsoft.Json;
@@ -157,7 +156,7 @@ namespace railessentials.AutoMode
                     {
                         LogInfo($"{nextRouteInformation}");
 
-                        var instance = AutoModeTaskBase.Create(nextRouteInformation, this);
+                        var instance = AutoModeTaskBase.Create(_metadata, nextRouteInformation, this);
                         instance.Finished += Instance_Finished;
                         lock (_autoModeTasksLock)
                         {

@@ -14,6 +14,7 @@ using ecoslib.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
+using railessentials.LocomotivesDuration;
 using railessentials.Plan;
 using railessentials.Route;
 using SuperWebSocket;
@@ -1002,7 +1003,7 @@ namespace railessentials.ClientHandler
                 case "speedcurve":
                     {
                         var speedCurveData = data["data"] as JObject;
-                        if(speedCurveData == null)
+                        if (speedCurveData == null)
                         {
                             SendDebugMessage($"Missing SpeedCurve data for Locomotive({oid}).");
                             return;
@@ -1447,17 +1448,17 @@ namespace railessentials.ClientHandler
             }
         }
 
-        [Flags]
         internal enum ModelType
         {
             Update = 1,
             UpdateMetamodel = 2,
-            UpdateEcos = 4,
-            UpdateRoutes = 8,
-            UpdateOcc = 16,
-            UpdateLocomotivesData = 32,
-            UpdateFeedbacks = 64,
-            Initialization = 128
+            UpdateEcos = 3,
+            UpdateRoutes = 4,
+            UpdateOcc = 5,
+            UpdateLocomotivesData = 6,
+            UpdateLocomotivesDurationsData = 7,
+            UpdateFeedbacks = 8,
+            Initialization = 9,
         }
 
         internal void SendModelToClient(WebSocketSession session, ModelType modelType)
@@ -1466,8 +1467,41 @@ namespace railessentials.ClientHandler
             if (session.InClosing) return;
             if (!session.Connected) return;
 
+            //
+            // TBD currently we do not need to send any update
+            // TBD of durations to the client, they are not handled
+            // TBD they are not provided to any user interface, etc.
+            // TBD the values are just used in AutoMode and need 
+            // TBD only to be accessed by AutoMode routines right now
+            // 
+            #region DISABLED send of duration values to client
+            // ModelType.UpdateLocomotivesDurationsData only
+            //if(modelType == ModelType.UpdateLocomotivesDurationsData)
+            //{
+            //    lock (_metadataLock)
+            //    {
+            //        try
+            //        {
+            //            var json = _metadata.LocomotivesDurationData.ToJsonDecelerationDurations();
+            //            var jsonDuractions = JObject.Parse(json);
+            //            var data = new JObject
+            //            {
+            //                ["command"] = "locomotiveDurations",
+            //                ["data"] = jsonDuractions
+            //            };
+            //            session.Send(data.ToString(Formatting.Indented));
+            //        }
+            //        catch
+            //        {
+            //            // ignore
+            //        }
+            //    }
+            //    return;
+            //}
+            #endregion
+
             // ModelType.UpdateOcc only
-            if ((modelType & ModelType.UpdateOcc) != 0)
+            if (modelType == ModelType.UpdateOcc)
             {
                 lock (_metadataLock)
                 {
@@ -1484,7 +1518,7 @@ namespace railessentials.ClientHandler
             }
 
             // ModelType.UpdateLocomotivesData only
-            if ((modelType & ModelType.UpdateLocomotivesData) != 0)
+            if (modelType == ModelType.UpdateLocomotivesData)
             {
                 lock (_metadataLock)
                 {
@@ -1501,7 +1535,7 @@ namespace railessentials.ClientHandler
             }
 
             // ModelType.UpdateFeedbacks only
-            if ((modelType & ModelType.UpdateFeedbacks) != 0)
+            if (modelType == ModelType.UpdateFeedbacks)
             {
                 lock (_metadataLock)
                 {
@@ -1522,7 +1556,7 @@ namespace railessentials.ClientHandler
                 string cmd;
                 var isInit = false;
 
-                if ((modelType & ModelType.Initialization) != 0)
+                if (modelType == ModelType.Initialization)
                 {
                     cmd = "initialization";
                     isInit = true;
@@ -1540,21 +1574,22 @@ namespace railessentials.ClientHandler
                     ["command"] = cmd
                 };
 
-                if ((modelType & ModelType.Initialization) != 0)
+                if (modelType == ModelType.Initialization)
                 {
                     data["metamodel"] = _metadata?.Metamodel;
                 }
-                else if ((modelType & ModelType.Update) != 0)
+                else if (modelType == ModelType.Update)
                 {
                     data["metamodel"] = _metadata?.Metamodel;
                 }
 
-                if ((modelType & ModelType.Initialization) != 0 || (modelType & ModelType.Update) != 0)
+                if (modelType == ModelType.Initialization 
+                    || modelType == ModelType.Update)
                 {
                     data["routes"] = _metadata?.Routes;
 
                     var m = _metadata?.EcosData;
-                    if (m != null && (modelType & ModelType.Initialization) != 0)
+                    if (m != null && modelType == ModelType.Initialization)
                     {
                         // force refresh of all visualizations during initialization
                         if (m["ecosbase"] != null) m["ecosbaseChanged"] = true;
@@ -1566,9 +1601,9 @@ namespace railessentials.ClientHandler
                 }
                 else
                 {
-                    if ((modelType & ModelType.UpdateEcos) != 0) data["ecosData"] = _metadata?.EcosData;
-                    if ((modelType & ModelType.UpdateMetamodel) != 0) data["metamodel"] = _metadata?.Metamodel;
-                    if ((modelType & ModelType.UpdateRoutes) != 0) data["routes"] = _metadata?.Routes;
+                    if (modelType == ModelType.UpdateEcos) data["ecosData"] = _metadata?.EcosData;
+                    if (modelType == ModelType.UpdateMetamodel) data["metamodel"] = _metadata?.Metamodel;
+                    if (modelType == ModelType.UpdateRoutes) data["routes"] = _metadata?.Routes;
                 }
 
                 if (isInit)

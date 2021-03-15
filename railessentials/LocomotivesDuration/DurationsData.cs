@@ -30,6 +30,40 @@ namespace railessentials.LocomotivesDuration
             return JObject.Parse(ToJsonString());
         }
 
+        public string ToJsonDecelerationDurations()
+        {
+            var avr = new AverageDurations();
+            
+            foreach(var it in Entries)
+            {
+                var slocId = it.Key;
+                if (avr.ContainsKey(slocId))
+                    continue;
+
+                if (!int.TryParse(slocId, out var locId))
+                    continue;
+
+                var entries = new List<AverageDurationEntry>();
+                foreach (var itt in it.Value.DecelerateDurations)
+                {
+                    var blockId = itt.Key;
+                    var blockDuration = GetAverageDecelerationTime(locId, blockId);
+
+                    var entry = new AverageDurationEntry
+                    {
+                        BlockId = blockId,
+                        Duration = blockDuration
+                    };
+
+                    entries.Add(entry);
+                }
+
+                avr[slocId] = entries;
+            }
+
+            return JsonConvert.SerializeObject(avr);
+        }
+
         public bool Load(string pathToDurationsModel)
         {
             DurationsPath = pathToDurationsModel;

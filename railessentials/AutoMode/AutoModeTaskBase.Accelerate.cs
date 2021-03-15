@@ -35,7 +35,6 @@ namespace railessentials.AutoMode
                 var hasCanceled = false;
 
                 var sw = Stopwatch.StartNew();
-
                 var idxOfCurrentSpeed = 0;
                 for (var i = 0; i < speedCurve.Steps.Count - 1; ++i)
                 {
@@ -60,7 +59,7 @@ namespace railessentials.AutoMode
                     //
                     if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
                         return;
-
+                  
                     if (IsCanceled())
                     {
                         hasCanceled = true;
@@ -114,8 +113,8 @@ namespace railessentials.AutoMode
             Func<bool> hasToBeCanceled = null)
         {
             Trace.WriteLine("AccelerateLocomotive()");
-            
-            var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
+
+           var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
             var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;
 
             delayBetween ??= new TimeSpan(0, 0, 0, 0, msecsDelay);

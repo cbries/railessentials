@@ -39,7 +39,6 @@ namespace railessentials.AutoMode
                 //
 
                 var sw = Stopwatch.StartNew();
-
                 var idx = -1;
                 for(var i = 0; i < speedCurve.Steps.Count - 1; ++i)
                 {
@@ -55,7 +54,7 @@ namespace railessentials.AutoMode
                 if (idx == -1) 
                     idx = speedCurve.Steps.Count - 1;
 
-                for (var i = idx; i > minSpeed; --i)
+              for (var i = idx; i > minSpeed; --i)
                 {
                     var nextSpeed = speedCurve.Steps[i];
 

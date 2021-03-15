@@ -1,6 +1,6 @@
 [
   {
-    "name": "sb1_cb1",
+    "name": "sb1[+]_cb1[-]",
     "tracks": [
       {
         "x": 1,
@@ -206,7 +206,7 @@
     "occupied": false
   },
   {
-    "name": "sb1_cb2",
+    "name": "sb1[+]_cb2[-]",
     "tracks": [
       {
         "x": 1,
@@ -416,7 +416,7 @@
     "occupied": false
   },
   {
-    "name": "sb1_cb3",
+    "name": "sb1[+]_cb3[-]",
     "tracks": [
       {
         "x": 1,
@@ -642,7 +642,7 @@
     "occupied": false
   },
   {
-    "name": "sb2_cb1",
+    "name": "sb2[+]_cb1[-]",
     "tracks": [
       {
         "x": 2,
@@ -860,7 +860,7 @@
     "occupied": false
   },
   {
-    "name": "sb2_cb2",
+    "name": "sb2[+]_cb2[-]",
     "tracks": [
       {
         "x": 2,
@@ -1082,7 +1082,7 @@
     "occupied": false
   },
   {
-    "name": "sb2_cb3",
+    "name": "sb2[+]_cb3[-]",
     "tracks": [
       {
         "x": 2,
@@ -1320,7 +1320,7 @@
     "occupied": false
   },
   {
-    "name": "sb3_cb1",
+    "name": "sb3[+]_cb1[-]",
     "tracks": [
       {
         "x": 3,
@@ -1550,7 +1550,7 @@
     "occupied": false
   },
   {
-    "name": "sb3_cb2",
+    "name": "sb3[+]_cb2[-]",
     "tracks": [
       {
         "x": 3,
@@ -1784,7 +1784,7 @@
     "occupied": false
   },
   {
-    "name": "sb3_cb3",
+    "name": "sb3[+]_cb3[-]",
     "tracks": [
       {
         "x": 3,
@@ -2034,7 +2034,7 @@
     "occupied": false
   },
   {
-    "name": "sb4_cb1",
+    "name": "sb4[+]_cb1[-]",
     "tracks": [
       {
         "x": 5,
@@ -2272,7 +2272,7 @@
     "occupied": false
   },
   {
-    "name": "sb4_cb2",
+    "name": "sb4[+]_cb2[-]",
     "tracks": [
       {
         "x": 5,
@@ -2514,7 +2514,7 @@
     "occupied": false
   },
   {
-    "name": "sb4_cb3",
+    "name": "sb4[+]_cb3[-]",
     "tracks": [
       {
         "x": 5,
@@ -2772,7 +2772,7 @@
     "occupied": false
   },
   {
-    "name": "cb2_sb4",
+    "name": "cb2[-]_sb4[-]",
     "tracks": [
       {
         "x": 15,
@@ -2914,7 +2914,7 @@
     "occupied": false
   },
   {
-    "name": "cb2_sb3",
+    "name": "cb2[-]_sb3[-]",
     "tracks": [
       {
         "x": 15,
@@ -3068,7 +3068,7 @@
     "occupied": false
   },
   {
-    "name": "cb2_sb2",
+    "name": "cb2[-]_sb2[-]",
     "tracks": [
       {
         "x": 15,
@@ -3234,7 +3234,7 @@
     "occupied": false
   },
   {
-    "name": "cb2_sb1",
+    "name": "cb2[-]_sb1[-]",
     "tracks": [
       {
         "x": 15,
@@ -3408,7 +3408,7 @@
     "occupied": false
   },
   {
-    "name": "cb3_cb4",
+    "name": "cb3[+]_cb4[+]",
     "tracks": [
       {
         "x": 4,
@@ -3501,7 +3501,7 @@
     "occupied": false
   },
   {
-    "name": "cb4_sb4",
+    "name": "cb4[-]_sb4[-]",
     "tracks": [
       {
         "x": 13,
@@ -3663,7 +3663,7 @@
     "occupied": false
   },
   {
-    "name": "cb4_sb3",
+    "name": "cb4[-]_sb3[-]",
     "tracks": [
       {
         "x": 13,
@@ -3837,7 +3837,7 @@
     "occupied": false
   },
   {
-    "name": "cb4_sb2",
+    "name": "cb4[-]_sb2[-]",
     "tracks": [
       {
         "x": 13,
@@ -4023,7 +4023,7 @@
     "occupied": false
   },
   {
-    "name": "cb4_sb1",
+    "name": "cb4[-]_sb1[-]",
     "tracks": [
       {
         "x": 13,

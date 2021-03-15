@@ -93,18 +93,17 @@ namespace railessentials
             Metadata.LoadMetamodel(Globals.GetCfgDataPath("Metamodel"));
             Metadata.LoadRoutes(Globals.GetCfgDataPath("Routes"), true);
             Metadata.LoadLocomotives(Globals.GetCfgDataPath("Locomotives"));
+            Metadata.LoadLocomotivesDurations(Globals.GetCfgDataPath("LocomotivesDurations"));
             Metadata.LoadFeedbacks(Globals.GetCfgDataPath("FbEvents"));
             Metadata.LoadOccData(Globals.GetCfgDataPath("Occ"), true);
 
             if (sendClientUpdates)
             {
-                if (ClientHandler != null)
-                {
-                    ClientHandler.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateOcc);
-                    ClientHandler.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateRoutes);
-                    ClientHandler.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateFeedbacks);
-                    ClientHandler.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateLocomotivesData);
-                }
+                ClientHandler?.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateOcc);
+                ClientHandler?.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateRoutes);
+                ClientHandler?.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateFeedbacks);
+                ClientHandler?.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateLocomotivesData);
+                ClientHandler?.SendModelToClients(railessentials.ClientHandler.ClientHandler.ModelType.UpdateLocomotivesDurationsData);
             }
 
             return true;

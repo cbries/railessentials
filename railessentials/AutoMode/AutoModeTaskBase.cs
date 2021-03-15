@@ -85,8 +85,7 @@ namespace railessentials.AutoMode
                 //
                 // NOTE start measurement how long it takes to reach fbIn feedback
                 //
-                var sw = new Stopwatch();
-                sw.Start();
+                var startDt = DateTime.Now;
 
                 //
                 // NOTE trigger Ui update to visualize entering destination
@@ -102,7 +101,19 @@ namespace railessentials.AutoMode
                 var fbInAlreadyReached = false;
                 if(speedCurve != null)
                 {
-                    await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, hasToBeCanceled: () =>
+                    var durationSeconds = 10.0;
+
+                    if(Ctx?._metadataLock != null)
+                    {
+                        lock(Ctx._metadataLock)
+                        {
+                            durationSeconds = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationSeconds(
+                                Route.LocomotiveObjectId, 
+                                Route.TargetBlock.identifier);
+                        }
+                    }
+
+                    await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, maxSeconds: (int)durationSeconds, hasToBeCanceled: () =>
                     {
                         fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
                         // TODO handle hasError (e.g. cancel route)
@@ -126,20 +137,37 @@ namespace railessentials.AutoMode
                 //
                 if (!fbInAlreadyReached)
                     await WaitForFb("FbIn", Route.FbIn, dpS88);
-                sw.Stop();
-                SendDebugMessage($"{sw.Elapsed.TotalSeconds} seconds between 'enter' and 'in'.");
+                
+                var stopDt = DateTime.Now;
+                var delta = stopDt - startDt;
+                SendDebugMessage($"{delta.TotalSeconds} seconds between 'enter' and 'in'.");
 
                 if (IsCanceled()) return;
 
                 //
-                // TODO save the time for future use
+                // save duration between FB-enter and FB-in
                 //
-                //...
+                if(Ctx?._metadataLock != null)
+                {
+                    lock(Ctx._metadataLock)
+                    {
+                        if (Ctx?._metadata != null)
+                        {
+                            Ctx?._metadata.LocomotivesDurationData.AddDecelerateDuration(
+                                Route.LocomotiveObjectId,
+                                Route.TargetBlock.identifier,
+                                startDt,
+                                stopDt);
+
+                            Ctx?._metadata.Save(Metadata.SaveModelType.LocomotivesDurationsData);
+                        }
+                    }
+                }
 
                 //
                 // NOTE stop the locomotive in any case when fbIn is reached
                 //
-                Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(Route.Locomotive, 0);
+                Ctx?.GetClientHandler()?.LocomotiveChangeSpeedstep(Route.Locomotive, 0);
 
                 //
                 // NOTE reset the current OCC information and set the final block as new from block

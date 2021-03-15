@@ -27,6 +27,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basement", "Basement", "{CDB31796-99F8-425A-BD24-0072836ACF61}"
 	ProjectSection(SolutionItems) = preProject
 		Workspaces\Basement\fbevents.json = Workspaces\Basement\fbevents.json
+		Workspaces\Basement\locomotives.duration.json = Workspaces\Basement\locomotives.duration.json
 		Workspaces\Basement\locomotives.json = Workspaces\Basement\locomotives.json
 		Workspaces\Basement\metamodel.json = Workspaces\Basement\metamodel.json
 		Workspaces\Basement\occ.json = Workspaces\Basement\occ.json

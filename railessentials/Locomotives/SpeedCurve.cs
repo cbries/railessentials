@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 // File: SpeedCurve.cs
 
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 

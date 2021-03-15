@@ -4,12 +4,11 @@
 
 using System;
 
-namespace railessentials.Locomotives
+namespace railessentials.LocomotivesDuration
 {
     public class Duration
     {
         public DateTime Start { get; set; }
         public DateTime Stop { get; set; }
-        public long DurationSeconds { get; set; }
     }
 }

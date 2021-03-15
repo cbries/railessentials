@@ -15,11 +15,14 @@ namespace railessentials.AutoMode
         private async Task DecelerateLocomotiveCurve(
             Locomotive ecosLoc,
             SpeedCurve speedCurve,
-            int maxTime = -1, // TODO measure real time between FB enter and FB in
+            int maxSeconds = -1, 
             Func<bool> hasToBeCanceled = null
         )
         {
             Trace.WriteLine("DecelerateLocomotiveCurve()");
+
+            if (maxSeconds <= -1)
+                maxSeconds = speedCurve.MaxTime;
 
             var currentSpeed = (float)ecosLoc.Speedstep;
             var maxSpeed = speedCurve.MaxSpeed;
@@ -35,6 +38,7 @@ namespace railessentials.AutoMode
                 // the train will stop right at this moment
                 //
 
+                var sw = Stopwatch.StartNew();
                 var idx = -1;
                 for(var i = 0; i < speedCurve.Steps.Count - 1; ++i)
                 {
@@ -46,12 +50,19 @@ namespace railessentials.AutoMode
                         break;
                     }
                 }
+                
                 if (idx == -1) 
                     idx = speedCurve.Steps.Count - 1;
-                
-                for (var i = idx; i > minSpeed; --i)
+
+              for (var i = idx; i > minSpeed; --i)
                 {
                     var nextSpeed = speedCurve.Steps[i];
+
+                    //
+                    // walltime reached
+                    //
+                    if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
+                        return;
 
                     Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, (int)nextSpeed.Speed);
 
@@ -59,18 +70,37 @@ namespace railessentials.AutoMode
                     {
                         Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, 0);
 
-                        break;
+                        return;
                     }
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
-                            break;
+                            return;
 
-                    System.Threading.Thread.Sleep((int)timeSteps);
+                    //
+                    // split delay for higher recognition
+                    //
+                    var sl = (int)timeSteps;
+                    var deltaSteps = 10;
+                    var slSteps = sl / deltaSteps;
+                    for (var jj = 0; jj < deltaSteps; ++jj)
+                    {
+                        if (hasToBeCanceled != null)
+                            if (hasToBeCanceled())
+                                return;
+
+                        //
+                        // walltime reached
+                        //
+                        if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
+                            return;
+
+                        System.Threading.Thread.Sleep(slSteps);
+                    }
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
-                            break;
+                            return;
                 }
 
             }, CancelSource.Token);

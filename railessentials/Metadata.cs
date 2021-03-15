@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
 using railessentials.Locomotives;
+using railessentials.LocomotivesDuration;
 using railessentials.Occ;
 using railessentials.Plan;
 using Utilities;
@@ -27,12 +28,14 @@ namespace railessentials
         public JObject EcosData { get; set; }
         public OccData Occ { get; set; }
         public LocomotivesData LocomotivesData { get; set; }
+        public DurationsData LocomotivesDurationData { get; set; }
         public FeedbacksData FeedbacksData { get; set; }
 
         public Metadata()
         {
             Occ = new OccData(this);
             LocomotivesData = new LocomotivesData(this);
+            LocomotivesDurationData = new DurationsData(this);
             FeedbacksData = new FeedbacksData(this);
         }
 
@@ -115,7 +118,8 @@ namespace railessentials
         public bool LoadOccData(string pathToOccmodel, bool resetToInitState = false)
         {
             if (string.IsNullOrEmpty(pathToOccmodel)) return false;
-            if (!File.Exists(pathToOccmodel)) return false;
+            if (!File.Exists(pathToOccmodel))
+                File.WriteAllText(pathToOccmodel, "[]", Encoding.UTF8);
             Occ = new OccData(this);
             var r = Occ.Load(pathToOccmodel);
             if (resetToInitState)
@@ -139,15 +143,26 @@ namespace railessentials
         public bool LoadLocomotives(string pathToLocomotivesmodel)
         {
             if (string.IsNullOrEmpty(pathToLocomotivesmodel)) return false;
-            if (!File.Exists(pathToLocomotivesmodel)) return false;
+            if (!File.Exists(pathToLocomotivesmodel))
+                File.WriteAllText(pathToLocomotivesmodel, "{}", Encoding.UTF8);
             LocomotivesData = new LocomotivesData(this);
             return LocomotivesData.Load(pathToLocomotivesmodel);
+        }
+
+        public bool LoadLocomotivesDurations(string pathToLocomotiveDurations)
+        {
+            if (string.IsNullOrEmpty(pathToLocomotiveDurations)) return false;
+            if (!File.Exists(pathToLocomotiveDurations))
+                File.WriteAllText(pathToLocomotiveDurations, "{}", Encoding.UTF8);
+            LocomotivesDurationData = new DurationsData(this);
+            return LocomotivesDurationData.Load(pathToLocomotiveDurations);
         }
 
         public bool LoadFeedbacks(string pathToFeedbacksmodel)
         {
             if (string.IsNullOrEmpty(pathToFeedbacksmodel)) return false;
-            if (!File.Exists(pathToFeedbacksmodel)) return false;
+            if (!File.Exists(pathToFeedbacksmodel))
+                File.WriteAllText(pathToFeedbacksmodel, "[]", Encoding.UTF8);
             FeedbacksData = new FeedbacksData(this);
             return FeedbacksData.Load(pathToFeedbacksmodel);
         }
@@ -217,6 +232,7 @@ namespace railessentials
             OccData,
             RouteData,
             LocomotivesData,
+            LocomotivesDurationsData,
             FeedbacksData
         }
 
@@ -245,11 +261,17 @@ namespace railessentials
                     strJson3.FixBomIfNeeded();
                     StringUtilities.WriteAllTextNoBom(LocomotivesData.LocomotivesPath, strJson3, out _);
                     break;
-
+                    
                 case SaveModelType.FeedbacksData:
                     var strJson4 = FeedbacksData.ToJsonString();
                     strJson4.FixBomIfNeeded();
                     StringUtilities.WriteAllTextNoBom(FeedbacksData.FeedbacksPath, strJson4, out _);
+                    break;
+
+                case SaveModelType.LocomotivesDurationsData:
+                    var strJson5 = LocomotivesDurationData.ToJsonString();
+                    strJson5.FixBomIfNeeded();
+                    StringUtilities.WriteAllTextNoBom(LocomotivesDurationData.DurationsPath, strJson5, out _);
                     break;
             }
         }

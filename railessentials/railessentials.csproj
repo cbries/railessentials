@@ -115,8 +115,11 @@
       <DependentUpon>Importer.xaml</DependentUpon>
     </Compile>
     <Compile Include="InitializeSystem.cs" />
+    <Compile Include="LocomotivesDuration\AverageDurations.cs" />
+    <Compile Include="LocomotivesDuration\Data.cs" />
+    <Compile Include="LocomotivesDuration\DurationsData.cs" />
     <Compile Include="Locomotives\Data.cs" />
-    <Compile Include="Locomotives\Duration.cs" />
+    <Compile Include="LocomotivesDuration\Duration.cs" />
     <Compile Include="Locomotives\LocomotivesData.cs" />
     <Compile Include="Locomotives\SpeedCurve.cs" />
     <Compile Include="Metadata.cs" />

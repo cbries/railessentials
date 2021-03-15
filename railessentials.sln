@@ -37,7 +37,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RocrailDemo", "RocrailDemo", "{2FFBEF49-DF3A-4947-BC18-DE3F60BF8E21}"
 	ProjectSection(SolutionItems) = preProject
 		Workspaces\RocrailDemo\fbevents.json = Workspaces\RocrailDemo\fbevents.json
+		Workspaces\RocrailDemo\locomotives.duration.json = Workspaces\RocrailDemo\locomotives.duration.json
+		Workspaces\RocrailDemo\locomotives.json = Workspaces\RocrailDemo\locomotives.json
 		Workspaces\RocrailDemo\metamodel.json = Workspaces\RocrailDemo\metamodel.json
+		Workspaces\RocrailDemo\occ.json = Workspaces\RocrailDemo\occ.json
+		Workspaces\RocrailDemo\routes.json = Workspaces\RocrailDemo\routes.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "railessentials", "railessentials\railessentials.csproj", "{F4A7401F-9E67-467A-A657-E046F8885607}"

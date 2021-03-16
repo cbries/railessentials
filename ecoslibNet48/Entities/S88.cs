@@ -63,17 +63,14 @@ namespace ecoslib.Entities
 
         public bool Pin(uint nr)
         {
-            if (_ports < nr)
-                return false;
+            if (_ports < nr) return false;
 
             try
             {
-                var p = StateBinary[_ports - (int) nr];
-
-                if (p.Equals('0'))
-                    return false;
-
-                return true;
+                var binary = StateBinary;
+                binary = Reverse(binary);
+                var p = binary[(int)nr];
+                return !p.Equals('0');
             }
             catch
             {

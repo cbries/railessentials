@@ -131,7 +131,7 @@ namespace railessentials.AutoMode
         {
             await Task.Run(() =>
             {
-                _ctx?.Logger?.Log.Info("+++ handle feedbacks +++");
+                //_ctx?.Logger?.Log.Info("+++ handle feedbacks +++");
             });
         }
 

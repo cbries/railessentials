@@ -409,6 +409,7 @@ class Occ {
                         cssIcon: 'fas fa-stop',
                         enabled: window.__autoModeState,
                         label: 'Finalize', onClick: () => {
+                            self.__stopWaitCounter(oid);
                             self.__saveLocomotiveFinalize(oid, true);
                         }
                     },
@@ -443,6 +444,12 @@ class Occ {
         locomotiveInfoFinal.appendTo(bodyCtrl);
 
         self.__updateStateVisualization(locData.objectId);
+    }
+
+    __stopWaitCounter(oid) {
+        if (typeof oid === "undefined" || oid == null || oid <= 0) return;
+        const lbl = $('#locomotiveInfo' + oid + ' div.countdown');
+        lbl.hide();
     }
 
     __updateTimeVisualization(occDataItem) {

@@ -471,7 +471,7 @@ class Occ {
                 setTimeout(function () {
                     const lblCnt = ctrl.find("span.countdown");
                     const secs = lblCnt.data("secsToWait") - 1;
-                    if (isNaN(secs) || secs <= 1) {
+                    if (isNaN(secs) || secs < 1) {
                         lblCnt.data("secsToWait", 0);
                         ctrl.hide();
                         return;

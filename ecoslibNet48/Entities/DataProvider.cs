@@ -116,7 +116,27 @@ namespace ecoslib.Entities
             return null;
         }
 
-		public bool GetFeedbackByAddress(int ecosAddress, 
+        public IReadOnlyList<S88> GetPorts()
+        {
+            var ports = new List<S88>();
+            foreach (var obj in Objects)
+            {
+                if (obj is S88 s)
+                    ports.Add(s);
+            }
+            return ports;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ecosAddress">human readably index, i.e. starts with "1" (the ECoS valid start index)</param>
+        /// <param name="item"></param>
+        /// <param name="itemOffset"></param>
+        /// <param name="itemPin"></param>
+        /// <returns></returns>
+        public bool GetFeedbackByAddress(
+            int ecosAddress, 
             out S88 item, 
             out int itemOffset,
             out int itemPin
@@ -124,17 +144,14 @@ namespace ecoslib.Entities
 			item = null;
 			itemOffset = 0;
 			itemPin = 0;
-			
-			if (ecosAddress <= -1) return false;
+
+            --ecosAddress;
+
+			if (ecosAddress < 0) return false;
 
             lock (_objects)
             {
-				var ports = new List<S88>();
-				foreach(var obj in Objects)
-                {
-					if(obj is S88 s)
-						ports.Add(s);
-                }
+                var ports = GetPorts();
 
                 var portOffset = 0;
 
@@ -142,7 +159,7 @@ namespace ecoslib.Entities
                 {
 					var startOffset = portOffset;
                     portOffset += it.Ports;
-
+                     
 					if (ecosAddress >= startOffset && ecosAddress < portOffset)
                     {
 						var pin = ecosAddress - startOffset;
@@ -151,13 +168,13 @@ namespace ecoslib.Entities
 						itemOffset = startOffset;
 						itemPin = pin;
 
-						return false;
+						return true;
                     }
 
                 }
             }
 
-			return true;
+			return false;
 		}
 
 		public bool HandleData(IBlock block)
@@ -446,65 +463,71 @@ namespace ecoslib.Entities
 			{
                 if (!(tkn is JObject o)) return false;
 
-				if (o["ecosbase"] != null)
-				{
-                    if (o["ecosbase"] is JArray ar)
-					{
-						for (var i = 0; i < ar.Count; ++i)
-						{
-							var it = ar[i] as JObject;
-							if (it == null) continue;
-							var iit = new Ecos2();
-							iit.ParseJson(it);
-							_objects?.Add(iit);
-						}
-					}
-				}
+                if (Mode == DataModeT.General)
+                {
+                    if (o["ecosbase"] != null)
+                    {
+                        if (o["ecosbase"] is JArray ar)
+                        {
+                            for (var i = 0; i < ar.Count; ++i)
+                            {
+                                var it = ar[i] as JObject;
+                                if (it == null) continue;
+                                var iit = new Ecos2();
+                                iit.ParseJson(it);
+                                _objects?.Add(iit);
+                            }
+                        }
+                    }
 
-				if (o["locomotives"] != null)
-				{
-                    if (o["locomotives"] is JArray ar)
-					{
-						for (var i = 0; i < ar.Count; ++i)
-						{
-							var it = ar[i] as JObject;
-							if (it == null) continue;
-							var iit = new Locomotive();
-							iit.ParseJson(it);
-							_objects?.Add(iit);
-						}
-					}
-				}
+                    if (o["locomotives"] != null)
+                    {
+                        if (o["locomotives"] is JArray ar)
+                        {
+                            for (var i = 0; i < ar.Count; ++i)
+                            {
+                                var it = ar[i] as JObject;
+                                if (it == null) continue;
+                                var iit = new Locomotive();
+                                iit.ParseJson(it);
+                                _objects?.Add(iit);
+                            }
+                        }
+                    }
 
-				if (o["accessories"] != null)
-				{
-                    if (o["accessories"] is JArray ar)
-					{
-						for (var i = 0; i < ar.Count; ++i)
-						{
-							var it = ar[i] as JObject;
-							if (it == null) continue;
-							var iit = new Accessory();
-							iit.ParseJson(it);
-							_objects?.Add(iit);
-						}
-					}
-				}
+                    if (o["accessories"] != null)
+                    {
+                        if (o["accessories"] is JArray ar)
+                        {
+                            for (var i = 0; i < ar.Count; ++i)
+                            {
+                                var it = ar[i] as JObject;
+                                if (it == null) continue;
+                                var iit = new Accessory();
+                                iit.ParseJson(it);
+                                _objects?.Add(iit);
+                            }
+                        }
+                    }
+                }
 
-				if (o["feedbacks"] != null)
-				{
-                    if (o["feedbacks"] is JArray ar)
-					{
-						for (var i = 0; i < ar.Count; ++i)
-						{
-							var it = ar[i] as JObject;
-							if (it == null) continue;
-							var iit = new S88();
-							iit.ParseJson(it);
-							_objects?.Add(iit);
-						}
-					}
-				}
+                if (Mode == DataModeT.S88)
+                {
+                    if (o["feedbacks"] != null)
+                    {
+                        if (o["feedbacks"] is JArray ar)
+                        {
+                            for (var i = 0; i < ar.Count; ++i)
+                            {
+                                var it = ar[i] as JObject;
+                                if (it == null) continue;
+                                var iit = new S88();
+                                iit.ParseJson(it);
+                                _objects?.Add(iit);
+                            }
+                        }
+                    }
+                }
 
 				return true;
 			}

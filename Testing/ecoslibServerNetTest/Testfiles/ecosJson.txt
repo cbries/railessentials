@@ -1,0 +1,1976 @@
+﻿{
+  "ecosbase": [
+    {
+      "status": "STOP",
+      "name": "ECoS2",
+      "protocolVersion": "0.5",
+      "applicationVersion": "4.2.4",
+      "hardwareVersion": "2.1"
+    }
+  ],
+  "ecosbaseChanged": false,
+  "locomotives": [
+    {
+      "objectId": 1008,
+      "name": "BR10",
+      "protocol": "MM14",
+      "addr": 10,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 14,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 33
+        },
+        {
+          "idx": 2,
+          "type": 773
+        },
+        {
+          "idx": 3,
+          "type": 38
+        },
+        {
+          "idx": 4,
+          "type": 7
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 5,
+      "profile": ""
+    },
+    {
+      "objectId": 1009,
+      "name": "BR41 354",
+      "protocol": "MM14",
+      "addr": 20,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 14,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 6
+        },
+        {
+          "idx": 2,
+          "type": 6
+        },
+        {
+          "idx": 3,
+          "type": 6
+        },
+        {
+          "idx": 4,
+          "type": 6
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 5,
+      "profile": ""
+    },
+    {
+      "objectId": 1001,
+      "name": "S 3/6 BR18.4 gr",
+      "protocol": "MMFKT",
+      "addr": 36,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 128,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 33
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 6
+        }
+      ],
+      "nrOfFunctions": 3,
+      "profile": ""
+    },
+    {
+      "objectId": 1002,
+      "name": "S 3/6 BR18.4 sw",
+      "protocol": "MMFKT",
+      "addr": 18,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 128,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 33
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 6
+        }
+      ],
+      "nrOfFunctions": 3,
+      "profile": ""
+    },
+    {
+      "objectId": 1005,
+      "name": "V16 101 (blau)",
+      "protocol": "DCC28",
+      "addr": 3,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 28,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 6
+        },
+        {
+          "idx": 2,
+          "type": 6
+        },
+        {
+          "idx": 3,
+          "type": 10
+        },
+        {
+          "idx": 4,
+          "type": 11
+        },
+        {
+          "idx": 5,
+          "type": 6
+        },
+        {
+          "idx": 6,
+          "type": 6
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        },
+        {
+          "idx": 9,
+          "type": 0
+        },
+        {
+          "idx": 10,
+          "type": 0
+        },
+        {
+          "idx": 11,
+          "type": 0
+        },
+        {
+          "idx": 12,
+          "type": 0
+        },
+        {
+          "idx": 13,
+          "type": 0
+        },
+        {
+          "idx": 14,
+          "type": 0
+        },
+        {
+          "idx": 15,
+          "type": 0
+        },
+        {
+          "idx": 16,
+          "type": 0
+        },
+        {
+          "idx": 17,
+          "type": 0
+        },
+        {
+          "idx": 18,
+          "type": 0
+        },
+        {
+          "idx": 19,
+          "type": 0
+        },
+        {
+          "idx": 20,
+          "type": 0
+        },
+        {
+          "idx": 21,
+          "type": 0
+        },
+        {
+          "idx": 22,
+          "type": 0
+        },
+        {
+          "idx": 23,
+          "type": 0
+        },
+        {
+          "idx": 24,
+          "type": 0
+        },
+        {
+          "idx": 25,
+          "type": 0
+        },
+        {
+          "idx": 26,
+          "type": 0
+        },
+        {
+          "idx": 27,
+          "type": 0
+        },
+        {
+          "idx": 28,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 7,
+      "profile": ""
+    },
+    {
+      "objectId": 1010,
+      "name": "BR52",
+      "protocol": "MM14",
+      "addr": 6,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 14,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 33
+        },
+        {
+          "idx": 1,
+          "type": 0
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 0
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 1,
+      "profile": ""
+    },
+    {
+      "objectId": 1013,
+      "name": "DIESEL 221",
+      "protocol": "MM14",
+      "addr": 21,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 14,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 6
+        },
+        {
+          "idx": 2,
+          "type": 6
+        },
+        {
+          "idx": 3,
+          "type": 6
+        },
+        {
+          "idx": 4,
+          "type": 6
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 5,
+      "profile": ""
+    },
+    {
+      "objectId": 1006,
+      "name": "V 80",
+      "protocol": "MMFKT",
+      "addr": 24,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 128,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 6
+        },
+        {
+          "idx": 1,
+          "type": 0
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 1,
+      "profile": ""
+    },
+    {
+      "objectId": 1012,
+      "name": "BR 86 130",
+      "protocol": "MM14",
+      "addr": 79,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 14,
+      "direction": 1,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 6
+        },
+        {
+          "idx": 1,
+          "type": 32
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 0
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 2,
+      "profile": ""
+    },
+    {
+      "objectId": 1004,
+      "name": "74 854 DB",
+      "protocol": "MFX",
+      "addr": 0,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 128,
+      "direction": 1,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 0
+        },
+        {
+          "idx": 2,
+          "type": 0
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 11
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        },
+        {
+          "idx": 9,
+          "type": 0
+        },
+        {
+          "idx": 10,
+          "type": 0
+        },
+        {
+          "idx": 11,
+          "type": 0
+        },
+        {
+          "idx": 12,
+          "type": 0
+        },
+        {
+          "idx": 13,
+          "type": 0
+        },
+        {
+          "idx": 14,
+          "type": 0
+        },
+        {
+          "idx": 15,
+          "type": 0
+        },
+        {
+          "idx": 16,
+          "type": 0
+        },
+        {
+          "idx": 17,
+          "type": 0
+        },
+        {
+          "idx": 18,
+          "type": 0
+        },
+        {
+          "idx": 19,
+          "type": 0
+        },
+        {
+          "idx": 20,
+          "type": 0
+        },
+        {
+          "idx": 21,
+          "type": 0
+        },
+        {
+          "idx": 22,
+          "type": 0
+        },
+        {
+          "idx": 23,
+          "type": 0
+        },
+        {
+          "idx": 24,
+          "type": 0
+        },
+        {
+          "idx": 25,
+          "type": 0
+        },
+        {
+          "idx": 26,
+          "type": 0
+        },
+        {
+          "idx": 27,
+          "type": 0
+        },
+        {
+          "idx": 28,
+          "type": 0
+        },
+        {
+          "idx": 29,
+          "type": 0
+        },
+        {
+          "idx": 30,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 2,
+      "profile": ""
+    },
+    {
+      "objectId": 1003,
+      "name": "BR 75 057",
+      "protocol": "MFX",
+      "addr": 0,
+      "speed": 0,
+      "speedstep": 12,
+      "speedstepMax": 128,
+      "direction": 0,
+      "funcset": "00000000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 10
+        },
+        {
+          "idx": 2,
+          "type": 4
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 11
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        },
+        {
+          "idx": 9,
+          "type": 0
+        },
+        {
+          "idx": 10,
+          "type": 0
+        },
+        {
+          "idx": 11,
+          "type": 0
+        },
+        {
+          "idx": 12,
+          "type": 0
+        },
+        {
+          "idx": 13,
+          "type": 0
+        },
+        {
+          "idx": 14,
+          "type": 0
+        },
+        {
+          "idx": 15,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 4,
+      "profile": ""
+    },
+    {
+      "objectId": 1014,
+      "name": "Emma",
+      "protocol": "MFX",
+      "addr": 0,
+      "speed": 0,
+      "speedstep": 0,
+      "speedstepMax": 128,
+      "direction": 0,
+      "funcset": "10001000000000000000000000000000",
+      "funcdesc": [
+        {
+          "idx": 0,
+          "type": 3
+        },
+        {
+          "idx": 1,
+          "type": 9
+        },
+        {
+          "idx": 2,
+          "type": 8
+        },
+        {
+          "idx": 3,
+          "type": 0
+        },
+        {
+          "idx": 4,
+          "type": 11
+        },
+        {
+          "idx": 5,
+          "type": 0
+        },
+        {
+          "idx": 6,
+          "type": 0
+        },
+        {
+          "idx": 7,
+          "type": 0
+        },
+        {
+          "idx": 8,
+          "type": 0
+        },
+        {
+          "idx": 9,
+          "type": 0
+        },
+        {
+          "idx": 10,
+          "type": 0
+        },
+        {
+          "idx": 11,
+          "type": 0
+        },
+        {
+          "idx": 12,
+          "type": 0
+        },
+        {
+          "idx": 13,
+          "type": 0
+        },
+        {
+          "idx": 14,
+          "type": 0
+        },
+        {
+          "idx": 15,
+          "type": 0
+        }
+      ],
+      "nrOfFunctions": 4,
+      "profile": ""
+    }
+  ],
+  "locomotivesChanged": false,
+  "accessories": [
+    {
+      "name1": "s12",
+      "name2": "",
+      "name3": "",
+      "objectId": 20001,
+      "addrext": [
+        "8g",
+        "8r"
+      ],
+      "addr": 8,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s13",
+      "name2": "",
+      "name3": "",
+      "objectId": 20002,
+      "addrext": [
+        "9g",
+        "9r"
+      ],
+      "addr": 9,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s14",
+      "name2": "",
+      "name3": "",
+      "objectId": 20003,
+      "addrext": [
+        "1g",
+        "1r"
+      ],
+      "addr": 1,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s15",
+      "name2": "",
+      "name3": "",
+      "objectId": 20004,
+      "addrext": [
+        "2g",
+        "2r"
+      ],
+      "addr": 2,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s16",
+      "name2": "",
+      "name3": "",
+      "objectId": 20005,
+      "addrext": [
+        "3g",
+        "3r"
+      ],
+      "addr": 3,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s24",
+      "name2": "",
+      "name3": "",
+      "objectId": 20006,
+      "addrext": [
+        "4g",
+        "4r"
+      ],
+      "addr": 4,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s25",
+      "name2": "",
+      "name3": "",
+      "objectId": 20007,
+      "addrext": [
+        "5g",
+        "5r"
+      ],
+      "addr": 5,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s26",
+      "name2": "",
+      "name3": "",
+      "objectId": 20008,
+      "addrext": [
+        "6g",
+        "6r"
+      ],
+      "addr": 6,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s21",
+      "name2": "",
+      "name3": "",
+      "objectId": 20009,
+      "addrext": [
+        "10g",
+        "10r"
+      ],
+      "addr": 10,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s22",
+      "name2": "",
+      "name3": "",
+      "objectId": 20010,
+      "addrext": [
+        "11g",
+        "11r"
+      ],
+      "addr": 11,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s23",
+      "name2": "",
+      "name3": "",
+      "objectId": 20011,
+      "addrext": [
+        "12g",
+        "12r"
+      ],
+      "addr": 12,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s11",
+      "name2": "",
+      "name3": "",
+      "objectId": 20000,
+      "addrext": [
+        "7g",
+        "7r"
+      ],
+      "addr": 7,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20012,
+      "addrext": [
+        "20g",
+        "20r"
+      ],
+      "addr": 20,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20013,
+      "addrext": [
+        "21g",
+        "21r"
+      ],
+      "addr": 21,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s3",
+      "name2": "",
+      "name3": "",
+      "objectId": 20014,
+      "addrext": [
+        "22g",
+        "22r"
+      ],
+      "addr": 22,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s4",
+      "name2": "",
+      "name3": "",
+      "objectId": 20015,
+      "addrext": [
+        "23g",
+        "23r"
+      ],
+      "addr": 23,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s5.1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20016,
+      "addrext": [
+        "24g",
+        "24r"
+      ],
+      "addr": 24,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s5.2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20017,
+      "addrext": [
+        "25g",
+        "25r"
+      ],
+      "addr": 25,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s6.1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20018,
+      "addrext": [
+        "26g",
+        "26r"
+      ],
+      "addr": 26,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s6.2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20019,
+      "addrext": [
+        "27g",
+        "27r"
+      ],
+      "addr": 27,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s7",
+      "name2": "",
+      "name3": "",
+      "objectId": 20020,
+      "addrext": [
+        "28g",
+        "28r"
+      ],
+      "addr": 28,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s8",
+      "name2": "",
+      "name3": "",
+      "objectId": 20021,
+      "addrext": [
+        "29g",
+        "29r"
+      ],
+      "addr": 29,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "s9",
+      "name2": "",
+      "name3": "",
+      "objectId": 20022,
+      "addrext": [
+        "30g",
+        "30r"
+      ],
+      "addr": 30,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S30",
+      "name2": "zur Parade",
+      "name3": "",
+      "objectId": 20023,
+      "addrext": [
+        "33g",
+        "33r"
+      ],
+      "addr": 33,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S31",
+      "name2": "SHBf-rechts",
+      "name3": "",
+      "objectId": 20024,
+      "addrext": [
+        "32g",
+        "32r"
+      ],
+      "addr": 32,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S50",
+      "name2": "zur Parade",
+      "name3": "",
+      "objectId": 20025,
+      "addrext": [
+        "35g",
+        "35r"
+      ],
+      "addr": 35,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S51",
+      "name2": "SHBf-links",
+      "name3": "",
+      "objectId": 20026,
+      "addrext": [
+        "34g",
+        "34r"
+      ],
+      "addr": 34,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S41",
+      "name2": "",
+      "name3": "",
+      "objectId": 20027,
+      "addrext": [
+        "41g",
+        "41r"
+      ],
+      "addr": 41,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S42",
+      "name2": "",
+      "name3": "",
+      "objectId": 20028,
+      "addrext": [
+        "42g",
+        "42r"
+      ],
+      "addr": 42,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S43",
+      "name2": "",
+      "name3": "",
+      "objectId": 20029,
+      "addrext": [
+        "43g",
+        "43r"
+      ],
+      "addr": 43,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S44",
+      "name2": "",
+      "name3": "",
+      "objectId": 20030,
+      "addrext": [
+        "44g",
+        "44r"
+      ],
+      "addr": 44,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sbhf#2",
+      "name2": "links",
+      "name3": "",
+      "objectId": 20031,
+      "addrext": [
+        "61g",
+        "61r"
+      ],
+      "addr": 61,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Shbf#2",
+      "name2": "rechts",
+      "name3": "",
+      "objectId": 20033,
+      "addrext": [
+        "36g",
+        "36r"
+      ],
+      "addr": 36,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Seg Gleis 1",
+      "name2": "",
+      "name3": "",
+      "objectId": 20036,
+      "addrext": [
+        "1024g",
+        "1024r"
+      ],
+      "addr": 1024,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Seg Gleis 2",
+      "name2": "",
+      "name3": "",
+      "objectId": 20035,
+      "addrext": [
+        "1025g",
+        "1025r"
+      ],
+      "addr": 1025,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Seg Gleis 3",
+      "name2": "",
+      "name3": "",
+      "objectId": 20034,
+      "addrext": [
+        "1026g",
+        "1026r"
+      ],
+      "addr": 1026,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Seg Minimum",
+      "name2": "",
+      "name3": "",
+      "objectId": 20037,
+      "addrext": [
+        "1027g",
+        "1027r"
+      ],
+      "addr": 1027,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Seg Maximum",
+      "name2": "",
+      "name3": "",
+      "objectId": 20038,
+      "addrext": [
+        "1028g",
+        "1028r"
+      ],
+      "addr": 1028,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sig.Li.",
+      "name2": "",
+      "name3": "",
+      "objectId": 20032,
+      "addrext": [
+        "65g",
+        "65r"
+      ],
+      "addr": 65,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Entkup. #1",
+      "name2": "",
+      "name3": "69",
+      "objectId": 20039,
+      "addrext": [
+        "69g",
+        "69r"
+      ],
+      "addr": 69,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Neuer",
+      "name2": "Artikel",
+      "name3": ">0069<",
+      "objectId": 20040,
+      "addrext": [
+        "69g",
+        "69r"
+      ],
+      "addr": 69,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Bahnüberg.",
+      "name2": "",
+      "name3": "70",
+      "objectId": 20041,
+      "addrext": [
+        "70g",
+        "70r"
+      ],
+      "addr": 70,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Entkup. #2",
+      "name2": "",
+      "name3": "71",
+      "objectId": 20042,
+      "addrext": [
+        "71g",
+        "71r"
+      ],
+      "addr": 71,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Entkup. #3",
+      "name2": "",
+      "name3": "72",
+      "objectId": 20043,
+      "addrext": [
+        "72g",
+        "72r"
+      ],
+      "addr": 72,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperrung 1",
+      "name2": "Bhf2",
+      "name3": "73",
+      "objectId": 20044,
+      "addrext": [
+        "73g",
+        "73r"
+      ],
+      "addr": 73,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperrung 2",
+      "name2": "Bhf2",
+      "name3": "74",
+      "objectId": 20045,
+      "addrext": [
+        "74g",
+        "74r"
+      ],
+      "addr": 74,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperrung 3",
+      "name2": "Bhf 2",
+      "name3": "75",
+      "objectId": 20046,
+      "addrext": [
+        "75g",
+        "75r"
+      ],
+      "addr": 75,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperre 1",
+      "name2": "Bhf 2",
+      "name3": "77",
+      "objectId": 20047,
+      "addrext": [
+        "77g",
+        "77r"
+      ],
+      "addr": 77,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperre 2",
+      "name2": "Bhf 2",
+      "name3": "78",
+      "objectId": 20048,
+      "addrext": [
+        "78g",
+        "78r"
+      ],
+      "addr": 78,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Sperre 3",
+      "name2": "Bhf 2",
+      "name3": "79",
+      "objectId": 20049,
+      "addrext": [
+        "79g",
+        "79r"
+      ],
+      "addr": 79,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Ausfahrs.",
+      "name2": "Bhf 2",
+      "name3": "80",
+      "objectId": 20050,
+      "addrext": [
+        "80g",
+        "80r"
+      ],
+      "addr": 80,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Neuer",
+      "name2": "Artikel",
+      "name3": "81",
+      "objectId": 20051,
+      "addrext": [
+        "81g",
+        "81r"
+      ],
+      "addr": 81,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Neuer",
+      "name2": "Artikel",
+      "name3": "82",
+      "objectId": 20052,
+      "addrext": [
+        "82g",
+        "82r"
+      ],
+      "addr": 82,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Wendel rein",
+      "name2": "unsichtbar",
+      "name3": ">0066<",
+      "objectId": 20053,
+      "addrext": [
+        "66g",
+        "66r"
+      ],
+      "addr": 66,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Wendel rein",
+      "name2": "sichtbar",
+      "name3": ">0067<",
+      "objectId": 20054,
+      "addrext": [
+        "67g",
+        "67r"
+      ],
+      "addr": 67,
+      "protocol": "DCC",
+      "type": "ACCESSORY",
+      "mode": "SWITCH",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S1",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30000,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S2",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30001,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S3",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30002,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "hinten",
+      "objectId": 30003,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S4",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30004,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S5",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30005,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S6",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30006,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S7",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30007,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "S8",
+      "name2": "Fahrweg",
+      "name3": "",
+      "objectId": 30008,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Shbf#2",
+      "name2": "hinten",
+      "name3": "",
+      "objectId": 30009,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Shbf#2",
+      "name2": "vorne",
+      "name3": "",
+      "objectId": 30010,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Bhf#1",
+      "name2": "Durchfahrt",
+      "name3": "vorne",
+      "objectId": 30011,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Wendel rein",
+      "name2": "wenden",
+      "name3": "",
+      "objectId": 30012,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 0,
+      "switching": 0,
+      "hasChanged": true
+    },
+    {
+      "name1": "Wendel aus",
+      "name2": "",
+      "name3": "",
+      "objectId": 30013,
+      "addrext": [],
+      "addr": 0,
+      "protocol": "",
+      "type": "ROUTE",
+      "mode": "",
+      "state": 1,
+      "switching": 0,
+      "hasChanged": true
+    }
+  ],
+  "accessoriesChanged": false,
+  "feedbacks": [
+    {
+      "objectId": 100,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0x00"
+    },
+    {
+      "objectId": 101,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0x00"
+    },
+    {
+      "objectId": 102,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0xC00D"
+    },
+    {
+      "objectId": 103,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0x5020"
+    },
+    {
+      "objectId": 104,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0x2"
+    },
+    {
+      "objectId": 105,
+      "index": 0,
+      "ports": 16,
+      "stateOriginal": "0x65"
+    }
+  ],
+  "feedbacksChanged": false
+}

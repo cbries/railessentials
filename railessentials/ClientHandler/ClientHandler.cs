@@ -734,22 +734,17 @@ namespace railessentials.ClientHandler
             var planItem = field.Get(coordX, coordY);
             if (planItem.IsSensor)
             {
-                _sniffer?.Logger?.Log?.Info($"Sensor/Feedback manually triggered: {planItem.identifier}");
-                SendDebugMessage($"Sensor/Feedback manually triggered: {planItem.identifier}");
-
                 if (IsSimulationMode())
                 {
                     var dpS88 = _sniffer.GetDataProviderS88();
                     if (dpS88 == null) return;
 
-                    var feedbacks = new List<S88>();
-                    foreach (var it in dpS88.Objects)
-                    {
-                        if (it.TypeId() == S88.Typeid)
-                            feedbacks.Add(it as S88);
-                    }
-
+                    var feedbacks = dpS88.GetPorts();
                     var feedbackAddr = planItem.Addresses.Addr;
+
+                    var m = $"Sensor/Feedback manually triggered: {planItem.identifier} ({feedbackAddr})";
+                    _sniffer?.Logger?.Log?.Info(m);
+                    SendDebugMessage(m);
 
                     var offsetEnd = 0;
                     foreach (var fb in feedbacks)
@@ -771,6 +766,12 @@ namespace railessentials.ClientHandler
                     SaveAll();
 
                     _sniffer?.TriggerDataProviderModifiedForSimulation();
+                }
+                else
+                {
+                    var m = $"Sensor/Feedback manually triggered: {planItem.identifier}";
+                    _sniffer?.Logger?.Log?.Info(m);
+                    SendDebugMessage(m);
                 }
 
                 return;

@@ -20,6 +20,7 @@ namespace ecoslib.Entities
         IItem GetObjectBy(int objectid);
         IItem GetAccessoryByAddress(int ecosAddress);
         IItem GetLocomotiveByAddress(int ecosAddress);
+        IReadOnlyList<S88> GetPorts();
         bool HandleData(IBlock block);
 	    bool Parse(JToken tkn);
 		JObject ToJson();

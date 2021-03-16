@@ -235,14 +235,10 @@ class Routes {
 
     updateRoutes(routes) {
         const self = this;
-
         if (typeof routes === "undefined" || routes == null)
             return;
-
         const elGrid = w2ui[self.__gridName];
-
-        let listOfObjectsToAdd = [];
-
+        const listOfObjectsToAdd = [];
         let routeId;
         const iMax = routes.length;
         for (routeId = 0; routeId < iMax; ++routeId) {
@@ -265,8 +261,7 @@ class Routes {
                     signals: route.signals.length,
                     tracks: route.tracks.length
                 });
-            }
-            else {
+            } else {
                 //
                 // update available entry
                 //
@@ -282,5 +277,16 @@ class Routes {
 
         if (listOfObjectsToAdd.length > 0)
             elGrid.add(listOfObjectsToAdd);
+    }
+
+    clearGrid() {
+        const self = this;
+        if(typeof window.routes !== "undefined" && window.routes != null) {
+            window.routes = [];
+        }
+        const elGrid = w2ui[self.__gridName];
+        if (typeof elGrid === "undefined" || elGrid == null) return;
+        elGrid.clear(true);
+        elGrid.reset();
     }
 }

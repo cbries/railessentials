@@ -535,9 +535,9 @@ class Blocks {
         const elGrid = w2ui[self.__gridName];
         const data = feedbacks.data;
 
-        this.__recentFeedbacksData = data;
+        self.__recentFeedbacksData = data;
 
-        let listOfObjectsToAdd = [];
+        const listOfObjectsToAdd = [];
         let noOfRecords = 0;
 
         let i;
@@ -579,5 +579,13 @@ class Blocks {
             elGrid.add(listOfObjectsToAdd);
 
         // TODO add logic to remove vanished blocks/feedbacks
+    }
+
+    clearGrid() {
+        const self = this;
+        const elGrid = w2ui[self.__gridName];
+        self.__recentFeedbacksData = [];
+        elGrid.clear(true);
+        elGrid.reset();
     }
 }

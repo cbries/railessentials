@@ -972,6 +972,12 @@ var loadSideBar = (function () {
             .yes(function () {
                 const srv = window.serverHandling;
                 if (typeof srv === "undefined" || srv == null) return;
+
+                // reset current list of routes
+                window.routesDlg.clearGrid();
+                window.blocksDlg.clearGrid();
+
+                // send command to server
                 srv.sendCommand({
                     "command": "analyzeRoutes",
                     "timestamp": Date.now(),

@@ -74,10 +74,6 @@ class Occ {
         };
     }
 
-    __startBlockWaitTimer(startSeconds) {
-
-    }
-
     __createLocomotiveInfo(locData) {
         const self = this;
         const ids = self.__generateLocomotiveInfoIdentifiers(locData.objectId);
@@ -353,6 +349,12 @@ class Occ {
             self.__timeoutBeforeHide = setTimeout(function () {
                 self.hideLocomotiveControlHover(locomotiveInfo);
             }, 250);
+        });
+
+        locomotiveInfo.on("dblclick", function (event) {
+            event.preventDefault();
+            const oid = locomotiveInfo.data("oid");
+            self.__saveLocomotiveStart(oid, true);
         });
 
         locomotiveInfo.on("contextmenu", function (event) {

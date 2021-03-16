@@ -402,10 +402,14 @@ class Blocks {
 
         var ids = this.__getCtrlIdsForOptionsAndTypes(recid);
 
-        html += '<label ' + cssLabel + '><input name="OptionWait" id="' + ids.chkIdWait + '" type="checkbox" ' + cssInput + '> Wait </label>';
+        /**
+         * currently disabled "Wait" and "Mainline" -- not really supported in the moment 
+         */
+        //html += '<label ' + cssLabel + '><input name="OptionWait" id="' + ids.chkIdWait + '" type="checkbox" ' + cssInput + '> Wait </label>';
+        //html += '<label ' + cssLabel + '><input name="OptionMainline" id="' + ids.chkIdMainline + '" type="checkbox" ' + cssInput + '> Mainline </label>';
+
         html += '<label ' + cssLabel + '><input name="OptionDirection" id="' + ids.chkIdDirection + '" type="checkbox" ' + cssInput + '> Allow change direction </label>';
-        html += '<label ' + cssLabel + '><input name="OptionMainline" id="' + ids.chkIdMainline + '" type="checkbox" ' + cssInput + '> Mainline </label>';
-        html += '<label ' + cssLabel + '><input name="OptionBbt" id="' + ids.chkIdBbt + '" type="checkbox" ' + cssInput + '> BBT </label>';
+        html += '<label ' + cssLabel + '><input name="OptionBbt" id="' + ids.chkIdBbt + '" type="checkbox" ' + cssInput + '> Speed Curve </label>';
 
         html += '</div>';
         html += '</div>';

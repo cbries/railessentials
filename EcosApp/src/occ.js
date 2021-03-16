@@ -380,16 +380,16 @@ class Occ {
             let cssLockIcon = '';
             let cssLockLabel = '';
             if (locData.IsLocked === true) {
-                cssLockLabel = "Unlock";
+                cssLockLabel = "Unlock Locomotive";
                 cssLockIcon = 'fas fa-lock';
                 locomotiveInfo.data("isLocked", true);
             }
             else if (locData.IsLocked === false) {
-                cssLockLabel = "Lock";
+                cssLockLabel = "Lock Locomotive";
                 cssLockIcon = 'fas fa-lock-open';
                 locomotiveInfo.data("isLocked", false);
             } else {
-                cssLockLabel = "Unlock";
+                cssLockLabel = "Unlock Locomotive";
                 cssLockIcon = 'fas fa-lock';
                 locomotiveInfo.data("isLocked", true);
             }

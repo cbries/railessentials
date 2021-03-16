@@ -402,6 +402,10 @@ class Planfield {
         };
     }
 
+    /**
+     * 
+     * @param {any} feedbacks -- ECoS data
+     */
     updateFeedbacks(feedbacks) {
         const self = this;
         const noOfFeedbacks = feedbacks.length;
@@ -430,19 +434,22 @@ class Planfield {
                 let newImgEnding = "";
                 const mask = 1 << jj;
                 if ((fb.stateOriginal & mask) !== 0) {
-                    newImgEnding = "-on.png";
+                    newImgEnding = "-on";
                 } else {
-                    newImgEnding = "-off.png";
+                    newImgEnding = "-off";
                 }
 
                 const img = fbItem.planItem.find("img");
                 if (!img) continue;
                 const imgsrc = img.attr("src");
+                const isRouteSelected = imgsrc.includes("-route");
                 const dirpath = getDirpathOf(imgsrc);
                 let newimgfname = fbItem.themeData.basename;
                 newimgfname = newimgfname.replace("-on", "");
                 newimgfname = newimgfname.replace("-off", "");
-                const newImgSrc = dirpath + newimgfname + newImgEnding;
+                if (isRouteSelected === true)
+                    newImgEnding += "-route";
+                const newImgSrc = dirpath + newimgfname + newImgEnding + ".png";
                 if (imgsrc !== newImgSrc) {
                     changes.push({
                         "ctrl": img,

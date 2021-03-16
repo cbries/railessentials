@@ -726,7 +726,10 @@ class Locomotives {
         const ids = this.__getCtrlIdsForOptionsAndTypes(recid);
 
         html += '<label ' + cssLabel + '><input name="OptionDirection" id="' + ids.chkIdDirection + '" type="checkbox" ' + cssInput + '> Allow change direction </label>';
-        html += '<label ' + cssLabel + '><input name="OptionMainline" id="' + ids.chkIdMainline + '" type="checkbox" ' + cssInput + '> Mainline </label>';
+        /**
+         * currently disabled "Wait" and "Mainline" -- not really supported in the moment 
+         */
+        //html += '<label ' + cssLabel + '><input name="OptionMainline" id="' + ids.chkIdMainline + '" type="checkbox" ' + cssInput + '> Mainline </label>';
 
         html += '</div>';
         html += '</div>';

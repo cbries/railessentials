@@ -2,8 +2,11 @@
 ## RailEssentials - MIT License
 
 [![Build and UnitTests](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml/badge.svg)](https://github.com/cbries/railessentials/actions/workflows/msbuild.yml)
-
 [![Deploy Nightly](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml/badge.svg)](https://github.com/cbries/railessentials/actions/workflows/dailyBuild.yml)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<a href="https://www.buymeacoffee.com/cbries" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 **~~RailwayEssentials~~** is renamed to **RailEssentials**.
 

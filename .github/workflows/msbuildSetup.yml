@@ -17,10 +17,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Building the InnoSetup Installer
-      run: iscc "Setup\\RailEssentials.iss"
-
+        
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1
 
@@ -33,9 +30,13 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
-      
+    
+    - name: Building the InnoSetup Installer
+      run: iscc "Setup\\RailEssentials.iss"
+    
     - run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Testing\ecoslibServerNetTest\bin\Release\ecoslibServerNetTest.dll'
     - run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Testing\TrackPlanerTest\bin\Release\net5.0\TrackPlanerTest.dll'
     - run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Testing\UtilitiesTest\bin\Release\UtilitiesTest.dll'
-      
+    
+    
     

@@ -430,7 +430,7 @@ namespace railessentials.AutoMode
             if (_metadataLock == null) return false;
 
             Feedbacks.FeedbacksData fbs;
-            lock(_metadataLock)
+            lock (_metadataLock)
                 fbs = _metadata.FeedbacksData;
             if (fbs == null) return false;
 
@@ -511,15 +511,15 @@ namespace railessentials.AutoMode
             _routeList = JsonConvert.DeserializeObject<RouteList>(nativeRouteData);
             _planfield = GetPlanField(_metadata);
         }
-        
+
         public void ApplyRouteDisableState(string routeName, bool disableState)
         {
             if (string.IsNullOrEmpty(routeName)) return;
 
-            foreach(var itRoute in _routeList)
+            foreach (var itRoute in _routeList)
             {
                 if (itRoute == null) continue;
-                if(routeName.Equals(itRoute.Name, StringComparison.OrdinalIgnoreCase))
+                if (routeName.Equals(itRoute.Name, StringComparison.OrdinalIgnoreCase))
                 {
                     itRoute.IsDisabled = disableState;
                     return;
@@ -575,7 +575,8 @@ namespace railessentials.AutoMode
         private bool IsLocAllowedForTargetBlock(
             Locomotives.Data locData,
             Feedbacks.Data fbData
-            ) {
+            )
+        {
             if (locData == null) return false;
             if (fbData == null) return false;
 
@@ -585,9 +586,9 @@ namespace railessentials.AutoMode
             if (locOption.Count == 0) return false;
             if (fbOption.Count == 0) return false;
 
-            foreach(var it in locOption)
+            foreach (var it in locOption)
             {
-                foreach(var itt in fbOption)
+                foreach (var itt in fbOption)
                 {
                     if (it.Key.Equals(itt.Key, StringComparison.OrdinalIgnoreCase))
                         return true;
@@ -632,12 +633,12 @@ namespace railessentials.AutoMode
             //
             if (locData.IsStopped) return null;
 
-            var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1 
-                ? SideMarker.Minus 
+            var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1
+                ? SideMarker.Minus
                 : SideMarker.Plus;
 
-            var originalSideEntered = sideToLeave == SideMarker.Minus 
-                ? SideMarker.Plus 
+            var originalSideEntered = sideToLeave == SideMarker.Minus
+                ? SideMarker.Plus
                 : SideMarker.Minus;
 
             var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
@@ -646,7 +647,7 @@ namespace railessentials.AutoMode
             // filter routes by allowed options, e.g. "mainline", "intercity", ...
             // 
             var routesFrom = new RouteList();
-            foreach(var it in routesFrom2)
+            foreach (var it in routesFrom2)
             {
                 var targetBlock = it.Blocks[1];
                 var targetBlockIdentifier = targetBlock.identifier;
@@ -654,6 +655,15 @@ namespace railessentials.AutoMode
 
                 var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
                 if (targetFbData == null) continue;
+
+                //
+                // when the target block is disabled, do not use for routing
+                //
+                if (targetFbData.Settings != null && targetFbData.Settings.ContainsKey("BlockEnabled"))
+                {
+                    var blockEnabled = targetFbData.Settings["BlockEnabled"];
+                    if (!blockEnabled) continue;
+                }
 
                 if (IsLocAllowedForTargetBlock(locData, targetFbData))
                     routesFrom.Add(it);

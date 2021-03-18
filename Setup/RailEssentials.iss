@@ -20,12 +20,12 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=C:\tfs\railessentials\LICENSE.txt
+LicenseFile=LICENSE.txt
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
-OutputDir=C:\tfs\railessentials\Setup\Output
+OutputDir=Setup\Output
 OutputBaseFilename=RailEssentials
-; SetupIconFile=C:\tfs\railessentials\EcosApp\favicon.ico
+; SetupIconFile=EcosApp\favicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -38,8 +38,8 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\tfs\railessentials\railessentials\bin\Debug\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\tfs\railessentials\railessentials\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "railessentials\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "railessentials\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

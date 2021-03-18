@@ -16,10 +16,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - uses: actions/checkout@v2
+    
     - name: Building the InnoSetup Installer
       run: iscc "Setup\\RailEssentials.iss"
-    
-    - uses: actions/checkout@v2
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1

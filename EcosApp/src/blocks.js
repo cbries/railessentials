@@ -534,6 +534,10 @@ class Blocks {
         console.log(blocks);
     }
 
+    /**
+     * 
+     * @param {any} feedbacks -- data of fbevents.json
+     */
     updateFeedbacks(feedbacks) {
         const self = this;
         const elGrid = w2ui[self.__gridName];

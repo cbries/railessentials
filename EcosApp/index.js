@@ -499,6 +499,7 @@ $(document).ready(function () {
     });
     window.serverHandling.on("feedbacksDataReceived", function (ev) {
         window.blocksDlg.updateFeedbacks(ev.data);
+        window.planField.updateFeedbacks(ev.data);
         window.locomotivesDlg.updateBlockInformation(ev.data);
     });
     window.serverHandling.on('settingsDataReceived', function (ev) {
@@ -519,7 +520,7 @@ $(document).ready(function () {
 
     function handleResult_planitemRemove(cmdResult) {
         if (typeof cmdResult === "undefined" || cmdResult == null) return false;
-        window.planField.updateAccessories(window.ecosData.accessories);
+        window.planField.updateEcosAccessories(window.ecosData.accessories);
         if (typeof window.accessoriesDlg === "undefined" || window.accessoriesDlg == null) return false;
         if (cmdResult.result === true)
             window.accessoriesDlg.removeAccessory(cmdResult.identifier);
@@ -621,11 +622,11 @@ $(document).ready(function () {
 
         if (typeof window.ecosData !== "undefined" && window.ecosData !== null) {
             if (window.__accessoriesChanged === true) {
-                window.planField.updateAccessories(window.ecosData.accessories);
+                window.planField.updateEcosAccessories(window.ecosData.accessories);
             }
 
             if (window.__feedbacksChanged === true) {
-                window.planField.updateFeedbacks(window.ecosData.feedbacks);
+                window.planField.updateEcosFeedbacks(window.ecosData.feedbacks);
                 window.dialogS88.updateFeedbackSensors(window.ecosData.feedbacks);
             }
 

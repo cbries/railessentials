@@ -404,9 +404,66 @@ class Planfield {
 
     /**
      * 
-     * @param {any} feedbacks -- ECoS data
+     * @param {any} feedbacks -- data of fbevents.json
      */
     updateFeedbacks(feedbacks) {
+        const self = this;
+        const noOfFeedbacks = feedbacks.data.length;
+        const blockCtrls = $('div.ctrlItemBlock');
+        self.__removeAllDisabledFlags(blockCtrls);
+        if (noOfFeedbacks === 0) return;
+        if (typeof blockCtrls === "undefined") return;
+        if (blockCtrls == null) return;
+        if (blockCtrls.length === 0) return;
+
+        let i = 0; 
+        for (; i < noOfFeedbacks; ++i) {
+            const fbData = feedbacks.data[i];
+            if (typeof fbData === "undefined") continue;
+            if (fbData == null) continue;
+
+            try {
+                const enabled = fbData.Settings.BlockEnabled;
+                if (typeof enabled === "undefined" || enabled == null || enabled === true) continue;
+
+                const blockCtrl = self.__getBlockCtrlOf(fbData, blockCtrls);
+                if (blockCtrl == null) continue;
+                blockCtrl.addClass("blockDisabledState");
+            }
+            catch(err) {
+                // ignore
+            }
+        }
+    }
+
+    __getBlockCtrlOf(fbData, blockCtrls) {
+        const blockId = fbData.BlockId;
+        for (let i = 0; i < blockCtrls.length; ++i) {
+            const block = $(blockCtrls[i]);
+            const data = block.data(constDataThemeItemObject);
+            const blockId = data.identifier;
+            if (fbData.BlockId.startsWith(blockId))
+                return block;
+        }
+        return null;
+    }
+
+    __removeAllDisabledFlags(blockCtrls) {
+        if (typeof blockCtrls === "undefined" || blockCtrls == null || blockCtrls.length === 0) return;
+        let i = 0; 
+        const iMax = blockCtrls.length;
+        for (; i < iMax; ++i) {
+            const fb = blockCtrls[i];
+            if (typeof fb === "undefined" || fb == null) continue;
+            $(fb).removeClass("blockDisabledState");
+        }
+    }
+
+    /**
+     * 
+     * @param {any} feedbacks -- ECoS data
+     */
+    updateEcosFeedbacks(feedbacks) {
         const self = this;
         const noOfFeedbacks = feedbacks.length;
         const fbCtrls = $('div.ctrlItemFeedback');
@@ -468,7 +525,11 @@ class Planfield {
         self.__firstRun = false;
     }
 
-    updateAccessories(accessories) {
+    /**
+     * 
+     * @param {any} accessories -- ECoS data
+     */
+    updateEcosAccessories(accessories) {
         const self = this;
         let noOfAccessories = accessories.length;
         let accCtrls = $('div.ctrlItemAccessory');

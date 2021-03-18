@@ -18,13 +18,14 @@ html, body {
 /**
     / Workspace Selection
 */
-    /**
+
+/**
     PLANFIELD
 */
-    div#planField {
-        position: relative;
-        float: left;
-    }
+div#planField {
+    position: relative;
+    float: left;
+}
 
 .planFieldBackground {
     background-image: repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
@@ -54,26 +55,39 @@ div#planFieldItemEdit {
     padding-bottom: 0px;
 }
 
-div#planFieldItemEdit div.spacer {
-    margin-top: 0px;
-    margin-bottom: 3px;
-    vertical-align: middle;
-    background-color: lightgrey;
-    height: 1px;
+    div#planFieldItemEdit div.spacer {
+        margin-top: 0px;
+        margin-bottom: 3px;
+        vertical-align: middle;
+        background-color: lightgrey;
+        height: 1px;
+    }
+
+    div#planFieldItemEdit div {
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+    }
+
+        div#planFieldItemEdit div img {
+            background-color: white;
+            margin: 0;
+            padding: -5px;
+            position: relative;
+        }
+
+.blockDisabledState {
+    background-color: rgba(175, 0,0, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #887788;
+    -moz-box-shadow: inset 0 0 0 1px #887788;
+    box-shadow: inset 0 0 0 1px #887788;
+    z-index: 1000;
+    opacity: 0.5;
 }
 
-div#planFieldItemEdit div {
-    margin: 0;
-    padding: 0;
-    vertical-align: middle;
-}
-
-div#planFieldItemEdit div img {
-    background-color: white;
-    margin: 0;
-    padding: -5px;
-    position: relative;
-}
+    .blockDisabledState img {
+        display: none;
+    }
 
 /**
     / PLANFIELD
@@ -751,4 +765,3 @@ div#toolbox {
     background-color: lightgray;
     border: 2px solid rgba(255,211,211,0.3);
 }
-

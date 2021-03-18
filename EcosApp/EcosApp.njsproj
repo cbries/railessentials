@@ -5,6 +5,8 @@
     <Name>EcosApp</Name>
     <RootNamespace>EcosApp</RootNamespace>
     <SaveNodeJsSettingsInProjectFile>False</SaveNodeJsSettingsInProjectFile>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -30,8 +32,11 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="bundleconfig.json" />
     <Content Include="libs\speedCurve\speedCurve.js" />
     <Content Include="libs\speedCurve\styles.css" />
+    <Content Include="packages.config" />
+    <Content Include="railessentials.min.js" />
     <Content Include="src\accessories.js" />
     <Content Include="src\blocks.js">
       <SubType>Code</SubType>
@@ -1588,4 +1593,11 @@
     <Folder Include="theme\RailwayEssential\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <Import Project="..\packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets" Condition="Exists('..\packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildBundlerMinifier.3.2.449\build\BuildBundlerMinifier.targets'))" />
+  </Target>
 </Project>

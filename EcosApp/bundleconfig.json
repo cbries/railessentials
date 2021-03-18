@@ -1,0 +1,29 @@
+[
+  {
+    "outputFileName": "railessentials.min.js",
+    "inputFiles": [
+      "libs/speedCurve/speedCurve.js",
+      "src/accessories.js",
+      "src/blocks.js",
+      "src/ecosHandler.js",
+      "src/editMenuBar.js",
+      "src/errorHandler.js",
+      "src/events.js",
+      "src/feedbackVisualization.js",
+      "src/globals.js",
+      "src/lightAndPower.js",
+      "src/locomotiveControl.js",
+      "src/locomotives.js",
+      "src/occ.js",
+      "src/planField.js",
+      "src/routes.js",
+      "src/serverHandling.js",
+      "src/storage.js",
+      "src/textfieldElement.js",
+      "src/toolbox.js",
+      "src/utilities.js",
+      "src/windowGeometryStorage.js",
+      "index.js"
+    ]
+  }
+]

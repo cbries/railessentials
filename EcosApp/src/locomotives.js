@@ -823,15 +823,13 @@ class Locomotives {
 
     updateOccInformation(occInformation) {
         const self = this;
-        this.__recentOcc = occInformation;
-        const occData = occInformation.data; // array
-        for (let i = 0; i < occData.length; ++i) {
-            const occDataItem = occData[i];
-
-            const recid = occDataItem.Oid;
-            const fromBlock = occDataItem.FromBlock;
-
-            // TBD
-        }
+        //this.__recentOcc = occInformation;
+        //const occData = occInformation.data; // array
+        //for (let i = 0; i < occData.length; ++i) {
+        //    const occDataItem = occData[i];
+        //    const recid = occDataItem.Oid;
+        //    const fromBlock = occDataItem.FromBlock;
+        //    // TBD
+        //}
     }
 }

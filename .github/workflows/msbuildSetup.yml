@@ -36,5 +36,5 @@ jobs:
     - run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" Testing\UtilitiesTest\bin\Release\UtilitiesTest.dll'
       
     - name: Building the installer
-      run: "%programfiles(x86)%\Inno Setup 6\iscc.exe" "Setup\RailEssentials.iss"
+      run: "%programfiles(x86)%\\Inno Setup 6\\iscc.exe" "Setup\\RailEssentials.iss"
       shell: cmd

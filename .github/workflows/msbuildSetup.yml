@@ -1,4 +1,4 @@
-name: Build and UnitTests
+name: Build, UnitTests and Setup
 
 on: [push]
 
@@ -16,14 +16,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Building the InnoSetup Installer
+      run: iscc "Setup\\RailEssentials.iss"
+    
     - uses: actions/checkout@v2
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1
 
-    - name: Building the InnoSetup Installer
-      run: iscc "Setup\\RailEssentials.iss"
- 
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}

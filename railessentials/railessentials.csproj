@@ -219,7 +219,8 @@ XCOPY "$(SolutionDir)EcosApp\libs" "$(TargetDir)\App\libs\" /E /Y
 XCOPY "$(SolutionDir)EcosApp\src" "$(TargetDir)\App\src\" /E /Y
 XCOPY "$(SolutionDir)EcosApp\theme" "$(TargetDir)\App\theme\" /E /Y
 
-COPY "$(SolutionDir)EcosApp\index.js" "$(TargetDir)\App\" /Y
+REM COPY "$(SolutionDir)EcosApp\index.js" "$(TargetDir)\App\" /Y
+COPY "$(SolutionDir)EcosApp\railessentials.min.js" "$(TargetDir)\App\" /Y
 COPY "$(SolutionDir)EcosApp\index.html" "$(TargetDir)\App\" /Y
 
 del  "$(TargetDir)\App\*.zip" /S /F

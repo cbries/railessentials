@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>videoStream</title>
+    <script type="text/javascript" src="./../libs/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="./../../libs/videoStream/videoStream.js"></script>
+    <link rel="stylesheet" href="./../../libs/videoStream/styles.css">
+
+    <!--
+    <link type="text/css" rel="stylesheet" href="aksVideoPlayer.min.css">
+    <script src="aksVideoPlayer.min.js"></script>
+    -->
+
+    <script src="jquery.clipchamp.mjpeg.player.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#webcamBasement').videoStream({
+
+            });
+
+            //$("#video").aksVideoPlayer({
+            //    file: [
+            //        {
+            //            file: "http://192.168.178.20:8081/video.mjpg?q=30&fps=33",
+            //            label: "720p"
+            //        }
+            //    ],
+            //    width: 320,
+            //    height: 240,
+            //    poster: "videos/poster.webp"
+            //});
+
+            // file:///C:/tfs/railessentials/EcosApp/playground/videoStream/videoStream.html
+            // http://192.168.178.20:8081/video.mjpg?q=30&fps=33
+
+            const mjpegUrl = "http://192.168.178.20:8081/video.mjpg?q=30&fps=33";
+            const fps = 30;
+            
+            $('#mjpeg_player').clipchamp_mjpeg_player(mjpegUrl, fps, false, playerCallback);
+        });
+
+        function playerCallback(wrapperElement, playerInterface) {
+            playerInterface.finish();
+        }
+
+    </script>
+</head>
+
+<body>
+<!--
+    <div id="webcamBasement"></div>
+    <div id="video"></div>
+    <video width="320" height="240" controls>
+        <source src="http://192.168.178.20:8081/video.mjpg?q=30&fps=33" type="video/mp4">
+    </video>
+-->
+    <div id="mjpeg_player" style="width:320px;"></div>
+
+</body>
+</html>

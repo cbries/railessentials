@@ -35,6 +35,7 @@
     <None Include="bundleconfig.json" />
     <Content Include="libs\speedCurve\speedCurve.js" />
     <Content Include="libs\speedCurve\styles.css" />
+    <Content Include="libs\videoStream\styles.css" />
     <Content Include="libs\videoStream\videoStream.js">
       <SubType>Code</SubType>
     </Content>

@@ -45,6 +45,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RocrailDemo", "RocrailDemo"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "railessentials", "railessentials\railessentials.csproj", "{F4A7401F-9E67-467A-A657-E046F8885607}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E8D9788-9D6B-485F-8940-A255CD99A183} = {2E8D9788-9D6B-485F-8940-A255CD99A183}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}"
 EndProject

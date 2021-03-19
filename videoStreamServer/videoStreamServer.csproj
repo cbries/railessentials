@@ -27,7 +27,7 @@
     <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -140,6 +140,28 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="example\libs\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Resource Include="example\libs\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Resource Include="example\libs\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Resource Include="example\libs\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Resource Include="example\libs\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Resource Include="example\libs\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Resource Include="example\libs\images\ui-icons_222222_256x240.png" />
+    <Resource Include="example\libs\images\ui-icons_2e83ff_256x240.png" />
+    <Resource Include="example\libs\images\ui-icons_454545_256x240.png" />
+    <Resource Include="example\libs\images\ui-icons_888888_256x240.png" />
+    <Resource Include="example\libs\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="example\libs\jquery-2.1.0.min.js" />
+    <Content Include="example\libs\jquery-ui.min.css" />
+    <Content Include="example\libs\jquery-ui.min.js" />
+    <Content Include="example\libs\jquery-ui.structure.min.css" />
+    <Content Include="example\libs\jquery-ui.theme.min.css" />
+    <Content Include="example\styles.css" />
+    <Content Include="example\videoStream.html" />
+    <Content Include="example\videoStream.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -211,6 +211,13 @@ XCOPY "$(SolutionDir)Demos" "$(TargetDir)\Demos\" /E /Y
 
 XCOPY "$(SolutionDir)EcosApp\css" "$(TargetDir)\App\css\" /E /Y
 
+echo "Copy videoStreamServer..."
+mkdir "$(TargetDir)\videoStreamServer\"
+mkdir "$(TargetDir)\videoStreamServer\example"
+XCOPY "$(SolutionDir)videoStreamServer\bin\$(ConfigurationName)" "$(TargetDir)\videoStreamServer\" /E /Y
+XCOPY "$(SolutionDir)videoStreamServer\example" "$(TargetDir)\videoStreamServer\example\" /E /Y
+del "$(TargetDir)\videoStreamServer\*.pdb"
+
 mkdir  "$(TargetDir)\App\images\"
 COPY "$(SolutionDir)EcosApp\images\*.png" "$(TargetDir)\App\images\" /V /Y
 COPY "$(SolutionDir)EcosApp\images\*.svg" "$(TargetDir)\App\images\" /V /Y

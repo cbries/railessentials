@@ -371,6 +371,16 @@ function addDebugMessages(msgsArray, targetClassName = "messageContainer") {
 $(document).ready(function () {
     window.__autoModeState = false;
 
+    $(document).ready(function () {
+        $('#webcamBasement').videoStream({
+            url: "http://localhost:8088/",
+            width: 320,
+            height: 240,
+            fps: 5,
+            caption: "Hauptbahnhof"
+        });
+    });
+
     addJqueryExtensions();
     initDebugConsole();
     

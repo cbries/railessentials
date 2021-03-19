@@ -15,11 +15,12 @@
             locale: "de-DE",
             caption: ""
         }, options);
-        
+
+        if (__isInstalled === true)
+            return this;
+
         __install();
-
-        __isInstalled = true;
-
+        
         return this;
 
         function __install() {
@@ -54,6 +55,8 @@
             setInterval(function () {
                 __updateImage();
             }, 1000 / settings.fps);
+
+            __isInstalled = true;
         }
         
         function __updateImage() {

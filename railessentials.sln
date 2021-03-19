@@ -87,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "videoStreamServer", "videoStreamServer\videoStreamServer.csproj", "{2E8D9788-9D6B-485F-8940-A255CD99A183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{F4A7401F-9E67-467A-A657-E046F8885607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4A7401F-9E67-467A-A657-E046F8885607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4A7401F-9E67-467A-A657-E046F8885607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E8D9788-9D6B-485F-8940-A255CD99A183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E8D9788-9D6B-485F-8940-A255CD99A183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E8D9788-9D6B-485F-8940-A255CD99A183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E8D9788-9D6B-485F-8940-A255CD99A183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

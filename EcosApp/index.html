@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="./libs/contextual.js/contextual.theme.css" type="text/css" />
     <link rel="stylesheet" href="./libs/contextual.js/contextual.css" type="text/css" />
     <link rel="stylesheet" href="./libs/speedCurve/styles.css" type="text/css" />
-
+    <link rel="stylesheet" href="./libs/videoStream/styles.css" type="text/css" />
+    
     <script type="text/javascript" src="./libs/jquery-2.1.0.min.js" defer></script>
     <script type="text/javascript" src="./libs/jquery-ui-1.12.1.custom/jquery-ui.js" defer></script>
     <script type="text/javascript" src="./libs/jquery.boxfit.min.js" defer></script>
@@ -34,7 +35,7 @@
     <link rel="stylesheet" href="./libs/fontawesome-free-5.15.1-web/css/all.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="./libs/select2-4.1.0-rc.0/dist/css/select2.css" type="text/css" />
     <link rel="stylesheet" href="./libs/colorpicker-master/jquery.colorpicker.css" type="text/css" />
-    
+
     <script type="text/javascript" src="./src/globals.js" defer></script>
     <script type="text/javascript" src="./src/utilities.js" defer></script>
     <script type="text/javascript" src="./src/accessories.js" defer></script>
@@ -56,11 +57,12 @@
     <script type="text/javascript" src="./src/routes.js" defer></script>
     <script type="text/javascript" src="./src/windowGeometryStorage.js" defer></script>
     <script type="text/javascript" src="./libs/speedCurve/speedCurve.js" defer></script>
+    <script type="text/javascript" src="./libs/videoStream/videoStream.js" defer></script>
     <script type="text/javascript" src="index.js" defer></script>
     
     <!--
     <script type="text/javascript" src="railessentials.min.js" defer></script>
-    -->    
+    -->
 </head>
 <body>
     <div class="overlay">
@@ -95,6 +97,8 @@
     </div>
 
     <div style="clear: both"></div>
+    
+    <div id="webcamBasement" class="videoStream" style="position: absolute; top: 0; left: 0;"></div>
 
     <div class="debugConsole">
         <div class="messageContainer"></div>
@@ -310,6 +314,5 @@
             </tr>
         </table>
     </div>
-    
 </body>
 </html>

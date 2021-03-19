@@ -1,15 +1,6 @@
-html, body {
-    font-family: Verdana,Arial,sans-serif;
-    background: #fcfcfc;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* hide vertical scrollbars */
-}
-
 .videoStream {
-
     position: absolute;
+    z-index: 0;
 }
 
     .videoStream .lblCaption {

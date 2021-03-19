@@ -3,6 +3,7 @@
     "outputFileName": "railessentials.min.js",
     "inputFiles": [
       "libs/speedCurve/speedCurve.js",
+      "libs/videoStream/videoStream.js",
       "src/accessories.js",
       "src/blocks.js",
       "src/ecosHandler.js",

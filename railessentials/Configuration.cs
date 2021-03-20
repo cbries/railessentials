@@ -18,6 +18,7 @@ namespace railessentials
         public string SimulationData { get; set; }
         public string RootWorkspace { get; set; }
         public string RecentWorkspace { get; set; }
+        public List<ConfigurationWebCam> Webcams { get; set; }
         public ConfigurationEcos Ecos { get; set; } = new();
         public ConfigurationWsServer WsServer { get; set; } = new();
         public ConfigurationWebServer WebServer { get; set; } = new();
@@ -103,6 +104,17 @@ namespace railessentials
         public string HttpRoot { get; set; }
         public string HttpRootFallback { get; set; }
         public List<string> Prefixes { get; set; } = new();
+    }
+
+    public class ConfigurationWebCam
+    {
+        public string Url { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Fps { get; set; }
+        public string Caption { get; set; }
+        public int X{ get; set; }
+        public int Y { get; set; }
     }
 
     public class ConfigurationTheme

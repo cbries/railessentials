@@ -371,6 +371,8 @@ function addDebugMessages(msgsArray, targetClassName = "messageContainer") {
 $(document).ready(function () {
     window.__autoModeState = false;
 
+    loadWebcams();
+
     addJqueryExtensions();
     initDebugConsole();
     

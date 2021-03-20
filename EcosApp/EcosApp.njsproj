@@ -35,6 +35,10 @@
     <None Include="bundleconfig.json" />
     <Content Include="libs\speedCurve\speedCurve.js" />
     <Content Include="libs\speedCurve\styles.css" />
+    <Content Include="libs\videoStream\styles.css" />
+    <Content Include="libs\videoStream\videoStream.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="railessentials.min.js" />
     <Content Include="src\accessories.js" />
@@ -1580,6 +1584,7 @@
     <Folder Include="libs\jquery-ui-1.12.1.custom\external\" />
     <Folder Include="libs\jquery-ui-1.12.1.custom\external\jquery\" />
     <Folder Include="libs\jquery-ui-1.12.1.custom\images\" />
+    <Folder Include="libs\videoStream\" />
     <Folder Include="libs\speedCurve\" />
     <Folder Include="libs\select2-4.1.0-rc.0\" />
     <Folder Include="libs\select2-4.1.0-rc.0\dist\" />

@@ -250,7 +250,7 @@ namespace railessentials
                 });
             }
 
-            _webServer = new WebServer(_sniffer, Cfg.WebServer.Prefixes);
+            _webServer = new WebServer(Cfg, _sniffer);
 #if DEBUG
             Cfg.WebServer.HttpRoot = Cfg.WebServer.HttpRootDebug;
             Cfg.WebServer.HttpRootFallback = Cfg.WebServer.HttpRootDebug;

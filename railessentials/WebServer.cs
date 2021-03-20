@@ -18,13 +18,17 @@ namespace railessentials
         public string RootDir { get; set; }
         public string DefaultIndex { get; set; } = "index.html";
         private readonly HttpListener _listener = new();
+        private Configuration _cfg;
         private readonly Sniffer _sniffer;
         private readonly List<string> _prefixe;
 
-        public WebServer(Sniffer snifferCtx, List<string> prefixe)
+        public WebServer(
+            Configuration cfg,
+            Sniffer snifferCtx)
         {
+            _cfg = cfg;
             _sniffer = snifferCtx;
-            _prefixe = prefixe;
+            _prefixe = _cfg.WebServer.Prefixes;
 
             if (!HttpListener.IsSupported)
                 throw new NotSupportedException("Needs Windows XP SP2, Server 2003 or later.");
@@ -49,7 +53,7 @@ namespace railessentials
                         {
                             ThreadPool.QueueUserWorkItem(HandleRequest, _listener.GetContext());
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             _sniffer?.Logger?.Log?.Warn("Listener canceled", ex);
 
@@ -73,15 +77,15 @@ namespace railessentials
                 var listOfWorkspacesHtml = string.Empty;
                 var wsRoot = Globals.RootWorkspace;
                 var listOfWs = new List<string>();
-                if(!string.IsNullOrEmpty(wsRoot))
+                if (!string.IsNullOrEmpty(wsRoot))
                 {
-                    foreach(var it in Directory.GetDirectories(wsRoot, "*", SearchOption.TopDirectoryOnly))
+                    foreach (var it in Directory.GetDirectories(wsRoot, "*", SearchOption.TopDirectoryOnly))
                     {
                         if (string.IsNullOrEmpty(it)) continue;
                         listOfWs.Add(Path.GetFileName(it).Trim());
                     }
 
-                    foreach(var it in listOfWs)
+                    foreach (var it in listOfWs)
                     {
                         if (it.Equals(Program.Cfg.RecentWorkspace, StringComparison.OrdinalIgnoreCase))
                             listOfWorkspacesHtml += $"<option selected>{it}</option>\n";
@@ -103,12 +107,44 @@ namespace railessentials
                 foreach (var it in subst)
                     cnt = cnt.Replace(it.Key, it.Value);
 
+                if (!AddWebcams(ref cnt))
+                {
+                    cnt = cnt.Replace("{{WEBCAM CODE HTML}}", string.Empty);
+                    cnt = cnt.Replace("{{WEBCAM CODE JS}}", string.Empty);
+                }
+
                 File.WriteAllText(pathToFile, cnt, Encoding.UTF8);
             }
             catch
             {
                 // ignore
             }
+        }
+
+        private bool AddWebcams(ref string html)
+        {
+            var webcams = _cfg?.Webcams;
+            if (webcams == null) return false;
+            var codeHtml = string.Empty;
+            var codeJs = string.Empty;
+            for (var i = 0; i < webcams.Count; ++i)
+            {
+                var itWebcam = webcams[i];
+                if (itWebcam == null) continue;
+                var webcamHtml = $@"<div id=""webcam{i}"" class=""videoStream"" style=""position: absolute; top: {itWebcam.Y}px; left: {itWebcam.X}px;""></div>";
+                codeHtml += webcamHtml + "\n";
+
+                codeJs += $"$('#webcam{i}').videoStream({{" +
+                        $"url: \"{itWebcam.Url}\"," +
+                        $"width: {itWebcam.Width}," +
+                        $"height: {itWebcam.Height}," +
+                        $"fps: {itWebcam.Fps}," +
+                        $"caption: \"{itWebcam.Caption}\"" +
+                    "}); ";
+            }
+            html = html.Replace("{{WEBCAM CODE HTML}}", codeHtml);
+            html = html.Replace("{{WEBCAM CODE JS}}", codeJs);
+            return true;
         }
 
         private void HandleRequest(object state)
@@ -127,7 +163,7 @@ namespace railessentials
                 if (q.HasKeys())
                 {
                     var workspace = q.Get("workspace");
-                    if(!string.IsNullOrEmpty(workspace))
+                    if (!string.IsNullOrEmpty(workspace))
                         Program.LoadMetadata(workspace, false, true);
                 }
 
@@ -153,8 +189,8 @@ namespace railessentials
                     SendErrorResponse(response, 404, $"File not found: {decodedFullFilePath}");
                     return;
                 }
-                
-                if(decodedFullFilePath.EndsWith(".html", StringComparison.OrdinalIgnoreCase))
+
+                if (decodedFullFilePath.EndsWith(".html", StringComparison.OrdinalIgnoreCase))
                 {
                     try
                     {

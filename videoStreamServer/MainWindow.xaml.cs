@@ -173,5 +173,11 @@ namespace videoStreamServer
             }
             _captureInProgress = !_captureInProgress;
         }
+
+        private void CmdPrefixes_OnClick(object sender, RoutedEventArgs e)
+        {
+            var m = string.Join("\n", _cfg.WebServer.Prefixes);
+            MessageBox.Show($"Prefixes:\n{m}", "Prefixes", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

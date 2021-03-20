@@ -3,6 +3,17 @@
   "SimulationData": "Demos\\Ecos\\ecosJson.txt",
   "RootWorkspace": "Workspaces\\",
   "RecentWorkspace": "Basement",
+  "Webcams": [
+    {
+      "Url": "http://localhost:8088/",
+      "Width": 320,
+      "Height": 240,
+      "Fps": 5,
+      "Caption": "Hauptbahnhof",
+      "X": 875,
+      "Y": 300
+    }
+  ],
   "Ecos": {
     "Ip": "192.168.178.61",
     "Port": 15471

@@ -13,6 +13,12 @@
     <RowDefinition Height="32"/>
 </Grid.RowDefinitions>
         <Image Grid.Row="0" Name="ImgWebcam" Height="240" Width="320"/>
+        <Button Grid.Row="1" Name="CmdPrefixes" Content="Prefixes" 
+                Click="CmdPrefixes_OnClick" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center"
+                Margin="2" Width="55"
+        />
         <Button Grid.Row="1" Name="CmdCapture" Content="Start" 
                 Click="ButtonBase_OnClick" 
                 HorizontalAlignment="Right" 

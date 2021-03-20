@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./libs/contextual.js/contextual.css" type="text/css" />
     <link rel="stylesheet" href="./libs/speedCurve/styles.css" type="text/css" />
     <link rel="stylesheet" href="./libs/videoStream/styles.css" type="text/css" />
-    
+
     <script type="text/javascript" src="./libs/jquery-2.1.0.min.js" defer></script>
     <script type="text/javascript" src="./libs/jquery-ui-1.12.1.custom/jquery-ui.js" defer></script>
     <script type="text/javascript" src="./libs/jquery.boxfit.min.js" defer></script>
@@ -60,9 +60,13 @@
     <script type="text/javascript" src="./libs/videoStream/videoStream.js" defer></script>
     <script type="text/javascript" src="index.js" defer></script>
     -->
-    
     <script type="text/javascript" src="railessentials.min.js" defer></script>
-    
+
+    <script>
+        function loadWebcams() {
+            {{WEBCAM CODE JS}}
+        }
+    </script>
 </head>
 <body>
     <div class="overlay">
@@ -98,7 +102,7 @@
 
     <div style="clear: both"></div>
     
-    <div id="webcamBasement" class="videoStream" style="position: absolute; top: 0; left: 0;"></div>
+    {{WEBCAM CODE HTML}}
 
     <div class="debugConsole">
         <div class="messageContainer"></div>

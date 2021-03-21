@@ -246,7 +246,8 @@ namespace railessentials
 
                 ClientHandler.Initialize(_sniffer, Metadata, GetThemeData(), new ClientHandlerCfg
                 {
-                    ThemeName = Cfg.Theme.Name
+                    ThemeName = Cfg.Theme.Name,
+                    Cfg = Cfg
                 });
             }
 

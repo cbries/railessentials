@@ -17,7 +17,10 @@
                 width: 320,
                 height: 240,
                 fps: 5,
-                caption: "Hauptbahnhof"
+                caption: "Hauptbahnhof",
+                moved: function(position) {
+                    console.log(position);
+                }
             });
         });
     </script>

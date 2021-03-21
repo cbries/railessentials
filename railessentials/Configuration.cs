@@ -8,6 +8,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Utilities;
 
 namespace railessentials
@@ -70,6 +71,49 @@ namespace railessentials
 
             return false;
         }
+
+        public void UpdateWebcam(JObject obj)
+        {
+            if (obj == null) return;
+            try
+            {
+                var cnt = File.ReadAllText(_cfgPath, Encoding.UTF8);
+                var json = JObject.Parse(cnt);
+                
+                var url = obj["url"]?.ToString();
+                if (string.IsNullOrEmpty(url)) return;
+                var questionIdx = url.IndexOf("?", StringComparison.OrdinalIgnoreCase);
+                if (questionIdx != -1)
+                    url = url.Substring(0, questionIdx);
+
+                var webcams = json["Webcams"] as JArray;
+                if (webcams == null || webcams.Count == 0) return;
+
+                foreach(var it in webcams)
+                {
+                    var itUrl = it["Url"]?.ToString();
+                    if(string.IsNullOrEmpty(itUrl)) continue;
+                    if(itUrl.Equals(url, StringComparison.OrdinalIgnoreCase))
+                    {
+                        it["Width"] = (int)obj["w"];
+                        it["Height"] = (int)obj["h"];
+                        it["X"] = (int)obj["x"];
+                        it["Y"] = (int)obj["y"];
+                    }
+                }
+
+                File.WriteAllText(_cfgPath, json.ToString(Formatting.Indented), Encoding.UTF8);
+
+                // update internal memory footprint of the webcams
+                var newCfg = Load(_cfgPath, out _);
+                if (newCfg != null)
+                    Webcams = newCfg.Webcams;
+            }
+            catch
+            {
+                // ignore
+            }
+        }
     }
 
     public class ConfigurationEcos
@@ -113,7 +157,7 @@ namespace railessentials
         public int Height { get; set; }
         public int Fps { get; set; }
         public string Caption { get; set; }
-        public int X{ get; set; }
+        public int X { get; set; }
         public int Y { get; set; }
     }
 

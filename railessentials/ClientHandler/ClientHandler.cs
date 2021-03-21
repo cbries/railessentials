@@ -14,7 +14,6 @@ using ecoslib.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
-using railessentials.LocomotivesDuration;
 using railessentials.Plan;
 using railessentials.Route;
 using SuperWebSocket;
@@ -30,6 +29,7 @@ namespace railessentials.ClientHandler
     public class ClientHandlerCfg
     {
         public string ThemeName { get; set; }
+        public Configuration Cfg { get; set; }
     }
 
     public partial class ClientHandler
@@ -942,6 +942,12 @@ namespace railessentials.ClientHandler
                         HandleSettingRoute(cmd, value);
                     }
                     break;
+
+                case "webcam":
+                    {
+                        HandleSettingWebcam(cmd, value);
+                    }
+                    break;
             }
 
             _sniffer?.SendCommandsToEcosStation();
@@ -1339,6 +1345,31 @@ namespace railessentials.ClientHandler
             }
         }
 
+        private void HandleSettingWebcam(string cmd, JToken value)
+        {
+            if (string.IsNullOrEmpty(cmd)) return;
+            var data = value as JObject;
+            if (data == null) return;
+
+            switch (cmd.ToLower())
+            {
+                case "geometry":
+                    {
+                        // data:=
+                        // {
+                        //    "url": "http://...",
+                        //    "x": 759,
+                        //    "y": 268,
+                        //    "w": 320,
+                        //    "h": 240
+                        // }
+
+                        _cfg?.Cfg?.UpdateWebcam(data);
+                    }
+                    break;
+            }
+        }
+
         private void UpdateFeedbackEcosAddr(FbData data)
         {
             if (data == null) return;
@@ -1584,7 +1615,7 @@ namespace railessentials.ClientHandler
                     data["metamodel"] = _metadata?.Metamodel;
                 }
 
-                if (modelType == ModelType.Initialization 
+                if (modelType == ModelType.Initialization
                     || modelType == ModelType.Update)
                 {
                     data["routes"] = _metadata?.Routes;

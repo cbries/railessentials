@@ -13,7 +13,8 @@
             height: 240,
             fps: 10,
             locale: "de-DE",
-            caption: ""
+            caption: "",
+            moved: null
         }, options);
 
         if (__isInstalled === true)
@@ -25,9 +26,32 @@
 
         function __install() {
             __ctx.resizable({
-                ghost: false
+                ghost: false,
+                stop: function (event, ui) {
+                    if (typeof settings.moved === "undefined") return;
+                    if (settings.moved == null) return;
+                    settings.moved({
+                        url: __img.get(0).src,
+                        x: ui.position.left,
+                        y: ui.position.top,
+                        w: ui.size.width,
+                        h: ui.size.height
+                    });
+                }
             });
-            __ctx.draggable();
+            __ctx.draggable({
+                stop: function (event, ui) {
+                    if (typeof settings.moved === "undefined") return;
+                    if (settings.moved == null) return;
+                    settings.moved({
+                        url: __img.get(0).src,
+                        x: ui.position.left,
+                        y: ui.position.top,
+                        w: parseInt(__ctx.css("width").replace("px", "")),
+                        h: parseInt(__ctx.css("height").replace("px", ""))
+                    });
+                }
+            });
 
             __ctx.css({
                 width: settings.width + "px",

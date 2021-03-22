@@ -18,7 +18,29 @@ and any conntected webclient. The server is written in C# and .NET Framework and
 used in [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/), 
 and [Vivaldi](https://vivaldi.com/). 
 
-## Daily Builds
+
+# Table of Contents
+- [Daily/Nightly Builds](#dailynightly-builds)
+- [Releases](#releases) 
+- [Who is Using It?](#who-is-using-it)
+- [Contribute](#contribute)
+- [Book](#book)
+- [Features](#features)
+- [Visual Impressions](#visual-impressions)
+
+<br>
+
+# Daily/Nightly Builds
+
+### Setup/Installer
+
+`RailEssentials` is automatically build everyday. During this build an always up-to-date Setup/Installer is generated and can be used to deploy the latest features on your personal computer. Currently, only Windows is supported, for other operating system the source must be used and build. The latest setup/installer is provided under the `Release`tab: [`Daily Setup`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
+- download the Setup of your choice (e.g. `Setup-20210322-4d9eb4.exe`, where `20210322` stands for 22nd March 2021)
+- doubleblick the Setup and follow the instructions
+
+![Setup Screen Capture](docs/assets/captures/RailEssentials2.gif)
+
+### Portable Zip-Archives
 
 `RailEssentials` is automatically build everyday. The always latest version is provided under the `Release` tab: [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
 - download the archive `railessentials-dailybuild-*.zip`
@@ -28,26 +50,16 @@ As default the workspace `Basement` is loaded and provided and can be used direc
 
 ![Locomotives]
 
-## Releases
+
+<br>
+
+# Releases
 
 We do not provide any official releases yet, because the software is still under development, but we provide a [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild). In January'21 the RailEssentials team decided to do a full rewrite. To use this software, checkout the source, and just click "Build and Run (F5)" in VisualStudio.
 
-## Book
+<br>
 
-In the late of 2018 I wrote a book about programming the ESU's ECoS 50210.
-
-[![Book](docs/assets/img/ecosbook.jpg)](https://www.christianbenjaminries.de/ecos) 
-
-* ISBN: **978-1-790-36403-9**    
-* ASIN (Kindle): **B07L4Z4MYL**
-
-The book introduces the basics of managing commands for remote control of your model railway by use of C# and .NET Framework/.net Core. The included examples and API information are all used in [`ecos`](https://github.com/cbries/ecos), a software library hosted on GitHub which is completly used by `RailEssentials` (with few improvements and bug fixes). The source is completly merged into `RailEssentials`, i.e. check out the subdirectory [`ecoslibNet48`](https://github.com/cbries/railessentials/tree/master/ecoslibNet48).
-
-## Who is Using It?
-
-If you're using RailEssentials, I'd love to hear about it, please email to `mail@cbries.de` 
-the name of your project, attach few screenshots and your plan, and if you have, some ideas
-of improvements. 
+# Contribute
 
 ## Quick Start for Developer
 
@@ -68,15 +80,11 @@ Finally, you should see something like this:
 
 - Windows 10
 - .NET Framework 4.8 or higher
-- Chrome, Firefox or Vivaldi
+- `Chrome`, `Firefox` or `Vivaldi`
 
 ## Bug Tracking
 
 Have a bug or a feature request? Please open an issue here [https://github.com/cbries/railessentials/issues](https://github.com/cbries/railessentials/issues). Please make sure that the same issue was not previously submitted by someone else.
-
-## First Steps
-
-To be defined, probably will be provided under `Wiki`.
 
 ## Third-Party Components at Their Best
 
@@ -91,6 +99,51 @@ To be defined, probably will be provided under `Wiki`.
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 - [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
 - [`emgucv`](https://github.com/emgucv/emgucv) A cross platform .Net wrapper for the Open CV image-processing library.
+
+<br>
+
+# Book
+
+In the late of 2018 I wrote a book about programming the ESU's ECoS 50210.
+
+[![Book](docs/assets/img/ecosbook.jpg)](https://www.christianbenjaminries.de/ecos) 
+
+* ISBN: **978-1-790-36403-9**    
+* ASIN (Kindle): **B07L4Z4MYL**
+
+The book introduces the basics of managing commands for remote control of your model railway by use of C# and .NET Framework/.net Core. The included examples and API information are all used in [`ecos`](https://github.com/cbries/ecos), a software library hosted on GitHub which is completly used by `RailEssentials` (with few improvements and bug fixes). The source is completly merged into `RailEssentials`, i.e. check out the subdirectory [`ecoslibNet48`](https://github.com/cbries/railessentials/tree/master/ecoslibNet48).
+
+<br>
+
+## Features
+
+ - *Modern Web Frontend* based on HTML5, JavaScript, Websocket-Communication
+ - *Frontend UI usable with Chrome, Firefox, Vivaldi, Edge* on any device
+ - *Server-based* architecture (currently the server is only running on Windows)
+ - *WebCam/Video* support included by default for monitoring hidden yards (i.e. includes stream server and web viewer)
+ - *Import of Rocrail* plans
+ - *Workspace* support, to switch between different plan at any time
+ - *Track Designer* based on modern web technology
+ - *Toolbox-support* with drag&drop
+ - *Plan Item* transformation directly by single clicks (i.e. move, rotate, remove)
+ - *Text Item* support (i.e. bold, italic, underline, font size, font color)
+ - *Labels* for Plan Items
+ - *Block-based* automatic mode, any train/locomotive can be controlled by a smart algorithmen and can travel between blocks without crossing routes
+ - *Route detection* between blocks, any feasible route will be found and provided for your individual setup
+ - *Routes with direction* are recognized
+ - *Route* disabling/enabling on-demand
+ - *Block* disabling/enabling on-demand
+ - *Locomotive* lock/unlock
+ - *Locomotive* direct control via mouse over controls in the plan
+ - *Locomotive* speed curve editor (i.e. individual acceleration/deceleration)
+ - *Drag&Drop of Locomotives* to Blocks for assignment
+ - *Light Control* (i.e. currently hardcoded variant for my personal model railway)
+ - *S88 Viewer*
+ - *Simulation Mode* to test any functionality
+ - *Accessory* can be changed directly by clicking the individual plan item at any time
+ - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block
+ - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
+ - *Auto Mode* of the whole model railway, work on your landscape during run of all your trains
 
 <br>
 

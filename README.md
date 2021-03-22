@@ -36,7 +36,7 @@ We do not provide any official releases yet, because the software is still under
 
 In the late of 2018 I wrote a book about programming the ESU's ECoS 50210.
 
-[![Book](docs/images/ecosbook.jpg)](https://www.christianbenjaminries.de/ecos) 
+[![Book](docs/asset/img/ecosbook.jpg)](https://www.christianbenjaminries.de/ecos) 
 
 * ISBN: **978-1-790-36403-9**    
 * ASIN (Kindle): **B07L4Z4MYL**

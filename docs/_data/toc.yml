@@ -4,20 +4,14 @@
     - title: "Getting Started"
       url: "docs/getting-started"
       children:
+        - title: Installation
+          url: "docs/getting-started#installation"
         - title: Features
-          url: "docs/getting-started#getting-started"
-        - title: Development
-          url: "docs/getting-started#development"
-        - title: Customization
-          url: "docs/getting-started#customization"
-    - title: "Extras"
-      url: "docs/extras"
-      children:
-        - title: Quizzes
-          url: "docs/extras/example-quiz"
-        - title: Tags Page
-          url: "tags"
+          url: "docs/getting-started#features"
+        - title: Auto Mode
+          url: "docs/getting-started#auto-mode"      
     - title: "About"
       url: "about"
     - title: "News"
-      url: "news"
+      url: "news" 
+ 

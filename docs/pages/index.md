@@ -6,36 +6,39 @@ permalink: /
 
 # Welcome to RailEssentials
 
-This is a starter template for a docsy jekyll theme.
+![assets/img/railessentials01.png](assets/img/railessentials01.png)
 
-![assets/img/docsy-jekyll.png](assets/img/docsy-jekyll.png)
-
-## Purpose
-
-GitHub pages uses Jekyll natively, so when I make documentation, I typically
-look for Jekyll templates. Why? Using Jekyll means that I can use markdown,
-and allow for users to easily contribute, and build automatically just by
-way of pushing to a master branch (or general GitHub pages).
-I found Docsy, a beautiful Hugo template, but it requires hugo with GoLang
-which doesn't render natively on GitHub pages. For this reason, I've spent
-some time creating a custom Jekyll template that is (almost) as beautiful,
-and includes all the features that I might want.
+##### __NOTE:__ THIS DOCUMENTATION IS STILL UNDER DEVELOPMENT
 
 ## Features
 
-What are these features? You should see the {% include doc.html name="Getting Started" path="getting-started" %}
-guide for a complete summary. Briefly:
-
- - *User interaction* including consistent permalinks, links to ask questions via GitHub issues, and edit the file on GitHub directly.
- - *Search* across posts, documentation, and other site pages, with an ability to exclude from search.
- - *External Search* meaning an ability to link any page tag to trigger an external search.
- - *Documentation* A documentation collection that was easy to organize on the filesystem, render with nested headings for the user, and refer to in markdown.
- - *Pages* A separate folder for more traditional pages (e.g, about).
- - *Navigation*: Control over the main navigation on the left of the page, and automatic generation of table of contents for each page on the right.
- - *News* A posts feed for news and updates, along with an archive (organized by year).
- - *Templates* or specifically, "includes" that make it easy to create an alert, documentation link, or other content.
- - *Continuous Integration* recipes to preview the site
-
-
+ - *Modern Web Frontend* based on HTML5, JavaScript, Websocket-Communication
+ - *Frontend UI usable with Chrome, Firefox, Vivaldi, Edge* on any device
+ - *Server-based* architecture (currently the server is only running on Windows)
+ - *WebCam/Video* support included by default for monitoring hidden yards (i.e. includes stream server and web viewer)
+ - *Import of Rocrail* plans
+ - *Workspace* support, to switch between different plan at any time
+ - *Track Designer* based on modern web technology
+ - *Toolbox-support* with drag&drop
+ - *Plan Item* transformation directly by single clicks (i.e. move, rotate, remove)
+ - *Text Item* support (i.e. bold, italic, underline, font size, font color)
+ - *Labels* for Plan Items
+ - *Block-based* automatic mode, any train/locomotive can be controlled by a smart algorithmen and can travel between blocks without crossing routes
+ - *Route detection* between blocks, any feasible route will be found and provided for your individual setup
+ - *Routes with direction* are recognized
+ - *Route* disabling/enabling on-demand
+ - *Block* disabling/enabling on-demand
+ - *Locomotive* lock/unlock
+ - *Locomotive* direct control via mouse over controls in the plan
+ - *Locomotive* speed curve editor (i.e. individual acceleration/deceleration)
+ - *Drag&Drop of Locomotives* to Blocks for assignment
+ - *Light Control* (i.e. currently hardcoded variant for my personal model railway)
+ - *S88 Viewer*
+ - *Simulation Mode* to test any functionality
+ - *Accessory* can be changed directly by clicking the individual plan item at any time
+ - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block
+ - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
+ - *Auto Mode* of the whole model railway, work on your landscape during run of all your trains
+ 
 For features, getting started with development, see the {% include doc.html name="Getting Started" path="getting-started" %} page. Would you like to request a feature or contribute?
 [Open an issue]({{ site.repo }}/issues)

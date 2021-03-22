@@ -62,17 +62,13 @@ As a result the software will build and all relevant files are copied to the `Ou
 Finally, you should see something like this:
 ![firstImpressionsAfterBuild]
 
-[firstImpressionsAfterBuild]: docs/images/firstImpressionAfterBuild.png "Welcome View of RailEssentials after Build and Run"
+[firstImpressionsAfterBuild]: docs/assets/img/firstImpressionAfterBuild.png "Welcome View of RailEssentials after Build and Run"
 
 ## System Requirements
 
 - Windows 10
 - .NET Framework 4.8 or higher
 - Chrome, Firefox or Vivaldi
-
-## Documentation & Demos
-
-To be defined
 
 ## Bug Tracking
 
@@ -94,6 +90,7 @@ To be defined, probably will be provided under `Wiki`.
 - [`Contextual.js`](https://github.com/LucasReade/Contextual.js) Javascript contextual menu library
 - [`select2`](https://github.com/select2/select2) Select2 is a jQuery based replacement for select boxes. It supports searching, remote data sets, and infinite scrolling of results.
 - [`FontAwesome`](https://fontawesome.com/) Get vector icons and social logos on your website with Font Awesome, the web's most popular icon set and toolkit.
+- [`emgucv`](https://github.com/emgucv/emgucv) A cross platform .Net wrapper for the Open CV image-processing library.
 
 <br>
 
@@ -108,6 +105,10 @@ To be defined, probably will be provided under `Wiki`.
 ## Accessories
 
 ![Accessories]
+
+## WebCam/Video Surveilance for Fiddle Yards
+
+![WebCam]
 
 ## Blocks and S88
 
@@ -134,6 +135,8 @@ To be defined, probably will be provided under `Wiki`.
 [LocomotivesView]: Screenshots/Impressions/RailEssentials-LocomotivesView.png "Locomotives View"
 
 [Accessories]: Screenshots/Impressions/RailEssentials-Accessories.png "Accessories"
+
+[WebCam]: Screenshots/Impressions/railessentials01.png "WebCam0"
 
 [BlocksS88]: Screenshots/Impressions/RailEssentials-BlocksS88.png "Blocks and S88"
 [S88Viewer]: Screenshots/Impressions/RailEssentials-S88Viewer.png "S88 Viewer"

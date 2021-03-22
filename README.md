@@ -38,7 +38,7 @@ and [Vivaldi](https://vivaldi.com/).
 - download the Setup of your choice (e.g. `Setup-20210322-4d9eb4.exe`, where `20210322` stands for 22nd March 2021)
 - doubleblick the Setup and follow the instructions
 
-![Setup Screen Capture](docs/assets/captures/RailEssentials2.gif)]
+![Setup Screen Capture](docs/assets/captures/RailEssentials2.gif)
 
 ### Portable Zip-Archives
 

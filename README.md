@@ -156,6 +156,8 @@ The book introduces the basics of managing commands for remote control of your m
 
 ![LocomotivesView]
 
+![LocomotivesSpeedCurve]
+
 ## Accessories
 
 ![Accessories]
@@ -187,6 +189,8 @@ The book introduces the basics of managing commands for remote control of your m
 [Locomotives]: Screenshots/Impressions/RailEssentials-Locomotives.png "Locomotives View and Handling"
 [LocomotivesControl]: Screenshots/Impressions/RailEssentials-LocomotivesControl.png "Locomotives Control directly in the Plan"
 [LocomotivesView]: Screenshots/Impressions/RailEssentials-LocomotivesView.png "Locomotives View"
+[LocomotivesSpeedCurve]: Screenshots/Impressions/RailEssentials-SpeedCurve.png "Locomotives SpeedCurve"
+
 
 [Accessories]: Screenshots/Impressions/RailEssentials-Accessories.png "Accessories"
 

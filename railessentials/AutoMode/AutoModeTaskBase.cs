@@ -29,25 +29,25 @@ namespace railessentials.AutoMode
             return true;
         }
         
-        private bool SetAccessories()
+        private void ApplyAccessoryStartCommands()
         {
             var fromBlockId = Route.FromBlock.identifier;
             var fromSide = Route.FromBlock.side;
-            if (string.IsNullOrEmpty(fromBlockId)) return false;
+            if (string.IsNullOrEmpty(fromBlockId)) return;
             var fbData = Ctx._metadata.FeedbacksData.GetByBlockId(fromBlockId, fromSide);
-            if (fbData == null) return false;
+            if (fbData == null) return;
 
             var clientHandler = Ctx?.GetClientHandler();
-            if (clientHandler == null) return false;
+            if (clientHandler == null) return;
 
             try
             {
-                if (fbData.OnStart == null) return true;
-                if (fbData.OnStart.Count == 0) return true;
+                if (fbData.OnStart == null) return;
+                if (fbData.OnStart.Count == 0) return;
 
                 var dp = Route.DataProvider;
 
-                foreach(var it in fbData.OnStart)
+                foreach (var it in fbData.OnStart)
                 {
                     if (it == null) continue;
 
@@ -56,11 +56,11 @@ namespace railessentials.AutoMode
                     if (accItem == null) continue;
                     Utilities.GetAccessoryEcosAddresses(accItem, out var addr1, out var addr2);
 
-                    if(addr1 > 0 && addr2 > 0)
+                    if (addr1 > 0 && addr2 > 0)
                     {
                         // TODO
                     }
-                    if(addr1 > 0)
+                    if (addr1 > 0)
                     {
                         var ecosAcc = dp.GetAccessoryByAddress(addr1) as Accessory;
                         if (ecosAcc == null) continue;
@@ -79,10 +79,23 @@ namespace railessentials.AutoMode
                                 ecosAcc.Switch(0);
                         }
                     }
-                    else if(addr2 > 0)
+                    else if (addr2 > 0)
                     {
                         // TODO
                     }
+
+                    var afterDelay = it.StateAfterDelay;
+                    if (afterDelay == null) continue;
+                    var sec = afterDelay.Seconds;
+                    var state = afterDelay.State;
+                    if (sec <= 0) continue;
+                    if (string.IsNullOrEmpty(state)) continue;
+                    Task.Run(async () =>
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(sec));
+                        // TODO call action
+                        Trace.WriteLine("TODO call action");
+                    });
                 }
 
                 if (clientHandler.IsSimulationMode())
@@ -94,14 +107,17 @@ namespace railessentials.AutoMode
                 {
                     clientHandler._sniffer?.SendCommandsToEcosStation();
                 }
-
-                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Trace.WriteLine($"<Exception> {ex.Message}");
-                return false;
             }
+        }
+        
+        private void SetAccessories()
+        {
+            ApplyAccessoryStartCommands();
+            // TODO add OnStop actions
         }
          
         public async override Task Run()

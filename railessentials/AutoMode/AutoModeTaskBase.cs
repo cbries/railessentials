@@ -4,8 +4,11 @@
 
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using ecoslib.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using railessentials.Analyzer;
 using railessentials.Plan;
 
@@ -25,7 +28,82 @@ namespace railessentials.AutoMode
             SendDebugMessage($"{Route.Route.Name} has been canceled");
             return true;
         }
+        
+        private bool SetAccessories()
+        {
+            var fromBlockId = Route.FromBlock.identifier;
+            var fromSide = Route.FromBlock.side;
+            if (string.IsNullOrEmpty(fromBlockId)) return false;
+            var fbData = Ctx._metadata.FeedbacksData.GetByBlockId(fromBlockId, fromSide);
+            if (fbData == null) return false;
 
+            var clientHandler = Ctx?.GetClientHandler();
+            if (clientHandler == null) return false;
+
+            try
+            {
+                if (fbData.OnStart == null) return true;
+                if (fbData.OnStart.Count == 0) return true;
+
+                var dp = Route.DataProvider;
+
+                foreach(var it in fbData.OnStart)
+                {
+                    if (it == null) continue;
+
+                    var accItemObj = Ctx._metadata.GetMetamodelItem(it.Accessory);
+                    var accItem = JsonConvert.DeserializeObject<PlanItem>(accItemObj.ToString(Formatting.None));
+                    if (accItem == null) continue;
+                    Utilities.GetAccessoryEcosAddresses(accItem, out var addr1, out var addr2);
+
+                    if(addr1 > 0 && addr2 > 0)
+                    {
+                        // TODO
+                    }
+                    if(addr1 > 0)
+                    {
+                        var ecosAcc = dp.GetAccessoryByAddress(addr1) as Accessory;
+                        if (ecosAcc == null) continue;
+                        if (clientHandler.IsSimulationMode())
+                        {
+                            if (it.State.Equals("red", StringComparison.OrdinalIgnoreCase))
+                                ecosAcc.SwitchSimulation(1);
+                            else if (it.State.Equals("green", StringComparison.OrdinalIgnoreCase))
+                                ecosAcc.SwitchSimulation(0);
+                        }
+                        else
+                        {
+                            if (it.State.Equals("red", StringComparison.OrdinalIgnoreCase))
+                                ecosAcc.Switch(1);
+                            else if (it.State.Equals("green", StringComparison.OrdinalIgnoreCase))
+                                ecosAcc.Switch(0);
+                        }
+                    }
+                    else if(addr2 > 0)
+                    {
+                        // TODO
+                    }
+                }
+
+                if (clientHandler.IsSimulationMode())
+                {
+                    clientHandler.SaveAll();
+                    clientHandler._sniffer?.TriggerDataProviderModifiedForSimulation();
+                }
+                else
+                {
+                    clientHandler._sniffer?.SendCommandsToEcosStation();
+                }
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Trace.WriteLine($"<Exception> {ex.Message}");
+                return false;
+            }
+        }
+         
         public async override Task Run()
         {
             #region prepare data for autoMode task
@@ -47,6 +125,11 @@ namespace railessentials.AutoMode
             {
                 SendDebugMessage($"Start: {Route.Route.Name}");
 
+                //
+                // NOTE apply all accessory states before start of locomotive traveling
+                //
+                SetAccessories();
+                
                 if (IsCanceled()) return;
 
                 //
@@ -228,7 +311,7 @@ namespace railessentials.AutoMode
         {
             hasError = false;
             int ecosAddr;
-            var r = Utilities.GetEcosAddress(fb, out var ecosAddr1, out var ecosAddr2, out _, out _);
+            var r = Utilities.GetFeedbackAddress(fb, out var ecosAddr1, out var ecosAddr2, out _, out _);
             if (r)
             {
                 var ec1 = 0;

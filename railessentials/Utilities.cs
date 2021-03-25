@@ -80,10 +80,13 @@ namespace railessentials
 
         public static void GetAccessoryEcosAddresses(
             PlanItem item, 
-            out int addr1,
-            out int addr2)
+            out int addr1, out bool inverse1,
+            out int addr2, out bool inverse2
+            ) 
         {
-            GetFeedbackAddress(item, out var ecosAddr1, out var ecosAddr2, out _, out _);
+            GetFeedbackAddress(item, 
+                out var ecosAddr1, out var ecosAddr2, 
+                out inverse1, out inverse2);
             if(ecosAddr1 == null && ecosAddr2 == null)
             {
                 addr1 = item.Addresses.Addr;

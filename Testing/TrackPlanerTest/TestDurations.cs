@@ -18,7 +18,6 @@ namespace TrackPlanerTest
             var data1004 = instance.GetData(1004);
             data1004.Should().BeNull();
             instance.AddDecelerateDuration(1004, "B01[+]", DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(15)).Should().BeTrue();
-            instance.AddDuration(1004, DateTime.Now, DateTime.Now + TimeSpan.FromSeconds(10)).Should().BeTrue();
             var jsonObj = instance.ToJsonString();
             jsonObj.IndexOf("B01[+]", StringComparison.OrdinalIgnoreCase).Should().BeGreaterThan(-1);
         }

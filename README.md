@@ -121,8 +121,8 @@ The book introduces the basics of managing commands for remote control of your m
  - *Modern Web Frontend* based on HTML5, JavaScript, Websocket-Communication
  - *Frontend UI usable with Chrome, Firefox, Vivaldi, Edge* on any device
  - *Server-based* architecture (currently the server is only running on Windows)
- - *WebCam/Video* support included by default for monitoring hidden yards (i.e. includes stream server and web viewer)
- - *Import of Rocrail* plans
+ - *WebCam/Video* support included by default for monitoring hidden yards (i.e. includes stream server and web viewer) [Wiki](https://github.com/cbries/railessentials/wiki/RailEssentials'-WebCam-Video-Surveilance-for-Fiddle-Yards)
+ - *Import of Rocrail* plans [Wiki](https://github.com/cbries/railessentials/wiki/Import-RocRail-plan.xml)
  - *Workspace* support, to switch between different plan at any time
  - *Track Designer* based on modern web technology
  - *Toolbox-support* with drag&drop
@@ -137,6 +137,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Locomotive* lock/unlock
  - *Locomotive* direct control via mouse over controls in the plan
  - *Locomotive* speed curve editor (i.e. individual acceleration/deceleration)
+ - *Locomotive* image visualization [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Locomotive-Images-Photos)
  - *Drag&Drop of Locomotives* to Blocks for assignment
  - *Light Control* (i.e. currently hardcoded variant for my personal model railway)
  - *S88 Viewer*

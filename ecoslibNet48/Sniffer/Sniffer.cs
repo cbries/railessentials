@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using ecoslib.Connector;
 using ecoslib.Entities;
+using ecoslib.Statistics;
 
 namespace ecoslib.Sniffer
 {
@@ -23,8 +24,9 @@ namespace ecoslib.Sniffer
         public int InitializeDelay { get; set; }
 		public bool SaveOnEveryPlanfieldChange { get; set; }
 		public bool IsStarted { get; private set; }
-		
-		internal ConnectorFaster Connector { get; set; }
+		public IStatistics Statistics { get; set; }
+
+        internal ConnectorFaster Connector { get; set; }
 		internal ConnectorFaster S88Connector { get; set; }
 		internal IDataProvider DataProvider { get; private set; }
 		internal IDataProvider DataProviderS88 { get; private set; }
@@ -61,7 +63,8 @@ namespace ecoslib.Sniffer
 
             DataProvider = new DataProvider(DataModeT.General)
             {
-                Logger = Logger
+                Logger = Logger,
+                Statistics = Statistics
             };
             var dp = (DataProvider)DataProvider;
             dp.Commands += DpOnCommands;

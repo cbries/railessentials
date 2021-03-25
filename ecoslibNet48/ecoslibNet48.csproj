@@ -114,6 +114,11 @@
     <Compile Include="Sniffer\TcpServer.cs" />
     <Compile Include="Sniffer\WsClient.cs" />
     <Compile Include="Sniffer\WsServer.cs" />
+    <Compile Include="Statistics\Duration.cs" />
+    <Compile Include="Statistics\Entry.cs" />
+    <Compile Include="Statistics\IStatistics.cs" />
+    <Compile Include="Statistics\Statistics.cs" />
+    <Compile Include="Statistics\Touch.cs" />
     <Compile Include="Utilities\Base64.cs" />
     <Compile Include="Utilities\Blocks\RegisterS88.cs" />
     <Compile Include="Utilities\BlockUtils.cs" />
@@ -152,5 +157,6 @@
     <None Include=".editorconfig" />
     <None Include="Documentation\ecos_pc_interface3.pdf" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

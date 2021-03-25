@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using ecoslib.Statistics;
 using ecoslib.Utilities;
 using Newtonsoft.Json.Linq;
 // ReSharper disable InconsistentNaming
@@ -15,6 +15,8 @@ namespace ecoslib.Entities
     public sealed class Locomotive : Item
     {
         public override string Caption => $"{ObjectId}: {Name}, {Addr}, {Speed}, " + (IsBackward ? "BACK" : "FORWARD");
+
+        private readonly IStatistics _stats;
 
         public enum ProtocolSteps
         {
@@ -90,8 +92,9 @@ namespace ecoslib.Entities
         public bool IsBackward => Direction == 1;
         public bool IsForward => Direction == 0;
 
-        public Locomotive()
+        public Locomotive(IStatistics stats)
         {
+            _stats = stats;
             if (Funcset.Count != 0) return;
             for (var i = 0; i < 32; ++i)
                 Funcset.Add(false);
@@ -285,6 +288,9 @@ namespace ecoslib.Entities
                     int.TryParse(arg.Parameter[0], out var v);
                     if (v == Speedstep) continue;
                     _hasChanged = true;
+
+                    if (v <= 0) _stats?.LocomotiveStop(ObjectId);
+                    else _stats?.LocomotiveStart(ObjectId);
 
                     Speedstep = v;
                 }

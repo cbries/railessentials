@@ -95,21 +95,6 @@ namespace railessentials.LocomotivesDuration
             return locdata;
         }
 
-        public bool AddDuration(int locomotiveId, DateTime start, DateTime stop)
-        {
-            if (locomotiveId < 0) return false;
-            if (stop <= start) return false;
-
-            var locdata = GetData(locomotiveId, true);
-            var currentNo = locdata.Durations.Count;
-            var targetDuration = new Duration
-            {
-                Start = start,
-                Stop = stop
-            };
-            locdata.Durations.Add(targetDuration);
-            return locdata.Durations.Count > currentNo;
-        }
 
         public bool AddDecelerateDuration(int locomotiveId, string blockId, DateTime start, DateTime stop)
         {

@@ -59,6 +59,8 @@ namespace railessentials
 
         private static void StopServices()
         {
+            _statistics?.Save();
+
             _webServer?.Stop();
 
             ClientHandler?.SaveAll();

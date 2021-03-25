@@ -126,12 +126,29 @@ namespace railessentials.AutoMode
                         out var addr1, out var inverse1, 
                         out var addr2, out var inverse2);
 
+                    //
+                    // e.g. 2-wings-semaphore can have two addresses
+                    //
                     if (addr1 > 0 && addr2 > 0)
                     {
-                        // TODO
+                        var ecosAcc1 = dp.GetAccessoryByAddress(addr1) as Accessory;
+                        if (ecosAcc1 != null)
+                        {
+                            SwitchAccessory(it.State, ecosAcc1, inverse1);
+                            StartDelayTask(it, ecosAcc1, inverse1);
+                        }
+
+                        var ecosAcc2 = dp.GetAccessoryByAddress(addr2) as Accessory;
+                        if (ecosAcc2 != null)
+                        {
+                            SwitchAccessory(it.State, ecosAcc2, inverse2);
+                            StartDelayTask(it, ecosAcc2, inverse2);
+                        }
                     }
                     else
-                    {
+                    {   //
+                        // in most cases we just have a single address
+                        //
                         var addr = 0;
                         var inverse = false;
                         if (addr1 > 0)

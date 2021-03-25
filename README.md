@@ -145,6 +145,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block
  - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
  - *Auto Mode* of the whole model railway, work on your landscape during run of all your trains
+ - *Statistics* of accessory usage and when any Locomotive has been started/stopped (e.g. supports scheduled maintenance)
 
 <br>
 

@@ -615,7 +615,7 @@ class Planfield {
 
                         newimgfname += ".png";
 
-                        img.attr("src", dirpath + newimgfname);
+                        img.get(0).src = dirpath + newimgfname + "?t=" + Math.random();
                     }
                     break;
 
@@ -687,7 +687,7 @@ class Planfield {
 
                         newimgfname += ".png";
 
-                        img.attr("src", dirpath + newimgfname);
+                        img.get(0).src = dirpath + newimgfname + "?t=" + Math.random();
                     }
                     break;
             }

@@ -66,9 +66,11 @@ namespace UtilitiesTest
         ""themeDimIdx"": 2
       }}";
             var planItemInstance = JsonConvert.DeserializeObject<PlanItem>(json);
-            railessentials.Utilities.GetAccessoryEcosAddresses(planItemInstance, out var addr1, out var addr2);
+            railessentials.Utilities.GetAccessoryEcosAddresses(planItemInstance, out var addr1, out var inverse1, out var addr2, out var inverse2);
             addr1.Should().Be(81);
+            inverse1.Should().BeTrue();
             addr2.Should().Be(0);
+            inverse2.Should().BeFalse();
         }
     }
 }

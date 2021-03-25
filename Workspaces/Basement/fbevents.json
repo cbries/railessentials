@@ -381,6 +381,27 @@
     "BlockId": "B12[+]",
     "FbEnter": "FB22.1",
     "FbIn": "FB22.2",
+    "DeniedLocomotives": [],
+    "Settings": {
+      "BlockEnabled": true,
+      "OptionWait": true,
+      "OptionDirection": false,
+      "OptionMainline": true,
+      "OptionBbt": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": false,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": false
+    }
+  },
+  {
+    "BlockId": "B12[-]",
+    "FbEnter": "FB22.2",
+    "FbIn": "FB22.1",
     "OnStart": [
       {
         "Accessory": "Signal_B12_rechts",
@@ -410,41 +431,9 @@
     }
   },
   {
-    "BlockId": "B12[-]",
-    "FbEnter": "FB22.2",
-    "FbIn": "FB22.1",
-    "DeniedLocomotives": [],
-    "Settings": {
-      "BlockEnabled": true,
-      "OptionWait": true,
-      "OptionDirection": false,
-      "OptionMainline": true,
-      "OptionBbt": false,
-      "TypeOthers": true,
-      "TypeLocal": true,
-      "TypeIntercity": false,
-      "TypeFreight": true,
-      "TypeShunting": true,
-      "TypeRegional": true,
-      "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
-    }
-  },
-  {
     "BlockId": "B13[+]",
     "FbEnter": "FB23.1",
     "FbIn": "FB23.2",
-    "OnStart": [
-      {
-        "Accessory": "Signal_B13_rechts",
-        "State": "green",
-        "StateAfterDelay": {
-          "seconds": 10,
-          "state": "red"
-        }
-      }
-    ],
-    "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,
@@ -466,6 +455,17 @@
     "BlockId": "B13[-]",
     "FbEnter": "FB23.2",
     "FbIn": "FB23.1",
+    "OnStart": [
+      {
+        "Accessory": "Signal_B13_rechts",
+        "State": "green",
+        "StateAfterDelay": {
+          "seconds": 10,
+          "state": "red"
+        }
+      }
+    ],
+    "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,

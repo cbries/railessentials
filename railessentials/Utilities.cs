@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 // File: Utilities.cs
 
+using System.Data;
 using railessentials.Plan;
 using Utilities;
 
@@ -9,7 +10,7 @@ namespace railessentials
 {
     public static class Utilities
     {
-        public static bool GetEcosAddress(
+        public static void GetEcosAddress(
             PlanField field,
             int coordX, int coordY,
             out int? ecosAddr1,
@@ -19,10 +20,10 @@ namespace railessentials
         {
             var item = field.Get(coordX, coordY);
 
-            return GetEcosAddress(item, out ecosAddr1, out ecosAddr2, out ecosAddr1Inverse, out ecosAddr2Inverse);
+            GetFeedbackAddress(item, out ecosAddr1, out ecosAddr2, out ecosAddr1Inverse, out ecosAddr2Inverse);
         }
 
-        public static bool GetEcosAddress(
+        public static bool GetFeedbackAddress(
             PlanItem item,
             out int? ecosAddr1,
             out int? ecosAddr2,
@@ -74,6 +75,29 @@ namespace railessentials
             {
                 ecosAddr = 0;
                 ecosAddrInverse = false;
+            }
+        }
+
+        public static void GetAccessoryEcosAddresses(
+            PlanItem item, 
+            out int addr1,
+            out int addr2)
+        {
+            GetFeedbackAddress(item, out var ecosAddr1, out var ecosAddr2, out _, out _);
+            if(ecosAddr1 == null && ecosAddr2 == null)
+            {
+                addr1 = item.Addresses.Addr;
+                addr2 = 0;
+            }
+            else if(ecosAddr1 != null)
+            {
+                addr1 = ecosAddr1.Value;
+                addr2 = 0;
+            }
+            else
+            {
+                addr1 = 0;
+                addr2 = ecosAddr2.Value;
             }
         }
     }

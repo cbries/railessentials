@@ -29,7 +29,8 @@ namespace railessentials
                 {"Occ", Path.Combine(RootWorkspace, Workspace, "occ.json") },
                 {"Locomotives", Path.Combine(RootWorkspace, Workspace, "locomotives.json") },
                 {"LocomotivesDurations", Path.Combine(RootWorkspace, Workspace, "locomotives.duration.json")},
-                {"FbEvents", Path.Combine(RootWorkspace, Workspace, "fbevents.json") }
+                {"FbEvents", Path.Combine(RootWorkspace, Workspace, "fbevents.json") },
+                {"Statistics", Path.Combine(RootWorkspace, Workspace, "statistics.json") }
             };
 
             return dict;

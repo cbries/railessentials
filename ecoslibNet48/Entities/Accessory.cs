@@ -5,6 +5,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Web.Configuration;
+using ecoslib.Statistics;
 using ecoslib.Utilities;
 using Newtonsoft.Json.Linq;
 
@@ -17,6 +19,8 @@ namespace ecoslib.Entities
         public override int TypeId() { return Typeid; }
 
         public override string Caption => $"{ObjectId}: {Name1}, {Addr}, " + string.Join("|", Addrext) + $", {State}, {Type}";
+
+        private readonly IStatistics _stats;
 
         private readonly string[] _names = { "", "", "" };
 
@@ -69,6 +73,11 @@ namespace ecoslib.Entities
 
         public int Switching { get; set; } = -1;
 
+        public Accessory(IStatistics stats)
+        {
+            _stats = stats;
+        }
+
         public override string ToString()
         {
             var ext = string.Join(", ", Addrext);
@@ -77,10 +86,10 @@ namespace ecoslib.Entities
 
         public override bool Parse(List<object> arguments)
         {
-			foreach (var a in arguments)
-			{
-				var arg = a as ICommandArgument;
-				if (arg == null) continue;
+            foreach (var a in arguments)
+            {
+                var arg = a as ICommandArgument;
+                if (arg == null) continue;
 
                 if (arg.Name.Equals("name1", StringComparison.OrdinalIgnoreCase))
                     Name1 = arg.Parameter[0];
@@ -105,7 +114,7 @@ namespace ecoslib.Entities
                 }
                 else if (arg.Name.Equals("protocol", StringComparison.OrdinalIgnoreCase))
                 {
-                    if(Protocol.Equals(arg.Parameter[0])) continue;
+                    if (Protocol.Equals(arg.Parameter[0])) continue;
                     _hasChanged = true;
 
                     Protocol = arg.Parameter[0];
@@ -127,21 +136,22 @@ namespace ecoslib.Entities
                 else if (arg.Name.Equals("state", StringComparison.OrdinalIgnoreCase))
                 {
                     int.TryParse(arg.Parameter[0], out var v);
-                    if(v == State) continue;
+                    if (v == State) continue;
                     _hasChanged = true;
 
                     State = v;
                 }
-#if __ENABLE_SWITCHING
                 else if (arg.Name.Equals("switching", StringComparison.OrdinalIgnoreCase))
                 {
                     int.TryParse(arg.Parameter[0], out var v);
-                    if(Switching == v) continue;
+                    if (Switching == v) continue;
+#if __ENABLE_SWITCHING_CHANGED_FLAG
                     _hasChanged = true;
-
                     Switching = v;
-                }
 #endif
+                    if (v == 1)
+                        _stats?.IncrementTouchCount(ObjectId);
+                }
 #if __ENABLE_SYMBOL
                 else if (arg.Name.Equals("symbol", StringComparison.OrdinalIgnoreCase))
                 {
@@ -155,7 +165,7 @@ namespace ecoslib.Entities
                     if (arg.Name.Equals("symbol", StringComparison.OrdinalIgnoreCase))
                         continue;
 
-                    Trace.WriteLine("Unknown argument: " 
+                    Trace.WriteLine("Unknown argument: "
                                     + arg.Name + " -> " + string.Join(", ", arg.Parameter));
                 }
             }
@@ -163,12 +173,12 @@ namespace ecoslib.Entities
             return true;
         }
 
-		public override void QueryState()
-		{
-			AddCmd(CommandFactory.Create($"get({ObjectId}, state)"));
-		}
+        public override void QueryState()
+        {
+            AddCmd(CommandFactory.Create($"get({ObjectId}, state)"));
+        }
 
-		public override JObject ToJson()
+        public override JObject ToJson()
         {
             var o = new JObject
             {
@@ -209,21 +219,21 @@ namespace ecoslib.Entities
                 }
             }
             if (o["objectId"] != null) ObjectId = (int)o["objectId"];
-            if (o["addr"] != null)  Addr = (int)o["addr"];
+            if (o["addr"] != null) Addr = (int)o["addr"];
             if (o["protocol"] != null) Protocol = o["protocol"].ToString();
             if (o["type"] != null) Type = o["type"].ToString();
-            if (o["mode"] != null)  Mode = o["mode"].ToString();
+            if (o["mode"] != null) Mode = o["mode"].ToString();
             if (o["state"] != null) State = (int)o["state"];
             if (o["switching"] != null) Switching = (int)o["switching"];
         }
 
-	    public void Switch(int index)
-	    {
-		    var s = Addrext[index];
-			AddCmd(CommandFactory.Create($"request(11, control, force)"));
-		    AddCmd(CommandFactory.Create($"set(11, switch[{Protocol}{s}])"));
+        public void Switch(int index)
+        {
+            var s = Addrext[index];
+            AddCmd(CommandFactory.Create($"request(11, control, force)"));
+            AddCmd(CommandFactory.Create($"set(11, switch[{Protocol}{s}])"));
             AddCmd(CommandFactory.Create($"release(11, control)"));
-	    }
+        }
 
         public void SwitchSimulation(int index)
         {
@@ -231,5 +241,5 @@ namespace ecoslib.Entities
 
             State = index;
         }
-	}
+    }
 }

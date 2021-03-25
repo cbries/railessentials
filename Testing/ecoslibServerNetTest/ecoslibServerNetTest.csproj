@@ -48,6 +48,7 @@
     <Compile Include="RelayCommandsTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestS88.cs" />
+    <Compile Include="TestStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions">

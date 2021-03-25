@@ -9,9 +9,7 @@ namespace railessentials.LocomotivesDuration
     public class Data
     {
         public const int MaxDecelerateEntries = 25;
-
-        public List<Duration> Durations { get; set; } = new();
-
+        
         /// <summary>
         /// key := BlockId, e.g. "B01[+]"
         /// </summary>

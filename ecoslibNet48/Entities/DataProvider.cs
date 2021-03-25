@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using ecoslib.Statistics;
 using ecoslib.Utilities;
 using ecoslib.Utilities.Replies;
 using Newtonsoft.Json.Linq;
@@ -24,8 +25,9 @@ namespace ecoslib.Entities
 		public event DataProviderModified Modified;
 
         public ILogger Logger { get; set; }
+        public IStatistics Statistics { get; set; }
 
-		public DataModeT Mode { get; }
+        public DataModeT Mode { get; }
 
 		private readonly List<IItem> _objects = new();
 
@@ -241,7 +243,7 @@ namespace ecoslib.Entities
                                         _objects.Add(item);
                                     }
 
-                                    ((Ecos2)item)?.EnableView();
+                                    ((Ecos2)item).EnableView();
                                 }
                             }
                             else
@@ -417,10 +419,10 @@ namespace ecoslib.Entities
 					switch (objId)
 					{
 						case Globals.ID_EV_LOCOMOTIVES:
-							newItem = new Locomotive();
+							newItem = new Locomotive(Statistics);
 							break;
 						case Globals.ID_EV_ACCESSORIES:
-							newItem = new Accessory();
+							newItem = new Accessory(Statistics);
 							break;
 						case Globals.ID_EV_S88:
 							newItem = new S88();
@@ -488,7 +490,7 @@ namespace ecoslib.Entities
                             {
                                 var it = ar[i] as JObject;
                                 if (it == null) continue;
-                                var iit = new Locomotive();
+                                var iit = new Locomotive(Statistics);
                                 iit.ParseJson(it);
                                 _objects?.Add(iit);
                             }
@@ -503,7 +505,7 @@ namespace ecoslib.Entities
                             {
                                 var it = ar[i] as JObject;
                                 if (it == null) continue;
-                                var iit = new Accessory();
+                                var iit = new Accessory(Statistics);
                                 iit.ParseJson(it);
                                 _objects?.Add(iit);
                             }

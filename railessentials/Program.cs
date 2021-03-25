@@ -12,6 +12,7 @@ using System.Threading;
 using ecoslib;
 using ecoslib.Entities;
 using ecoslib.Sniffer;
+using ecoslib.Statistics;
 using log4net;
 using log4net.Config;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ namespace railessentials
         private static ClientHandler.ClientHandler ClientHandler { get; } = new();
         private static Metadata Metadata { get; } = new();
         private static Sniffer _sniffer;
+        private static Statistics _statistics = new();
         private static WebServer _webServer;
 
         private static bool _startImportUi;
@@ -107,6 +109,26 @@ namespace railessentials
             }
 
             return true;
+        }
+
+        public static bool LoadStatistics(string path, Logger logger = null)
+        {
+            if (string.IsNullOrEmpty(path)) return false;
+            try
+            {
+                if (!File.Exists(path))
+                    File.WriteAllText(path, string.Empty, Encoding.UTF8);
+
+                _statistics = Statistics.Instance(path, logger);
+
+                return true;
+            }
+            catch(Exception ex)
+            {
+                logger?.Log?.Error(ex);
+            }
+
+            return false;
         }
 
         private static void ParseArguments(string[] args)
@@ -205,14 +227,18 @@ namespace railessentials
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
+            var loggerInstance = new Logger();
+
             LoadMetadata(Globals.Workspace, true, false);
+            LoadStatistics(Globals.GetCfgDataPath("Statistics"), loggerInstance);
 
             if (Cfg.SimulationMode)
                 Metadata.LoadEcosDataForSimulation(Cfg.SimulationData);
 
             _sniffer = new Sniffer(Cfg.Ecos.Ip, Cfg.Ecos.Port)
             {
-                Logger = new Logger(),
+                Statistics = _statistics,
+                Logger = loggerInstance,
                 SaveOnEveryPlanfieldChange = Cfg.SaveOnEveryPlanfieldChange,
                 InitializeDelay = Cfg.InitializeDelay,
                 IsSimulationMode = Cfg.SimulationMode

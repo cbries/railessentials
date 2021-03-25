@@ -118,6 +118,7 @@ The book introduces the basics of managing commands for remote control of your m
 
 ## Features
 
+### Ui
  - *Modern Web Frontend* based on HTML5, JavaScript, Websocket-Communication
  - *Frontend UI usable with Chrome, Firefox, Vivaldi, Edge* on any device
  - *Server-based* architecture (currently the server is only running on Windows)
@@ -129,24 +130,41 @@ The book introduces the basics of managing commands for remote control of your m
  - *Plan Item* transformation directly by single clicks (i.e. move, rotate, remove)
  - *Text Item* support (i.e. bold, italic, underline, font size, font color)
  - *Labels* for Plan Items
+ - *Accessory* can be changed directly by clicking the individual plan item at any time
+
+### Routing
+
  - *Block-based* automatic mode, any train/locomotive can be controlled by a smart algorithmen and can travel between blocks without crossing routes
+ - *Accessory state change* during AutoMode for individual routes [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
  - *Route detection* between blocks, any feasible route will be found and provided for your individual setup
  - *Routes with direction* are recognized
  - *Route* disabling/enabling on-demand
  - *Block* disabling/enabling on-demand
+ 
+### Feedback
+
+ - *S88 Viewer*
+
+### Locomotives
+ 
  - *Locomotive* lock/unlock
  - *Locomotive* direct control via mouse over controls in the plan
  - *Locomotive* speed curve editor (i.e. individual acceleration/deceleration)
  - *Locomotive* image visualization [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Locomotive-Images-Photos)
  - *Drag&Drop of Locomotives* to Blocks for assignment
- - *Light Control* (i.e. currently hardcoded variant for my personal model railway)
- - *S88 Viewer*
- - *Simulation Mode* to test any functionality
- - *Accessory* can be changed directly by clicking the individual plan item at any time
- - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block
  - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
+ 
+### AutoMode
+
  - *Auto Mode* of the whole model railway, work on your landscape during run of all your trains
+ - *Simulation Mode* to test any functionality
+ - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block 
  - *Statistics* of accessory usage and when any Locomotive has been started/stopped (e.g. supports scheduled maintenance)
+ - *Accessory to Route* weaving for changing accessory states on start/delay of Locomotive traveling [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
+
+### Individual Supports for my personal needs
+
+ - *Light Control* (i.e. currently hardcoded variant for my personal model railway, it is based on an invidual solution with LED-RGB-Stripes and Websocket-communication [modeling repository](https://github.com/cbries/modeling/tree/master/Konfigurationen/Beleuchtung-RGB-Stripe/ESP8266_LedStripe_WS)).
 
 <br>
 

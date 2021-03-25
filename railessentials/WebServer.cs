@@ -139,6 +139,7 @@ namespace railessentials
                         $"width: {itWebcam.Width}," +
                         $"height: {itWebcam.Height}," +
                         $"fps: {itWebcam.Fps}," +
+                        $"stopOnFailure: true," +
                         $"caption: \"{itWebcam.Caption}\"," +
                         $"moved: function(data) {{ changeSetting({{ mode: \"webcam\", cmd: \"geometry\", value: data}}); }}" +
                     "}); ";

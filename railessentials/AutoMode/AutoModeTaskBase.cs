@@ -6,7 +6,9 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using ecoslib.Entities;
+using Newtonsoft.Json;
 using railessentials.Analyzer;
+using railessentials.Feedbacks;
 using railessentials.Plan;
 
 namespace railessentials.AutoMode
@@ -26,6 +28,164 @@ namespace railessentials.AutoMode
             return true;
         }
 
+        private void SwitchAccessory(string targetState, Accessory ecosAcc, bool inverse)
+        {
+            if (string.IsNullOrEmpty(targetState)) return;
+            if (ecosAcc == null) return;
+
+            var clientHandler = Ctx?.GetClientHandler();
+            if (clientHandler == null) return;
+
+            Ctx?.LogInfo($"Switch accessory {ecosAcc.Caption} to {targetState}.");
+
+            var realTargetState = targetState;
+            if(inverse)
+            {
+                if (realTargetState.Equals("red", StringComparison.OrdinalIgnoreCase))
+                    realTargetState = "green";
+                else
+                    realTargetState = "red";
+            }
+
+            if (clientHandler.IsSimulationMode())
+            {
+                if (realTargetState.Equals("red", StringComparison.OrdinalIgnoreCase))
+                    ecosAcc.SwitchSimulation(1);
+                else if (realTargetState.Equals("green", StringComparison.OrdinalIgnoreCase))
+                    ecosAcc.SwitchSimulation(0);
+            }
+            else
+            {
+                if (realTargetState.Equals("red", StringComparison.OrdinalIgnoreCase))
+                    ecosAcc.Switch(1);
+                else if (realTargetState.Equals("green", StringComparison.OrdinalIgnoreCase))
+                    ecosAcc.Switch(0);
+            }
+        }
+        
+        private void StartDelayTask(OnStart it, Accessory ecosAcc, bool inverse)
+        {
+            if (ecosAcc == null) return;
+            var afterDelay = it.StateAfterDelay;
+            if (afterDelay == null) return;
+            var sec = afterDelay.Seconds;
+            var state = afterDelay.State;
+            if (sec <= 0) return;
+            if (string.IsNullOrEmpty(state)) return;
+            Task.Run(async () =>
+            {
+                Ctx?.LogInfo($"Wait {sec} seconds to switch accessory {ecosAcc.Caption} to {state}.");
+                await Task.Delay(TimeSpan.FromSeconds(sec));
+                SwitchAccessory(state, ecosAcc, inverse);
+                UpdateEcosUnit();
+            });
+        }
+
+        private void UpdateEcosUnit()
+        {
+            var clientHandler = Ctx?.GetClientHandler();
+            if (clientHandler == null) return;
+
+            if (clientHandler.IsSimulationMode())
+            {
+                clientHandler.SaveAll();
+                clientHandler._sniffer?.TriggerDataProviderModifiedForSimulation();
+            }
+            else
+            {
+                clientHandler._sniffer?.SendCommandsToEcosStation();
+            }
+        }
+
+        private void ApplyAccessoryStartCommands()
+        {
+            var fromBlockId = Route.FromBlock.identifier;
+            var fromSide = Route.FromBlock.side;
+            if (string.IsNullOrEmpty(fromBlockId)) return;
+            var fbData = Ctx._metadata.FeedbacksData.GetByBlockId(fromBlockId, fromSide);
+            if (fbData == null) return;
+
+            var clientHandler = Ctx?.GetClientHandler();
+            if (clientHandler == null) return;
+
+            try
+            {
+                if (fbData.OnStart == null) return;
+                if (fbData.OnStart.Count == 0) return;
+
+                var dp = Route.DataProvider;
+
+                foreach (var it in fbData.OnStart)
+                {
+                    if (it == null) continue;
+
+                    var accItemObj = Ctx._metadata.GetMetamodelItem(it.Accessory);
+                    var accItem = JsonConvert.DeserializeObject<PlanItem>(accItemObj.ToString(Formatting.None));
+                    if (accItem == null) continue;
+                    Utilities.GetAccessoryEcosAddresses(accItem, 
+                        out var addr1, out var inverse1, 
+                        out var addr2, out var inverse2);
+
+                    //
+                    // e.g. 2-wings-semaphore can have two addresses
+                    //
+                    if (addr1 > 0 && addr2 > 0)
+                    {
+                        var ecosAcc1 = dp.GetAccessoryByAddress(addr1) as Accessory;
+                        if (ecosAcc1 != null)
+                        {
+                            SwitchAccessory(it.State, ecosAcc1, inverse1);
+                            StartDelayTask(it, ecosAcc1, inverse1);
+                        }
+
+                        var ecosAcc2 = dp.GetAccessoryByAddress(addr2) as Accessory;
+                        if (ecosAcc2 != null)
+                        {
+                            SwitchAccessory(it.State, ecosAcc2, inverse2);
+                            StartDelayTask(it, ecosAcc2, inverse2);
+                        }
+                    }
+                    else
+                    {   //
+                        // in most cases we just have a single address
+                        //
+                        var addr = 0;
+                        var inverse = false;
+                        if (addr1 > 0)
+                        {
+                            addr = addr1;
+                            inverse = inverse1;
+                        }
+                        else if (addr2 > 0)
+                        {
+                            addr = addr2;
+                            inverse = inverse2;
+                        }
+
+                        if(addr > 0)
+                        {
+                            var ecosAcc = dp.GetAccessoryByAddress(addr) as Accessory;
+                            if (ecosAcc == null) continue;
+                            SwitchAccessory(it.State, ecosAcc, inverse);
+                            StartDelayTask(it, ecosAcc, inverse);
+                        }
+                    }
+                }
+
+                UpdateEcosUnit();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"<Exception> {ex.Message}");
+            }
+        }
+        
+        private void SetAccessories()
+        {
+            ApplyAccessoryStartCommands();
+            // TODO add OnStop actions
+        }
+         
         public async override Task Run()
         {
             #region prepare data for autoMode task
@@ -47,6 +207,11 @@ namespace railessentials.AutoMode
             {
                 SendDebugMessage($"Start: {Route.Route.Name}");
 
+                //
+                // NOTE apply all accessory states before start of locomotive traveling
+                //
+                SetAccessories();
+                
                 if (IsCanceled()) return;
 
                 //
@@ -228,7 +393,7 @@ namespace railessentials.AutoMode
         {
             hasError = false;
             int ecosAddr;
-            var r = Utilities.GetEcosAddress(fb, out var ecosAddr1, out var ecosAddr2, out _, out _);
+            var r = Utilities.GetFeedbackAddress(fb, out var ecosAddr1, out var ecosAddr2, out _, out _);
             if (r)
             {
                 var ec1 = 0;

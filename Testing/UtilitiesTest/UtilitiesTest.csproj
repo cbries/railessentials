@@ -57,6 +57,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ecoslibNet48\ecoslibNet48.csproj">
+      <Project>{48b0d647-d324-45e3-88e9-71ee3b5f95cc}</Project>
+      <Name>ecoslibNet48</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\railessentials\railessentials.csproj">
+      <Project>{f4a7401f-9e67-467a-a657-e046f8885607}</Project>
+      <Name>railessentials</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilities\Utilities.csproj">
       <Project>{f0c66e6f-a1ae-4d0c-a63f-b8f49a88b7bd}</Project>
       <Name>Utilities</Name>

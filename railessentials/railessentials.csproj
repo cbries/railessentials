@@ -97,6 +97,8 @@
     <Compile Include="Feedbacks\DeniedLocomotive.cs" />
     <Compile Include="Feedbacks\FbData.cs" />
     <Compile Include="Feedbacks\FeedbacksData.cs" />
+    <Compile Include="Feedbacks\OnStart.cs" />
+    <Compile Include="Feedbacks\OnStop.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="IDebugMessages.cs" />
     <Compile Include="Importer\Rocrail\ImportRocrail.cs" />

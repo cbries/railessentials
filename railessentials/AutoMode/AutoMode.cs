@@ -166,8 +166,9 @@ namespace railessentials.AutoMode
 
                         try
                         {
-                            var task = instance.Run();
-                            task.Start();
+                            Task.Run(async () => await instance.Run());
+                            //var task = instance.Run();
+                            //task.Start();
                         }
                         catch
                         {
@@ -326,7 +327,7 @@ namespace railessentials.AutoMode
 
                 var fromBlock = nextRoute.Blocks[0];
                 var targetBlock = nextRoute.Blocks[1];
-
+                
                 LogInfo($"Route: {nextRoute.Name} ({fromBlock.identifier} going to {targetBlock.identifier})");
 
                 itOccBlock.FinalBlock = targetBlock.identifier;

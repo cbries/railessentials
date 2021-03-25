@@ -748,7 +748,7 @@ var loadSideBar = (function () {
                 nodes: [
                     { id: 'cmdToggleLabels', text: 'Labels (off)', icon: 'fas fa-tags' },
                     { id: 'cmdEditPlan', text: 'Layout', icon: 'fa fa-edit' },
-                    { id: 'cmdOpenBlocksAndFeedbacks', text: 'Blocks & S88', icon: 'fas fa-traffic-light' },
+                    { id: 'cmdOpenBlocksAndFeedbacks', text: 'Blocks/S88/Signals', icon: 'fas fa-traffic-light' },
                     { id: 'cmdOpenS88', text: 'S88 Viewer', icon: 'fas fa-radiation-alt' },
                     { id: 'cmdOpenRoutes', text: 'Routes', icon: 'fa fa-route' },
                     { id: 'cmdAnalyzeRoutes', text: 'Analyze Routes', icon: 'fas fa-diagnoses' },

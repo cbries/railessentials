@@ -381,6 +381,17 @@
     "BlockId": "B12[+]",
     "FbEnter": "FB22.1",
     "FbIn": "FB22.2",
+    "OnStart": [
+      {
+        "Accessory": "Signal_B12_rechts",
+        "State": "green",
+        "StateAfterDelay": {
+          "seconds": 10,
+          "state": "red"
+        }
+      }
+    ],
+    "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,
@@ -423,6 +434,17 @@
     "BlockId": "B13[+]",
     "FbEnter": "FB23.1",
     "FbIn": "FB23.2",
+    "OnStart": [
+      {
+        "Accessory": "Signal_B13_rechts",
+        "State": "green",
+        "StateAfterDelay": {
+          "seconds": 10,
+          "state": "red"
+        }
+      }
+    ],
+    "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,

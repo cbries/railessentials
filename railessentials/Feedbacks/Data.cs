@@ -11,6 +11,8 @@ namespace railessentials.Feedbacks
         public string BlockId { get; set; }
         public string FbEnter { get; set; }
         public string FbIn { get; set; }
+        public OnStart OnStart { get; set; } = new();
+        public OnStop OnStop { get; set; } = new();
         public List<DeniedLocomotive> DeniedLocomotives { get; set; } = new();
         public Dictionary<string, bool> Settings { get; set; } = new();
     }

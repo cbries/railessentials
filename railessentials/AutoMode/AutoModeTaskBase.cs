@@ -39,7 +39,7 @@ namespace railessentials.AutoMode
             Ctx?.LogInfo($"Switch accessory {ecosAcc.Caption} to {targetState}.");
 
             var realTargetState = targetState;
-            if(inverse)
+            if (inverse)
             {
                 if (realTargetState.Equals("red", StringComparison.OrdinalIgnoreCase))
                     realTargetState = "green";
@@ -62,7 +62,7 @@ namespace railessentials.AutoMode
                     ecosAcc.Switch(0);
             }
         }
-        
+
         private void StartDelayTask(OnStart it, Accessory ecosAcc, bool inverse)
         {
             if (ecosAcc == null) return;
@@ -122,8 +122,8 @@ namespace railessentials.AutoMode
                     var accItemObj = Ctx._metadata.GetMetamodelItem(it.Accessory);
                     var accItem = JsonConvert.DeserializeObject<PlanItem>(accItemObj.ToString(Formatting.None));
                     if (accItem == null) continue;
-                    Utilities.GetAccessoryEcosAddresses(accItem, 
-                        out var addr1, out var inverse1, 
+                    Utilities.GetAccessoryEcosAddresses(accItem,
+                        out var addr1, out var inverse1,
                         out var addr2, out var inverse2);
 
                     //
@@ -162,7 +162,7 @@ namespace railessentials.AutoMode
                             inverse = inverse2;
                         }
 
-                        if(addr > 0)
+                        if (addr > 0)
                         {
                             var ecosAcc = dp.GetAccessoryByAddress(addr) as Accessory;
                             if (ecosAcc == null) continue;
@@ -179,13 +179,13 @@ namespace railessentials.AutoMode
                 Trace.WriteLine($"<Exception> {ex.Message}");
             }
         }
-        
+
         private void SetAccessories()
         {
             ApplyAccessoryStartCommands();
             // TODO add OnStop actions
         }
-         
+
         public async override Task Run()
         {
             #region prepare data for autoMode task
@@ -208,10 +208,17 @@ namespace railessentials.AutoMode
                 SendDebugMessage($"Start: {Route.Route.Name}");
 
                 //
+                // NOTE reset additional locked blocks
+                //
+                var startFrom = Route.OccBlock.FromBlock;
+                UnlockAdditionalBlocksFor(startFrom);
+                Ctx?.SaveFeedbacksAndPromote();
+
+                //
                 // NOTE apply all accessory states before start of locomotive traveling
                 //
                 SetAccessories();
-                
+
                 if (IsCanceled()) return;
 
                 //
@@ -264,16 +271,16 @@ namespace railessentials.AutoMode
                 // NOTE decelerate the train
                 //
                 var fbInAlreadyReached = false;
-                if(speedCurve != null)
+                if (speedCurve != null)
                 {
                     var durationSeconds = 10.0;
 
-                    if(Ctx?._metadataLock != null)
+                    if (Ctx?._metadataLock != null)
                     {
-                        lock(Ctx._metadataLock)
+                        lock (Ctx._metadataLock)
                         {
                             durationSeconds = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationSeconds(
-                                Route.LocomotiveObjectId, 
+                                Route.LocomotiveObjectId,
                                 Route.TargetBlock.identifier);
                         }
                     }
@@ -302,7 +309,7 @@ namespace railessentials.AutoMode
                 //
                 if (!fbInAlreadyReached)
                     await WaitForFb("FbIn", Route.FbIn, dpS88);
-                
+
                 var stopDt = DateTime.Now;
                 var delta = stopDt - startDt;
                 SendDebugMessage($"{delta.TotalSeconds} seconds between 'enter' and 'in'.");
@@ -312,9 +319,9 @@ namespace railessentials.AutoMode
                 //
                 // save duration between FB-enter and FB-in
                 //
-                if(Ctx?._metadataLock != null)
+                if (Ctx?._metadataLock != null)
                 {
-                    lock(Ctx._metadataLock)
+                    lock (Ctx._metadataLock)
                     {
                         if (Ctx?._metadata != null)
                         {
@@ -333,6 +340,13 @@ namespace railessentials.AutoMode
                 // NOTE stop the locomotive in any case when fbIn is reached
                 //
                 Ctx?.GetClientHandler()?.LocomotiveChangeSpeedstep(Route.Locomotive, 0);
+
+                //
+                // NOTE check if the reached block has any additional blocks to lock
+                //
+                var reached = Route.OccBlock.FinalBlock;
+                LockAdditionalBlocksFor(reached);
+                Ctx?.SaveFeedbacksAndPromote();
 
                 //
                 // NOTE reset the current OCC information and set the final block as new from block
@@ -370,7 +384,47 @@ namespace railessentials.AutoMode
 
             }, CancelSource.Token);
         }
-        
+
+        private void LockAdditionalBlocksFor(string blockId)
+        {
+            var reachedBlock = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(blockId);
+            if (reachedBlock == null) return;
+            var additionalBlockLocks = reachedBlock.AdditionalBlockLocks;
+            if (additionalBlockLocks.Count == 0) return;
+
+            foreach(var blockToLock in additionalBlockLocks)
+            {
+                if (string.IsNullOrEmpty(blockToLock)) continue;
+                var fbs = Ctx?.GetFeedbacksDataForBlock(blockToLock);
+                if (fbs == null || fbs.Count == 0) continue;
+                foreach (var itt in fbs)
+                {
+                    if (itt == null) continue;
+                    itt.LockedByBlock = blockId;
+                }
+            }
+        }
+
+        private void UnlockAdditionalBlocksFor(string blockId)
+        {
+            var leavingBlock = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(blockId);
+            if (leavingBlock == null) return;
+            var additionalBlockLocks = leavingBlock.AdditionalBlockLocks;
+            if (additionalBlockLocks.Count == 0) return;
+
+            foreach (var blockToLock in additionalBlockLocks)
+            {
+                if (string.IsNullOrEmpty(blockToLock)) continue;
+                var fbs = Ctx?.GetFeedbacksDataForBlock(blockToLock);
+                if (fbs == null || fbs.Count == 0) continue;
+                foreach (var itt in fbs)
+                {
+                    if (itt == null) continue;
+                    itt.LockedByBlock = string.Empty;
+                }
+            }
+        }
+
         private async Task WaitForFb(string fbName, PlanItem fb, DataProvider dpS88)
         {
             await Task.Run(() =>

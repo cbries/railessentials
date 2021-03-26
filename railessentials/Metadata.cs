@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 // File: Metadata.cs
 
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json;
@@ -66,6 +67,67 @@ namespace railessentials
             }
 
             return null;
+        }
+
+        public bool AddNewFeedback(JObject data)
+        {
+            if (data == null) return false;
+
+            try
+            {
+                // TODO
+                Trace.WriteLine("TODO " + data.ToString(Formatting.Indented));
+                /*
+                {
+                  "id": 200,
+                  "name": "Sensor",
+                  "basename": "sensor-off",
+                  "clickable": true,
+                  "routes": [
+                    "AC",
+                    "BD"
+                  ],
+                  "editor": {
+                    "themeId": 200,
+                    "offsetX": 24,
+                    "offsetY": 22,
+                    "themeDimIdx": 0
+                  },
+                  "identifier": "FB_0",
+                  "coord": {
+                    "x": 3,
+                    "y": 4
+                  }
+                }
+                 */
+
+                return true;
+            }
+            catch
+            {
+                // ignore
+            }
+
+            return false;
+        }
+
+        public bool RemoveFeedback(string itemIdentifier)
+        {
+            if (string.IsNullOrEmpty(itemIdentifier)) return false;
+
+            try
+            {
+                // TODO "FB_0"
+                Trace.WriteLine("TODO " + itemIdentifier);
+
+                return true;
+            }
+            catch
+            {
+                // ignore
+            }
+
+            return false;
         }
 
         public bool LoadMetamodel(string pathToMetamodel)

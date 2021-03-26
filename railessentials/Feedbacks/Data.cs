@@ -15,5 +15,7 @@ namespace railessentials.Feedbacks
         public List<OnStop> OnStop { get; set; } = new();
         public List<DeniedLocomotive> DeniedLocomotives { get; set; } = new();
         public Dictionary<string, bool> Settings { get; set; } = new();
+        public List<string> AdditionalBlockLocks { get; set; } = new();
+        public string LockedByBlock { get; set; }
     }
 }

@@ -93,7 +93,6 @@ namespace railessentials.Route
                         Failed?.Invoke(this, $"Result of the analyze call is empty.");
                     Ctx?.SendDebugMessage($"Apply recent disabling states.");
                     json = ApplyRouteDisableStates(outputRoutePath, json);
-                    json = ApplyRouteAdditionalBlockLocks(outputRoutePath, json);
                     json.FixBomIfNeeded();
                     StringUtilities.WriteAllTextNoBom(outputRoutePath, json, out _);
 
@@ -141,29 +140,6 @@ namespace railessentials.Route
                 if (string.IsNullOrEmpty(routeName)) continue;
                 if (disabledRoutes.Contains(routeName))
                     it.IsDisabled = true;
-            }
-
-            return JsonConvert.SerializeObject(newJson, Formatting.Indented);
-        }
-
-        private static string ApplyRouteAdditionalBlockLocks(string outputRoutePath, string json)
-        {
-            var originalJson = _getLatestRouteList(outputRoutePath);
-            if (originalJson == null) return json;
-
-            var listOfLockedBlocks = new Dictionary<string, List<string>>();
-            foreach(var it in originalJson)
-                listOfLockedBlocks.Add(it.Name, it.AdditionalBlockLocks);
-
-            var newJson = JsonConvert.DeserializeObject<RouteList>(json);
-            foreach(var it in listOfLockedBlocks)
-            {
-                if (string.IsNullOrEmpty(it.Key)) continue;
-                if (it.Value == null || it.Value.Count == 0) continue;
-
-                var route = newJson.GetByName(it.Key);
-                if (route == null) continue;
-                route.AdditionalBlockLocks = it.Value;
             }
 
             return JsonConvert.SerializeObject(newJson, Formatting.Indented);

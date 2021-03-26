@@ -1446,6 +1446,8 @@ namespace railessentials.ClientHandler
                 var planField = _metadata.Metamodel["planField"] as JObject;
                 if (planField == null) return false;
 
+                _metadata.RemoveFeedback(itemIdentifier);
+
                 foreach (var it in planField)
                 {
                     var itemObj = it.Value as JObject;
@@ -1466,6 +1468,8 @@ namespace railessentials.ClientHandler
         {
             lock (_metadataLock)
             {
+                _metadata.AddNewFeedback(data);
+
                 var accessor = coord["x"] + "x" + coord["y"];
                 var planField = _metadata.Metamodel["planField"] as JObject;
                 if (planField == null) return false;

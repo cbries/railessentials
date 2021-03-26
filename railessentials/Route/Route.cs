@@ -40,9 +40,6 @@ namespace railessentials.Route
         // runtime attribute
         [JsonProperty(PropertyName = "occupied")]
         public bool Occupied { get; set; }
-
-        [JsonProperty(PropertyName = "additionalBlockLocks")]
-        public List<string> AdditionalBlockLocks { get; set; } = new();
     }
 
     public class RouteTrack

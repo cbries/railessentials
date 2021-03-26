@@ -767,12 +767,6 @@ namespace railessentials.ClientHandler
 
                     _sniffer?.TriggerDataProviderModifiedForSimulation();
                 }
-                else
-                {
-                    var m = $"Sensor/Feedback manually triggered: {planItem.identifier}";
-                    _sniffer?.Logger?.Log?.Info(m);
-                    SendDebugMessage(m);
-                }
 
                 return;
             }

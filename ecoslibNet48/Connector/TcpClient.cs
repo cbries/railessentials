@@ -93,12 +93,10 @@ namespace ecoslib.Connector
             try
             {
                 var strm = NativeClient.GetStream();
-                using StreamReader reader = new StreamReader(strm, Encoding.UTF8);
+                using var reader = new StreamReader(strm, Encoding.UTF8);
                 string line;
-                while ((line = reader.ReadLine()) != null)
-                {
+                while ((line = await reader.ReadLineAsync()) != null)
                     LineReceived?.Invoke(this, line);
-                }
             }
             catch (IOException ex)
             {

@@ -106,7 +106,7 @@
                 const sdt = new Date().toLocaleString("de-DE");
                 __imgLbl.html(sdt);
                 __imgLbl.show();
-                __imgCaption.show()();
+                __imgCaption.show();
                 __tryLoadOfStream();
             }
             newImg.onerror = function () {

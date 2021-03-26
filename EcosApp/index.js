@@ -753,6 +753,7 @@ var loadSideBar = (function () {
                     { id: 'cmdOpenRoutes', text: 'Routes', icon: 'fa fa-route' },
                     { id: 'cmdAnalyzeRoutes', text: 'Analyze Routes', icon: 'fas fa-diagnoses' },
                     // TODO add back when we implement worldclock support
+                    { id: 'cmdToggleWebcams', text: 'Webcams (on)', icon: 'fas fa-video' },
                     { id: 'cmdWorldClock', text: 'Worldclock', icon: 'fas fa-history', hidden: true }
                 ]
             },
@@ -824,6 +825,11 @@ var loadSideBar = (function () {
                     toggleAllLabelInformation(state);
                 });
                 w2ui['sidebar'].unselect('cmdToggleLabels');
+            } else if (target === "cmdToggleWebcams") {
+                toggleLabelOnOff(event.node, 'Webcams', 'cmdToggleWebcams', function (state) {
+                    toggleAllWebcamsVisibility(state);
+                });
+                w2ui['sidebar'].unselect('cmdToggleWebcams');
             } else if (target === "cmdLight") {
                 window.dialogLightAndPower.show();
                 w2ui['sidebar'].unselect('cmdLight');

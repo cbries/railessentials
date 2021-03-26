@@ -59,7 +59,7 @@ namespace railessentials.AutoMode
                     //
                     if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
                         return;
-                  
+
                     if (IsCanceled())
                     {
                         hasCanceled = true;
@@ -70,27 +70,8 @@ namespace railessentials.AutoMode
                         if (hasToBeCanceled())
                             break;
 
-                    //
-                    // split delay for higher recognition
-                    //
-                    var sl = (int)timeSteps;
-                    var deltaSteps = 10;
-                    var slSteps = sl / deltaSteps;
-                    for (var jj = 0; jj < deltaSteps; ++jj)
-                    {
-                        if (hasToBeCanceled != null)
-                            if (hasToBeCanceled())
-                                return;
-
-                        //
-                        // walltime reached
-                        //
-                        if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
-                            return;
-
-                        System.Threading.Thread.Sleep(slSteps);
-                    }
-
+                    if (__delayAccelerate((int)timeSteps, sw, maxSeconds, hasToBeCanceled))
+                        return;
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
@@ -109,20 +90,20 @@ namespace railessentials.AutoMode
             int currentSpeed,
             int targetSpeed,
             Locomotive ecosLoc,
-            TimeSpan? delayBetween = null,
             Func<bool> hasToBeCanceled = null)
         {
             Trace.WriteLine("AccelerateLocomotive()");
 
-           var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
+            const int maxSeconds = 10;
+            var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
             var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;
-
-            delayBetween ??= new TimeSpan(0, 0, 0, 0, msecsDelay);
 
             await Task.Run(() =>
             {
                 var hasCanceled = false;
                 var newCurrentSpeed = currentSpeed;
+
+                var sw = Stopwatch.StartNew();
 
                 for (var i = currentSpeed; i <= targetSpeed; ++i)
                 {
@@ -139,7 +120,8 @@ namespace railessentials.AutoMode
                         if (hasToBeCanceled())
                             break;
 
-                    System.Threading.Thread.Sleep(delayBetween.Value);
+                    if (__delayAccelerate(msecsDelay, sw, maxSeconds, hasToBeCanceled))
+                        return;
 
                     if (hasToBeCanceled != null)
                         if (hasToBeCanceled())
@@ -152,5 +134,31 @@ namespace railessentials.AutoMode
             }, CancelSource.Token);
         }
 
+        private bool __delayAccelerate(
+            int timeSteps,
+            Stopwatch sw,
+            int maxSeconds = 10,
+            Func<bool> hasToBeCanceled = null)
+        {
+            var sl = timeSteps;
+            var deltaSteps = 10;
+            var slSteps = sl / deltaSteps;
+            for (var jj = 0; jj < deltaSteps; ++jj)
+            {
+                if (hasToBeCanceled != null)
+                    if (hasToBeCanceled())
+                        return true;
+
+                //
+                // walltime reached
+                //
+                if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
+                    return true;
+
+                System.Threading.Thread.Sleep(slSteps);
+            }
+
+            return false;
+        }
     }
 }

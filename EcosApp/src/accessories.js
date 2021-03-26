@@ -421,7 +421,7 @@ class Accessories {
                         accessoryId: accessoryId,
                         identifier: identifier,
                         type: type,
-                        state: "Loading...",
+                        state: "unknown",
 
                         addr1: addr1,
                         port1: port1,
@@ -464,10 +464,26 @@ class Accessories {
                     const rec = recs[j];
                     const row = elGrid.get(rec);
 
+                    let onName = "straight";
+                    let offName = "turn";
+
+                    const themeId = accItem.themeData.editor.themeId;
+
+                    if(isDecoupler(themeId)) {
+                        onName = "on";
+                        offName = "off";
+                    } else if(isSignal(themeId)) {
+                        onName = "red";
+                        offName = "green";
+                    } else if(isAccessory(themeId)) {
+                        onName = "on";
+                        offName = "off";
+                    }
+
                     const oldState = row.state;
                     let newState;
-                    if (ecosAcc.state === 0) newState = "straight";
-                    else if (ecosAcc.state === 1) newState = "turn";
+                    if (ecosAcc.state === 0) newState = onName;
+                    else if (ecosAcc.state === 1) newState = offName;
                     else newState = "unknown";
 
                     if (oldState !== newState) {

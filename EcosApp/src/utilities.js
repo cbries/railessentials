@@ -86,6 +86,19 @@ function toggleAllLabelInformation(state) {
     }
 }
 
+function toggleAllWebcamsVisibility(state) {
+    const videoCtrls = $('div.videoStream');
+    let i;
+    const iMax = videoCtrls.length;
+    for (i = 0; i < iMax; ++i) {
+        if (state === true) {
+            $(videoCtrls[i]).show();
+        } else {
+            $(videoCtrls[i]).hide();
+        }
+    }
+}
+
 /**
  * Returns of an object of the accessories addressed by
  * ecosAddr. The planField item of ecosAddr can have

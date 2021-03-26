@@ -425,7 +425,8 @@ namespace railessentials
                 mergedObject["feedbacksChanged"] = feedbacksChanged;
             }
 
-            var recentJsonStr = Metadata.EcosData.ToString(Formatting.None);
+            var recentJsonStr = Metadata.EcosData?.ToString(Formatting.None);
+            if (string.IsNullOrEmpty(recentJsonStr)) recentJsonStr = string.Empty;
             var currentJsonStr = mergedObject.ToString(Formatting.None);
             if (!recentJsonStr.Equals(currentJsonStr))
             {

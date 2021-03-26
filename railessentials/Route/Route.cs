@@ -16,17 +16,17 @@ namespace railessentials.Route
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "tracks")]
-        public List<RouteTrack> Tracks { get; set; }
+        public List<RouteTrack> Tracks { get; set; } = new();
 
         [JsonProperty(PropertyName = "switches")]
-        public List<RouteSwitch> Switches { get; set; }
+        public List<RouteSwitch> Switches { get; set; } = new();
 
         [JsonProperty(PropertyName = "sensors")]
-        public List<RouteSensors> Sensors { get; set; }
+        public List<RouteSensors> Sensors { get; set; } = new();
         
         [JsonProperty(PropertyName = "signals")]
-        public List<RouteSignal> Signals { get; set; }
-        
+        public List<RouteSignal> Signals { get; set; } = new();
+
         [JsonProperty(PropertyName = "blocks")]
         public List<RouteBlock> Blocks { get; set; }
 
@@ -40,6 +40,9 @@ namespace railessentials.Route
         // runtime attribute
         [JsonProperty(PropertyName = "occupied")]
         public bool Occupied { get; set; }
+
+        [JsonProperty(PropertyName = "additionalBlockLocks")]
+        public List<string> AdditionalBlockLocks { get; set; } = new();
     }
 
     public class RouteTrack

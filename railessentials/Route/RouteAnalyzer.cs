@@ -93,6 +93,7 @@ namespace railessentials.Route
                         Failed?.Invoke(this, $"Result of the analyze call is empty.");
                     Ctx?.SendDebugMessage($"Apply recent disabling states.");
                     json = ApplyRouteDisableStates(outputRoutePath, json);
+                    json = ApplyRouteAdditionalBlockLocks(outputRoutePath, json);
                     json.FixBomIfNeeded();
                     StringUtilities.WriteAllTextNoBom(outputRoutePath, json, out _);
 
@@ -105,13 +106,27 @@ namespace railessentials.Route
             });
         }
 
+        private static RouteList _getLatestRouteList(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+            if (!File.Exists(path)) return null;
+            try
+            {
+                var originalCnt = File.ReadAllText(path, Encoding.UTF8);
+                return JsonConvert.DeserializeObject<RouteList>(originalCnt);
+            }
+            catch
+            {
+                // ignore
+            }
+            return null;
+        }
+
         private static string ApplyRouteDisableStates(string outputRoutePath, string json)
         {
-            if (string.IsNullOrEmpty(outputRoutePath)) return json;
-            if (!File.Exists(outputRoutePath)) return json;
-            
-            var originalCnt = File.ReadAllText(outputRoutePath, Encoding.UTF8);
-            var originalJson = JsonConvert.DeserializeObject<RouteList>(originalCnt);
+            var originalJson = _getLatestRouteList(outputRoutePath);
+            if (originalJson == null) return json;
+
             var disabledRoutes = new List<string>();
             foreach(var it in originalJson)
             {
@@ -126,6 +141,29 @@ namespace railessentials.Route
                 if (string.IsNullOrEmpty(routeName)) continue;
                 if (disabledRoutes.Contains(routeName))
                     it.IsDisabled = true;
+            }
+
+            return JsonConvert.SerializeObject(newJson, Formatting.Indented);
+        }
+
+        private static string ApplyRouteAdditionalBlockLocks(string outputRoutePath, string json)
+        {
+            var originalJson = _getLatestRouteList(outputRoutePath);
+            if (originalJson == null) return json;
+
+            var listOfLockedBlocks = new Dictionary<string, List<string>>();
+            foreach(var it in originalJson)
+                listOfLockedBlocks.Add(it.Name, it.AdditionalBlockLocks);
+
+            var newJson = JsonConvert.DeserializeObject<RouteList>(json);
+            foreach(var it in listOfLockedBlocks)
+            {
+                if (string.IsNullOrEmpty(it.Key)) continue;
+                if (it.Value == null || it.Value.Count == 0) continue;
+
+                var route = newJson.GetByName(it.Key);
+                if (route == null) continue;
+                route.AdditionalBlockLocks = it.Value;
             }
 
             return JsonConvert.SerializeObject(newJson, Formatting.Indented);

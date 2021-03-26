@@ -229,7 +229,7 @@ namespace railessentials.AutoMode
                 }
                 else
                 {
-                    await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, hasToBeCanceled: () =>
+                    await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, () =>
                     {
                         fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
                         // TODO handle hasError (e.g. cancel route)

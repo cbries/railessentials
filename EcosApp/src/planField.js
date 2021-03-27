@@ -764,7 +764,7 @@ class Planfield {
         var newId = "";
         if (typeof jsonData.identifier !== "undefined" && this.__isInitialization) {
             newId = jsonData.identifier;
-            if (newId.length == 0)
+            if (newId.length === 0)
                 newId = this.generateUniqueItemIdentifier(jsonData.editor.themeId);
         } else {
             newId = this.generateUniqueItemIdentifier(jsonData.editor.themeId);
@@ -875,14 +875,13 @@ class Planfield {
             //
             var labelOffset = getLabelOffsetBy(jsonData);
             if (labelOffset !== null) {
-                let lblCnt = jsonData.identifier;
-                if (typeof jsonData.identifier === "undefined" || jsonData.identifier == null)
-                    lblCnt = newId;
                 labelOffset.display = "none";
+                if (window.labelShown === true)
+                    labelOffset.display = "visible";
                 var newLbl = $('<div>', {})
                     .css(labelOffset)
                     .html(
-                        lblCnt
+                        newId
                         //+ ", " +
                         //jsonData.editor.themeId
                     );

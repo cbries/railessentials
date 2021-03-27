@@ -695,23 +695,6 @@ class Blocks {
                 });
                 ++noOfRecords;
             }
-        //    else {
-
-        //        const recid = recs[0];
-        //        const row = elGrid.get(recid);
-
-        //        row.fbEnter = fb.FbEnter;
-        //        elGrid.refreshCell(recid, 'fbEnter');
-
-        //        row.fbIn = fb.FbIn;
-        //        elGrid.refreshCell(recid, 'fbIn');
-
-        //        // we do not updated the expanded areas
-        //        // during edit the state of the expanded content
-        //        // is send to the server on any change, which means
-        //        // the used-defined settings is already the correct 
-        //        // state
-        //    }
         }
 
         if (listOfObjectsToAdd.length > 0)
@@ -729,7 +712,11 @@ class Blocks {
             const fbId = ctrlInstance.attr("id");
             if (self.__fbsList.includes(fbId) === false)
                 self.__fbsList.push(fbId);
-            self.__fbsList.sort();
+
+            // human readable sort
+            const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+            self.__fbsList = self.__fbsList.sort(collator.compare);
+
             self.__refreshFbCells();
         } catch (err) {
             console.log(err);

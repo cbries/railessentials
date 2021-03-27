@@ -26,6 +26,7 @@ window.textfieldElementInstances = []; // all text elements in the plan
 window.planField = null;
 window.toolbox = null;
 window.errorHandler = null;
+window.labelShown = false;
 
 window.findLocomotivesDlg = (function (id) {
     if (!id) return null;
@@ -827,6 +828,7 @@ var loadSideBar = (function () {
             } else if (target === "cmdToggleLabels") {
                 toggleLabelOnOff(event.node, 'Labels', 'cmdToggleLabels', function (state) {
                     toggleAllLabelInformation(state);
+                    window.labelShown = state;
                 });
                 w2ui['sidebar'].unselect('cmdToggleLabels');
             } else if (target === "cmdToggleWebcams") {

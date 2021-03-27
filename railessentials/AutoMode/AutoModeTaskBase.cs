@@ -469,6 +469,8 @@ namespace railessentials.AutoMode
             }
 
             var r0 = dpS88.GetFeedbackByAddress(ecosAddr, out var item, out var itemOffset, out var itemPin);
+            if (item == null) return false;
+
             var pinState = item.Pin((uint)itemPin);
 #if DEBUG
             Trace.WriteLine($"{r0} > {ecosAddr} is {itemOffset}:{itemPin} = {pinState}");

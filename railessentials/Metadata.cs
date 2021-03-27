@@ -2,8 +2,12 @@
 // Licensed under the MIT License
 // File: Metadata.cs
 
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows.Documents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
@@ -66,6 +70,83 @@ namespace railessentials
             }
 
             return null;
+        }
+
+        public bool AddNewBlock(JObject data, out bool isNew)
+        {
+            isNew = false;
+
+            if (data == null) return false;
+
+            try
+            {
+                var identifier = data.GetString("identifier");
+
+                var fbdataInstancePlus = new Feedbacks.Data {
+                    BlockId = $"{identifier}[+]"
+                };
+
+                var fbdataInstanceMinus = new Feedbacks.Data {
+                    BlockId = $"{identifier}[-]"
+                };
+
+                var instancePlus = FeedbacksData.GetByBlockId(fbdataInstancePlus.BlockId);
+                if(instancePlus == null)
+                {
+                    // add new instance
+                    FeedbacksData.Entries.Add(fbdataInstancePlus);
+                }
+
+                var instanceMinus = FeedbacksData.GetByBlockId(fbdataInstanceMinus.BlockId);
+                if(instanceMinus == null)
+                {
+                    // add new instance
+                    FeedbacksData.Entries.Add(fbdataInstanceMinus);
+                }
+
+                if (instancePlus == null || instanceMinus == null)
+                    isNew = true;
+
+                return true;
+            }
+            catch
+            {
+                // ignore
+            }
+
+            return false;
+        }
+
+        public bool RemoveBlock(string itemIdentifier)
+        {
+            if (string.IsNullOrEmpty(itemIdentifier)) return false;
+
+            try
+            {
+                var idxToRemove = new List<int>();
+                for(var i = 0; i < FeedbacksData.Entries.Count; ++i)
+                {
+                    var it = FeedbacksData.Entries[i];
+                    if (it == null) continue;
+                    if (string.IsNullOrEmpty(it.BlockId)) continue;
+                    if(it.BlockId.StartsWith(itemIdentifier, StringComparison.OrdinalIgnoreCase))
+                        idxToRemove.Add(i);
+                }
+
+                idxToRemove.Sort();
+                idxToRemove.Reverse();
+
+                foreach(var idx in idxToRemove)
+                    FeedbacksData.Entries.RemoveAt(idx);
+
+                return idxToRemove.Count > 0;
+            }
+            catch
+            {
+                // ignore
+            }
+
+            return false;
         }
 
         public bool LoadMetamodel(string pathToMetamodel)

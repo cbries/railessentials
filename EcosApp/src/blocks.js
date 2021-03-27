@@ -14,6 +14,24 @@ class Blocks {
         this.__windowGeometry = new WindowGeometryStorage(this.__dialogName);
 
         this.__initEventHandling();
+
+        // testdata
+        this.__fbsList = [];
+
+        /*
+         * { id: 1, text: 'John Cook' },
+            { id: 2, text: 'Steve Jobs' },
+            { id: 3, text: 'Peter Sanders' },
+            { id: 4, text: 'Mark Newman' },
+            { id: 5, text: 'Addy Osmani' },
+            { id: 6, text: 'Paul Irish' },
+            { id: 7, text: 'Doug Crocford' },
+            { id: 8, text: 'Nicolas Cage' }
+         */
+    }
+
+    __getFbsList() {
+        return this.__fbsList;
     }
 
     __initEventHandling() {
@@ -118,9 +136,27 @@ class Blocks {
                 sortData: [{ field: 'blockId', direction: 'asc' }],
                 columns: [
                     { field: 'recid', caption: 'ID', sortable: false, hidden: true },
-                    { field: 'blockId', caption: 'Block', size: '25%', sortable: true },
-                    { field: 'fbEnter', caption: 'Feedback Enter', size: '20%', sortable: true },
-                    { field: 'fbIn', caption: 'Feedback In', size: '20%', sortable: false }
+                    {
+                        field: 'blockId', caption: 'Block', size: '25%', sortable: true
+                    },
+                    {
+                        field: 'fbEnter', caption: 'Feedback Enter', size: '20%', sortable: true,
+                        editable: {
+                            type: 'list',
+                            items: self.__getFbsList(),
+                            //items: self.__fbsList,
+                            filter: false
+                        }
+                    },
+                    {
+                        field: 'fbIn', caption: 'Feedback In', size: '20%', sortable: false,
+                        editable: {
+                            type: 'list',
+                            items: self.__getFbsList(),
+                            //items: self.__fbsList,
+                            filter: false
+                        }
+                    }
                 ],
                 records: [],
                 onExpand: function (event) {
@@ -129,6 +165,16 @@ class Blocks {
                     // fbox_id := "grid_gridBlocks_frec_17_expanded"
 
                     const elGrid = w2ui[self.__gridName];
+
+                    // collapse all other 
+                    for (let i = 0; i < elGrid.records.length; ++i) {
+                        const r = elGrid.records[i];
+                        if (typeof r === "undefined" || r == null) continue;
+                        if (r.recid === parseInt(event.recid)) continue;
+
+                        elGrid.collapse(r.recid);
+                    }
+
                     const rec = elGrid.get(event.recid);
                     const data = self.__getExpandedHtml(rec);
                     data.recid = event.recid;
@@ -141,14 +187,16 @@ class Blocks {
 
                     event.onComplete = function () {
                         const uiCtrl = $('#' + data.selectId);
-                        const locomotives = window.ecosData.locomotives;
-                        for (let i = 0; i < locomotives.length; ++i) {
-                            const loc = locomotives[i];
-                            const isDenied = self.__isLocDenied(data.blockId, loc.objectId);
-                            const o = new Option(loc.name, loc.objectId, isDenied, isDenied);
-                            $(o).css({ "padding": "1px" });
-                            $(o).html(loc.name);
-                            uiCtrl.append(o);
+                        if (typeof window.ecosData !== "undefined" && window.ecosData != null) {
+                            const locomotives = window.ecosData.locomotives;
+                            for (let i = 0; i < locomotives.length; ++i) {
+                                const loc = locomotives[i];
+                                const isDenied = self.__isLocDenied(data.blockId, loc.objectId);
+                                const o = new Option(loc.name, loc.objectId, isDenied, isDenied);
+                                $(o).css({ "padding": "1px" });
+                                $(o).html(loc.name);
+                                uiCtrl.append(o);
+                            }
                         }
 
                         uiCtrl.select2();
@@ -166,7 +214,7 @@ class Blocks {
 
                         enterCtrl.w2field('int');
                         inCtrl.w2field('int');
-                        
+
                         const chkIds = data.checkboxIds;
                         let activateChkEvents = [];
                         for (let j = 0; j < chkIds.length; ++j) {
@@ -187,8 +235,20 @@ class Blocks {
 
                         self.__loadRecentStatesFor(data.blockId, event.recid);
 
-                        enterCtrl.change(function () { self.__saveBlockSettings(data); });
-                        inCtrl.change(function () { self.__saveBlockSettings(data); });
+                        enterCtrl.change(function () {
+                            const fbEnterData = getThemeJsonDataById(data.fbEnterItemId);
+                            fbEnterData.addresses.Addr = parseInt($(this).val());
+                            setThemeJsonDataById(data.fbEnterItemId, fbEnterData);
+
+                            self.__saveBlockSettings(data);
+                        });
+                        inCtrl.change(function () {
+                            const fbInData = getThemeJsonDataById(data.fbInItemId);
+                            fbInData.addresses.Addr = parseInt($(this).val());
+                            setThemeJsonDataById(data.fbInItemId, fbInData);
+
+                            self.__saveBlockSettings(data);
+                        });
                         for (let i = 0; i < activateChkEvents.length; ++i) {
                             activateChkEvents[i].change(function () {
                                 self.__saveBlockSettings(data);
@@ -212,7 +272,43 @@ class Blocks {
                 },
                 onUnselect: function (ev) {
                     self.__removeBlockFeedbackHiglight();
-                }
+                },
+                onChange: function(ev) {
+                    const elGrid = w2ui[self.__gridName];
+                    const rec = elGrid.get(ev.recid);
+                    const column = ev.column;
+
+                    if (column === 2 || column === 3) {
+
+                        let fbEnterId = "null";
+                        let fbInId = "null";
+
+                        if (column === 2) {
+                            rec.fbEnter = ev.value_new.text;
+                            fbEnterId = rec.fbEnter;
+                        }
+                        else if (column === 3) {
+                            rec.fbIn = ev.value_new.text;
+                            fbInId = rec.fbIn;
+                        }
+
+                        // send the fb selection to the server
+                        self.__saveBlockFbs(
+                            rec.blockId,
+                            fbEnterId,
+                            fbInId
+                        );
+
+                        elGrid.refreshCell(rec.recid, 'fbEnter');
+                        elGrid.refreshCell(rec.recid, 'fbIn');
+
+                        elGrid.save();
+
+                        setTimeout(function () {
+                            self.__addBlockFeedbackHiglight(rec);
+                        }, 250);
+                    }
+                } 
             });
         }
 
@@ -236,18 +332,35 @@ class Blocks {
         });
     }
 
+    __saveBlockFbs(blockId, fbEnterId, fbInId) {
+        this.__trigger('setting',
+            {
+                'mode': 'block',
+                'cmd': 'blockDataFbs',
+                'value': {
+                    blockIdentifier: blockId,
+                    fbEnterId: fbEnterId,
+                    fbInId: fbInId
+                }
+            });
+    }
+
     __saveBlockSettings(blockData) {
         const deniedLocs = $('#' + blockData.selectId).select2('data');
 
         let chkStates = {};
-        const chkIds = blockData.checkboxIds;
-        for (let j = 0; j < chkIds.length; ++j) {
-            const chkCtrl = $('#' + chkIds[j]);
-            if (typeof chkCtrl === "undefined" || chkCtrl == null)
-                continue;
-            const chkId = $(chkCtrl).attr('name');
-            const chkState = $(chkCtrl).is(":checked");
-            chkStates[chkId] = chkState;
+        if (blockData.checkboxIds == null) {
+            chkStates = null;
+        } else {
+            const chkIds = blockData.checkboxIds;
+            for (let j = 0; j < chkIds.length; ++j) {
+                const chkCtrl = $('#' + chkIds[j]);
+                if (typeof chkCtrl === "undefined" || chkCtrl == null)
+                    continue;
+                const chkId = $(chkCtrl).attr('name');
+                const chkState = $(chkCtrl).is(":checked");
+                chkStates[chkId] = chkState;
+            }
         }
 
         this.__trigger('setting',
@@ -328,17 +441,31 @@ class Blocks {
         const blockFbEnter = "blockFbEnter_" + recid;
         const blockFbIn = "blockFbAddr_" + recid;
         const selectId = "selectDeniedLocomotives_" + recid;
-        
+
         const fbEnterData = getThemeJsonDataById(rec.fbEnter);
         const fbInData = getThemeJsonDataById(rec.fbIn);
 
         let html = '<div id="' + blockDataId + '" style="padding: 5px; width: 100%; float: left;">';
 
+        let fbEnterAddr = -1;
+        try {
+            fbEnterAddr = fbEnterData.addresses.Addr;
+        } catch (err) {
+            // ignore
+        }
+
+        let fbInAddr = -1;
+        try {
+            fbInAddr = fbInData.addresses.Addr;
+        } catch (err) {
+            // ignore
+        }
+
         // Feedback Address Information
         html += '<div class="w2ui-field">';
         html += '<label>Feedback:</label>';
-        html += '<div>Enter <input id="' + blockFbEnter + '" value="' + fbEnterData.addresses.Addr + '" style="width: 75px;">' +
-            ' In <input id="' + blockFbIn + '" value="' + fbInData.addresses.Addr + '" style="width: 75px;"></div>';
+        html += '<div>Enter <input id="' + blockFbEnter + '" value="' + fbEnterAddr + '" style="width: 75px;">' +
+            ' In <input id="' + blockFbIn + '" value="' + fbInAddr + '" style="width: 75px;"></div>';
         html += '</div>';
 
         html += '<div class="w2ui-field">';
@@ -548,9 +675,12 @@ class Blocks {
         const listOfObjectsToAdd = [];
         let noOfRecords = 0;
 
+        //
+        // update grid
+        //
         let i;
         const iMax = data.length;
-        for ( i = 0; i < iMax; ++i) {
+        for (i = 0; i < iMax; ++i) {
             const fb = data[i];
             if (typeof fb === "undefined" || fb == null) continue;
             const recs = elGrid.find({ blockId: fb.BlockId });
@@ -558,28 +688,12 @@ class Blocks {
                 // add new block row
                 //const noOfRecords = elGrid.records.length;
                 listOfObjectsToAdd.push({
-                        recid: noOfRecords + 1,
-                        blockId: fb.BlockId,
-                        fbEnter: fb.FbEnter,
-                        fbIn: fb.FbIn
-                    });
+                    recid: noOfRecords + 1,
+                    blockId: fb.BlockId,
+                    fbEnter: fb.FbEnter,
+                    fbIn: fb.FbIn
+                });
                 ++noOfRecords;
-            } else {
-
-                const recid = recs[0];
-                const row = elGrid.get(recid);
-
-                row.fbEnter = fb.FbEnter;
-                elGrid.refreshCell(recid, 'fbEnter');
-
-                row.fbIn = fb.FbIn;
-                elGrid.refreshCell(recid, 'fbIn');
-
-                // we do not updated the expanded areas
-                // during edit the state of the expanded content
-                // is send to the server on any change, which means
-                // the used-defined settings is already the correct 
-                // state
             }
         }
 
@@ -587,6 +701,45 @@ class Blocks {
             elGrid.add(listOfObjectsToAdd);
 
         // TODO add logic to remove vanished blocks/feedbacks
+    }
+
+    controlCreated(ctrlInstance) {
+        const self = this;
+        try {
+            const themeItemData = ctrlInstance.data(constDataThemeItemObject);
+            const isFb = isFeedback(themeItemData.editor.themeId);
+            if (isFb === false) return;
+            const fbId = ctrlInstance.attr("id");
+            if (self.__fbsList.includes(fbId) === false)
+                self.__fbsList.push(fbId);
+
+            // human readable sort
+            const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+            self.__fbsList = self.__fbsList.sort(collator.compare);
+
+            self.__refreshFbCells();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    controlRemoved(ctrlIdentifier) {
+        const self = this;
+        const iMax = self.__fbsList.length;
+        for( let i = 0; i < iMax; i++){
+            if ( self.__fbsList[i] === ctrlIdentifier) {
+                self.__fbsList.splice(i, 1); 
+                break;
+            }
+        }
+        self.__refreshFbCells();
+    }
+
+    __refreshFbCells() {
+        const self = this;
+        const elGrid = w2ui[self.__gridName];
+        elGrid.columns[2].editable.items = self.__fbsList;
+        elGrid.columns[3].editable.items = self.__fbsList;
     }
 
     clearGrid() {

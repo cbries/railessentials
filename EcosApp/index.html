@@ -35,7 +35,6 @@
     <link rel="stylesheet" href="./libs/fontawesome-free-5.15.1-web/css/all.min.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="./libs/select2-4.1.0-rc.0/dist/css/select2.css" type="text/css" />
     <link rel="stylesheet" href="./libs/colorpicker-master/jquery.colorpicker.css" type="text/css" />
-
     <!--
     <script type="text/javascript" src="./src/globals.js" defer></script>
     <script type="text/javascript" src="./src/utilities.js" defer></script>
@@ -63,233 +62,233 @@
     -->
     <script type="text/javascript" src="railessentials.min.js" defer></script>
     <script>
-            function loadWebcams() {
-                {{WEBCAM CODE JS}}
-            }
+                function loadWebcams() {
+                    {{WEBCAM CODE JS}}
+                }
     </script>
 </head>
-<body>
-    <div class="overlay">
-        <div class="overlayText">Overlay Text</div>
-    </div>
-
-    <div id="sidebar" style="height: 100%; width: 200px; float: right"></div>
-
-    <div class="no container full-height">
-        <div id="toolbox" class="style-4"></div>
-
-        <div id="planField" class="style-4">
-            <div id="planFieldItemEdit">
-                <div class="rot-left"><img src="images/rot-left.png" width="16" height="16"></div>
-                <div class="rot-right"><img src="images/rot-right.png" width="16" height="16"></div>
-                <div class="spacer"></div>
-                <div class="ungroup"><img src="images/ungroup.png" width="16" height="16"></div>
-                <div class="spacer"></div>
-                <div class="delete"><img src="images/delete.png" width="16" height="16"></div>
-            </div>
+    <body>
+        <div class="overlay">
+            <div class="overlayText">Overlay Text</div>
         </div>
-    </div>
 
-    <div id="statusBar">
-        <div style="position: relative; height: 100%; width: 100%;">
-            <div class="ecosPowerStatus offline noselect" title="ECoS Power"></div>
-            <div class="ecosInformation noselect"></div>
-            <div class="ctrlInfo noselect">&nbsp;</div>
-            <div class="autoMode" data-tipso-title="Status of the AutoMode."><i class="fas fa-cog"></i></div>
-            <div class="logging" data-tipso-title="Show runtime protocol of any server-side task."><i class="fas fa-book"></i></div>
-        </div>
-    </div>
+        <div id="sidebar" style="height: 100%; width: 200px; float: right"></div>
 
-    <div style="clear: both"></div>
+        <div class="no container full-height">
+            <div id="toolbox" class="style-4"></div>
 
-    {{WEBCAM CODE HTML}}
-
-    <div class="debugConsole">
-        <div class="messageContainer"></div>
-    </div>
-
-    <div id="tplLocomotiveControl" title="CHANGE" style="display: none; overflow: hidden;">
-        <img class="locomotiveImage"
-             src=""
-             alt="CHANGE"
-             style="height: 100px; margin: auto" />
-
-        <table>
-            <tr>
-                <td style="width: 110px;" rowspan="5">
-                    <table>
-                        <tr>
-                            <td style="padding: 11px; padding-top: 2px;">
-                                <div class="locomotiveSpeedometer" style="height: 168px"></div>
-                                <div class="locomotiveSpeedstepValue"></div>
-                            </td>
-                            <td style="vertical-align: top; padding: 0; text-align: center;">
-                                <button data-speedstep="level4">IV</button>
-                                <button data-speedstep="level3">III</button>
-                                <button data-speedstep="level2">II</button>
-                                <button data-speedstep="level1">I</button>
-                                <div style="height: 15px;"></div>
-                                <button data-speedstep="level0"><i class="fas fa-stop-circle"></i></button>
-                                <div>
-                                    <button data-direction="backward"><i class="fas fa-backward" id="locBackward"></i></button>
-                                    <button data-direction="forward"><i class="fas fa-forward" id="locForward"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td style="vertical-align: top;" class="locomotiveCommandField"></td>
-            </tr>
-        </table>
-    </div>
-
-    <div id="tplLocomotiveInfoCtrl" style="display: none;">
-        <div class="locInfoCtrl">
-            <div class="locInfoStop" style="font-size: 0.8em;">
-                <i class="fas fa-stop-circle" id="locSpeedStop"></i>
-                <i class="fas fa-external-link-alt" id="locOpenDialog" style="        cursor: alias;"></i>
-            </div>
-            <div class="locInfoSpeed">
-                <i class="fas fa-minus-square" id="locSpeedMinus"></i>
-                <i class="fas fa-plus-square" id="locSpeedPlus"></i>
-            </div>
-            <div class="locSpeedSteps">
-                <button data-speedstep="level1">I</button>
-                <button data-speedstep="level2">II</button>
-                <button data-speedstep="level3">III</button>
-                <button data-speedstep="level4">IV</button>
-            </div>
-            <div class="locInfoDirection">
-                <i class="fas fa-backward" id="locBackward"></i>
-                <i class="fas fa-forward" id="locForward"></i>
-            </div>
-        </div>
-    </div>
-
-    <div id="textfieldElementToolbar"></div>
-    <div class="tplElEditorRoot" style="display: none;">
-        <div class="elEditor"></div>
-    </div>
-
-    <div class="lds-facebookOriginal" style="display: none;"><div></div><div></div><div></div></div>
-
-    <div id="dialogLocomotives" title="Locomotives">
-        <div id="gridLocomotives" style="width: 100%; height: 100%;"></div>
-    </div>
-
-    <div id="dialogRoutes" title="Routes">
-        <div id="gridRoutes" style="width: 100%; height: 100%;"></div>
-    </div>
-
-    <div id="dialogAccessories" title="Accessories">
-        <div id="gridAccessories" style="width: 100%; height: 100%;"></div>
-    </div>
-
-    <div id="dialogBlocks" title="Blocks/S88/Signals">
-        <div id="gridBlocks" style="width: 100%; height: 100%;"></div>
-    </div>
-
-    <div id="dialogFeedbackVisualization" title="S88 Viewer">
-        <div class="outerFeedback">
-            <div class="feedbackOuterWrapper">
-            </div>
-        </div>
-    </div>
-
-    <div id="dialogLightAndPower" title="Light and Power" style="display: none;">
-        <input type="hidden" autofocus="true" />
-
-        <div style="padding: 3px; font-weight: bold;">Power Switches</div>
-        <div class="w2ui-group">
-            <div class="w2ui-field power">
-                <label>IN1:</label>
-                <div>
-                    <input type="checkbox" id="powerChkIn1">
-
-                    &nbsp; <input id="powerChkIn1DelaySecs" type="w2int" value="20">
-                    Delay (sec)
-                    <i class="fas fa-spinner fa-spin" id="powerChkIn1DelaySpinner" style="display: none;"></i>
-                </div>
-            </div>
-
-            <div class="w2ui-field power">
-                <label>IN2 (Arduinos, 12V):</label>
-                <div>
-                    <input type="checkbox" id="powerChkIn2">
-                    &nbsp; <input id="powerChkIn2DelaySecs" type="w2int" value="0">
-                    Delay (sec)
-                    <i class="fas fa-spinner fa-spin" id="powerChkIn2DelaySpinner" style="display: none;"></i>
-                </div>
-            </div>
-
-            <div class="w2ui-field power">
-                <label>IN3 (Servostrom, 5V):</label>
-                <div>
-                    <input type="checkbox" id="powerChkIn3">
-                    &nbsp; <input id="powerChkIn3DelaySecs" type="w2int" value="10">
-                    Delay (sec)
-                    <i class="fas fa-spinner fa-spin" id="powerChkIn3DelaySpinner" style="display: none;"></i>
-                </div>
-            </div>
-
-            <div class="w2ui-field power">
-                <label>IN4 (16V AC):</label>
-                <div>
-                    <input type="checkbox" id="powerChkIn4">
-                    &nbsp; <input id="powerChkIn4DelaySecs" type="w2int" value="15">
-                    Delay (sec)
-                    <i class="fas fa-spinner fa-spin" id="powerChkIn4DelaySpinner" style="display: none;"></i>
+            <div id="planField" class="style-4">
+                <div id="planFieldItemEdit">
+                    <div class="rot-left"><img src="images/rot-left.png" width="16" height="16"></div>
+                    <div class="rot-right"><img src="images/rot-right.png" width="16" height="16"></div>
+                    <div class="spacer"></div>
+                    <div class="ungroup"><img src="images/ungroup.png" width="16" height="16"></div>
+                    <div class="spacer"></div>
+                    <div class="delete"><img src="images/delete.png" width="16" height="16"></div>
                 </div>
             </div>
         </div>
 
-        <div style="padding: 3px; font-weight: bold;">RGB-Light</div>
-        <div class="w2ui-group">
-            <div class="w2ui-field">
-                <label>Morning:</label>
-                <div>
-                    <!-- Morning: fcd14d -->
-                    <input type="text" id="rgbColorMorning" value="#fcd14d">
-                    &nbsp;
-                    <input type="eu-time" id="rgbColorMorningTime" value="08:00">
-                    &nbsp;
-                    <input type="radio" id="rgbColorMorningRadio" name="rgbColor">
-                </div>
+        <div id="statusBar">
+            <div style="position: relative; height: 100%; width: 100%;">
+                <div class="ecosPowerStatus offline noselect" title="ECoS Power"></div>
+                <div class="ecosInformation noselect"></div>
+                <div class="ctrlInfo noselect">&nbsp;</div>
+                <div class="autoMode" data-tipso-title="Status of the AutoMode."><i class="fas fa-cog"></i></div>
+                <div class="logging" data-tipso-title="Show runtime protocol of any server-side task."><i class="fas fa-book"></i></div>
             </div>
-            <div class="w2ui-field">
-                <label>Noon:</label>
-                <div>
-                    <!-- clear blue sky: 64, 156, 255 -->
-                    <input type="text" id="rgbColorNoon" value="#409CFF">
-                    &nbsp;
-                    <input type="eu-time" id="rgbColorNoonTime" value="12:00">
-                    &nbsp;
-                    <input type="radio" id="rgbColorNoonRadio" name="rgbColor" checked>
+        </div>
+
+        <div style="clear: both"></div>
+
+        {{WEBCAM CODE HTML}}
+
+        <div class="debugConsole">
+            <div class="messageContainer"></div>
+        </div>
+
+        <div id="tplLocomotiveControl" title="CHANGE" style="display: none; overflow: hidden;">
+            <img class="locomotiveImage"
+                 src=""
+                 alt="CHANGE"
+                 style="height: 100px; margin: auto" />
+
+            <table>
+                <tr>
+                    <td style="width: 110px;" rowspan="5">
+                        <table>
+                            <tr>
+                                <td style="padding: 11px; padding-top: 2px;">
+                                    <div class="locomotiveSpeedometer" style="height: 168px"></div>
+                                    <div class="locomotiveSpeedstepValue"></div>
+                                </td>
+                                <td style="vertical-align: top; padding: 0; text-align: center;">
+                                    <button data-speedstep="level4">IV</button>
+                                    <button data-speedstep="level3">III</button>
+                                    <button data-speedstep="level2">II</button>
+                                    <button data-speedstep="level1">I</button>
+                                    <div style="height: 15px;"></div>
+                                    <button data-speedstep="level0"><i class="fas fa-stop-circle"></i></button>
+                                    <div>
+                                        <button data-direction="backward"><i class="fas fa-backward" id="locBackward"></i></button>
+                                        <button data-direction="forward"><i class="fas fa-forward" id="locForward"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align: top;" class="locomotiveCommandField"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="tplLocomotiveInfoCtrl" style="display: none;">
+            <div class="locInfoCtrl">
+                <div class="locInfoStop" style="font-size: 0.8em;">
+                    <i class="fas fa-stop-circle" id="locSpeedStop"></i>
+                    <i class="fas fa-external-link-alt" id="locOpenDialog" style="        cursor: alias;"></i>
                 </div>
-            </div>
-            <div class="w2ui-field">
-                <label>Afternoon:</label>
-                <div>
-                    <!-- Duron Afternoon: ffd27f -->
-                    <input type="text" id="rgbColorAfternoon" value="#ffd27f">
-                    &nbsp;
-                    <input type="eu-time" id="rgbColorAfternoonTime" value="18:00">
-                    &nbsp;
-                    <input type="radio" id="rgbColorAfternoonRadio" name="rgbColor">
+                <div class="locInfoSpeed">
+                    <i class="fas fa-minus-square" id="locSpeedMinus"></i>
+                    <i class="fas fa-plus-square" id="locSpeedPlus"></i>
                 </div>
-            </div>
-            <div class="w2ui-field">
-                <label>Night:</label>
-                <div>
-                    <!-- Night: 434367 -->
-                    <input type="text" id="rgbColorNight" value="#434367">
-                    &nbsp;
-                    <input type="eu-time" id="rgbColorNightTime" value="24:00">
-                    &nbsp;
-                    <input type="radio" id="rgbColorNightRadio" name="rgbColor">
+                <div class="locSpeedSteps">
+                    <button data-speedstep="level1">I</button>
+                    <button data-speedstep="level2">II</button>
+                    <button data-speedstep="level3">III</button>
+                    <button data-speedstep="level4">IV</button>
+                </div>
+                <div class="locInfoDirection">
+                    <i class="fas fa-backward" id="locBackward"></i>
+                    <i class="fas fa-forward" id="locForward"></i>
                 </div>
             </div>
         </div>
+
+        <div id="textfieldElementToolbar"></div>
+        <div class="tplElEditorRoot" style="display: none;">
+            <div class="elEditor"></div>
+        </div>
+
+        <div class="lds-facebookOriginal" style="display: none;"><div></div><div></div><div></div></div>
+
+        <div id="dialogLocomotives" title="Locomotives">
+            <div id="gridLocomotives" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <div id="dialogRoutes" title="Routes">
+            <div id="gridRoutes" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <div id="dialogAccessories" title="Accessories">
+            <div id="gridAccessories" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <div id="dialogBlocks" title="Blocks/S88/Signals">
+            <div id="gridBlocks" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <div id="dialogFeedbackVisualization" title="S88 Viewer">
+            <div class="outerFeedback">
+                <div class="feedbackOuterWrapper">
+                </div>
+            </div>
+        </div>
+
+        <div id="dialogLightAndPower" title="Light and Power" style="display: none;">
+            <input type="hidden" autofocus="true" />
+
+            <div style="padding: 3px; font-weight: bold;">Power Switches</div>
+            <div class="w2ui-group">
+                <div class="w2ui-field power">
+                    <label>IN1:</label>
+                    <div>
+                        <input type="checkbox" id="powerChkIn1">
+
+                        &nbsp; <input id="powerChkIn1DelaySecs" type="w2int" value="20">
+                        Delay (sec)
+                        <i class="fas fa-spinner fa-spin" id="powerChkIn1DelaySpinner" style="display: none;"></i>
+                    </div>
+                </div>
+
+                <div class="w2ui-field power">
+                    <label>IN2 (Arduinos, 12V):</label>
+                    <div>
+                        <input type="checkbox" id="powerChkIn2">
+                        &nbsp; <input id="powerChkIn2DelaySecs" type="w2int" value="0">
+                        Delay (sec)
+                        <i class="fas fa-spinner fa-spin" id="powerChkIn2DelaySpinner" style="display: none;"></i>
+                    </div>
+                </div>
+
+                <div class="w2ui-field power">
+                    <label>IN3 (Servostrom, 5V):</label>
+                    <div>
+                        <input type="checkbox" id="powerChkIn3">
+                        &nbsp; <input id="powerChkIn3DelaySecs" type="w2int" value="10">
+                        Delay (sec)
+                        <i class="fas fa-spinner fa-spin" id="powerChkIn3DelaySpinner" style="display: none;"></i>
+                    </div>
+                </div>
+
+                <div class="w2ui-field power">
+                    <label>IN4 (16V AC):</label>
+                    <div>
+                        <input type="checkbox" id="powerChkIn4">
+                        &nbsp; <input id="powerChkIn4DelaySecs" type="w2int" value="15">
+                        Delay (sec)
+                        <i class="fas fa-spinner fa-spin" id="powerChkIn4DelaySpinner" style="display: none;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding: 3px; font-weight: bold;">RGB-Light</div>
+            <div class="w2ui-group">
+                <div class="w2ui-field">
+                    <label>Morning:</label>
+                    <div>
+                        <!-- Morning: fcd14d -->
+    <input type="text" id="rgbColorMorning" value="#fcd14d">
+    &nbsp;
+    <input type="eu-time" id="rgbColorMorningTime" value="08:00">
+    &nbsp;
+    <input type="radio" id="rgbColorMorningRadio" name="rgbColor">
+    </div>
+    </div>
+    <div class="w2ui-field">
+        <label>Noon:</label>
+        <div>
+            <!-- clear blue sky: 64, 156, 255 -->
+            <input type="text" id="rgbColorNoon" value="#409CFF">
+            &nbsp;
+            <input type="eu-time" id="rgbColorNoonTime" value="12:00">
+            &nbsp;
+            <input type="radio" id="rgbColorNoonRadio" name="rgbColor" checked>
+        </div>
+    </div>
+    <div class="w2ui-field">
+        <label>Afternoon:</label>
+        <div>
+            <!-- Duron Afternoon: ffd27f -->
+            <input type="text" id="rgbColorAfternoon" value="#ffd27f">
+            &nbsp;
+            <input type="eu-time" id="rgbColorAfternoonTime" value="18:00">
+            &nbsp;
+            <input type="radio" id="rgbColorAfternoonRadio" name="rgbColor">
+        </div>
+    </div>
+    <div class="w2ui-field">
+        <label>Night:</label>
+        <div>
+            <!-- Night: 434367 -->
+            <input type="text" id="rgbColorNight" value="#434367">
+            &nbsp;
+            <input type="eu-time" id="rgbColorNightTime" value="24:00">
+            &nbsp;
+            <input type="radio" id="rgbColorNightRadio" name="rgbColor">
+        </div>
+    </div>
+    </div>
     </div>
 
     <div id="locomotiveDialogContent"></div>
@@ -318,5 +317,5 @@
             </tr>
         </table>
     </div>
-</body>
+    </body>
 </html>

@@ -105,13 +105,27 @@ namespace railessentials.Route
             });
         }
 
+        private static RouteList _getLatestRouteList(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+            if (!File.Exists(path)) return null;
+            try
+            {
+                var originalCnt = File.ReadAllText(path, Encoding.UTF8);
+                return JsonConvert.DeserializeObject<RouteList>(originalCnt);
+            }
+            catch
+            {
+                // ignore
+            }
+            return null;
+        }
+
         private static string ApplyRouteDisableStates(string outputRoutePath, string json)
         {
-            if (string.IsNullOrEmpty(outputRoutePath)) return json;
-            if (!File.Exists(outputRoutePath)) return json;
-            
-            var originalCnt = File.ReadAllText(outputRoutePath, Encoding.UTF8);
-            var originalJson = JsonConvert.DeserializeObject<RouteList>(originalCnt);
+            var originalJson = _getLatestRouteList(outputRoutePath);
+            if (originalJson == null) return json;
+
             var disabledRoutes = new List<string>();
             foreach(var it in originalJson)
             {

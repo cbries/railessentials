@@ -422,6 +422,26 @@ namespace railessentials.AutoMode
             return null;
         }
 
+        internal IReadOnlyList<Feedbacks.Data> GetFeedbacksDataForBlock(string blockName)
+        {
+            var blocks = new List<Feedbacks.Data>();
+
+            if (string.IsNullOrEmpty(blockName)) return blocks;
+            Feedbacks.FeedbacksData fbs;
+            lock (_metadataLock)
+                fbs = _metadata.FeedbacksData;
+            if (fbs == null) return blocks;
+
+            foreach (var itFb in fbs.Entries)
+            {
+                if (string.IsNullOrEmpty(itFb?.BlockId)) continue;
+                if (!itFb.BlockId.StartsWith(blockName, StringComparison.OrdinalIgnoreCase)) continue;
+                blocks.Add(itFb);
+            }
+
+            return blocks;
+        }
+
         private bool GetFeedbacksForBlock(RouteBlock block, out string fbEnter, out string fbIn)
         {
             fbEnter = string.Empty;
@@ -463,6 +483,17 @@ namespace railessentials.AutoMode
             }
 
             return false;
+        }
+
+        internal void SaveFeedbacksAndPromote(bool promote = true)
+        {
+            if (_metadata == null || _metadataLock == null) return;
+            lock (_metadataLock)
+            {
+                _metadata.Save(Metadata.SaveModelType.FeedbacksData);
+            }
+            if (promote)
+                _ctx?.SendModelToClients(ClientHandler.ClientHandler.ModelType.UpdateFeedbacks);
         }
 
         internal void SaveOccAndPromote(bool promote = true)
@@ -647,7 +678,7 @@ namespace railessentials.AutoMode
             //
             // filter routes by allowed options, e.g. "mainline", "intercity", ...
             // 
-            var routesFrom = new RouteList();
+            var routesFrom3 = new RouteList();
             foreach (var it in routesFrom2)
             {
                 var targetBlock = it.Blocks[1];
@@ -667,7 +698,36 @@ namespace railessentials.AutoMode
                 }
 
                 if (IsLocAllowedForTargetBlock(locData, targetFbData))
+                    routesFrom3.Add(it);
+            }
+
+            //
+            // check if routes have target blocks which are locked by other blocks
+            // if fromBlock is referenced, the target is allowed
+            //
+            var routesFrom = new RouteList();
+            foreach (var it in routesFrom3)
+            {
+                var targetBlock = it.Blocks[1];
+                var targetBlockIdentifier = targetBlock.identifier;
+                if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
+                
+                var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
+                if (targetFbData == null) continue;
+
+                var lockedBy = targetFbData.LockedByBlock;
+                if(string.IsNullOrEmpty(lockedBy))
+                {
                     routesFrom.Add(it);
+                }
+                else
+                {
+                    var fromBlock = it.Blocks[0];
+                    var fromBlockIdentifier = fromBlock.identifier;
+
+                    if(lockedBy.StartsWith(fromBlockIdentifier, StringComparison.OrdinalIgnoreCase))
+                        routesFrom.Add(it);
+                }
             }
 
             //

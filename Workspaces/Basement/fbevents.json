@@ -354,7 +354,8 @@
       "TypeRegional": true,
       "TypeBranchLine": true,
       "TypeBranchLineFreight": false
-    }
+    },
+    "LockedByBlock": "B25"
   },
   {
     "BlockId": "B09[-]",
@@ -880,7 +881,10 @@
       "TypeRegional": true,
       "TypeBranchLine": true,
       "TypeBranchLineFreight": false
-    }
+    },
+    "AdditionalBlockLocks": [
+      "B09"
+    ]
   },
   {
     "BlockId": "B25[-]",

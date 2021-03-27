@@ -2,7 +2,8 @@
 // Licensed under the MIT License
 // File: Utilities.cs
 
-using System.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using railessentials.Plan;
 using Utilities;
 
@@ -102,6 +103,30 @@ namespace railessentials
                 addr1 = 0;
                 addr2 = ecosAddr2.Value;
             }
+        }
+
+        public static PlanItem ToPlanItem(this JObject data)
+        {
+            return JsonConvert.DeserializeObject<PlanItem>(data.ToString(Formatting.None));
+        }
+        
+        public static bool IsBlock(this JObject data)
+        {
+            return data.ToPlanItem().IsBlock;
+        }
+
+        public static bool IsAccessory(this JObject data)
+        {
+            var item = data.ToPlanItem();
+            if (item == null) return false;
+            if (item.IsSignal) return true;
+            if (item.IsSwitch) return true;
+            return false;
+        }
+
+        public static bool IsFeedback(this JObject data)
+        {
+            return data.ToPlanItem().IsSensor;
         }
     }
 }

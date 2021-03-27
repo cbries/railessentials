@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
 using railessentials.Plan;
 using railessentials.Route;
+using railessentials;
 using SuperWebSocket;
 using Utilities;
 using Data = railessentials.Locomotives.Data;
@@ -576,7 +577,7 @@ namespace railessentials.ClientHandler
                     addrs[1].TargetState = pp[0].Trim();
                     addrs[0].TargetState = pp[1].Trim();
                 }
-                else
+                else if(addrs.Count == 1)
                 {
                     addrs[0].TargetState = targetState;
                 }
@@ -1251,6 +1252,10 @@ namespace railessentials.ClientHandler
                         if (fbIn != null)
                             UpdateFeedbackEcosAddr(fbIn);
 
+                        lock (_metadataLock)
+                            _metadata?.Save(Metadata.SaveModelType.MetamodelData);
+                        SendModelToClients(ModelType.UpdateMetamodel);
+
                         List<DeniedLocomotive> deniedLocomotives = null;
                         Dictionary<string, bool> checkboxSettings = null;
 
@@ -1274,6 +1279,31 @@ namespace railessentials.ClientHandler
                             {
                                 availableBlock.DeniedLocomotives = deniedLocomotives;
                                 availableBlock.Settings = checkboxSettings;
+                            }
+
+                            _metadata?.Save(Metadata.SaveModelType.FeedbacksData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateFeedbacks);
+                    }
+                    break;
+
+                case "blockdatafbs":
+                    {
+                        var blockId = data.GetString("blockIdentifier");
+                        var fbEnterId = data.GetString("fbEnterId", null);
+                        var fbInId = data.GetString("fbInId", null);
+
+                        lock (_metadataLock)
+                        {
+                            // save the values
+                            var availableBlock = _metadata?.FeedbacksData.GetByBlockId(blockId);
+                            if (availableBlock != null)
+                            {
+                                if(fbEnterId != null)
+                                    availableBlock.FbEnter = fbEnterId;
+                                if(fbInId != null)
+                                    availableBlock.FbIn = fbInId;
                             }
 
                             _metadata?.Save(Metadata.SaveModelType.FeedbacksData);
@@ -1395,10 +1425,14 @@ namespace railessentials.ClientHandler
                                 addr["Addr1"] = dccAddr;
                                 addr["Port1"] = dccPort;
 
-                                addr["Addr2"] = 0;
-                                addr["Port2"] = 0;
+                                addr["Addr2"] = -1;
+                                addr["Port2"] = -1;
 
                                 itemObj["addresses"] = addr;
+                            }
+                            else if(itemObj["addresses"] == null)
+                            {
+                                // TODO 
                             }
 
                             return;
@@ -1434,7 +1468,7 @@ namespace railessentials.ClientHandler
                 _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
             }
         }
-
+        
         private bool RemoveItem(string itemIdentifier)
         {
             if (string.IsNullOrEmpty(itemIdentifier)) return false;
@@ -1445,8 +1479,6 @@ namespace railessentials.ClientHandler
 
                 var planField = _metadata.Metamodel["planField"] as JObject;
                 if (planField == null) return false;
-
-                _metadata.RemoveFeedback(itemIdentifier);
 
                 foreach (var it in planField)
                 {
@@ -1460,6 +1492,14 @@ namespace railessentials.ClientHandler
 
                 keysToRemove.ForEach(s => planField.Remove(s));
 
+                // remove itemIdentifier from feedbacks if it exists
+                var res = _metadata.RemoveBlock(itemIdentifier);
+                if (res)
+                {
+                    _metadata.Save(Metadata.SaveModelType.FeedbacksData);
+                    SendModelToClients(ModelType.UpdateFeedbacks);
+                }
+
                 return true;
             }
         }
@@ -1468,12 +1508,39 @@ namespace railessentials.ClientHandler
         {
             lock (_metadataLock)
             {
-                _metadata.AddNewFeedback(data);
+                if (data.IsBlock())
+                {
+                    _metadata.AddNewBlock(data, out var isNew);
+                    if (isNew)
+                    {
+                        _metadata.Save(Metadata.SaveModelType.FeedbacksData);
+                        SendModelToClients(ModelType.UpdateFeedbacks);
+                    }
+                }
 
                 var accessor = coord["x"] + "x" + coord["y"];
                 var planField = _metadata.Metamodel["planField"] as JObject;
                 if (planField == null) return false;
+
+                // prepare default data
+                // addresses should be added by default,
+                // it is not required to have valid addresses
+                if(data.IsFeedback() || data.IsAccessory())
+                {
+                    var addrInstance = new PlanItemAddresses
+                    {
+                        Addr = -1,
+                        Addr1 = -1,
+                        Addr2 = -1,
+                        Port1 = -1,
+                        Port2 = -1
+                    };
+                    if (data["addresses"] == null)
+                        data["addresses"] = JObject.Parse(JsonConvert.SerializeObject(addrInstance));
+                }
+
                 planField[accessor] = data;
+
                 return planField[accessor] != null;
             }
         }

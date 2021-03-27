@@ -875,11 +875,14 @@ class Planfield {
             //
             var labelOffset = getLabelOffsetBy(jsonData);
             if (labelOffset !== null) {
+                let lblCnt = jsonData.identifier;
+                if (typeof jsonData.identifier === "undefined" || jsonData.identifier == null)
+                    lblCnt = newId;
                 labelOffset.display = "none";
                 var newLbl = $('<div>', {})
                     .css(labelOffset)
                     .html(
-                        jsonData.identifier
+                        lblCnt
                         //+ ", " +
                         //jsonData.editor.themeId
                     );

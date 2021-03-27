@@ -479,9 +479,11 @@ $(document).ready(function () {
     });
     window.planField.install();
     window.planField.on('controlCreated', function (ev) {
-        //var ctrlInstance = ev.data.instance;
-        //console.log(ctrlInstance);
-        // TBD
+        const ctrlInstance = ev.data.instance;
+        
+        // inform the Route/S88/Signals dialog for updating its internal lists
+        if(typeof window.blocksDlg !== "undefined" && window.blocksDlg != null)
+            window.blocksDlg.controlCreated(ctrlInstance);
     });
     window.planField.on('clicked', function (ev) { itemClicked(ev.data); });
     window.planField.on('assignToBlock', function (ev) { assignLocomotiveToBlock(ev.data); });
@@ -524,8 +526,10 @@ $(document).ready(function () {
         if (typeof cmdResult === "undefined" || cmdResult == null) return false;
         window.planField.updateEcosAccessories(window.ecosData.accessories);
         if (typeof window.accessoriesDlg === "undefined" || window.accessoriesDlg == null) return false;
-        if (cmdResult.result === true)
+        if (cmdResult.result === true) {
             window.accessoriesDlg.removeAccessory(cmdResult.identifier);
+            window.blocksDlg.controlRemoved(cmdResult.identifier);
+        }
         return true;
     }
 

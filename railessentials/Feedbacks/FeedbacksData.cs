@@ -35,6 +35,12 @@ namespace railessentials.Feedbacks
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <param name="enterSide"></param>
+        /// <returns>If enterSide:=None the identifier is checked by startsWith, otherwise the side is included in the identifier checks.</returns>
         public Data GetByBlockId(string blockId, SideMarker enterSide)
         {
             if (string.IsNullOrEmpty(blockId)) return null;
@@ -43,6 +49,10 @@ namespace railessentials.Feedbacks
                 if (it == null) continue;
                 if (string.IsNullOrEmpty(it.BlockId)) continue;
                 if (!it.BlockId.StartsWith(blockId, StringComparison.OrdinalIgnoreCase)) continue;
+
+                if (enterSide == SideMarker.None)
+                    return it;
+
                 var pattern = string.Empty;
                 if (enterSide == SideMarker.Minus) pattern = "[-]";
                 else if (enterSide == SideMarker.Plus) pattern = "[+]";

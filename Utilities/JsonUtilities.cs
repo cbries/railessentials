@@ -24,7 +24,12 @@ namespace Utilities
             if (obj == null) return def;
             if (obj[key] != null)
             {
+                if (obj[key] == null)
+                    return def;
+
                 var v = obj[key]?.ToString();
+                if (v != null && v.Trim().Equals("null"))
+                    return null;
                 return v;
             }
             return def;

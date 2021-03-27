@@ -2,9 +2,12 @@
 // Licensed under the MIT License
 // File: Metadata.cs
 
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Windows.Documents;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
@@ -69,37 +72,40 @@ namespace railessentials
             return null;
         }
 
-        public bool AddNewFeedback(JObject data)
+        public bool AddNewBlock(JObject data, out bool isNew)
         {
+            isNew = false;
+
             if (data == null) return false;
 
             try
             {
-                // TODO
-                Trace.WriteLine("TODO " + data.ToString(Formatting.Indented));
-                /*
+                var identifier = data.GetString("identifier");
+
+                var fbdataInstancePlus = new Feedbacks.Data {
+                    BlockId = $"{identifier}[+]"
+                };
+
+                var fbdataInstanceMinus = new Feedbacks.Data {
+                    BlockId = $"{identifier}[-]"
+                };
+
+                var instancePlus = FeedbacksData.GetByBlockId(fbdataInstancePlus.BlockId);
+                if(instancePlus == null)
                 {
-                  "id": 200,
-                  "name": "Sensor",
-                  "basename": "sensor-off",
-                  "clickable": true,
-                  "routes": [
-                    "AC",
-                    "BD"
-                  ],
-                  "editor": {
-                    "themeId": 200,
-                    "offsetX": 24,
-                    "offsetY": 22,
-                    "themeDimIdx": 0
-                  },
-                  "identifier": "FB_0",
-                  "coord": {
-                    "x": 3,
-                    "y": 4
-                  }
+                    // add new instance
+                    FeedbacksData.Entries.Add(fbdataInstancePlus);
                 }
-                 */
+
+                var instanceMinus = FeedbacksData.GetByBlockId(fbdataInstanceMinus.BlockId);
+                if(instanceMinus == null)
+                {
+                    // add new instance
+                    FeedbacksData.Entries.Add(fbdataInstanceMinus);
+                }
+
+                if (instancePlus == null || instanceMinus == null)
+                    isNew = true;
 
                 return true;
             }
@@ -111,16 +117,29 @@ namespace railessentials
             return false;
         }
 
-        public bool RemoveFeedback(string itemIdentifier)
+        public bool RemoveBlock(string itemIdentifier)
         {
             if (string.IsNullOrEmpty(itemIdentifier)) return false;
 
             try
             {
-                // TODO "FB_0"
-                Trace.WriteLine("TODO " + itemIdentifier);
+                var idxToRemove = new List<int>();
+                for(var i = 0; i < FeedbacksData.Entries.Count; ++i)
+                {
+                    var it = FeedbacksData.Entries[i];
+                    if (it == null) continue;
+                    if (string.IsNullOrEmpty(it.BlockId)) continue;
+                    if(it.BlockId.StartsWith(itemIdentifier, StringComparison.OrdinalIgnoreCase))
+                        idxToRemove.Add(i);
+                }
 
-                return true;
+                idxToRemove.Sort();
+                idxToRemove.Reverse();
+
+                foreach(var idx in idxToRemove)
+                    FeedbacksData.Entries.RemoveAt(idx);
+
+                return idxToRemove.Count > 0;
             }
             catch
             {

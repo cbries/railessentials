@@ -13,12 +13,14 @@ namespace Utilities
 
         public static int GetDccAddr(int ecosAddr)
         {
+            if (ecosAddr < 0) return -1;
             // Address = (ECoS-Address -1) / 4 + 1
             return (ecosAddr - 1) / 4 + 1;
         }
 
         public static int GetDccPort(int ecosAddr)
         {
+            if (ecosAddr < 0) return -1;
             // Port = (ECoS-Address -1) mod 4 + 1
             return (ecosAddr - 1) % 4 + 1;
         }

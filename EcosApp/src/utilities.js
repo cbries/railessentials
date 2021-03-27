@@ -485,6 +485,21 @@ function getThemeJsonDataById(ctrlId) {
     return null;
 }
 
+function setThemeJsonDataById(ctrlId, data) {
+    // ctrlItemFeedback
+    const fbCtrls = $('div.ctrlItemFeedback');
+    for (let i = 0; i < fbCtrls.length; ++i) {
+        const c = fbCtrls[i];
+        const cid = $(c).attr("id");
+        if (cid === ctrlId) {
+            $(c).data(constDataThemeItemObject, data);
+            return true;
+        }
+    }
+    return false;
+}
+
+
 /**
  * 
  * @param {any} jqueryElement

@@ -33,7 +33,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 # Daily/Nightly Builds
 
-### Setup/Installer
+## Setup/Installer
 
 `RailEssentials` is automatically build everyday. During this build an always up-to-date Setup/Installer is generated and can be used to deploy the latest features on your personal computer. Currently, only Windows is supported, for other operating system the source must be used and build. The latest setup/installer is provided under the `Release`tab: [`Daily Setup`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
 - download the Setup of your choice (e.g. `Setup-20210322-4d9eb4.exe`, where `20210322` stands for 22nd March 2021)
@@ -41,7 +41,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 ![Setup Screen Capture](docs/assets/captures/RailEssentials2.gif)
 
-### Portable Zip-Archives
+## Portable Zip-Archives
 
 `RailEssentials` is automatically build everyday. The always latest version is provided under the `Release` tab: [`Daily Build`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
 - download the archive `railessentials-dailybuild-*.zip`
@@ -50,7 +50,6 @@ and [Vivaldi](https://vivaldi.com/).
 As default the workspace `Basement` is loaded and provided and can be used directly in simulation mode.
 
 ![Locomotives]
-
 
 <br>
 
@@ -116,9 +115,9 @@ The book introduces the basics of managing commands for remote control of your m
 
 <br>
 
-## Features
+# Features
 
-### Ui
+## Ui
  - *Modern Web Frontend* based on HTML5, JavaScript, Websocket-Communication
  - *Frontend UI usable with Chrome, Firefox, Vivaldi, Edge* on any device
  - *Server-based* architecture (currently the server is only running on Windows)
@@ -132,7 +131,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Labels* for Plan Items
  - *Accessory* can be changed directly by clicking the individual plan item at any time
 
-### Routing
+## Routing
 
  - *Block-based* automatic mode, any train/locomotive can be controlled by a smart algorithmen and can travel between blocks without crossing routes
  - *Accessory state change* during AutoMode for individual routes [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
@@ -141,11 +140,11 @@ The book introduces the basics of managing commands for remote control of your m
  - *Route* disabling/enabling on-demand
  - *Block* disabling/enabling on-demand
  
-### Feedback
+## Feedback
 
- - *S88 Viewer*
+- *S88 Viewer*
 
-### Locomotives
+## Locomotives
  
  - *Locomotive* lock/unlock
  - *Locomotive* direct control via mouse over controls in the plan
@@ -154,7 +153,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Drag&Drop of Locomotives* to Blocks for assignment
  - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
  
-### AutoMode
+## AutoMode
 
  - *Auto Mode* of the whole model railway, work on your landscape during run of all your trains
  - *Simulation Mode* to test any functionality
@@ -163,7 +162,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Accessory to Route* weaving for changing accessory states on start/delay of Locomotive traveling [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
  - *Lock Additional Blocks during Locomotive Traveling* [Wiki](https://github.com/cbries/railessentials/wiki/Lock-Additional-Blocks-during-Locomotive-Traveling)
 
-### Individual Supports for my personal needs
+## Individual Supports for my personal needs
 
  - *Light Control* (i.e. currently hardcoded variant for my personal model railway, it is based on an invidual solution with LED-RGB-Stripes and Websocket-communication [modeling repository](https://github.com/cbries/modeling/tree/master/Konfigurationen/Beleuchtung-RGB-Stripe/ESP8266_LedStripe_WS)).
 

@@ -186,7 +186,10 @@ class Blocks {
                     self.__expandedPreferences[event.recid] = true;
 
                     event.onComplete = function () {
-                        const uiCtrl = $('#' + data.selectId);
+                        //
+                        // part for adding/remove/select locomotive which are denied for the block
+                        //
+                        const uiCtrlSelectDeniedLocs = $('#' + data.selectDeniedLocsId);
                         if (typeof window.ecosData !== "undefined" && window.ecosData != null) {
                             const locomotives = window.ecosData.locomotives;
                             for (let i = 0; i < locomotives.length; ++i) {
@@ -195,26 +198,48 @@ class Blocks {
                                 const o = new Option(loc.name, loc.objectId, isDenied, isDenied);
                                 $(o).css({ "padding": "1px" });
                                 $(o).html(loc.name);
-                                uiCtrl.append(o);
+                                uiCtrlSelectDeniedLocs.append(o);
                             }
                         }
-
-                        uiCtrl.select2();
-                        uiCtrl.on('select2:unselect', function (e) {
+                        uiCtrlSelectDeniedLocs.select2();
+                        uiCtrlSelectDeniedLocs.on('select2:unselect', function (e) {
                             self.__resizePreferences();
                             self.__saveBlockSettings(data);
                         });
-                        uiCtrl.on('select2:select', function (e) {
+                        uiCtrlSelectDeniedLocs.on('select2:select', function (e) {
                             self.__resizePreferences();
                             self.__saveBlockSettings(data);
                         });
 
+                        //
+                        // part for adding/remove/select additional blocks to lock when this block is reached by a locomotive
+                        //
+                        const uiCtrlSelectBlockLocks = $('#' + data.selectBlockLocksId);
+                        // data.blockId
+                        const recentBlockData = self.__getBlockOfRecentData(data.blockId);
+                        if (typeof recentBlockData !== "undefined" && recentBlockData != null) {
+                            const blockLocks = recentBlockData.AdditionalBlockLocks;
+                            let i = 0; 
+                            const iMax = blockLocks.length;
+                            for (; i < iMax; ++i) {
+                                const blockName = blockLocks[i];
+                                console.log(blockName);
+                                // TODO
+                            }
+                        }
+                        uiCtrlSelectBlockLocks.select2();
+
+                        //
+                        // fnEnter / fbIn
+                        //
                         const enterCtrl = $('#' + data.fbEnterId);
                         const inCtrl = $('#' + data.fbInId);
-
                         enterCtrl.w2field('int');
                         inCtrl.w2field('int');
 
+                        //
+                        // checkboxes of settings
+                        //
                         const chkIds = data.checkboxIds;
                         let activateChkEvents = [];
                         for (let j = 0; j < chkIds.length; ++j) {
@@ -224,11 +249,26 @@ class Blocks {
                             activateChkEvents.push(chkCtrl);
                         }
 
+                        //
+                        // denied locomotives
                         // apply css changes to render the content correct
-                        $('div#blockData_' + event.recid + ' #' + data.selectId + ' + span').css({
+                        //
+                        $('div#blockData_' + event.recid + ' #' + data.selectDeniedLocsId + ' + span').css({
                             "margin-left": "10px",
                         });
-                        $('div#blockData_' + event.recid + ' #' + data.selectId + ' + span span.selection span.select2-selection').css({
+                        $('div#blockData_' + event.recid + ' #' + data.selectDeniedLocsId + ' + span span.selection span.select2-selection').css({
+                            "border-radius": "3px",
+                            "border": "1px solid #cacaca"
+                        });
+
+                        //
+                        // additional block locks
+                        // apply css changes to render the content correct
+                        //
+                        $('div#blockData_' + event.recid + ' #' + data.selectBlockLocksId + ' + span').css({
+                            "margin-left": "10px",
+                        });
+                        $('div#blockData_' + event.recid + ' #' + data.selectBlockLocksId + ' + span span.selection span.select2-selection').css({
                             "border-radius": "3px",
                             "border": "1px solid #cacaca"
                         });
@@ -346,7 +386,7 @@ class Blocks {
     }
 
     __saveBlockSettings(blockData) {
-        const deniedLocs = $('#' + blockData.selectId).select2('data');
+        const deniedLocs = $('#' + blockData.selectDeniedLocsId).select2('data');
 
         let chkStates = {};
         if (blockData.checkboxIds == null) {
@@ -440,7 +480,8 @@ class Blocks {
         const blockDataId = "blockData_" + recid;
         const blockFbEnter = "blockFbEnter_" + recid;
         const blockFbIn = "blockFbAddr_" + recid;
-        const selectId = "selectDeniedLocomotives_" + recid;
+        const selectDeniedLocsId = "selectDeniedLocomotives_" + recid;
+        const selectBlockLocksId = "selectBlockLocks_" + recid;
 
         const fbEnterData = getThemeJsonDataById(rec.fbEnter);
         const fbInData = getThemeJsonDataById(rec.fbIn);
@@ -468,9 +509,17 @@ class Blocks {
             ' In <input id="' + blockFbIn + '" value="' + fbInAddr + '" style="width: 75px;"></div>';
         html += '</div>';
 
+        // Denied Locomotive which are not allowed to travel to a specific block.
         html += '<div class="w2ui-field">';
         html += '<label>Denied Locs.:</label>';
-        html += '<select name="selectDeniedLocomotives[]" id="' + selectId + '" multiple="multiple" style="width: 250px;">';
+        html += '<select name="selectDeniedLocomotives[]" id="' + selectDeniedLocsId + '" multiple="multiple" style="width: 250px;">';
+        html += '</select>';
+        html += '</div>';
+
+        // Additional block to lock when the block is reached.
+        html += '<div class="w2ui-field">';
+        html += '<label>Additional Blocks:</label>';
+        html += '<select name="selectBlockLocks[]" id="' + selectBlockLocksId + '" multiple="multiple" style="width: 250px;">';
         html += '</select>';
         html += '</div>';
 
@@ -494,7 +543,8 @@ class Blocks {
             renderId: blockDataId,
             fbEnterId: blockFbEnter,
             fbInId: blockFbIn,
-            selectId: selectId,
+            selectDeniedLocsId: selectDeniedLocsId,
+            selectBlockLocksId: selectBlockLocksId,
             checkboxIds: chkIds,
             renderHtml: html
         };

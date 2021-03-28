@@ -1,5 +1,3 @@
-"use strict";
-
 function getRouteByName(routeName) {
     if (typeof routeName === "undefined" || routeName == null || routeName.length === 0)
         return null;

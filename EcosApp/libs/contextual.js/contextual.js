@@ -65,7 +65,6 @@ class Contextual{
     }
 }  
 class ContextualItem{
-    element;
     /**
      * 
      * @param {Object} opts

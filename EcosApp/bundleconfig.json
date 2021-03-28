@@ -2,6 +2,9 @@
   {
     "outputFileName": "railessentials.min.js",
     "inputFiles": [
+      "libs/colorpicker-master/jquery.colorpicker.js",
+      "libs/w2ui-1.5.rc1/w2ui-1.5.rc1.js",
+      "libs/contextual.js/contextual.js",
       "libs/speedCurve/speedCurve.js",
       "libs/videoStream/videoStream.js",
       "src/accessories.js",

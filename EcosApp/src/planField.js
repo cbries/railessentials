@@ -1,12 +1,10 @@
-"use strict";
-
 class Planfield {
 
     /**
      * 
      * @param {any} options : {
      * isEditMode [bool] }
-     */
+     */ 
     constructor(options = {}) {
         console.log("**** construct Planfield");
         this.planfieldElement = null;

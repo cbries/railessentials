@@ -4,8 +4,6 @@
  */
 
 ;(function(window, $ ) {
-    "use strict";
-
     var types = ['localStorage','sessionStorage'],
         support = [];
 

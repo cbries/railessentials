@@ -303,88 +303,91 @@ namespace railessentials.AutoMode
 
         private NextRouteInformation CheckForRoutesAndAssign()
         {
-            foreach (var itOccBlock in _metadata.Occ.Blocks)
+            lock (_metadataLock)
             {
-                // has already a destination
-                if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
-
-                var nextRoute = GetNextRoute(itOccBlock, out var locomotiveObjectId);
-                if (nextRoute == null) continue;
-
-                //
-                // query feedback sensors for the route
-                // in case no feedback sensors are set
-                // the route is invalid and will not be used
-                //
-                var resFb = GetFeedbacksForBlock(nextRoute.Blocks[1], out var fbEnter, out var fbIin);
-                if (!resFb)
+                foreach (var itOccBlock in _metadata.Occ.Blocks)
                 {
-                    LogInfo($"Route {nextRoute.Name} has no feedback sensors and will be ignored");
-                    continue;
-                }
+                    // has already a destination
+                    if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
 
-                nextRoute.Occupied = true;
+                    var nextRoute = GetNextRoute(itOccBlock, out var locomotiveObjectId);
+                    if (nextRoute == null) continue;
 
-                var fromBlock = nextRoute.Blocks[0];
-                var targetBlock = nextRoute.Blocks[1];
-                
-                LogInfo($"Route: {nextRoute.Name} ({fromBlock.identifier} going to {targetBlock.identifier})");
-
-                itOccBlock.FinalBlock = targetBlock.identifier;
-                itOccBlock.RouteToFinal = nextRoute.Name;
-
-                SaveOccAndPromote();
-                SaveRoutesAndPromote();
-
-                // 
-                // change switch states for the route
-                //
-                _ctx?.ApplyRouteCommandForSwitches(nextRoute.Switches);
-                if (_ctx != null && _ctx.IsSimulationMode())
-                {
-                    _ctx.SaveAll();
-                    _ctx?._sniffer?.TriggerDataProviderModifiedForSimulation();
-                }
-                else
-                {
-                    _ctx?._sniffer?.SendCommandsToEcosStation();
-                }
-
-                //
-                // inform all client about a new taken route
-                //
-                _ctx?.SendCommandToClients(new JObject
-                {
-                    ["command"] = "autoMode",
-                    ["data"] = new JObject
+                    //
+                    // query feedback sensors for the route
+                    // in case no feedback sensors are set
+                    // the route is invalid and will not be used
+                    //
+                    var resFb = GetFeedbacksForBlock(nextRoute.Blocks[1], out var fbEnter, out var fbIin);
+                    if (!resFb)
                     {
-                        ["command"] = "routeShow",
-                        ["routeNames"] = new JArray
-                        {
-                            nextRoute.Name
-                        }
+                        LogInfo($"Route {nextRoute.Name} has no feedback sensors and will be ignored");
+                        continue;
                     }
-                });
 
-                // prepare route information
-                var locDataEcos = _dataProvider.GetObjectBy(locomotiveObjectId) as Locomotive;
-                var locData = _metadata.LocomotivesData.GetData(locomotiveObjectId);
-                var planField = GetPlanField(_metadata);
+                    nextRoute.Occupied = true;
 
-                return new NextRouteInformation
-                {
-                    Route = nextRoute,
-                    FbEnter = planField?.Get(fbEnter),
-                    FbIn = planField?.Get(fbIin),
-                    LocomotiveObjectId = locomotiveObjectId,
-                    Locomotive = locDataEcos,
-                    LocomotivesData = locData,
-                    DataProvider = _dataProvider,
-                    DataProviderS88 = _dataProviderS88,
-                    OccBlock = itOccBlock,
-                    FromBlock = fromBlock,
-                    TargetBlock = targetBlock
-                };
+                    var fromBlock = nextRoute.Blocks[0];
+                    var targetBlock = nextRoute.Blocks[1];
+                
+                    LogInfo($"Route: {nextRoute.Name} ({fromBlock.identifier} going to {targetBlock.identifier})");
+
+                    itOccBlock.FinalBlock = targetBlock.identifier;
+                    itOccBlock.RouteToFinal = nextRoute.Name;
+
+                    SaveOccAndPromote();
+                    SaveRoutesAndPromote();
+
+                    // 
+                    // change switch states for the route
+                    //
+                    _ctx?.ApplyRouteCommandForSwitches(nextRoute.Switches);
+                    if (_ctx != null && _ctx.IsSimulationMode())
+                    {
+                        _ctx.SaveAll();
+                        _ctx?._sniffer?.TriggerDataProviderModifiedForSimulation();
+                    }
+                    else
+                    {
+                        _ctx?._sniffer?.SendCommandsToEcosStation();
+                    }
+
+                    //
+                    // inform all client about a new taken route
+                    //
+                    _ctx?.SendCommandToClients(new JObject
+                    {
+                        ["command"] = "autoMode",
+                        ["data"] = new JObject
+                        {
+                            ["command"] = "routeShow",
+                            ["routeNames"] = new JArray
+                            {
+                                nextRoute.Name
+                            }
+                        }
+                    });
+
+                    // prepare route information
+                    var locDataEcos = _dataProvider.GetObjectBy(locomotiveObjectId) as Locomotive;
+                    var locData = _metadata.LocomotivesData.GetData(locomotiveObjectId);
+                    var planField = GetPlanField(_metadata);
+
+                    return new NextRouteInformation
+                    {
+                        Route = nextRoute,
+                        FbEnter = planField?.Get(fbEnter),
+                        FbIn = planField?.Get(fbIin),
+                        LocomotiveObjectId = locomotiveObjectId,
+                        Locomotive = locDataEcos,
+                        LocomotivesData = locData,
+                        DataProvider = _dataProvider,
+                        DataProviderS88 = _dataProviderS88,
+                        OccBlock = itOccBlock,
+                        FromBlock = fromBlock,
+                        TargetBlock = targetBlock
+                    };
+                }
             }
 
             return null;

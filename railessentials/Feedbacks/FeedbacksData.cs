@@ -21,15 +21,24 @@ namespace railessentials.Feedbacks
             Ctx = ctx;
         }
 
-        public Data GetByBlockId(string blockId)
+        public Data GetByBlockId(string blockId, bool useStartsWith = false)
         {
             if (string.IsNullOrEmpty(blockId)) return null;
             foreach (var it in Entries)
             {
                 if (it == null) continue;
                 if (string.IsNullOrEmpty(it.BlockId)) continue;
-                if (it.BlockId.Equals(blockId, StringComparison.OrdinalIgnoreCase))
-                    return it;
+
+                if (useStartsWith)
+                {
+                    if (it.BlockId.StartsWith(blockId, StringComparison.OrdinalIgnoreCase))
+                        return it;
+                }
+                else
+                {
+                    if (it.BlockId.Equals(blockId, StringComparison.OrdinalIgnoreCase))
+                        return it;
+                }
             }
 
             return null;

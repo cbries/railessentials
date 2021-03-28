@@ -19,8 +19,6 @@ namespace railessentials.AutoMode
             int maxSeconds = -1,
             Func<bool> hasToBeCanceled = null)
         {
-            Trace.WriteLine("AccelerateLocomotiveCurve()");
-
             if (ecosLoc == null) return;
             if (speedCurve == null) return;
 
@@ -92,8 +90,6 @@ namespace railessentials.AutoMode
             Locomotive ecosLoc,
             Func<bool> hasToBeCanceled = null)
         {
-            Trace.WriteLine("AccelerateLocomotive()");
-
             const int maxSeconds = 10;
             var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
             var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;

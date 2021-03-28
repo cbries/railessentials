@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using railessentials.Analyzer;
 using railessentials.Feedbacks;
 using railessentials.Plan;
+using railessentials.Route;
 
 namespace railessentials.AutoMode
 {
@@ -210,8 +211,7 @@ namespace railessentials.AutoMode
                 //
                 // NOTE reset additional locked blocks
                 //
-                var startFrom = Route.OccBlock.FromBlock;
-                UnlockAdditionalBlocksFor(startFrom);
+                UnlockAdditionalBlocksFor(Route.FromBlock);
                 Ctx?.SaveFeedbacksAndPromote();
 
                 //
@@ -227,6 +227,8 @@ namespace railessentials.AutoMode
                 var fbEnterAlreadyReached = false;
                 if (speedCurve != null)
                 {
+                    SendDebugMessage($"Using speed curve to accelerate {Route.Locomotive.Caption}.");
+
                     await AccelerateLocomotiveCurve(currentSpeed, Route.Locomotive, speedCurve, hasToBeCanceled: () =>
                     {
                         fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
@@ -273,6 +275,8 @@ namespace railessentials.AutoMode
                 var fbInAlreadyReached = false;
                 if (speedCurve != null)
                 {
+                    SendDebugMessage($"Using speed curve to decelerate {Route.Locomotive.Caption}.");
+
                     var durationSeconds = 10.0;
 
                     if (Ctx?._metadataLock != null)
@@ -344,8 +348,7 @@ namespace railessentials.AutoMode
                 //
                 // NOTE check if the reached block has any additional blocks to lock
                 //
-                var reached = Route.OccBlock.FinalBlock;
-                LockAdditionalBlocksFor(reached);
+                LockAdditionalBlocksFor(Route.TargetBlock);
                 Ctx?.SaveFeedbacksAndPromote();
 
                 //
@@ -385,9 +388,9 @@ namespace railessentials.AutoMode
             }, CancelSource.Token);
         }
 
-        private void LockAdditionalBlocksFor(string blockId)
+        private void LockAdditionalBlocksFor(RouteBlock block)
         {
-            var reachedBlock = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(blockId);
+            var reachedBlock = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(block.Caption);
             if (reachedBlock == null) return;
             var additionalBlockLocks = reachedBlock.AdditionalBlockLocks;
             if (additionalBlockLocks.Count == 0) return;
@@ -400,29 +403,18 @@ namespace railessentials.AutoMode
                 foreach (var itt in fbs)
                 {
                     if (itt == null) continue;
-                    itt.LockedByBlock = blockId;
+                    itt.LockedByBlock = block.identifier;
                 }
             }
         }
 
-        private void UnlockAdditionalBlocksFor(string blockId)
+        private void UnlockAdditionalBlocksFor(RouteBlock block)
         {
-            var leavingBlock = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(blockId);
-            if (leavingBlock == null) return;
-            var additionalBlockLocks = leavingBlock.AdditionalBlockLocks;
-            if (additionalBlockLocks.Count == 0) return;
+            var fbPlus = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(block.identifier, SideMarker.Plus);
+            if (fbPlus != null) fbPlus.LockedByBlock = string.Empty;
 
-            foreach (var blockToLock in additionalBlockLocks)
-            {
-                if (string.IsNullOrEmpty(blockToLock)) continue;
-                var fbs = Ctx?.GetFeedbacksDataForBlock(blockToLock);
-                if (fbs == null || fbs.Count == 0) continue;
-                foreach (var itt in fbs)
-                {
-                    if (itt == null) continue;
-                    itt.LockedByBlock = string.Empty;
-                }
-            }
+            var fbMinus = Ctx?.GetClientHandler()?._metadata?.FeedbacksData.GetByBlockId(block.identifier, SideMarker.Minus);
+            if (fbMinus != null) fbMinus.LockedByBlock = string.Empty;
         }
 
         private async Task WaitForFb(string fbName, PlanItem fb, DataProvider dpS88)
@@ -472,9 +464,9 @@ namespace railessentials.AutoMode
             if (item == null) return false;
 
             var pinState = item.Pin((uint)itemPin);
-#if DEBUG
-            Trace.WriteLine($"{r0} > {ecosAddr} is {itemOffset}:{itemPin} = {pinState}");
-#endif
+//#if DEBUG
+//            Trace.WriteLine($"{r0} > {ecosAddr} is {itemOffset}:{itemPin} = {pinState}");
+//#endif
             return pinState;
         }
 

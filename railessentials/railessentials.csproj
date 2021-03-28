@@ -154,6 +154,7 @@
     <Compile Include="Theming\ThemeItem.cs" />
     <Compile Include="Theming\ThemeSwitchState.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="Utilities.Sort.cs" />
     <Compile Include="WebServer.cs" />
   </ItemGroup>
   <ItemGroup>

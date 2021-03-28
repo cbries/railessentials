@@ -1,0 +1,38 @@
+{
+  "1004": {
+    "IsStopped": false,
+    "IsLocked": false,
+    "Settings": {
+      "OptionDirection": true,
+      "undefined": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": true,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": true
+    },
+    "EnterBlockSide": "'-' Side",
+    "SpeedCurve": null
+  },
+  "1008": {
+    "IsStopped": false,
+    "IsLocked": false,
+    "Settings": {
+      "OptionDirection": true,
+      "undefined": false,
+      "TypeOthers": true,
+      "TypeLocal": true,
+      "TypeIntercity": true,
+      "TypeFreight": true,
+      "TypeShunting": true,
+      "TypeRegional": true,
+      "TypeBranchLine": true,
+      "TypeBranchLineFreight": true
+    },
+    "EnterBlockSide": "'-' Side",
+    "SpeedCurve": null
+  }
+}

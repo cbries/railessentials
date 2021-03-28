@@ -1,0 +1,1263 @@
+{
+  "planField": {
+    "12x2": {
+      "id": 150,
+      "name": "Block",
+      "basename": "block",
+      "clickable": false,
+      "routes": [
+        "A0|C0,C0|A0",
+        "B0|D0,D0|B0"
+      ],
+      "dimensions": [
+        {
+          "w": 4,
+          "h": 1
+        },
+        {
+          "w": 1,
+          "h": 4
+        }
+      ],
+      "editor": {
+        "themeId": 150,
+        "themeDimIdx": 0,
+        "offsetX": 18,
+        "offsetY": 13
+      },
+      "identifier": "BK_1",
+      "coord": {
+        "x": 12,
+        "y": 2
+      }
+    },
+    "16x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_4",
+      "coord": {
+        "x": 16,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 5,
+        "Addr1": 2,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "11x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_5",
+      "coord": {
+        "x": 11,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 4,
+        "Addr1": 1,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "2x2": {
+      "id": 11,
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "editor": {
+        "themeId": 11,
+        "themeDimIdx": 3,
+        "offsetX": 19,
+        "offsetY": 24
+      },
+      "identifier": "TK_2",
+      "coord": {
+        "x": 2,
+        "y": 2
+      }
+    },
+    "9x2": {
+      "id": 50,
+      "name": "Turnout Left",
+      "basename": "turnoutleft",
+      "clickable": true,
+      "routes": [
+        "AC,CA,CD,DC",
+        "BD,DB,DA,AD",
+        "AC,CA,AB,BA",
+        "BD,DB,BC,CB"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnleft"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnleft"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnleft"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnleft"
+          }
+        ]
+      },
+      "editor": {
+        "themeId": 50,
+        "offsetX": 33,
+        "offsetY": 18,
+        "themeDimIdx": 0
+      },
+      "identifier": "SW_0",
+      "coord": {
+        "x": 9,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 1,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "3x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "offsetX": 26,
+        "offsetY": 23,
+        "themeDimIdx": 0
+      },
+      "identifier": "TK_3",
+      "coord": {
+        "x": 3,
+        "y": 2
+      }
+    },
+    "4x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_4",
+      "coord": {
+        "x": 4,
+        "y": 2
+      }
+    },
+    "5x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_5",
+      "coord": {
+        "x": 5,
+        "y": 2
+      }
+    },
+    "6x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_6",
+      "coord": {
+        "x": 6,
+        "y": 2
+      }
+    },
+    "7x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_7",
+      "coord": {
+        "x": 7,
+        "y": 2
+      }
+    },
+    "8x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_8",
+      "coord": {
+        "x": 8,
+        "y": 2
+      }
+    },
+    "10x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 23
+      },
+      "identifier": "TK_9",
+      "coord": {
+        "x": 10,
+        "y": 2
+      }
+    },
+    "4x4": {
+      "id": 150,
+      "name": "Block",
+      "basename": "block",
+      "clickable": false,
+      "routes": [
+        "A0|C0,C0|A0",
+        "B0|D0,D0|B0"
+      ],
+      "dimensions": [
+        {
+          "w": 4,
+          "h": 1
+        },
+        {
+          "w": 1,
+          "h": 4
+        }
+      ],
+      "editor": {
+        "themeId": 150,
+        "offsetX": 18,
+        "offsetY": 13,
+        "themeDimIdx": 0
+      },
+      "identifier": "BK_0",
+      "coord": {
+        "x": 4,
+        "y": 4
+      }
+    },
+    "3x4": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_7",
+      "coord": {
+        "x": 3,
+        "y": 4
+      },
+      "addresses": {
+        "Addr": 1,
+        "Addr1": 1,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "2x4": {
+      "id": 11,
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "editor": {
+        "themeId": 11,
+        "themeDimIdx": 2,
+        "offsetX": 19,
+        "offsetY": 24
+      },
+      "identifier": "TK_1",
+      "coord": {
+        "x": 2,
+        "y": 4
+      }
+    },
+    "8x4": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_6",
+      "coord": {
+        "x": 8,
+        "y": 4
+      },
+      "addresses": {
+        "Addr": 2,
+        "Addr1": 1,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "9x4": {
+      "id": 11,
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "editor": {
+        "themeId": 11,
+        "offsetX": 19,
+        "offsetY": 24,
+        "themeDimIdx": 1
+      },
+      "identifier": "TK_0",
+      "coord": {
+        "x": 9,
+        "y": 4
+      }
+    },
+    "2x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "offsetX": 29,
+        "offsetY": 23,
+        "themeDimIdx": 1
+      },
+      "identifier": "TK_21",
+      "coord": {
+        "x": 2,
+        "y": 3
+      }
+    },
+    "9x3": {
+      "id": 14,
+      "name": "Direction",
+      "basename": "dir",
+      "clickable": false,
+      "routes": [
+        "CA!",
+        "DB!",
+        "AC!",
+        "BD!"
+      ],
+      "editor": {
+        "themeId": 14,
+        "offsetX": 32,
+        "offsetY": 20,
+        "themeDimIdx": 1
+      },
+      "identifier": "TK_22",
+      "coord": {
+        "x": 9,
+        "y": 3
+      }
+    },
+    "35x2": {
+      "id": 13,
+      "name": "Buffer",
+      "basename": "buffer",
+      "clickable": false,
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "editor": {
+        "themeId": 13,
+        "offsetX": 26,
+        "offsetY": 11,
+        "themeDimIdx": 0
+      },
+      "identifier": "TK_18",
+      "coord": {
+        "x": 35,
+        "y": 2
+      }
+    },
+    "35x3": {
+      "id": 13,
+      "name": "Buffer",
+      "basename": "buffer",
+      "clickable": false,
+      "routes": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "editor": {
+        "themeId": 13,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 11
+      },
+      "identifier": "TK_19",
+      "coord": {
+        "x": 35,
+        "y": 3
+      }
+    },
+    "34x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_16",
+      "coord": {
+        "x": 34,
+        "y": 2
+      }
+    },
+    "34x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_17",
+      "coord": {
+        "x": 34,
+        "y": 3
+      }
+    },
+    "33x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_2",
+      "coord": {
+        "x": 33,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 7,
+        "Addr1": 2,
+        "Port1": 3,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "33x3": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_3",
+      "coord": {
+        "x": 33,
+        "y": 3
+      },
+      "addresses": {
+        "Addr": 9,
+        "Addr1": 3,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "29x3": {
+      "id": 150,
+      "name": "Block",
+      "basename": "block",
+      "clickable": false,
+      "routes": [
+        "A0|C0,C0|A0",
+        "B0|D0,D0|B0"
+      ],
+      "dimensions": [
+        {
+          "w": 4,
+          "h": 1
+        },
+        {
+          "w": 1,
+          "h": 4
+        }
+      ],
+      "editor": {
+        "themeId": 150,
+        "themeDimIdx": 0,
+        "offsetX": 18,
+        "offsetY": 13
+      },
+      "identifier": "BK_3",
+      "coord": {
+        "x": 29,
+        "y": 3
+      }
+    },
+    "29x2": {
+      "id": 150,
+      "name": "Block",
+      "basename": "block",
+      "clickable": false,
+      "routes": [
+        "A0|C0,C0|A0",
+        "B0|D0,D0|B0"
+      ],
+      "dimensions": [
+        {
+          "w": 4,
+          "h": 1
+        },
+        {
+          "w": 1,
+          "h": 4
+        }
+      ],
+      "editor": {
+        "themeId": 150,
+        "themeDimIdx": 0,
+        "offsetX": 18,
+        "offsetY": 13
+      },
+      "identifier": "BK_2",
+      "coord": {
+        "x": 29,
+        "y": 2
+      }
+    },
+    "28x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "offsetX": 26,
+        "offsetY": 16,
+        "themeDimIdx": 0
+      },
+      "identifier": "FB_0",
+      "coord": {
+        "x": 28,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 6,
+        "Addr1": 2,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "28x3": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 26,
+        "offsetY": 16
+      },
+      "identifier": "FB_1",
+      "coord": {
+        "x": 28,
+        "y": 3
+      },
+      "addresses": {
+        "Addr": 8,
+        "Addr1": 2,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "27x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_12",
+      "coord": {
+        "x": 27,
+        "y": 2
+      }
+    },
+    "27x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_13",
+      "coord": {
+        "x": 27,
+        "y": 3
+      }
+    },
+    "26x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_11",
+      "coord": {
+        "x": 26,
+        "y": 2
+      }
+    },
+    "26x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_14",
+      "coord": {
+        "x": 26,
+        "y": 3
+      }
+    },
+    "25x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_15",
+      "coord": {
+        "x": 25,
+        "y": 3
+      }
+    },
+    "25x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 23,
+        "offsetY": 19
+      },
+      "identifier": "TK_10",
+      "coord": {
+        "x": 25,
+        "y": 2
+      }
+    },
+    "24x2": {
+      "id": 51,
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 14,
+        "offsetY": 21,
+        "themeDimIdx": 0
+      },
+      "identifier": "SW_1",
+      "coord": {
+        "x": 24,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 2,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "24x3": {
+      "id": 11,
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "editor": {
+        "themeId": 11,
+        "themeDimIdx": 2,
+        "offsetX": 27,
+        "offsetY": 16
+      },
+      "identifier": "TK_20",
+      "coord": {
+        "x": 24,
+        "y": 3
+      }
+    },
+    "18x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "offsetX": 23,
+        "offsetY": 20,
+        "themeDimIdx": 0
+      },
+      "identifier": "FB_8",
+      "coord": {
+        "x": 18,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 14,
+        "Addr1": 4,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "19x2": {
+      "id": 151,
+      "name": "Short Block",
+      "basename": "block-s",
+      "clickable": false,
+      "routes": [
+        "A0|C0,C0|A0",
+        "B0|D0,D0|B0"
+      ],
+      "dimensions": [
+        {
+          "w": 2,
+          "h": 1
+        },
+        {
+          "w": 1,
+          "h": 2
+        }
+      ],
+      "editor": {
+        "themeId": 151,
+        "offsetX": 15,
+        "offsetY": 13,
+        "themeDimIdx": 0
+      },
+      "identifier": "BK_4",
+      "coord": {
+        "x": 19,
+        "y": 2
+      }
+    },
+    "21x2": {
+      "id": 200,
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 200,
+        "themeDimIdx": 0,
+        "offsetX": 24,
+        "offsetY": 14
+      },
+      "identifier": "FB_9",
+      "coord": {
+        "x": 21,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 13,
+        "Addr1": 4,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      }
+    },
+    "17x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "offsetX": 13,
+        "offsetY": 16,
+        "themeDimIdx": 0
+      },
+      "identifier": "TK_23",
+      "coord": {
+        "x": 17,
+        "y": 2
+      }
+    },
+    "23x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 13,
+        "offsetY": 16
+      },
+      "identifier": "TK_24",
+      "coord": {
+        "x": 23,
+        "y": 2
+      }
+    },
+    "22x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 13,
+        "offsetY": 16
+      },
+      "identifier": "TK_25",
+      "coord": {
+        "x": 22,
+        "y": 2
+      }
+    }
+  }
+}

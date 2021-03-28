@@ -1,0 +1,26 @@
+[
+  {
+    "Oid": 1004,
+    "FromBlock": "BK_2",
+    "NextBlock": "",
+    "FinalBlock": "",
+    "RouteToNext": "",
+    "RouteToFinal": "",
+    "NextEntered": false,
+    "FinalEntered": false,
+    "ReachedTime": "2021-03-28T16:31:01.6063711+02:00",
+    "SecondsToWait": 10
+  },
+  {
+    "Oid": 1008,
+    "FromBlock": "BK_3",
+    "NextBlock": "",
+    "FinalBlock": "",
+    "RouteToNext": "",
+    "RouteToFinal": "",
+    "NextEntered": false,
+    "FinalEntered": false,
+    "ReachedTime": "2021-03-28T15:31:35.2338221+02:00",
+    "SecondsToWait": 10
+  }
+]

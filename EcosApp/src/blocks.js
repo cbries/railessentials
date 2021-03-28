@@ -215,19 +215,45 @@ class Blocks {
                         // part for adding/remove/select additional blocks to lock when this block is reached by a locomotive
                         //
                         const uiCtrlSelectBlockLocks = $('#' + data.selectBlockLocksId);
-                        // data.blockId
                         const recentBlockData = self.__getBlockOfRecentData(data.blockId);
                         if (typeof recentBlockData !== "undefined" && recentBlockData != null) {
                             const blockLocks = recentBlockData.AdditionalBlockLocks;
+                            const ctrlsBlocks = $('div.ctrlItemBlock');
                             let i = 0; 
-                            const iMax = blockLocks.length;
+                            let iMax = ctrlsBlocks.length;
+                            let ctrlsIds = [];
                             for (; i < iMax; ++i) {
-                                const blockName = blockLocks[i];
-                                console.log(blockName);
-                                // TODO
+                                const c = ctrlsBlocks[i];
+                                if (typeof (c) === "undefined" || c == null) continue;
+                                const cId = c.getAttribute("id");
+                                if (cId.length === 0) continue;
+                                ctrlsIds.push(cId);
+                            }
+
+                            // human readable sort
+                            const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+                            ctrlsIds = ctrlsIds.sort(collator.compare);
+
+                            iMax = ctrlsIds.length;
+                            for (i = 0; i < iMax; ++i) {
+                                const cId = ctrlsIds[i];
+                                const isLocked = blockLocks.includes(cId);
+                                const o = new Option(cId, cId, isLocked, isLocked);
+                                $(o).css({ "padding": "1px" });
+                                $(o).html(cId);
+                                uiCtrlSelectBlockLocks.append(o);
                             }
                         }
                         uiCtrlSelectBlockLocks.select2();
+
+                        uiCtrlSelectBlockLocks.on('select2:unselect', function (e) {
+                            self.__resizePreferences();
+                            self.__saveBlockAdditionalBlocks(data);
+                        });
+                        uiCtrlSelectBlockLocks.on('select2:select', function (e) {
+                            self.__resizePreferences();
+                            self.__saveBlockAdditionalBlocks(data);
+                        });
 
                         //
                         // fnEnter / fbIn
@@ -381,6 +407,20 @@ class Blocks {
                     blockIdentifier: blockId,
                     fbEnterId: fbEnterId,
                     fbInId: fbInId
+                }
+            });
+    }
+
+    __saveBlockAdditionalBlocks(blockData) {
+        const additionalBlockLocks = $('#' + blockData.selectBlockLocksId).select2('data');
+
+        this.__trigger('setting',
+            {
+                'mode': 'block',
+                'cmd': 'blockDataBlockLocks',
+                'value': {
+                    blockIdentifier: blockData.blockId,
+                    additionalBlockLocks: additionalBlockLocks
                 }
             });
     }

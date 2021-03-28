@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 // File: JsonUtilities.cs
 
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
 namespace Utilities
@@ -34,6 +35,21 @@ namespace Utilities
             }
             return def;
         }
+
+        public static List<string> GetStringList(this JObject obj, string key)
+        {
+            if (obj?[key] == null) return null;
+            var ar = obj[key] as JArray;
+            if (ar == null) return null;
+            var v = new List<string>();
+            foreach (var it in ar)
+            {
+                if (it == null) continue;
+                v.Add(it.ToString());
+            }
+            return v;
+        }
+
 
         public static bool GetBool(this JObject obj, string key, bool def = false)
         {

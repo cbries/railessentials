@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Navigation;
 using ecoslib;
 using ecoslib.Connector;
 using ecoslib.Entities;
@@ -1305,6 +1306,38 @@ namespace railessentials.ClientHandler
                                 if(fbInId != null)
                                     availableBlock.FbIn = fbInId;
                             }
+
+                            _metadata?.Save(Metadata.SaveModelType.FeedbacksData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateFeedbacks);
+                    }
+                    break;
+
+                case "blockdatablocklocks":
+                    {
+                        var blockId = data.GetString("blockIdentifier");
+                        var dataDeniedLocomotives = data["additionalBlockLocks"] as JArray;
+                        if (dataDeniedLocomotives == null) return;
+
+                        var cleanList = new List<string>();
+                        foreach(var it in dataDeniedLocomotives)
+                        {
+                            var o = it as JObject;
+                            if (o?["text"] == null) continue;
+                            var v = o["text"].ToString();
+                            if (string.IsNullOrEmpty(v)) continue;
+                            cleanList.Add(v);
+                        }
+
+                        cleanList.Sort(new NaturalStringComparer());
+
+                        lock (_metadataLock)
+                        {
+                            // save the values
+                            var availableBlock = _metadata?.FeedbacksData.GetByBlockId(blockId);
+                            if (availableBlock != null)
+                                availableBlock.AdditionalBlockLocks = cleanList;
 
                             _metadata?.Save(Metadata.SaveModelType.FeedbacksData);
                         }

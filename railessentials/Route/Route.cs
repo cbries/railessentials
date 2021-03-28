@@ -69,6 +69,18 @@ namespace railessentials.Route
 
     public class RouteBlock
     {
+        [JsonIgnore]
+        public string Caption
+        {
+            get
+            {
+                if (side == SideMarker.None) return identifier;
+                if (side == SideMarker.Plus) return $"{identifier}[+]";
+                if (side == SideMarker.Minus) return $"{identifier}[-]";
+                return identifier;
+            }
+        }
+
         public int x { get; set; }
         public int y { get; set; }
         public string identifier { get; set; }

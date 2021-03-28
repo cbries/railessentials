@@ -455,12 +455,13 @@ class Occ {
     __updateTimeVisualization(occDataItem) {
         if (typeof occDataItem === "undefined" || occDataItem == null) return;
         const self = this;
-        const reachedDt = new Date(occDataItem.ReachedTime).getTime();
-        self.__secondsToWaitAfterBlockReach = occDataItem.SecondsToWait;
-        const nowDt = parseInt(new Date().getTime() / 1000);
-        const deltaDtSecs = nowDt - (parseInt(reachedDt / 1000) + self.__secondsToWaitAfterBlockReach);
-        const hideCounter = deltaDtSecs > 0;
+        const reachedDtSecs = parseInt(new Date(occDataItem.ReachedTime).getTime() / 1000);
+        const walltimeDtSecs = reachedDtSecs + occDataItem.SecondsToWait;
 
+        let currentSecs = parseInt(walltimeDtSecs - (parseInt(new Date().getTime() / 1000)));
+        if (currentSecs < 0) currentSecs = 0;
+
+        const hideCounter = currentSecs <= 0;
         const oid = occDataItem.Oid;
         const lbl = $('#locomotiveInfo' + oid + ' div.countdown');
 
@@ -472,23 +473,28 @@ class Occ {
 
             lbl.show();
 
-            let lblCnt = lbl.find("span.countdown");
-            lblCnt.data("secsToWait", self.__secondsToWaitAfterBlockReach);
-            lblCnt.html(self.__secondsToWaitAfterBlockReach + "s");
+            const lblCnt = lbl.find("span.countdown");
+            lblCnt.data("walltime", walltimeDtSecs);
+            lblCnt.html(currentSecs + "s");
 
             var fncCheckTime = (function (ctrl) {
                 setTimeout(function () {
                     const lblCnt = ctrl.find("span.countdown");
-                    const secs = lblCnt.data("secsToWait") - 1;
-                    if (isNaN(secs) || secs < 1) {
-                        lblCnt.data("secsToWait", 0);
+                    const walltime = parseInt(lblCnt.data("walltime"));
+                    if (walltime >= 0) {
+                        const secs = parseInt(lblCnt.data("walltime")) - (parseInt(new Date().getTime() / 1000));
+                        if (isNaN(secs) || secs < 1) {
+                            lblCnt.data("walltime", -1);
+                            ctrl.hide();
+                            return;
+                        }
+
+                        lblCnt.html(secs + "s");
+                        fncCheckTime(ctrl);
+                    } else {
                         ctrl.hide();
                         return;
                     }
-
-                    lblCnt.data("secsToWait", secs);
-                    lblCnt.html(secs + "s");
-                    fncCheckTime(ctrl);
                 }, 1000);
             });
 

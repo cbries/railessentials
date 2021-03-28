@@ -226,7 +226,7 @@ function getLabelOffsetBy(jsonData) {
 
         case 50:
             {
-                offset.top = "-14px";
+                offset.top = "-2px";
                 offset.left = "30px";
                 return offset;
             }
@@ -255,8 +255,8 @@ function getLabelOffsetBy(jsonData) {
         case 150:
         case 151:
             {
-                offset.top = "-14px";
-                offset.left = "10px";
+                offset.top = "-2px";
+                offset.left = "1px";
                 return offset;
             }
 

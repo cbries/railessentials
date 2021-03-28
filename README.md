@@ -161,6 +161,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Block entering* visualization, see directly on which side the locomotive has entered the block and on which side it will leave the block 
  - *Statistics* of accessory usage and when any Locomotive has been started/stopped (e.g. supports scheduled maintenance)
  - *Accessory to Route* weaving for changing accessory states on start/delay of Locomotive traveling [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
+ - *Lock Additional Blocks during Locomotive Traveling* [Wiki](https://github.com/cbries/railessentials/wiki/Lock-Additional-Blocks-during-Locomotive-Traveling)
 
 ### Individual Supports for my personal needs
 

@@ -72,6 +72,9 @@ function toggleAllLocomotiveInformation(state) {
 }
 
 function toggleAllLabelInformation(state) {
+    $.localStorage.setItem("labelShown", JSON.stringify({
+        shown: state
+    }));
     const lbls = $('div.elementLabel');
     let i;
     const iMax = lbls.length;
@@ -85,6 +88,9 @@ function toggleAllLabelInformation(state) {
 }
 
 function toggleAllWebcamsVisibility(state) {
+    $.localStorage.setItem("webcamShown", JSON.stringify({
+        shown: state
+    }));
     const videoCtrls = $('div.videoStream');
     let i;
     const iMax = videoCtrls.length;

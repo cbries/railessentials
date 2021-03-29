@@ -840,7 +840,6 @@ var loadSideBar = (function () {
                 window.dialogLightAndPower.show();
                 w2ui['sidebar'].unselect('cmdLight');
             } else if (target === "cmdWorldClock") {
-                // TODO
                 showTodoDialog();
                 w2ui['sidebar'].unselect('cmdWorldClock');
             } else if (target === "cmdPower") {
@@ -869,7 +868,7 @@ var loadSideBar = (function () {
                 handleWorkspace(event.node);
                 w2ui['sidebar'].unselect('cmdChangeWorkspace');
             } else if (target === "cmdHelp") {
-                window.open(constGitWebsite, "_blank");
+                window.open(constGitWikiWebsite, "_blank");
                 w2ui['sidebar'].unselect('cmdHelp');
             } else if (target === "cmdAbout") {
                 w2popup.open({
@@ -895,7 +894,7 @@ var loadSideBar = (function () {
                         '<tr>' +
                         '<td>Used libraries:</td>' +
                         '<td style="text-align: left;">' +
-                        'TODO' +
+                        '<a href="' + constGitUsedSwWebsite + '" target="_blank">Link to \'Third-Party Components at Their Best\'</a>' +
                         '</td>' +
                         '</tr>' +
                         '</table></div>'

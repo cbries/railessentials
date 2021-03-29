@@ -92,6 +92,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "videoStreamServer", "videoStreamServer\videoStreamServer.csproj", "{2E8D9788-9D6B-485F-8940-A255CD99A183}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FbExtraLock", "FbExtraLock", "{9D3D44D7-3166-4BBE-8281-2C725E15F3C5}"
+	ProjectSection(SolutionItems) = preProject
+		Workspaces\FbExtraLock\fbevents.json = Workspaces\FbExtraLock\fbevents.json
+		Workspaces\FbExtraLock\locomotives.duration.json = Workspaces\FbExtraLock\locomotives.duration.json
+		Workspaces\FbExtraLock\locomotives.json = Workspaces\FbExtraLock\locomotives.json
+		Workspaces\FbExtraLock\metamodel.json = Workspaces\FbExtraLock\metamodel.json
+		Workspaces\FbExtraLock\occ.json = Workspaces\FbExtraLock\occ.json
+		Workspaces\FbExtraLock\routes.json = Workspaces\FbExtraLock\routes.json
+		Workspaces\FbExtraLock\statistics.json = Workspaces\FbExtraLock\statistics.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,6 +156,7 @@ Global
 		{C35821AB-684B-4CD9-925A-F73393658BC2} = {ECE2EE9E-0AFE-438D-8F5D-843D959A4657}
 		{686AEAFF-FDA6-4AFE-8EF2-9A451020E6AE} = {ECE2EE9E-0AFE-438D-8F5D-843D959A4657}
 		{5F8A1631-AA22-48E1-A96D-B0ACF5360473} = {A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}
+		{9D3D44D7-3166-4BBE-8281-2C725E15F3C5} = {A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C91A5FD-A096-4732-AF10-4BBB412B07BB}

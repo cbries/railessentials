@@ -447,6 +447,18 @@ class Accessories {
         const accCtrls = $('div.ctrlItemAccessory');
         const elGrid = w2ui[self.__gridName];
 
+        const getStateOf = function (ecosAddr) {
+            const noOfAccs = ecosAccessories.length;
+            for (let i = 0; i < noOfAccs; ++i) {
+                const ecosAcc = ecosAccessories[i];
+                if (typeof ecosAcc === "undefined") continue;
+                if (ecosAcc == null) continue;
+                if (ecosAcc.addr === ecosAddr)
+                    return ecosAcc.state;
+            }
+            return "unknown";
+        }
+
         const noOfAccs = ecosAccessories.length;
         for (let i = 0; i < noOfAccs; ++i) {
             const ecosAcc = ecosAccessories[i];
@@ -464,31 +476,52 @@ class Accessories {
                     const rec = recs[j];
                     const row = elGrid.get(rec);
 
-                    let onName = "straight";
-                    let offName = "turn";
+                    let state0 = null; let newState0 = null;
+                    let state1 = null; let newState1 = null;
+                    if (accItem.ecosAddresses.length === 2) {
+                        let onName = "straight";
+                        let offName = "turn";
+                        const themeId = accItem.themeData.editor.themeId;
 
-                    const themeId = accItem.themeData.editor.themeId;
+                        if (isDecoupler(themeId)) {
+                            onName = "on";
+                            offName = "off";
+                        } else if (isSignal(themeId)) {
+                            onName = "red";
+                            offName = "green";
+                        } else if (isAccessory(themeId)) {
+                            onName = "on";
+                            offName = "off";
+                        }
 
-                    if(isDecoupler(themeId)) {
-                        onName = "on";
-                        offName = "off";
-                    } else if(isSignal(themeId)) {
-                        onName = "red";
-                        offName = "green";
-                    } else if(isAccessory(themeId)) {
-                        onName = "on";
-                        offName = "off";
-                    }
+                        if (accItem.ecosAddresses[0].ecosAddrValid === true) {
+                            state0 = getStateOf(accItem.ecosAddresses[0].ecosAddr);
+                            if (state0 === 0) newState0 = onName;
+                            else if (state0 === 1) newState0 = offName;
+                        }
+                        if (accItem.ecosAddresses[1].ecosAddrValid === true) {
+                            state1 = getStateOf(accItem.ecosAddresses[1].ecosAddr);
+                            if (state1 === 0) newState1 = onName;
+                            else if (state1 === 1) newState1 = offName;
+                        }
 
-                    const oldState = row.state;
-                    let newState;
-                    if (ecosAcc.state === 0) newState = onName;
-                    else if (ecosAcc.state === 1) newState = offName;
-                    else newState = "unknown";
+                        let newState = "unknown";
+                        if (newState0 == null && newState1 == null) {
+                            // ignore
+                        } else if (newState0 != null && newState1 != null) {
+                            newState = newState0 + " / " + newState1;
+                        } else if (newState0 == null) {
+                            newState = newState1;
+                        } else if (newState1 == null) {
+                            newState = newState0;
+                        }
 
-                    if (oldState !== newState) {
-                        row.state = newState;
-                        elGrid.refreshCell(rec, 'state');
+                        const oldState = row.state;
+
+                        if (oldState !== newState) {
+                            row.state = newState;
+                            elGrid.refreshCell(rec, 'state');
+                        }
                     }
                 }
             }

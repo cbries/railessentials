@@ -632,6 +632,20 @@ namespace railessentials.ClientHandler
             }
         }
 
+        private int __getTargetStateIndexFor(string targetState)
+        {
+            if (string.IsNullOrEmpty(targetState)) return -1;
+            if (targetState.Equals("straight", StringComparison.OrdinalIgnoreCase))
+                return 0; 
+            if (targetState.Equals("turn", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            if (targetState.Equals("turnright", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            if (targetState.Equals("turnleft", StringComparison.OrdinalIgnoreCase))
+                return 1;
+            return -1;
+        }
+
         private void HandleRouteCommand_CheckRoute(JObject cmddata)
         {
             var native = cmddata?["native"] as JObject;
@@ -649,44 +663,95 @@ namespace railessentials.ClientHandler
                 if (itSw == null) continue;
                 var coordX = (int)itSw["x"];
                 var coordY = (int)itSw["y"];
-                Utilities.GetEcosAddress(field, coordX, coordY, out var ecosAddr1, out var ecosAddr2, out _, out _);
-
-                var ecosAddr = -1;
-                if (ecosAddr1 != null) ecosAddr = ecosAddr1.Value;
-                else if (ecosAddr2 != null) ecosAddr = ecosAddr2.Value;
-                if (ecosAddr == -1) continue;
-
-                var ecosSwitch = dp.GetAccessoryByAddress(ecosAddr) as Accessory;
-                if (ecosSwitch == null) continue;
+                Utilities.GetEcosAddress(field, coordX, coordY, 
+                    out var ecosAddr1, out var ecosAddr2, 
+                    out var ecosAddrInverse1, out var ecosAddrInverse2);
 
                 var targetState = string.Empty;
-                if (itSw["switch"] is JObject sw)
-                    targetState = sw["state"]?.ToString();
+                if (itSw["Switch"] is JObject sw)
+                    targetState = sw.GetString("State");
 
-                var stateIndex = -1;
-                if (!string.IsNullOrEmpty(targetState))
+                var parts = new[] { string.Empty, string.Empty };
+                var splitterIdx = targetState.IndexOf("|", StringComparison.Ordinal);
+                if(splitterIdx != -1)
                 {
-                    if (targetState.Equals("straight", StringComparison.OrdinalIgnoreCase))
-                        stateIndex = 0;
-                    else if (targetState.Equals("turn", StringComparison.OrdinalIgnoreCase))
-                        stateIndex = 1;
-                    else if (targetState.Equals("turnright", StringComparison.OrdinalIgnoreCase))
-                        stateIndex = 1;
-                    else if (targetState.Equals("turnleft", StringComparison.OrdinalIgnoreCase))
-                        stateIndex = 1;
+                    var p = targetState.Split(new []{'|'}, StringSplitOptions.RemoveEmptyEntries);
+                    if(p.Length == 2)
+                    {
+                        parts[0] = p[1];
+                        parts[1] = p[0];
+                    }
                     else
                     {
-                        SendDebugMessage($"Unknown target state '{targetState}' for {cmddata.GetString("identifier")}", DebugMessageLevel.Warning);
+                        parts[0] = targetState;
+                        parts[1] = targetState;
                     }
                 }
-                if (stateIndex == -1) continue;
-
-                SendDebugMessage($"{cmddata.GetString("identifier")} switches to '{targetState}'.");
-
-                if (IsSimulationMode())
-                    ecosSwitch.SwitchSimulation(stateIndex);
                 else
-                    ecosSwitch.Switch(stateIndex);
+                {
+                    parts[0] = targetState;
+                    parts[1] = targetState;
+                }
+
+                //
+                // 
+                //
+                Accessory item0 = null;
+                if (ecosAddr1 != null)
+                    item0 = dp.GetAccessoryByAddress(ecosAddr1.Value) as Accessory;
+                if (item0 != null)
+                {
+                    var targetStateIdx = __getTargetStateIndexFor(parts[0].Trim());
+                    if(targetStateIdx == -1)
+                    {
+                        SendDebugMessage($"Unknown target state '{parts[0]}' for {item0.Caption}", DebugMessageLevel.Warning);
+                    }
+                    else
+                    {
+                        SendDebugMessage($"{item0.Caption} switches to '{targetState}'.");
+
+                        if(ecosAddrInverse1)
+                        {
+                            if (targetStateIdx == 0) targetStateIdx = 1;
+                            else targetStateIdx = 0;
+                        }
+
+                        if (IsSimulationMode())
+                            item0.SwitchSimulation(targetStateIdx);
+                        else
+                            item0.Switch(targetStateIdx);
+                    }
+                }
+
+                //
+                // 
+                //
+                Accessory item1 = null;
+                if (ecosAddr2 != null)
+                    item1 = dp.GetAccessoryByAddress(ecosAddr2.Value) as Accessory;
+                if (item1 != null)
+                {
+                    var targetStateIdx = __getTargetStateIndexFor(parts[1].Trim());
+                    if (targetStateIdx == -1)
+                    {
+                        SendDebugMessage($"Unknown target state '{parts[1]}' for {item1.Caption}", DebugMessageLevel.Warning);
+                    }
+                    else
+                    {
+                        SendDebugMessage($"{item1.Caption} switches to '{targetState}'.");
+
+                        if (ecosAddrInverse2)
+                        {
+                            if (targetStateIdx == 0) targetStateIdx = 1;
+                            else targetStateIdx = 0;
+                        }
+
+                        if (IsSimulationMode())
+                            item1.SwitchSimulation(targetStateIdx);
+                        else
+                            item1.Switch(targetStateIdx);
+                    }
+                }
             }
         }
 
@@ -718,7 +783,16 @@ namespace railessentials.ClientHandler
                     break;
             }
 
-            _sniffer?.SendCommandsToEcosStation();
+            if (IsSimulationMode())
+            {
+                SaveAll();
+
+                _sniffer?.TriggerDataProviderModifiedForSimulation();
+            }
+            else
+            {
+                _sniffer?.SendCommandsToEcosStation();
+            }
         }
 
         private void HandleAccessoryCommand(JObject cmddata)

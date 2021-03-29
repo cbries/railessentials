@@ -83,6 +83,7 @@ namespace railessentials
                         ecoslib.Entities.Accessory item0 = null;
                         if (ecosAddr1 != null)
                             item0 = dp.GetAccessoryByAddress(ecosAddr1.Value) as ecoslib.Entities.Accessory;
+
                         ecoslib.Entities.Accessory item1 = null;
                         if (ecosAddr2 != null)
                             item1 = dp.GetAccessoryByAddress(ecosAddr2.Value) as ecoslib.Entities.Accessory;

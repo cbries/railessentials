@@ -876,15 +876,16 @@ class Planfield {
                 labelOffset.display = "none";
                 if (window.labelShown === true)
                     labelOffset.display = "visible";
-                var newLbl = $('<div>', {})
-                    .css(labelOffset)
-                    .html(
-                        newId
-                        //+ ", " +
-                        //jsonData.editor.themeId
-                    );
-                newLbl.addClass("elementLabel");
-                newLbl.appendTo(newCtrl);
+
+                let lblBg = $('<div>', {}).css(labelOffset);
+                lblBg.addClass("elementLabel");
+
+                let newLbl = $('<div>', {}).html(newId);
+                newLbl.addClass("elementLabelTxt");
+                newLbl.appendTo(lblBg);
+
+                lblBg.appendTo(newCtrl);
+
             }
         }
 

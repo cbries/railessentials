@@ -19,6 +19,17 @@ html, body {
     / Workspace Selection
 */
 
+div.elementLabelTxt {
+    position: relative;
+    font-weight: bold;
+}
+
+div.elementLabel {
+    position: relative;
+    opacity: 0.9;
+    background-color: white;
+}
+
 /**
     PLANFIELD
 */

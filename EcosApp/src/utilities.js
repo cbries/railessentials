@@ -71,6 +71,19 @@ function toggleAllLocomotiveInformation(state) {
     }
 }
 
+function toggleAllLocomotiveInformationOpacity(state) {
+    const infos = $('div.locomotiveInfo');
+    let i;
+    const iMax = infos.length;
+    for (i = 0; i < iMax; ++i) {
+        if (state === true) {
+            $(infos[i]).css({opacity: "1.0"});
+        } else {
+            $(infos[i]).css({opacity: "0.2"});
+        }
+    }
+}
+
 function toggleAllLabelInformation(state) {
     $.localStorage.setItem("labelShown", JSON.stringify({
         shown: state

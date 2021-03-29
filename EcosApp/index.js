@@ -369,10 +369,29 @@ function addDebugMessages(msgsArray, targetClassName = "messageContainer") {
     targetCtrl.scrollTop = targetCtrl.scrollHeight;
 }
 
+function initWebcamsState() {
+    const webcamsShown = $.localStorage.getItem("webcamShown");
+    if (typeof webcamsShown === "undefined" || webcamsShown == null) return;
+    const obj = JSON.parse(webcamsShown);
+    toggleAllWebcamsVisibility(obj.shown);
+    const sb = w2ui["sidebar"];
+    const node = sb.get("cmdToggleWebcams");
+    toggleLabelOnOff(node, "Webcams", null, null, obj.shown);
+}
+
+function initLabelState() {
+    const labelsShown = $.localStorage.getItem("labelShown");
+    if (typeof labelsShown === "undefined" || labelsShown == null) return;
+    const obj = JSON.parse(labelsShown);
+    window.labelShown = obj.shown;
+    toggleAllLabelInformation(obj.shown);
+    const sb = w2ui["sidebar"];
+    const node = sb.get("cmdToggleLabels");
+    toggleLabelOnOff(node, "Labels", null, null, obj.shown);
+}
+
 $(document).ready(function () {
     window.__autoModeState = false;
-
-    loadWebcams();
 
     addJqueryExtensions();
     initDebugConsole();
@@ -714,6 +733,11 @@ $(document).ready(function () {
         });
 
     loadSideBar();
+
+    loadWebcams();
+
+    initWebcamsState();
+    initLabelState();
 });
 
 function reinitAutoMode(state) {
@@ -840,7 +864,6 @@ var loadSideBar = (function () {
                 window.dialogLightAndPower.show();
                 w2ui['sidebar'].unselect('cmdLight');
             } else if (target === "cmdWorldClock") {
-                // TODO
                 showTodoDialog();
                 w2ui['sidebar'].unselect('cmdWorldClock');
             } else if (target === "cmdPower") {
@@ -869,7 +892,7 @@ var loadSideBar = (function () {
                 handleWorkspace(event.node);
                 w2ui['sidebar'].unselect('cmdChangeWorkspace');
             } else if (target === "cmdHelp") {
-                window.open(constGitWebsite, "_blank");
+                window.open(constGitWikiWebsite, "_blank");
                 w2ui['sidebar'].unselect('cmdHelp');
             } else if (target === "cmdAbout") {
                 w2popup.open({
@@ -895,7 +918,7 @@ var loadSideBar = (function () {
                         '<tr>' +
                         '<td>Used libraries:</td>' +
                         '<td style="text-align: left;">' +
-                        'TODO' +
+                        '<a href="' + constGitUsedSwWebsite + '" target="_blank">Link to \'Third-Party Components at Their Best\'</a>' +
                         '</td>' +
                         '</tr>' +
                         '</table></div>'
@@ -1022,30 +1045,6 @@ var loadSideBar = (function () {
             });
     }
     
-    function toggleLabelOnOff(eventNode, caption, cmdName, callback, newState) {
-
-        if (typeof newState !== "undefined" && newState != null) {
-            if (newState === true) {
-                eventNode.text = caption + " (on)";
-            } else {
-                eventNode.text = caption + " (off)";
-            }
-        } else {
-            const lbl = eventNode.text;
-            const isOff = lbl.includes("off");
-            if (isOff) {
-                eventNode.text = caption + " (on)";
-                if (typeof callback !== "undefined" && callback != null)
-                    callback(true);
-            } else {
-                eventNode.text = caption + " (off)";
-                if (typeof callback !== "undefined" && callback != null)
-                    callback(false);
-            }
-        }
-        w2ui['sidebar'].refresh(cmdName);
-    }
-
     //w2ui.sidebar.goFlat();
 
     function showTodoDialog() {
@@ -1055,3 +1054,27 @@ var loadSideBar = (function () {
         });
     }
 });
+
+function toggleLabelOnOff(eventNode, caption, cmdName, callback, newState) {
+
+    if (typeof newState !== "undefined" && newState != null) {
+        if (newState === true) {
+            eventNode.text = caption + " (on)";
+        } else {
+            eventNode.text = caption + " (off)";
+        }
+    } else {
+        const lbl = eventNode.text;
+        const isOff = lbl.includes("off");
+        if (isOff) {
+            eventNode.text = caption + " (on)";
+            if (typeof callback !== "undefined" && callback != null)
+                callback(true);
+        } else {
+            eventNode.text = caption + " (off)";
+            if (typeof callback !== "undefined" && callback != null)
+                callback(false);
+        }
+    }
+    w2ui['sidebar'].refresh(cmdName);
+}

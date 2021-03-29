@@ -102,6 +102,18 @@ namespace railessentials
                     { "{{LIST_OF_WORKSPACES}}", listOfWorkspacesHtml}
                 };
 
+#if DEBUG
+                subst.Add("{{COMMENT_START_RELEASE_BUILD}}", string.Empty);
+                subst.Add("{{COMMENT_END_RELEASE_BUILD}}", string.Empty);
+                subst.Add("{{COMMENT_START_DEBUG_BUILD}}", "<!--");
+                subst.Add("{{COMMENT_END_DEBUG_BUILD}}", "-->");
+#else
+                subst.Add("{{COMMENT_START_RELEASE_BUILD}}", "<!--");
+                subst.Add("{{COMMENT_END_RELEASE_BUILD}}", "-->");
+                subst.Add("{{COMMENT_START_DEBUG_BUILD}}", string.Empty);
+                subst.Add("{{COMMENT_END_DEBUG_BUILD}}", string.Empty);
+#endif
+
                 var cnt = File.ReadAllText(pathToFile, Encoding.UTF8);
 
                 foreach (var it in subst)

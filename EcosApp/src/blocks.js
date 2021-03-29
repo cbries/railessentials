@@ -15,19 +15,7 @@ class Blocks {
 
         this.__initEventHandling();
 
-        // testdata
         this.__fbsList = [];
-
-        /*
-         * { id: 1, text: 'John Cook' },
-            { id: 2, text: 'Steve Jobs' },
-            { id: 3, text: 'Peter Sanders' },
-            { id: 4, text: 'Mark Newman' },
-            { id: 5, text: 'Addy Osmani' },
-            { id: 6, text: 'Paul Irish' },
-            { id: 7, text: 'Doug Crocford' },
-            { id: 8, text: 'Nicolas Cage' }
-         */
     }
 
     __getFbsList() {
@@ -118,9 +106,7 @@ class Blocks {
                 header: "Blocks and Feedbacks",
                 multiSelect: false,
                 show: {
-                    //lineNumbers: true,
                     toolbar: true,
-                    //header: true,
                     footer: true,
                     toolbarAdd: false,
                     toolbarDelete: false,
@@ -696,7 +682,7 @@ class Blocks {
             return;
         }
 
-        toggleAllLocomotiveInformation(false);
+        toggleAllLocomotiveInformationOpacity(false);
 
         var blockId = rec.blockId;
         var fbEnter = rec.fbEnter;
@@ -728,7 +714,7 @@ class Blocks {
             return;
         }
 
-        toggleAllLocomotiveInformation(true);
+        toggleAllLocomotiveInformationOpacity(true);
 
         const ctrlsFeedback = $('div.ctrlItemFeedback');
         ctrlsFeedback.each(function () {

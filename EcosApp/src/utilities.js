@@ -71,7 +71,23 @@ function toggleAllLocomotiveInformation(state) {
     }
 }
 
+function toggleAllLocomotiveInformationOpacity(state) {
+    const infos = $('div.locomotiveInfo');
+    let i;
+    const iMax = infos.length;
+    for (i = 0; i < iMax; ++i) {
+        if (state === true) {
+            $(infos[i]).css({opacity: "1.0"});
+        } else {
+            $(infos[i]).css({opacity: "0.2"});
+        }
+    }
+}
+
 function toggleAllLabelInformation(state) {
+    $.localStorage.setItem("labelShown", JSON.stringify({
+        shown: state
+    }));
     const lbls = $('div.elementLabel');
     let i;
     const iMax = lbls.length;
@@ -85,6 +101,9 @@ function toggleAllLabelInformation(state) {
 }
 
 function toggleAllWebcamsVisibility(state) {
+    $.localStorage.setItem("webcamShown", JSON.stringify({
+        shown: state
+    }));
     const videoCtrls = $('div.videoStream');
     let i;
     const iMax = videoCtrls.length;
@@ -211,9 +230,9 @@ function getLabelOffsetBy(jsonData) {
     const themeId = jsonData.editor.themeId;
     const offset = {
         "font-size": "8px",
-        "z-index": 10,
+        "z-index": 10000,
         "position": "relative",
-        "top": "0px",
+        "top": "-12px",
         "left": "0px"
     };
 
@@ -222,50 +241,10 @@ function getLabelOffsetBy(jsonData) {
         case 11: return null;
         case 13: return null;
         case 14: return null;
+        case 17: return null;
+        case 18: return null;
+        case 19: return null;
         case 1013: return null;
-
-        case 50:
-            {
-                offset.top = "-2px";
-                offset.left = "30px";
-                return offset;
-            }
-
-        case 51:
-            {
-                offset.top = "-10px";
-                offset.left = "-4px";
-                return offset;
-            }
-
-        case 58:
-            {
-                offset.top = "-14px";
-                offset.left = "0";
-                return offset;
-            }
-
-        case 101:
-            {
-                offset.top = "-13px";
-                offset.left = "2px";
-                return offset;
-            }
-
-        case 150:
-        case 151:
-            {
-                offset.top = "-2px";
-                offset.left = "1px";
-                return offset;
-            }
-
-        case 200:
-            {
-                offset.top = "-12px";
-                offset.left = "6px";
-                return offset;
-            }
     }
 
     return offset;

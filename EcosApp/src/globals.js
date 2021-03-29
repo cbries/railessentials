@@ -6,6 +6,8 @@ const constDataThemeId = "theme-id";
 const constKeyEnter = 13;
 const constKeyEscape = 27;
 const constGitWebsite = "https://github.com/cbries/railessentials";
+const constGitWikiWebsite = "https://github.com/cbries/railessentials/wiki/Table-of-Content";
+const constGitUsedSwWebsite = "https://github.com/cbries/railessentials#third-party-components-at-their-best";
 
 const ListOfFunctionDescription = {
     2: "Function",

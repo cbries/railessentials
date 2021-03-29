@@ -217,7 +217,10 @@ namespace railessentials
                 }
             }
 
-            SetConsoleCtrlHandler(ConsoleCtrlCheck, true);
+            SetConsoleCtrlHandler(sig =>
+            {
+                return ConsoleCtrlCheck(sig);
+            }, true);
 
             if (!string.IsNullOrEmpty(Cfg.RecentWorkspace))
                 Globals.Workspace = Cfg.RecentWorkspace;

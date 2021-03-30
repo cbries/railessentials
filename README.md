@@ -33,7 +33,11 @@ and [Vivaldi](https://vivaldi.com/).
 
 # Daily/Nightly Builds
 
+<<<<<<< HEAD
 ## Setup/Installer
+=======
+RailwayEssential is -- currently -- designed for supporting [ESU's ECoS 50210/50200](http://www.esu.eu/en/products/digital-control/ecos-50210-dcc-system/what-ecos-can-do/), therefor it would be great to own one :-)
+>>>>>>> parent of 278f48a (fixed typo)
 
 `RailEssentials` is automatically build everyday. During this build an always up-to-date Setup/Installer is generated and can be used to deploy the latest features on your personal computer. Currently, only Windows is supported, for other operating system the source must be used and build. The latest setup/installer is provided under the `Release`tab: [`Daily Setup`](https://github.com/cbries/railessentials/releases/tag/dailybuild)
 - download the Setup of your choice (e.g. `Setup-20210322-4d9eb4.exe`, where `20210322` stands for 22nd March 2021)

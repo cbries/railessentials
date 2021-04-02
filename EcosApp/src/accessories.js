@@ -483,7 +483,7 @@ class Accessories {
                         let offName = "turn";
                         const themeId = accItem.themeData.editor.themeId;
 
-                        if (isDecoupler(themeId)) {
+                        if (isDecoupler(themeId) || isButton(themeId)) {
                             onName = "on";
                             offName = "off";
                         } else if (isSignal(themeId)) {

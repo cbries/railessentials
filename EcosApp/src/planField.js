@@ -594,13 +594,21 @@ class Planfield {
                             } else if (targetState === true) {
                                 newimgfname += "-off";
                             }
+                        } else if (isButton(themeId)) {
+                            newimgfname = newimgfname.replace("-on", "");
+                            newimgfname = newimgfname.replace("-off", "");
+                            if (targetState === false) {
+                                newimgfname += "-on";
+                            } else if (targetState === true) {
+                                newimgfname += "-off";
+                            }
                         } else if (isSwitchOrAccessory(themeId)) {
                             if (targetState === false) {
                                 //newimgfname += ".png";
                             } else if (targetState === true) {
                                 newimgfname += "-t";
                             }
-                        }
+                        } 
 
                         let currentSrc = img.attr("src");
                         let isOcc = false;

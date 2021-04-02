@@ -498,6 +498,13 @@ function getItemRenderedSize(jqueryElement) {
     };
 }
 
+function isButton(themeId) {
+    if (themeId === 71) return true;
+    if (themeId === 72) return true;
+    if (themeId === 73) return true;
+    return false;
+}
+
 function isSignal(themeId) {
     if (!themeId) return false;
     if (themeId >= 100 && themeId <= 125)

@@ -11004,6 +11004,15 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 257,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
       }
     },
     "19x7": {
@@ -11022,6 +11031,15 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 257,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
       }
     },
     "19x8": {
@@ -11040,6 +11058,15 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 256,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
       }
     }
   }

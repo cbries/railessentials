@@ -1,7 +1,6 @@
 {
  "planField": {
   "8x8": {
-   "id": 58,
    "name": "Crossing Right sr",
    "active": {
     "default": "dcrossingright-sr",
@@ -41,7 +40,6 @@
    }
   },
   "7x8": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -71,7 +69,6 @@
    }
   },
   "10x8": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -101,7 +98,6 @@
    }
   },
   "8x9": {
-   "id": 50,
    "name": "Turnout Left",
    "active": {
     "default": "turnoutleft-t",
@@ -133,7 +129,6 @@
    }
   },
   "9x9": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -163,7 +158,6 @@
    }
   },
   "7x9": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -193,7 +187,6 @@
    }
   },
   "9x7": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -225,7 +218,6 @@
    }
   },
   "10x7": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -255,7 +247,6 @@
    }
   },
   "10x9": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -285,7 +276,6 @@
    }
   },
   "11x7": {
-   "id": 17,
    "name": "Connector",
    "active": {
     "default": "connector",
@@ -318,7 +308,6 @@
    }
   },
   "6x9": {
-   "id": 17,
    "name": "Connector",
    "active": {
     "default": "connector",
@@ -351,7 +340,6 @@
    }
   },
   "6x8": {
-   "id": 101,
    "name": "Main Signal A",
    "active": {
     "default": "signalmain-r",
@@ -383,7 +371,6 @@
    }
   },
   "5x8": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",
@@ -415,7 +402,6 @@
    }
   },
   "11x8": {
-   "id": 14,
    "name": "Direction",
    "active": {
     "default": "dir",
@@ -447,7 +433,6 @@
    }
   },
   "12x8": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -477,7 +462,6 @@
    }
   },
   "13x8": {
-   "id": 200,
    "name": "Sensor",
    "active": {
     "default": "sensor-on",
@@ -507,7 +491,6 @@
    }
   },
   "14x8": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",

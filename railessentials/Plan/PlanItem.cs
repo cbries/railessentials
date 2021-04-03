@@ -45,7 +45,12 @@ namespace railessentials.Plan
         public PlanItemCoord coord { get; set; } = new();
         public PlanItemEditor editor { get; set; } = new();
         public List<PlanItemDimension> dimensions { get; set; } = new();
+
+        [JsonProperty(PropertyName = "addresses")]
         public PlanItemAddresses Addresses { get; set; } = new();
+
+        [JsonProperty(PropertyName = "groupName")]
+        public string GroupName { get; set; } // see #70
 
         #endregion metamodel
 

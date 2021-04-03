@@ -122,7 +122,7 @@ class Accessories {
                     { field: 'accessoryId', caption: 'Accessory ID', size: '2%', sortable: false, hidden: true },
                     { field: 'identifier', caption: 'Identifier', size: '7%', sortable: true },
                     { field: 'type', caption: 'Type', size: '10%', sortable: true },
-                    { field: 'state', caption: 'State', size: '10%', sortable: false },
+                    { field: 'state', caption: 'State', size: '5%', sortable: false },
 
                     { field: 'addr1', caption: 'Address1', tooltip: 'Address1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
                     { field: 'port1', caption: 'Port1', tooltip: 'Port1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
@@ -152,6 +152,15 @@ class Accessories {
                             type: 'checkbox',
                             style: 'text-align: center'
                         }
+                    },
+                    {
+                        field: 'groupName',
+                        caption: "Group",
+                        tooltip: 'In a group with the same name, only one accessory can be enabled (e.g. "green", "straight", "on").',
+                        size: '5%',
+                        sortable: false,
+                        hidden: false,
+                        editable: { type: 'string' }
                     }
                 ],
                 records: [],
@@ -226,8 +235,8 @@ class Accessories {
                             const elGrid = w2ui[self.__gridName];
                             const sel = elGrid.getSelection();
                             let j;
-                            const iMax = sel.length;
-                            for (j = 0; j < sel.length; ++j) {
+                            const jMax = sel.length;
+                            for (j = 0; j < jMax; ++j) {
                                 const recid = sel[j];
                                 const rec = elGrid.get(recid);
 
@@ -269,7 +278,8 @@ class Accessories {
                     onClick: function (ev) {
                         const elGrid = w2ui[self.__gridName];
                         const changes = elGrid.getChanges();
-                        for (let i = 0; i < changes.length; ++i) {
+                        const iMax = changes.length;
+                        for (let i = 0; i < iMax; ++i) {
                             const change = changes[i];
 
                             const recid = change.recid;
@@ -323,8 +333,23 @@ class Accessories {
                             // have enough time to make it more robust -- right now).
                             window.planField.applyAddressToAccessory(row.identifier, newData);
 
-                            // see server code
+                            // see server code, must be set to query accessory
                             newData.identifier = row.identifier;
+
+                            // update groupName if changed
+                            if(row.groupName !== change.groupName) {
+                                row.groupName = change.groupName;
+                                elGrid.refreshCell(row, 'groupName');
+                                self.__trigger("setting",
+                                    {
+                                        "mode": "accessory",
+                                        "cmd": "groupName",
+                                        "value": {
+                                            "identifier": row.identifier,
+                                            "name": row.groupName
+                                        }
+                                    });
+                            }
 
                             self.__trigger("setting",
                                 {
@@ -334,7 +359,9 @@ class Accessories {
                                 });
                         }
 
-                        self.__cleanupChangedState();
+                        elGrid.save();
+
+                        //self.__cleanupChangedState();
                     }
                 });
             }
@@ -343,12 +370,12 @@ class Accessories {
         this.__installed = true;
     }
 
-    __cleanupChangedState() {
-        const self = this;
-        $('#' + this.__dialogName + ' td.w2ui-grid-data').each(function () {
-            $(this).removeClass('w2ui-changed');
-        });
-    }
+    //__cleanupChangedState() {
+    //    const self = this;
+    //    $('#' + this.__dialogName + ' td.w2ui-grid-data').each(function () {
+    //        $(this).removeClass('w2ui-changed');
+    //    });
+    //}
 
     removeAccessory(identifier) {
         if (typeof identifier === "undefined") return;
@@ -394,6 +421,7 @@ class Accessories {
 
             const identifier = accessory.identifier;
             const type = accessory.name;
+            const groupName = accessory.groupName;
 
             let addr1 = -1;
             let port1 = -1;
@@ -421,6 +449,7 @@ class Accessories {
                         accessoryId: accessoryId,
                         identifier: identifier,
                         type: type,
+                        groupName: groupName,
                         state: "unknown",
 
                         addr1: addr1,
@@ -475,7 +504,7 @@ class Accessories {
                 for (j = 0; j < jMax; ++j) {
                     const rec = recs[j];
                     const row = elGrid.get(rec);
-
+                    
                     let state0 = null; let newState0 = null;
                     let state1 = null; let newState1 = null;
                     if (accItem.ecosAddresses.length === 2) {

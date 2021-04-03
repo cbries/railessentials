@@ -45,7 +45,12 @@ namespace railessentials.Plan
         public PlanItemCoord coord { get; set; } = new();
         public PlanItemEditor editor { get; set; } = new();
         public List<PlanItemDimension> dimensions { get; set; } = new();
+
+        [JsonProperty(PropertyName = "addresses")]
         public PlanItemAddresses Addresses { get; set; } = new();
+
+        [JsonProperty(PropertyName = "groupName")]
+        public string GroupName { get; set; } // see #70
 
         #endregion metamodel
 
@@ -173,7 +178,9 @@ namespace railessentials.Plan
         public bool IsDirection => PlanGlobals.DirectionIds.Contains(editor.themeId);
         [JsonIgnore]
         public bool IsConnector => PlanGlobals.ConnectorIds.Contains(editor.themeId);
-        
+        [JsonIgnore]
+        public bool IsButton => PlanGlobals.ButtonIds.Contains(editor.themeId);
+
         public override string ToString()
         {
             try

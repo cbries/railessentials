@@ -163,6 +163,26 @@ namespace railessentials.Plan
             }
         }
 
+        public List<PlanItem> GetByGroupName(string groupName)
+        {
+            lock (_lock)
+            {
+                var result = new List<PlanItem>();
+
+                foreach (var it in this)
+                {
+                    var v = it.Value;
+                    if (v == null) continue;
+                    var grpName = v.GroupName;
+                    if (string.IsNullOrEmpty(grpName)) continue;
+                    if (grpName.Equals(groupName, StringComparison.OrdinalIgnoreCase))
+                        result.Add(v);
+                }
+
+                return result;
+            }
+        }
+
         public List<PlanItem> GetBlocks()
         {
             lock(_lock)

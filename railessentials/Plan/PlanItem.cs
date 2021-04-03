@@ -33,9 +33,6 @@ namespace railessentials.Plan
 
         #region metamodel
 
-        [Obsolete]
-        public string id { get; set; }
-
         public string name { get; set; }
         public string identifier { get; set; }
         public string basename { get; set; }

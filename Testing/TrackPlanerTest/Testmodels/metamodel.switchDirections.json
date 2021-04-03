@@ -1,7 +1,6 @@
 {
  "planField": {
   "1x1": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -41,7 +40,6 @@
    }
   },
   "5x1": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -71,7 +69,6 @@
    }
   },
   "7x1": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -101,7 +98,6 @@
    }
   },
   "7x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -131,7 +127,6 @@
    }
   },
   "6x2": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -163,7 +158,6 @@
    }
   },
   "8x1": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -203,7 +197,6 @@
    }
   },
   "8x2": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -243,7 +236,6 @@
    }
   },
   "6x1": {
-   "id": 51,
    "name": "Turnout Right",
    "active": {
     "default": "turnoutright-t",

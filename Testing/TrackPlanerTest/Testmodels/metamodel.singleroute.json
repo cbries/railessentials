@@ -1,7 +1,6 @@
 {
  "planField": {
   "6x6": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -38,7 +37,6 @@
    }
   },
   "6x2": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -75,7 +73,6 @@
    }
   },
   "5x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -105,7 +102,6 @@
    }
   },
   "4x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -135,7 +131,6 @@
    }
   },
   "10x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -165,7 +160,6 @@
    }
   },
   "11x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -195,7 +189,6 @@
    }
   },
   "10x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -225,7 +218,6 @@
    }
   },
   "11x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -255,7 +247,6 @@
    }
   },
   "2x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -285,7 +276,6 @@
    }
   },
   "2x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -315,7 +305,6 @@
    }
   },
   "13x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -345,7 +334,6 @@
    }
   },
   "13x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -375,7 +363,6 @@
    }
   },
   "5x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -405,7 +392,6 @@
    }
   },
   "4x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -435,7 +421,6 @@
    }
   },
   "1x3": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -465,7 +450,6 @@
    }
   },
   "1x4": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -495,7 +479,6 @@
    }
   },
   "1x5": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -525,7 +508,6 @@
    }
   },
   "14x3": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -555,7 +537,6 @@
    }
   },
   "14x4": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -585,7 +566,6 @@
    }
   },
   "14x5": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -615,7 +595,6 @@
    }
   },
   "14x2": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -647,7 +626,6 @@
    }
   },
   "14x6": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -679,7 +657,6 @@
    }
   },
   "1x6": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -711,7 +688,6 @@
    }
   },
   "1x2": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -743,7 +719,6 @@
    }
   },
   "3x6": {
-   "id": 200,
    "name": "Sensor",
    "active": {
     "default": "sensor-on",
@@ -773,7 +748,6 @@
    }
   },
   "3x2": {
-   "id": 200,
    "name": "Sensor",
    "active": {
     "default": "sensor-on",
@@ -803,7 +777,6 @@
    }
   },
   "12x2": {
-   "id": 200,
    "name": "Sensor",
    "active": {
     "default": "sensor-on",
@@ -833,7 +806,6 @@
    }
   },
   "12x6": {
-   "id": 200,
    "name": "Sensor",
    "active": {
     "default": "sensor-on",

@@ -1,7 +1,6 @@
 {
   "planField": {
     "12x2": {
-      "id": 150,
       "name": "Block",
       "basename": "block",
       "clickable": false,
@@ -32,7 +31,6 @@
       }
     },
     "16x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -62,7 +60,6 @@
       }
     },
     "11x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -92,7 +89,6 @@
       }
     },
     "2x2": {
-      "id": 11,
       "name": "Curve",
       "basename": "curve",
       "clickable": false,
@@ -115,7 +111,6 @@
       }
     },
     "9x2": {
-      "id": 50,
       "name": "Turnout Left",
       "basename": "turnoutleft",
       "clickable": true,
@@ -237,7 +232,6 @@
       }
     },
     "3x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -258,7 +252,6 @@
       }
     },
     "4x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -279,7 +272,6 @@
       }
     },
     "5x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -300,7 +292,6 @@
       }
     },
     "6x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -321,7 +312,6 @@
       }
     },
     "7x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -342,7 +332,6 @@
       }
     },
     "8x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -363,7 +352,6 @@
       }
     },
     "10x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -384,7 +372,6 @@
       }
     },
     "4x4": {
-      "id": 150,
       "name": "Block",
       "basename": "block",
       "clickable": false,
@@ -415,7 +402,6 @@
       }
     },
     "3x4": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -445,7 +431,6 @@
       }
     },
     "2x4": {
-      "id": 11,
       "name": "Curve",
       "basename": "curve",
       "clickable": false,
@@ -468,7 +453,6 @@
       }
     },
     "8x4": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -498,7 +482,6 @@
       }
     },
     "9x4": {
-      "id": 11,
       "name": "Curve",
       "basename": "curve",
       "clickable": false,
@@ -521,7 +504,6 @@
       }
     },
     "2x3": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -542,7 +524,6 @@
       }
     },
     "9x3": {
-      "id": 14,
       "name": "Direction",
       "basename": "dir",
       "clickable": false,
@@ -565,7 +546,6 @@
       }
     },
     "35x2": {
-      "id": 13,
       "name": "Buffer",
       "basename": "buffer",
       "clickable": false,
@@ -588,7 +568,6 @@
       }
     },
     "35x3": {
-      "id": 13,
       "name": "Buffer",
       "basename": "buffer",
       "clickable": false,
@@ -611,7 +590,6 @@
       }
     },
     "34x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -632,7 +610,6 @@
       }
     },
     "34x3": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -653,7 +630,6 @@
       }
     },
     "33x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -683,7 +659,6 @@
       }
     },
     "33x3": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -713,7 +688,6 @@
       }
     },
     "29x3": {
-      "id": 150,
       "name": "Block",
       "basename": "block",
       "clickable": false,
@@ -744,7 +718,6 @@
       }
     },
     "29x2": {
-      "id": 150,
       "name": "Block",
       "basename": "block",
       "clickable": false,
@@ -775,7 +748,6 @@
       }
     },
     "28x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -805,7 +777,6 @@
       }
     },
     "28x3": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -835,7 +806,6 @@
       }
     },
     "27x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -856,7 +826,6 @@
       }
     },
     "27x3": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -877,7 +846,6 @@
       }
     },
     "26x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -898,7 +866,6 @@
       }
     },
     "26x3": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -919,7 +886,6 @@
       }
     },
     "25x3": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -940,7 +906,6 @@
       }
     },
     "25x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -961,7 +926,6 @@
       }
     },
     "24x2": {
-      "id": 51,
       "name": "Turnout Right",
       "basename": "turnoutright",
       "clickable": true,
@@ -1083,7 +1047,6 @@
       }
     },
     "24x3": {
-      "id": 11,
       "name": "Curve",
       "basename": "curve",
       "clickable": false,
@@ -1106,7 +1069,6 @@
       }
     },
     "18x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -1136,7 +1098,6 @@
       }
     },
     "19x2": {
-      "id": 151,
       "name": "Short Block",
       "basename": "block-s",
       "clickable": false,
@@ -1167,7 +1128,6 @@
       }
     },
     "21x2": {
-      "id": 200,
       "name": "Sensor",
       "basename": "sensor-off",
       "clickable": true,
@@ -1197,7 +1157,6 @@
       }
     },
     "17x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -1218,7 +1177,6 @@
       }
     },
     "23x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,
@@ -1239,7 +1197,6 @@
       }
     },
     "22x2": {
-      "id": 10,
       "name": "Straight",
       "basename": "straight",
       "clickable": false,

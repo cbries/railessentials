@@ -1,7 +1,6 @@
 {
  "planField": {
   "2x1": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",
@@ -33,7 +32,6 @@
    }
   },
   "2x6": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -63,7 +61,6 @@
    }
   },
   "3x7": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -93,7 +90,6 @@
    }
   },
   "3x9": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -123,7 +119,6 @@
    }
   },
   "2x8": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -153,7 +148,6 @@
    }
   },
   "2x10": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",
@@ -185,7 +179,6 @@
    }
   },
   "5x9": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -215,7 +208,6 @@
    }
   },
   "4x10": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -247,7 +239,6 @@
    }
   },
   "5x10": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -277,7 +268,6 @@
    }
   },
   "4x7": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -317,7 +307,6 @@
    }
   },
   "6x9": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -357,7 +346,6 @@
    }
   },
   "6x10": {
-   "id": 151,
    "name": "Short Block",
    "active": {
     "default": "block-s",
@@ -397,7 +385,6 @@
    }
   },
   "2x2": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -437,7 +424,6 @@
    }
   },
   "4x9": {
-   "id": 51,
    "name": "Turnout Right",
    "active": {
     "default": "turnoutright-t",
@@ -559,7 +545,6 @@
    }
   },
   "2x7": {
-   "id": 50,
    "name": "Turnout Left",
    "active": {
     "default": "turnoutleft-t",
@@ -681,7 +666,6 @@
    }
   },
   "2x9": {
-   "id": 50,
    "name": "Turnout Left",
    "active": {
     "default": "turnoutleft-t",

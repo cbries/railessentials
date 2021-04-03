@@ -1,7 +1,6 @@
 {
  "planField": {
   "1x2": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",
@@ -33,7 +32,6 @@
    }
   },
   "2x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -63,7 +61,6 @@
    }
   },
   "3x2": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -103,7 +100,6 @@
    }
   },
   "7x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -133,7 +129,6 @@
    }
   },
   "8x2": {
-   "id": 51,
    "name": "Turnout Right",
    "active": {
     "default": "turnoutright-t",
@@ -165,7 +160,6 @@
    }
   },
   "8x3": {
-   "id": 11,
    "name": "Curve",
    "active": {
     "default": "curve",
@@ -197,7 +191,6 @@
    }
   },
   "9x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -227,7 +220,6 @@
    }
   },
   "9x3": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -257,7 +249,6 @@
    }
   },
   "10x2": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -297,7 +288,6 @@
    }
   },
   "10x3": {
-   "id": 150,
    "name": "Block",
    "active": {
     "default": "block",
@@ -337,7 +327,6 @@
    }
   },
   "14x2": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -367,7 +356,6 @@
    }
   },
   "14x3": {
-   "id": 10,
    "name": "Straight",
    "active": {
     "default": "straight",
@@ -397,7 +385,6 @@
    }
   },
   "15x2": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",
@@ -429,7 +416,6 @@
    }
   },
   "15x3": {
-   "id": 13,
    "name": "Buffer",
    "active": {
     "default": "buffer",

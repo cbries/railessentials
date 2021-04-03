@@ -68,6 +68,7 @@ class FeedbackVisualization {
             left: geometry.left,
             top: geometry.top,
             resizable: false,
+            closeOnEscape: false,
             autoOpen: options.autoOpen,
             resizeStop: function (event, ui) {
                 self.__windowGeometry.save(ui.position, ui.size);

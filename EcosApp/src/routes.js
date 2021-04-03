@@ -73,6 +73,7 @@ class Routes {
             width: geometry.width,
             left: geometry.left,
             top: geometry.top,
+            closeOnEscape: false,
             autoOpen: options.autoOpen,
             resizeStop: function (event, ui) {
                 self.__windowGeometry.save(ui.position, ui.size);
@@ -143,6 +144,8 @@ class Routes {
                         planField.clearRouteUserHighlight();
                         planField.activateRouteUserHighlight(rec.native);
                     }
+
+                    bringToFront(self.__dialogName);
                 },
                 onUnselect: function (ev) {
                     self.__removeAllHighlights();

@@ -111,6 +111,7 @@ class LightAndPower {
             left: geometry.left,
             top: geometry.top,
             resizable: false,
+            closeOnEscape: false,
             autoOpen: options.autoOpen,
             resize: function (event, ui) {
                 // TBD

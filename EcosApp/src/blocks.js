@@ -79,6 +79,7 @@ class Blocks {
             width: geometry.width,
             left: geometry.left,
             top: geometry.top,
+            closeOnEscape: false,
             autoOpen: options.autoOpen,
             resize: function (event, ui) {
                 self.__resizePreferences();
@@ -321,6 +322,8 @@ class Blocks {
                     if (planField) {
                         // TBD
                     }
+
+                    bringToFront(self.__dialogName);
                 },
                 onUnselect: function (ev) {
                     self.__removeBlockFeedbackHiglight();

@@ -139,6 +139,7 @@ class Locomotives {
             width: geometry.width,
             left: geometry.left,
             top: geometry.top,
+            closeOnEscape: false,
             autoOpen: options.autoOpen,
             resizeStop: function (event, ui) {
                 self.__windowGeometry.save(ui.position, ui.size);
@@ -284,6 +285,9 @@ class Locomotives {
 
                     const rec = elGrid.get(event.recid);
                     self.__trigger('locomotiveDoubleClick', rec);
+                },
+                onSelect: function(ev) {
+                    bringToFront(self.__dialogName);
                 }
             });
         }

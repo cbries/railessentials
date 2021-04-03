@@ -1,3 +1,28 @@
+
+function bringToFront(dialogName) {
+    // ui-dialog
+    // $("#" + this.__dialogName).dialog( );
+    const allOpenDialogs = $('.ui-dialog');
+    let targetDialogInstance = null;
+    let highestZIndex = 0;
+    for (let i = 0; i < allOpenDialogs.length; ++i) {
+        const dlg = allOpenDialogs[i];
+        if (typeof dlg === "undefined") continue;
+        if (dlg == null) continue;
+        const jdlg = $(dlg);
+        const zIndex = parseInt(jdlg.css("z-index"));
+        if (zIndex > highestZIndex)
+            highestZIndex = zIndex;
+        const ariaDescribedBy = jdlg.attr("aria-describedby");
+        if (typeof ariaDescribedBy === "undefined") continue;
+        if (ariaDescribedBy == null) continue;
+        if (ariaDescribedBy === dialogName)
+            targetDialogInstance = jdlg;
+    }
+    if (targetDialogInstance != null)
+        targetDialogInstance.css({ "z-index": highestZIndex + 1 });
+}
+
 function getRouteByName(routeName) {
     if (typeof routeName === "undefined" || routeName == null || routeName.length === 0)
         return null;

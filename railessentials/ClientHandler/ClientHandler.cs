@@ -847,6 +847,16 @@ namespace railessentials.ClientHandler
                 return;
             }
 
+            if(!string.IsNullOrEmpty(planItem.GroupName))
+            {
+                var groupName = planItem.GroupName;
+                var groupItems = field.GetByGroupName(groupName);
+                if(groupItems.Count > 0)
+                {
+                    // TODO
+                }
+            }
+
             var dp = _sniffer.GetDataProvider();
             if (dp == null) return;
 

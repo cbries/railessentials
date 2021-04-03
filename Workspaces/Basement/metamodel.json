@@ -11013,7 +11013,8 @@
         "Addr2": -1,
         "Port2": -1,
         "Inverse2": false
-      }
+      },
+      "groupName": "Segment"
     },
     "19x7": {
       "identifier": "Seg2",
@@ -11040,7 +11041,8 @@
         "Addr2": -1,
         "Port2": -1,
         "Inverse2": false
-      }
+      },
+      "groupName": "Segment"
     },
     "19x8": {
       "identifier": "Seg1",
@@ -11067,7 +11069,8 @@
         "Addr2": -1,
         "Port2": -1,
         "Inverse2": false
-      }
+      },
+      "groupName": "Segment"
     }
   }
 }

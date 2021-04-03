@@ -122,7 +122,7 @@ class Accessories {
                     { field: 'accessoryId', caption: 'Accessory ID', size: '2%', sortable: false, hidden: true },
                     { field: 'identifier', caption: 'Identifier', size: '7%', sortable: true },
                     { field: 'type', caption: 'Type', size: '10%', sortable: true },
-                    { field: 'state', caption: 'State', size: '10%', sortable: false },
+                    { field: 'state', caption: 'State', size: '5%', sortable: false },
 
                     { field: 'addr1', caption: 'Address1', tooltip: 'Address1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
                     { field: 'port1', caption: 'Port1', tooltip: 'Port1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },

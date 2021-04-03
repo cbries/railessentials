@@ -578,7 +578,7 @@ namespace railessentials.ClientHandler
                     addrs[1].TargetState = pp[0].Trim();
                     addrs[0].TargetState = pp[1].Trim();
                 }
-                else if(addrs.Count == 1)
+                else if (addrs.Count == 1)
                 {
                     addrs[0].TargetState = targetState;
                 }
@@ -636,7 +636,7 @@ namespace railessentials.ClientHandler
         {
             if (string.IsNullOrEmpty(targetState)) return -1;
             if (targetState.Equals("straight", StringComparison.OrdinalIgnoreCase))
-                return 0; 
+                return 0;
             if (targetState.Equals("turn", StringComparison.OrdinalIgnoreCase))
                 return 1;
             if (targetState.Equals("turnright", StringComparison.OrdinalIgnoreCase))
@@ -663,8 +663,8 @@ namespace railessentials.ClientHandler
                 if (itSw == null) continue;
                 var coordX = (int)itSw["x"];
                 var coordY = (int)itSw["y"];
-                Utilities.GetEcosAddress(field, coordX, coordY, 
-                    out var ecosAddr1, out var ecosAddr2, 
+                Utilities.GetEcosAddress(field, coordX, coordY,
+                    out var ecosAddr1, out var ecosAddr2,
                     out var ecosAddrInverse1, out var ecosAddrInverse2);
 
                 var targetState = string.Empty;
@@ -673,10 +673,10 @@ namespace railessentials.ClientHandler
 
                 var parts = new[] { string.Empty, string.Empty };
                 var splitterIdx = targetState.IndexOf("|", StringComparison.Ordinal);
-                if(splitterIdx != -1)
+                if (splitterIdx != -1)
                 {
-                    var p = targetState.Split(new []{'|'}, StringSplitOptions.RemoveEmptyEntries);
-                    if(p.Length == 2)
+                    var p = targetState.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (p.Length == 2)
                     {
                         parts[0] = p[1];
                         parts[1] = p[0];
@@ -702,7 +702,7 @@ namespace railessentials.ClientHandler
                 if (item0 != null)
                 {
                     var targetStateIdx = __getTargetStateIndexFor(parts[0].Trim());
-                    if(targetStateIdx == -1)
+                    if (targetStateIdx == -1)
                     {
                         SendDebugMessage($"Unknown target state '{parts[0]}' for {item0.Caption}", DebugMessageLevel.Warning);
                     }
@@ -710,7 +710,7 @@ namespace railessentials.ClientHandler
                     {
                         SendDebugMessage($"{item0.Caption} switches to '{targetState}'.");
 
-                        if(ecosAddrInverse1)
+                        if (ecosAddrInverse1)
                         {
                             if (targetStateIdx == 0) targetStateIdx = 1;
                             else targetStateIdx = 0;
@@ -847,13 +847,22 @@ namespace railessentials.ClientHandler
                 return;
             }
 
-            if(!string.IsNullOrEmpty(planItem.GroupName))
+            //
+            // groups are only allowed for Buttons
+            //
+            if (planItem.IsButton && !string.IsNullOrEmpty(planItem.GroupName))
             {
                 var groupName = planItem.GroupName;
                 var groupItems = field.GetByGroupName(groupName);
-                if(groupItems.Count > 0)
+                if (groupItems.Count > 0)
                 {
-                    // TODO
+                    foreach (var it in groupItems)
+                    {
+                        if (string.IsNullOrEmpty(it.identifier)) continue;
+                        if (planItem.identifier.Equals(it.identifier, StringComparison.OrdinalIgnoreCase)) continue;
+
+                        SwitchAccessory(1, it);
+                    }
                 }
             }
 
@@ -947,13 +956,11 @@ namespace railessentials.ClientHandler
             }
             else
             {
-                var ecosAddr = -1;
-                if (ecosAddr1 != null) ecosAddr = ecosAddr1.Value;
-                else if (ecosAddr2 != null) ecosAddr = ecosAddr2.Value;
+                var ecosAddr = GetSingleValidAddr(ecosAddr1, ecosAddr2);
                 if (ecosAddr == -1)
                 {
-                    _sniffer?.Logger?.Log?.Warn($"Accessory has no address: {cmddata.GetString("ctrlId", "unknown")}");
-                    SendDebugMessage($"Accessory has no address: {cmddata.GetString("ctrlId", "unknown")}", DebugMessageLevel.Warning);
+                    _sniffer?.Logger?.Log?.Warn($"Accessory has no address: {planItem.identifier}");
+                    SendDebugMessage($"Accessory has no address: {planItem.identifier}", DebugMessageLevel.Warning);
                     return;
                 }
 
@@ -979,6 +986,52 @@ namespace railessentials.ClientHandler
                     _sniffer?.SendCommandsToEcosStation();
                 }
             }
+        }
+
+        private void SwitchAccessory(int targetState, PlanItem accItem)
+        {
+            if (accItem == null) return;
+
+            var dp = _sniffer.GetDataProvider();
+            if (dp == null) return;
+
+            var field = GetPlanField();
+            if (field == null) return;
+
+            Utilities.GetEcosAddress(field, accItem.coord.x, accItem.coord.y, out var ecosAddr1, out var ecosAddr2, out _, out _);
+
+            var ecosAddr = GetSingleValidAddr(ecosAddr1, ecosAddr2);
+            if (ecosAddr == -1)
+            {
+                _sniffer?.Logger?.Log?.Warn($"Accessory has no address: {accItem.identifier}");
+                SendDebugMessage($"Accessory has no address: {accItem.identifier}", DebugMessageLevel.Warning);
+                return;
+            }
+
+            var ecosAcc = dp.GetAccessoryByAddress(ecosAddr) as Accessory;
+            if (ecosAcc == null) return;
+
+            if (IsSimulationMode())
+            {
+                ecosAcc.SwitchSimulation(targetState);
+
+                SaveAll();
+                _sniffer?.TriggerDataProviderModifiedForSimulation();
+            }
+            else
+            {
+                ecosAcc.Switch(targetState);
+
+                _sniffer?.SendCommandsToEcosStation();
+            }
+        }
+
+        private static int GetSingleValidAddr(int? ecosAddr1, int? ecosAddr2)
+        {
+            var ecosAddr = -1;
+            if (ecosAddr1 != null) ecosAddr = ecosAddr1.Value;
+            else if (ecosAddr2 != null) ecosAddr = ecosAddr2.Value;
+            return ecosAddr;
         }
 
         private void HandleSettingCommand(JObject cmddata)
@@ -1293,7 +1346,7 @@ namespace railessentials.ClientHandler
 
                             _metadata?.Save(Metadata.SaveModelType.MetamodelData);
                         }
-                        
+
                         SendModelToClients(ModelType.UpdateMetamodel);
                     }
                     break;
@@ -1404,9 +1457,9 @@ namespace railessentials.ClientHandler
                             var availableBlock = _metadata?.FeedbacksData.GetByBlockId(blockId);
                             if (availableBlock != null)
                             {
-                                if(fbEnterId != null)
+                                if (fbEnterId != null)
                                     availableBlock.FbEnter = fbEnterId;
-                                if(fbInId != null)
+                                if (fbInId != null)
                                     availableBlock.FbIn = fbInId;
                             }
 
@@ -1424,7 +1477,7 @@ namespace railessentials.ClientHandler
                         if (dataDeniedLocomotives == null) return;
 
                         var cleanList = new List<string>();
-                        foreach(var it in dataDeniedLocomotives)
+                        foreach (var it in dataDeniedLocomotives)
                         {
                             var o = it as JObject;
                             if (o?["text"] == null) continue;
@@ -1566,7 +1619,7 @@ namespace railessentials.ClientHandler
 
                                 itemObj["addresses"] = addr;
                             }
-                            else if(itemObj["addresses"] == null)
+                            else if (itemObj["addresses"] == null)
                             {
                                 // TODO 
                             }
@@ -1604,7 +1657,7 @@ namespace railessentials.ClientHandler
                 _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
             }
         }
-        
+
         private bool RemoveItem(string itemIdentifier)
         {
             if (string.IsNullOrEmpty(itemIdentifier)) return false;
@@ -1661,7 +1714,7 @@ namespace railessentials.ClientHandler
                 // prepare default data
                 // addresses should be added by default,
                 // it is not required to have valid addresses
-                if(data.IsFeedback() || data.IsAccessory())
+                if (data.IsFeedback() || data.IsAccessory())
                 {
                     var addrInstance = new PlanItemAddresses
                     {

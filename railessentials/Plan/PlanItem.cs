@@ -178,7 +178,9 @@ namespace railessentials.Plan
         public bool IsDirection => PlanGlobals.DirectionIds.Contains(editor.themeId);
         [JsonIgnore]
         public bool IsConnector => PlanGlobals.ConnectorIds.Contains(editor.themeId);
-        
+        [JsonIgnore]
+        public bool IsButton => PlanGlobals.ButtonIds.Contains(editor.themeId);
+
         public override string ToString()
         {
             try

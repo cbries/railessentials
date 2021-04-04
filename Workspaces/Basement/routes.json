@@ -17983,10 +17983,7 @@
     ],
     "isDisabled": false,
     "locked": false,
-    "occupied": false,
-    "additionalBlockLocks": [
-      "B09"
-    ]
+    "occupied": false
   },
   {
     "name": "B09[+]_B13[+]",

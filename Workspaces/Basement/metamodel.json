@@ -4282,11 +4282,11 @@
       },
       "addresses": {
         "Addr": 18,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 5,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4372,11 +4372,11 @@
       },
       "addresses": {
         "Addr": 21,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 6,
+        "Port1": 1,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4402,11 +4402,11 @@
       },
       "addresses": {
         "Addr": 22,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 6,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4432,11 +4432,11 @@
       },
       "addresses": {
         "Addr": 23,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 6,
+        "Port1": 3,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4462,11 +4462,11 @@
       },
       "addresses": {
         "Addr": 24,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 6,
+        "Port1": 4,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4762,11 +4762,11 @@
       },
       "addresses": {
         "Addr": 9,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 3,
+        "Port1": 1,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4852,11 +4852,11 @@
       },
       "addresses": {
         "Addr": 5,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 2,
+        "Port1": 1,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4882,11 +4882,11 @@
       },
       "addresses": {
         "Addr": 6,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 2,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4912,11 +4912,11 @@
       },
       "addresses": {
         "Addr": 7,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 2,
+        "Port1": 3,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -4942,11 +4942,11 @@
       },
       "addresses": {
         "Addr": 8,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 2,
+        "Port1": 4,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5152,11 +5152,11 @@
       },
       "addresses": {
         "Addr": 63,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 16,
+        "Port1": 3,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5182,11 +5182,11 @@
       },
       "addresses": {
         "Addr": 58,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 15,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5212,11 +5212,11 @@
       },
       "addresses": {
         "Addr": 62,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 16,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5242,11 +5242,11 @@
       },
       "addresses": {
         "Addr": 61,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 16,
+        "Port1": 1,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5662,11 +5662,11 @@
       },
       "addresses": {
         "Addr": 34,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 9,
+        "Port1": 2,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5692,11 +5692,11 @@
       },
       "addresses": {
         "Addr": 33,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 9,
+        "Port1": 1,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5722,11 +5722,11 @@
       },
       "addresses": {
         "Addr": 36,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 9,
+        "Port1": 4,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5752,11 +5752,11 @@
       },
       "addresses": {
         "Addr": 35,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 9,
+        "Port1": 3,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5962,11 +5962,11 @@
       },
       "addresses": {
         "Addr": 44,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 11,
+        "Port1": 4,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {
@@ -5992,11 +5992,11 @@
       },
       "addresses": {
         "Addr": 43,
-        "Addr1": 0,
-        "Port1": 0,
+        "Addr1": 11,
+        "Port1": 3,
         "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
+        "Addr2": -1,
+        "Port2": -1,
         "Inverse2": false
       },
       "editor": {

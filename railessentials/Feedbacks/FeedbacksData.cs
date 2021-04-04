@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Xml.XPath;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Analyzer;
@@ -42,6 +43,31 @@ namespace railessentials.Feedbacks
             }
 
             return null;
+        }
+
+        public IReadOnlyList<Data> GetAllByBlockId(string blockId, bool useStartsWith)
+        {
+            var result = new List<Data>();
+
+            if (string.IsNullOrEmpty(blockId)) return null;
+            foreach (var it in Entries)
+            {
+                if (it == null) continue;
+                if (string.IsNullOrEmpty(it.BlockId)) continue;
+
+                if (useStartsWith)
+                {
+                    if (it.BlockId.StartsWith(blockId, StringComparison.OrdinalIgnoreCase))
+                        result.Add(it);
+                }
+                else
+                {
+                    if (it.BlockId.Equals(blockId, StringComparison.OrdinalIgnoreCase))
+                        result.Add(it);
+                }
+            }
+
+            return result;
         }
 
         /// <summary>

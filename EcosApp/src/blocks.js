@@ -485,7 +485,6 @@ class Blocks {
         const recentBlockData = this.__getBlockOfRecentData(blockId);
         if (recentBlockData != null) {
             const ids = this.__getCtrlIdsForOptionsAndTypes(recid);
-            $('#blockEnabled_' + recid).prop('checked', recentBlockData.Settings.BlockEnabled);
 
             $('#' + ids.chkIdWait).prop('checked', recentBlockData.Settings.OptionWait);
             $('#' + ids.chkIdDirection).prop('checked', recentBlockData.Settings.OptionDirection);
@@ -552,9 +551,6 @@ class Blocks {
         html += '</select>';
         html += '</div>';
 
-        const chkBlockEnabledId = 'blockEnabled_' + recid;
-        html += self.__getCheckboxHtml('Block Enabled:', chkBlockEnabledId, 'BlockEnabled', true);
-
         const dataOptions = self.__getCheckboxOptions('Options:', recid);
         const dataTypes = self.__getCheckboxTypes('Types:', recid);
 
@@ -564,7 +560,6 @@ class Blocks {
         html += '</div>';
 
         let chkIds = [];
-        chkIds.push(chkBlockEnabledId);
         chkIds = chkIds.concat(dataOptions.checkboxIds);
         chkIds = chkIds.concat(dataTypes.checkboxIds);
 

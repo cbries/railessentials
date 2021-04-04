@@ -114,6 +114,14 @@ namespace railessentials
                 subst.Add("{{COMMENT_END_DEBUG_BUILD}}", string.Empty);
 #endif
 
+                if(_cfg?.Theme != null)
+                {
+                    if(string.IsNullOrEmpty(_cfg.Theme.PlanBackground))
+                        subst.Add("{{BACKGROUND_COLOR}}", string.Empty);
+                    else
+                        subst.Add("{{BACKGROUND_COLOR}}", $"background-color: {_cfg.Theme.PlanBackground};");
+                }
+
                 var cnt = File.ReadAllText(pathToFile, Encoding.UTF8);
 
                 foreach (var it in subst)

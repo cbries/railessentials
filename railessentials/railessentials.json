@@ -1,5 +1,5 @@
 ﻿{
-  "SimulationMode": false,
+  "SimulationMode": true,
   "SimulationData": "Demos\\Ecos\\ecosJson.txt",
   "RootWorkspace": "Workspaces\\",
   "RecentWorkspace": "Basement",
@@ -34,7 +34,8 @@
   },
   "Theme": {
     "Root": "App\\theme",
-    "Name": "RailwayEssential"
+    "Name": "RailwayEssential",
+    "PlanBackground": "rgba(233,233,233,1)"
   },
   "SaveOnEveryPlanfieldChange": true,
   "InitializeDelay": 500

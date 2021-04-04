@@ -382,19 +382,43 @@ namespace railessentials.ClientHandler
                         }
                         else if (force.Equals("backward", StringComparison.OrdinalIgnoreCase))
                         {
-                            locomotiveItem.ChangeSpeedstep(0);
-                            locomotiveItem.ChangeDirection(true);
+                            if (IsSimulationMode())
+                            {
+                                locomotiveItem.ChangeSpeedstepSimulation(0);
+                                locomotiveItem.ChangeDirectionSimulation(true);
+                            }
+                            else
+                            {
+                                locomotiveItem.ChangeSpeedstep(0);
+                                locomotiveItem.ChangeDirection(true);
+                            }
                         }
                         else if (force.Equals("forward", StringComparison.OrdinalIgnoreCase))
                         {
-                            locomotiveItem.ChangeSpeedstep(0);
-                            locomotiveItem.ChangeDirection(false);
+                            if (IsSimulationMode())
+                            {
+                                locomotiveItem.ChangeSpeedstepSimulation(0);
+                                locomotiveItem.ChangeDirectionSimulation(false);
+                            }
+                            else
+                            {
+                                locomotiveItem.ChangeSpeedstep(0);
+                                locomotiveItem.ChangeDirection(false);
+                            }
                         }
                     }
                     break;
             }
 
-            _sniffer?.SendCommandsToEcosStation();
+            if (IsSimulationMode())
+            {
+                SaveAll();
+                _sniffer?.TriggerDataProviderModifiedForSimulation();
+            }
+            else
+            {
+                _sniffer?.SendCommandsToEcosStation();
+            }
         }
 
         internal void LocomotiveChangeSpeedstep(Locomotive item, int speed)

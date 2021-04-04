@@ -468,7 +468,7 @@ class Occ {
 
         self.__updateStateVisualization(locData.objectId);
     }
-
+    
     __stopWaitCounter(oid) {
         if (typeof oid === "undefined" || oid == null || oid <= 0) return;
         const lbl = $('#locomotiveInfo' + oid + ' div.countdown');
@@ -801,7 +801,7 @@ class Occ {
         // used for drag&drop
         targetBlock.addClass(self.__divBlockedClass);
     }
-
+    
     handleData(jsonData) {
         const self = this;
         const occData = jsonData.data; // array
@@ -899,6 +899,50 @@ class Occ {
                 self.__updateStateVisualization(oid);
             }
         }
+    }
+
+    updateEcosDirection(ecosLocomotives) {
+        const self = this;
+        if (typeof ecosLocomotives === "undefined") return;
+        if (ecosLocomotives == null) return;
+
+        let i = 0; 
+        const iMax = ecosLocomotives.length;
+        for (; i < iMax; ++i) {
+            const ecosLoc = ecosLocomotives[i];
+            const locoid = ecosLoc.objectId;
+
+            const locControl = $('#locCtrl_' + locoid);
+            const cmdBackward = locControl.find('#locBackward');
+            const cmdForward = locControl.find('#locForward');
+
+            cmdBackward.css({ "color": "black" });
+            cmdForward.css({ "color": "black" });
+
+            const locEcosData = self.__getEcosDataOfLoc(locoid);
+            if (locEcosData == null) return;
+
+            if (locEcosData.direction === 0) // forward
+                cmdForward.css({ "color": "green" });
+            else if (locEcosData.direction === 1) // backward
+                cmdBackward.css({ "color": "green" });
+        }
+    }
+
+    __getEcosDataOfLoc(locoid) {
+        const self = this;
+        if (typeof window.ecosData.locomotives === "undefined") return null;
+        if (window.ecosData.locomotives == null) return null;
+        let i = 0; 
+        const iMax = window.ecosData.locomotives.length;
+        for (; i < iMax; ++i) {
+            const locIt = window.ecosData.locomotives[i];
+            if (typeof locIt === "undefined") continue;
+            if (locIt == null) continue;
+            if (locIt.objectId === locoid)
+                return locIt;
+        }
+        return null;
     }
 
     __getPlanfieldClickControlOfPosition() {

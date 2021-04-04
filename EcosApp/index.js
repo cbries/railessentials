@@ -629,6 +629,7 @@ $(document).ready(function () {
                 if (typeof locomotives !== "undefined") {
                     window.locomotivesDlg.updateLocomotives(locomotives);
                     window.locomotivesDlg.updateLocomotives2(locomotives);
+                    window.occ.updateEcosDirection(locomotives);
                 }
             }
         }

@@ -165,5 +165,6 @@ namespace railessentials
     {
         public string Root { get; set; }
         public string Name { get; set; }
+        public string PlanBackground { get; set; }
     }
 }

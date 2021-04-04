@@ -662,6 +662,11 @@ class Locomotives {
                     if (locCtrlInstance)
                         locCtrlInstance.updateFunctionStates(ecosObj);
                 }
+
+                // REMARK: will always be called, on any update
+                // TODO probably we should improve this part for performance
+                if (locCtrlInstance)
+                    locCtrlInstance.updateDirectionState(ecosObj);
             }
         }
 

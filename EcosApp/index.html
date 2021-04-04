@@ -70,6 +70,12 @@
                     {{WEBCAM CODE JS}}
                 }
     </script>
+    
+    <style type="text/css">
+        body {
+            {{BACKGROUND_COLOR}}
+        }
+    </style>
 </head>
 <body>
     <div class="overlay">
@@ -134,8 +140,8 @@
                                 <div style="height: 15px;"></div>
                                 <button data-speedstep="level0"><i class="fas fa-stop-circle"></i></button>
                                 <div>
-                                    <button data-direction="backward"><i class="fas fa-backward" id="locBackward"></i></button>
-                                    <button data-direction="forward"><i class="fas fa-forward" id="locForward"></i></button>
+                                    <button data-direction="backward" class="cmdLocBackward"><i class="fas fa-backward" id="locBackward"></i></button>
+                                    <button data-direction="forward" class="cmdLocForward"><i class="fas fa-forward" id="locForward"></i></button>
                                 </div>
                             </td>
                         </tr>

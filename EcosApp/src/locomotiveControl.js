@@ -43,7 +43,7 @@ class LocomotiveControl {
 
     updateSpeedState(dataLocomotive) {
         if (this.__dlgIsClosed) return;
-        var sliderEl = this.__dlgElement.find(".locomotiveSpeedometer");
+        const sliderEl = this.__dlgElement.find(".locomotiveSpeedometer");
         if (!sliderEl) return;
         this.__speedTrigger = false;
         sliderEl.slider("value", dataLocomotive.speedstep);
@@ -51,21 +51,36 @@ class LocomotiveControl {
         $('.locomotiveSpeedstepValue').html(dataLocomotive.speedstep);
     }
 
-    updateFunctionStates(dataLocomotive) {
-        var oid = dataLocomotive.objectId;
-        var nrOfFunctions = dataLocomotive.nrOfFunctions;
-        var funcset = dataLocomotive.funcset;
-        var funcdesc = dataLocomotive.funcdesc;
+    updateDirectionState(dataLocomotive) {
+        if (this.__dlgIsClosed) return;
+        const self = this;
+        const oid = dataLocomotive.objectId;
+        const ctrl = $('#locomotiveCtrl_' + oid);
+        const cmdBackward = ctrl.find('.cmdLocBackward');
+        const cmdForward = ctrl.find('.cmdLocForward');
+        cmdBackward.css({ "color": "black" });
+        cmdForward.css({ "color": "black" });
+        if (dataLocomotive.direction === 1) // backward
+            cmdBackward.css({ "color": "green" });
+        else if (dataLocomotive.direction === 0) // forward
+            cmdForward.css({ "color": "green" });
+    }
 
-        var usedFnc = 0;
-        for (var i = 0; i < funcdesc.length; ++i) {
-            var fncState = funcset[i];
-            var fncDesc = funcdesc[i];
+    updateFunctionStates(dataLocomotive) {
+        const oid = dataLocomotive.objectId;
+        const nrOfFunctions = dataLocomotive.nrOfFunctions;
+        const funcset = dataLocomotive.funcset;
+        const funcdesc = dataLocomotive.funcdesc;
+
+        let usedFnc = 0;
+        for (let i = 0; i < funcdesc.length; ++i) {
+            const fncState = funcset[i];
+            const fncDesc = funcdesc[i];
             if (fncDesc.type === 0)
                 continue;
 
-            var className = 'fncCommand_' + oid + "_" + i;
-            var inputEl = $('button.' + className);
+            const className = 'fncCommand_' + oid + "_" + i;
+            const inputEl = $('button.' + className);
 
             this.__changeButtonStyle(inputEl, fncState === "1");
 

@@ -130,6 +130,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Text Item* support (i.e. bold, italic, underline, font size, font color)
  - *Labels* for Plan Items
  - *Accessory* can be changed directly by clicking the individual plan item at any time
+ - *Output/Button* grouping [Wiki](https://github.com/cbries/railessentials/wiki/Group-Buttons-or-Output)
 
 ## Routing
 

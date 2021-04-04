@@ -164,6 +164,7 @@ class Occ {
         //
         let locomotiveInfoFinal = locomotiveInfo.clone();
         locomotiveInfoFinal.attr("id", ids.rootFinal);
+        locomotiveInfoFinal.data(this.__dataOidName, locData.objectId);
         locomotiveInfoFinal.removeClass(this.__divFromClass);
         locomotiveInfoFinal.addClass(this.__divFinalClass);
         const locImg3 = locomotiveInfoFinal.find('img');
@@ -332,7 +333,8 @@ class Occ {
             }
         });
 
-        locomotiveInfo.mouseover(function () {
+        const __fncShowLocHover = function (locinfo)
+        {
             clearTimeout(self.__timeoutBeforeHide);
             self.__timeoutBeforeHide = 0;
             if (self.__timeoutBeforeShow > 0) return;
@@ -340,15 +342,36 @@ class Occ {
             // hide all other controls
             $('.locInfoCtrl').each(function () { $(this).hide(); });
             self.__timeoutBeforeShow = setTimeout(function () {
-                self.showLocomotiveControlHover(locomotiveInfo);
+                self.showLocomotiveControlHover($(locinfo));
             }, 250);
-        });
-        locomotiveInfo.mouseleave(function () {
+        }
+
+        const __fncHideLocHover = function(locinfo) {
             clearTimeout(self.__timeoutBeforeShow);
             self.__timeoutBeforeShow = 0;
             self.__timeoutBeforeHide = setTimeout(function () {
-                self.hideLocomotiveControlHover(locomotiveInfo);
+                self.hideLocomotiveControlHover($(locinfo));
             }, 250);
+        }
+
+        //
+        // add locomotive hover control to starting block 
+        //
+        locomotiveInfo.mouseover(function () {
+            __fncShowLocHover(this);
+        });
+        locomotiveInfo.mouseleave(function () {
+            __fncHideLocHover(this);
+        });
+
+        //
+        // add locomotive hover control to final block
+        //
+        locomotiveInfoFinal.mouseover(function () {
+            __fncShowLocHover(this);
+        });
+        locomotiveInfoFinal.mouseleave(function () {
+            __fncHideLocHover(this);
         });
 
         locomotiveInfo.on("dblclick", function (event) {

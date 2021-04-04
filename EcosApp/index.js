@@ -507,6 +507,9 @@ $(document).ready(function () {
     });
     window.planField.on('clicked', function (ev) { itemClicked(ev.data); });
     window.planField.on('assignToBlock', function (ev) { assignLocomotiveToBlock(ev.data); });
+    window.planField.on("setting", function (ev) {
+        changeSetting(ev.data);
+    });
 
     window.serverHandling = new ServerHandling({
         wsAddr: "localhost",

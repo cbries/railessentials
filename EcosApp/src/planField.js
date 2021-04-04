@@ -408,6 +408,7 @@ class Planfield {
         const self = this;
         const noOfFeedbacks = feedbacks.data.length;
         const blockCtrls = $('div.ctrlItemBlock');
+        self.__recentFbEventsData = feedbacks.data;
         self.__removeAllDisabledFlags(blockCtrls);
         if (noOfFeedbacks === 0) return;
         if (typeof blockCtrls === "undefined") return;
@@ -906,6 +907,71 @@ class Planfield {
         //
         if (isBlock(jsonData.editor.themeId)) {
             this.__initBlockDrop(newCtrl);
+
+            newCtrl.on("contextmenu", function (event) {
+                event.preventDefault();
+
+                if (typeof self.__recentFbEventsData === "undefined") return;
+                if (self.__recentFbEventsData == null) return;
+
+                let isEnabled = false;
+                const blockId = newCtrl.attr("id");
+                let i = 0;
+                const iMax = self.__recentFbEventsData.length;
+                for (; i < iMax; ++i ) {
+                    const fbData = self.__recentFbEventsData[i];
+                    if (typeof fbData === "undefined") continue;
+                    if (fbData == null) continue;
+                    if (!fbData.BlockId.startsWith(blockId)) continue;
+
+                    const settings = fbData.Settings;
+                    if (typeof settings === "undefined") continue;
+                    if (settings == null) continue;
+
+                    if (settings.BlockEnabled === true)
+                        isEnabled = true;
+                    else
+                        isEnabled = false;
+
+                    break;
+                }
+
+                new Contextual({
+                    isSticky: false,
+                    items: [
+                        {
+                            cssIcon: 'fas fa-lock',
+                            enabled: isEnabled,
+                            label: 'Disable', onClick: () => {
+                                self.__trigger('setting',
+                                    {
+                                        'mode': 'block',
+                                        'cmd': 'blockState',
+                                        'value': {
+                                            blockIdentifier: blockId,
+                                            state: false
+                                        }
+                                    });
+                            }
+                        },
+                        {
+                            cssIcon: 'fas fa-unlock',
+                            enabled: !isEnabled,
+                            label: 'Enable', onClick: () => {
+                                self.__trigger('setting',
+                                    {
+                                        'mode': 'block',
+                                        'cmd': 'blockState',
+                                        'value': {
+                                            blockIdentifier: blockId,
+                                            state: true
+                                        }
+                                    });
+                            }
+                        }
+                    ]
+                });
+            });
         }
 
         newCtrl.appendTo(this.planfieldElement);

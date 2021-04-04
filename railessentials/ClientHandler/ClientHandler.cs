@@ -1525,6 +1525,28 @@ namespace railessentials.ClientHandler
                         SendModelToClients(ModelType.UpdateFeedbacks);
                     }
                     break;
+
+                case "blockstate":
+                    {
+                        var blockId = data.GetString("blockIdentifier");
+                        var blockState = data.GetBool("state", true);
+
+                        lock (_metadataLock)
+                        {
+                            // save the values
+                            var availableBlocks = _metadata?.FeedbacksData.GetAllByBlockId(blockId, true);
+                            foreach(var itBlock in availableBlocks ?? new List<Feedbacks.Data>())
+                            {
+                                if (itBlock?.Settings?["BlockEnabled"] != null)
+                                    itBlock.Settings["BlockEnabled"] = blockState;
+                            }
+
+                            _metadata?.Save(Metadata.SaveModelType.FeedbacksData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateFeedbacks);
+                    }
+                    break;
             }
         }
 

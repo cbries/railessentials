@@ -5,7 +5,10 @@
 using System;
 using System.Collections.Generic;
 using ecoslib.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
+using railessentials.Plan;
 
 namespace railessentials.Route
 {
@@ -158,6 +161,48 @@ namespace railessentials.Route
                     return true;
             }
             return false;
+        }
+
+        public static RouteList FilterSwitchesMaintenance(
+            this RouteList routeList,
+            JObject metamodel
+            )
+        {
+            if (routeList == null) return routeList;
+            if (routeList.Count == 0) return routeList;
+
+            var planField = metamodel?["planField"] as JObject;
+            if (planField == null) return routeList;
+
+            var res = new RouteList();
+
+            foreach (var it in routeList)
+            {
+                if (it == null) continue;
+
+                var addToResult = true;
+
+                foreach(var itSwitch in it.Switches)
+                {
+                    if (itSwitch == null) continue;
+                    var key = $"{itSwitch.x}x{itSwitch.y}";
+                    if(planField[key] != null)
+                    {
+                        var itemObj = JsonConvert.DeserializeObject<PlanItem>(planField[key].ToString());
+                        if (itemObj == null) continue;
+                        if(itemObj.IsMaintenance)
+                        {
+                            addToResult = false;
+                            break;
+                        }
+                    }
+                }
+
+                if(addToResult)
+                    res.Add(it);
+            }
+
+            return res;
         }
     }
 }

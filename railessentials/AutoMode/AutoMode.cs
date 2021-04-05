@@ -310,6 +310,10 @@ namespace railessentials.AutoMode
                     // has already a destination
                     if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
 
+                    //
+                    // the most interesting call is `GetNextRoute(..)` which
+                    // is responsible for selecting the best next journey path
+                    //
                     var nextRoute = GetNextRoute(itOccBlock, out var locomotiveObjectId);
                     if (nextRoute == null) continue;
 
@@ -649,7 +653,7 @@ namespace railessentials.AutoMode
             if (locData == null) return null;
 
             //
-            // NOTE check of the OCC has waiting long enough for a new start
+            // NOTE check if the OCC has waited long enough for a new start
             // 
             var lastReachedTime = occBlock.ReachedTime;
             var allowedMinimumTime = lastReachedTime.AddSeconds(occBlock.SecondsToWait);
@@ -843,13 +847,20 @@ namespace railessentials.AutoMode
                 SaveOccAndPromote();
 
                 #endregion (4)
-
             }
             var routesFromFiltered = routesFrom.FilterBy(locDataEcos, locData, _metadata.FeedbacksData);
             var routesFromNotOccupied = routesFromFiltered.FilterNotOccupiedOrLocked(_metadata.Occ);
             if (routesFromNotOccupied.Count == 0) return null;
 
-            var routesNoCross = routesFromNotOccupied.FilterNoCrossingOccupied(_routeList);
+            //
+            // filter routes if any accessory is in "maintenance" mode
+            //
+            var routesNoMaintenance = routesFromNotOccupied.FilterSwitchesMaintenance(_metadata.Metamodel);
+
+            //
+            // filter all routes which cross occupied routes
+            //
+            var routesNoCross = routesNoMaintenance.FilterNoCrossingOccupied(_routeList);
             if (routesNoCross.Count == 0)
             {
                 //

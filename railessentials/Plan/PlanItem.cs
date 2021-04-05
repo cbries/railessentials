@@ -43,13 +43,16 @@ namespace railessentials.Plan
         public PlanItemEditor editor { get; set; } = new();
         public List<PlanItemDimension> dimensions { get; set; } = new();
 
+        [JsonProperty(PropertyName = "isMaintenance")]
+        public bool IsMaintenance { get; set; } = false;
+
         [JsonProperty(PropertyName = "addresses")]
         public PlanItemAddresses Addresses { get; set; } = new();
 
         [JsonProperty(PropertyName = "groupName")]
         public string GroupName { get; set; } // see #70
 
-        #endregion metamodel
+        #endregion /metamodel
 
         /// <summary>
         /// Returns the current `themeDimIdx` values.

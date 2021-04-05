@@ -4,7 +4,7 @@ class Planfield {
      * 
      * @param {any} options : {
      * isEditMode [bool] }
-     */ 
+     */
     constructor(options = {}) {
         console.log("**** construct Planfield");
         this.planfieldElement = null;
@@ -370,8 +370,8 @@ class Planfield {
         for (i = 0; i < iMax; ++i) {
             $(childs[i]).droppable({
                 accept: "div.locomotiveInfo",
-            //    drop: function (event, ui) {
-            //    }
+                //    drop: function (event, ui) {
+                //    }
             });
         }
 
@@ -415,7 +415,7 @@ class Planfield {
         if (blockCtrls == null) return;
         if (blockCtrls.length === 0) return;
 
-        let i = 0; 
+        let i = 0;
         for (; i < noOfFeedbacks; ++i) {
             const fbData = feedbacks.data[i];
             if (typeof fbData === "undefined") continue;
@@ -429,7 +429,7 @@ class Planfield {
                 if (blockCtrl == null) continue;
                 blockCtrl.addClass("blockDisabledState");
             }
-            catch(err) {
+            catch (err) {
                 // ignore
             }
         }
@@ -449,7 +449,7 @@ class Planfield {
 
     __removeAllDisabledFlags(blockCtrls) {
         if (typeof blockCtrls === "undefined" || blockCtrls == null || blockCtrls.length === 0) return;
-        let i = 0; 
+        let i = 0;
         const iMax = blockCtrls.length;
         for (; i < iMax; ++i) {
             const fb = blockCtrls[i];
@@ -486,7 +486,7 @@ class Planfield {
                 const fbItem = getFbByEcosAddr(fbCtrls, addr);
                 if (typeof fbItem === "undefined") continue;
                 if (fbItem === null) continue;
-                
+
                 let newImgEnding = "";
                 const mask = 1 << jj;
                 if ((fb.stateOriginal & mask) !== 0) {
@@ -609,7 +609,7 @@ class Planfield {
                             } else if (targetState === true) {
                                 newimgfname += "-t";
                             }
-                        } 
+                        }
 
                         let currentSrc = img.attr("src");
                         let isOcc = false;
@@ -835,7 +835,9 @@ class Planfield {
                 textfieldElement.setEditMode(true);
         }
         else {
+            //
             // general approach to create track element
+            //
 
             newCtrl = $('<div>')
                 .addClass("ctrlItem")
@@ -846,6 +848,10 @@ class Planfield {
                     width: w + "px",
                     height: h + "px"
                 });
+
+            if (jsonData.isMaintenance === true)
+                newCtrl.addClass("accessoryMaintenance");
+
             newCtrl.data(constDataThemeItemObject, jsonData);
             newCtrl.data(constDataThemeDimensionIndex, jsonData.editor.themeDimIdx);
 
@@ -903,7 +909,7 @@ class Planfield {
         }
 
         //
-        // init drop for block
+        // init drop and ctx menu for block
         //
         if (isBlock(jsonData.editor.themeId)) {
             this.__initBlockDrop(newCtrl);
@@ -918,7 +924,7 @@ class Planfield {
                 const blockId = newCtrl.attr("id");
                 let i = 0;
                 const iMax = self.__recentFbEventsData.length;
-                for (; i < iMax; ++i ) {
+                for (; i < iMax; ++i) {
                     const fbData = self.__recentFbEventsData[i];
                     if (typeof fbData === "undefined") continue;
                     if (fbData == null) continue;
@@ -965,6 +971,66 @@ class Planfield {
                                         'value': {
                                             blockIdentifier: blockId,
                                             state: true
+                                        }
+                                    });
+                            }
+                        }
+                    ]
+                });
+            });
+        }
+
+        //
+        // init ctx menu for accessory
+        //
+        if (isSwitchOrAccessory(jsonData.editor.themeId)) {
+            newCtrl.on("contextmenu", function (event) {
+                event.preventDefault();
+
+                const data = newCtrl.data(constDataThemeItemObject);
+                if (typeof data === "undefined") return;
+                if (data == null) return;
+
+                let isMaintenance = data.isMaintenance;
+                if (typeof isMaintenance === "undefined" || isMaintenance == null)
+                    isMaintenance = false;
+
+                let maintenanceLabel = "Enable Maintenance";
+                let maintenanceIcon = "fas fa-stethoscope";
+                if (isMaintenance === true) {
+                    maintenanceLabel = "Disable Maintenance";
+                    maintenanceIcon = "far fa-thumbs-up";
+                }
+
+                new Contextual({
+                    isSticky: false,
+                    items: [
+                        {
+                            cssIcon: maintenanceIcon,
+                            enabled: true,
+                            label: maintenanceLabel, onClick: () => {
+
+                                const newMaintenanceState = !isMaintenance;
+
+                                // do not wait for the server
+                                // to change the content of 
+                                // the maintained accessory
+                                // this will be waste performance
+                                data.isMaintenance = newMaintenanceState;
+                                newCtrl.data(constDataThemeItemObject, data);
+
+                                if (newMaintenanceState === true)
+                                    newCtrl.addClass("accessoryMaintenance");
+                                else
+                                    newCtrl.removeClass("accessoryMaintenance");
+
+                                self.__trigger('setting',
+                                    {
+                                        'mode': 'accessory',
+                                        'cmd': 'maintenance',
+                                        'value': {
+                                            identifier: data.identifier,
+                                            state: newMaintenanceState
                                         }
                                     });
                             }

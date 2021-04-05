@@ -162,6 +162,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Statistics* of accessory usage and when any Locomotive has been started/stopped (e.g. supports scheduled maintenance)
  - *Accessory to Route* weaving for changing accessory states on start/delay of Locomotive traveling [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Signals-to-Routes-used-in-AutoMode)
  - *Lock Additional Blocks during Locomotive Traveling* [Wiki](https://github.com/cbries/railessentials/wiki/Lock-Additional-Blocks-during-Locomotive-Traveling)
+ - *Maintenance Mode* - accessories can be set into maintenance mode and all routes which include the relevant accessories are not selected anymore [Issue #79](https://github.com/cbries/railessentials/issues/79)
 
 ## Individual Supports for my personal needs
 

@@ -19,6 +19,13 @@ html, body {
     / Workspace Selection
 */
 
+.accessoryMaintenance {
+    background-color: rgba(215, 0,0, 1.0);
+    -webkit-box-shadow: inset 0 0 0 1px #000;
+    -moz-box-shadow: inset 0 0 0 1px #000;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
 div.elementLabelTxt {
     position: relative;
     font-weight: bold;

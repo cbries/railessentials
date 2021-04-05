@@ -1356,6 +1356,25 @@ namespace railessentials.ClientHandler
 
             switch (cmd.ToLower())
             {
+                case "maintenance":
+                    {
+                        var accIdentifier = data.GetString("identifier", string.Empty);
+                        if (string.IsNullOrEmpty(accIdentifier)) return;
+
+                        lock (_metadataLock)
+                        {
+                            var acc = _metadata?.GetMetamodelItem(accIdentifier);
+                            if (acc == null) return;
+                            var isMaintenance = data.GetBool("state", false);
+                            acc["isMaintenance"] = isMaintenance;
+
+                            _metadata?.Save(Metadata.SaveModelType.MetamodelData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateMetamodel);
+                    }
+                    break;
+
                 case "groupname":
                     {
                         var accIdentifier = data.GetString("identifier", string.Empty);

@@ -1164,6 +1164,16 @@ namespace railessentials.ClientHandler
 
             switch (cmd.ToLower())
             {
+                case "speedlevel":
+                    {
+                        var level = data.GetString("level", string.Empty);
+                        var levelValue = data.GetInt("value", 0);
+
+                        // TODO store data
+                        // TODO use data in AutoMode
+                    }
+                    break;
+
                 case "speedcurve":
                     {
                         var speedCurveData = data["data"] as JObject;

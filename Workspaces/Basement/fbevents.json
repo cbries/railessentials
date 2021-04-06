@@ -208,7 +208,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,
@@ -234,7 +234,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,

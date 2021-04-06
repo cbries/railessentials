@@ -208,7 +208,11 @@ class Locomotives {
                             type: 'checkbox',
                             style: 'text-align: center'
                         }
-                    }
+                    },
+                    { field: 'speedLevel1', caption: 'Level1', size: '1%', hidden: true },
+                    { field: 'speedLevel2', caption: 'Level2', size: '1%', hidden: true },
+                    { field: 'speedLevel3', caption: 'Level3', size: '1%', hidden: true },
+                    { field: 'speedLevel4', caption: 'Level4', size: '1%', hidden: true },
                 ],
                 records: [],
                 onExpand: function (event) {
@@ -256,6 +260,34 @@ class Locomotives {
                         for (let i = 0; i < activateChkEvents.length; ++i) {
                             activateChkEvents[i].change(function () {
                                 self.__saveLocomotiveSettings(data);
+                            });
+                        }
+
+                        for (let j = 0; j < data.speedLevel.length; ++j) {
+                            const selectLevel = data.speedLevel[j];
+                            if (typeof selectLevel === "undefined") continue;
+                            if (selectLevel == null) continue;
+                            const ctrl = $('#' + selectLevel);
+                            ctrl.change(function (ev) {
+                                const id = $(this).attr('id');
+                                const idx = id.lastIndexOf("_");
+                                const speedLevel = id.substr(0, idx);
+                                const locOid = id.substr(idx + 1);
+
+                                //console.log("speedLevel: " + speedLevel);
+                                //console.log("locOid: " + locOid);
+                                //console.log(this.value);
+
+                                self.__trigger("setting",
+                                    {
+                                        "mode": "locomotive",
+                                        "cmd": "speedLevel",
+                                        "value": {
+                                            "oid": locOid,
+                                            "level": speedLevel,
+                                            "value": parseInt(this.value)
+                                        }
+                                    });
                             });
                         }
 
@@ -367,8 +399,6 @@ class Locomotives {
 
     __showSpeedCurveDialog(locOid) {
         const self = this;
-
-        console.log("Locomotive Object ID: " + locOid);
 
         if (!w2ui.formSpeedCurve) {
             $().w2form({
@@ -560,9 +590,55 @@ class Locomotives {
                 if (typeof row === "undefined" || row == null)
                     continue;
 
-                if (row.locked !== data[oid].IsLocked) {
-                    row.locked = data[oid].IsLocked;
+                var dataOid = data[oid];
+                if (typeof dataOid === "undefined") continue;
+                if (dataOid == null) continue;
+
+                if (row.locked !== dataOid.IsLocked) {
+                    row.locked = dataOid.IsLocked;
                     elGrid.refreshCell(oid, 'locked');
+                }
+
+                try {
+                    let level1 = 0, level2 = 0, level3 = 0, level4 = 0;
+
+                    if (typeof dataOid.SpeedLevels !== "undefined" && dataOid.SpeedLevels != null) {
+                        if(typeof dataOid.SpeedLevels.speedLevel1 !== "undefined" && dataOid.SpeedLevels.speedLevel1 != null) {
+                            level1 = dataOid.SpeedLevels.speedLevel1;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel2 !== "undefined" && dataOid.SpeedLevels.speedLevel2 != null) {
+                            level2 = dataOid.SpeedLevels.speedLevel2;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel3 !== "undefined" && dataOid.SpeedLevels.speedLevel3 != null) {
+                            level3 = dataOid.SpeedLevels.speedLevel3;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel4 !== "undefined" && dataOid.SpeedLevels.speedLevel4 != null) {
+                            level4 = dataOid.SpeedLevels.speedLevel4;
+                        }
+                    }
+
+                    if(row.speedLevel1 !== level1) {
+                        row.speedLevel1 = level1;
+                        elGrid.refreshCell(oid, 'speedLevel1');
+                    }
+
+                    if(row.speedLevel2 !== level2) {
+                        row.speedLevel2 = level2;
+                        elGrid.refreshCell(oid, 'speedLevel2');
+                    }
+
+                    if(row.speedLevel3 !== level3) {
+                        row.speedLevel3 = level3;
+                        elGrid.refreshCell(oid, 'speedLevel3');
+                    }
+
+                    if(row.speedLevel4 !== level4) {
+                        row.speedLevel4 = level4;
+                        elGrid.refreshCell(oid, 'speedLevel4');
+                    }
+
+                } catch(err) {
+                    // ignore
                 }
             }
         }
@@ -596,7 +672,7 @@ class Locomotives {
             const funcset = ecosObj.funcset;
             const funcdesc = ecosObj.funcdesc;
             const noOfFunctions = ecosObj.nrOfFunctions;
-
+            
             const rec = elGrid.find({ oid: oid });
             if (rec.length <= 0) {
                 //
@@ -674,11 +750,51 @@ class Locomotives {
             elGrid.add(listOfObjectsToAdd);
     }
 
+    __getCurrentSpeedLevelsOf(oid, maxSpeedstep) {
+        const self = this;
+        const locData = self.__getLocomotiveOfRecentData(oid);
+        try {
+            const level1Value = locData.SpeedLevels.speedLevel1;
+            const level2Value = locData.SpeedLevels.speedLevel2;
+            const level3Value = locData.SpeedLevels.speedLevel3;
+            const level4Value = locData.SpeedLevels.speedLevel4;
+
+            var v1 = 0, v2 = 0, v3 = 0, v4 = 0;
+            if (typeof level1Value !== "undefined" && level1Value != null) v1 = level1Value.value;
+            else v1 = parseInt(maxSpeedstep * 0.1); // REMARK if default is changed, change server as well
+
+            if (typeof level2Value !== "undefined" && level2Value != null) v2 = level2Value.value;
+            else v2 = parseInt(maxSpeedstep * 0.3); // REMARK if default is changed, change server as well
+
+            if (typeof level3Value !== "undefined" && level3Value != null) v3 = level3Value.value;
+            else v3 = parseInt(maxSpeedstep * 0.5); // REMARK if default is changed, change server as well
+
+            if (typeof level4Value !== "undefined" && level4Value != null) v4 = level4Value.value;
+            else v4 = parseInt(maxSpeedstep * 0.6); // REMARK if default is changed, change server as well
+
+            return {
+                "level1": parseInt(v1),
+                "level2": parseInt(v2),
+                "level3": parseInt(v3),
+                "level4": parseInt(v4)
+            };
+        }
+        catch(err) {
+            return {
+                "level1": parseInt(maxSpeedstep * 0.1),
+                "level2": parseInt(maxSpeedstep * 0.3),
+                "level3": parseInt(maxSpeedstep * 0.5),
+                "level4": parseInt(maxSpeedstep * 0.6)
+            };
+        }
+    }
+
     __getExpandedHtml(rec) {
         const self = this;
         const recid = rec.oid;
         const locomotiveDataId = "locomotivesData_" + recid;
 
+        // start of div area
         let html = '<div id="' + locomotiveDataId + '" style="padding: 5px; width: 100%; float: left;">';
 
         const dataOptions = self.__getCheckboxOptions('Options:', recid);
@@ -687,11 +803,55 @@ class Locomotives {
         html += dataOptions.html;
         html += dataTypes.html;
 
+        //
+        // speed levels, speedstepMax
+        //
+        const speedLevels = self.__getCurrentSpeedLevelsOf(recid, rec.speedstepMax);
+        let hl1 = "", hl2 = "", hl3 = "", hl4 = "";
+        for (let counter = 0; counter < rec.speedstepMax; ++counter) {
+            let select1 = "";
+            let select2 = "";
+            let select3 = "";
+            let select4 = "";
+
+            if (counter === speedLevels.level1) select1 = "selected";
+            if (counter === speedLevels.level2) select2 = "selected";
+            if (counter === speedLevels.level3) select3 = "selected";
+            if (counter === speedLevels.level4) select4 = "selected";
+            
+            hl1 += '<option value="' + counter + '" ' + select1 + '>' + counter + '</option>\n';
+            hl2 += '<option value="' + counter + '" ' + select2 + '>' + counter + '</option>\n';
+            hl3 += '<option value="' + counter + '" ' + select3 + '>' + counter + '</option>\n';
+            hl4 += '<option value="' + counter + '" ' + select4 + '>' + counter + '</option>\n';
+        }
+        const speedLevelIds = [
+            'speedLevel1_' + recid,
+            'speedLevel2_' + recid,
+            'speedLevel3_' + recid,
+            'speedLevel4_' + recid
+        ];
+        html += '<div class="w2ui-field">';
+        html += '<label style="float: left;">Speed Levels:</label>';
+        html += '<div style="padding: 2px; margin-top: 3px; margin-left: 5px;">';
+        html += ' &nbsp; Level1: <select style="height: 20px;" name="speedLevel1" id="' + speedLevelIds[0] + '">' + hl1 + '</select>';
+        html += ' Level2: <select style="height: 20px;" name="speedLevel2" id="' + speedLevelIds[1] + '">' + hl2 + '</select>';
+        html += ' Level3: <select style="height: 20px;" name="speedLevel3" id="' + speedLevelIds[2] + '">' + hl3 + '</select>';
+        html += ' Level4: <select style="height: 20px;" name="speedLevel4" id="' + speedLevelIds[3] + '">' + hl4 + '</select>';
+        html += '</div>';
+        html += '</div>';
+
+        //
+        // SpeedCurve
+        //
         html += '<div class="w2ui-field">';
         html += '<label>Speed Curve:</label>';
         html += '<input type="button" id="cmdSpeedCurveContainer_' + recid + '" ' +
-            'value="Modify" ' +
-            'style="padding: 2px; margin-top: 3px; margin-left: 5px;"></div>';
+                    'value="Modify" ' +
+                    'style="padding: 2px; margin-top: 3px; margin-left: 5px;">';
+        html += '</div > ';
+       
+
+        // end of div area
         html += '</div>';
 
         html += '</div>';
@@ -703,6 +863,7 @@ class Locomotives {
         return {
             renderId: locomotiveDataId,
             checkboxIds: chkIds,
+            speedLevel: speedLevelIds,
             renderHtml: html
         };
     }

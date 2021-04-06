@@ -64,5 +64,31 @@ namespace railessentials.Locomotives
             foreach (var it in Entries)
                 it.Value.IsStopped = true;
         }
+
+        public Dictionary<string, int> GetSpeedLevels(int oid)
+        {
+            var locData = GetData(oid);
+            var res = new Dictionary<string, int>();
+            if (locData == null) return res;
+            foreach(var it in locData.SpeedLevels)
+            {
+                if (res.ContainsKey(it.Key))
+                    res[it.Key] = it.Value.Value;
+                else
+                    res.Add(it.Key, it.Value.Value);
+            }
+
+            return res;
+        }
+
+        public bool SetSpeedLevel(int oid, string level, int value)
+        {
+            var locData = GetData(oid);
+            var speedLevels = locData?.SpeedLevels ?? new Dictionary<string, SpeedLevel>();
+            if (!speedLevels.ContainsKey(level) || speedLevels[level] == null)
+                speedLevels[level] = new SpeedLevel();
+            speedLevels[level].Value = value;
+            return true;
+        }
     }
 }

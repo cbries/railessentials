@@ -18,6 +18,7 @@ using railessentials.Feedbacks;
 using railessentials.Plan;
 using railessentials.Route;
 using railessentials;
+using railessentials.Locomotives;
 using SuperWebSocket;
 using Utilities;
 using Data = railessentials.Locomotives.Data;
@@ -352,7 +353,9 @@ namespace railessentials.ClientHandler
                         var v = cmddata.GetString("speedstep");
                         if (!string.IsNullOrEmpty(v) && v.IndexOf("level", StringComparison.OrdinalIgnoreCase) != -1)
                         {
-                            locomotiveItem.ChangeSpeedLevel(v);
+                            var availableSpeedlevels = _metadata.LocomotivesData.GetSpeedLevels(oid);
+
+                            locomotiveItem.ChangeSpeedLevel(v, availableSpeedlevels);
                         }
                         else if (!string.IsNullOrEmpty(v) && v.Equals("++", StringComparison.Ordinal))
                         {
@@ -1164,6 +1167,21 @@ namespace railessentials.ClientHandler
 
             switch (cmd.ToLower())
             {
+                case "speedlevel":
+                    {
+                        var level = data.GetString("level", string.Empty);
+                        var levelValue = data.GetInt("value", 0);
+
+                        lock (_metadataLock)
+                        {
+                            _metadata.LocomotivesData.SetSpeedLevel(oid, level, levelValue);
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
+                    }
+                    break;
+
                 case "speedcurve":
                     {
                         var speedCurveData = data["data"] as JObject;

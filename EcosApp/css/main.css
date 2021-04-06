@@ -590,10 +590,35 @@ div.overlay {
         background-color: rgba(200, 0, 0, 1.0);
     }
 
+div.overlayAutoMode {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200000;
+    cursor: pointer;
+}
+
+    div.overlayAutoMode .overlayAutoModeText {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        font-size: 1.25em;
+        padding: 5px;
+        color: black;
+        background-color: #ffd700;
+        background-color: rgba(255, 200, 0, 1.0);
+        opacity: 0.9;
+    }
+
 /**
     Overwrite jquery ui css stuff
 */
-
 .ui-dialog-title {
     color: #000000;
     color: rgba(0, 0, 0, 0.5);

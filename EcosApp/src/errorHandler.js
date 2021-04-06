@@ -14,7 +14,7 @@ class ErrorHandler {
     setLevel(level) {
         if (typeof level === "undefined")
             level = ErrorHandlerLevel.Info;
-        var colorClass = "infoOverlay";
+        let colorClass = "infoOverlay";
         switch (level) {
             case ErrorHandlerLevel.Info:
                 colorClass = "infoOverlay";
@@ -29,8 +29,8 @@ class ErrorHandler {
     }
 
     setText(msg, forceMessage = false) {
-        var o = this.__overlay;
-        var ot = this.__overlayText;
+        const o = this.__overlay;
+        const ot = this.__overlayText;
 
         if (o.is(":visible")) {
             if (forceMessage)
@@ -42,8 +42,8 @@ class ErrorHandler {
     }
 
     hide() {
-        var o = this.__overlay;
-        var ot = this.__overlayText;
+        const o = this.__overlay;
+        const ot = this.__overlayText;
 
         o.hide();
         ot.html("");

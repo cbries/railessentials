@@ -25,8 +25,8 @@ namespace railessentials.ClientHandler
         private void StopAutoMode()
         {
             InitAutoMode();
+        
             _autoMode.Stop();
-            CleanupHandler();
         }
 
         private void SetAllLocomotiveToStopped()
@@ -53,6 +53,7 @@ namespace railessentials.ClientHandler
             CleanupHandler();
 
             _autoMode.Started += AutoModeOnStarted;
+            _autoMode.Stopping += AutoModeOnStopping;
             _autoMode.Stopped += AutoModeOnStopped;
 
             await _autoMode.Run();
@@ -67,11 +68,21 @@ namespace railessentials.ClientHandler
         private void AutoModeOnStopped(AutoMode.AutoMode sender)
         {
             _sniffer?.Logger?.Log?.Info("AutoMode stopped");
+            _autoMode?.SendAutoModeStateToClients();
+
+            CleanupHandler();
+        }
+
+        private void AutoModeOnStopping(AutoMode.AutoMode sender)
+        {
+            _sniffer?.Logger?.Log?.Info("AutoMode stopping");
+            _autoMode?.SendAutoModeStateToClients();
         }
 
         private void AutoModeOnStarted(AutoMode.AutoMode sender)
         {
             _sniffer?.Logger?.Log?.Info("AutoMode started");
+            _autoMode?.SendAutoModeStateToClients();
         }
     }
 }

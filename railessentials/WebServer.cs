@@ -252,7 +252,14 @@ namespace railessentials
                     response.AddHeader("expires", "Tue, 01 Jan 1980 1:00:00 GMT");
                     response.AddHeader("pragma", "no-cache");
 
-                    fileStream.CopyTo(response.OutputStream);
+                    try
+                    {
+                        fileStream.CopyTo(response.OutputStream);
+                    }
+                    catch
+                    {
+                        // ignore
+                    }
                 }
 
                 response.OutputStream.Close();

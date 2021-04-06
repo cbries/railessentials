@@ -132,7 +132,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -2453,7 +2453,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -4774,7 +4774,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -7071,7 +7071,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -9332,7 +9332,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -11465,7 +11465,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -13638,7 +13638,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },
@@ -15831,7 +15831,7 @@
         "side": 0
       }
     ],
-    "isDisabled": false,
+    "isDisabled": true,
     "locked": false,
     "occupied": false
   },

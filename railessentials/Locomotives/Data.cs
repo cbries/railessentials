@@ -13,5 +13,6 @@ namespace railessentials.Locomotives
         public Dictionary<string, bool> Settings { get; set; } = new();
         public string EnterBlockSide { get; set; }
         public SpeedCurve SpeedCurve { get; set; }
+        public Dictionary<string, SpeedLevel> SpeedLevels { get; set; } = new();
     }
 }

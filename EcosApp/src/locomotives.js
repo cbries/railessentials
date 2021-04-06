@@ -590,9 +590,55 @@ class Locomotives {
                 if (typeof row === "undefined" || row == null)
                     continue;
 
-                if (row.locked !== data[oid].IsLocked) {
-                    row.locked = data[oid].IsLocked;
+                var dataOid = data[oid];
+                if (typeof dataOid === "undefined") continue;
+                if (dataOid == null) continue;
+
+                if (row.locked !== dataOid.IsLocked) {
+                    row.locked = dataOid.IsLocked;
                     elGrid.refreshCell(oid, 'locked');
+                }
+
+                try {
+                    let level1 = 0, level2 = 0, level3 = 0, level4 = 0;
+
+                    if (typeof dataOid.SpeedLevels !== "undefined" && dataOid.SpeedLevels != null) {
+                        if(typeof dataOid.SpeedLevels.speedLevel1 !== "undefined" && dataOid.SpeedLevels.speedLevel1 != null) {
+                            level1 = dataOid.SpeedLevels.speedLevel1;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel2 !== "undefined" && dataOid.SpeedLevels.speedLevel2 != null) {
+                            level2 = dataOid.SpeedLevels.speedLevel2;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel3 !== "undefined" && dataOid.SpeedLevels.speedLevel3 != null) {
+                            level3 = dataOid.SpeedLevels.speedLevel3;
+                        }
+                        if(typeof dataOid.SpeedLevels.speedLevel4 !== "undefined" && dataOid.SpeedLevels.speedLevel4 != null) {
+                            level4 = dataOid.SpeedLevels.speedLevel4;
+                        }
+                    }
+
+                    if(row.speedLevel1 !== level1) {
+                        row.speedLevel1 = level1;
+                        elGrid.refreshCell(oid, 'speedLevel1');
+                    }
+
+                    if(row.speedLevel2 !== level2) {
+                        row.speedLevel2 = level2;
+                        elGrid.refreshCell(oid, 'speedLevel2');
+                    }
+
+                    if(row.speedLevel3 !== level3) {
+                        row.speedLevel3 = level3;
+                        elGrid.refreshCell(oid, 'speedLevel3');
+                    }
+
+                    if(row.speedLevel4 !== level4) {
+                        row.speedLevel4 = level4;
+                        elGrid.refreshCell(oid, 'speedLevel4');
+                    }
+
+                } catch(err) {
+                    // ignore
                 }
             }
         }
@@ -708,16 +754,29 @@ class Locomotives {
         const self = this;
         const locData = self.__getLocomotiveOfRecentData(oid);
         try {
-            const level1Value = locData.speedLevels.level1;
-            const level2Value = locData.speedLevels.level2;
-            const level3Value = locData.speedLevels.level3;
-            const level4Value = locData.speedLevels.level4;
+            const level1Value = locData.SpeedLevels.speedLevel1;
+            const level2Value = locData.SpeedLevels.speedLevel2;
+            const level3Value = locData.SpeedLevels.speedLevel3;
+            const level4Value = locData.SpeedLevels.speedLevel4;
+
+            var v1 = 0, v2 = 0, v3 = 0, v4 = 0;
+            if (typeof level1Value !== "undefined" && level1Value != null) v1 = level1Value.value;
+            else v1 = parseInt(maxSpeedstep * 0.1); // REMARK if default is changed, change server as well
+
+            if (typeof level2Value !== "undefined" && level2Value != null) v2 = level2Value.value;
+            else v2 = parseInt(maxSpeedstep * 0.3); // REMARK if default is changed, change server as well
+
+            if (typeof level3Value !== "undefined" && level3Value != null) v3 = level3Value.value;
+            else v3 = parseInt(maxSpeedstep * 0.5); // REMARK if default is changed, change server as well
+
+            if (typeof level4Value !== "undefined" && level4Value != null) v4 = level4Value.value;
+            else v4 = parseInt(maxSpeedstep * 0.6); // REMARK if default is changed, change server as well
 
             return {
-                "level1": parseInt(level1Value),
-                "level2": parseInt(level2Value),
-                "level3": parseInt(level3Value),
-                "level4": parseInt(level4Value)
+                "level1": parseInt(v1),
+                "level2": parseInt(v2),
+                "level3": parseInt(v3),
+                "level4": parseInt(v4)
             };
         }
         catch(err) {

@@ -35,7 +35,7 @@ namespace ecoslib.Entities
         public int GetSpeedByPercentage(float percentage)
         {
             var speed = GetNumberOfSpeedsteps(Protocol) * percentage;
-            return (int) Math.Floor(speed);
+            return (int)Math.Floor(speed);
         }
 
         public const int Typeid = 1;
@@ -99,13 +99,13 @@ namespace ecoslib.Entities
             for (var i = 0; i < 32; ++i)
                 Funcset.Add(false);
         }
-        
+
         public void ChangeName(string name)
         {
             AddCmd(CommandFactory.Create($"request({ObjectId}, control, force)"));
             AddCmd(CommandFactory.Create($@"set({ObjectId}, name[""{name}""])", true));
             AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
-            AddCmd(CommandFactory.Create($"get({ObjectId}, name)"));    
+            AddCmd(CommandFactory.Create($"get({ObjectId}, name)"));
         }
 
         public void Stop()
@@ -118,22 +118,22 @@ namespace ecoslib.Entities
             ChangeSpeedstepSimulation(0);
         }
 
-	    public void ToggleFunctions(Dictionary<uint, bool> states)
-	    {
-		    AddCmd(CommandFactory.Create($"request({ObjectId}, control, force)"));
+        public void ToggleFunctions(Dictionary<uint, bool> states)
+        {
+            AddCmd(CommandFactory.Create($"request({ObjectId}, control, force)"));
 
-		    foreach (var it in states)
-		    {
-			    var nr = it.Key;
-			    var state = it.Value;
-			    var v = state ? 1 : 0;
-			    AddCmd(CommandFactory.Create($"set({ObjectId}, func[{nr}, {v}])"));
-			    Funcset[(int)nr] = state;
-		    }
+            foreach (var it in states)
+            {
+                var nr = it.Key;
+                var state = it.Value;
+                var v = state ? 1 : 0;
+                AddCmd(CommandFactory.Create($"set({ObjectId}, func[{nr}, {v}])"));
+                Funcset[(int)nr] = state;
+            }
 
-			AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
-		}
-		
+            AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
+        }
+
         public void ChangeDirectionSimulation(bool backward)
         {
             _hasChanged = true;
@@ -159,47 +159,63 @@ namespace ecoslib.Entities
         ///   [4] Level4
         /// </summary>
         /// <param name="level"></param>
-        public void ChangeSpeedLevel(string level)
+        /// <param name="availableSpeedlevels"></param>
+        public void ChangeSpeedLevel(string level, Dictionary<string, int> availableSpeedlevels)
         {
             if (string.IsNullOrEmpty(level))
                 level = "level0"; // for security reason we just stop on invalid command
 
             level = level.ToLower();
 
-            // TODO change fixed values
-            var levelValuesPercentage = new Dictionary<string, float>
-                {
+            var newSpeed = -1;
+
+            foreach(var it in availableSpeedlevels)
+            {
+                if (it.Key.IndexOf(level, StringComparison.OrdinalIgnoreCase) != -1)
+                    newSpeed = it.Value;
+            }
+
+            if (newSpeed != -1)
+            {
+                ChangeSpeedstep(newSpeed, true, true);
+            }
+            else
+            { // fallback if level does not exist
+
+                var levelValuesPercentage = new Dictionary<string, float>
+                { // REMARK if default is changed, change the web ui part as well
                     {"level0", 0 },
-                    {"level1", 0.10f },
-                    {"level2", 0.20f },
-                    {"level3", 0.40f },
-                    {"level4", 0.55f }
+                    {"level1", (int)0.10f },
+                    {"level2", (int)0.30f },
+                    {"level3", (int)0.50f },
+                    {"level4", (int)0.6f }
                 };
 
-            var percentage = levelValuesPercentage[level];
-            var speed = GetSpeedByPercentage(percentage);
+                var percentage = levelValuesPercentage[level];
+                var speed = GetSpeedByPercentage(percentage);
 
-            ChangeSpeedstep(speed, true, true);
+                ChangeSpeedstep(speed, true, true);
+            }
         }
 
         public void ChangeSpeedstep(int fahrstufe, bool isFirst = true, bool isLast = true)
         {
-			if(isFirst)
+            if (isFirst)
             {
                 AddCmd(CommandFactory.Create($"request({ObjectId}, control, force)"));
             }
-            
-            AddCmd(CommandFactory.Create($"set({ObjectId}, speedstep[{fahrstufe}])"));
-	        
-            if (isLast)
-	        {
-		        AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
-				AddCmd(CommandFactory.Create($"get({ObjectId}, speed, speedstep)"));
-	        }
 
-	        Speed = fahrstufe;
+            AddCmd(CommandFactory.Create($"set({ObjectId}, speedstep[{fahrstufe}])"));
+
+            if (isLast)
+            {
+                AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
+                AddCmd(CommandFactory.Create($"get({ObjectId}, speed, speedstep)"));
+            }
+
+            Speed = fahrstufe;
         }
-        
+
         public void ChangeSpeedstepSimulation(int fahrstufe)
         {
             _hasChanged = true;
@@ -248,10 +264,10 @@ namespace ecoslib.Entities
 
         public override bool Parse(List<object> arguments)
         {
-			foreach (var a in arguments)
-			{
-				var arg = a as ICommandArgument;
-				if (arg == null) continue;
+            foreach (var a in arguments)
+            {
+                var arg = a as ICommandArgument;
+                if (arg == null) continue;
 
                 if (arg.Name.Equals("name", StringComparison.OrdinalIgnoreCase))
                 {
@@ -403,14 +419,14 @@ namespace ecoslib.Entities
                 else m += "0";
             }
 
-			var arFncDesc = new JArray();
-	        foreach (var desc in Funcdesc)
-	        {
-		        var odesc = new JObject();
-		        odesc["idx"] = desc.Key;
-		        odesc["type"] = desc.Value;
-				arFncDesc.Add(odesc);
-	        }
+            var arFncDesc = new JArray();
+            foreach (var desc in Funcdesc)
+            {
+                var odesc = new JObject();
+                odesc["idx"] = desc.Key;
+                odesc["type"] = desc.Value;
+                arFncDesc.Add(odesc);
+            }
 
             var o = new JObject
             {
@@ -423,7 +439,7 @@ namespace ecoslib.Entities
                 ["speedstepMax"] = GetNumberOfSpeedsteps(),
                 ["direction"] = Direction,
                 ["funcset"] = m,
-				["funcdesc"] = arFncDesc,
+                ["funcdesc"] = arFncDesc,
                 ["nrOfFunctions"] = NrOfFunctions,
                 ["profile"] = Profile
             };
@@ -453,23 +469,23 @@ namespace ecoslib.Entities
                     Funcset[i] = m[i] == '1';
             }
 
-	        if (obj["funcdesc"] != null)
-	        {
-		        var ar = obj["funcdesc"] as JArray;
-				for(var i = 0; i < ar.Count; ++i)
-				{
-					var oar = ar[i] as JObject;
+            if (obj["funcdesc"] != null)
+            {
+                var ar = obj["funcdesc"] as JArray;
+                for (var i = 0; i < ar.Count; ++i)
+                {
+                    var oar = ar[i] as JObject;
                     if (oar?["idx"] != null && oar["type"] != null)
-			        {
-				        var idx = oar["idx"].ToString().ToInt(i);
-				        var type = oar["type"].ToString().ToInt();
-				        if (Funcdesc.ContainsKey(idx))
-					        Funcdesc[idx] = type;
-				        else
-					        Funcdesc.Add(idx, type);
-			        }
-		        }
-	        }
+                    {
+                        var idx = oar["idx"].ToString().ToInt(i);
+                        var type = oar["type"].ToString().ToInt();
+                        if (Funcdesc.ContainsKey(idx))
+                            Funcdesc[idx] = type;
+                        else
+                            Funcdesc.Add(idx, type);
+                    }
+                }
+            }
         }
     }
 }

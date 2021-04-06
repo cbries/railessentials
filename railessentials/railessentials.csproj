@@ -124,6 +124,7 @@
     <Compile Include="LocomotivesDuration\Duration.cs" />
     <Compile Include="Locomotives\LocomotivesData.cs" />
     <Compile Include="Locomotives\SpeedCurve.cs" />
+    <Compile Include="Locomotives\SpeedLevel.cs" />
     <Compile Include="Metadata.cs" />
     <Compile Include="NextRouteInformation.cs" />
     <Compile Include="Occ\OccBlock.cs" />

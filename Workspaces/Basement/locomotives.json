@@ -552,11 +552,24 @@
     },
     "EnterBlockSide": "'-' Side",
     "SpeedCurve": null,
-    "SpeedLevels": {}
+    "SpeedLevels": {
+      "speedLevel1": {
+        "value": 4
+      },
+      "speedLevel2": {
+        "value": 6
+      },
+      "speedLevel3": {
+        "value": 8
+      },
+      "speedLevel4": {
+        "value": 9
+      }
+    }
   },
   "1002": {
     "IsStopped": true,
-    "IsLocked": true,
+    "IsLocked": false,
     "Settings": {
       "OptionDirection": false,
       "OptionMainline": false,
@@ -569,7 +582,7 @@
       "TypeBranchLine": false,
       "TypeBranchLineFreight": false
     },
-    "EnterBlockSide": "",
+    "EnterBlockSide": "'+' Side",
     "SpeedCurve": null,
     "SpeedLevels": {}
   },
@@ -632,7 +645,7 @@
   },
   "1010": {
     "IsStopped": true,
-    "IsLocked": true,
+    "IsLocked": false,
     "Settings": {
       "OptionDirection": false,
       "OptionMainline": false,

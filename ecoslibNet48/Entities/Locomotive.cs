@@ -185,10 +185,10 @@ namespace ecoslib.Entities
                 var levelValuesPercentage = new Dictionary<string, float>
                 { // REMARK if default is changed, change the web ui part as well
                     {"level0", 0 },
-                    {"level1", (int)0.10f },
-                    {"level2", (int)0.30f },
-                    {"level3", (int)0.50f },
-                    {"level4", (int)0.6f }
+                    {"level1", 0.10f },
+                    {"level2", 0.30f },
+                    {"level3", 0.50f },
+                    {"level4", 0.6f }
                 };
 
                 var percentage = levelValuesPercentage[level];

@@ -22,5 +22,17 @@
     "FinalEntered": false,
     "ReachedTime": "2021-04-04T16:02:03.2086925+02:00",
     "SecondsToWait": 10
+  },
+  {
+    "Oid": 1002,
+    "FromBlock": "B01",
+    "NextBlock": "",
+    "FinalBlock": "",
+    "RouteToNext": null,
+    "RouteToFinal": null,
+    "NextEntered": false,
+    "FinalEntered": false,
+    "ReachedTime": "0001-01-01T00:00:00",
+    "SecondsToWait": 0
   }
 ]

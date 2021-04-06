@@ -21,6 +21,7 @@ using RouteList = railessentials.Route.RouteList;
 namespace railessentials.AutoMode
 {
     public delegate void AutoModeStarted(AutoMode sender);
+    public delegate void AutoModeStopping(AutoMode sender);
     public delegate void AutoModeStopped(AutoMode sender);
     public delegate void AutoModeFailed(AutoMode sender, string reason);
     public delegate void AutoModeFauled(AutoMode sender, Exception ex);
@@ -32,6 +33,7 @@ namespace railessentials.AutoMode
         private const int RunDelayBetweenChecksMsecs = 2500;
 
         public event AutoModeStarted Started;
+        public event AutoModeStopping Stopping;
         public event AutoModeStopped Stopped;
         public event AutoModeUpdate Update;
 
@@ -65,33 +67,22 @@ namespace railessentials.AutoMode
             return _isStarted && !_isStopped;
         }
 
+        public bool IsStopping()
+        {
+            return _isStopping && !_isStopped;
+        }
+
+        public bool IsStopped()
+        {
+            return _isStopped;
+        }
+
         public void Stop()
         {
             _isStarted = false;
             _isStopping = true;
 
-            const int maxCheckSteps = 10;
-            const int checkStep = (2 * RunDelayBetweenChecksMsecs) / maxCheckSteps;
-            for (var i = 0; i < maxCheckSteps; i += checkStep)
-            {
-                if (_isStopped)
-                    break;
-
-                System.Threading.Thread.Sleep(checkStep);
-            }
-
-            var locOids = new List<int>();
-            foreach (var itOcc in _metadata?.Occ.Blocks ?? new List<OccBlock>())
-            {
-                if (itOcc == null) continue;
-                locOids.Add(itOcc.Oid);
-            }
-
-            locOids.ForEach(ResetRouteFor);
-            CleanOcc();
-
-            Update?.Invoke(this, "AutoMode STOP");
-            Stopped?.Invoke(this);
+            Update?.Invoke(this, "AutoMode STOPPING");
         }
 
         public void StartLocomotive(int oid)
@@ -137,16 +128,16 @@ namespace railessentials.AutoMode
 
         public async Task Run()
         {
-            Started?.Invoke(this);
-            Update?.Invoke(this, "AutoMode START");
-
             Initialize();
 
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 _isStarted = true;
                 _isStopped = false;
                 _isStopping = false;
+
+                Started?.Invoke(this);
+                Update?.Invoke(this, "AutoMode START");
 
                 while (_isStopped == false)
                 {
@@ -166,9 +157,7 @@ namespace railessentials.AutoMode
 
                         try
                         {
-                            Task.Run(async () => await instance.Run());
-                            //var task = instance.Run();
-                            //task.Start();
+                            _ = Task.Run(async () => await instance.Run());
                         }
                         catch
                         {
@@ -183,28 +172,114 @@ namespace railessentials.AutoMode
                 // stop all tasks, cleanup tasks and event handler
                 if (_isStopping)
                 {
-                    lock (_autoModeTasksLock)
-                    {
-                        foreach (var it in _autoModeTasks)
-                        {
-                            try
-                            {
-                                if (it == null) continue;
-                                it.Finished -= Instance_Finished;
-                                it.Cancel();
-                            }
-                            catch
-                            {
-                                // ignore
-                            }
-                        }
+                    //
+                    // Because of issue #75 we do not cancel running tasks.
+                    // If tasks are canceled during run, the locomotive will 
+                    // not stop automatically in their destination.
+                    // For imporving this, we will wait at this point
+                    // of execution until all tasks are finished.
+                    // REMARK: https://github.com/cbries/railessentials/issues/75
+                    //
 
-                        _autoModeTasks.Clear();
-                    }
+                    Stopping?.Invoke(this);
+
+                    await WaitForTasks();
                 }
 
                 _isStopped = true;
+
+                Stopped?.Invoke(this);
             });
+        }
+
+        private async Task WaitForTasks()
+        {
+            await Task.Run(() =>
+            {
+                lock (_autoModeTasksLock)
+                {
+                    var iMax = 0;
+                    foreach (var it in _autoModeTasks)
+                    {
+                        if (it == null) continue;
+                        ++iMax;
+                    }
+
+                    var listOfFinishedTasks = new List<int>();
+                    var previousMessage = string.Empty;
+
+                    //
+                    // TODO add walltime to avoid endless waiting
+                    //
+                    while (true)
+                    {
+                        var noOfWaitingTasks = iMax - listOfFinishedTasks.Count;
+                        var allTasksStopped = iMax == 0;
+                        
+                        for (var j = 0; j < iMax; ++j)
+                        {
+                            var task = _autoModeTasks[j];
+                            if (task == null) continue;
+                            if (task.IsFinished)
+                            {
+                                task.Finished -= Instance_Finished;
+                                if (!listOfFinishedTasks.Contains(j))
+                                    listOfFinishedTasks.Add(j);
+                            }
+                            else
+                            {
+                                // ignore
+                            }
+
+                            var m = $"Waiting for {noOfWaitingTasks} locomotives...";
+                            if(!m.Equals(previousMessage, StringComparison.OrdinalIgnoreCase))
+                            {
+                                _ctx?.Logger?.Log.Info(m);
+                                SendAutoModeStateToClients(m);
+                                previousMessage = m;
+                            }
+
+                            allTasksStopped = noOfWaitingTasks == 0;
+                            if (allTasksStopped) break;
+
+                            System.Threading.Thread.Sleep(10);
+                        }
+
+                        if (allTasksStopped) break;
+
+                        System.Threading.Thread.Sleep(100);
+                    }
+
+                    _autoModeTasks.Clear();
+                }
+
+                CleanOccAfterStop();
+
+                _isStopping = false;
+            });
+        }
+
+        private void CleanOccAfterStop()
+        {
+            //
+            // check periodically if the tasks are really stopped
+            //
+            const int maxCheckSteps = 10;
+            const int checkStep = (2 * RunDelayBetweenChecksMsecs) / maxCheckSteps;
+            for (var i = 0; i < maxCheckSteps; i += checkStep)
+            {
+                if (_isStopped) break;
+                System.Threading.Thread.Sleep(checkStep);
+            }
+
+            var locOids = new List<int>();
+            foreach (var itOcc in _metadata?.Occ.Blocks ?? new List<OccBlock>())
+            {
+                if (itOcc == null) continue;
+                locOids.Add(itOcc.Oid);
+            }
+            locOids.ForEach(ResetRouteFor);
+            CleanOcc();
         }
 
         private void Instance_Finished(AutoModeTaskCore sender)
@@ -258,6 +333,24 @@ namespace railessentials.AutoMode
             }
         }
 
+        public void SendAutoModeStateToClients(string additionalMessage = null)
+        {
+            _ctx?.SendCommandToClients(new JObject
+            {
+                ["command"] = "autoMode",
+                ["data"] = new JObject
+                {
+                    ["command"] = "state",
+                    ["state"] = new JObject {
+                        ["started"] = IsStarted(),
+                        ["stopping"] = IsStopping(),
+                        ["stopped"] = IsStopped(),
+                        ["message"] = additionalMessage ?? string.Empty
+                    }
+                }
+            });
+        }
+
         public void SendRouteToClients()
         {
             var routeNames = new JArray();
@@ -277,15 +370,7 @@ namespace railessentials.AutoMode
                 }
             }
 
-            _ctx?.SendCommandToClients(new JObject
-            {
-                ["command"] = "autoMode",
-                ["data"] = new JObject
-                {
-                    ["command"] = "state",
-                    ["state"] = IsStarted()
-                }
-            });
+            SendAutoModeStateToClients();
 
             if (routeNames.Count > 0)
             {
@@ -333,7 +418,7 @@ namespace railessentials.AutoMode
 
                     var fromBlock = nextRoute.Blocks[0];
                     var targetBlock = nextRoute.Blocks[1];
-                
+
                     LogInfo($"Route: {nextRoute.Name} ({fromBlock.identifier} going to {targetBlock.identifier})");
 
                     itOccBlock.FinalBlock = targetBlock.identifier;
@@ -718,12 +803,12 @@ namespace railessentials.AutoMode
                 var targetBlock = it.Blocks[1];
                 var targetBlockIdentifier = targetBlock.identifier;
                 if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
-                
+
                 var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
                 if (targetFbData == null) continue;
 
                 var lockedBy = targetFbData.LockedByBlock;
-                if(string.IsNullOrEmpty(lockedBy))
+                if (string.IsNullOrEmpty(lockedBy))
                 {
                     routesFrom.Add(it);
                 }
@@ -732,7 +817,7 @@ namespace railessentials.AutoMode
                     var fromBlock = it.Blocks[0];
                     var fromBlockIdentifier = fromBlock.identifier;
 
-                    if(lockedBy.StartsWith(fromBlockIdentifier, StringComparison.OrdinalIgnoreCase))
+                    if (lockedBy.StartsWith(fromBlockIdentifier, StringComparison.OrdinalIgnoreCase))
                         routesFrom.Add(it);
                 }
             }

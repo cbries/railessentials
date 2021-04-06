@@ -26,6 +26,9 @@ namespace railessentials.AutoMode
             Ctx?.ResetRouteFor(Route.LocomotiveObjectId);
 
             SendDebugMessage($"{Route.Route.Name} has been canceled");
+
+            IsFinished = true;
+
             return true;
         }
 
@@ -383,8 +386,10 @@ namespace railessentials.AutoMode
                 //
                 SendDebugMessage($"Finished: {Route.Route.Name}");
 
-                TriggerFinished();
+                IsFinished = true;
 
+                TriggerFinished();
+                
             }, CancelSource.Token);
         }
 

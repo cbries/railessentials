@@ -686,7 +686,33 @@ $(document).ready(function () {
 
             switch (subCmd) {
                 case "state": {
-                    let isStarted = jsonCommand.data.state;
+
+                    let state = jsonCommand.data.state;
+                    if (typeof state === "undefined" || state == null) break;
+
+                    let isStopping = jsonCommand.data.state.stopping;
+                    if (typeof isStopping === "undefined" || isStopping == null)
+                        isStopping = false;
+                    if (isStopping === true) {
+
+                        // TODO restore state of AutoMode stopping
+                        // is relevant when AutoMode has been recently stopped
+                        // and user have reloaded the web ui
+
+                        if (state.message.length === 0)
+                            state.message = "AutoMode is stopping...";
+
+                        $('.overlayAutoMode').show();
+                        $('.overlayAutoModeText').html(state.message);
+                        $('.overlayAutoModeText').show();
+
+                        break;
+                    }
+
+                    $('.overlayAutoMode').hide();
+                    $('.overlayAutoModeText').hide();
+
+                    let isStarted = jsonCommand.data.state.started;
                     if (typeof isStarted === "undefined" || isStarted == null)
                         isStarted = false;
 

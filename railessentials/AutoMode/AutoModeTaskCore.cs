@@ -22,6 +22,8 @@ namespace railessentials.AutoMode
 
         public string RouteName => Route.Route.Name;
 
+        public bool IsFinished { get; set; } = false;
+
         public virtual async Task Run()
         {
             await Task.Run(() =>

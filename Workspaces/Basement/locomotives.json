@@ -532,7 +532,8 @@
           "timeStep": 34.636364
         }
       ]
-    }
+    },
+    "SpeedLevels": {}
   },
   "1009": {
     "IsStopped": false,
@@ -550,7 +551,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "'-' Side",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1002": {
     "IsStopped": true,
@@ -568,7 +570,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1003": {
     "IsStopped": true,
@@ -586,7 +589,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1005": {
     "IsStopped": true,
@@ -604,7 +608,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1012": {
     "IsStopped": true,
@@ -622,7 +627,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1010": {
     "IsStopped": true,
@@ -640,7 +646,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "'-' Side",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1013": {
     "IsStopped": true,
@@ -658,7 +665,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1006": {
     "IsStopped": true,
@@ -676,7 +684,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1008": {
     "IsStopped": true,
@@ -694,7 +703,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1001": {
     "IsStopped": true,
@@ -712,7 +722,8 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   },
   "1014": {
     "IsStopped": true,
@@ -730,6 +741,7 @@
       "TypeBranchLineFreight": false
     },
     "EnterBlockSide": "",
-    "SpeedCurve": null
+    "SpeedCurve": null,
+    "SpeedLevels": {}
   }
 }

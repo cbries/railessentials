@@ -58,17 +58,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -207,17 +209,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -256,17 +260,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -280,17 +286,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -304,17 +312,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -353,17 +363,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -570,17 +582,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -619,17 +633,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": false,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -817,18 +833,20 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": false,
-      "undefined": false,
+      "BlockEnabled": true,
+      "OptionWait": true,
       "OptionDirection": true,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -842,17 +860,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": true,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -865,18 +885,20 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": false,
-      "undefined": false,
+      "BlockEnabled": true,
+      "OptionWait": true,
       "OptionDirection": true,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -890,17 +912,19 @@
     "DeniedLocomotives": [],
     "Settings": {
       "BlockEnabled": true,
-      "undefined": false,
+      "OptionWait": true,
       "OptionDirection": true,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""
@@ -963,18 +987,20 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": false,
-      "undefined": false,
+      "BlockEnabled": true,
+      "OptionWait": true,
       "OptionDirection": false,
+      "OptionMainline": true,
       "OptionBbt": false,
       "TypeOthers": true,
       "TypeLocal": true,
       "TypeIntercity": false,
       "TypeFreight": true,
       "TypeShunting": true,
-      "TypeRegional": true,
       "TypeBranchLine": true,
-      "TypeBranchLineFreight": false
+      "TypeBranchLineFreight": false,
+      "undefined": false,
+      "TypeRegional": true
     },
     "AdditionalBlockLocks": [],
     "LockedByBlock": ""

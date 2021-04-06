@@ -6911,7 +6911,8 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 3
-      }
+      },
+      "isMaintenance": true
     },
     "2x7": {
       "identifier": "s06",
@@ -7274,7 +7275,8 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 1
-      }
+      },
+      "isMaintenance": true
     },
     "15x1": {
       "identifier": "s16",
@@ -8844,11 +8846,11 @@
       "addresses": {
         "Addr": 0,
         "Addr1": 7,
-        "Port1": 2,
-        "Inverse1": true,
+        "Port1": 3,
+        "Inverse1": false,
         "Addr2": 7,
-        "Port2": 3,
-        "Inverse2": false
+        "Port2": 2,
+        "Inverse2": true
       },
       "editor": {
         "themeId": 58,
@@ -9702,7 +9704,8 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
-      }
+      },
+      "isMaintenance": true
     },
     "29x8": {
       "identifier": "s27",
@@ -9823,7 +9826,8 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 2
-      }
+      },
+      "isMaintenance": true
     },
     "22x6": {
       "identifier": "Entkuppler1",

@@ -20,6 +20,11 @@ namespace railessentials
         public const string ApplicationName = "RailEssentials";
         public const string ApplicationDescription = "RailEssentials is a software for controlling your Model Trains especially when ESU's ECoS 50210/50200 is used.";
 
+        public const int DccKickStartM14 = 3;
+        public const int DccKickStartM28 = 3;
+        public const int DccKickStartM128 = 5;
+        public const int DccKickStartDelayMsecs = 100;
+
         public static Dictionary<string, string> GetCfgDataPath()
         {
             var dict = new Dictionary<string, string>

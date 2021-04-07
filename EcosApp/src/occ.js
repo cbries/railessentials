@@ -177,6 +177,28 @@ class Occ {
                     oid: locData.objectId
                 });
         });
+        locomotiveInfoFinal.on("contextmenu", function (event) {
+            event.preventDefault();
+
+            new Contextual({
+                isSticky: false,
+                items: [
+                    {
+                        cssIcon: 'fas fa-broom',
+                        enabled: true,
+                        label: 'Remove Assignment', onClick: () => {
+                            console.log("OID: " + locData.objectId);
+                            self.__trigger("resetAssignment",
+                                {
+                                    mode: 'resetAssignment',
+                                    submode: 'final',
+                                    oid: locData.objectId
+                                });
+                        }
+                    }
+                ]
+            });
+        });
 
         //
         // add wait countdown to fromInfo
@@ -692,9 +714,13 @@ class Occ {
 
         const offsetY = parseInt(h - locInfoHeight) / 2;
 
+        let ypos = (top - offsetY);
+        if (ypos < 0) ypos = 5;
+
         locController.css({
-            top: (top - offsetY) + "px",
-            left: (left - w - 4) + "px"
+            "z-index": 150,
+            top: ypos + "px",
+            left: (left - w - 2) + "px"
         });
 
         locController.mousemove(function () {
@@ -705,7 +731,7 @@ class Occ {
         locController.mouseleave(function () {
             setTimeout(function () {
                 locController.hide();
-            }, 100);
+            }, 125);
         });
     }
 

@@ -201,7 +201,7 @@ namespace railessentials.AutoMode
             var maxSpeed = Route.Locomotive.GetNumberOfSpeedsteps();
             var speedCurve = Route.LocomotivesData?.SpeedCurve;
 
-            var targetSpeed = (int)(maxSpeed / 3.0));
+            var targetSpeed = (int)(maxSpeed / 2.0);
             if (speedCurve != null)
                 targetSpeed = speedCurve.MaxSpeed;
             else

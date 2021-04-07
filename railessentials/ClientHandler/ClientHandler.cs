@@ -546,9 +546,7 @@ namespace railessentials.ClientHandler
 
                 _metadata.Save(Metadata.SaveModelType.OccData);
             }
-
-            ResetBlockEnterSideOf(oid);
-
+            
             SendModelToClients(ModelType.UpdateLocomotivesData);
             SendModelToClients(ModelType.UpdateOcc);
         }

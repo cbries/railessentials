@@ -177,6 +177,28 @@ class Occ {
                     oid: locData.objectId
                 });
         });
+        locomotiveInfoFinal.on("contextmenu", function (event) {
+            event.preventDefault();
+
+            new Contextual({
+                isSticky: false,
+                items: [
+                    {
+                        cssIcon: 'fas fa-broom',
+                        enabled: true,
+                        label: 'Remove Assignment', onClick: () => {
+                            console.log("OID: " + locData.objectId);
+                            self.__trigger("resetAssignment",
+                                {
+                                    mode: 'resetAssignment',
+                                    submode: 'final',
+                                    oid: locData.objectId
+                                });
+                        }
+                    }
+                ]
+            });
+        });
 
         //
         // add wait countdown to fromInfo

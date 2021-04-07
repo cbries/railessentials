@@ -49,7 +49,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 As default the workspace `Basement` is loaded and provided and can be used directly in simulation mode.
 
-![Locomotives]
+![Locomotives2]
 
 <br>
 
@@ -212,6 +212,7 @@ The book introduces the basics of managing commands for remote control of your m
 ![WorkspaceSelection]
 
 [Locomotives]: Screenshots/Impressions/RailEssentials-Locomotives.png "Locomotives View and Handling"
+[Locomotives2]: Screenshots/Impressions/RailEssentials-Locomotives02.png "Locomotives View and Handling"
 [LocomotivesControl]: Screenshots/Impressions/RailEssentials-LocomotivesControl.png "Locomotives Control directly in the Plan"
 [LocomotivesView]: Screenshots/Impressions/RailEssentials-LocomotivesView.png "Locomotives View"
 [LocomotivesSpeedCurve]: Screenshots/Impressions/RailEssentials-SpeedCurve.png "Locomotives SpeedCurve"

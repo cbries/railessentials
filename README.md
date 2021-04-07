@@ -152,8 +152,9 @@ The book introduces the basics of managing commands for remote control of your m
  - *Locomotive* speed curve editor (i.e. individual acceleration/deceleration)
  - *Locomotive* image visualization [Wiki](https://github.com/cbries/railessentials/wiki/Adding-Locomotive-Images-Photos)
  - *Drag&Drop of Locomotives* to Blocks for assignment
- - *Locomotive Options* for AutoMode (e.g. change of direction, different kind of trains, etc.)
+ - *Locomotive Options* for `AutoMode` (e.g. change of direction, different kind of trains, etc.)
  - *SpeedLevel* support like in [RocRail](https://wiki.rocrail.net/doku.php?id=loc-speed-en) (e.g. `v_min` is `Level 1`, `v_mid` is `Level 2`, `v_cruise` is `Level 3`, and `v_max` is `Level 4`) [Issue #80](https://github.com/cbries/railessentials/issues/80)
+ - *Kick Start* to provide an additional nudge to start the motor during `AutoMode` [Issue #90](https://github.com/cbries/railessentials/issues/90)
  
 ## AutoMode
 

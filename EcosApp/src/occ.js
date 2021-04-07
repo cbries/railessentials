@@ -692,9 +692,13 @@ class Occ {
 
         const offsetY = parseInt(h - locInfoHeight) / 2;
 
+        let ypos = (top - offsetY);
+        if (ypos < 0) ypos = 5;
+
         locController.css({
-            top: (top - offsetY) + "px",
-            left: (left - w - 4) + "px"
+            "z-index": 150,
+            top: ypos + "px",
+            left: (left - w - 2) + "px"
         });
 
         locController.mousemove(function () {
@@ -705,7 +709,7 @@ class Occ {
         locController.mouseleave(function () {
             setTimeout(function () {
                 locController.hide();
-            }, 100);
+            }, 125);
         });
     }
 

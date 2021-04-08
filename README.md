@@ -30,9 +30,15 @@ and [Vivaldi](https://vivaldi.com/).
 - [Visual Impressions](#visual-impressions)
 - [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Topics---Table-of-Content)
 
+<br>
+
 # Tutorial: Welcome / First Steps
 
-For making your first steps easier with `RailEssentials`, a welcome tutorial has been provided. It is part of the [Wiki Page](https://github.com/cbries/railessentials/wiki/Tutorial-Welcome)
+For making your first steps easier with `RailEssentials`, a welcome tutorial has been provided. 
+
+It is part of the [Wiki Page](https://github.com/cbries/railessentials/wiki/Tutorial-Welcome)
+
+<br>
 
 # Daily/Nightly Builds
 

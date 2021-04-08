@@ -51,6 +51,7 @@ namespace railessentials.AutoMode
                 {
                     var newSpeed = speedCurve.Steps[i].Speed;
                     Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, (int)newSpeed);
+                    __showSpeed((int)newSpeed);
                     if (newSpeed >= targetSpeed)
                         break;
 
@@ -90,9 +91,9 @@ namespace railessentials.AutoMode
             int currentSpeed,
             int targetSpeed,
             Locomotive ecosLoc,
+            int maxSeconds = 10,
             Func<bool> hasToBeCanceled = null)
         {
-            const int maxSeconds = 10;
             var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
             var msecsDelay = maxSpeedSteps < 30 ? 1000 : 250;
 
@@ -107,7 +108,10 @@ namespace railessentials.AutoMode
                 
                 for (var i = currentSpeed; i <= targetSpeed; ++i)
                 {
+                    __showSpeed(i);
+
                     Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, i);
+
                     newCurrentSpeed = i;
 
                     if (IsCanceled())
@@ -176,10 +180,13 @@ namespace railessentials.AutoMode
 
             if (currentSpeed > kickStartSpeed)
                 return currentSpeed;
-          
+
+            __showSpeed(kickStartSpeed);
             Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, kickStartSpeed);
             System.Threading.Thread.Sleep(Globals.DccKickStartDelayMsecs);
-            if (previousSpeed < 1) return kickStartSpeed;
+            if (previousSpeed < 1)
+                previousSpeed = 2;
+            __showSpeed(previousSpeed);
             Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, previousSpeed);
             return previousSpeed;
         }

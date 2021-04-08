@@ -12,6 +12,13 @@ namespace railessentials.AutoMode
 {
     public partial class AutoModeTaskBase
     {
+        private static int GetMinSpeed(int noOfSpeedsteps)
+        {
+            var minSpeed = noOfSpeedsteps <= (int)Locomotive.ProtocolSteps.DCC28 ? 2 : 10;
+            if (noOfSpeedsteps <= (int)Locomotive.ProtocolSteps.DCC14) minSpeed = 3;
+            return minSpeed;
+        }
+
         private async Task DecelerateLocomotiveCurve(
             Locomotive ecosLoc,
             SpeedCurve speedCurve,
@@ -24,7 +31,8 @@ namespace railessentials.AutoMode
 
             var currentSpeed = (float)ecosLoc.Speedstep;
             var maxSpeed = speedCurve.MaxSpeed;
-            var minSpeed = ecosLoc.GetNumberOfSpeedsteps() <= 28 ? 2 : 10;
+            var noOfSpeedsteps = ecosLoc.GetNumberOfSpeedsteps();
+            var minSpeed = GetMinSpeed(noOfSpeedsteps);
             var timeSteps = (speedCurve.MaxTime / (float)maxSpeed) * 1000.0;
 
             await Task.Run(() =>
@@ -93,7 +101,8 @@ namespace railessentials.AutoMode
         {
             var currentSpeed = (float)ecosLoc.Speedstep;
             var deltaSpeedSteps = currentSpeed / maxSecsToStop;
-            var minSpeed = ecosLoc.GetNumberOfSpeedsteps() <= 28 ? 2 : 10;
+            var noOfSpeedsteps = ecosLoc.GetNumberOfSpeedsteps();
+            var minSpeed = GetMinSpeed(noOfSpeedsteps);
             
             await Task.Run(() =>
             {

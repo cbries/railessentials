@@ -23,7 +23,7 @@ namespace railessentials
         public const int DccKickStartM14 = 3;
         public const int DccKickStartM28 = 3;
         public const int DccKickStartM128 = 5;
-        public const int DccKickStartDelayMsecs = 100;
+        public const int DccKickStartDelayMsecs = 125;
 
         public static Dictionary<string, string> GetCfgDataPath()
         {

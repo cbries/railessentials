@@ -20,6 +20,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 
 # Table of Contents
+- [Tutorial: Welcome / First Steps](#tutorial-welcome-first-steps)
 - [Daily/Nightly Builds](#dailynightly-builds)
 - [Releases](#releases) 
 - [Who is Using It?](#who-is-using-it)
@@ -29,7 +30,9 @@ and [Vivaldi](https://vivaldi.com/).
 - [Visual Impressions](#visual-impressions)
 - [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Topics---Table-of-Content)
 
-<br>
+# Tutorial: Welcome / First Steps
+
+For making your first steps easier with `RailEssentials`, a welcome tutorial has been provided. It is part of the [Wiki Page](https://github.com/cbries/railessentials/wiki/Tutorial-Welcome)
 
 # Daily/Nightly Builds
 

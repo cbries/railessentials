@@ -20,7 +20,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 
 # Table of Contents
-- [Tutorial: Welcome / First Steps](#tutorial-welcome-first-steps)
+- [Tutorial: Welcome / First Steps](#tutorial-welcome--first-steps)
 - [Daily/Nightly Builds](#dailynightly-builds)
 - [Releases](#releases) 
 - [Who is Using It?](#who-is-using-it)

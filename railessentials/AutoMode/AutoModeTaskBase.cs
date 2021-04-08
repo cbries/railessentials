@@ -17,6 +17,7 @@ namespace railessentials.AutoMode
     public partial class AutoModeTaskBase : AutoModeTaskCore
     {
         private const int TimeBetweenFbTestMsecs = 500;
+        private const string MaxSpeedLevelAutoMode = "speedLevel3";
 
         private bool IsCanceled()
         {
@@ -207,7 +208,7 @@ namespace railessentials.AutoMode
             else
             {
                 if(Route.LocomotivesData != null)
-                    targetSpeed = Route.LocomotivesData.GetLevel("level").Value;
+                    targetSpeed = Route.LocomotivesData.GetLevel(MaxSpeedLevelAutoMode).Value;
             }
 
             #endregion

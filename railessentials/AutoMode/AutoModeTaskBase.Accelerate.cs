@@ -22,7 +22,7 @@ namespace railessentials.AutoMode
             if (ecosLoc == null) return;
             if (speedCurve == null) return;
 
-            KickStart(currentSpeed, ecosLoc);
+            currentSpeed = KickStart(currentSpeed, ecosLoc);
 
             if (maxSeconds <= -1)
                 maxSeconds = speedCurve.MaxTime;
@@ -98,7 +98,7 @@ namespace railessentials.AutoMode
 
             await Task.Run(() =>
             {
-                KickStart(currentSpeed, ecosLoc);
+                currentSpeed = KickStart(currentSpeed, ecosLoc);
 
                 var hasCanceled = false;
                 var newCurrentSpeed = currentSpeed;
@@ -161,13 +161,12 @@ namespace railessentials.AutoMode
             return false;
         }
 
-        private void KickStart(int currentSpeed, Locomotive ecosLoc)
+        private int KickStart(int currentSpeed, Locomotive ecosLoc)
         {
             var maxSpeedSteps = ecosLoc.GetNumberOfSpeedsteps();
-            if (currentSpeed > 2) return;
             var previousSpeed = currentSpeed;
-            var kickStartSpeed = previousSpeed;
 
+            var kickStartSpeed = 0;
             if (maxSpeedSteps <= 14)
                 kickStartSpeed = Globals.DccKickStartM14;
             else if (maxSpeedSteps <= 28)
@@ -175,9 +174,14 @@ namespace railessentials.AutoMode
             else if (maxSpeedSteps <= 128)
                 kickStartSpeed = Globals.DccKickStartM128;
 
+            if (currentSpeed > kickStartSpeed)
+                return currentSpeed;
+          
             Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, kickStartSpeed);
             System.Threading.Thread.Sleep(Globals.DccKickStartDelayMsecs);
+            if (previousSpeed < 1) return kickStartSpeed;
             Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, previousSpeed);
+            return previousSpeed;
         }
     }
 }

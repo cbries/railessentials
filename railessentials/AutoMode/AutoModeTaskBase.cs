@@ -19,6 +19,13 @@ namespace railessentials.AutoMode
         private const int TimeBetweenFbTestMsecs = 500;
         private const string MaxSpeedLevelAutoMode = "speedLevel3";
 
+        private void __showSpeed(int value)
+        {
+#if DEBUG
+            Ctx?.LogInfo($"Speed: {value}");
+#endif
+        }
+
         private bool IsCanceled()
         {
             if (!CancelSource.IsCancellationRequested) return false;
@@ -202,13 +209,16 @@ namespace railessentials.AutoMode
             var maxSpeed = Route.Locomotive.GetNumberOfSpeedsteps();
             var speedCurve = Route.LocomotivesData?.SpeedCurve;
 
-            var targetSpeed = (int)(maxSpeed / 2.0);
+            var targetSpeed = Locomotive.GetFallbackSpeed(maxSpeed);
             if (speedCurve != null)
                 targetSpeed = speedCurve.MaxSpeed;
             else
             {
                 if(Route.LocomotivesData != null)
                     targetSpeed = Route.LocomotivesData.GetLevel(MaxSpeedLevelAutoMode).Value;
+
+                if(targetSpeed == 0)
+                    targetSpeed = Locomotive.GetFallbackSpeed(maxSpeed);
             }
 
             #endregion
@@ -233,6 +243,7 @@ namespace railessentials.AutoMode
                 //
                 // NOTE start train, if the fbEnter is reached before the train got its full speed, cancel the speed-up
                 //
+                const int maxSecondsForAcceleration = 10;
                 var fbEnterAlreadyReached = false;
                 if (speedCurve != null)
                 {
@@ -247,7 +258,7 @@ namespace railessentials.AutoMode
                 }
                 else
                 {
-                    await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, () =>
+                    await AccelerateLocomotive(currentSpeed, targetSpeed, Route.Locomotive, maxSecondsForAcceleration, () =>
                     {
                         fbEnterAlreadyReached = IsFbReached("FbEnter", Route.FbEnter, dpS88, out var hasError);
                         // TODO handle hasError (e.g. cancel route)
@@ -281,23 +292,22 @@ namespace railessentials.AutoMode
                 //
                 // NOTE decelerate the train
                 //
+                var durationSeconds = 10.0;
+                if (Ctx?._metadataLock != null)
+                {
+                    lock (Ctx._metadataLock)
+                    {
+                        durationSeconds = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationSeconds(
+                            Route.LocomotiveObjectId,
+                            Route.TargetBlock.identifier);
+                    }
+                }
+
                 var fbInAlreadyReached = false;
                 if (speedCurve != null)
                 {
                     SendDebugMessage($"Using speed curve to decelerate {Route.Locomotive.Caption}.");
-
-                    var durationSeconds = 10.0;
-
-                    if (Ctx?._metadataLock != null)
-                    {
-                        lock (Ctx._metadataLock)
-                        {
-                            durationSeconds = Ctx._metadata.LocomotivesDurationData.GetAverageDecelerationSeconds(
-                                Route.LocomotiveObjectId,
-                                Route.TargetBlock.identifier);
-                        }
-                    }
-
+                    
                     await DecelerateLocomotiveCurve(Route.Locomotive, speedCurve, maxSeconds: (int)durationSeconds, hasToBeCanceled: () =>
                     {
                         fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
@@ -307,7 +317,9 @@ namespace railessentials.AutoMode
                 }
                 else
                 {
-                    await DecelerateLocomotive(Route.Locomotive, hasToBeCanceled: () =>
+                    SendDebugMessage($"Using linear deceleration for {Route.Locomotive.Caption}.");
+
+                    await DecelerateLocomotive(Route.Locomotive, maxSecsToStop: (int)durationSeconds, hasToBeCanceled: () =>
                     {
                         fbInAlreadyReached = IsFbReached("FbIn", Route.FbIn, dpS88, out var hasError);
                         // TODO handle hasError (e.g. cancel route)

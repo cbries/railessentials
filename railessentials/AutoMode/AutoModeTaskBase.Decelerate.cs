@@ -72,6 +72,8 @@ namespace railessentials.AutoMode
 
                     Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, (int)nextSpeed.Speed);
 
+                    __showSpeed((int)nextSpeed.Speed);
+
                     if (IsCanceled())
                     {
                         Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, 0);
@@ -100,7 +102,7 @@ namespace railessentials.AutoMode
             Func<bool> hasToBeCanceled = null)
         {
             var currentSpeed = (float)ecosLoc.Speedstep;
-            var deltaSpeedSteps = currentSpeed / maxSecsToStop;
+            var deltaSpeedSteps = maxSecsToStop / currentSpeed; //currentSpeed / maxSecsToStop;
             var noOfSpeedsteps = ecosLoc.GetNumberOfSpeedsteps();
             var minSpeed = GetMinSpeed(noOfSpeedsteps);
             
@@ -122,6 +124,8 @@ namespace railessentials.AutoMode
                     //
                     if (sw.ElapsedMilliseconds / 1000 > maxSecsToStop)
                         return;
+
+                    __showSpeed((int)i);
 
                     Ctx.GetClientHandler()?.LocomotiveChangeSpeedstep(ecosLoc, (int)i);
 
@@ -168,6 +172,7 @@ namespace railessentials.AutoMode
                 //
                 // walltime reached
                 //
+                //Ctx?.LogInfo($"--> {sw.ElapsedMilliseconds} / 1000 > {maxSeconds}  ==  {sw.ElapsedMilliseconds / 1000} > {maxSeconds}");
                 if (sw.ElapsedMilliseconds / 1000 > maxSeconds)
                     return true;
 

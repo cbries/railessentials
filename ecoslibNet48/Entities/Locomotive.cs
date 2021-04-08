@@ -150,6 +150,20 @@ namespace ecoslib.Entities
             AddCmd(CommandFactory.Create($"release({ObjectId}, control)"));
         }
 
+        private static Dictionary<string, float> _levelValuesPercentage = new() { 
+            // REMARK if default is changed, change the web ui part as well
+            {"level0", 0 },
+            {"level1", 0.10f },
+            {"level2", 0.30f },
+            {"level3", 0.50f },
+            {"level4", 0.6f }
+        };
+
+        public static int GetFallbackSpeed(int maxSpeedSteps)
+        {
+            return (int)(maxSpeedSteps * _levelValuesPercentage["level3"]);
+        }
+
         /// <summary>
         /// Supported levels are:
         ///   [0] Level0
@@ -181,17 +195,8 @@ namespace ecoslib.Entities
             }
             else
             { // fallback if level does not exist
-
-                var levelValuesPercentage = new Dictionary<string, float>
-                { // REMARK if default is changed, change the web ui part as well
-                    {"level0", 0 },
-                    {"level1", 0.10f },
-                    {"level2", 0.30f },
-                    {"level3", 0.50f },
-                    {"level4", 0.6f }
-                };
-
-                var percentage = levelValuesPercentage[level];
+                
+                var percentage = _levelValuesPercentage[level];
                 var speed = GetSpeedByPercentage(percentage);
 
                 ChangeSpeedstep(speed, true, true);

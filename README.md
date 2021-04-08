@@ -20,6 +20,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 
 # Table of Contents
+- [Tutorial: Welcome / First Steps](#tutorial-welcome--first-steps)
 - [Daily/Nightly Builds](#dailynightly-builds)
 - [Releases](#releases) 
 - [Who is Using It?](#who-is-using-it)
@@ -28,6 +29,14 @@ and [Vivaldi](https://vivaldi.com/).
 - [Features](#features)
 - [Visual Impressions](#visual-impressions)
 - [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Topics---Table-of-Content)
+
+<br>
+
+# Tutorial: Welcome / First Steps
+
+For making your first steps easier with `RailEssentials`, a welcome tutorial has been provided. 
+
+It is part of the [Wiki Page](https://github.com/cbries/railessentials/wiki/Tutorial-Welcome)
 
 <br>
 
@@ -49,7 +58,7 @@ and [Vivaldi](https://vivaldi.com/).
 
 As default the workspace `Basement` is loaded and provided and can be used directly in simulation mode.
 
-![Locomotives]
+![Locomotives2]
 
 <br>
 
@@ -212,6 +221,7 @@ The book introduces the basics of managing commands for remote control of your m
 ![WorkspaceSelection]
 
 [Locomotives]: Screenshots/Impressions/RailEssentials-Locomotives.png "Locomotives View and Handling"
+[Locomotives2]: Screenshots/Impressions/RailEssentials-Locomotives02.png "Locomotives View and Handling"
 [LocomotivesControl]: Screenshots/Impressions/RailEssentials-LocomotivesControl.png "Locomotives Control directly in the Plan"
 [LocomotivesView]: Screenshots/Impressions/RailEssentials-LocomotivesView.png "Locomotives View"
 [LocomotivesSpeedCurve]: Screenshots/Impressions/RailEssentials-SpeedCurve.png "Locomotives SpeedCurve"

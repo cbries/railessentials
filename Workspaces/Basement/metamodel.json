@@ -6173,8 +6173,8 @@
       },
       "addresses": {
         "Addr": 0,
-        "Addr1": 9,
-        "Port1": 3,
+        "Addr1": 25,
+        "Port1": 4,
         "Inverse1": false,
         "Addr2": 0,
         "Port2": 0,
@@ -6294,8 +6294,8 @@
       },
       "addresses": {
         "Addr": 0,
-        "Addr1": 9,
-        "Port1": 2,
+        "Addr1": 17,
+        "Port1": 4,
         "Inverse1": false,
         "Addr2": 0,
         "Port2": 0,
@@ -6912,7 +6912,7 @@
         "offsetY": 0,
         "themeDimIdx": 3
       },
-      "isMaintenance": true
+      "isMaintenance": false
     },
     "2x7": {
       "identifier": "s06",
@@ -7276,7 +7276,7 @@
         "offsetY": 0,
         "themeDimIdx": 1
       },
-      "isMaintenance": true
+      "isMaintenance": false
     },
     "15x1": {
       "identifier": "s16",

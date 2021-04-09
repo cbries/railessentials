@@ -43,7 +43,7 @@ namespace railessentials.ClientHandler
         internal readonly object _metadataLock = new();
 
         public ILogger Logger { get; set; }
-        
+
         public bool IsSimulationMode()
         {
             if (_sniffer == null) return false;
@@ -74,7 +74,7 @@ namespace railessentials.ClientHandler
                 wsServer.ClientConnected += WsServerOnClientConnected;
                 wsServer.ClientDisconnected += WsServerOnClientDisconnected;
             }
-            
+
             if (_sniffer is { IsSimulationMode: true })
             {
                 InitializeSystemHandler();
@@ -82,7 +82,7 @@ namespace railessentials.ClientHandler
 
             InitAccessoryBw();
         }
-        
+
         private bool PersistEcosData(JObject jsonObj, out string errorMessage)
         {
             try
@@ -550,7 +550,7 @@ namespace railessentials.ClientHandler
 
                 _metadata.Save(Metadata.SaveModelType.OccData);
             }
-            
+
             SendModelToClients(ModelType.UpdateLocomotivesData);
             SendModelToClients(ModelType.UpdateOcc);
         }
@@ -820,7 +820,7 @@ namespace railessentials.ClientHandler
                 _sniffer?.SendCommandsToEcosStation();
             }
         }
-        
+
         private void HandleAccessoryTest(JObject cmddata)
         {
             /*
@@ -832,38 +832,70 @@ namespace railessentials.ClientHandler
                 }
              */
 
-            var accessoryId = cmddata.GetInt("accessoryId", 0);
+            var accsAddrs = cmddata["addresses"] as JObject;
             var periods = cmddata.GetInt("periods", 0);
             var pauseMsecs = cmddata.GetInt("pause", 500);
 
-            if(accessoryId == 0)
+            if (accsAddrs == null)
             {
-                SendDebugMessage($"TEST CANCELED: Invalid accessory object identifier to start test.");
+                SendDebugMessage($"TEST CANCELED: Invalid accessory addresses to start test.");
                 return;
             }
 
-            if(periods <= 0)
+            if (periods <= 0)
             {
                 SendDebugMessage($"TEST CANCELED: Period should be 1 or higher, current: {periods}");
                 return;
             }
 
-            if(pauseMsecs < AccessoryTestMinimumDelayBetweenCalls)
+            if (pauseMsecs < AccessoryTestMinimumDelayBetweenCalls)
             {
                 SendDebugMessage($"TEST CANCELED: Pause(msec) must be higher or equal to {AccessoryTestMinimumDelayBetweenCalls}");
                 return;
             }
 
-            var res = AddAccessoryTest(new AccessoryTestData
+            var itemAddr = JsonConvert.DeserializeObject<PlanItemAddresses>(accsAddrs.ToString());
+            var ecosAddr0 = AddressUtilities.GetEcosAddress(itemAddr.Addr1, itemAddr.Port1);
+            var ecosAddr1 = AddressUtilities.GetEcosAddress(itemAddr.Addr2, itemAddr.Port2);
+
+            var dp = _sniffer.GetDataProvider();
+            if (dp == null) return;
+            var ecosAcc0 = dp.GetAccessoryByAddress(ecosAddr0) as Accessory;
+            var ecosAcc1 = dp.GetAccessoryByAddress(ecosAddr1) as Accessory;
+
+            if (ecosAcc0 == null && ecosAcc1 == null)
             {
-                Id = accessoryId,
-                Periods = periods,
-                PauseMsecs = pauseMsecs
-            }, out var errorMessage);
-            if(!res)
-                SendDebugMessage($"TEST FAILED: {errorMessage}");
-            else
-                SendDebugMessage($"Test added for {accessoryId}");
+                SendDebugMessage($"TEST FAILED: Accessory does not exist for Address({ecosAddr0}) and Address({ecosAddr1}).");
+                return;
+            };
+
+            if (ecosAcc0 != null)
+            {
+                var res = AddAccessoryTest(new AccessoryTestData
+                {
+                    EcosAcc = ecosAcc0,
+                    Periods = periods,
+                    PauseMsecs = pauseMsecs
+                }, out var errorMessage);
+                if (!res)
+                    SendDebugMessage($"TEST FAILED: {errorMessage}");
+                else
+                    SendDebugMessage($"Test added for {ecosAcc0.Addr}");
+            }
+
+            if (ecosAcc1 != null)
+            {
+                var res = AddAccessoryTest(new AccessoryTestData
+                {
+                    EcosAcc = ecosAcc1,
+                    Periods = periods,
+                    PauseMsecs = pauseMsecs
+                }, out var errorMessage);
+                if (!res)
+                    SendDebugMessage($"TEST FAILED: {errorMessage}");
+                else
+                    SendDebugMessage($"Test added for {ecosAcc1.Addr}");
+            }
         }
 
         private void HandleAccessoryCommand(JObject cmddata)
@@ -871,10 +903,10 @@ namespace railessentials.ClientHandler
             //
             // check for subcommands
             // they will be handled differently
-            if(cmddata["cmd"] != null)
+            if (cmddata["cmd"] != null)
             {
                 var subcmd = cmddata.GetString("cmd", null);
-                if(subcmd != null && subcmd.Equals("accessoryTest", StringComparison.OrdinalIgnoreCase))
+                if (subcmd != null && subcmd.Equals("accessoryTest", StringComparison.OrdinalIgnoreCase))
                 {
                     HandleAccessoryTest(cmddata);
 
@@ -882,7 +914,7 @@ namespace railessentials.ClientHandler
                 }
                 else
                 {
-                    if(subcmd != null)
+                    if (subcmd != null)
                         Logger?.Log?.Warn($"Unknown subcommand: {subcmd}");
                 }
             }
@@ -1639,7 +1671,7 @@ namespace railessentials.ClientHandler
                         {
                             // save the values
                             var availableBlocks = _metadata?.FeedbacksData.GetAllByBlockId(blockId, true);
-                            foreach(var itBlock in availableBlocks ?? new List<Feedbacks.Data>())
+                            foreach (var itBlock in availableBlocks ?? new List<Feedbacks.Data>())
                             {
                                 if (itBlock?.Settings?["BlockEnabled"] != null)
                                     itBlock.Settings["BlockEnabled"] = blockState;

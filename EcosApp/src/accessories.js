@@ -15,13 +15,13 @@ class Accessories {
         this.__recentlyHighlighted = {};
 
         if (typeof window.__toggleAccessoryTest === "undefined" || window.__toggleAccessoryTest == null) {
-            window.__toggleAccessoryTest = function(accessoryOid) {
+            window.__toggleAccessoryTest = function(accessoryAddress) {
                 window.__eventTrigger('startAccessoryTest',
                     {
                         cmd: "accessoryTest",
-                        accessoryId: accessoryOid,
+                        addresses: JSON.parse(atob(accessoryAddress)),
                         periods: 10, // period of test cycles, TODO, make it editable
-                        pause: 500 // milliseoncds, TODO, make it editable
+                        pause: 1000 // milliseoncds, TODO, make it editable
                     });
             }
         }
@@ -77,9 +77,21 @@ class Accessories {
     __renderTestFunctionality(record) {
         const oid = record.recid;
 
+        const addrInfo = {
+            addr1: record.addr1,
+            addr2: record.addr2,
+            port1: record.port1,
+            port2: record.port2,
+            inverse1: record.inverse1,
+            inverse2: record.inverse2
+        };
+
+        let json = JSON.stringify(addrInfo);
+        json = btoa(json);
+
         const innerHtml = '<div style="height: 100%; width: 100%; white-space: nowrap; text-align: center; padding-top: 3px;">' +
             '<span style="display: inline-block; height: 100%; vertical-align: middle;">'
-            + '<input type="button" value="Test" id="cmdAccessoryTest_' + oid + '" onclick="window.__toggleAccessoryTest(' + oid + ')">'
+            + '<input type="button" value="Test" id="cmdAccessoryTest_' + oid + '" onclick="window.__toggleAccessoryTest(\'' + json + '\')">'
             + '</span>'
             + '</div>';
 
@@ -191,9 +203,9 @@ class Accessories {
                         field: 'longTermSwitching',
                         caption: 'Test',
                         tooltip: 'Toggles long-term switching test, i.e. the accessory will be switched continously.',
-                        size: '2%',
+                        size: '5%',
                         sortable: false,
-                        hidden: false,
+                        hidden: true,
                         editable: false,
                         style: 'text-align: center',
                         render: self.__renderTestFunctionality

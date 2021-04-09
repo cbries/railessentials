@@ -2,22 +2,26 @@
 // Licensed under the MIT License
 // File: ClientHandler.AccessoryTest.cs
 
+using System;
 using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
+using ecoslib.Entities;
+// ReSharper disable InconsistentNaming
 
 namespace railessentials.ClientHandler
 {
     internal class AccessoryTestData
     {
-        public int Id { get; set; } = 0;
+        public Accessory EcosAcc { get; set; }
         public int Periods { get; set; } = 0;
         public int PauseMsecs { get; set; } = 0;
 
-        public bool _isFinished = false;
-        public int _runs = 0;
-        public int _lastRun = 0;
+        public bool _isFinished;
+        public int _recentState;
+        public int _runs;
+        public DateTime _lastRun = DateTime.MinValue;
     }
 
     public partial class ClientHandler
@@ -36,7 +40,7 @@ namespace railessentials.ClientHandler
                 return false;
             }
 
-            if (accessory.Id <= 0)
+            if (accessory.EcosAcc.Addr <= 0)
             {
                 errorMessage = "Invalid accessory id";
                 return false;
@@ -47,7 +51,7 @@ namespace railessentials.ClientHandler
             // check if accessory is already added and running
             foreach (var it in _cqAccessoryTester)
             {
-                if (it.Key != accessory.Id) continue;
+                if (it.Key != accessory.EcosAcc.Addr) continue;
                 if (it.Value == null) continue;
 
                 isAvailable = true;
@@ -59,11 +63,11 @@ namespace railessentials.ClientHandler
                 }
             }
 
-            var res = false;
+            bool res;
 
             if (isAvailable)
-            { 
-                res = _cqAccessoryTester.TryRemove(accessory.Id, out _);
+            {
+                res = _cqAccessoryTester.TryRemove(accessory.EcosAcc.Addr, out _);
                 if (!res)
                 {
                     errorMessage = "Remove of the previous accessory failed.";
@@ -71,7 +75,7 @@ namespace railessentials.ClientHandler
                 }
             }
 
-            res = _cqAccessoryTester.TryAdd(accessory.Id, accessory);
+            res = _cqAccessoryTester.TryAdd(accessory.EcosAcc.Addr, accessory);
             if (!res)
                 errorMessage = "Adding of accessory failed.";
 
@@ -102,10 +106,56 @@ namespace railessentials.ClientHandler
         {
             while (true)
             {
-                // TODO
+                foreach (var it in _cqAccessoryTester)
+                {
+                    if (it.Value._isFinished) continue;
+                    var dtLastRun = it.Value._lastRun;
+                    var dtNow = DateTime.Now;
+                    var dtDelta = dtNow - dtLastRun;
+                    if (dtDelta.Milliseconds < it.Value.PauseMsecs)
+                        continue; // do not run when delta is less the walltime
+
+                    // switch the accessory
+                    if (it.Value._recentState == 0) it.Value._recentState = 1;
+                    else it.Value._recentState = 0;
+
+                    var acc = it.Value.EcosAcc;
+
+                    if (IsSimulationMode())
+                    {
+                        acc.SwitchSimulation(it.Value._recentState);
+                    }
+                    else
+                    {
+                        acc.Switch(it.Value._recentState);
+                    }
+
+                    it.Value._runs++;
+
+                    if(it.Value._runs >= 2 * it.Value.Periods)
+                    {
+                        it.Value._isFinished = true;
+                        it.Value._lastRun = DateTime.MaxValue;
+                    }
+                    else
+                    {
+                        it.Value._lastRun = DateTime.Now;
+                    }
+                }
+
+                if (IsSimulationMode())
+                {
+                    _sniffer?.TriggerDataProviderModifiedForSimulation();
+                }
+                else
+                {
+                    _sniffer?.SendCommandsToEcosStation();
+                }
 
                 Thread.Sleep(AccessoryTestMinimumDelayBetweenCalls);
             }
+
+            // ignore, function will never end
         }
     }
 }

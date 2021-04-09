@@ -85,6 +85,7 @@
     <Compile Include="AutoMode\AutoModeTaskBase.cs" />
     <Compile Include="AutoMode\AutoModeTaskBase.Decelerate.cs" />
     <Compile Include="AutoMode\AutoModeTaskCore.cs" />
+    <Compile Include="ClientHandler\ClientHandler.AccessoryTest.cs" />
     <Compile Include="ClientHandler\ClientHandler.AutoMode.cs" />
     <Compile Include="ClientHandler\ClientHandler.cs" />
     <Compile Include="ClientHandler\ClientHandler.Debug.cs" />

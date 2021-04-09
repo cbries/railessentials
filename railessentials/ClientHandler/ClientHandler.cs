@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using ecoslib;
@@ -41,7 +43,7 @@ namespace railessentials.ClientHandler
         internal readonly object _metadataLock = new();
 
         public ILogger Logger { get; set; }
-
+        
         public bool IsSimulationMode()
         {
             if (_sniffer == null) return false;
@@ -72,13 +74,15 @@ namespace railessentials.ClientHandler
                 wsServer.ClientConnected += WsServerOnClientConnected;
                 wsServer.ClientDisconnected += WsServerOnClientDisconnected;
             }
-
+            
             if (_sniffer is { IsSimulationMode: true })
             {
                 InitializeSystemHandler();
             }
-        }
 
+            InitAccessoryBw();
+        }
+        
         private bool PersistEcosData(JObject jsonObj, out string errorMessage)
         {
             try
@@ -816,9 +820,77 @@ namespace railessentials.ClientHandler
                 _sniffer?.SendCommandsToEcosStation();
             }
         }
+        
+        private void HandleAccessoryTest(JObject cmddata)
+        {
+            /*
+             Cmd: {
+                  "cmd": "accessoryTest",
+                  "accessoryId": 41,
+                  "periods": 10,
+                  "pause": 500
+                }
+             */
+
+            var accessoryId = cmddata.GetInt("accessoryId", 0);
+            var periods = cmddata.GetInt("periods", 0);
+            var pauseMsecs = cmddata.GetInt("pause", 500);
+
+            if(accessoryId == 0)
+            {
+                SendDebugMessage($"TEST CANCELED: Invalid accessory object identifier to start test.");
+                return;
+            }
+
+            if(periods <= 0)
+            {
+                SendDebugMessage($"TEST CANCELED: Period should be 1 or higher, current: {periods}");
+                return;
+            }
+
+            if(pauseMsecs < AccessoryTestMinimumDelayBetweenCalls)
+            {
+                SendDebugMessage($"TEST CANCELED: Pause(msec) must be higher or equal to {AccessoryTestMinimumDelayBetweenCalls}");
+                return;
+            }
+
+            var res = AddAccessoryTest(new AccessoryTestData
+            {
+                Id = accessoryId,
+                Periods = periods,
+                PauseMsecs = pauseMsecs
+            }, out var errorMessage);
+            if(!res)
+                SendDebugMessage($"TEST FAILED: {errorMessage}");
+            else
+                SendDebugMessage($"Test added for {accessoryId}");
+        }
 
         private void HandleAccessoryCommand(JObject cmddata)
         {
+            //
+            // check for subcommands
+            // they will be handled differently
+            if(cmddata["cmd"] != null)
+            {
+                var subcmd = cmddata.GetString("cmd", null);
+                if(subcmd != null && subcmd.Equals("accessoryTest", StringComparison.OrdinalIgnoreCase))
+                {
+                    HandleAccessoryTest(cmddata);
+
+                    return;
+                }
+                else
+                {
+                    if(subcmd != null)
+                        Logger?.Log?.Warn($"Unknown subcommand: {subcmd}");
+                }
+            }
+
+            //
+            // after this the switch is just toggled by the user manually
+            // not best code base, should be changed in future when we have time
+            //
             var coord = cmddata?["coord"] as JObject;
             if (coord?["x"] == null || coord["y"] == null) return;
 

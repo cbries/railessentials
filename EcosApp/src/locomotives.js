@@ -74,16 +74,13 @@ class Locomotives {
             '<img id="'
             + fakeId
             + '" ' +
-            'style="height: 16px; width: 16px; margin: auto;" ' +
-            'src="./images/noimage32x32.png" />'
+            'style="height: 16px; width: 32px; margin: auto;" ' +
+            'src="./images/noimage.png" />'
             + '</div>';
         return innerHtml;
     }
 
     __renderFunctions(record, index, column_index) {
-        // record.noOfFunctions
-        // record.funcset
-        // record.funcdesc
 
         const maxFnc = record.noOfFunctions;
         if (maxFnc == 0)
@@ -318,7 +315,7 @@ class Locomotives {
                     const rec = elGrid.get(event.recid);
                     self.__trigger('locomotiveDoubleClick', rec);
                 },
-                onSelect: function(ev) {
+                onSelect: function (ev) {
                     bringToFront(self.__dialogName);
                 }
             });
@@ -481,7 +478,7 @@ class Locomotives {
 
                     const recentLocomotiveData = self.__getLocomotiveOfRecentData(locOid);
                     let preloadData = "esu";
-                    
+
                     if (recentLocomotiveData != null && recentLocomotiveData.SpeedCurve != null) {
                         if (typeof recentLocomotiveData.SpeedCurve.steps !== "undefined" &&
                             recentLocomotiveData.SpeedCurve.steps != null) {
@@ -603,41 +600,41 @@ class Locomotives {
                     let level1 = 0, level2 = 0, level3 = 0, level4 = 0;
 
                     if (typeof dataOid.SpeedLevels !== "undefined" && dataOid.SpeedLevels != null) {
-                        if(typeof dataOid.SpeedLevels.speedLevel1 !== "undefined" && dataOid.SpeedLevels.speedLevel1 != null) {
+                        if (typeof dataOid.SpeedLevels.speedLevel1 !== "undefined" && dataOid.SpeedLevels.speedLevel1 != null) {
                             level1 = dataOid.SpeedLevels.speedLevel1;
                         }
-                        if(typeof dataOid.SpeedLevels.speedLevel2 !== "undefined" && dataOid.SpeedLevels.speedLevel2 != null) {
+                        if (typeof dataOid.SpeedLevels.speedLevel2 !== "undefined" && dataOid.SpeedLevels.speedLevel2 != null) {
                             level2 = dataOid.SpeedLevels.speedLevel2;
                         }
-                        if(typeof dataOid.SpeedLevels.speedLevel3 !== "undefined" && dataOid.SpeedLevels.speedLevel3 != null) {
+                        if (typeof dataOid.SpeedLevels.speedLevel3 !== "undefined" && dataOid.SpeedLevels.speedLevel3 != null) {
                             level3 = dataOid.SpeedLevels.speedLevel3;
                         }
-                        if(typeof dataOid.SpeedLevels.speedLevel4 !== "undefined" && dataOid.SpeedLevels.speedLevel4 != null) {
+                        if (typeof dataOid.SpeedLevels.speedLevel4 !== "undefined" && dataOid.SpeedLevels.speedLevel4 != null) {
                             level4 = dataOid.SpeedLevels.speedLevel4;
                         }
                     }
 
-                    if(row.speedLevel1 !== level1) {
+                    if (row.speedLevel1 !== level1) {
                         row.speedLevel1 = level1;
                         elGrid.refreshCell(oid, 'speedLevel1');
                     }
 
-                    if(row.speedLevel2 !== level2) {
+                    if (row.speedLevel2 !== level2) {
                         row.speedLevel2 = level2;
                         elGrid.refreshCell(oid, 'speedLevel2');
                     }
 
-                    if(row.speedLevel3 !== level3) {
+                    if (row.speedLevel3 !== level3) {
                         row.speedLevel3 = level3;
                         elGrid.refreshCell(oid, 'speedLevel3');
                     }
 
-                    if(row.speedLevel4 !== level4) {
+                    if (row.speedLevel4 !== level4) {
                         row.speedLevel4 = level4;
                         elGrid.refreshCell(oid, 'speedLevel4');
                     }
 
-                } catch(err) {
+                } catch (err) {
                     // ignore
                 }
             }
@@ -672,7 +669,7 @@ class Locomotives {
             const funcset = ecosObj.funcset;
             const funcdesc = ecosObj.funcdesc;
             const noOfFunctions = ecosObj.nrOfFunctions;
-            
+
             const rec = elGrid.find({ oid: oid });
             if (rec.length <= 0) {
                 //
@@ -779,7 +776,7 @@ class Locomotives {
                 "level4": parseInt(v4)
             };
         }
-        catch(err) {
+        catch (err) {
             return {
                 "level1": parseInt(maxSpeedstep * 0.1),
                 "level2": parseInt(maxSpeedstep * 0.3),
@@ -818,7 +815,7 @@ class Locomotives {
             if (counter === speedLevels.level2) select2 = "selected";
             if (counter === speedLevels.level3) select3 = "selected";
             if (counter === speedLevels.level4) select4 = "selected";
-            
+
             hl1 += '<option value="' + counter + '" ' + select1 + '>' + counter + '</option>\n';
             hl2 += '<option value="' + counter + '" ' + select2 + '>' + counter + '</option>\n';
             hl3 += '<option value="' + counter + '" ' + select3 + '>' + counter + '</option>\n';
@@ -846,10 +843,10 @@ class Locomotives {
         html += '<div class="w2ui-field">';
         html += '<label>Speed Curve:</label>';
         html += '<input type="button" id="cmdSpeedCurveContainer_' + recid + '" ' +
-                    'value="Modify" ' +
-                    'style="padding: 2px; margin-top: 3px; margin-left: 5px;">';
+            'value="Modify" ' +
+            'style="padding: 2px; margin-top: 3px; margin-left: 5px;">';
         html += '</div > ';
-       
+
 
         // end of div area
         html += '</div>';

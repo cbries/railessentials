@@ -140,6 +140,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Labels* for Plan Items
  - *Accessory* can be changed directly by clicking the individual plan item at any time
  - *Output/Button* grouping [Wiki](https://github.com/cbries/railessentials/wiki/Group-Buttons-or-Output)
+ - *Report* for Locomotives, Accessories, and Sensors [Wiki](https://github.com/cbries/railessentials/wiki/Report-of-Locomotives,-Accessories,-and-Sensors) [Issue #9](https://github.com/cbries/railessentials/issues/95)
 
 ## Routing
 

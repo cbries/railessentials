@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using ecoslib.Statistics;
 using ecoslib.Utilities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 // ReSharper disable InconsistentNaming
 

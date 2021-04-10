@@ -21,14 +21,17 @@ namespace railessentials
         private readonly HttpListener _listener = new();
         private Configuration _cfg;
         private readonly Sniffer _sniffer;
+        private readonly Metadata _metadata;
         private readonly List<string> _prefixe;
 
         public WebServer(
             Configuration cfg,
-            Sniffer snifferCtx)
+            Sniffer snifferCtx,
+            Metadata metadata)
         {
             _cfg = cfg;
             _sniffer = snifferCtx;
+            _metadata = metadata;
             _prefixe = _cfg.WebServer.Prefixes;
 
             if (!HttpListener.IsSupported)
@@ -254,7 +257,15 @@ namespace railessentials
         private string GenerateReport()
         {
             var fullFilePath = Path.Combine(RootDir, DefaultReport).Replace("/", "\\");
-            File.WriteAllText(fullFilePath, "Hello World!", Encoding.UTF8);
+
+            var reportGenerator = new Report.Report(_sniffer, _metadata);
+            var res = reportGenerator.Generate(fullFilePath, out var errorMessage);
+            if(!res)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine($"<html><body>{errorMessage}</body></html>");
+                File.WriteAllText(fullFilePath, sb.ToString(), Encoding.UTF8);
+            }
             return fullFilePath;
         }
 

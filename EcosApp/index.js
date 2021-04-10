@@ -838,7 +838,8 @@ var loadSideBar = (function () {
                 groupShowHide: true,
                 nodes: [
                     { id: 'cmdHelp', text: 'Help', icon: 'fas fa-question-circle' },
-                    { id: 'cmdAbout', text: 'About', icon: 'fas fa-address-card' }
+                    { id: 'cmdAbout', text: 'About', icon: 'fas fa-address-card' },
+                    { id: 'cmdReport', text: 'Report', icon: 'far fa-newspaper' }
                 ]
             }
         ],
@@ -954,6 +955,8 @@ var loadSideBar = (function () {
                         '</table></div>'
                 });
                 w2ui['sidebar'].unselect('cmdAbout');
+            } else if(target === "cmdReport") {
+                window.open("/report.html", '_blank').focus();
             }
         }
     });

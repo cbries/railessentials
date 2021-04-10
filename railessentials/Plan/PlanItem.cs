@@ -180,6 +180,8 @@ namespace railessentials.Plan
         public bool IsConnector => PlanGlobals.ConnectorIds.Contains(editor.themeId);
         [JsonIgnore]
         public bool IsButton => PlanGlobals.ButtonIds.Contains(editor.themeId);
+        [JsonIgnore]
+        public bool IsDecoupler => PlanGlobals.DecouplerIds.Contains(editor.themeId);
 
         public override string ToString()
         {

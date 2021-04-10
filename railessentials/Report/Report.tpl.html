@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>RailEssentials Report</title>
+    <style type="text/css">
+        html, body {
+            font-family: Verdana,Arial,sans-serif;
+            font-size: 12px;
+            background: #fcfcfc;
+            height: 100%;
+            margin: 10px;
+            padding: 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            vertical-align: middle;
+            padding: 5px;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Locomotives</h1>
+    <table>
+        <tr>
+            <th>Object ID</th>
+            <th>Name</th>
+            <th>Protocol</th>
+            <th>Address</th>
+            <th>Speedstep (max)</th>
+            <th>No. of Functions</th>
+        </tr>
+        {{LOCOMOTIVE_ROWS}}
+    </table>
+
+    <h1>Accessories</h1>
+    <table>
+        <tr>
+            <th>Coord</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Ecos Address</th>
+            <th>Port 1</th>
+            <th>Address 1</th>
+            <th>Inverse 1</th>
+            <th>Port 2</th>
+            <th>Address 2</th>
+            <th>Inverse 2</th>
+            <th>Maintenance</th>
+        </tr>
+        {{ACCESSORY_ROWS}}
+    </table>
+
+    <h1>Sensors (S88)</h1>
+    <table>
+        <tr>
+            <th>Coord</th>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        {{SENSOR_ROWS}}
+    </table>
+
+    <br/>
+
+</body>
+</html>

@@ -17,17 +17,21 @@ namespace railessentials
     {
         public string RootDir { get; set; }
         public string DefaultIndex { get; set; } = "index.html";
+        public string DefaultReport { get; set; } = "report.html";
         private readonly HttpListener _listener = new();
         private Configuration _cfg;
         private readonly Sniffer _sniffer;
+        private readonly Metadata _metadata;
         private readonly List<string> _prefixe;
 
         public WebServer(
             Configuration cfg,
-            Sniffer snifferCtx)
+            Sniffer snifferCtx,
+            Metadata metadata)
         {
             _cfg = cfg;
             _sniffer = snifferCtx;
+            _metadata = metadata;
             _prefixe = _cfg.WebServer.Prefixes;
 
             if (!HttpListener.IsSupported)
@@ -114,9 +118,9 @@ namespace railessentials
                 subst.Add("{{COMMENT_END_DEBUG_BUILD}}", string.Empty);
 #endif
 
-                if(_cfg?.Theme != null)
+                if (_cfg?.Theme != null)
                 {
-                    if(string.IsNullOrEmpty(_cfg.Theme.PlanBackground))
+                    if (string.IsNullOrEmpty(_cfg.Theme.PlanBackground))
                         subst.Add("{{BACKGROUND_COLOR}}", string.Empty);
                     else
                         subst.Add("{{BACKGROUND_COLOR}}", $"background-color: {_cfg.Theme.PlanBackground};");
@@ -201,6 +205,17 @@ namespace railessentials
                     return;
                 }
 
+                //
+                // generate report page and send to client
+                //
+                if (fileName.EndsWith(DefaultReport, StringComparison.OrdinalIgnoreCase))
+                {
+                    var path = GenerateReport();
+                    SendDataToClient(path, response);
+                    response.OutputStream.Close();
+                    return;
+                }
+
                 var fullFilePath = Path.Combine(RootDir, fileName).Replace("/", "\\");
                 var decodedFullFilePath = Uri.UnescapeDataString(fullFilePath);
                 var lastIdx = decodedFullFilePath.LastIndexOf("?r=", StringComparison.OrdinalIgnoreCase);
@@ -229,44 +244,65 @@ namespace railessentials
                     }
                 }
 
-                using (var fileStream = File.OpenRead(decodedFullFilePath))
-                {
-                    response.ContentType = MimeTypesUtilities.GetMimeType(decodedFullFilePath);
-                    response.ContentLength64 = new FileInfo(decodedFullFilePath).Length;
-                    //response.AddHeader(
-                    //    "Content-Disposition",
-                    //    "Attachment; filename=\"" + Path.GetFileName(decodedFullFilePath) + "\"");
-                    response.AddHeader("Date", DateTime.Now.ToString("r"));
-                    response.AddHeader("Last-Modified", File.GetLastWriteTime(decodedFullFilePath).ToString("r"));
-
-                    /*
-                        <meta http-equiv="cache-control" content="max-age=0" />
-                        <meta http-equiv="cache-control" content="no-store" />
-                        <meta http-equiv="expires" content="-1" />
-                        <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-                        <meta http-equiv="pragma" content="no-cache" />
-                     */
-                    response.AddHeader("cache-control", "max-age=0");
-                    response.AddHeader("cache-control", "no-store");
-                    response.AddHeader("expires", "-1");
-                    response.AddHeader("expires", "Tue, 01 Jan 1980 1:00:00 GMT");
-                    response.AddHeader("pragma", "no-cache");
-
-                    try
-                    {
-                        fileStream.CopyTo(response.OutputStream);
-                    }
-                    catch
-                    {
-                        // ignore
-                    }
-                }
+                SendDataToClient(decodedFullFilePath, response);
 
                 response.OutputStream.Close();
             }
             catch (Exception)
             {
                 // Client disconnected or some other error - ignored for this example
+            }
+        }
+
+        private string GenerateReport()
+        {
+            var fullFilePath = Path.Combine(RootDir, DefaultReport).Replace("/", "\\");
+
+            var reportGenerator = new Report.Report(_sniffer, _metadata);
+            var res = reportGenerator.Generate(fullFilePath, out var errorMessage);
+            if(!res)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine($"<html><body>{errorMessage}</body></html>");
+                File.WriteAllText(fullFilePath, sb.ToString(), Encoding.UTF8);
+            }
+            return fullFilePath;
+        }
+
+        private static void SendDataToClient(string filePath, HttpListenerResponse response)
+        {
+            if (string.IsNullOrEmpty(filePath)) return;
+            if (!File.Exists(filePath)) return;
+
+            using var fileStream = File.OpenRead(filePath);
+            response.ContentType = MimeTypesUtilities.GetMimeType(filePath);
+            response.ContentLength64 = new FileInfo(filePath).Length;
+            //response.AddHeader(
+            //    "Content-Disposition",
+            //    "Attachment; filename=\"" + Path.GetFileName(decodedFullFilePath) + "\"");
+            response.AddHeader("Date", DateTime.Now.ToString("r"));
+            response.AddHeader("Last-Modified", File.GetLastWriteTime(filePath).ToString("r"));
+
+            /*
+                <meta http-equiv="cache-control" content="max-age=0" />
+                <meta http-equiv="cache-control" content="no-store" />
+                <meta http-equiv="expires" content="-1" />
+                <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+                <meta http-equiv="pragma" content="no-cache" />
+            */
+            response.AddHeader("cache-control", "max-age=0");
+            response.AddHeader("cache-control", "no-store");
+            response.AddHeader("expires", "-1");
+            response.AddHeader("expires", "Tue, 01 Jan 1980 1:00:00 GMT");
+            response.AddHeader("pragma", "no-cache");
+
+            try
+            {
+                fileStream.CopyTo(response.OutputStream);
+            }
+            catch
+            {
+                // ignore
             }
         }
 

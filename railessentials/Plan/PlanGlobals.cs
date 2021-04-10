@@ -22,7 +22,8 @@ namespace railessentials.Plan
         public static readonly List<int> DirectionIds = new() { 14 };
         public static readonly List<int> ConnectorIds = new() { 17, 18, 19 };
         public static readonly List<int> ButtonIds = new() { 71, 72, 73 };
-
+        public static readonly List<int> DecouplerIds = new() { 70 };
+        
         public static bool IsTrackItem(int themeId)
         {
             if (themeId < 0) return false;
@@ -33,6 +34,7 @@ namespace railessentials.Plan
             if (SensorIds.Contains(themeId)) return true;
             if (DirectionIds.Contains(themeId)) return true;
             if (ConnectorIds.Contains(themeId)) return true;
+            if (DecouplerIds.Contains(themeId)) return true;
             return false;
         }
 

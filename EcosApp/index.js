@@ -85,6 +85,18 @@ function accessoryExecute(data) {
     });
 }
 
+function accessoryTest(data) {
+    var srv = window.serverHandling;
+    if (typeof srv === "undefined" || srv == null)
+        return; // TODO show error
+
+    srv.sendCommand({
+        "command": "accessory",
+        "timestamp": Date.now(),
+        "cmddata": data
+    });
+}
+
 // an item in the plan is clicked
 function itemClicked(data) {
     var srv = window.serverHandling;
@@ -470,6 +482,9 @@ $(document).ready(function () {
     window.accessoriesDlg.on("setting", function (ev) {
         changeSetting(ev.data);
     });
+    window.__eventOn('startAccessoryTest', function (ev) {
+        accessoryTest(ev.data);
+    });
 
     window.routesDlg = new Routes();
     window.routesDlg.install();
@@ -493,7 +508,7 @@ $(document).ready(function () {
         var jsonData = JSON.parse(ev.data);
         changeLocomotive('function', jsonData);
     });
-
+    
     window.planField = new Planfield({
         isEditMode: false
     });

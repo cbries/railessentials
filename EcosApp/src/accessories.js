@@ -13,6 +13,18 @@ class Accessories {
         this.__initEventHandling();
 
         this.__recentlyHighlighted = {};
+
+        if (typeof window.__toggleAccessoryTest === "undefined" || window.__toggleAccessoryTest == null) {
+            window.__toggleAccessoryTest = function(accessoryAddress) {
+                window.__eventTrigger('startAccessoryTest',
+                    {
+                        cmd: "accessoryTest",
+                        addresses: JSON.parse(atob(accessoryAddress)),
+                        periods: 10, // period of test cycles, TODO, make it editable
+                        pause: 1000 // milliseoncds, TODO, make it editable
+                    });
+            }
+        }
     }
 
     __initEventHandling() {
@@ -60,6 +72,30 @@ class Accessories {
             window.planField.highlightAccessory(this, false);
         });
         self.__recentlyHighlighted = {};
+    }
+    
+    __renderTestFunctionality(record) {
+        const oid = record.recid;
+
+        const addrInfo = {
+            addr1: record.addr1,
+            addr2: record.addr2,
+            port1: record.port1,
+            port2: record.port2,
+            inverse1: record.inverse1,
+            inverse2: record.inverse2
+        };
+
+        let json = JSON.stringify(addrInfo);
+        json = btoa(json);
+
+        const innerHtml = '<div style="height: 100%; width: 100%; white-space: nowrap; text-align: center; padding-top: 3px;">' +
+            '<span style="display: inline-block; height: 100%; vertical-align: middle;">'
+            + '<input type="button" value="Test" id="cmdAccessoryTest_' + oid + '" onclick="window.__toggleAccessoryTest(\'' + json + '\')">'
+            + '</span>'
+            + '</div>';
+
+        return innerHtml;
     }
 
     install(options = {}) {
@@ -123,10 +159,10 @@ class Accessories {
                     { field: 'accessoryId', caption: 'Accessory ID', size: '2%', sortable: false, hidden: true },
                     { field: 'identifier', caption: 'Identifier', size: '7%', sortable: true },
                     { field: 'type', caption: 'Type', size: '10%', sortable: true },
-                    { field: 'state', caption: 'State', size: '5%', sortable: false },
+                    { field: 'state', caption: 'State', size: '5%', sortable: true },
 
-                    { field: 'addr1', caption: 'Address1', tooltip: 'Address1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
-                    { field: 'port1', caption: 'Port1', tooltip: 'Port1', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
+                    { field: 'addr1', caption: 'Address1', tooltip: 'Address1', size: '5%', sortable: true, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
+                    { field: 'port1', caption: 'Port1', tooltip: 'Port1', size: '5%', sortable: true, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
                     {
                         field: 'inverse1',
                         caption: 'Inverse1',
@@ -140,8 +176,8 @@ class Accessories {
                         }
                     },
 
-                    { field: 'addr2', caption: 'Address2', tooltip: 'Address2', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
-                    { field: 'port2', caption: 'Port2', tooltip: 'Port2', size: '5%', sortable: false, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
+                    { field: 'addr2', caption: 'Address2', tooltip: 'Address2', size: '5%', sortable: true, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
+                    { field: 'port2', caption: 'Port2', tooltip: 'Port2', size: '5%', sortable: true, hidden: true, render: 'int', editable: { type: 'int', min: 0, max: 32756 } },
                     {
                         field: 'inverse2',
                         caption: 'Inverse2',
@@ -162,6 +198,17 @@ class Accessories {
                         sortable: false,
                         hidden: false,
                         editable: { type: 'string' }
+                    },
+                    {
+                        field: 'longTermSwitching',
+                        caption: 'Test',
+                        tooltip: 'Toggles long-term switching test, i.e. the accessory will be switched continously.',
+                        size: '5%',
+                        sortable: false,
+                        hidden: true,
+                        editable: false,
+                        style: 'text-align: center',
+                        render: self.__renderTestFunctionality
                     }
                 ],
                 records: [],
@@ -221,6 +268,8 @@ class Accessories {
                         elGrid.toggleColumn('addr2');
                         elGrid.toggleColumn('port2');
                         elGrid.toggleColumn('inverse2');
+
+                        elGrid.toggleColumn('longTermSwitching');
                     }
                 });
 
@@ -372,14 +421,7 @@ class Accessories {
 
         this.__installed = true;
     }
-
-    //__cleanupChangedState() {
-    //    const self = this;
-    //    $('#' + this.__dialogName + ' td.w2ui-grid-data').each(function () {
-    //        $(this).removeClass('w2ui-changed');
-    //    });
-    //}
-
+    
     removeAccessory(identifier) {
         if (typeof identifier === "undefined") return;
         if (identifier == null) return;

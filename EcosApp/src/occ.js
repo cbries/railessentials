@@ -74,6 +74,29 @@ class Occ {
         };
     }
 
+    __showErrorPopup(message, targetEl, offsetX = 5, offsetY = 5) {
+        const elPop = $('#routePopUp');
+        let left = parseInt(targetEl.css("left").replace("px", ""));
+        left -= offsetX;
+        let top = parseInt(targetEl.css("top").replace("px", ""));
+        top -= offsetY;
+        elPop.css({
+            "left": left + "px",
+            "top": top + "px",
+            "background-color": "rgba(255, 0, 0, 0.6)",
+            "position": "absolute",
+            "font-size": "10px",
+            "font-weight": "bold",
+            "border-radius": "5px",
+            "padding": "2px",
+            "color": "white"
+        });
+        elPop.addClass("noselect");
+        elPop.html(message);
+        elPop.fadeIn("fast");
+        setTimeout(function () { elPop.fadeOut("slow"); }, 2000);
+    }
+
     __createLocomotiveInfo(locData) {
         const self = this;
         const ids = self.__generateLocomotiveInfoIdentifiers(locData.objectId);
@@ -250,6 +273,19 @@ class Occ {
                     if (!isBlock(targetElData.editor.themeId)) throw "reset";
 
                     //
+                    // check if AutoMode is activated
+                    //
+                    if(window.__autoModeState === false) {
+                        self.__showErrorPopup(
+                            "AutoMode is disabled.",
+                            targetEl,
+                            0,
+                            0
+                        );
+                        return;
+                    }
+
+                    //
                     // check if a route exist from start to target
                     // otherwise deny assignment and show an error message
                     //
@@ -260,9 +296,9 @@ class Occ {
 
                     const routeName0 = from0 + "_" + to0;
                     const routeName1 = from0 + "_" + to1;
-                    const routeName2 = from1 + "_" + to0; 
-                    const routeName3 = from1 + "_" + to1; 
-                    
+                    const routeName2 = from1 + "_" + to0;
+                    const routeName3 = from1 + "_" + to1;
+
                     let routeExists = false;
                     for (let ii = 0; ii < window.routes.length; ++ii) {
                         const r = window.routes[ii];
@@ -274,26 +310,14 @@ class Occ {
                     }
 
                     if (routeExists === false) {
-                        const elPop = $('#routePopUp');
-                        let left = parseInt(targetEl.css("left").replace("px", ""));
-                        left -= 5;
-                        let top = parseInt(targetEl.css("top").replace("px", ""));
-                        top -= 5;
-                        elPop.css({
-                            "left": left + "px",
-                            "top": top + "px",
-                            "background-color": "rgba(255, 0, 0, 0.6)",
-                            "position": "absolute",
-                            "font-size": "10px",
-                            "font-weight": "bold",
-                            "border-radius": "5px",
-                            "padding": "2px",
-                            "color": "white"
-                        });
-                        elPop.addClass("noselect");
-                        elPop.html("Route from " + startElData.identifier + " to " + targetElData.identifier + " does not exist.");
-                        elPop.fadeIn("fast");
-                        setTimeout(function () { elPop.fadeOut("slow"); }, 2000);
+                        self.__showErrorPopup(
+                            "Route from "
+                            + startElData.identifier
+                            + " to "
+                            + targetElData.identifier
+                            + " does not exist.",
+                            targetEl
+                        );
                     } else {
 
                         //
@@ -406,8 +430,7 @@ class Occ {
             }
         });
 
-        const __fncShowLocHover = function (locinfo)
-        {
+        const __fncShowLocHover = function (locinfo) {
             clearTimeout(self.__timeoutBeforeHide);
             self.__timeoutBeforeHide = 0;
             if (self.__timeoutBeforeShow > 0) return;
@@ -419,7 +442,7 @@ class Occ {
             }, 250);
         }
 
-        const __fncHideLocHover = function(locinfo) {
+        const __fncHideLocHover = function (locinfo) {
             clearTimeout(self.__timeoutBeforeShow);
             self.__timeoutBeforeShow = 0;
             self.__timeoutBeforeHide = setTimeout(function () {
@@ -541,7 +564,7 @@ class Occ {
 
         self.__updateStateVisualization(locData.objectId);
     }
-    
+
     __stopWaitCounter(oid) {
         if (typeof oid === "undefined" || oid == null || oid <= 0) return;
         const lbl = $('#locomotiveInfo' + oid + ' div.countdown');
@@ -878,7 +901,7 @@ class Occ {
         // used for drag&drop
         targetBlock.addClass(self.__divBlockedClass);
     }
-    
+
     handleData(jsonData) {
         const self = this;
         const occData = jsonData.data; // array
@@ -983,7 +1006,7 @@ class Occ {
         if (typeof ecosLocomotives === "undefined") return;
         if (ecosLocomotives == null) return;
 
-        let i = 0; 
+        let i = 0;
         const iMax = ecosLocomotives.length;
         for (; i < iMax; ++i) {
             const ecosLoc = ecosLocomotives[i];
@@ -1010,7 +1033,7 @@ class Occ {
         const self = this;
         if (typeof window.ecosData.locomotives === "undefined") return null;
         if (window.ecosData.locomotives == null) return null;
-        let i = 0; 
+        let i = 0;
         const iMax = window.ecosData.locomotives.length;
         for (; i < iMax; ++i) {
             const locIt = window.ecosData.locomotives[i];

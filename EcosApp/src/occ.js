@@ -249,13 +249,64 @@ class Occ {
 
                     if (!isBlock(targetElData.editor.themeId)) throw "reset";
 
-                    self.__trigger("gotoBlock",
-                        {
-                            mode: 'gotoBlock',
-                            oid: locData.objectId,
-                            fromBlock: startElData.coord,
-                            toBlock: targetElData.coord
+                    //
+                    // check if a route exist from start to target
+                    // otherwise deny assignment and show an error message
+                    //
+                    const from0 = startElData.identifier + "[+]";
+                    const from1 = startElData.identifier + "[-]";
+                    const to0 = targetElData.identifier + "[+]";
+                    const to1 = targetElData.identifier + "[-]";
+
+                    const routeName0 = from0 + "_" + to0;
+                    const routeName1 = from0 + "_" + to1;
+                    const routeName2 = from1 + "_" + to0; 
+                    const routeName3 = from1 + "_" + to1; 
+                    
+                    let routeExists = false;
+                    for (let ii = 0; ii < window.routes.length; ++ii) {
+                        const r = window.routes[ii];
+                        const name = r.name;
+                        if (name === routeName0) routeExists = true;
+                        else if (name === routeName1) routeExists = true;
+                        else if (name === routeName2) routeExists = true;
+                        else if (name === routeName3) routeExists = true;
+                    }
+
+                    if (routeExists === false) {
+                        const elPop = $('#routePopUp');
+                        let left = parseInt(targetEl.css("left").replace("px", ""));
+                        left -= 5;
+                        let top = parseInt(targetEl.css("top").replace("px", ""));
+                        top -= 5;
+                        elPop.css({
+                            "left": left + "px",
+                            "top": top + "px",
+                            "background-color": "rgba(255, 0, 0, 0.6)",
+                            "position": "absolute",
+                            "font-size": "10px",
+                            "font-weight": "bold",
+                            "border-radius": "5px",
+                            "padding": "2px",
+                            "color": "white"
                         });
+                        elPop.addClass("noselect");
+                        elPop.html("Route from " + startElData.identifier + " to " + targetElData.identifier + " does not exist.");
+                        elPop.fadeIn("fast");
+                        setTimeout(function () { elPop.fadeOut("slow"); }, 2000);
+                    } else {
+
+                        //
+                        // route exists, assign locomotive to target
+                        //
+                        self.__trigger("gotoBlock",
+                            {
+                                mode: 'gotoBlock',
+                                oid: locData.objectId,
+                                fromBlock: startElData.coord,
+                                toBlock: targetElData.coord
+                            });
+                    }
 
                 } catch (err) {
                     if (err === "reset") {

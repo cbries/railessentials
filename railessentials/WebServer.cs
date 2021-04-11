@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using ecoslib.Sniffer;
+using ecoslib.Statistics;
 using Utilities;
 
 namespace railessentials
@@ -258,7 +259,8 @@ namespace railessentials
         {
             var fullFilePath = Path.Combine(RootDir, DefaultReport).Replace("/", "\\");
 
-            var reportGenerator = new Report.Report(_sniffer, _metadata);
+            var stats = Statistics.Instance(Globals.GetCfgDataPath("Statistics"), null);
+            var reportGenerator = new Report.Report(_sniffer, _metadata, stats);
             var res = reportGenerator.Generate(fullFilePath, out var errorMessage);
             if(!res)
             {

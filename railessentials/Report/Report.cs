@@ -6,10 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
-using System.Web.UI.WebControls;
 using ecoslib.Sniffer;
+using ecoslib.Statistics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Utilities;
@@ -22,16 +22,77 @@ namespace railessentials.Report
 
         private readonly Sniffer _sniffer;
         private readonly Metadata _metadata;
+        private readonly Statistics _statistics;
 
-        public Report(Sniffer sniffer, Metadata metadata)
+        public Report(
+            Sniffer sniffer, 
+            Metadata metadata,
+            Statistics statistics)
         {
             _sniffer = sniffer;
             _metadata = metadata;
+            _statistics = statistics;
         }
 
         private class __planItemExtended : Plan.PlanItem
         {
             public string Coord { get; set; }
+            public ecoslib.Entities.Item EcosItem { get; set; }
+        }
+
+        public ecoslib.Entities.Item GetEcosItem(
+            IReadOnlyList<ecoslib.IItem> availableItems,
+            int ecosAddr
+            )
+        {
+            foreach (var it in availableItems)
+            {
+                if (it == null) continue;
+                
+                if (it is ecoslib.Entities.Locomotive loc)
+                    if (loc.Addr == ecosAddr)
+                        return loc;
+
+                if (it is ecoslib.Entities.Accessory acc)
+                    if (acc.Addr == ecosAddr)
+                        return acc;
+            }
+
+            return null;
+        }
+
+        private int GetSwitchCount(__planItemExtended item)
+        {
+            if (item?.EcosItem == null) return 0;
+            var data = _statistics?.GetData(item.EcosItem.ObjectId);
+            if (data == null) return 0;
+            return data.Touches.Count;
+        }
+
+        private long GetLocomotiveDuration(int oid)
+        {
+            if (oid <= 0) return 0;
+            var data = _statistics?.GetData(oid);
+            if (data == null) return 0;
+            long durationSeconds = 0;
+            foreach(var it in data.Durations)
+            {
+                var start = it.Start;
+                var end = it.Stop;
+                var delta = end - start;
+                if (delta.Seconds <= 0) continue;
+                durationSeconds += delta.Seconds;
+            }
+            return durationSeconds;
+        }
+
+        private string SecondsHumanReadable(long seconds)
+        {
+            // see https://stackoverflow.com/a/463668
+            var time = TimeSpan.FromSeconds(seconds);
+            //here backslash is must to tell that colon is
+            //not the part of format, it just a character that we want in output
+            return time.ToString(@"hh\:mm\:ss\:fff");
         }
 
         public bool Generate(
@@ -75,6 +136,8 @@ namespace railessentials.Report
                     return false;
                 }
 
+                const string css = "style=\"text-align: center;\"";
+
                 //
                 // generate locomotive table
                 //
@@ -93,12 +156,20 @@ namespace railessentials.Report
                 {
                     var sb = new StringBuilder();
                     sb.Append("<tr>");
-                    sb.Append($"<td>{locObj.ObjectId}</td>");
+                    sb.Append($"<td {css}>{locObj.ObjectId}</td>");
                     sb.Append($"<td>{locObj.Name}</td>");
-                    sb.Append($"<td>{locObj.Protocol}</td>");
-                    sb.Append($"<td>{locObj.Addr}</td>");
-                    sb.Append($"<td>{locObj.GetNumberOfSpeedsteps()}</td>");
-                    sb.Append($"<td>{locObj.NrOfFunctions}</td>");
+                    sb.Append($"<td {css}>{locObj.Protocol}</td>");
+                    sb.Append($"<td {css}>{locObj.Addr}</td>");
+                    sb.Append($"<td {css}>{locObj.GetNumberOfSpeedsteps()}</td>");
+                    sb.Append($"<td {css}>{locObj.NrOfFunctions}</td>");
+
+                    var duration = GetLocomotiveDuration(locObj.ObjectId);
+                    var durationHuman = SecondsHumanReadable(duration);
+                    if(duration <= 0)
+                        sb.Append($"<td {css}>-.-</td>");
+                    else
+                        sb.Append($"<td {css}>{durationHuman}</td>");
+
                     sb.Append("</tr>");
                     locomotivesHtml += sb.ToString();
                 }
@@ -118,6 +189,11 @@ namespace railessentials.Report
                 var accessoryHtml = string.Empty;
                 
                 var planItems = new List<__planItemExtended>();
+                
+                //
+                // filter list to have only accessory
+                // and calculate ecos address for any accessory
+                //
                 foreach (var it in planField)
                 {
                     var coord = it.Key;
@@ -128,6 +204,7 @@ namespace railessentials.Report
                     if (planItem.IsConnector) continue;
                     if (planItem.IsDirection) continue;
                     if (planItem.IsTrack) continue;
+                    if (planItem.IsLabel) continue;
 
                     var addr = planItem.Addresses;
                     if(addr.Addr <= 0)
@@ -137,6 +214,8 @@ namespace railessentials.Report
                         else
                             planItem.Addresses.Addr = AddressUtilities.GetEcosAddress(addr.Addr2, addr.Port2);
                     }
+
+                    planItem.EcosItem = GetEcosItem(dp.Objects, planItem.Addresses.Addr);
 
                     planItem.Coord = coord;
                     planItems.Add(planItem);
@@ -152,9 +231,9 @@ namespace railessentials.Report
                     {
                         var sb = new StringBuilder();
                         sb.Append("<tr>");
-                        sb.Append($"<td>{planItem.Coord}</td>");
+                        sb.Append($"<td {css}>{planItem.Coord}</td>");
                         sb.Append($"<td>{planItem.name}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Addr}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Addr}</td>");
                         sb.Append("</tr>");
 
                         sensorHtml += sb.ToString();
@@ -167,20 +246,60 @@ namespace railessentials.Report
                         var sb = new StringBuilder();
                         sb.Append("<tr>");
                         sb.Append($"<td>{planItem.Coord}</td>");
-                        if (planItem.IsSignal) sb.Append("<td>Signal</td>");
-                        else if (planItem.IsSwitch) sb.Append("<td>Switch</td>");
-                        else if (planItem.IsButton) sb.Append("<td>Button</td>");
-                        else if (planItem.IsDecoupler) sb.Append("<td>Decoupler</td>");
+
+                        if (planItem.EcosItem != null)
+                        {
+                            if (planItem.EcosItem is ecoslib.Entities.Accessory acc)
+                                sb.Append($"<td {css}>{acc.ObjectId}</td>");
+                            else
+                                sb.Append($"<td {css}>-.-</td>");
+                        }
+                        else
+                        {
+                            sb.Append($"<td {css}>-.-</td>");
+                        }
+
+                        if (planItem.IsSignal) sb.Append("<td {css}>Signal</td>");
+                        else if (planItem.IsSwitch) sb.Append("<td {css}>Switch</td>");
+                        else if (planItem.IsButton) sb.Append("<td {css}>Button</td>");
+                        else if (planItem.IsDecoupler) sb.Append("<td {css}>Decoupler</td>");
                         else continue;
                         sb.Append($"<td>{planItem.name}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Addr}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Port1}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Addr1}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Inverse1}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Port2}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Addr2}</td>");
-                        sb.Append($"<td>{planItem.Addresses.Inverse2}</td>");
-                        sb.Append($"<td>{planItem.IsMaintenance}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Addr}</td>");
+
+                        if (planItem.EcosItem != null)
+                        {
+                            if (planItem.EcosItem is ecoslib.Entities.Accessory acc)
+                                sb.Append($"<td {css}>{string.Join(", ", acc.Addrext)}</td>");
+                            else
+                                sb.Append($"<td {css}>-.-</td>");
+                        }
+                        else
+                        {
+                            sb.Append($"<td {css}>-.-</td>");
+                        }
+
+                        sb.Append($"<td {css}>{planItem.Addresses.Port1}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Addr1}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Inverse1}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Port2}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Addr2}</td>");
+                        sb.Append($"<td {css}>{planItem.Addresses.Inverse2}</td>");
+
+                        if (planItem.EcosItem != null)
+                        {
+                            if (planItem.EcosItem is ecoslib.Entities.Accessory acc)
+                                sb.Append($"<td {css}>{string.Join(", ", acc.Protocol)}</td>");
+                            else
+                                sb.Append($"<td {css}>-.-</td>");
+                        }
+                        else
+                        {
+                            sb.Append($"<td {css}>-.-</td>");
+                        }
+
+                        sb.Append($"<td {css}>{GetSwitchCount(planItem)}</td>");
+                        sb.Append($"<td {css}>{planItem.IsMaintenance}</td>");
                         sb.Append("</tr>");
 
                         accessoryHtml += sb.ToString();

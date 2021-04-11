@@ -23,6 +23,7 @@ namespace railessentials.Plan
         public static readonly List<int> ConnectorIds = new() { 17, 18, 19 };
         public static readonly List<int> ButtonIds = new() { 71, 72, 73 };
         public static readonly List<int> DecouplerIds = new() { 70 };
+        public static readonly List<int> LabelIds = new() { 1010 };
         
         public static bool IsTrackItem(int themeId)
         {

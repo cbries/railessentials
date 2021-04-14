@@ -140,7 +140,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Labels* for Plan Items
  - *Accessory* can be changed directly by clicking the individual plan item at any time
  - *Output/Button* grouping [Wiki](https://github.com/cbries/railessentials/wiki/Group-Buttons-or-Output)
- - *Report* for Locomotives, Accessories, and Sensors [Wiki](https://github.com/cbries/railessentials/wiki/Report-of-Locomotives,-Accessories,-and-Sensors) [Issue #9](https://github.com/cbries/railessentials/issues/95)
+ - *Report* for Locomotives, Accessories, and Sensors [Wiki](https://github.com/cbries/railessentials/wiki/Report-of-Locomotives,-Accessories,-and-Sensors), [Issue #9](https://github.com/cbries/railessentials/issues/95)
 
 ## Routing
 
@@ -176,6 +176,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Lock Additional Blocks during Locomotive Traveling* [Wiki](https://github.com/cbries/railessentials/wiki/Lock-Additional-Blocks-during-Locomotive-Traveling)
  - *Maintenance Mode* - accessories can be set into maintenance mode and all routes which include the relevant accessories are not selected anymore [Issue #79](https://github.com/cbries/railessentials/issues/79)
  - *Wait for Locomotives* if AutoMode has stopped, i.e. finish all current journeys [Issue #75](https://github.com/cbries/railessentials/issues/75)
+ - *Drag & Drop* of locomotives to assign a new block [Issue #100](https://github.com/cbries/railessentials/issues/100), [Wiki](https://github.com/cbries/railessentials/wiki/AutoMode-By-DragAndDrop)
 
 ## Individual Supports for my personal needs
 

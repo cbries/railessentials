@@ -1,5 +1,5 @@
 ﻿{
-  "SimulationMode": true,
+  "SimulationMode": false,
   "SimulationData": "Demos\\Ecos\\ecosJson.txt",
   "RootWorkspace": "Workspaces\\",
   "RecentWorkspace": "Basement",

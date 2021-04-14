@@ -206,11 +206,8 @@ namespace railessentials
                 foreach (var it in Occ.Blocks)
                 {
                     if (it == null) continue;
-                    it.NextBlock = string.Empty;
                     it.FinalBlock = string.Empty;
-                    it.RouteToNext = string.Empty;
                     it.RouteToFinal = string.Empty;
-                    it.NextEntered = false;
                     it.FinalEntered = false;
                 }
                 Save(SaveModelType.OccData);

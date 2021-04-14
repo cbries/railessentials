@@ -102,12 +102,7 @@ namespace railessentials.Occ
                 {
                     if (it == null) continue;
                     if (it.Oid != oid) continue;
-                    if (submode.Equals("next", StringComparison.OrdinalIgnoreCase))
-                    {
-                        it.NextBlock = string.Empty;
-                        it.NextEntered = false;
-                    }
-                    else if (submode.Equals("final", StringComparison.OrdinalIgnoreCase))
+                    if (submode.Equals("final", StringComparison.OrdinalIgnoreCase))
                     {
                         it.FinalBlock = string.Empty;
                         it.FinalEntered = false;

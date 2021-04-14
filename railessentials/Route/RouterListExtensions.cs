@@ -48,7 +48,6 @@ namespace railessentials.Route
                 {
                     blockIsOccupied =
                         itt.FromBlock.Equals(fromBlock, StringComparison.OrdinalIgnoreCase)
-                        || itt.NextBlock.Equals(fromBlock, StringComparison.OrdinalIgnoreCase)
                         || itt.FinalBlock.Equals(fromBlock, StringComparison.OrdinalIgnoreCase);
                     if (blockIsOccupied) break;
                 }

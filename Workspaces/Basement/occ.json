@@ -2,11 +2,8 @@
   {
     "Oid": 1010,
     "FromBlock": "B01",
-    "NextBlock": "",
     "FinalBlock": "",
-    "RouteToNext": "",
     "RouteToFinal": "",
-    "NextEntered": false,
     "FinalEntered": false,
     "ReachedTime": "2021-04-06T21:20:14.7038655+02:00",
     "SecondsToWait": 10
@@ -14,11 +11,8 @@
   {
     "Oid": 1002,
     "FromBlock": "B04",
-    "NextBlock": "",
     "FinalBlock": "",
-    "RouteToNext": "",
     "RouteToFinal": "",
-    "NextEntered": false,
     "FinalEntered": false,
     "ReachedTime": "2021-04-06T21:20:16.791565+02:00",
     "SecondsToWait": 10
@@ -26,11 +20,8 @@
   {
     "Oid": 1009,
     "FromBlock": "B15",
-    "NextBlock": "",
     "FinalBlock": "B09",
-    "RouteToNext": "",
     "RouteToFinal": "B15[+]_B09[+]",
-    "NextEntered": false,
     "FinalEntered": false,
     "ReachedTime": "2021-04-07T21:08:23.6768015+02:00",
     "SecondsToWait": 10
@@ -38,11 +29,8 @@
   {
     "Oid": 1012,
     "FromBlock": "B03",
-    "NextBlock": "",
     "FinalBlock": "",
-    "RouteToNext": null,
     "RouteToFinal": null,
-    "NextEntered": false,
     "FinalEntered": false,
     "ReachedTime": "0001-01-01T00:00:00",
     "SecondsToWait": 0

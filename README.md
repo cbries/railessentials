@@ -28,7 +28,7 @@ and [Vivaldi](https://vivaldi.com/).
 - [Book](#book)
 - [Features](#features)
 - [Visual Impressions](#visual-impressions)
-- [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Topics---Table-of-Content)
+- [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Table-of-Content)
 
 <br>
 

@@ -18,7 +18,6 @@ and any conntected webclient. The server is written in C# and .NET Framework and
 used in [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/), 
 and [Vivaldi](https://vivaldi.com/). 
 
-
 # Table of Contents
 - [Tutorial: Welcome / First Steps](#tutorial-welcome--first-steps)
 - [Daily/Nightly Builds](#dailynightly-builds)
@@ -31,6 +30,12 @@ and [Vivaldi](https://vivaldi.com/).
 - [Wiki/Documentation](https://github.com/cbries/railessentials/wiki/Table-of-Content)
 
 <br>
+
+# Demonstration of RailEssentials (i.e. YouTube video, no sound)
+
+I have created a small video of my modelrailway in my basement to demonstrate that `RailEssentials` just work. Just click the preview to jump directly to YouTube.
+
+[![RailEssentials - Live demonstration with real hardware in my basement.](https://img.youtube.com/vi/ieJDzE32IBk/0.jpg)](https://youtu.be/ieJDzE32IBk)
 
 # Tutorial: Welcome / First Steps
 

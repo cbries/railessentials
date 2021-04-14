@@ -1,38 +1,42 @@
 [
   {
     "Oid": 1010,
-    "FromBlock": "B01",
+    "FromBlock": "B06",
     "FinalBlock": "",
     "RouteToFinal": "",
+    "IsTraveling": true,
     "FinalEntered": false,
-    "ReachedTime": "2021-04-06T21:20:14.7038655+02:00",
-    "SecondsToWait": 10
-  },
-  {
-    "Oid": 1002,
-    "FromBlock": "B04",
-    "FinalBlock": "",
-    "RouteToFinal": "",
-    "FinalEntered": false,
-    "ReachedTime": "2021-04-06T21:20:16.791565+02:00",
-    "SecondsToWait": 10
-  },
-  {
-    "Oid": 1009,
-    "FromBlock": "B15",
-    "FinalBlock": "B09",
-    "RouteToFinal": "B15[+]_B09[+]",
-    "FinalEntered": false,
-    "ReachedTime": "2021-04-07T21:08:23.6768015+02:00",
+    "ReachedTime": "2021-04-14T16:46:19.8991538+02:00",
     "SecondsToWait": 10
   },
   {
     "Oid": 1012,
-    "FromBlock": "B03",
+    "FromBlock": "B02",
     "FinalBlock": "",
-    "RouteToFinal": null,
+    "RouteToFinal": "",
+    "IsTraveling": true,
     "FinalEntered": false,
-    "ReachedTime": "0001-01-01T00:00:00",
-    "SecondsToWait": 0
+    "ReachedTime": "2021-04-14T16:45:56.2195215+02:00",
+    "SecondsToWait": 10
+  },
+  {
+    "Oid": 1002,
+    "FromBlock": "B07",
+    "FinalBlock": "",
+    "RouteToFinal": "",
+    "IsTraveling": true,
+    "FinalEntered": false,
+    "ReachedTime": "2021-04-14T16:44:21.7333764+02:00",
+    "SecondsToWait": 10
+  },
+  {
+    "Oid": 1009,
+    "FromBlock": "B08",
+    "FinalBlock": "",
+    "RouteToFinal": "",
+    "IsTraveling": true,
+    "FinalEntered": false,
+    "ReachedTime": "2021-04-14T16:48:07.3071553+02:00",
+    "SecondsToWait": 10
   }
 ]

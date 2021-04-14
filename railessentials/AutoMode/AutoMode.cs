@@ -759,7 +759,44 @@ namespace railessentials.AutoMode
             var occFromFinal = occBlock.FinalBlock;
             if (string.IsNullOrEmpty(occFromFinal)) return null;
 
-            // TODO
+            var occLocOid = occBlock.Oid;
+            var locDataEcos = _dataProvider.GetObjectBy(occLocOid) as Locomotive;
+            var locData = _metadata.LocomotivesData.GetData(occLocOid);
+
+            if (locDataEcos == null) return null;
+            if (locData == null) return null;
+
+            //
+            // do not start any loc on any route when the loc is locked (i.e. not allowed to start)
+            //
+            if (locData.IsLocked) return null;
+
+            //
+            // do not start any loc on any route when the loc is "IsStopped:=true"
+            //
+            // REMARK we have to distinguish IsLocked and IsStopped somehow
+            //
+            if (locData.IsStopped) return null;
+
+            var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1
+                ? SideMarker.Minus
+                : SideMarker.Plus;
+
+            var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+
+            foreach(var route in routesFrom2)
+            {
+                if (route == null) continue;
+                if (route.IsDisabled) continue;
+                var name = route.Name;
+                if (string.IsNullOrEmpty(name)) continue;
+                if (name.IndexOf($"_{occFromFinal}", StringComparison.OrdinalIgnoreCase) != -1)
+                {
+                    locomotiveObjectId = occLocOid;
+
+                    return route;
+                }
+            }
 
             return null;
         }
@@ -795,7 +832,7 @@ namespace railessentials.AutoMode
             //
             // do not start any loc on any route when the loc is "IsStopped:=true"
             //
-            // REMARK we habe to distinguish IsLocked and IsStopped somehow
+            // REMARK we have to distinguish IsLocked and IsStopped somehow
             //
             if (locData.IsStopped) return null;
 

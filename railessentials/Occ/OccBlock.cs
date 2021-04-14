@@ -10,16 +10,10 @@ namespace railessentials.Occ
     {
         public int Oid { get; set; }
         public string FromBlock { get; set; } = string.Empty;
-        public string NextBlock { get; set; } = string.Empty;
         public string FinalBlock { get; set; } = string.Empty;
-        
-        public string RouteToNext { get; set; }
         public string RouteToFinal { get; set; }
 
-        /// <summary>
-        /// true:=when the fbEnter is reached
-        /// </summary>
-        public bool NextEntered { get; set; }
+        public bool IsTraveling { get; set; } = false;
 
         /// <summary>
         /// true:=when the fbEnter is reached

@@ -215,7 +215,7 @@ namespace railessentials.AutoMode
                     {
                         var noOfWaitingTasks = iMax - listOfFinishedTasks.Count;
                         var allTasksStopped = iMax == 0;
-                        
+
                         for (var j = 0; j < iMax; ++j)
                         {
                             var task = _autoModeTasks[j];
@@ -232,7 +232,7 @@ namespace railessentials.AutoMode
                             }
 
                             var m = $"Waiting for {noOfWaitingTasks} locomotives...";
-                            if(!m.Equals(previousMessage, StringComparison.OrdinalIgnoreCase))
+                            if (!m.Equals(previousMessage, StringComparison.OrdinalIgnoreCase))
                             {
                                 _ctx?.Logger?.Log.Info(m);
                                 SendAutoModeStateToClients(m);
@@ -300,7 +300,6 @@ namespace railessentials.AutoMode
             {
                 if (itOccBlock.Oid != locOid) continue;
                 routeFinalName = itOccBlock.RouteToFinal;
-                routeNextName = itOccBlock.RouteToNext;
                 CleanOccBlock(itOccBlock);
                 break;
             }
@@ -341,7 +340,8 @@ namespace railessentials.AutoMode
                 ["data"] = new JObject
                 {
                     ["command"] = "state",
-                    ["state"] = new JObject {
+                    ["state"] = new JObject
+                    {
                         ["started"] = IsStarted(),
                         ["stopping"] = IsStopping(),
                         ["stopped"] = IsStopped(),
@@ -392,15 +392,38 @@ namespace railessentials.AutoMode
             {
                 foreach (var itOccBlock in _metadata.Occ.Blocks)
                 {
+                    Route.Route nextRoute = null;
+                    var locomotiveObjectId = -1;
+
+                    //
                     // has already a destination
-                    if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
+                    // and is traveling
+                    //
+                    if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)
+                        && itOccBlock.IsTraveling)
+                        continue;
+
+                    //
+                    // has already a destination
+                    // but it is not traveling
+                    //
+                    if (!string.IsNullOrEmpty(itOccBlock.FinalBlock)
+                        && !itOccBlock.IsTraveling)
+                    {
+                        // find route for traveling
+                        nextRoute = GetUserNextRoute(itOccBlock, out locomotiveObjectId);
+                    }
 
                     //
                     // the most interesting call is `GetNextRoute(..)` which
                     // is responsible for selecting the best next journey path
+                    // if not already set by user decision
                     //
-                    var nextRoute = GetNextRoute(itOccBlock, out var locomotiveObjectId);
-                    if (nextRoute == null) continue;
+                    if (nextRoute == null)
+                    {
+                        nextRoute = GetNextRoute(itOccBlock, out locomotiveObjectId);
+                        if (nextRoute == null) continue;
+                    }
 
                     //
                     // query feedback sensors for the route
@@ -423,6 +446,11 @@ namespace railessentials.AutoMode
 
                     itOccBlock.FinalBlock = targetBlock.identifier;
                     itOccBlock.RouteToFinal = nextRoute.Name;
+
+                    // used to signal that the occ is started
+                    // relevant if the user has set any route 
+                    // by drag & drop of locomotives between blocks
+                    itOccBlock.IsTraveling = true;
 
                     SaveOccAndPromote();
                     SaveRoutesAndPromote();
@@ -688,10 +716,7 @@ namespace railessentials.AutoMode
         internal static OccBlock CleanOccBlock(OccBlock block)
         {
             block.FinalBlock = string.Empty;
-            block.NextBlock = string.Empty;
             block.RouteToFinal = string.Empty;
-            block.RouteToNext = string.Empty;
-            block.NextEntered = false;
             block.FinalEntered = false;
             return block;
         }
@@ -720,6 +745,23 @@ namespace railessentials.AutoMode
             }
 
             return false;
+        }
+
+        public Route.Route GetUserNextRoute(
+            OccBlock occBlock,
+            out int locomotiveObjectId)
+        {
+            locomotiveObjectId = 0;
+
+            var occFromBlock = occBlock.FromBlock;
+            if (string.IsNullOrEmpty(occFromBlock)) return null;
+
+            var occFromFinal = occBlock.FinalBlock;
+            if (string.IsNullOrEmpty(occFromFinal)) return null;
+
+            // TODO
+
+            return null;
         }
 
         public Route.Route GetNextRoute(

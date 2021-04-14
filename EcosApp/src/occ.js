@@ -6,7 +6,6 @@ class Occ {
 
         this.__divRootClass = "locomotiveInfo";
         this.__divFromClass = "locomotiveInfoFrom";
-        this.__divNextClass = "locomotiveInfoNext";
         this.__divFinalClass = "locomotiveInfoFinal";
         this.__dataOidName = "locoid";
         this.__divBlockedClass = "isblocked";
@@ -66,10 +65,8 @@ class Occ {
         const self = this;
         return {
             "root": "locomotiveInfo" + objectId,
-            "rootNext": "locomotiveInfoNext" + objectId,
             "rootFinal": "locomotiveInfoFinal" + objectId,
             "image": "locomotiveInfoImage" + objectId,
-            "imageNext": "locomotiveInfoImageNext" + objectId,
             "imageFinal": "locomotiveInfoImageFinal" + objectId
         };
     }
@@ -163,24 +160,6 @@ class Occ {
             .addClass("fas fa-long-arrow-alt-right")
             .addClass("enterSide");
         locEnterSideCtrl.appendTo(locomotiveInfo);
-
-        //
-        // next locomotive info
-        //
-        let locomotiveInfoNext = locomotiveInfo.clone();
-        locomotiveInfoNext.attr("id", ids.rootNext);
-        locomotiveInfoNext.removeClass(this.__divFromClass);
-        locomotiveInfoNext.addClass(this.__divNextClass);
-        const locImg2 = locomotiveInfoNext.find('img');
-        locImg2.attr("id", ids.imageNext);
-        locomotiveInfoNext.dblclick(function () {
-            self.__trigger("resetAssignment",
-                {
-                    mode: 'resetAssignment',
-                    submode: 'next',
-                    oid: locData.objectId
-                });
-        });
 
         //
         // final locomotive info
@@ -338,7 +317,6 @@ class Occ {
                     } else if (err === "resetAssignment") {
 
                         locomotiveInfo.hide();
-                        locomotiveInfoNext.hide();
                         locomotiveInfoFinal.hide();
 
                         self.__trigger("resetAssignment",
@@ -559,7 +537,6 @@ class Occ {
         const bodyCtrl = $('body');
         locControl.appendTo(bodyCtrl);
         locomotiveInfo.appendTo(bodyCtrl);
-        locomotiveInfoNext.appendTo(bodyCtrl);
         locomotiveInfoFinal.appendTo(bodyCtrl);
 
         self.__updateStateVisualization(locData.objectId);
@@ -929,7 +906,6 @@ class Occ {
         for (i = 0; i < iMax; ++i) {
             const occDataItem = occData[i];
             // FinalBlock
-            // NextBlock
             // FromBlock
             // Oid
             // EnterSide
@@ -941,11 +917,9 @@ class Occ {
 
             const ids = self.__generateLocomotiveInfoIdentifiers(occDataItem.Oid);
             const infoInstance = $('div#' + ids.root);
-            const infoInstanceNext = $('div#' + ids.rootNext);
             const infoInstanceFinal = $('div#' + ids.rootFinal);
 
             const fromBlockId = occDataItem.FromBlock;
-            const nextBlockId = occDataItem.NextBlock;
             const finalBlockId = occDataItem.FinalBlock;
 
             if (typeof fromBlockId === "undefined" || fromBlockId == null || fromBlockId.length === 0) {
@@ -954,14 +928,6 @@ class Occ {
                 const fromBlock = self.__getBlock(fromBlockId);
                 infoInstance.show();
                 self.__applyInfoToBlock(infoInstance, fromBlock, occDataItem);
-            }
-
-            if (typeof nextBlockId === "undefined" || nextBlockId == null || nextBlockId.length === 0) {
-                infoInstanceNext.hide();
-            } else {
-                const nextBlock = self.__getBlock(nextBlockId);
-                infoInstanceNext.show();
-                self.__applyInfoToBlock(infoInstanceNext, nextBlock);
             }
 
             if (typeof finalBlockId === "undefined" || finalBlockId == null || finalBlockId.length === 0) {

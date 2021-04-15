@@ -59,6 +59,15 @@ namespace railessentials.Route
             return res;
         }
 
+        /// <summary>
+        /// Filters the routes where the current locomotive
+        /// is not allowed to enter the block.
+        /// </summary>
+        /// <param name="routeList"></param>
+        /// <param name="locDataEcos"></param>
+        /// <param name="locData"></param>
+        /// <param name="feedbacks"></param>
+        /// <returns></returns>
         public static RouteList FilterBy(
             this RouteList routeList,
             Locomotive locDataEcos,

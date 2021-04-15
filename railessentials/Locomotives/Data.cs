@@ -9,6 +9,7 @@ namespace railessentials.Locomotives
 {
     public class Data
     {
+        public bool IsCleaning { get; set; } = false;
         public bool IsStopped { get; set; }
         public bool IsLocked { get; set; }
         public Dictionary<string, bool> Settings { get; set; } = new();

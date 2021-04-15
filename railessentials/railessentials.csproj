@@ -81,6 +81,7 @@
     <Compile Include="Analyzer\Analyze.cs" />
     <Compile Include="Analyzer\AnalyzeResult.cs" />
     <Compile Include="AutoMode\AutoMode.cs" />
+    <Compile Include="AutoMode\AutoMode.Filter.cs" />
     <Compile Include="AutoMode\AutoModeTaskBase.Accelerate.cs" />
     <Compile Include="AutoMode\AutoModeTaskBase.cs" />
     <Compile Include="AutoMode\AutoModeTaskBase.Decelerate.cs" />

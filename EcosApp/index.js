@@ -278,9 +278,34 @@ function openLocomotiveControlDialog(gridRecordRow) {
     }
 }
 
+function scrollDebugToEnd() {
+    const debugMessages = document.getElementsByClassName("messageContainer");
+    $(debugMessages).scroll();
+    $(debugMessages).animate({
+        scrollTop: debugMessages[0].scrollHeight
+    }, "fast");
+}
+
 function initDebugConsole() {
     const ctrlLoggingBtn = $('#statusBar div.logging');
     const ctrlDebugConsole = $('.debugConsole');
+
+    ctrlDebugConsole.find('.clearDebug').click(function () {
+        $('.messageContainer').html("");
+    });
+    ctrlDebugConsole.find('.scrollTop').click(function () {
+        // scroll to top
+        const debugMessages = document.getElementsByClassName("messageContainer");
+        $(debugMessages).scroll();
+        $(debugMessages).animate({
+            scrollTop: 0
+        }, "slow");
+    });
+    ctrlDebugConsole.find('.scrollBottom').click(function () {
+        // scroll to bottom
+        scrollDebugToEnd();
+    });
+
     ctrlLoggingBtn.click(function () {
         if (ctrlDebugConsole.is(':visible')) {
             ctrlDebugConsole.hide();
@@ -303,8 +328,8 @@ function initDebugConsole() {
             }
 
             ctrlDebugConsole.show();
-            const debugConsoles = document.getElementsByClassName("debugConsole");
-            debugConsoles[0].scrollTop = debugConsoles[0].scrollHeight;
+
+            scrollDebugToEnd();
         }
     });
 }

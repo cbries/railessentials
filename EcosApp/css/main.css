@@ -501,8 +501,6 @@ div.textfieldElementToolbar {
     bottom: 0;
     font-size: 10px;
     background-color: #fcfcfc;
-    /*background-color: rgb(216,216,216);*/
-    opacity: 0.75;
     border: 2px solid #887788;
     border-right: 1px solid #887788;
     border-bottom: 1px solid #887788;
@@ -513,10 +511,38 @@ div.textfieldElementToolbar {
     z-index: 1000;
 }
 
-    .debugConsole .messageContainer {
-        overflow-y: scroll;
-        height: 100%;
+    .debugConsole .toolbar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 28px;
+        width: calc(100% - 16px);
+        background-color: #f5f5f5;
+        opacity: 0.75;
     }
+
+        .debugConsole .toolbar .scrollTop {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+        }
+
+        .debugConsole .toolbar .scrollBottom {
+            position: absolute;
+            top: 5px;
+            left: 26px;
+        }
+
+        .debugConsole .toolbar .clearDebug {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .debugConsole .messageContainer {
+            overflow-y: scroll;
+            height: 100%;
+        }
 
         .debugConsole .messageContainer span.dt {
             font-weight: bold;

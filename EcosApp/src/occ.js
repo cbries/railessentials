@@ -161,6 +161,18 @@ class Occ {
             .addClass("enterSide");
         locEnterSideCtrl.appendTo(locomotiveInfo);
 
+        let locSpeedInfoCtrl = $('<div>').css({
+            position: "absolute",
+            right: "1px",
+            bottom: "-10px",
+            color: "black",
+            "font-size": "0.45rem",
+            "letter-spacing": "-1px"
+        })
+            .html("-.-")
+            .addClass("speedInfo");
+        locSpeedInfoCtrl.appendTo(locomotiveInfo);
+
         //
         // final locomotive info
         //
@@ -254,7 +266,7 @@ class Occ {
                     //
                     // check if AutoMode is activated
                     //
-                    if(window.__autoModeState === false) {
+                    if (window.__autoModeState === false) {
                         self.__showErrorPopup(
                             "AutoMode is disabled.",
                             targetEl,
@@ -637,6 +649,16 @@ class Occ {
             return;
         }
 
+        const ctrlSpeedInfo = locomotiveInfo.find('.speedInfo');
+        const locEcosData = self.__getEcosDataOfLoc(oid);
+        if (locEcosData == null) {
+            // unavailable speed information
+            ctrlSpeedInfo.html("-.-");
+        } else {
+            // show speed information
+            ctrlSpeedInfo.html(locEcosData.speedstep + "|" + locEcosData.speedstepMax);
+        }
+
         const ctrlEnter = locomotiveInfo.find('.enterSide');
         if (typeof ctrlEnter !== "undefined" && ctrlEnter != null && ctrlEnter.length > 0) {
             let enterBlockSide = "";
@@ -678,9 +700,11 @@ class Occ {
             // Lock of the Locomotive
             //
             if (locData.IsLocked === false) {
+                ctrlSpeedInfo.show();
                 ctrlLock.hide();
                 self.__fncScaleLbl(locomotiveInfo, 0.70);
             } else {
+                ctrlSpeedInfo.hide();
                 ctrlLock.show();
                 self.__fncScaleLbl(locomotiveInfo, 0.70);
             }
@@ -771,7 +795,7 @@ class Occ {
         locController.css({
             "z-index": 150,
             top: ypos + "px",
-            left: (left - w - 2) + "px"
+            left: (left - w + 1) + "px"
         });
 
         locController.mousemove(function () {
@@ -863,11 +887,17 @@ class Occ {
             "text-align": "left"
         });
 
-        var lbl = infoInstance.find("div");
+        let lbl = infoInstance.find("div.locInfoLabel");
         if (typeof lbl !== "undefined" && lbl != null && lbl.length > 0) {
             lbl.css("width", cssWidth);
             lbl.css("max-width", cssMaxWidth);
             lbl.css("height", constItemHeight);
+        }
+        let lblCounter = infoInstance.find("div.countdown");
+        if (typeof lblCounter !== "undefined" && lblCounter != null && lblCounter.length > 0) {
+            lblCounter.css("width", cssWidth);
+            lblCounter.css("max-width", cssMaxWidth);
+            lblCounter.css("height", constItemHeight);
         }
 
         if (occDataItem != null) {
@@ -995,8 +1025,47 @@ class Occ {
         }
     }
 
+    updateEcosSpeedInfo(ecosLocomotives) {
+        const self = this;
+        if (typeof ecosLocomotives === "undefined") return;
+        if (ecosLocomotives == null) return;
+
+        let i = 0;
+        const iMax = ecosLocomotives.length;
+        for (; i < iMax; ++i) {
+            const ecosLoc = ecosLocomotives[i];
+            const locoid = ecosLoc.objectId;
+
+            const ids = self.__generateLocomotiveInfoIdentifiers(locoid);
+            const locomotiveInfo = $('#' + ids.root);
+            if (typeof locomotiveInfo === "undefined" || locomotiveInfo == null || locomotiveInfo.length === 0) {
+                continue;
+            }
+
+            const ctrlSpeedInfo = locomotiveInfo.find('.speedInfo');
+            const locEcosData = self.__getEcosDataOfLoc(locoid);
+            const currentHtml = ctrlSpeedInfo.html();
+            if (locEcosData == null) {
+                // unavailable speed information
+                if (currentHtml === "-.-")
+                    ;
+                else
+                    ctrlSpeedInfo.html("-.-");
+            } else {
+                // show speed information
+                const newHtml = locEcosData.speedstep + "|" + locEcosData.speedstepMax;
+                if (newHtml === currentHtml)
+                    ;
+                else
+                    ctrlSpeedInfo.html(locEcosData.speedstep + "|" + locEcosData.speedstepMax);
+            }
+        }
+    }
+
     __getEcosDataOfLoc(locoid) {
         const self = this;
+        if (typeof window.ecosData === "undefined") return null;
+        if (window.ecosData == null) return null;
         if (typeof window.ecosData.locomotives === "undefined") return null;
         if (window.ecosData.locomotives == null) return null;
         let i = 0;

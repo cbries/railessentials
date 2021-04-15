@@ -673,6 +673,7 @@ $(document).ready(function () {
                     window.locomotivesDlg.updateLocomotives(locomotives);
                     window.locomotivesDlg.updateLocomotives2(locomotives);
                     window.occ.updateEcosDirection(locomotives);
+                    window.occ.updateEcosSpeedInfo(locomotives);
                 }
             }
         }

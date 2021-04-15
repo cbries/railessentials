@@ -585,9 +585,9 @@ class Planfield {
                             newimgfname = newimgfname.replace("-r", "");
                             newimgfname = newimgfname.replace("-g", "");
                             if (targetState === false) {
-                                newimgfname += "-g";
-                            } else if (targetState === true) {
                                 newimgfname += "-r";
+                            } else if (targetState === true) {
+                                newimgfname += "-g";
                             }
                         } else if (isAccessory(themeId)) {
                             if (targetState === false) {

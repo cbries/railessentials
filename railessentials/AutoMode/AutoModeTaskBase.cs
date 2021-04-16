@@ -381,7 +381,10 @@ namespace railessentials.AutoMode
                 Ctx?.ResetRouteFor(Route.LocomotiveObjectId);
                 Route.OccBlock.FromBlock = finalBlock;
                 Route.OccBlock.ReachedTime = DateTime.Now;
-                Route.OccBlock.SecondsToWait = AutoMode.RunPauseForBlockSeconds;
+                if (Ctx != null)
+                    Route.OccBlock.SecondsToWait = Ctx.GetSecondsToWait();
+                else
+                    Route.OccBlock.SecondsToWait = AutoMode.GetSecondsToWaitFallback();
                 Ctx?.SaveOccAndPromote();
 
                 if (IsCanceled()) return;

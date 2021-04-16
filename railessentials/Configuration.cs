@@ -27,6 +27,9 @@ namespace railessentials
         public bool SaveOnEveryPlanfieldChange { get; set; } = false;
         public int InitializeDelay { get; set; } = 500;
 
+        [JsonProperty(PropertyName = "Occ")]
+        public OccWaitModes OccWait { get; set; } = new();
+
         private static string _cfgPath;
 
         public static Configuration Load(string pathToCfg, out string errorMessage)
@@ -114,6 +117,25 @@ namespace railessentials
                 // ignore
             }
         }
+    }
+
+    public class OccWaitModeStatic
+    {
+        public bool Enabled { get; set; } = true;
+        public int Seconds { get; set; } = 10;
+    }
+
+    public class OccWaitModeRandom
+    {
+        public bool Enabled { get; set; } = false;
+        public int SecondsMin { get; set; } = 5;
+        public int SecondsMax { get; set; } = 15;
+    }
+
+    public class OccWaitModes
+    {
+        public OccWaitModeStatic WaitModeStatic { get; set; } = new();
+        public OccWaitModeRandom WaitModeRandom { get; set; } = new();
     }
 
     public class ConfigurationEcos

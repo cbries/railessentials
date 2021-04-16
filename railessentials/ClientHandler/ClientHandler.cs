@@ -36,7 +36,7 @@ namespace railessentials.ClientHandler
 
     public partial class ClientHandler
     {
-        private ClientHandlerCfg _cfg;
+        internal ClientHandlerCfg _cfg;
         internal Sniffer _sniffer;
         private JArray _themeData;
         internal Metadata _metadata;

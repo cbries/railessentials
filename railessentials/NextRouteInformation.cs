@@ -25,6 +25,8 @@ namespace railessentials
 
         public override string ToString()
         {
+            if(string.IsNullOrEmpty(Locomotive?.Name))
+                return $"<Unknown> cruises on {Route.Name} -- Feedbacks({FbEnter} -> {FbIn}) -- Target: {Route.Blocks[1].identifier}";
             return
                 $"{Locomotive.Name} cruises on {Route.Name} -- Feedbacks({FbEnter} -> {FbIn}) -- Target: {Route.Blocks[1].identifier}";
         }

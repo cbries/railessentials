@@ -11,7 +11,15 @@ namespace railessentials.AutoMode
 {
     public partial class AutoMode
     {
-        public RouteList FilterByAllowedOptions(
+        /// <summary>
+        /// Filter routes by target block enabled stated,
+        /// only use routes where target blocks are enabled.
+        /// </summary>
+        /// <param name="routeList"></param>
+        /// <param name="sideToLeave"></param>
+        /// <param name="locData"></param>
+        /// <returns></returns>
+        public RouteList FilterByBlockEnabled(
             RouteList routeList,
             SideMarker sideToLeave,
             Locomotives.Data locData)
@@ -32,15 +40,54 @@ namespace railessentials.AutoMode
                 if (targetFbData.Settings != null && targetFbData.Settings.ContainsKey("BlockEnabled"))
                 {
                     var blockEnabled = targetFbData.Settings["BlockEnabled"];
-                    if (!blockEnabled) continue;
+                    if (!blockEnabled) 
+                        continue;
                 }
 
+                res.Add(it);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Filter routes by options, does not check "BlockEnabled" option.
+        /// See FilterByBlockEnabled()
+        /// </summary>
+        /// <param name="routeList"></param>
+        /// <param name="sideToLeave"></param>
+        /// <param name="locData"></param>
+        /// <returns></returns>
+        public RouteList FilterByAllowedOptions(
+            RouteList routeList,
+            SideMarker sideToLeave,
+            Locomotives.Data locData)
+        {
+            var res = new RouteList();
+            foreach (var it in routeList)
+            {
+                var targetBlock = it.Blocks[1];
+                var targetBlockIdentifier = targetBlock.identifier;
+                if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
+
+                var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
+                if (targetFbData == null) continue;
+                
+                //
+                // the most interesting part of this method
+                //
                 if (IsLocAllowedForTargetBlock(locData, targetFbData))
                     res.Add(it);
             }
             return res;
         }
 
+        /// <summary>
+        /// Filter all routes with blocks which are blocked by any other routes.
+        /// https://github.com/cbries/railessentials/wiki/Lock-Additional-Blocks-during-Locomotive-Traveling
+        /// </summary>
+        /// <param name="routeList"></param>
+        /// <param name="sideToLeave"></param>
+        /// <returns></returns>
         public RouteList FilterByBlockedRoutes(
             RouteList routeList,
             SideMarker sideToLeave)

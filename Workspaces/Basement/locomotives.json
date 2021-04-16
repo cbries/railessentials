@@ -1,6 +1,6 @@
 {
   "1004": {
-    "IsCleaning": true,
+    "IsCleaner": true,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {

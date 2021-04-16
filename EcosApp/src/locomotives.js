@@ -174,20 +174,48 @@ class Locomotives {
                 ],
                 sortData: [{ field: 'name', direction: 'asc' }],
                 columns: [
-                    { field: 'oid', caption: 'Object ID', size: '10%', sortable: true },
+                    {
+                        field: 'oid',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="far fa-id-badge"></i></div>',
+                        style: 'text-align: center',
+                        size: '5%',
+                        sortable: true
+                    },
                     {
                         field: 'locImage',
-                        caption: 'Photo',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-camera-retro"></i></div>',
                         size: '10%',
                         style: 'text-align: center',
                         render: self.__renderImage
                     },
                     { field: 'name', caption: 'Name', size: '30%', sortable: true, editable: { type: 'text' } },
                     { field: 'protocol', caption: 'Protocol', size: '10%', sortable: true },
-                    { field: 'addr', caption: 'Address', size: '10%' },
-                    { field: 'speed', caption: 'Speed', size: '10%', hidden: true },
-                    { field: 'speedstep', caption: 'Speedstep', size: '10%', hidden: false },
-                    { field: 'speedstepMax', caption: 'Speedstep (max)', size: '10%', hidden: false },
+                    {
+                        field: 'addr',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-at"></i></div>',
+                        style: 'text-align: center',
+                        size: '5%'
+                    },
+                    {
+                        field: 'speed',
+                        caption: 'Speed',
+                        size: '10%',
+                        hidden: true
+                    },
+                    {
+                        field: 'speedstep',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-tachometer-alt"></i></div>',
+                        style: 'text-align: center',
+                        size: '5%',
+                        hidden: false
+                    },
+                    {
+                        field: 'speedstepMax',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-tachometer-alt"></i> (max)</div>',
+                        style: 'text-align: center',
+                        size: '10%',
+                        hidden: false
+                    },
                     {
                         field: 'funcset',
                         caption: 'Functions',
@@ -198,8 +226,8 @@ class Locomotives {
                     { field: 'noOfFunctions', caption: 'No. of Functions', hidden: true },
                     {
                         field: 'locked',
-                        caption: 'Locked',
-                        size: '10%',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-unlock-alt"></i></div>',
+                        size: '5%',
                         style: 'text-align: center',
                         editable: {
                             type: 'checkbox',
@@ -210,6 +238,17 @@ class Locomotives {
                     { field: 'speedLevel2', caption: 'Level2', size: '1%', hidden: true },
                     { field: 'speedLevel3', caption: 'Level3', size: '1%', hidden: true },
                     { field: 'speedLevel4', caption: 'Level4', size: '1%', hidden: true },
+                    {
+                        field: 'isCleaner',
+                        caption: '<div style="text-align: center; padding-left: 6px;"><i class="fas fa-bath"></i></div>',
+                        size: '5%',
+                        hidden: false,
+                        style: 'text-align: center',
+                        editable: {
+                            type: 'checkbox',
+                            style: 'text-align: center'
+                        }
+                    },
                 ],
                 records: [],
                 onExpand: function (event) {
@@ -370,9 +409,24 @@ class Locomotives {
                                     }
                                 });
                         }
+
+                        const isCleaner = change.isCleaner;
+                        if (typeof isCleaner !== "undefined" && isCleaner != null) {
+                            row.isCleaner = isCleaner;
+                            elGrid.refreshCell(row, 'isCleaner');
+                            self.__trigger("setting",
+                                {
+                                    "mode": "locomotive",
+                                    "cmd": "cleaner",
+                                    "value": {
+                                        "oid": oid,
+                                        "cleaner": isCleaner
+                                    }
+                                });
+                        }
                     }
 
-                    self.__cleanupChangedState();
+                    elGrid.save();
                 }
             });
         }
@@ -566,13 +620,6 @@ class Locomotives {
             });
     }
 
-    __cleanupChangedState() {
-        const self = this;
-        $('#' + this.__dialogName + ' td.w2ui-grid-data').each(function () {
-            $(this).removeClass('w2ui-changed');
-        });
-    }
-
     updateLocomotives2(locomotivesData) {
         const self = this;
         const elGrid = w2ui[self.__gridName];
@@ -594,6 +641,11 @@ class Locomotives {
                 if (row.locked !== dataOid.IsLocked) {
                     row.locked = dataOid.IsLocked;
                     elGrid.refreshCell(oid, 'locked');
+                }
+
+                if(row.isCleaner !== dataOid.IsCleaner) {
+                    row.isCleaner = dataOid.IsCleaner;
+                    elGrid.refreshCell(oid, 'isCleaner');
                 }
 
                 try {
@@ -639,8 +691,6 @@ class Locomotives {
                 }
             }
         }
-
-        self.__cleanupChangedState();
     }
 
     updateLocomotives(ecosDataLocomotives) {

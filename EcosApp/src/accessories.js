@@ -412,8 +412,6 @@ class Accessories {
                         }
 
                         elGrid.save();
-
-                        //self.__cleanupChangedState();
                     }
                 });
             }

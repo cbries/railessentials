@@ -812,7 +812,7 @@ namespace railessentials.AutoMode
             //
             // If the loc is no cleaning vehicle, just leave this part
             //
-            if (!locData.IsCleaning) return null;
+            if (!locData.IsCleaner) return null;
 
             //
             // do not start any loc on any route when the loc is locked (i.e. not allowed to start)

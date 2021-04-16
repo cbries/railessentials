@@ -1368,6 +1368,20 @@ namespace railessentials.ClientHandler
                     }
                     break;
 
+                case "cleaner":
+                    {
+                        var isCleaner = data.GetBool("cleaner");
+
+                        lock (_metadataLock)
+                        {
+                            _metadata.LocomotivesData.SetCleaner(oid, isCleaner);
+                            _metadata?.Save(Metadata.SaveModelType.LocomotivesData);
+                        }
+
+                        SendModelToClients(ModelType.UpdateLocomotivesData);
+                    }
+                    break;
+
                 case "locomotivedata":
                     {
                         Dictionary<string, bool> checkboxSettings = null;

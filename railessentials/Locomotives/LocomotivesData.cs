@@ -50,6 +50,14 @@ namespace railessentials.Locomotives
             return null;
         }
 
+        public void SetCleaner(int oid, bool state)
+        {
+            if (oid <= 0) return;
+            var data = GetData(oid);
+            if (data != null)
+                data.IsCleaner = state;
+        }
+
         public void SetLocked(int oid, bool state)
         {
             if (oid <= 0) return;

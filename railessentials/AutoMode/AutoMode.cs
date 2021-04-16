@@ -17,6 +17,7 @@ using RouteList = railessentials.Route.RouteList;
 // ReSharper disable InconsistentNaming
 // ReSharper disable NotAccessedField.Local
 // ReSharper disable RemoveRedundantBraces
+// ReSharper disable ConvertIfStatementToNullCoalescingAssignment
 
 namespace railessentials.AutoMode
 {
@@ -27,7 +28,7 @@ namespace railessentials.AutoMode
     public delegate void AutoModeFauled(AutoMode sender, Exception ex);
     public delegate void AutoModeUpdate(AutoMode sender, string message);
 
-    public class AutoMode
+    public partial class AutoMode
     {
         public const int RunPauseForBlockSeconds = 10;
         private const int RunDelayBetweenChecksMsecs = 2500;
@@ -273,10 +274,13 @@ namespace railessentials.AutoMode
             }
 
             var locOids = new List<int>();
-            foreach (var itOcc in _metadata?.Occ.Blocks ?? new List<OccBlock>())
+            lock (_metadataLock)
             {
-                if (itOcc == null) continue;
-                locOids.Add(itOcc.Oid);
+                foreach (var itOcc in _metadata?.Occ.Blocks ?? new List<OccBlock>())
+                {
+                    if (itOcc == null) continue;
+                    locOids.Add(itOcc.Oid);
+                }
             }
             locOids.ForEach(ResetRouteFor);
             CleanOcc();
@@ -295,13 +299,16 @@ namespace railessentials.AutoMode
             if (locOid <= 0) return;
             var routeFinalName = string.Empty;
             var routeNextName = string.Empty;
-            var blocks = _metadata.Occ.Blocks;
-            foreach (var itOccBlock in blocks)
+            lock (_metadataLock)
             {
-                if (itOccBlock.Oid != locOid) continue;
-                routeFinalName = itOccBlock.RouteToFinal;
-                CleanOccBlock(itOccBlock);
-                break;
+                var blocks = _metadata.Occ.Blocks;
+                foreach (var itOccBlock in blocks)
+                {
+                    if (itOccBlock.Oid != locOid) continue;
+                    routeFinalName = itOccBlock.RouteToFinal;
+                    CleanOccBlock(itOccBlock);
+                    break;
+                }
             }
 
             var routeFinal = _routeList.GetByName(routeFinalName);
@@ -413,6 +420,13 @@ namespace railessentials.AutoMode
                         // find route for traveling
                         nextRoute = GetUserNextRoute(itOccBlock, out locomotiveObjectId);
                     }
+
+                    //
+                    // check route for cleaning train
+                    // if `nextRoute` is null no route is found OR the loc is not for cleaning
+                    //
+                    if (nextRoute == null)
+                        nextRoute = GetCleaningNextRoute(itOccBlock, out locomotiveObjectId);
 
                     //
                     // the most interesting call is `GetNextRoute(..)` which
@@ -654,14 +668,18 @@ namespace railessentials.AutoMode
         {
             if (_metadata != null) return;
 
-            _metadata = _ctx._metadata;
-            _metadataLock = _ctx._metadata;
-            _dataProvider = _ctx._sniffer.GetDataProvider() as DataProvider;
-            _dataProviderS88 = _ctx._sniffer.GetDataProviderS88() as DataProvider;
+            _metadataLock = _ctx._metadataLock;
 
-            var nativeRouteData = _metadata.Routes.ToString();
-            _routeList = JsonConvert.DeserializeObject<RouteList>(nativeRouteData);
-            _planfield = GetPlanField(_metadata);
+            lock (_metadataLock)
+            {
+                _metadata = _ctx._metadata;
+                _dataProvider = _ctx._sniffer.GetDataProvider() as DataProvider;
+                _dataProviderS88 = _ctx._sniffer.GetDataProviderS88() as DataProvider;
+
+                var nativeRouteData = _metadata.Routes.ToString();
+                _routeList = JsonConvert.DeserializeObject<RouteList>(nativeRouteData);
+                _planfield = GetPlanField(_metadata);
+            }
         }
 
         public void ApplyRouteDisableState(string routeName, bool disableState)
@@ -721,7 +739,13 @@ namespace railessentials.AutoMode
             return block;
         }
 
-        private bool IsLocAllowedForTargetBlock(
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="locData"></param>
+        /// <param name="fbData"></param>
+        /// <returns></returns>
+        private static bool IsLocAllowedForTargetBlock(
             Locomotives.Data locData,
             Feedbacks.Data fbData
             )
@@ -747,6 +771,145 @@ namespace railessentials.AutoMode
             return false;
         }
 
+        /// <summary>
+        /// Queries the next route for the cleaning locomotive.
+        /// The cleaning locomotive is small, is allowed
+        /// to change the direction at any time, and
+        /// is allowed to enter any block/route.
+        /// </summary>
+        /// <param name="occBlock"></param>
+        /// <param name="locomotiveObjectId"></param>
+        /// <param name="isOpposideCheck"></param>
+        /// <returns></returns>
+        public Route.Route GetCleaningNextRoute(
+            OccBlock occBlock,
+            out int locomotiveObjectId,
+            bool isOpposideCheck = false
+        )
+        {
+            locomotiveObjectId = 0;
+
+            var occFromBlock = occBlock.FromBlock;
+            if (string.IsNullOrEmpty(occFromBlock)) return null;
+
+            var occLocOid = occBlock.Oid;
+            locomotiveObjectId = occLocOid;
+
+            var locDataEcos = _dataProvider.GetObjectBy(occLocOid) as Locomotive;
+            var locData = _metadata.LocomotivesData.GetData(occLocOid);
+
+            if (locDataEcos == null) return null;
+            if (locData == null) return null;
+            
+            //
+            // NOTE check if the OCC has waited long enough for a new start
+            // 
+            var lastReachedTime = occBlock.ReachedTime;
+            var allowedMinimumTime = lastReachedTime.AddSeconds(occBlock.SecondsToWait);
+            if (allowedMinimumTime > DateTime.Now)
+                return null;
+
+            //
+            // If the loc is no cleaning vehicle, just leave this part
+            //
+            if (!locData.IsCleaner) return null;
+
+            //
+            // do not start any loc on any route when the loc is locked (i.e. not allowed to start)
+            //
+            if (locData.IsLocked) return null;
+
+            //
+            // do not start any loc on any route when the loc is "IsStopped:=true"
+            //
+            // REMARK we have to distinguish IsLocked and IsStopped somehow
+            //
+            if (locData.IsStopped) return null;
+
+            var sideToLeave = locData.EnterBlockSide.IndexOf("+", StringComparison.Ordinal) != -1
+                ? SideMarker.Minus
+                : SideMarker.Plus;
+
+            var originalSideEntered = sideToLeave == SideMarker.Minus
+                ? SideMarker.Plus
+                : SideMarker.Minus;
+
+            RouteList routesFrom;
+
+            if (!isOpposideCheck)
+            {
+                routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+            }
+            else
+            {
+                var r = CheckOpposide(_routeList,
+                    occBlock, sideToLeave, originalSideEntered,
+                    locDataEcos, locData, out routesFrom, true);
+                if (!r) return null;
+            }
+
+            // 
+            // filter by "BlockEnabled" option
+            //
+            var routesFrom1 = FilterByBlockEnabled(routesFrom, sideToLeave, locData);
+
+            //
+            // check if routes have target blocks which are locked by other blocks
+            // if fromBlock is referenced, the target is allowed
+            //
+            var routesFrom2 = FilterByBlockedRoutes(routesFrom1, sideToLeave);
+
+            //
+            // filter routes which are occupied or locked
+            //
+            var routesFromNotOccupied = routesFrom2.FilterNotOccupiedOrLocked(_metadata.Occ);
+
+            //
+            // filter routes if any accessory is in "maintenance" mode
+            //
+            var routesNoMaintenance = routesFromNotOccupied.FilterSwitchesMaintenance(_metadata.Metamodel);
+
+            //
+            // filter all routes which cross occupied routes
+            //
+            var routesNoCross = routesNoMaintenance.FilterNoCrossingOccupied(_routeList);
+
+            if (isOpposideCheck)
+            {
+                if (routesNoCross.Count == 0)
+                    return null;
+
+                var idx = GetRndBetween(routesNoCross.Count);
+                var r = routesNoCross[idx];
+                return r;
+            }
+
+            Route.Route nextRoute;
+            if (routesNoCross.Count == 0)
+            {
+                nextRoute = GetCleaningNextRoute(occBlock, out _, true);
+            }
+            else
+            {
+                var idx = GetRndBetween(routesNoCross.Count);
+                nextRoute = routesNoCross[idx];
+            }
+
+            if (nextRoute == null)
+                LogInfo($"No route available for Locomotive({locDataEcos.Name}).");
+
+            return nextRoute;
+        }
+
+        /// <summary>
+        /// Finds the best route to reach a block
+        /// which is targeting by the user itself
+        /// via drag & drop of a locomotive object
+        /// between blocks in the web ui.
+        /// </summary>
+        /// <param name="occBlock"></param>
+        /// <param name="locomotiveObjectId"></param>
+        /// <returns></returns>
         public Route.Route GetUserNextRoute(
             OccBlock occBlock,
             out int locomotiveObjectId)
@@ -784,7 +947,7 @@ namespace railessentials.AutoMode
 
             var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
 
-            foreach(var route in routesFrom2)
+            foreach (var route in routesFrom2)
             {
                 if (route == null) continue;
                 if (route.IsDisabled) continue;
@@ -803,15 +966,20 @@ namespace railessentials.AutoMode
 
         public Route.Route GetNextRoute(
             OccBlock occBlock,
-            out int locomotiveObjectId)
+            out int locomotiveObjectId,
+            bool isOpposideCheck = false)
         {
             locomotiveObjectId = 0;
+
             var occFromBlock = occBlock.FromBlock;
             if (string.IsNullOrEmpty(occFromBlock)) return null;
 
             var occLocOid = occBlock.Oid;
+            locomotiveObjectId = occLocOid;
             var locDataEcos = _dataProvider.GetObjectBy(occLocOid) as Locomotive;
-            var locData = _metadata.LocomotivesData.GetData(occLocOid);
+            Locomotives.Data locData;
+            lock (_metadataLock)
+                locData = _metadata.LocomotivesData.GetData(occLocOid);
 
             if (locDataEcos == null) return null;
             if (locData == null) return null;
@@ -844,199 +1012,87 @@ namespace railessentials.AutoMode
                 ? SideMarker.Plus
                 : SideMarker.Minus;
 
-            var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+            RouteList routesFrom;
+
+            if (!isOpposideCheck)
+            {
+                routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
+            }
+            else
+            {
+                var r = CheckOpposide(_routeList,
+                    occBlock, sideToLeave, originalSideEntered,
+                    locDataEcos, locData, out routesFrom, false);
+                if (!r) return null;
+            }
+
+            // 
+            // filter by "BlockEnabled" option
+            //
+            var routesFrom1 = FilterByBlockEnabled(routesFrom, sideToLeave, locData);
 
             //
             // filter routes by allowed options, e.g. "mainline", "intercity", ...
             // 
-            var routesFrom3 = new RouteList();
-            foreach (var it in routesFrom2)
-            {
-                var targetBlock = it.Blocks[1];
-                var targetBlockIdentifier = targetBlock.identifier;
-                if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
-
-                var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
-                if (targetFbData == null) continue;
-
-                //
-                // when the target block is disabled, do not use for routing
-                //
-                if (targetFbData.Settings != null && targetFbData.Settings.ContainsKey("BlockEnabled"))
-                {
-                    var blockEnabled = targetFbData.Settings["BlockEnabled"];
-                    if (!blockEnabled) continue;
-                }
-
-                if (IsLocAllowedForTargetBlock(locData, targetFbData))
-                    routesFrom3.Add(it);
-            }
+            var routesFrom2 = FilterByAllowedOptions(routesFrom1, sideToLeave, locData);
 
             //
             // check if routes have target blocks which are locked by other blocks
             // if fromBlock is referenced, the target is allowed
             //
-            var routesFrom = new RouteList();
-            foreach (var it in routesFrom3)
-            {
-                var targetBlock = it.Blocks[1];
-                var targetBlockIdentifier = targetBlock.identifier;
-                if (string.IsNullOrEmpty(targetBlockIdentifier)) continue;
-
-                var targetFbData = GetFeedbackDataOf(targetBlockIdentifier, sideToLeave);
-                if (targetFbData == null) continue;
-
-                var lockedBy = targetFbData.LockedByBlock;
-                if (string.IsNullOrEmpty(lockedBy))
-                {
-                    routesFrom.Add(it);
-                }
-                else
-                {
-                    var fromBlock = it.Blocks[0];
-                    var fromBlockIdentifier = fromBlock.identifier;
-
-                    if (lockedBy.StartsWith(fromBlockIdentifier, StringComparison.OrdinalIgnoreCase))
-                        routesFrom.Add(it);
-                }
-            }
+            var routesFrom3 = FilterByBlockedRoutes(routesFrom2, sideToLeave);
 
             //
-            // in case there is no route to leave on the sideToLeave
-            // probably the trains' direction must change, if change
-            // is allowed:
-            // (1) check for a new route on the opposide sideToLeave
-            // (2) if one or more route available, check of the train is allowed to change the direction (as well the block)
-            // (3) change the direction
-            // (4) change the sideToLeave
-            // (5) ...start the additional route selection routines
+            // filter routes/blocks which are not allowed for the current locomotive
             //
-            if (routesFrom.Count == 0)
-            {
-                string step4enterBlockSide;
+            RouteList routesFromFiltered;
+            lock (_metadataLock)
+                routesFromFiltered = routesFrom3.FilterBy(locDataEcos, locData, _metadata.FeedbacksData);
 
-                LogInfo($"The side to leave {sideToLeave} does not have any route to take.");
-                if (sideToLeave == SideMarker.Minus)
-                {
-                    step4enterBlockSide = "'-' Side";
-                    sideToLeave = SideMarker.Plus;
-                }
-                else
-                {
-                    step4enterBlockSide = "'+' Side";
-                    sideToLeave = SideMarker.Minus;
-                }
-
-                #region (1)
-                //
-                // (1)
-                //
-                routesFrom = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
-                if (routesFrom.Count == 0)
-                {
-                    LogInfo($"The other side to leave {sideToLeave} does not have any route to take.");
-                    LogInfo($"No route to take from {occFromBlock} for Locomotive({locDataEcos.Name ?? "-"}).");
-                    return null;
-                }
-
-                #endregion (1)
-
-                #region (2)
-                //
-                // (2)
-                //
-                if (locData.Settings.ContainsKey("OptionDirection"))
-                {
-                    var locState = locData.Settings["OptionDirection"];
-                    if (!locState)
-                    {
-                        LogInfo($"Locomotive({locDataEcos.Name}) is not allowed to change the direction.");
-                        return null;
-                    }
-                }
-
-                var fbData = GetFeedbackDataOf(occBlock.FromBlock, originalSideEntered);
-                if (fbData == null)
-                {
-                    LogInfo($"No feedback data available for block {occBlock.FromBlock}.");
-                    return null;
-                }
-
-                if (fbData.Settings.ContainsKey("OptionDirection"))
-                {
-                    var blockState = fbData.Settings["OptionDirection"];
-                    if (!blockState)
-                    {
-                        LogInfo($"Block({fbData.BlockId}) does not allow to change the direction.");
-                        return null;
-                    }
-                }
-
-                #endregion (2)
-
-                #region (3)
-                //
-                // (3)
-                //
-                var currentDirection = locDataEcos.Direction;
-                var newDirection = currentDirection == 1 ? 0 : 1;
-                if (_ctx.IsSimulationMode())
-                {
-                    locDataEcos.ChangeDirectionSimulation(newDirection == 1);
-                    _ctx.SaveAll();
-                    _ctx?._sniffer?.TriggerDataProviderModifiedForSimulation();
-                }
-                else
-                {
-                    locDataEcos.ChangeDirection(newDirection == 1);
-                    _ctx?._sniffer?.SendCommandsToEcosStation();
-                }
-
-                #endregion (3)
-
-                #region (4)
-                //
-                // (4)
-                //
-                // EnterBlockSide = "'+' Side"
-                // EnterBlockSide = "'-' Side"
-                if (string.IsNullOrEmpty(step4enterBlockSide))
-                {
-                    LogInfo($"Invalid enterBlockSide value for Locomotive({locDataEcos.Name}).");
-                    return null;
-                }
-
-                locData.EnterBlockSide = step4enterBlockSide;
-                SaveLocomotivesAndPromote();
-                SaveOccAndPromote();
-
-                #endregion (4)
-            }
-            var routesFromFiltered = routesFrom.FilterBy(locDataEcos, locData, _metadata.FeedbacksData);
-            var routesFromNotOccupied = routesFromFiltered.FilterNotOccupiedOrLocked(_metadata.Occ);
-            if (routesFromNotOccupied.Count == 0) return null;
+            //
+            // filter routes which are occupied or locked
+            //
+            RouteList routesFromNotOccupied;
+            lock (_metadataLock)
+                routesFromNotOccupied = routesFromFiltered.FilterNotOccupiedOrLocked(_metadata.Occ);
 
             //
             // filter routes if any accessory is in "maintenance" mode
             //
-            var routesNoMaintenance = routesFromNotOccupied.FilterSwitchesMaintenance(_metadata.Metamodel);
+            RouteList routesNoMaintenance;
+            lock (_metadataLock)
+                routesNoMaintenance = routesFromNotOccupied.FilterSwitchesMaintenance(_metadata.Metamodel);
 
             //
             // filter all routes which cross occupied routes
             //
             var routesNoCross = routesNoMaintenance.FilterNoCrossingOccupied(_routeList);
-            if (routesNoCross.Count == 0)
+
+            if (isOpposideCheck)
             {
-                //
-                // no route free to take
-                //
-                return null;
+                if (routesNoCross.Count == 0)
+                    return null;
+
+                var idx = GetRndBetween(routesNoCross.Count);
+                var r = routesNoCross[idx];
+                return r;
             }
 
-            locomotiveObjectId = occLocOid;
+            Route.Route nextRoute;
+            if (routesNoCross.Count == 0)
+            {
+                nextRoute = GetNextRoute(occBlock, out _, true);
+            }
+            else
+            {
+                var idx = GetRndBetween(routesNoCross.Count);
+                nextRoute = routesNoCross[idx];
+            }
 
-            var idx = GetRndBetween(routesNoCross.Count);
-            return routesNoCross[idx];
+            if (nextRoute == null)
+                LogInfo($"No route available for Locomotive({locDataEcos.Name}).");
+
+            return nextRoute;
         }
 
         #region Helper
@@ -1059,7 +1115,7 @@ namespace railessentials.AutoMode
             var metamodel = metadata?.Metamodel;
             if (metamodel == null) return null;
             var planfield = JsonConvert.DeserializeObject<Dictionary<string, PlanField>>(metamodel.ToString(Formatting.None));
-            return planfield["planField"];
+            return planfield?["planField"];
         }
 
         #endregion

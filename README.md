@@ -183,6 +183,7 @@ The book introduces the basics of managing commands for remote control of your m
  - *Wait for Locomotives* if AutoMode has stopped, i.e. finish all current journeys [Issue #75](https://github.com/cbries/railessentials/issues/75)
  - *Drag & Drop* of locomotives to assign a new block [Issue #100](https://github.com/cbries/railessentials/issues/100), [Wiki](https://github.com/cbries/railessentials/wiki/AutoMode-By-DragAndDrop)
  - *Cleaning Robot / Cleaner* mode, specific Locomotive have full access to all blocks/routes, can change direction at any time. [Issue #20](https://github.com/cbries/railessentials/issues/20)
+ - *Define Wait-period* of locomotives when they reaches target block of a route. [Issue #107](https://github.com/cbries/railessentials/issues/107)
 
 ## Individual Supports for my personal needs
 

@@ -38,5 +38,16 @@
     "PlanBackground": "rgba(243,243,243,1)"
   },
   "SaveOnEveryPlanfieldChange": true,
-  "InitializeDelay": 500
+  "InitializeDelay": 500,
+  "Occ": {
+    "WaitModeStatic": {
+      "Enabled": false,
+      "Seconds": 9
+    },
+    "WaitModeRandom": {
+      "Enabled": true,
+      "SecondsMin": 4,
+      "SecondsMax": 14
+    }
+  }
 }

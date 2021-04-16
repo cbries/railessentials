@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ecoslib.Entities;
+using ecoslib.Utilities.Commands;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Analyzer;
@@ -29,7 +30,6 @@ namespace railessentials.AutoMode
 
     public class AutoMode
     {
-        public const int RunPauseForBlockSeconds = 10;
         private const int RunDelayBetweenChecksMsecs = 2500;
 
         public event AutoModeStarted Started;
@@ -51,6 +51,40 @@ namespace railessentials.AutoMode
 
         private readonly object _autoModeTasksLock = new();
         private readonly List<AutoModeTaskCore> _autoModeTasks = new();
+
+        private readonly Random _random = new Random();
+
+        internal static int GetSecondsToWaitFallback()
+        {
+            return 10;
+        }
+
+        internal int GetSecondsToWait()
+        {
+            var cfg = _ctx?._cfg?.Cfg;
+            if (cfg == null) return GetSecondsToWaitFallback();
+
+            if (cfg?.OccWait?.WaitModeStatic != null)
+            {
+                if (cfg.OccWait.WaitModeStatic.Enabled)
+                {
+                    return cfg.OccWait.WaitModeStatic.Seconds;
+                }
+            }
+
+            if (cfg?.OccWait?.WaitModeRandom != null)
+            {
+                if (cfg.OccWait.WaitModeRandom.Enabled)
+                {
+                    return _random.Next(
+                        cfg.OccWait.WaitModeRandom.SecondsMin,
+                        cfg.OccWait.WaitModeRandom.SecondsMax
+                        );
+                }
+            }
+
+            return GetSecondsToWaitFallback();
+        }
 
         internal ClientHandler.ClientHandler GetClientHandler()
         {
@@ -784,7 +818,7 @@ namespace railessentials.AutoMode
 
             var routesFrom2 = _routeList.GetRoutesWithFromBlock(occFromBlock, sideToLeave, true);
 
-            foreach(var route in routesFrom2)
+            foreach (var route in routesFrom2)
             {
                 if (route == null) continue;
                 if (route.IsDisabled) continue;

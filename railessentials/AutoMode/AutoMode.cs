@@ -174,6 +174,8 @@ namespace railessentials.AutoMode
                 Started?.Invoke(this);
                 Update?.Invoke(this, "AutoMode START");
 
+                StartGhostDetection();
+
                 while (_isStopped == false)
                 {
                     if (_isStopping) break;
@@ -220,6 +222,8 @@ namespace railessentials.AutoMode
 
                     await WaitForTasks();
                 }
+
+                await StopGhostDetection();
 
                 _isStopped = true;
 

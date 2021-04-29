@@ -3,8 +3,15 @@
 // File: AutoMode.GhostDetection.cs
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using railessentials.Occ;
+using railessentials.Plan;
 
 namespace railessentials.AutoMode
 {
@@ -72,10 +79,93 @@ namespace railessentials.AutoMode
                 // NOTE do not stop AutoMode, just set the speed of the locomotive to zero
                 //
 
-                // TODO
+                // (1)
+                var usedRoutes = _getCurrentUsedRoutes();
+
+                // (2)
+                var allowedFbs = _getAllowedFbsOfRoutes(usedRoutes);
 
                 System.Threading.Thread.Sleep(250);
             }
+        }
+
+        private List<string> _getCurrentUsedRoutes()
+        {
+            var res = new List<string>();
+            lock (_metadataLock)
+            {
+                var blocks = _metadata.Occ.Blocks;
+                foreach (var itOccBlock in blocks)
+                {
+                    if (itOccBlock == null) continue;
+                    if (!itOccBlock.IsTraveling) continue;
+                    if (string.IsNullOrEmpty(itOccBlock.FinalBlock)) continue;
+
+                    res.Add(itOccBlock.RouteToFinal);
+                }
+            }
+            return res;
+        }
+
+        private List<PlanItem> _getAllowedFbsOfRoutes(List<string> routes)
+        {
+            var res = new List<PlanItem>();
+
+            JObject planField = null;
+            lock (_metadataLock)
+                planField = _metadata?.Metamodel?["planField"] as JObject;
+            if (planField == null)
+                return res;
+
+            var field = JsonConvert.DeserializeObject<PlanField>(planField.ToString());
+            
+            foreach (var itRoute in routes)
+            {
+                if (string.IsNullOrEmpty(itRoute)) continue;
+
+                var routeData = _routeList.GetByName(itRoute);
+                if (routeData == null) continue;
+                
+                foreach (var itSensor in routeData.Sensors)
+                {
+                    if(itSensor == null) continue;
+                    var itemSensor = field?.Get(itSensor.x, itSensor.y);
+                    if(itemSensor != null)
+                        res.Add(itemSensor);
+                }
+
+                var startBlock = routeData.Blocks[0];
+                if (startBlock != null)
+                {
+                    if(GetFeedbacksForBlock(startBlock, out var fbEnter, out var fbIn))
+                    {
+                        var fbEnterItem = field?.Get(fbEnter);
+                        if(fbEnterItem != null)
+                            res.Add(fbEnterItem); // duplicates allowed
+
+                        var fbInItem = field?.Get(fbIn);
+                        if(fbInItem != null)
+                            res.Add(fbInItem); // duplicates allowed
+                    }
+                }
+
+                var finalBlock = routeData.Blocks[1];
+                if (finalBlock != null)
+                {
+                    if (GetFeedbacksForBlock(finalBlock, out var fbEnter, out var fbIn))
+                    {
+                        var fbEnterItem = field?.Get(fbEnter);
+                        if (fbEnterItem != null)
+                            res.Add(fbEnterItem); // duplicates allowed
+
+                        var fbInItem = field?.Get(fbIn);
+                        if (fbInItem != null)
+                            res.Add(fbInItem); // duplicates allowed
+                    }
+                }
+            }
+
+            return res;
         }
 
         public async Task<bool> StopGhostDetection()

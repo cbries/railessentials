@@ -740,8 +740,8 @@ class Planfield {
     createControl(jsonData, coord, options = {}) {
         const self = this;
 
-        var knownControls = $('div.ctrlItem[id]');
-        var knownCtrl = getCtrlOfCoord(coord.x, coord.y, knownControls);
+        let knownControls = $('div.ctrlItem[id]');
+        let knownCtrl = getCtrlOfCoord(coord.x, coord.y, knownControls);
         if (typeof knownCtrl !== "undefined" && knownCtrl != null) {
             return;
         }

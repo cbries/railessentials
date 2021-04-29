@@ -7,12 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Documents;
-using System.Xaml.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Analyzer;
-using railessentials.Occ;
 using railessentials.Plan;
 using railessentials.Route;
 
@@ -25,6 +22,12 @@ namespace railessentials.AutoMode
 
         public bool StartGhostDetection()
         {
+            if (!_ctx._cfg.Cfg.GhostDetection)
+            {
+                LogInfo("Ghost detection is disabled.");
+                return true;
+            }
+
             if (_bwGhost is {IsBusy: true})
             {
                 LogInfo($"Ghost detection already running.");
@@ -68,6 +71,11 @@ namespace railessentials.AutoMode
 
         private void BwGhostOnDoWork(object sender, DoWorkEventArgs e)
         {
+            const int HighRateCheckMs = 250;
+            const int LowRateCheckMs = 1000;
+            var checkDelayMs = HighRateCheckMs;
+            var faultyFbsSent = false;
+
             while(_bwGhost is {CancellationPending: false})
             {
                 //
@@ -100,11 +108,53 @@ namespace railessentials.AutoMode
 
                 // (4)
                 var faultyFbs = _getFaultyFbs(allowedFbs, activeFbs);
+#if DEBUG
                 Trace.WriteLine("Faulty FBs: " + faultyFbs.Count);
+#endif
+                // (5)
+                if (faultyFbs.Count == 0)
+                {
+                    checkDelayMs = HighRateCheckMs;
 
-                // TODO (4) .. (7)
+                    if(faultyFbsSent)
+                    {
+                        // if we had a faulty state in the past
+                        // reset the state and inform the clients
 
-                System.Threading.Thread.Sleep(250);
+                        SendAutoModeGhostResetToClients();
+
+                        faultyFbsSent = false;
+                    }
+                }
+                else
+                {
+                    //
+                    // there are faulty FBs (i.e. a ghost train exists)
+                    //
+                    
+                    SendAutoModeGhostFoundToClients(faultyFbs);
+
+                    faultyFbsSent = true;
+                    checkDelayMs = LowRateCheckMs;
+                }
+
+                // (6)
+                if(faultyFbs.Count > 0)
+                {
+                    if (_ctx != null)
+                    {
+                        if (_ctx.HasAnyTrainSpeed())
+                        {
+                            LogInfo($"Ghost train detected, stop all locomotives.");
+                            _ctx.StopAllLocomotives();
+                        }
+                    }
+                }
+
+                // (7)
+                // applied on client-side
+
+                System.Threading.Thread.Sleep(checkDelayMs);
             }
         }
 
@@ -306,6 +356,12 @@ namespace railessentials.AutoMode
 
         public async Task<bool> StopGhostDetection()
         {
+            if (!_ctx._cfg.Cfg.GhostDetection)
+            {
+                LogInfo("Ghost detection was disabled.");
+                return true;
+            }
+
             LogInfo($"Stop Ghost detection...");
             if (_bwGhost is not {IsBusy: true}) return true;
             _bwGhost.CancelAsync();

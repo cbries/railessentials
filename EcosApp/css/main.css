@@ -7,6 +7,13 @@ html, body {
     overflow: hidden; /* hide vertical scrollbars */
 }
 
+.ghost {
+    background-color: lightpink;
+    -webkit-box-shadow: inset 0 0 0 4px #ff0000;
+    -moz-box-shadow: inset 0 0 0 4px #ff0000;
+    box-shadow: inset 0 0 0 4px #ff0000;
+}
+
 /**
     Workspace Selection
 */

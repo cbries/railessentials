@@ -1468,14 +1468,39 @@ namespace railessentials.ClientHandler
 
                 case "stop":
                     {
-                        var objs = dp.Objects;
-                        foreach (var it in objs)
-                        {
-                            var itLoc = it as Locomotive;
-                            itLoc?.Stop();
-                        }
+                        StopAllLocomotives();
                     }
                     break;
+            }
+        }
+
+        internal bool HasAnyTrainSpeed()
+        {
+            var dp = _sniffer.GetDataProvider();
+            if (dp == null) return false;
+            var objs = dp.Objects;
+            foreach (var it in objs)
+            {
+                var itLoc = it as Locomotive;
+                if (itLoc == null) continue;
+                if (itLoc.Speed > 0 || itLoc.Speedstep > 0)
+                    return true;
+            }
+            return false;
+        }
+
+        internal void StopAllLocomotives()
+        {
+            var dp = _sniffer.GetDataProvider();
+            if (dp == null) return;
+            var objs = dp.Objects;
+            foreach (var it in objs)
+            {
+                var itLoc = it as Locomotive;
+                if(IsSimulationMode())
+                    itLoc?.StopSimulation();
+                else
+                    itLoc?.Stop();
             }
         }
 

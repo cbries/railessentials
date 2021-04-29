@@ -39,6 +39,7 @@
   },
   "SaveOnEveryPlanfieldChange": true,
   "InitializeDelay": 500,
+  "GhostDetection": false,
   "Occ": {
     "WaitModeStatic": {
       "Enabled": false,

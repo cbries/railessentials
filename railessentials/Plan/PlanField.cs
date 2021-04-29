@@ -15,23 +15,23 @@ namespace railessentials.Plan
 
         public void InitContext()
         {
-            lock(_lock)
+            lock (_lock)
             {
-                foreach(var it in this)
+                foreach (var it in this)
                 {
                     var v = it.Value;
                     v.Ctx = this;
                 }
             }
         }
-        
+
         public int GetMaxWidth()
         {
             lock (_lock)
             {
                 var w = 0;
 
-                foreach(var it in this)
+                foreach (var it in this)
                 {
                     var item = it.Value;
                     if (item == null) continue;
@@ -43,7 +43,7 @@ namespace railessentials.Plan
                     if (item.editor != null)
                         themeDimX = item.editor.themeDimIdx;
 
-                    if(item.dimensions != null && item.dimensions.Count > themeDimX)
+                    if (item.dimensions != null && item.dimensions.Count > themeDimX)
                     {
                         var dim = item.dimensions[themeDimX];
                         if (dim.W > 1)
@@ -113,7 +113,7 @@ namespace railessentials.Plan
 
         public PlanItem Get(int x, int y)
         {
-            lock(_lock)
+            lock (_lock)
             {
                 foreach (var it in this)
                 {
@@ -123,8 +123,8 @@ namespace railessentials.Plan
                     var startCoord = item.StartCoord();
                     var endCoord = item.EndCoord();
 
-                    if (x >= startCoord.x 
-                        && x <= endCoord.x 
+                    if (x >= startCoord.x
+                        && x <= endCoord.x
                         && y >= startCoord.y
                         && y <= endCoord.y)
                     {
@@ -144,12 +144,12 @@ namespace railessentials.Plan
                 var items = new PlanItem[2];
                 var index = 0;
 
-                foreach(var it in this)
+                foreach (var it in this)
                 {
                     var item = it.Value;
                     if (!item.IsConnector) continue;
                     if (item.editor.connectorId <= 1) continue;
-                    if(item.editor.connectorId == connectorId)
+                    if (item.editor.connectorId == connectorId)
                     {
                         items[index] = item;
                         index++;
@@ -183,17 +183,39 @@ namespace railessentials.Plan
             }
         }
 
-        public List<PlanItem> GetBlocks()
+        public PlanItem GetSensorByAddr(int addr)
         {
-            lock(_lock)
+            lock (_lock)
             {
-                var result = new List<PlanItem>();
-
-                foreach(var it in this)
+                foreach (var it in this)
                 {
                     var v = it.Value;
                     if (v == null) continue;
-                    if(v.IsBlock)
+                    if (!v.IsSensor) continue;
+
+                    var itemAddr = v.Addresses;
+                    if (itemAddr == null) continue;
+                    if (itemAddr.Addr <= 0) continue;
+
+                    if (itemAddr.Addr == addr)
+                        return v;
+                }
+
+                return null;
+            }
+        }
+
+        public List<PlanItem> GetBlocks()
+        {
+            lock (_lock)
+            {
+                var result = new List<PlanItem>();
+
+                foreach (var it in this)
+                {
+                    var v = it.Value;
+                    if (v == null) continue;
+                    if (v.IsBlock)
                         result.Add(v);
                 }
 
@@ -217,15 +239,15 @@ namespace railessentials.Plan
         {
             var res = new RouteList();
             if (!startBlock.IsBlock) return res;
-            
+
             var allowedPath = startBlock.GetAllowedPath();
             if (allowedPath.Count == 0) return res;
 
-            foreach(var it in allowedPath)
+            foreach (var it in allowedPath)
             {
                 var startStep = new NextStep { Item = startBlock };
                 var result = new List<NextStep> { startStep };
-                var r = Walk(startBlock, new NextStep{Item = it.To}, ref result);
+                var r = Walk(startBlock, new NextStep { Item = it.To }, ref result);
                 if (r)
                 {
                     var route = new Route();
@@ -277,7 +299,7 @@ namespace railessentials.Plan
                         var lastRecentItem = lastRecentStep.Item;
 
                         var resBranch = Walk(lastRecentItem, nextStep, ref copyOfRecentItems);
-                        if(resBranch)
+                        if (resBranch)
                         {
                             var route = new Route();
                             copyOfRecentItems.ForEach(itr => route.Items.Add(itr));
@@ -294,10 +316,10 @@ namespace railessentials.Plan
 
             // reset routes path information, 
             // only allowed for switches
-            foreach(var it in res)
+            foreach (var it in res)
             {
                 if (it == null) continue;
-                foreach(var itItem in it.Items)
+                foreach (var itItem in it.Items)
                 {
                     if (itItem?.Item == null) continue;
                     if (itItem.Item.IsSwitch) continue;
@@ -307,7 +329,7 @@ namespace railessentials.Plan
 
             return res;
         }
-        
+
         private bool Walk(PlanItem previousItem, NextStep currentStep, ref List<NextStep> result)
         {
             try
@@ -327,7 +349,7 @@ namespace railessentials.Plan
 
                 var nextAllowedPath = currentItem.GetAllowedPath(out var connectors);
                 if (nextAllowedPath.Count == 0)
-                { 
+                {
                     // final stop, no additional destinations available
                     return false;
                 }
@@ -347,8 +369,8 @@ namespace railessentials.Plan
                         nextSteps.Add(step);
                     }
                 }
-                
-                if(nextSteps.Count > 1)
+
+                if (nextSteps.Count > 1)
                 {
                     var branchInfo = new BranchInfo
                     {
@@ -362,12 +384,12 @@ namespace railessentials.Plan
                     return false;
                 }
 
-                if (nextSteps.Count  == 0)
+                if (nextSteps.Count == 0)
                     return false;
 
                 if (currentItem.IsConnector)
                 {
-                    if(connectors != null && connectors.Length == 2)
+                    if (connectors != null && connectors.Length == 2)
                     {
                         var fakeCurrentItem = connectors[1];
                         result.Add(new NextStep
@@ -387,7 +409,7 @@ namespace railessentials.Plan
                     // way we can go AND in case the current item is
                     // a switch, remember the way for later use during 
                     // auto-route and auto-switching
-                    if(currentItem.IsSwitch)
+                    if (currentItem.IsSwitch)
                     {
                         var nextStepItemPath = nextStep.PreviousItemPath;
 

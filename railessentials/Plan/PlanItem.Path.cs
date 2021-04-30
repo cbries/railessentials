@@ -72,7 +72,7 @@ namespace railessentials.Plan
             return ways;
         }
 
-        private class Position
+        internal class Position
         {
             public int x { get; internal set; }
             public int y { get; internal set;  }
@@ -91,7 +91,7 @@ namespace railessentials.Plan
         /// <param name="side">Can be `a`, `b`, `c`, or `d`.</param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        private Position GetSideXy(char side, int offset)
+        internal Position GetSideXy(char side, int offset)
         {
             int sideX = -1;
             int sideY = -1;
@@ -139,7 +139,7 @@ namespace railessentials.Plan
         /// <param name="side"></param>
         /// <param name="p"></param>
         /// <returns></returns>
-        private PlanItem GetBorderItem(char side, Position p)
+        internal PlanItem GetBorderItem(char side, Position p)
         {
             switch (side)
             {

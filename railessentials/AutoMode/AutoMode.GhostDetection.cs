@@ -28,13 +28,13 @@ namespace railessentials.AutoMode
                 return true;
             }
 
-            if (_bwGhost is {IsBusy: true})
+            if (_bwGhost is { IsBusy: true })
             {
                 LogInfo($"Ghost detection already running.");
                 return true;
             }
-            
-            if(_bwGhost != null)
+
+            if (_bwGhost != null)
             {
                 try
                 {
@@ -76,7 +76,7 @@ namespace railessentials.AutoMode
             var checkDelayMs = HighRateCheckMs;
             var faultyFbsSent = false;
 
-            while(_bwGhost is {CancellationPending: false})
+            while (_bwGhost is { CancellationPending: false })
             {
                 //
                 // STEPS FOR SUCCESS
@@ -116,7 +116,7 @@ namespace railessentials.AutoMode
                 {
                     checkDelayMs = HighRateCheckMs;
 
-                    if(faultyFbsSent)
+                    if (faultyFbsSent)
                     {
                         // if we had a faulty state in the past
                         // reset the state and inform the clients
@@ -131,7 +131,7 @@ namespace railessentials.AutoMode
                     //
                     // there are faulty FBs (i.e. a ghost train exists)
                     //
-                    
+
                     SendAutoModeGhostFoundToClients(faultyFbs);
 
                     faultyFbsSent = true;
@@ -139,7 +139,7 @@ namespace railessentials.AutoMode
                 }
 
                 // (6)
-                if(faultyFbs.Count > 0)
+                if (faultyFbs.Count > 0)
                 {
                     if (_ctx != null)
                     {
@@ -181,33 +181,33 @@ namespace railessentials.AutoMode
             var res = new List<PlanItem>();
 
             var field = _getPlanField();
-            
+
             foreach (var itRoute in routes)
             {
                 if (string.IsNullOrEmpty(itRoute)) continue;
 
                 var routeData = _routeList.GetByName(itRoute);
                 if (routeData == null) continue;
-                
+
                 foreach (var itSensor in routeData.Sensors)
                 {
-                    if(itSensor == null) continue;
+                    if (itSensor == null) continue;
                     var itemSensor = field?.Get(itSensor.x, itSensor.y);
-                    if(itemSensor != null)
+                    if (itemSensor != null)
                         res.Add(itemSensor);
                 }
 
                 var startBlock = routeData.Blocks[0];
                 if (startBlock != null)
                 {
-                    if(GetFeedbacksForBlock(startBlock, out var fbEnter, out var fbIn))
+                    if (GetFeedbacksForBlock(startBlock, out var fbEnter, out var fbIn))
                     {
                         var fbEnterItem = field?.Get(fbEnter);
-                        if(fbEnterItem != null)
+                        if (fbEnterItem != null)
                             res.Add(fbEnterItem); // duplicates allowed
 
                         var fbInItem = field?.Get(fbIn);
-                        if(fbInItem != null)
+                        if (fbInItem != null)
                             res.Add(fbInItem); // duplicates allowed
                     }
                 }
@@ -249,25 +249,60 @@ namespace railessentials.AutoMode
 
             var field = _getPlanField();
 
-            foreach(var itBlock in startBlocks)
+            foreach (var itBlock in startBlocks)
             {
-                if(string.IsNullOrEmpty(itBlock)) continue;
+                if (string.IsNullOrEmpty(itBlock)) continue;
 
+                //
+                // query fbEnter and fbIn
+                //
                 var r = GetFeedbacksForBlock(new RouteBlock
                 {
                     identifier = itBlock,
                     side = SideMarker.Plus
-                }, 
-                    out var fbEnter, 
+                },
+                    out var fbEnter,
                     out var fbIn);
+                if (r)
+                {
+                    var fbEnterItem = field.Get(fbEnter);
+                    res.Add(fbEnterItem);
 
-                if (!r) continue;
+                    var fbInItem = field.Get(fbIn);
+                    res.Add(fbInItem);
+                }
 
-                var fbEnterItem = field.Get(fbEnter);
-                res.Add(fbEnterItem);
+                //
+                // query block's direct neighbour, if they are sensors/feedback then
+                // our heuristic guess they are part of the allowed fbs when the block is occupied
+                //
+                var blockItem = field.Get(itBlock);
+                if (blockItem != null)
+                {
+                    blockItem.Ctx = field;
 
-                var fbInItem = field.Get(fbIn);
-                res.Add(fbInItem);
+                    //var startCoord = blockItem.StartCoord();
+                    //var stopCoord = blockItem.EndCoord();
+
+                    var ways = blockItem.GetAllPossibleWays();
+                    // a block can only have two feasible ways
+                    
+                    var from = ways[0][0];
+                    var fromP = blockItem.GetSideXy(from, 0);
+                    if (from == 'a') fromP.x--;
+                    else if (from == 'b') fromP.y--;
+                    var fromItem = blockItem.GetBorderItem(from, fromP);
+                    if(fromItem != null && fromItem.IsSensor)
+                        res.Add(fromItem);
+
+                    var to = ways[1][0];
+                    var toP = blockItem.GetSideXy(to, 0);
+                    //if (to == 'c') toP.x++;
+                    //else if (to == 'd') toP.y++;
+                    var toItem = blockItem.GetBorderItem(to, toP);
+                    if(toItem != null && toItem.IsSensor)
+                        res.Add(toItem);
+                }
             }
 
             return res;
@@ -290,14 +325,15 @@ namespace railessentials.AutoMode
             {
                 if (fb == null) continue;
 
-                for(var i = 0; i < fb.Ports; ++i)
+                for (var i = 0; i < fb.Ports; ++i)
                 {
                     var state = fb.Pin((uint)i);
                     if (state)
                     {
                         var fbAddr = offsetStart + i + 1;
-                        enabledFbs.Add(new FbActive {
-                            Addr =fbAddr,
+                        enabledFbs.Add(new FbActive
+                        {
+                            Addr = fbAddr,
                             Fb = fb
                         });
                     }
@@ -363,7 +399,7 @@ namespace railessentials.AutoMode
             }
 
             LogInfo($"Stop Ghost detection...");
-            if (_bwGhost is not {IsBusy: true}) return true;
+            if (_bwGhost is not { IsBusy: true }) return true;
             _bwGhost.CancelAsync();
             return await Task.Run(() =>
             {

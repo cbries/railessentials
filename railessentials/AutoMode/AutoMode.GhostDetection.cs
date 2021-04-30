@@ -281,9 +281,6 @@ namespace railessentials.AutoMode
                 {
                     blockItem.Ctx = field;
 
-                    //var startCoord = blockItem.StartCoord();
-                    //var stopCoord = blockItem.EndCoord();
-
                     var ways = blockItem.GetAllPossibleWays();
                     // a block can only have two feasible ways
                     
@@ -292,7 +289,7 @@ namespace railessentials.AutoMode
                     if (from == 'a') fromP.x--;
                     else if (from == 'b') fromP.y--;
                     var fromItem = blockItem.GetBorderItem(from, fromP);
-                    if(fromItem != null && fromItem.IsSensor)
+                    if(fromItem is {IsSensor: true})
                         res.Add(fromItem);
 
                     var to = ways[1][0];
@@ -300,7 +297,7 @@ namespace railessentials.AutoMode
                     //if (to == 'c') toP.x++;
                     //else if (to == 'd') toP.y++;
                     var toItem = blockItem.GetBorderItem(to, toP);
-                    if(toItem != null && toItem.IsSensor)
+                    if(toItem is {IsSensor: true})
                         res.Add(toItem);
                 }
             }

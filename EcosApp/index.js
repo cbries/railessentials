@@ -740,11 +740,23 @@ $(document).ready(function () {
                             }
                         }
 
+                        const fncHideGhostOverlay = function() {
+                            $('.overlayGhost').hide();
+                            $('.overlayGhostText').hide();
+                        }
+
+                        const fncShowGhostOverlay = function(message) {
+                            $('.overlayGhost').show();
+                            $('.overlayGhostText').html(message);
+                            $('.overlayGhostText').show();
+                        }
+
                         if (typeof state.found === "undefined"
                             || state.found == null
                             || state.found === false)
                         {
                             fncClearGhost();
+                            fncHideGhostOverlay();
                         } else {
                             fncClearGhost();
 
@@ -758,6 +770,10 @@ $(document).ready(function () {
                                 const fbItemCoord = fbItem.coord;
                                 const item = getCtrlOfCoord(fbItemCoord.x, fbItemCoord.y, allFbItems);
                                 item.addClass("ghost");
+                            }
+
+                            if (fbs.length > 0) {
+                                fncShowGhostOverlay("Ghost train detected!");
                             }
                         }
 

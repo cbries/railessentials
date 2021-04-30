@@ -432,7 +432,7 @@ $(document).ready(function () {
 
     addJqueryExtensions();
     initDebugConsole();
-    
+
     $('#statusBar div.autoMode').tipso({
         size: 'tiny',
         speed: 100,
@@ -533,16 +533,16 @@ $(document).ready(function () {
         var jsonData = JSON.parse(ev.data);
         changeLocomotive('function', jsonData);
     });
-    
+
     window.planField = new Planfield({
         isEditMode: false
     });
     window.planField.install();
     window.planField.on('controlCreated', function (ev) {
         const ctrlInstance = ev.data.instance;
-        
+
         // inform the Route/S88/Signals dialog for updating its internal lists
-        if(typeof window.blocksDlg !== "undefined" && window.blocksDlg != null)
+        if (typeof window.blocksDlg !== "undefined" && window.blocksDlg != null)
             window.blocksDlg.controlCreated(ctrlInstance);
     });
     window.planField.on('clicked', function (ev) { itemClicked(ev.data); });
@@ -726,6 +726,59 @@ $(document).ready(function () {
             const subCmd = jsonCommand.data.command;
 
             switch (subCmd) {
+
+                case "ghost":
+                    {
+                        const state = jsonCommand.data.state;
+                        if (typeof state === "undefined" || state == null) break;
+
+                        const fncClearGhost = function() {
+                            const allFbItems = $('div.ctrlItemFeedback[id]');
+                            const iMax = allFbItems.length;
+                            for (let i = 0; i < iMax; ++i) {
+                                $(allFbItems[i]).removeClass("ghost");
+                            }
+                        }
+
+                        const fncHideGhostOverlay = function() {
+                            $('.overlayGhost').hide();
+                            $('.overlayGhostText').hide();
+                        }
+
+                        const fncShowGhostOverlay = function(message) {
+                            $('.overlayGhost').show();
+                            $('.overlayGhostText').html(message);
+                            $('.overlayGhostText').show();
+                        }
+
+                        if (typeof state.found === "undefined"
+                            || state.found == null
+                            || state.found === false)
+                        {
+                            fncClearGhost();
+                            fncHideGhostOverlay();
+                        } else {
+                            fncClearGhost();
+
+                            const allFbItems = $('div.ctrlItemFeedback[id]');
+                            const fbs = state.fbs;
+                            for (let i = 0; i < fbs.length; ++i) {
+                                const fbItem = fbs[i];
+                                if (typeof fbItem === "undefined") continue;
+                                if (fbItem == null) continue;
+
+                                const fbItemCoord = fbItem.coord;
+                                const item = getCtrlOfCoord(fbItemCoord.x, fbItemCoord.y, allFbItems);
+                                item.addClass("ghost");
+                            }
+
+                            if (fbs.length > 0) {
+                                fncShowGhostOverlay("Ghost train detected!");
+                            }
+                        }
+
+                    } break;
+
                 case "state": {
 
                     let state = jsonCommand.data.state;
@@ -996,7 +1049,7 @@ var loadSideBar = (function () {
                         '</table></div>'
                 });
                 w2ui['sidebar'].unselect('cmdAbout');
-            } else if(target === "cmdReport") {
+            } else if (target === "cmdReport") {
                 window.open("/report.html", '_blank').focus();
             }
         }
@@ -1118,7 +1171,7 @@ var loadSideBar = (function () {
                 // do nothing
             });
     }
-    
+
     //w2ui.sidebar.goFlat();
 
     function showTodoDialog() {

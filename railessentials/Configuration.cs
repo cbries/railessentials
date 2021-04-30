@@ -26,6 +26,7 @@ namespace railessentials
         public ConfigurationTheme Theme { get; set; } = new();
         public bool SaveOnEveryPlanfieldChange { get; set; } = false;
         public int InitializeDelay { get; set; } = 500;
+        public bool GhostDetection { get; set; }
 
         [JsonProperty(PropertyName = "Occ")]
         public OccWaitModes OccWait { get; set; } = new();

@@ -174,6 +174,8 @@ namespace railessentials.AutoMode
                 Started?.Invoke(this);
                 Update?.Invoke(this, "AutoMode START");
 
+                StartGhostDetection();
+
                 while (_isStopped == false)
                 {
                     if (_isStopping) break;
@@ -220,6 +222,8 @@ namespace railessentials.AutoMode
 
                     await WaitForTasks();
                 }
+
+                await StopGhostDetection();
 
                 _isStopped = true;
 
@@ -387,6 +391,50 @@ namespace railessentials.AutoMode
                         ["stopping"] = IsStopping(),
                         ["stopped"] = IsStopped(),
                         ["message"] = additionalMessage ?? string.Empty
+                    }
+                }
+            });
+        }
+
+        /// <summary>
+        /// Sends the current ghost train state to all clients.
+        /// In general this state should only be used, when
+        /// a ghost train has been detected.
+        /// </summary>
+        /// <param name="ghostFbs"></param>
+        private void SendAutoModeGhostFoundToClients(List<PlanItem> ghostFbs)
+        {
+            if (ghostFbs == null) return;
+            if (ghostFbs.Count == 0) return;
+
+            var listOfFbs = JArray.Parse(JsonConvert.SerializeObject(ghostFbs));
+
+            _ctx?.SendCommandToClients(new JObject
+            {
+                ["command"] = "autoMode",
+                ["data"] = new JObject
+                {
+                    ["command"] = "ghost",
+                    ["state"] = new JObject
+                    {
+                        ["found"] = true,
+                        ["fbs"] = listOfFbs
+                    }
+                }
+            });
+        }
+
+        private void SendAutoModeGhostResetToClients()
+        {
+            _ctx?.SendCommandToClients(new JObject
+            {
+                ["command"] = "autoMode",
+                ["data"] = new JObject
+                {
+                    ["command"] = "ghost",
+                    ["state"] = new JObject
+                    {
+                        ["found"] = false
                     }
                 }
             });

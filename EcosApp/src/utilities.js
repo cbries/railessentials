@@ -394,7 +394,7 @@ function getCtrlOfCoord(x, y, listOfCtrls) {
         if (typeof c0data === "undefined" || c0data == null) continue;
         const c = c0data.coord;
         if (typeof c === "undefined" || c == null) return null;
-        if (c.x === x && c.y === y) return c;
+        if (c.x === x && c.y === y) return c0;
     }
     return null;
 }

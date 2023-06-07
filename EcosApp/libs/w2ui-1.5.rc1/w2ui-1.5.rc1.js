@@ -378,12 +378,11 @@ var w2utils = (function ($) {
         return (Math.floor(sizeStr / Math.pow(1024, i) * 10) / 10).toFixed(i === 0 ? 0 : 1) + ' ' + (sizes[i] || '??');
     }
 
-    function formatNumber (val, fraction, useGrouping) {
+    function formatNumber (val, fraction) {
         if (val == null || val === '' || typeof val == 'object') return '';
         var options = {
             minimumFractionDigits : fraction,
-            maximumFractionDigits : fraction,
-            useGrouping : useGrouping
+            maximumFractionDigits : fraction
         };
         if (fraction == null || fraction < 0) {
             options.minimumFractionDigits = 0;

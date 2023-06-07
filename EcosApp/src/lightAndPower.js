@@ -195,6 +195,7 @@ class LightAndPower {
                 }
                 catch (e) { }
             });
+
             $('#powerChkIn1DelaySecs').w2field('int', {
                 autoFormat: true, min: 0, max: 30, silent: false
             });

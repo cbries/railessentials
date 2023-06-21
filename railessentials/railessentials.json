@@ -18,6 +18,10 @@
     "Ip": "192.168.178.61",
     "Port": 15471
   },
+  "Mqtt": {
+    "Enabled": true,
+    "BrokerAddress": "192.168.178.29"
+  },
   "WsServer": {
     "Ip": "any",
     "Port": 45099

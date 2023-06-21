@@ -12,7 +12,6 @@ namespace railessentials.ClientHandler
     public partial class ClientHandler
     {
         private const string TargetUriRgbStripes = "ws://192.168.178.66:81";
-        private const string TargetUriSteckdosen = "ws://192.168.178.62:81";
 
         private void ShutdownHandler()
         {
@@ -26,32 +25,24 @@ namespace railessentials.ClientHandler
 
         private void __switchOffSteckdosen()
         {
-            var states = new JObject
-            {
-                ["in1"] = false,
-                ["in2"] = false,
-                ["in3"] = false,
-                ["in4"] = false
-            };
-
-            var r = RelayCommandWebsocket.Send(TargetUriSteckdosen, states.ToString(Formatting.None));
-            if(!r.Result)
-                SendDebug(DebugMessage.Instance($"{r.LastError}", DebugMessageLevel.Error));
+            _mqtt?.Send("Haus/Switches/Off", string.Empty);
         }
 
         private void __resetRgbLight()
         {
-            var states = new JObject
-            {
-                ["r"] = 255,
-                ["g"] = 255,
-                ["b"] = 255,
-                ["w"] = 1023
-            };
+            _mqtt?.Send("Haus/Railway/Sky/On", string.Empty);
 
-            var r = RelayCommandWebsocket.Send(TargetUriRgbStripes, states.ToString(Formatting.None));
-            if (!r.Result)
-                SendDebug(DebugMessage.Instance($"{r.LastError}", DebugMessageLevel.Error));
+            //var states = new JObject
+            //{
+            //    ["r"] = 255,
+            //    ["g"] = 255,
+            //    ["b"] = 255,
+            //    ["w"] = 1023
+            //};
+
+            //var r = RelayCommandWebsocket.Send(TargetUriRgbStripes, states.ToString(Formatting.None));
+            //if (!r.Result)
+            //    SendDebug(DebugMessage.Instance($"{r.LastError}", DebugMessageLevel.Error));
         }
     }
 }

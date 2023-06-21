@@ -21,6 +21,7 @@ namespace railessentials
         public string RecentWorkspace { get; set; }
         public List<ConfigurationWebCam> Webcams { get; set; }
         public ConfigurationEcos Ecos { get; set; } = new();
+        public ConfiguratioMqtt Mqtt { get; set; } = new();
         public ConfigurationWsServer WsServer { get; set; } = new();
         public ConfigurationWebServer WebServer { get; set; } = new();
         public ConfigurationTheme Theme { get; set; } = new();
@@ -148,6 +149,12 @@ namespace railessentials
         {
             return $"{Ip}:{Port}";
         }
+    }
+
+    public class ConfiguratioMqtt
+    {
+        public bool Enabled { get; set; } = false;
+        public string BrokerAddress { get; set; }
     }
 
     public class ConfigurationWsServer

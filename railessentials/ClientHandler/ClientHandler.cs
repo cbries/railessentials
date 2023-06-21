@@ -4,8 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using ecoslib;
@@ -16,6 +14,7 @@ using ecoslib.Utilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using railessentials.Feedbacks;
+using railessentials.mqtt;
 using railessentials.Plan;
 using railessentials.Route;
 using SuperWebSocket;
@@ -38,6 +37,7 @@ namespace railessentials.ClientHandler
     {
         internal ClientHandlerCfg _cfg;
         internal Sniffer _sniffer;
+        internal Mqtt _mqtt;
         private JArray _themeData;
         internal Metadata _metadata;
         internal readonly object _metadataLock = new();
@@ -66,6 +66,8 @@ namespace railessentials.ClientHandler
             _metadata = metadata;
             _themeData = themeData;
 
+            _mqtt = new Mqtt(_cfg.Cfg.Mqtt, _sniffer?.Logger);
+
             Logger = _sniffer?.Logger;
 
             if (_sniffer?.GetWsServer() is WsServer wsServer)
@@ -76,14 +78,12 @@ namespace railessentials.ClientHandler
             }
 
             if (_sniffer is { IsSimulationMode: true })
-            {
                 InitializeSystemHandler();
-            }
 
             InitAccessoryBw();
         }
 
-        private bool PersistEcosData(JObject jsonObj, out string errorMessage)
+        private void PersistEcosData(JToken jsonObj)
         {
             try
             {
@@ -91,8 +91,7 @@ namespace railessentials.ClientHandler
                 var pd = Path.GetDirectoryName(p);
                 if (string.IsNullOrEmpty(pd))
                 {
-                    errorMessage = "Invalid directory path for Ecos simulation data.";
-                    return false;
+                    return;
                 }
                 if (!Directory.Exists(pd))
                     Directory.CreateDirectory(pd);
@@ -100,14 +99,11 @@ namespace railessentials.ClientHandler
                 var prettyJsonStr = jsonObj.ToString(Formatting.Indented);
                 File.WriteAllText(Program.Cfg.SimulationData, prettyJsonStr, Encoding.UTF8);
 
-                errorMessage = string.Empty;
-
-                return true;
+                return;
             }
             catch (Exception ex)
             {
-                errorMessage = ex.Message;
-                return false;
+                return;
             }
         }
 
@@ -124,7 +120,7 @@ namespace railessentials.ClientHandler
             {
                 lock (_metadataLock)
                 {
-                    PersistEcosData(_metadata.EcosData, out _);
+                    PersistEcosData(_metadata.EcosData);
                 }
             }
 
@@ -255,6 +251,13 @@ namespace railessentials.ClientHandler
                     {
                         var cmddata = GetCmdData(json);
                         HandleRelayCommand(cmddata);
+                    }
+                    break;
+
+                case "mqtt":
+                    {
+                        var cmddata = GetCmdData(json);
+                        HandleMqttCommand(cmddata);
                     }
                     break;
 
@@ -1212,6 +1215,30 @@ namespace railessentials.ClientHandler
             _sniffer?.SendCommandsToEcosStation();
         }
 
+        private void HandleMqttCommand(JObject cmddata)
+        {
+            var mode = cmddata.GetString("mode")?.ToLower();
+            if (string.IsNullOrEmpty(mode)) return;
+
+            if (mode.Equals("mqtt", StringComparison.OrdinalIgnoreCase))
+            {
+                if (cmddata["data"] is not JObject topics) return;
+
+                foreach (var it in topics)
+                {
+                    var topic = it.Key;
+
+                    if (string.IsNullOrEmpty(topic)) continue;
+
+                    _mqtt?.Send(topic, it.Value?.ToString());
+                }
+
+                return;
+            }
+
+            SendDebug(DebugMessage.Instance($"RelayCommand mode '{mode}' is unknown.", DebugMessageLevel.Warning));
+        }
+
         private void HandleRelayCommand(JObject cmddata)
         {
             var mode = cmddata.GetString("mode")?.ToLower();
@@ -1497,7 +1524,7 @@ namespace railessentials.ClientHandler
             foreach (var it in objs)
             {
                 var itLoc = it as Locomotive;
-                if(IsSimulationMode())
+                if (IsSimulationMode())
                     itLoc?.StopSimulation();
                 else
                     itLoc?.Stop();

@@ -119,6 +119,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BasementTest", "BasementTes
 		Workspaces\BasementTest\metamodel.json = Workspaces\BasementTest\metamodel.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{66956A1F-51B1-4CFF-8EC8-52FF78D50314}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dailyBuild.yml = .github\workflows\dailyBuild.yml
+		.github\workflows\msbuild.yml = .github\workflows\msbuild.yml
+		.github\workflows\msbuildSetup.yml = .github\workflows\msbuildSetup.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +182,7 @@ Global
 		{9D3D44D7-3166-4BBE-8281-2C725E15F3C5} = {A6CAC04E-5AD1-463B-9AA3-D38E24E0BEB7}
 		{97F14BAA-BC96-4783-85A6-EC7A89952794} = {DF65C5C0-6DB0-46F8-8705-51750B3D6FF8}
 		{2569C3AA-E645-44E3-B7C2-2D99B29E1506} = {DF65C5C0-6DB0-46F8-8705-51750B3D6FF8}
+		{66956A1F-51B1-4CFF-8EC8-52FF78D50314} = {ADC41415-22F7-4063-AC3E-5938436CBDAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C91A5FD-A096-4732-AF10-4BBB412B07BB}

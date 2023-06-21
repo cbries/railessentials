@@ -345,6 +345,8 @@ namespace ecoslib.Entities
                 }
                 else if (arg.Name.Equals("funcset", StringComparison.OrdinalIgnoreCase))
                 {
+                    if (arg.Parameter.Count == 0) continue;
+
                     NrOfFunctions = arg.Parameter[0].Length;
                     var usedFncs = 0;
                     for (var i = 0; i < Funcset.Count; ++i)
@@ -376,6 +378,8 @@ namespace ecoslib.Entities
                 {
                     try
                     {
+                        if (arg.Parameter.Count == 0) continue;
+
                         var idx = Convert.ToInt32(arg.Parameter[0]);
                         var currentValue = Funcset[idx];
                         var newValue = arg.Parameter[1].Equals("1", StringComparison.OrdinalIgnoreCase);
@@ -391,9 +395,9 @@ namespace ecoslib.Entities
                 }
                 else if (arg.Name.Equals("profile", StringComparison.OrdinalIgnoreCase))
                 {
+                    if (arg.Parameter.Count == 0) continue;
                     if (Profile.Equals(arg.Parameter[0])) continue;
                     _hasChanged = true;
-
                     Profile = arg.Parameter[0];
                 }
                 else

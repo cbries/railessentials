@@ -217,6 +217,12 @@ namespace railessentials
                     return;
                 }
 
+                // 
+                // cleanup image filenames 
+                //
+                if (fileName.IsImageFileExtension())
+                    fileName.RemoveInvalidFileNameChars();
+
                 var fullFilePath = Path.Combine(RootDir, fileName).Replace("/", "\\");
                 var decodedFullFilePath = Uri.UnescapeDataString(fullFilePath);
                 var lastIdx = decodedFullFilePath.LastIndexOf("?r=", StringComparison.OrdinalIgnoreCase);
@@ -262,7 +268,7 @@ namespace railessentials
             var stats = Statistics.Instance(Globals.GetCfgDataPath("Statistics"), null);
             var reportGenerator = new Report.Report(_sniffer, _metadata, stats);
             var res = reportGenerator.Generate(fullFilePath, out var errorMessage);
-            if(!res)
+            if (!res)
             {
                 var sb = new StringBuilder();
                 sb.AppendLine($"<html><body>{errorMessage}</body></html>");

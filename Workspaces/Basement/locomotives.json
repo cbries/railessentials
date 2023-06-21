@@ -1,6 +1,6 @@
 {
   "1004": {
-    "IsCleaner": true,
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -605,7 +605,7 @@
   "1003": {
     "IsCleaner": false,
     "IsStopped": true,
-    "IsLocked": true,
+    "IsLocked": false,
     "Settings": {
       "OptionDirection": false,
       "OptionMainline": false,

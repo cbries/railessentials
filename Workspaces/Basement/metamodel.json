@@ -588,27 +588,6 @@
         "themeDimIdx": 0
       }
     },
-    "2x1": {
-      "identifier": "tk20171218185818172",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 1
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
     "3x1": {
       "identifier": "tk20171218185818436",
       "name": "Straigth",
@@ -628,29 +607,6 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
-      }
-    },
-    "1x1": {
-      "identifier": "tk20171218185827860",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 1
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
       }
     },
     "3x5": {
@@ -758,48 +714,6 @@
         "themeDimIdx": 0
       }
     },
-    "2x4": {
-      "identifier": "tk20171218190005200",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 4
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "2x3": {
-      "identifier": "tk20171218190005576",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 3
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
     "3x3": {
       "identifier": "tk20171218190005903",
       "name": "Straigth",
@@ -840,113 +754,6 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
-      }
-    },
-    "2x2": {
-      "identifier": "tk20171218190006544",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 2
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "2x8": {
-      "identifier": "tk20171218190008087",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 8
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 2
-      }
-    },
-    "1x6": {
-      "identifier": "tk20171218190013551",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 6
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "1x7": {
-      "identifier": "tk20171218190015752",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 7
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "1x8": {
-      "identifier": "tk20171218190016000",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 8
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
       }
     },
     "14x1": {
@@ -1843,96 +1650,6 @@
         "themeDimIdx": 2
       }
     },
-    "0x11": {
-      "identifier": "tk1017395988",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 0,
-        "y": 11
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "5x13": {
-      "identifier": "tk1017395994",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 5,
-        "y": 13
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "1x10": {
-      "identifier": "tk1017395995",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 10
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "0x10": {
-      "identifier": "tk1017395996",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 0,
-        "y": 10
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
     "0x15": {
       "identifier": "tk1017395999",
       "name": "Straigth",
@@ -1973,165 +1690,6 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 1
-      }
-    },
-    "5x12": {
-      "identifier": "tk1017396017",
-      "name": "Direction",
-      "basename": "dir",
-      "clickable": false,
-      "routes": [
-        "CA!",
-        "DB!",
-        "AC!",
-        "BD!"
-      ],
-      "states": {},
-      "coord": {
-        "x": 5,
-        "y": 12
-      },
-      "editor": {
-        "themeId": 14,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 1
-      }
-    },
-    "2x13": {
-      "identifier": "tk1017396018",
-      "name": "Direction",
-      "basename": "dir",
-      "clickable": false,
-      "routes": [
-        "CA!",
-        "DB!",
-        "AC!",
-        "BD!"
-      ],
-      "states": {},
-      "coord": {
-        "x": 2,
-        "y": 13
-      },
-      "editor": {
-        "themeId": 14,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 2
-      }
-    },
-    "1x12": {
-      "identifier": "tk1017396019",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 12
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "1x13": {
-      "identifier": "tk1017396020",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 1,
-        "y": 13
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 2
-      }
-    },
-    "5x11": {
-      "identifier": "tk1017396021",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 5,
-        "y": 11
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "3x11": {
-      "identifier": "tk1017396022",
-      "name": "Curve",
-      "basename": "curve",
-      "clickable": false,
-      "routes": [
-        "AD,DA",
-        "AB,BA",
-        "BC,CB",
-        "CD,DC"
-      ],
-      "states": {},
-      "coord": {
-        "x": 3,
-        "y": 11
-      },
-      "editor": {
-        "themeId": 11,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 2
-      }
-    },
-    "4x11": {
-      "identifier": "tk1017396023",
-      "name": "Straigth",
-      "basename": "straight",
-      "clickable": false,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 11
-      },
-      "editor": {
-        "themeId": 10,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
       }
     },
     "4x9": {
@@ -2388,246 +1946,6 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 2
-      }
-    },
-    "4x1": {
-      "identifier": "FB5.1",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 1
-      },
-      "addresses": {
-        "Addr": 17,
-        "Addr1": 0,
-        "Port1": 0,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x2": {
-      "identifier": "FB5.2",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 2
-      },
-      "addresses": {
-        "Addr": 18,
-        "Addr1": 5,
-        "Port1": 2,
-        "Inverse1": false,
-        "Addr2": -1,
-        "Port2": -1,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x3": {
-      "identifier": "FB5.3",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 3
-      },
-      "addresses": {
-        "Addr": 19,
-        "Addr1": 0,
-        "Port1": 0,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x4": {
-      "identifier": "FB5.4",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 4
-      },
-      "addresses": {
-        "Addr": 20,
-        "Addr1": 0,
-        "Port1": 0,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x5": {
-      "identifier": "FB5.5",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 5
-      },
-      "addresses": {
-        "Addr": 21,
-        "Addr1": 6,
-        "Port1": 1,
-        "Inverse1": false,
-        "Addr2": -1,
-        "Port2": -1,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x6": {
-      "identifier": "FB5.6",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 6
-      },
-      "addresses": {
-        "Addr": 22,
-        "Addr1": 6,
-        "Port1": 2,
-        "Inverse1": false,
-        "Addr2": -1,
-        "Port2": -1,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x7": {
-      "identifier": "FB5.7",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 7
-      },
-      "addresses": {
-        "Addr": 23,
-        "Addr1": 6,
-        "Port1": 3,
-        "Inverse1": false,
-        "Addr2": -1,
-        "Port2": -1,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "4x8": {
-      "identifier": "FB5.8",
-      "name": "Sensor",
-      "basename": "sensor-off",
-      "clickable": true,
-      "routes": [
-        "AC",
-        "BD"
-      ],
-      "states": {},
-      "coord": {
-        "x": 4,
-        "y": 8
-      },
-      "addresses": {
-        "Addr": 24,
-        "Addr1": 6,
-        "Port1": 4,
-        "Inverse1": false,
-        "Addr2": -1,
-        "Port2": -1,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 200,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
       }
     },
     "11x1": {
@@ -3618,975 +2936,6 @@
         "offsetX": 0,
         "offsetY": 0,
         "themeDimIdx": 0
-      }
-    },
-    "1x9": {
-      "identifier": "s08",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 1,
-        "y": 9
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 25,
-        "Port1": 4,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
-    "1x5": {
-      "identifier": "s07",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 1,
-        "y": 5
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 17,
-        "Port1": 4,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
-    "1x4": {
-      "identifier": "s03",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 1,
-        "y": 4
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 2,
-        "Port1": 3,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
-    "1x3": {
-      "identifier": "s02",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 1,
-        "y": 3
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 2,
-        "Port1": 4,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
-    "1x2": {
-      "identifier": "s01",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 1,
-        "y": 2
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 3,
-        "Port1": 1,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
-    "2x5": {
-      "identifier": "s04",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 2,
-        "y": 5
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 3,
-        "Port1": 2,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
-    "2x6": {
-      "identifier": "s05",
-      "name": "Turnout Left",
-      "basename": "turnoutleft",
-      "clickable": true,
-      "routes": [
-        "AC,CA,CD,DC",
-        "BD,DB,DA,AD",
-        "AC,CA,AB,BA",
-        "BD,DB,BC,CB"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnleft"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnleft"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnleft"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnleft"
-          }
-        ]
-      },
-      "coord": {
-        "x": 2,
-        "y": 6
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 3,
-        "Port1": 3,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 50,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      },
-      "isMaintenance": false
-    },
-    "2x7": {
-      "identifier": "s06",
-      "name": "Turnout Left",
-      "basename": "turnoutleft",
-      "clickable": true,
-      "routes": [
-        "AC,CA,CD,DC",
-        "BD,DB,DA,AD",
-        "AC,CA,AB,BA",
-        "BD,DB,BC,CB"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnleft"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnleft"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnleft"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnleft"
-          }
-        ]
-      },
-      "coord": {
-        "x": 2,
-        "y": 7
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 3,
-        "Port1": 4,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 50,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
       }
     },
     "15x3": {
@@ -6376,127 +4725,6 @@
         "themeDimIdx": 0
       }
     },
-    "0x12": {
-      "identifier": "sw10",
-      "name": "Turnout Left",
-      "basename": "turnoutleft",
-      "clickable": true,
-      "routes": [
-        "AC,CA,CD,DC",
-        "BD,DB,DA,AD",
-        "AC,CA,AB,BA",
-        "BD,DB,BC,CB"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnleft"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnleft"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnleft"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnleft"
-          },
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnleft"
-          }
-        ]
-      },
-      "coord": {
-        "x": 0,
-        "y": 12
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 17,
-        "Port1": 2,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 50,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
-      }
-    },
     "3x9": {
       "identifier": "sw11",
       "name": "Turnout Left",
@@ -7021,37 +5249,6 @@
         "themeDimIdx": 0
       }
     },
-    "3x13": {
-      "identifier": "B25",
-      "name": "Short Block",
-      "basename": "block-s",
-      "clickable": false,
-      "routes": [
-        "A0|C0,C0|A0",
-        "B0|D0,D0|B0"
-      ],
-      "states": {},
-      "dimensions": [
-        {
-          "w": 2,
-          "h": 1
-        },
-        {
-          "w": 1,
-          "h": 2
-        }
-      ],
-      "coord": {
-        "x": 3,
-        "y": 13
-      },
-      "editor": {
-        "themeId": 151,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 0
-      }
-    },
     "1x0": {
       "identifier": "LblSchattenbahnhof1",
       "name": "Text",
@@ -7399,9 +5596,9 @@
         "y": 9
       },
       "addresses": {
-        "Addr": -1,
-        "Addr1": -1,
-        "Port1": -1,
+        "Addr": 0,
+        "Addr1": 29,
+        "Port1": 1,
         "Inverse1": false,
         "Addr2": -1,
         "Port2": -1,
@@ -8773,9 +6970,9 @@
         "y": 17
       },
       "addresses": {
-        "Addr": -1,
-        "Addr1": -1,
-        "Port1": -1,
+        "Addr": 0,
+        "Addr1": 6,
+        "Port1": 1,
         "Inverse1": false,
         "Addr2": -1,
         "Port2": -1,
@@ -10509,9 +8706,9 @@
         "y": 11
       },
       "addresses": {
-        "Addr": -1,
-        "Addr1": -1,
-        "Port1": -1,
+        "Addr": 0,
+        "Addr1": 29,
+        "Port1": 2,
         "Inverse1": false,
         "Addr2": -1,
         "Port2": -1,
@@ -10736,9 +8933,9 @@
         "y": 11
       },
       "addresses": {
-        "Addr": -1,
-        "Addr1": -1,
-        "Port1": -1,
+        "Addr": 0,
+        "Addr1": 29,
+        "Port1": 4,
         "Inverse1": false,
         "Addr2": -1,
         "Port2": -1,
@@ -11007,9 +9204,9 @@
         "y": 12
       },
       "addresses": {
-        "Addr": -1,
-        "Addr1": -1,
-        "Port1": -1,
+        "Addr": 0,
+        "Addr1": 29,
+        "Port1": 3,
         "Inverse1": false,
         "Addr2": -1,
         "Port2": -1,
@@ -11077,127 +9274,6 @@
       "coord": {
         "x": 22,
         "y": 15
-      }
-    },
-    "0x20": {
-      "identifier": "s19",
-      "name": "Turnout Right",
-      "basename": "turnoutright",
-      "clickable": true,
-      "routes": [
-        "AC,CA,AD,DA",
-        "BD,DB,BA,AB",
-        "CA,AC,CB,BC",
-        "DB,BD,DC,CD"
-      ],
-      "states": {
-        "deg0": [
-          {
-            "source": "left",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg90": [
-          {
-            "source": "top",
-            "to": "left",
-            "state": "turnright"
-          },
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "left",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          }
-        ],
-        "deg180": [
-          {
-            "source": "top",
-            "to": "right",
-            "state": "turnright"
-          },
-          {
-            "source": "right",
-            "to": "top",
-            "state": "turnright"
-          },
-          {
-            "source": "left",
-            "to": "right",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "left",
-            "state": "straight"
-          }
-        ],
-        "deg270": [
-          {
-            "source": "top",
-            "to": "bottom",
-            "state": "straight"
-          },
-          {
-            "source": "bottom",
-            "to": "top",
-            "state": "straight"
-          },
-          {
-            "source": "right",
-            "to": "bottom",
-            "state": "turnright"
-          },
-          {
-            "source": "bottom",
-            "to": "right",
-            "state": "turnright"
-          }
-        ]
-      },
-      "coord": {
-        "x": 0,
-        "y": 20
-      },
-      "addresses": {
-        "Addr": 0,
-        "Addr1": 6,
-        "Port1": 1,
-        "Inverse1": false,
-        "Addr2": 0,
-        "Port2": 0,
-        "Inverse2": false
-      },
-      "editor": {
-        "themeId": 51,
-        "offsetX": 0,
-        "offsetY": 0,
-        "themeDimIdx": 3
       }
     },
     "15x10": {
@@ -11659,6 +9735,1825 @@
         "Addr2": -1,
         "Port2": -1,
         "Inverse2": false
+      }
+    },
+    "0x1": {
+      "identifier": "tk20171218185827860",
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "states": {},
+      "coord": {
+        "x": 0,
+        "y": 1
+      },
+      "editor": {
+        "themeId": 11,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "0x2": {
+      "identifier": "s01",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 3,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "0x3": {
+      "identifier": "s02",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 3
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 2,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "0x4": {
+      "identifier": "s03",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 4
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 2,
+        "Port1": 3,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "0x5": {
+      "identifier": "s07",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 5
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 17,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "0x6": {
+      "identifier": "tk20171218190013551",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 0,
+        "y": 6
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 1
+      }
+    },
+    "0x7": {
+      "identifier": "tk20171218190015752",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 0,
+        "y": 7
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 1
+      }
+    },
+    "0x8": {
+      "identifier": "tk20171218190016000",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 0,
+        "y": 8
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 1
+      }
+    },
+    "0x9": {
+      "identifier": "s08",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 9
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 25,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "1x1": {
+      "identifier": "tk20171218185818172",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 1,
+        "y": 1
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "1x2": {
+      "identifier": "tk20171218190006544",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 1,
+        "y": 2
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "1x3": {
+      "identifier": "tk20171218190005576",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 1,
+        "y": 3
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "1x4": {
+      "identifier": "tk20171218190005200",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 1,
+        "y": 4
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "1x5": {
+      "identifier": "s04",
+      "name": "Turnout Right",
+      "basename": "turnoutright",
+      "clickable": true,
+      "routes": [
+        "AC,CA,AD,DA",
+        "BD,DB,BA,AB",
+        "CA,AC,CB,BC",
+        "DB,BD,DC,CD"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnright"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnright"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnright"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnright"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnright"
+          }
+        ]
+      },
+      "coord": {
+        "x": 1,
+        "y": 5
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 3,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 51,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "1x6": {
+      "identifier": "s05",
+      "name": "Turnout Left",
+      "basename": "turnoutleft",
+      "clickable": true,
+      "routes": [
+        "AC,CA,CD,DC",
+        "BD,DB,DA,AD",
+        "AC,CA,AB,BA",
+        "BD,DB,BC,CB"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnleft"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnleft"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnleft"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnleft"
+          }
+        ]
+      },
+      "coord": {
+        "x": 1,
+        "y": 6
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 3,
+        "Port1": 3,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 50,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      },
+      "isMaintenance": false
+    },
+    "1x7": {
+      "identifier": "s06",
+      "name": "Turnout Left",
+      "basename": "turnoutleft",
+      "clickable": true,
+      "routes": [
+        "AC,CA,CD,DC",
+        "BD,DB,DA,AD",
+        "AC,CA,AB,BA",
+        "BD,DB,BC,CB"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnleft"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnleft"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnleft"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnleft"
+          }
+        ]
+      },
+      "coord": {
+        "x": 1,
+        "y": 7
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 3,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 50,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "1x8": {
+      "identifier": "tk20171218190008087",
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "states": {},
+      "coord": {
+        "x": 1,
+        "y": 8
+      },
+      "editor": {
+        "themeId": 11,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 2
+      }
+    },
+    "2x1": {
+      "identifier": "FB5.1",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 1
+      },
+      "addresses": {
+        "Addr": 17,
+        "Addr1": 0,
+        "Port1": 0,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x2": {
+      "identifier": "FB5.2",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 2
+      },
+      "addresses": {
+        "Addr": 18,
+        "Addr1": 5,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x3": {
+      "identifier": "FB5.3",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 3
+      },
+      "addresses": {
+        "Addr": 19,
+        "Addr1": 0,
+        "Port1": 0,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x4": {
+      "identifier": "FB5.4",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 4
+      },
+      "addresses": {
+        "Addr": 20,
+        "Addr1": 0,
+        "Port1": 0,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x5": {
+      "identifier": "FB5.5",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 5
+      },
+      "addresses": {
+        "Addr": 21,
+        "Addr1": 6,
+        "Port1": 1,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x6": {
+      "identifier": "FB5.6",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 6
+      },
+      "addresses": {
+        "Addr": 22,
+        "Addr1": 6,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x7": {
+      "identifier": "FB5.7",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 7
+      },
+      "addresses": {
+        "Addr": 23,
+        "Addr1": 6,
+        "Port1": 3,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "2x8": {
+      "identifier": "FB5.8",
+      "name": "Sensor",
+      "basename": "sensor-off",
+      "clickable": true,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 2,
+        "y": 8
+      },
+      "addresses": {
+        "Addr": 24,
+        "Addr1": 6,
+        "Port1": 4,
+        "Inverse1": false,
+        "Addr2": -1,
+        "Port2": -1,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 200,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 0
+      }
+    },
+    "4x1": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "offsetX": 22,
+        "offsetY": 24,
+        "themeDimIdx": 0
+      },
+      "identifier": "TK_23",
+      "coord": {
+        "x": 4,
+        "y": 1
+      }
+    },
+    "4x2": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_24",
+      "coord": {
+        "x": 4,
+        "y": 2
+      }
+    },
+    "4x3": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_25",
+      "coord": {
+        "x": 4,
+        "y": 3
+      }
+    },
+    "4x4": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_26",
+      "coord": {
+        "x": 4,
+        "y": 4
+      }
+    },
+    "4x5": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_27",
+      "coord": {
+        "x": 4,
+        "y": 5
+      }
+    },
+    "4x6": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_28",
+      "coord": {
+        "x": 4,
+        "y": 6
+      }
+    },
+    "4x7": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_29",
+      "coord": {
+        "x": 4,
+        "y": 7
+      }
+    },
+    "4x8": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_30",
+      "coord": {
+        "x": 4,
+        "y": 8
+      }
+    },
+    "1x9": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 22,
+        "offsetY": 24
+      },
+      "identifier": "TK_31",
+      "coord": {
+        "x": 1,
+        "y": 9
+      }
+    },
+    "0x10": {
+      "identifier": "tk1017395988",
+      "name": "Straigth",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "states": {},
+      "coord": {
+        "x": 0,
+        "y": 10
+      },
+      "editor": {
+        "themeId": 10,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 1
+      }
+    },
+    "0x11": {
+      "identifier": "sw10",
+      "name": "Turnout Left",
+      "basename": "turnoutleft",
+      "clickable": true,
+      "routes": [
+        "AC,CA,CD,DC",
+        "BD,DB,DA,AD",
+        "AC,CA,AB,BA",
+        "BD,DB,BC,CB"
+      ],
+      "states": {
+        "deg0": [
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "right",
+            "state": "turnleft"
+          },
+          {
+            "source": "right",
+            "to": "bottom",
+            "state": "turnleft"
+          }
+        ],
+        "deg90": [
+          {
+            "source": "left",
+            "to": "bottom",
+            "state": "turnleft"
+          },
+          {
+            "source": "bottom",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          }
+        ],
+        "deg180": [
+          {
+            "source": "top",
+            "to": "left",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "left",
+            "to": "right",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "left",
+            "state": "straight"
+          }
+        ],
+        "deg270": [
+          {
+            "source": "top",
+            "to": "bottom",
+            "state": "straight"
+          },
+          {
+            "source": "bottom",
+            "to": "top",
+            "state": "straight"
+          },
+          {
+            "source": "right",
+            "to": "top",
+            "state": "turnleft"
+          },
+          {
+            "source": "top",
+            "to": "right",
+            "state": "turnleft"
+          }
+        ]
+      },
+      "coord": {
+        "x": 0,
+        "y": 11
+      },
+      "addresses": {
+        "Addr": 0,
+        "Addr1": 17,
+        "Port1": 2,
+        "Inverse1": false,
+        "Addr2": 0,
+        "Port2": 0,
+        "Inverse2": false
+      },
+      "editor": {
+        "themeId": 50,
+        "offsetX": 0,
+        "offsetY": 0,
+        "themeDimIdx": 3
+      }
+    },
+    "1x11": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 20,
+        "offsetY": 26
+      },
+      "identifier": "TK_32",
+      "coord": {
+        "x": 1,
+        "y": 11
+      }
+    },
+    "2x11": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 0,
+        "offsetX": 20,
+        "offsetY": 26
+      },
+      "identifier": "TK_33",
+      "coord": {
+        "x": 2,
+        "y": 11
+      }
+    },
+    "0x12": {
+      "id": 10,
+      "name": "Straight",
+      "basename": "straight",
+      "clickable": false,
+      "routes": [
+        "AC",
+        "BD"
+      ],
+      "editor": {
+        "themeId": 10,
+        "themeDimIdx": 1,
+        "offsetX": 23,
+        "offsetY": 25
+      },
+      "identifier": "TK_34",
+      "coord": {
+        "x": 0,
+        "y": 12
+      }
+    },
+    "3x11": {
+      "id": 11,
+      "name": "Curve",
+      "basename": "curve",
+      "clickable": false,
+      "routes": [
+        "AD,DA",
+        "AB,BA",
+        "BC,CB",
+        "CD,DC"
+      ],
+      "editor": {
+        "themeId": 11,
+        "offsetX": 10,
+        "offsetY": 17,
+        "themeDimIdx": 1
+      },
+      "identifier": "TK_35",
+      "coord": {
+        "x": 3,
+        "y": 11
       }
     }
   }

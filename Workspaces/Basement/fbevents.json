@@ -660,58 +660,6 @@
     "LockedByBlock": ""
   },
   {
-    "BlockId": "B25[+]",
-    "FbEnter": "FB27",
-    "FbIn": "FB26",
-    "OnStart": [],
-    "OnStop": [],
-    "DeniedLocomotives": [],
-    "Settings": {
-      "BlockEnabled": true,
-      "OptionWait": true,
-      "OptionDirection": false,
-      "OptionMainline": true,
-      "OptionBbt": false,
-      "TypeOthers": true,
-      "TypeLocal": true,
-      "TypeIntercity": false,
-      "TypeFreight": true,
-      "TypeShunting": true,
-      "TypeBranchLine": true,
-      "TypeBranchLineFreight": false,
-      "TypeRegional": true
-    },
-    "AdditionalBlockLocks": [
-      "B09"
-    ],
-    "LockedByBlock": ""
-  },
-  {
-    "BlockId": "B25[-]",
-    "FbEnter": "FB26",
-    "FbIn": "FB27",
-    "OnStart": [],
-    "OnStop": [],
-    "DeniedLocomotives": [],
-    "Settings": {
-      "BlockEnabled": true,
-      "OptionWait": true,
-      "OptionDirection": false,
-      "OptionMainline": true,
-      "OptionBbt": false,
-      "TypeOthers": true,
-      "TypeLocal": true,
-      "TypeIntercity": false,
-      "TypeFreight": true,
-      "TypeShunting": true,
-      "TypeBranchLine": true,
-      "TypeBranchLineFreight": false,
-      "TypeRegional": true
-    },
-    "AdditionalBlockLocks": [],
-    "LockedByBlock": ""
-  },
-  {
     "BlockId": "B15[+]",
     "FbEnter": "",
     "FbIn": "",
@@ -863,7 +811,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,
@@ -887,7 +835,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,
@@ -911,7 +859,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,
@@ -935,7 +883,7 @@
     "OnStop": [],
     "DeniedLocomotives": [],
     "Settings": {
-      "BlockEnabled": true,
+      "BlockEnabled": false,
       "OptionWait": true,
       "OptionDirection": false,
       "OptionMainline": true,

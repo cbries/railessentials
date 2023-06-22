@@ -1,6 +1,6 @@
 {
   "1004": {
-    "IsCleaner": true,
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -537,6 +537,7 @@
     "SpeedLevels": {}
   },
   "1009": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -569,6 +570,7 @@
     }
   },
   "1002": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -601,8 +603,9 @@
     }
   },
   "1003": {
+    "IsCleaner": false,
     "IsStopped": true,
-    "IsLocked": true,
+    "IsLocked": false,
     "Settings": {
       "OptionDirection": false,
       "OptionMainline": false,
@@ -620,6 +623,7 @@
     "SpeedLevels": {}
   },
   "1005": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -639,6 +643,7 @@
     "SpeedLevels": {}
   },
   "1012": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -658,6 +663,7 @@
     "SpeedLevels": {}
   },
   "1010": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -690,6 +696,7 @@
     }
   },
   "1013": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": true,
     "Settings": {
@@ -709,6 +716,7 @@
     "SpeedLevels": {}
   },
   "1006": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": true,
     "Settings": {
@@ -728,6 +736,7 @@
     "SpeedLevels": {}
   },
   "1008": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": false,
     "Settings": {
@@ -747,6 +756,7 @@
     "SpeedLevels": {}
   },
   "1001": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": true,
     "Settings": {
@@ -766,6 +776,7 @@
     "SpeedLevels": {}
   },
   "1014": {
+    "IsCleaner": false,
     "IsStopped": true,
     "IsLocked": true,
     "Settings": {

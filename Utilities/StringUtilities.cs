@@ -3,7 +3,9 @@
 // File: StringUtilities.cs
 
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Utilities
@@ -39,6 +41,44 @@ namespace Utilities
                 errorMessage = ex.Message;
                 return false;
             }
+        }
+
+        public static string RemoveInvalidFileNameChars(this string filename)
+        {
+            if (string.IsNullOrEmpty(filename)) return filename;
+            var parts = filename.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length == 0) return filename;
+
+            var fname = parts.Last();
+            var p = filename;
+            p = p.Replace(fname, string.Empty);
+            p = p.TrimEnd(new[] {'/'});
+
+            fname = string.Join("_", fname.Split(Path.GetInvalidFileNameChars()));
+            return Path.Combine(p, fname);
+        }
+
+        private static readonly List<string> ImageExtensions = new()
+        {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".bmp",
+            ".tif",
+            ".tiff",
+            ".ico",
+            ".svg"
+        };
+
+        public static bool IsImageFileExtension(this string filename)
+        {
+            if (string.IsNullOrEmpty(filename)) return false;
+            foreach(var it in ImageExtensions)
+                if (filename.EndsWith(it, StringComparison.OrdinalIgnoreCase))
+                    return true;
+
+            return false;
         }
     }
 }

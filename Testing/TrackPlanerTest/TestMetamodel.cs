@@ -536,10 +536,10 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestRoutingBasementDemo()
         {
-            var path = WorkspaceRoot + @"Basement\metamodel.json";
+            var path = WorkspaceRoot + @"BasementTest\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
-            var startBlock = field["8x9"];
+            var startBlock = field["7x8"];
             var r8_9 = field.GetRoutes(startBlock);
             var targetBlock = field["21x18"];
             foreach (var itR in r8_9)
@@ -688,7 +688,7 @@ namespace TrackPlanerTest
         [TestMethod]
         public void TestAnalyzer()
         {
-            var path = WorkspaceRoot + @"Basement\metamodel.json";
+            var path = WorkspaceRoot + @"BasementTest\metamodel.json";
             var field = LoadPlanFieldFile(path);
 
             var analyzer = new Analyze(field);

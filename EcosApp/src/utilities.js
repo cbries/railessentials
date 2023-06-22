@@ -62,7 +62,7 @@ returned value: (String)
 rgba(251,175,255,1)
 hexToRgbA('#fbafff')
 */
-function hexToRgbA(hex) {
+function hexToRgbA(topic, hex) {
     if (hex.charAt(0) !== '#')
         hex = '#' + hex;
     var c;
@@ -72,13 +72,19 @@ function hexToRgbA(hex) {
             c = [c[0], c[0], c[1], c[1], c[2], c[2]];
         }
         c = '0x' + c.join('');
-        //return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+',1)';
-        return {
-            r: (c >> 16) & 255,
-            g: (c >> 8) & 255,
-            b: c & 255,
-            w: 1023
-        };
+
+        var r = topic + 'R';
+        var g = topic + 'G';
+        var b = topic + 'B';
+        var w = topic + 'W';
+
+        var o = {};
+        o[r] = (c >> 16) & 255;
+        o[g] = (c >> 8) & 255;
+        o[b] = c & 255;
+        o[w] = 1023;
+
+        return o;
     }
     throw new Error('Bad Hex');
 }

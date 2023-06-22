@@ -195,6 +195,7 @@ class LightAndPower {
                 }
                 catch (e) { }
             });
+
             $('#powerChkIn1DelaySecs').w2field('int', {
                 autoFormat: true, min: 0, max: 30, silent: false
             });
@@ -351,29 +352,32 @@ class LightAndPower {
         const self = this;
         const dataToSend = self.__getRgbStripesObject();
 
-        self.__trigger('relayCommand',
+        self.__trigger('lightChanged',
             {
-                'mode': 'websocket',
-                'target': this.__rgbStripesIpAddr,
-                'contentType': 'application/json',
+                'mode': 'mqtt',
                 'data': dataToSend
             });
     }
 
     __getRgbStripesObject() {
-        let rgbW = { r: 255, g: 255, b: 255, w: 1023 };
+        let rgbW = { 
+            "Haus/Railway/Sky/R": 255, 
+            "Haus/Railway/Sky/G": 255, 
+            "Haus/Railway/Sky/B": 255, 
+            "Haus/Railway/Sky/W": 1023 
+        };
         if ($('#rgbColorMorningRadio').is(":checked") === true) {
-            rgbW = hexToRgbA($('#rgbColorMorning').val());
-            rgbW.w = 200;
+            rgbW = hexToRgbA('Haus/Railway/Sky/', $('#rgbColorMorning').val());
+            rgbW['Haus/Railway/Sky/W'] = 200;
         } else if ($('#rgbColorNoonRadio').is(":checked") === true) {
-            rgbW = hexToRgbA($('#rgbColorNoon').val());
-            rgbW.w = 1023;
+            rgbW = hexToRgbA('Haus/Railway/Sky/', $('#rgbColorNoon').val());
+            rgbW['Haus/Railway/Sky/W'] = 1023;
         } else if ($('#rgbColorAfternoonRadio').is(":checked") === true) {
-            rgbW = hexToRgbA($('#rgbColorAfternoon').val());
-            rgbW.w = 500;
+            rgbW = hexToRgbA('Haus/Railway/Sky/', $('#rgbColorAfternoon').val());
+            rgbW['Haus/Railway/Sky/W'] = 500;
         } else if ($('#rgbColorNightRadio').is(":checked") === true) {
-            rgbW = hexToRgbA($('#rgbColorNight').val());
-            rgbW.w = 100;
+            rgbW = hexToRgbA('Haus/Railway/Sky/', $('#rgbColorNight').val());
+            rgbW['Haus/Railway/Sky/W'] = 100;
         }
 
         return rgbW;    
@@ -382,22 +386,23 @@ class LightAndPower {
     __sendPowerSwitch() {
         const self = this;
         const dataToSend = {
-            "in1": $('#powerChkIn1').is(":checked"),
-            "in2": $('#powerChkIn2').is(":checked"),
-            "in3": $('#powerChkIn3').is(":checked"),
-            "in4": $('#powerChkIn4').is(":checked"),
-
-            //"in1delay": parseInt($('#powerChkIn1DelaySecs').val()),
-            //"in2delay": parseInt($('#powerChkIn2DelaySecs').val()),
-            //"in3delay": parseInt($('#powerChkIn3DelaySecs').val()),
-            //"in4delay": parseInt($('#powerChkIn4DelaySecs').val())
+            "Haus/Switches/Railway01": $('#powerChkIn1').is(":checked"),
+            "Haus/Switches/Railway02": $('#powerChkIn2').is(":checked"),
+            "Haus/Switches/Railway03": $('#powerChkIn3').is(":checked"),
+            "Haus/Switches/Railway04": $('#powerChkIn4').is(":checked"),
         };
 
-        self.__trigger('relayCommand',
+        // MQTT
+        // Haus/Switches/Railway01   True|False
+        // Haus/Switches/Railway02   True|False
+        // Haus/Switches/Railway03   True|False
+        // Haus/Switches/Railway04   True|False
+        // Haus/Switches/Off
+        // Haus/Switches/On
+
+        self.__trigger('powerSwitchesChanged',
             {
-                'mode': 'websocket',
-                'target': this.__powerPlugIpAddr,
-                'contentType': 'application/json',
+                'mode': 'mqtt',
                 'data': dataToSend
             });
     }

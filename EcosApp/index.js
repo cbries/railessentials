@@ -214,6 +214,21 @@ function relayWebsocketCommand(data) {
     });
 }
 
+function triggerMqttMessage(data) {
+    var srv = window.serverHandling;
+    if (typeof srv === "undefined" || srv == null)
+        return; // TODO show error
+
+    // data.mode := string ['mqtt', ...]
+    // data.data := object, binary, etc.
+
+    srv.sendCommand({
+        "command": "mqtt",
+        "timestamp": Date.now(),
+        "cmddata": data
+    });
+}
+
 function removeTextfieldFromGlobalList(uniqueId) {
     if (uniqueId == null)
         return;
@@ -461,13 +476,17 @@ $(document).ready(function () {
 
     window.dialogLightAndPower = new LightAndPower();
     window.dialogLightAndPower.install();
-    window.dialogLightAndPower.on('relayCommand', function (ev) {
+    let fncPowerLightChanged = function (ev) {
         const data = ev.data;
-        if (data.mode === "websocket")
-            relayWebsocketCommand(data);
-        else
-            console.log("TODO unknown relay mode: " + data.mode);
-    });
+        if (data.mode === "mqtt") {
+            triggerMqttMessage(data);
+        }
+        else {
+            console.log("TODO unknown data mode: " + data.mode);
+        }
+    };
+    window.dialogLightAndPower.on('powerSwitchesChanged', fncPowerLightChanged);
+    window.dialogLightAndPower.on('lightChanged', fncPowerLightChanged);
 
     window.dialogS88 = new FeedbackVisualization();
     window.dialogS88.install();
@@ -732,7 +751,7 @@ $(document).ready(function () {
                         const state = jsonCommand.data.state;
                         if (typeof state === "undefined" || state == null) break;
 
-                        const fncClearGhost = function() {
+                        const fncClearGhost = function () {
                             const allFbItems = $('div.ctrlItemFeedback[id]');
                             const iMax = allFbItems.length;
                             for (let i = 0; i < iMax; ++i) {
@@ -740,12 +759,12 @@ $(document).ready(function () {
                             }
                         }
 
-                        const fncHideGhostOverlay = function() {
+                        const fncHideGhostOverlay = function () {
                             $('.overlayGhost').hide();
                             $('.overlayGhostText').hide();
                         }
 
-                        const fncShowGhostOverlay = function(message) {
+                        const fncShowGhostOverlay = function (message) {
                             $('.overlayGhost').show();
                             $('.overlayGhostText').html(message);
                             $('.overlayGhostText').show();
@@ -753,8 +772,7 @@ $(document).ready(function () {
 
                         if (typeof state.found === "undefined"
                             || state.found == null
-                            || state.found === false)
-                        {
+                            || state.found === false) {
                             fncClearGhost();
                             fncHideGhostOverlay();
                         } else {

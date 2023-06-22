@@ -129,6 +129,7 @@
     <Compile Include="Locomotives\SpeedCurve.cs" />
     <Compile Include="Locomotives\SpeedLevel.cs" />
     <Compile Include="Metadata.cs" />
+    <Compile Include="mqtt\Mqtt.cs" />
     <Compile Include="NextRouteInformation.cs" />
     <Compile Include="Occ\OccBlock.cs" />
     <Compile Include="Occ\OccData.cs" />
@@ -180,10 +181,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="log4net">
-      <Version>2.0.12</Version>
+      <Version>2.0.15</Version>
+    </PackageReference>
+    <PackageReference Include="M2Mqtt">
+      <Version>4.3.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+      <Version>13.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +214,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>@echo off
